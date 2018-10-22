@@ -1,7 +1,7 @@
 #+BEGIN_COMMENT
 .. title: Testing org mode functionality
 .. slug: testing-org-mode-functionality
-.. date: 2018-10-22 14:57:04 UTC+02:00
+.. date: 2018-10-01 14:57:04 UTC+02:00
 .. tags: 
 .. category: 
 .. link: 
