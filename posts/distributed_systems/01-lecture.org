@@ -1,0 +1,13 @@
+#+BEGIN_COMMENT
+.. title: Design of Distributed Systems - Lecture 01
+.. slug: distributed-systems-01
+.. date: 2018-10-09 16:41:29 UTC+02:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+Slides not available yet
