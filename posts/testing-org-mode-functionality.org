@@ -1,0 +1,40 @@
+#+BEGIN_COMMENT
+.. title: Testing org mode functionality
+.. slug: testing-org-mode-functionality
+.. date: 2018-10-22 14:57:04 UTC+02:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+
+
+#+END_COMMENT
+
+
+Hey and welcome time to test org mode support in nikola.
+
+#+BEGIN_SRC bash
+cd ~
+ls -al
+cat test.txt
+#+END_SRC
+
+** Math
+Euler’s formula: \(e^{ix} = \cos x + i\sin x\)
+
+$$e^{ix} = \cos x + i\sin x$$
+
+** List
+Unordered List:
+- jo
+- jo
+- test
+
+Ordered List:
+1. damn
+2. shawty
+3. whatup
+
+Cya!

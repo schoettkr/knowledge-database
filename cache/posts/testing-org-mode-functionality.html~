@@ -1,0 +1,41 @@
+<p>
+Hey and welcome time to test org mode support in nikola.
+</p>
+
+zsh:1: command not found: pygmentize
+
+<div id="outline-container-org12142c6" class="outline-2">
+<h2 id="org12142c6">Math</h2>
+<div class="outline-text-2" id="text-org12142c6">
+<p>
+Euler’s formula: \(e^{ix} = \cos x + i\sin x\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf8c8810" class="outline-2">
+<h2 id="orgf8c8810">List</h2>
+<div class="outline-text-2" id="text-orgf8c8810">
+<p>
+Unordered List:
+</p>
+<ul class="org-ul">
+<li>jo</li>
+<li>jo</li>
+<li>test</li>
+</ul>
+
+<p>
+Ordered List:
+</p>
+<ol class="org-ol">
+<li>damn</li>
+<li>shawty</li>
+<li>whatup</li>
+</ol>
+
+<p>
+Cya!
+</p>
+</div>
+</div>
