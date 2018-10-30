@@ -401,9 +401,16 @@ footer .social .social-entry a:hover {
 pre {
   border: 1px solid #7194b8;
   background: #f7f0f0;
+  color: saddlebrown;
   padding: 10px;
   overflow: auto;
   font: 1rem/1.2rem Monaco, Menlo, Consolas, "Deja Vu Sans Mono", "Courier New", monospace;
+}
+pre .p {
+  color: darkcyan;
+}
+pre .n {
+  color: coral;
 }
 /* inline code */
 code {
@@ -414,7 +421,8 @@ code {
 /* background color for pygmentize monokai theme */
 .highlight pre {
   background: #272822 none repeat scroll 0 0;
-  color: #f8f8f2;
+  /* color: #f8f8f2; */
+  color: saddlebrown;
 }
 pre.literal-block,
 blockquote {
