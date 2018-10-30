@@ -41,6 +41,8 @@ Method 2: Divide the number by 2 (split it in half) and ignore the remainder, wr
 
 Amongst other common numeral systems are the hexadecimal(16) system (0-9, A-F) and the octal(8) system (0-7).
 
+The basic rule to convert into a number system is: value * base^{place} for each cyper/digit.
+
 As C++ is the main programming language in this course a short intro follows:
 
 #+BEGIN_SRC c++
@@ -58,6 +60,7 @@ As C++ is the main programming language in this course a short intro follows:
     return 0;
   }
 #+END_SRC
+=cout= (object of type =ostream=) and =cin= (object of type =istream=) overload the bitshift operators =<<= and =>>=. =istream= and =ostream= are, amongst other things, pooled in =iostream=.
 
 * Training excercises
 1.) What is a numeral system and which exist? Which one is used in computers?
