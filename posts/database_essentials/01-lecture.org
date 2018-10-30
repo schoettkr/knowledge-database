@@ -9,12 +9,12 @@
 .. type: text
 .. has_math: true
 #+END_COMMENT
-** Organization
+* Organization
 The "Database Essentials" course does not use the centralized eLearning platform as most other courses do. The lecture slides and exercise materials are instead uploaded here: [[https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/][https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/]].
 
 To get the credit points in this course one has first to do succeed in the prerequisites before he's allowed to participate in the written exam at the end of the semester. The prerequisites consist of homework and more details regarding those will follow when the first task is due.
 
-** Why do we need databases?
+* Why do we need databases?
 The starting point is that most applications require data in some form. Data then again has to be organized somehow. How may data be organized? Well for example in a plain file.
 
 Advantages of a plain file:
@@ -90,7 +90,7 @@ Capacity & Performance:
 
 - most filesystems don't offer suited concepts for editing large data pools in a consistent and performant manner
 
-*** Problem solution
+** Problem solution
 A great deal of the above issues lay in the /direct access/ (via the filesystem) to a /inconsistent/ or /badly structured/ data pool in a /sequential manner/.
 
 Steps to a solution:
@@ -106,7 +106,7 @@ However it is pretty common to refer to this DBS as "database".
 
 It is common that different applications interact with the DBMS to access data from the database. The DBMS ensures that each application/accessor has an individual view and access to the data defined by its authentication and access rights.
 
-*** Different Views on a DBS
+** Different Views on a DBS
 *External view (DB User)* :
 Because the task of a DBS is to manage and organize the data for different external applications each external application has its own view of the modeled data.
 
@@ -120,7 +120,7 @@ As seen above data objects can be described from three different layers of abstr
 - DB Users shall not be concerned with the database internals and should just care about the usage of the data, which has to be individual adapted to their use case and priviliges.
 - DB Admins shall be able to change the hardware as well as the internal structure of the data without affecting external applications / DB Users.
 
-*** Three-level architecture
+** Three-level architecture
 The formal description of the database is called the /database schema/. The database schema consists of formal descriptions of the components of the three-level architecture.
 
 Usually there is:
@@ -131,13 +131,13 @@ Usually there is:
 - rules for transforming between the external and the conceptual schema
 - rules for transforming between the conceptual and the internal schema
 
-**** External Schemas
+*** External Schemas
 - external schemas describe the aspects of the conceptual objects, their relations and constraints that are important for the correct data usage in their application
 - the access to the database is usually restricted in some way(s)
 - data from the conceptual view can be represented differently to the external view (e.g additional constraints)
 - this functionality is given by the transformation rules that enable the transformation between objects from the conceptual schema to the external schema and vica versa
 
-**** Conceptual Schema
+*** Conceptual Schema
 - contains all information and properties of objects and their relations that play a role in the data management
 - defines aspects of correct data managment (e.g constraints)
 - is a central reference point for all applications that use the database (external view)
@@ -145,15 +145,14 @@ Usually there is:
 - represents an uniform point of documentation
 - controlls the data usage/access from an central point
 
-  
-**** Internal Schema
+*** Internal Schema
 - describes how and where data is stored, e.g physical location
 - allows creation of additional indices for (for example frequently used) attributes \rightarrow physical data organization
 - defines transformation rules and describes the transformation between objects from the internal view to the conceptual view and vica versa
 
 Three-level architecture: [[img-url:/images/three-level-architecture.png]]
 
-*** Data independence
+** Data independence
 Each higher level of the data architecture has to be immune to changes of the next lower level of the architecture.
 
 *Logical data independence* = the external schemas don't need to be changed when the conceptual schema is modified
@@ -162,7 +161,7 @@ Each higher level of the data architecture has to be immune to changes of the ne
 
 A prerequisite for this is that the changes can be represented via the transformation rules.
 
-*** Advantages of databases
+** Advantages of databases
 - data independence
 - reduced redundancy because differenct applications may access the same data
 - consistency because of the centralized storage and organization
@@ -174,3 +173,4 @@ A prerequisite for this is that the changes can be represented via the transform
 - scalability and reduced costs because usually only the hardware has to be upgraded if the requirements change and not the technology of the data consuming applications
 - increased productivity because the tools given by a DBMS are usually much more powerful than those of a file system
 - improved backup capabilities
+  
