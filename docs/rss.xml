@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://example.com/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://example.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 31 Oct 2018 16:40:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 03</title><link>https://example.com/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdcf07d2" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 31 Oct 2018 16:52:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdcf07d2" class="outline-2"&gt;
 &lt;h2 id="orgdcf07d2"&gt;Characteristics of a language&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgdcf07d2"&gt;
 &lt;p&gt;
@@ -66,7 +66,7 @@ Example of an include directive represented as a syntax graph:
 &lt;/p&gt;
 
 &lt;p&gt;
-&lt;img src="https://example.com/images/include-directive-graph.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/include-directive-graph.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -367,7 +367,7 @@ There is also a difference between logical, arithmetic and circular shifting tha
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Debugging with gdb</title><link>https://example.com/posts/misc/debugging-with-gdb/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdb798a8" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Debugging with gdb</title><link>https://schoettkr.github.io/knowledge-database/posts/misc/debugging-with-gdb/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdb798a8" class="outline-2"&gt;
 &lt;h2 id="orgdb798a8"&gt;How to debug a c program with gdb&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgdb798a8"&gt;
 &lt;/div&gt;
@@ -438,7 +438,7 @@ Source: &lt;a href="https://www.thegeekstuff.com/2010/03/debug-c-program-using-g
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/misc/debugging-with-gdb/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Usage of tar</title><link>https://example.com/posts/misc/tar-usage/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org4cff337" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/debugging-with-gdb/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Usage of tar</title><link>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org4cff337" class="outline-2"&gt;
 &lt;h2 id="org4cff337"&gt;Usage of tar&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org4cff337"&gt;
 &lt;p&gt;
@@ -495,7 +495,7 @@ To remember this more easily:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgc43f3c6" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgc43f3c6" class="outline-2"&gt;
 &lt;h2 id="orgc43f3c6"&gt;Storage and memory&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgc43f3c6"&gt;
 &lt;p&gt;
@@ -609,7 +609,7 @@ Actually the identifier of a variable (eg &lt;code&gt;testVar&lt;/code&gt;) is j
 &lt;/p&gt;
 
 &lt;p&gt;
-&lt;img src="https://example.com/images/identifier-memory.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/identifier-memory.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -657,7 +657,7 @@ The value that the pointer stored in pvar points to is 42
 
 &lt;p&gt;
 Example memory representation of the above code (addresses will differ):
-&lt;img src="https://example.com/images/pointer-memory-representation.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/pointer-memory-representation.png" alt="nil"&gt;
 &lt;/p&gt;
 
 
@@ -772,7 +772,7 @@ Helping advice to avoid the above errors:
 &lt;h4 id="org290f852"&gt;Parameters&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Design of Distributed Systems - Lecture 02</title><link>https://example.com/posts/distributed_systems/distributed-systems-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org92ffd30" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Design of Distributed Systems - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org92ffd30" class="outline-2"&gt;
 &lt;h2 id="org92ffd30"&gt;System Architectures&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org92ffd30"&gt;
 &lt;p&gt;
@@ -817,7 +817,7 @@ Examples of Client/Server Models would be TCP/IP, Sockets and Web Servers (plus 
 &lt;/p&gt;
 
 &lt;p&gt;
-&lt;img src="https://example.com/images/client-server-model.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/client-server-model.png" alt="nil"&gt;
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -845,7 +845,7 @@ There are special types of the C/S Model for example:
 &lt;h3 id="org89fcfe5"&gt;N-Tier Architecture&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-org89fcfe5"&gt;
 &lt;p style="float:right; height: 500px; width: 100px;"&gt;
-&lt;img src="https://example.com/images/n-tier-architecture.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/n-tier-architecture.png" alt="nil"&gt;
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -871,7 +871,7 @@ Examples of n-tier architecture are:
 &lt;h3 id="org5fca862"&gt;N-Tier Architecture: Cluster&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-org5fca862"&gt;
 &lt;p style="float:right; height: 500px; width: 100px;"&gt;
-&lt;img src="https://example.com/images/n-tier-architecture.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/n-tier-architecture.png" alt="nil"&gt;
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -909,7 +909,7 @@ SOA is process-oriented with services as a base concept and enable cross-platfor
 &lt;/ul&gt;
 
 &lt;p style="text-align:center;"&gt;
-&lt;img src="https://example.com/images/soa.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/soa.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1068,14 +1068,14 @@ There are different message exchange models which follow the sender-reciever par
 &lt;li&gt;&lt;a id="org9e6d845"&gt;&lt;/a&gt;Queue Communication Model&lt;br&gt;
 &lt;div class="outline-text-5" id="text-org9e6d845"&gt;
 &lt;p style="text-align:center;"&gt;
-&lt;img src="https://example.com/images/queue-communication.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/queue-communication.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a id="org8379eda"&gt;&lt;/a&gt;Port-oriented Communication Model&lt;br&gt;
 &lt;div class="outline-text-5" id="text-org8379eda"&gt;
 &lt;p style="text-align:center;"&gt;
-&lt;img src="https://example.com/images/port-communication.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/port-communication.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -1085,7 +1085,7 @@ There are different message exchange models which follow the sender-reciever par
 The request/response model is the standard idea of distributed computing. The focus lies on behavior of programming languages. Note that in contrast to message exchange models (kind of contradiction because this is listed as a message exchange model in the script as seen above?!), the request/response model is inherently synchronous. Each operation determines a communication relationship.
 &lt;/p&gt;
 &lt;p style="text-align:center;"&gt;
-&lt;img src="https://example.com/images/request-response-model.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/request-response-model.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -1158,7 +1158,7 @@ Connections can be setup as &lt;b&gt;active&lt;/b&gt; (&lt;i&gt;connect&lt;/i&gt
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/distributed_systems/distributed-systems-02/</guid><pubDate>Mon, 22 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 05</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org1ba9382" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-02/</guid><pubDate>Mon, 22 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org1ba9382" class="outline-2"&gt;
 &lt;h2 id="org1ba9382"&gt;Type and signature&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org1ba9382"&gt;
 &lt;p&gt;
@@ -1478,7 +1478,7 @@ A "direct value" of a specific type is called &lt;i&gt;literal&lt;/i&gt;. Litera
 &lt;li&gt;&lt;code&gt;wchar_t&lt;/code&gt; literals are written like &lt;code&gt;char&lt;/code&gt; with the prefix &lt;code&gt;L&lt;/code&gt; → e.g &lt;code&gt;L'a'&lt;/code&gt;. There also escape sequences to display sequences or characters that are difficult to represent else. &lt;a href="https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences"&gt;Here's a list&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-05/</guid><pubDate>Sun, 21 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 04</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgcce3ac4" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</guid><pubDate>Sun, 21 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgcce3ac4" class="outline-2"&gt;
 &lt;h2 id="orgcce3ac4"&gt;Libraries and Linker&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgcce3ac4"&gt;
 &lt;p&gt;
@@ -1574,7 +1574,7 @@ Furthermore the compiler can be instructed to only execute single steps of the c
 &lt;/p&gt;
 
 &lt;p&gt;
-&lt;img src="https://example.com/images/verbose-compilation.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/verbose-compilation.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1704,7 +1704,7 @@ The first two of these are usually catched when translating the program.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-04/</guid><pubDate>Fri, 19 Oct 2018 12:57:04 GMT</pubDate></item><item><title>Computer Science I - Lecture 02</title><link>https://example.com/posts/computer_science_I/cs-I-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</guid><pubDate>Fri, 19 Oct 2018 12:57:04 GMT</pubDate></item><item><title>Computer Science I - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 There wasn't much new stuff in this lecture because a wrong announcement was made leading to students missing the first week's lecture. Therefore we did mostly repetitions that I'll skip now and summarize the additional slides.
 &lt;/p&gt;
 
@@ -1744,7 +1744,7 @@ Type conversion is done by calling the type on the object:
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 02</title><link>https://example.com/posts/database_essentials/db-essentials-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org5e214d1" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org5e214d1" class="outline-2"&gt;
 &lt;h2 id="org5e214d1"&gt;Information Systems&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org5e214d1"&gt;
 &lt;p&gt;
@@ -1779,7 +1779,7 @@ Databases historically developed out of the needs of operational information sys
 &lt;li&gt;Which (aspects of) data play a role for the user?&lt;/li&gt;
 &lt;li&gt;What does a user do with "his" data?&lt;/li&gt;
 &lt;li&gt;Where do needs overlap with other user(roles)?&lt;/li&gt;
-&lt;li&gt;&lt;img src="https://example.com/images/user-viewpoints.png" alt="nil"&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://schoettkr.github.io/knowledge-database/images/user-viewpoints.png" alt="nil"&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Creation of rules regarding data collection, data formats, documentation and naming (conventions)&lt;/li&gt;
 &lt;/ul&gt;
@@ -1838,7 +1838,7 @@ F.9
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/database_essentials/db-essentials-02/</guid><pubDate>Tue, 16 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 03</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</guid><pubDate>Tue, 16 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 &lt;a href="https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout_de.pdf"&gt;Script (1-28)&lt;/a&gt;
 &lt;/p&gt;
 
@@ -1887,7 +1887,7 @@ Since machine code is not so handy for humans, programming languages have been c
 &lt;h3 id="orga512710"&gt;Variants of execution&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-orga512710"&gt;
 &lt;p&gt;
-&lt;img src="https://example.com/images/execution-variants.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/execution-variants.png" alt="nil"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2001,4 +2001,4 @@ Depending on the position of an operator (e.g &lt;code&gt;+&lt;/code&gt;, &lt;co
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-03/</guid><pubDate>Mon, 15 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</guid><pubDate>Mon, 15 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>

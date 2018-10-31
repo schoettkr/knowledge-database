@@ -6,163 +6,163 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>https://example.com/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/2018/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/2018/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/archive.html</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
+  <lastmod>2018-10-31T16:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/galleries/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/galleries/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/galleries/demo/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/galleries/demo/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/index-1.html</loc>
+  <lastmod>2018-10-31T16:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/index-1.html</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/listings/__pycache__/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/listings/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/listings/hello.py.html</loc>
+  <lastmod>2018-10-31T16:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/about-nikola/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/listings/__pycache__/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/bootstrap-demo/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/listings/hello.py.html</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/charts/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/about-nikola/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/creating-a-theme/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/bootstrap-demo/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/dr-nikolas-vendetta/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/charts/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/extending/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/creating-a-theme/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/handbook/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/dr-nikolas-vendetta/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/internals/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/extending/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/listings-demo/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/handbook/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/path-handlers/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/internals/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/quickref/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/listings-demo/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/quickstart/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/path-handlers/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/social_buttons/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/quickref/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/pages/theming/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/quickstart/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/social_buttons/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-02/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/theming/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/algos_and_programming/algos-and-prog-01/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/algos_and_programming/algos-and-prog-02/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/algos_and_programming/algos-and-prog-03/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/algos_and_programming/algos-and-prog-04/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/algos_and_programming/algos-and-prog-05/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/algos_and_programming/algos-and-prog-06/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/computer_science_I/cs-I-01/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/computer_science_I/cs-I-02/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/computer_science_I/cs-I-03/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/database_essentials/db-essentials-01/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-02/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/database_essentials/db-essentials-02/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/misc/debugging-with-gdb/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/distributed_systems/distributed-systems-01/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/distributed_systems/distributed-systems-02/</loc>
-  <lastmod>2018-10-31T16:40:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/posts/misc/debugging-with-gdb/</loc>
-  <lastmod>2018-10-31T16:40:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/posts/misc/tar-usage/</loc>
-  <lastmod>2018-10-31T16:40:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/posts/testing-org-mode-functionality/</loc>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/testing-org-mode-functionality/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
 </urlset>
