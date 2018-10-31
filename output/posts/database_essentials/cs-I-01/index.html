@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Database Essentials - Lecture 01 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://example.com/posts/database_essentials/cs-I-01/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Database Essentials - Lecture 01">
+<meta property="og:url" content="https://example.com/posts/database_essentials/cs-I-01/">
+<meta property="og:description" content="#+BEGINCOMMENT
+.. title: Database Essentials - Lecture 01
+.. slug: cs-I-01
+.. date: 2018-10-10 13:28:51 UTC+02:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. hasmath: true
+#+EN">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-10-10T13:28:51+02:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://example.com/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Database Essentials - Lecture 01
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-10-10T13:28:51+02:00">2018/10/10</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+#+BEGIN<sub>COMMENT</sub>
+.. title: Database Essentials - Lecture 01
+.. slug: cs-I-01
+.. date: 2018-10-10 13:28:51 UTC+02:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has<sub>math</sub>: true
+#+END<sub>COMMENT</sub>** Organization
+The "Database Essentials" course does not use the centralized eLearning platform as most other courses do. The lecture slides and exercise materials are instead uploaded here: <a href="https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/">https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/</a>.
+</p>
+
+<p>
+To get the credit points in this course one has first to do succeed in the prerequisites before he's allowed to participate in the written exam at the end of the semester. The prerequisites consist of homework and more details regarding those will follow when the first task is due.
+</p>
+
+<div id="outline-container-org439950f" class="outline-2">
+<h2 id="org439950f">Why do we need databases?</h2>
+<div class="outline-text-2" id="text-org439950f">
+<p>
+The starting point is that most applications require data in some form. Data then again has to be organized somehow. How may data be organized? Well for example in a plain file.
+</p>
+
+<p>
+Advantages of a plain file:
+</p>
+
+<ul class="org-ul">
+<li>easy and fast to create</li>
+<li>can be opened with many programs</li>
+<li>can be shared easily e.g via email or usb</li>
+</ul>
+<p>
+Seems good right? Wrong. Take the following example:
+</p>
+
+<p>
+Assume we have two institutions that belong to one organization. The administrations office (AO) and the personnel department (PD).
+</p>
+
+<p>
+AO requires the following data:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">ID</td>
+<td class="org-left">7432420</td>
+</tr>
+<tr>
+<td class="org-left">Name</td>
+<td class="org-left">Doe, John</td>
+</tr>
+<tr>
+<td class="org-left">Street</td>
+<td class="org-left">Milkyway 42</td>
+</tr>
+<tr>
+<td class="org-left">City</td>
+<td class="org-left">Metropolis</td>
+</tr>
+<tr>
+<td class="org-left">SSN</td>
+<td class="org-left">f01e37d2-e54b</td>
+</tr>
+</tbody>
+</table>
+<p>
+PD requires the following data:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Identifier</td>
+<td class="org-left">7432420</td>
+</tr>
+<tr>
+<td class="org-left">Surname</td>
+<td class="org-left">Doe</td>
+</tr>
+<tr>
+<td class="org-left">Forename</td>
+<td class="org-left">John</td>
+</tr>
+<tr>
+<td class="org-left">Address</td>
+<td class="org-left">Milkyway 42, Metropolis</td>
+</tr>
+<tr>
+<td class="org-left">IBAN</td>
+<td class="org-left">TR2000584U51D8302O7L9Q0823</td>
+</tr>
+<tr>
+<td class="org-left">BIC</td>
+<td class="org-left">PWCUSNC1553</td>
+</tr>
+</tbody>
+</table>
+<p>
+Now let's shine a light on the disadvantages of having the above data stored seperately in plain files.
+</p>
+
+<p>
+Redundancy:
+</p>
+
+<ul class="org-ul">
+<li>the colored entries are stored doubly across our two files (I still have to figure out how to highlight text in my blogging pipeline sorry :D, but you can see that most information is duplicated e.g the ID or name)</li>
+</ul>
+<p>
+One consequence of redundancy is that if the data needs to be changed, the changes have to be done in multiple places, which is cumbersome. And if the changes are not applied correctly inconsistencies will occur!
+</p>
+
+<p>
+Reduced Cohesiveness:
+</p>
+
+<ul class="org-ul">
+<li>it is not clear if data is logically connected (or the same)</li>
+<li>is "ID" for example always the same as "Identifier"? We don't know!</li>
+<li>how is the data connected? Surname + Forename = Name?</li>
+</ul>
+<p>
+Operate on/with the data:
+</p>
+
+<ul class="org-ul">
+<li>it is hard to retrieve statistical information about the data because it is unclear where and how it is stored</li>
+<li>bad performance of requests/queries because the data has first to be searched for in all the files</li>
+</ul>
+<p>
+Big data:
+</p>
+
+<ul class="org-ul">
+<li>the data may be too large to be stored on a single filesystem (e.g telecommunication data) → how do I find relevant information fast in those data pools?</li>
+</ul>
+<p>
+Concurrency:
+</p>
+
+<ul class="org-ul">
+<li>Person A opens the file from a network drive, loads the content into memory and starts editing it. Meanwhile Person B does the same. Person A finishes and saves back to the file on the network drive and after that Person B saves as well.</li>
+<li>Because Person B did not have the changes from Person A when he started modifying the data, he overwrites those changes when he saves. This is called a <b>lost update</b>.</li>
+</ul>
+<p>
+Privacy:
+</p>
+
+<ul class="org-ul">
+<li>not every user is allowed to have full access to the data → management of individual read and write permissions required</li>
+<li>privacy arrangements depend on the surrounding OS → generally there's no option to restrict access to specific information within a file</li>
+</ul>
+<p>
+Dependencies:
+</p>
+
+<ul class="org-ul">
+<li>structure of the data is determined by the application program and not by the data itself (e.g convert between Word &amp; Open Office)</li>
+<li>data is bound to the software</li>
+</ul>
+<p>
+Data loss:
+</p>
+
+<ul class="org-ul">
+<li>plain files usually only offer periodic backups → data losses that occur while editing a file or between saves are not backuped</li>
+</ul>
+<p>
+Capacity &amp; Performance:
+</p>
+
+<ul class="org-ul">
+<li>most filesystems don't offer suited concepts for editing large data pools in a consistent and performant manner</li>
+</ul>
+</div>
+
+<div id="outline-container-org4241722" class="outline-3">
+<h3 id="org4241722">Problem solution</h3>
+<div class="outline-text-3" id="text-org4241722">
+<p>
+A great deal of the above issues lay in the <i>direct access</i> (via the filesystem) to a <i>inconsistent</i> or <i>badly structured</i> data pool in a <i>sequential manner</i>.
+</p>
+
+<p>
+Steps to a solution:
+</p>
+
+<ul class="org-ul">
+<li>structure the data</li>
+<li>make direkt access to saved data possible (no sequential run-through)</li>
+<li>provide an abstract layer between the data and the access that coordinates the access, optimizes performance and guarantees integrity (indirect access)</li>
+</ul>
+<p>
+This is where databases come into play. The abstract layer between the access and the data is called <i>database management system</i> (DBMS). The DBMS holds the structural and operational components to organize the da. Via the DBMS the creation, access, managment and deletion of/to data is realised.
+</p>
+
+<p>
+The <i>database</i> (DB) is the datapool that is managed by the DBMS. The entity that the DBMS and the DB build together is called <i>database system</i> (DBS).
+However it is pretty common to refer to this DBS as "database".
+</p>
+
+<p>
+It is common that different applications interact with the DBMS to access data from the database. The DBMS ensures that each application/accessor has an individual view and access to the data defined by its authentication and access rights.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9365335" class="outline-3">
+<h3 id="org9365335">Different Views on a DBS</h3>
+<div class="outline-text-3" id="text-org9365335">
+<p>
+<b>External view (DB User)</b> :
+Because the task of a DBS is to manage and organize the data for different external applications each external application has its own view of the modeled data.
+</p>
+
+<p>
+<b>Conceptual view (DB Designer/Developer)</b> : This is the essential view of the database. It gives a complete overview of the logical structure of all objects and their relationships that are modelled in the data model.
+</p>
+
+<p>
+<b>Internal view (DB-Admin)</b> :
+This is the view of the DBMS on "its" database. Besides the internal data structures, the location, arrangement, encryption and access optimizations can be found here.
+</p>
+
+<p>
+As seen above data objects can be described from three different layers of abstraction. The layers build the Three-level architecture (<a href="https://en.wikipedia.org/wiki/ANSI-SPARC_Architecture">ANSI-SPARC</a>) of the database system. This separation makes sense because of multiple reasons
+</p>
+
+<ul class="org-ul">
+<li>DB Users shall not be concerned with the database internals and should just care about the usage of the data, which has to be individual adapted to their use case and priviliges.</li>
+<li>DB Admins shall be able to change the hardware as well as the internal structure of the data without affecting external applications / DB Users.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5a4bda1" class="outline-3">
+<h3 id="org5a4bda1">Three-level architecture</h3>
+<div class="outline-text-3" id="text-org5a4bda1">
+<p>
+The formal description of the database is called the <i>database schema</i>. The database schema consists of formal descriptions of the components of the three-level architecture.
+</p>
+
+<p>
+Usually there is:
+</p>
+
+<ul class="org-ul">
+<li>one or more external schemas</li>
+<li>one conceptual schema</li>
+<li>one internal schema</li>
+<li>rules for transforming between the external and the conceptual schema</li>
+<li>rules for transforming between the conceptual and the internal schema</li>
+</ul>
+</div>
+
+<div id="outline-container-org8dea605" class="outline-4">
+<h4 id="org8dea605">External Schemas</h4>
+<div class="outline-text-4" id="text-org8dea605">
+<ul class="org-ul">
+<li>external schemas describe the aspects of the conceptual objects, their relations and constraints that are important for the correct data usage in their application</li>
+<li>the access to the database is usually restricted in some way(s)</li>
+<li>data from the conceptual view can be represented differently to the external view (e.g additional constraints)</li>
+<li>this functionality is given by the transformation rules that enable the transformation between objects from the conceptual schema to the external schema and vica versa</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2e784f3" class="outline-4">
+<h4 id="org2e784f3">Conceptual Schema</h4>
+<div class="outline-text-4" id="text-org2e784f3">
+<ul class="org-ul">
+<li>contains all information and properties of objects and their relations that play a role in the data management</li>
+<li>defines aspects of correct data managment (e.g constraints)</li>
+<li>is a central reference point for all applications that use the database (external view)</li>
+<li>changes rather infrequently, e.g only when the business model changes as well</li>
+<li>represents an uniform point of documentation</li>
+<li>controlls the data usage/access from an central point</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orga5f868b" class="outline-4">
+<h4 id="orga5f868b">Internal Schema</h4>
+<div class="outline-text-4" id="text-orga5f868b">
+<ul class="org-ul">
+<li>describes how and where data is stored, e.g physical location</li>
+<li>allows creation of additional indices for (for example frequently used) attributes → physical data organization</li>
+<li>defines transformation rules and describes the transformation between objects from the internal view to the conceptual view and vica versa</li>
+</ul>
+<p>
+Three-level architecture: <img src="../../../images/three-level-architecture.png" alt="nil"></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge37a034" class="outline-3">
+<h3 id="orge37a034">Data independence</h3>
+<div class="outline-text-3" id="text-orge37a034">
+<p>
+Each higher level of the data architecture has to be immune to changes of the next lower level of the architecture.
+</p>
+
+<p>
+<b>Logical data independence</b> = the external schemas don't need to be changed when the conceptual schema is modified
+</p>
+
+<p>
+<b>Physical data independence</b> = the conceptual schema doesn't need to be changed when the internal schema is changed
+</p>
+
+<p>
+A prerequisite for this is that the changes can be represented via the transformation rules.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1cced3f" class="outline-3">
+<h3 id="org1cced3f">Advantages of databases</h3>
+<div class="outline-text-3" id="text-org1cced3f">
+<ul class="org-ul">
+<li>data independence</li>
+<li>reduced redundancy because differenct applications may access the same data</li>
+<li>consistency because of the centralized storage and organization</li>
+<li>integrity (correct values) because of improved control mechanisms</li>
+<li>statistic measures are easier to do because the data is modelled in one data model, which allows flexible connections → queries are more efficient because data is easier to find</li>
+<li>multiple usage and concurrent access is managed by the DBMS to prevent e.g lost updates</li>
+<li>security improvements because data access can be controlled easier</li>
+<li>standards compliance (naming conventions, documentation, access)</li>
+<li>scalability and reduced costs because usually only the hardware has to be upgraded if the requirements change and not the technology of the data consuming applications</li>
+<li>increased productivity because the tools given by a DBMS are usually much more powerful than those of a file system</li>
+<li>improved backup capabilities</li>
+</ul>
+</div>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

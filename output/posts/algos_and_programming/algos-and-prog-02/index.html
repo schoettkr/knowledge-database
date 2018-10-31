@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Algos &amp; Programming - Lecture 02 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://example.com/posts/algos_and_programming/algos-and-prog-02/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Algos &amp; Programming - Lecture 02">
+<meta property="og:url" content="https://example.com/posts/algos_and_programming/algos-and-prog-02/">
+<meta property="og:description" content="&quot;Algorithm&quot; - History &amp; Definition
+
+
+The term &quot;algorithm&quot; goes back to a persian scholar who wrote a book with the latinized title of 'Algoritmi de numero indorum'. One generic defintion of the term a">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-10-12T14:57:04+02:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://example.com/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Algos &amp; Programming - Lecture 02
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-10-12T14:57:04+02:00">2018/10/12</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-orga4f06e5" class="outline-2">
+<h2 id="orga4f06e5">"Algorithm" - History &amp; Definition</h2>
+<div class="outline-text-2" id="text-orga4f06e5">
+<p>
+The term "algorithm" goes back to a persian scholar who wrote a book with the latinized title of '<b>Algoritmi</b> de numero indorum'. One generic defintion of the term algorithm is that an algorithm is an instruction consisting of an finite amount of well-defined and effective steps (to achieve a certain goal).
+</p>
+</div>
+
+<div id="outline-container-orgc759cf0" class="outline-3">
+<h3 id="orgc759cf0">Finitness</h3>
+<div class="outline-text-3" id="text-orgc759cf0">
+<p>
+Algorithms can be described in different ways, however it has to be guaranteed that their representation is finite, meaning it can be stored on a medium with a limited amount of space and that they have a certain maximum size that is defined.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1e4b415" class="outline-3">
+<h3 id="org1e4b415">Well-defined</h3>
+<div class="outline-text-3" id="text-org1e4b415">
+<p>
+Each step of an algorithm has to be well-defined meaning it has to be a clear instruction that is exactly defined.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7781465" class="outline-3">
+<h3 id="org7781465">Feasibility / Effectiveness</h3>
+<div class="outline-text-3" id="text-org7781465">
+<p>
+Each step of an algorithm should be either directly or via another algorithm be executable.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2cfe2b" class="outline-3">
+<h3 id="orge2cfe2b">Abstraction</h3>
+<div class="outline-text-3" id="text-orge2cfe2b">
+<p>
+An algorithm shouldn't solve a single problem, but a batch of problems via its abstraced and generalized nature. This achieved via <i>parameterization</i> of the algorithm. That means the algorithm takes a certain input to compute a certain output.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd1c1b31" class="outline-3">
+<h3 id="orgd1c1b31">Termination</h3>
+<div class="outline-text-3" id="text-orgd1c1b31">
+<p>
+After an finite amount of steps the algorithm has to finish execution.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e97585" class="outline-3">
+<h3 id="org0e97585">Efficency</h3>
+<div class="outline-text-3" id="text-org0e97585">
+<p>
+Amongst the main criteria of quality of algorithms is their efficiency, meaning that the amount of time they need should be minimal. The amount of time of course relates to the complexity of the problem. To measure this the concept of time complexity is used.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf23bc4" class="outline-3">
+<h3 id="orgaf23bc4">Determinism (Determinismus, determinstisch) and Determination (Determiniertheit, determiniert)</h3>
+<div class="outline-text-3" id="text-orgaf23bc4">
+<ul class="org-ul">
+<li>
+<b>Determinism</b> (Determinismus) = there is only one instruction on how to continue at all times that is defined a priori (&amp;rarr; deterministisch)
+<ul class="org-ul">
+<li>non-determinstic algorithms are called randomized algorithms</li>
+</ul>
+</li>
+
+<li>
+<b>Determination</b> (Determiniertheit) = the same input always produces the same output (&amp;rarr; determiniert)</li>
+</ul>
+<p>
+Remember: "Deterministische Algorithmen sind auch stets determiniert, da sie für die gleichen Eingaben auch wieder gleiche Ausgaben liefern. Die Umkehrung gilt jedoch nicht, denn trotz gleichem Ergebnis können dabei unterschiedliche (interne) Zustände durchlaufen werden."
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfb02714" class="outline-3">
+<h3 id="orgfb02714">
+<b>Dynamic Finity</b> (Resource constrained)</h3>
+<div class="outline-text-3" id="text-orgfb02714">
+<p>
+An algorithm is only allowed to use a finite amount of resources. The space complexity is, similar to the time complexity, another important criteria.
+</p>
+
+<p>
+However there are algorithms that do not fulfill some of these criteria. But those are not relevant to us for now because we are interested in algorithms that run on the computer.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5a8152" class="outline-2">
+<h2 id="orgc5a8152">Models</h2>
+<div class="outline-text-2" id="text-orgc5a8152">
+</div>
+<div id="outline-container-orgd4f5440" class="outline-3">
+<h3 id="orgd4f5440">Functional model</h3>
+<div class="outline-text-3" id="text-orgd4f5440">
+<p>
+The output is a function of the input, the input however is independant of the output (e.g mathematical function).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge18d0f0" class="outline-3">
+<h3 id="orge18d0f0">State model</h3>
+<div class="outline-text-3" id="text-orge18d0f0">
+<p>
+Alternatively there is the state model. In the state model no differentation between input and output is done. Data is just in a specific state. Therefore a subsequent state is just a function of the preceeding state. For example: `d = f(d)`. In the state model the values of the data can be represendet as a time series.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga40b1a8" class="outline-3">
+<h3 id="orga40b1a8">Conditional model</h3>
+<div class="outline-text-3" id="text-orga40b1a8">
+<p>
+An algorithm can consist of `if-then`-Rules (conditional clauses). The condition may depend on an input (&amp;rarr; Functional model) or a state (&amp;rarr; State model).
+</p>
+</div>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

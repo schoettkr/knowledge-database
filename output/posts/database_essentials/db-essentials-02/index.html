@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Database Essentials - Lecture 02 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://example.com/posts/database_essentials/db-essentials-02/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Database Essentials - Lecture 02">
+<meta property="og:url" content="https://example.com/posts/database_essentials/db-essentials-02/">
+<meta property="og:description" content="Information Systems
+
+
+The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Ap">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-10-17T00:00:00+02:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://example.com/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Database Essentials - Lecture 02
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-10-17T00:00:00+02:00">2018/10/17</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-org5e214d1" class="outline-2">
+<h2 id="org5e214d1">Information Systems</h2>
+<div class="outline-text-2" id="text-org5e214d1">
+<p>
+The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Application Software, Hardware, Developers and Users.
+</p>
+
+<p>
+Databases historically developed out of the needs of operational information systems. That's why we look at the <i>database development lifecycle</i> with the usual requirements of information systems in mind. For smaller DBS and databases for the management of smaller data sets e.g in web development some of the steps can be simplified and/or aggregated(zusammengefasst).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0c66a64" class="outline-2">
+<h2 id="org0c66a64">DBS Development Lifecycle</h2>
+<div class="outline-text-2" id="text-org0c66a64">
+<ul class="org-ul">
+<li>consists of <b>planning</b> and <b>realisation</b>
+</li>
+</ul>
+</div>
+<div id="outline-container-org5d8faf5" class="outline-3">
+<h3 id="org5d8faf5">Planning</h3>
+<div class="outline-text-3" id="text-org5d8faf5">
+</div>
+<div id="outline-container-orge10aa43" class="outline-4">
+<h4 id="orge10aa43">Goal Description and System Defintion</h4>
+<div class="outline-text-4" id="text-orge10aa43">
+<ul class="org-ul">
+<li>What is the purpose of the DBS?</li>
+<li>Which goals should be accomplished by using the DBS?</li>
+<li>Description of individual user viewpoints (application categories)
+<ul class="org-ul">
+<li>Which (aspects of) data play a role for the user?</li>
+<li>What does a user do with "his" data?</li>
+<li>Where do needs overlap with other user(roles)?</li>
+<li><img src="../../../images/user-viewpoints.png" alt="nil"></li>
+</ul>
+</li>
+<li>Creation of rules regarding data collection, data formats, documentation and naming (conventions)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgecd93a1" class="outline-4">
+<h4 id="orgecd93a1">Requirement Specification</h4>
+<div class="outline-text-4" id="text-orgecd93a1">
+<ul class="org-ul">
+<li>in this process data that should be managed by the DBS  is gathered/collected and analyzed</li>
+<li>the specific data and its usage is described for each user view → adequate description (not too much or too less)</li>
+<li>finally the requirements of each view have to be combined
+<ul class="org-ul">
+<li>there're two procedures for this (which can be combined):</li>
+</ul>
+</li>
+</ul>
+</div>
+<ul class="org-ul">
+<li>
+<a id="org2d0b5ff"></a>Central integration<br><div class="outline-text-5" id="text-org2d0b5ff">
+<ul class="org-ul">
+<li>each user views requirements are combined in an aggregate of requirements for the DBS</li>
+</ul>
+</div>
+</li>
+<li>
+<a id="org41a013f"></a>View integration<br><div class="outline-text-5" id="text-org41a013f">
+<ul class="org-ul">
+<li>the requirements for each user view stay seperated for the time being</li>
+<li>in the next stept a data model is designed for each user view</li>
+<li>the resulting data models are merged into an uniform data model that represents all user requirements of the database.</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org7ede374" class="outline-4">
+<h4 id="org7ede374">Application Design and DB Design*</h4>
+</div>
+</div>
+<div id="outline-container-org6653ff2" class="outline-3">
+<h3 id="org6653ff2">Realisation</h3>
+<div class="outline-text-3" id="text-org6653ff2">
+<ul class="org-ul">
+<li>implementation of DB and application (F.4)</li>
+<li>fill rest in</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7334eb1" class="outline-3">
+<h3 id="org7334eb1">∗Database Design</h3>
+<div class="outline-text-3" id="text-org7334eb1">
+<p>
+F.9
+</p>
+</div>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

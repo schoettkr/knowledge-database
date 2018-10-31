@@ -1,0 +1,34 @@
+#+BEGIN_COMMENT
+.. title: Computer Science I - Lecture 02
+.. slug: cs-I-02
+.. date: 2018-10-19
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+There wasn't much new stuff in this lecture because a wrong announcement was made leading to students missing the first week's lecture. Therefore we did mostly repetitions that I'll skip now and summarize the additional slides.
+
+* Data types in C++
+The data type constitutes three things:
+- memory mapping
+- codomain/target set (Wertevorrat)
+- valid operations
+
+Standard data types:
+- =int= = whole integers, usually 4 byte
+- =float= = real numbers, usually 4-8 byte
+- =char= = character (in single quotes!), usually 1 byte
+- =bool= logical/boolean values (true and false)
+  
+  
+** Type conversion
+Type conversion is done by calling the type on the object:
+#+BEGIN_SRC C++
+int one = 1;
+float(one)/2;
+=> 0.5
+#+END_SRC

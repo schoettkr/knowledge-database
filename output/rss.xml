@@ -1,0 +1,1995 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://example.com/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://example.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 31 Oct 2018 16:14:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 03</title><link>https://example.com/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdcf07d2" class="outline-2"&gt;
+&lt;h2 id="orgdcf07d2"&gt;Characteristics of a language&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdcf07d2"&gt;
+&lt;p&gt;
+Languages consist of three main characteristics:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;Lexis (specification on formation of words)&lt;/li&gt;
+&lt;li&gt;Syntax (specification on formation of sentences)&lt;/li&gt;
+&lt;li&gt;Semantic (meaning)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org614b00b" class="outline-3"&gt;
+&lt;h3 id="org614b00b"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org614b00b"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;predefined identifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;identifiers: &lt;code&gt;temp1&lt;/code&gt;, &lt;code&gt;diff&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;have to start with a letter (&lt;code&gt;_&lt;/code&gt; is allowed aswell)&lt;/li&gt;
+&lt;li&gt;can then contain arbitrary amount of characters/numbers&lt;/li&gt;
+&lt;li&gt;are case sensitive&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;special symbols:  ; , : . + − ∗ / % &amp;gt; &amp;lt; = ! ˜ ˆ &amp;amp; | [ ] { } ( )&lt;/li&gt;
+&lt;li&gt;separators: whitespace, tabulator, newline&lt;/li&gt;
+&lt;li&gt;numeric values:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;decimal: &lt;code&gt;255&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;octal: &lt;code&gt;377&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;hexadecimal: &lt;code&gt;0xff&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;floats: &lt;code&gt;1.5&lt;/code&gt; or &lt;code&gt;3.1e-15&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;characters: &lt;code&gt;'a'&lt;/code&gt;, &lt;code&gt;'#'&lt;/code&gt;, &lt;code&gt;'\n'&lt;/code&gt; (in single quotes!)&lt;/li&gt;
+&lt;li&gt;strings: &lt;code&gt;"Test 1 \n"&lt;/code&gt; (in double quotes!)&lt;/li&gt;
+&lt;li&gt;comments: 
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;//&lt;/code&gt; until end of line&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/* ... */&lt;/code&gt; multiple lines&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org2c0ecdd" class="outline-3"&gt;
+&lt;h3 id="org2c0ecdd"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2c0ecdd"&gt;
+&lt;p&gt;
+A method to present syntax is to use syntax diagrams. They represent a graphical alternative to e.g Backus–Naur form to represent formal or context-free grammar.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgc8fba81" class="outline-4"&gt;
+&lt;h4 id="orgc8fba81"&gt;Elements of syntax diagrams&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc8fba81"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;▭ a rectangle with sharp corners represents an abstract entity&lt;/li&gt;
+&lt;li&gt;▢ a ellipse (rectangle with rounded corners) represents a concrete term of the language, therefore an element of the lexis&lt;/li&gt;
+&lt;li&gt;⟶  an arrow indicates the flow direction (to build "sentences")&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Example of an include directive represented as a syntax graph:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://example.com/images/include-directive-graph.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org93998a6" class="outline-2"&gt;
+&lt;h2 id="org93998a6"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org93998a6"&gt;
+&lt;p&gt;
+C++ has the data type &lt;code&gt;bool&lt;/code&gt; which can either be &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. In integers a &lt;code&gt;0&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; and everything &lt;code&gt;≠0&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;a &amp;amp;&amp;amp; b&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;a ‖ b&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+There is also the &lt;code&gt;!&lt;/code&gt; not operator to negate boolean values.
+&lt;/p&gt;
+
+&lt;p&gt;
+Using these boolean operators in C++, yields values of type &lt;code&gt;bool&lt;/code&gt; (→ &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;)
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0242a28" class="outline-3"&gt;
+&lt;h3 id="org0242a28"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0242a28"&gt;
+&lt;p&gt;
+In digital computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations. 
+&lt;/p&gt;
+
+&lt;p&gt;
+These are the bitwise operators in C++ &lt;code&gt;|&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;, &lt;code&gt;~&lt;/code&gt; and &lt;code&gt;^&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+What is really important to understand is, that bitwise operators operate on the single bits (in comparison to boolean operators who operate on the whole value and yield true or false and are not bitwise operators!).
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3cace2a" class="outline-4"&gt;
+&lt;h4 id="org3cace2a"&gt;Bitwise NOT&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3cace2a"&gt;
+&lt;p&gt;
+The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones' complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~0111
+= 1000
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Comparing bitwise NOT to boolean NOT (the last letter indicates the number system e.g &lt;code&gt;d&lt;/code&gt; = decimal, &lt;code&gt;b&lt;/code&gt; = binary):
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boolean NOT: !1_d = 0_d; !5_d = 0_d
+bitwise NOT: ~1_d = 0_d; ~5_d = ~0101_b = 1010_b = 10_d 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7d55751" class="outline-4"&gt;
+&lt;h4 id="org7d55751"&gt;Bitwise OR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7d55751"&gt;
+&lt;p&gt;
+A bitwise OR takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0101 | 0011
+= 0111
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The bitwise OR shall not be confused with the boolean OR that treats its operands as boolean values and returns such.
+The bitwise OR can be used to manage flags if a program has to handle a lot of booleans and the memory is really limited. Each bit of a binary number could itself represent a boolean value (eg &lt;code&gt;0&lt;/code&gt; = false, &lt;code&gt;1&lt;/code&gt; true).
+&lt;/p&gt;
+
+&lt;p&gt;
+For example &lt;code&gt;0010&lt;/code&gt; may be seen as a list of flags where the first, second and fourth flag is not set (&lt;code&gt;0&lt;/code&gt;), while the third flag is set (&lt;code&gt;1&lt;/code&gt;). To set the first flag, this bit string can be combined with another bitstring that has a &lt;code&gt;1&lt;/code&gt; in the first place:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="mo"&gt;0010&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;
+&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org83e7e8d" class="outline-4"&gt;
+&lt;h4 id="org83e7e8d"&gt;Bitwise AND&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org83e7e8d"&gt;
+&lt;p&gt;
+A bitwise AND takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The operation may be used to determine whether a particular bit is &lt;i&gt;set&lt;/i&gt; (1) or &lt;i&gt;clear&lt;/i&gt; (0). For example, given a bit pattern &lt;code&gt;0011&lt;/code&gt; (decimal 3), to determine whether the second bit is set we use a bitwise AND with a bit pattern containing 1 only in the second bit:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Because the result &lt;code&gt;0010&lt;/code&gt; is non-zero, we know the second bit in the original pattern was set. This is often called bit masking. (By analogy, the use of masking tape covers, or masks, portions that should not be altered or portions that are not of interest. In this case, the 0 values mask the bits that are not of interest.)
+&lt;/p&gt;
+
+&lt;p&gt;
+The bitwise AND may be used to clear selected bits (or flags) of a register in which each bit represents an individual Boolean state. This technique is an efficient way to store a number of Boolean values using as little memory as possible.
+&lt;/p&gt;
+
+&lt;p&gt;
+For example, &lt;code&gt;0110&lt;/code&gt; (decimal 6) can be considered a set of four flags, where the first and fourth flags are clear (0), and the second and third flags are set (1). The second bit may be cleared by using a bitwise AND with the pattern that has a zero only in the second bit:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mi"&gt;1011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a binary number, by checking the value of the lowest valued bit (&lt;code&gt;1_d&lt;/code&gt;) which would be &lt;code&gt;1_b&lt;/code&gt; if the number is odd:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt;
+
+    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;odd&lt;/span&gt;
+
+    &lt;span class="mo"&gt;0100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8cd0cd3" class="outline-4"&gt;
+&lt;h4 id="org8cd0cd3"&gt;Bitwise XOR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8cd0cd3"&gt;
+&lt;p&gt;
+In addition to &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;and&lt;/code&gt; there is also &lt;code&gt;xor&lt;/code&gt; (exclusive or → only one value true):
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;a XOR b&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+The bitwise &lt;code&gt;XOR&lt;/code&gt; operator in C++ is &lt;code&gt;^&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+A bitwise XOR takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only the first bit is 1 or only the second bit is 1, but will be 0 if both are 0 or both are 1. In this we perform the comparison of two bits, being 1 if the two bits are different, and 0 if they are the same. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;XOR&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The bitwise XOR may be used to invert selected bits in a register (also called toggle or flip). Any bit may be toggled by XORing it with 1. For example, given the bit pattern &lt;code&gt;0010&lt;/code&gt; (decimal 2) the second and fourth bits may be toggled by a bitwise XOR with a bit pattern containing 1 in the second and fourth positions:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;XOR&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+This technique may be used to manipulate bit patterns representing sets of Boolean states.
+&lt;/p&gt;
+
+&lt;p&gt;
+Assembly language programmers and optimizing compilers sometimes use XOR as a short-cut to setting the value of a register to zero. Performing XOR on a value against itself always yields zero, and on many architectures this operation requires fewer clock cycles and memory than loading a zero value and saving it to the register (german: Wendet man XOR auf zwei identische Operanden an, so erhält man immer 0. In vielen Architekturen benötigt diese Operation weniger Rechenzeit, als man für das Laden einer 0 und das Speichern im Register benötigt).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org571d36f" class="outline-3"&gt;
+&lt;h3 id="org571d36f"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org571d36f"&gt;
+&lt;p&gt;
+The bit shifts are sometimes considered bitwise operations, because they treat a value as a series of bits rather than as a numerical quantity. In these operations the digits are moved, or shifted, to the left or right. Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end.
+&lt;/p&gt;
+
+&lt;p&gt;
+The operator &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; shifts to the left by the following value and &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; shifts to the right by the following value. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+So &lt;code&gt;6 &amp;lt;&amp;lt; 1 = 12&lt;/code&gt; because the underlying bits are moved/shifted by 1 place to the left. Shifting left is equivalent to multiplication by powers of 2. So &lt;code&gt;6 &amp;lt;&amp;lt; 1&lt;/code&gt; is equivalent to &lt;code&gt;6 * 2&lt;/code&gt;, and &lt;code&gt;6 &amp;lt;&amp;lt; 3&lt;/code&gt; is equivalent to &lt;code&gt;6 * 2^3 = 6 * 8&lt;/code&gt;. A good optimizing compiler will replace multiplications with shifts when possible.
+&lt;/p&gt;
+
+&lt;p&gt;
+A logical right shift is the converse to the left shift. Rather than moving bits to the left, they simply move to the right. For example, shifting the number 12:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;1100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+That will get us back our original 6. So we see that shifting to the right is equivalent to division by powers of 2.
+&lt;/p&gt;
+
+&lt;p&gt;
+Another example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="mi"&gt;1110&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="mi"&gt;1111&lt;/span&gt; &lt;span class="mo"&gt;0100&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0111&lt;/span&gt; &lt;span class="mi"&gt;1101&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;125&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+There is also a difference between logical, arithmetic and circular shifting that you may want to look up. 
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Debugging with gdb</title><link>https://example.com/posts/misc/debugging-with-gdb/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdb798a8" class="outline-2"&gt;
+&lt;h2 id="orgdb798a8"&gt;How to debug a c program with gdb&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdb798a8"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org99d4498" class="outline-4"&gt;
+&lt;h4 id="org99d4498"&gt;Step 1. Compile the C program with debugging option&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org99d4498"&gt;
+&lt;p&gt;
+Compile the C program with the debugging option which is usually &lt;code&gt;-g&lt;/code&gt; for most compilers. This allows the compiler to collect the debugging information.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gcc -g example.c
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The above command creates a &lt;code&gt;a.out&lt;/code&gt; file which will be used for debugging. Of course other compiler options e.g specifying file name or turning on warnings is possible!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgd898800" class="outline-4"&gt;
+&lt;h4 id="orgd898800"&gt;Step 2. Launch gdb&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgd898800"&gt;
+&lt;p&gt;
+Launch the C debugger gdb as shown below:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gdb a.out
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org313e7fd" class="outline-4"&gt;
+&lt;h4 id="org313e7fd"&gt;Step 3. Set breakpoints&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org313e7fd"&gt;
+&lt;p&gt;
+Places break point in the C program, where you suspect errors. While executing the program, the debugger will stop at the break point, and gives you the prompt to debug.
+To set a breakpoint enter the following:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;break&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;linenumber&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Additionally it is also possible to do so in the following formats/ways (the filename is optional):
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;break&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;filename:&lt;span class="o"&gt;}{&lt;/span&gt;lineNumber&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;break&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;filename:&lt;span class="o"&gt;}{&lt;/span&gt;functionName&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org3ec17d2" class="outline-4"&gt;
+&lt;h4 id="org3ec17d2"&gt;Step 4. Execute the C program&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3ec17d2"&gt;
+&lt;p&gt;
+Now the program can be executed using the &lt;code&gt;run&lt;/code&gt; command in the gdb debugger. It is now also possible to specify command line arguments via &lt;code&gt;run {args}&lt;/code&gt;.
+The program then executes until it encounters the first breakpoint or finishes execution and stops.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7115561" class="outline-4"&gt;
+&lt;h4 id="org7115561"&gt;Step 5. It stopped - now what?!&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7115561"&gt;
+&lt;p&gt;
+Now since the execution is halted there multiple things you can do. &lt;code&gt;print {varName}&lt;/code&gt; prints the current value of an variable (can be shortened to &lt;code&gt;p&lt;/code&gt;). &lt;code&gt;c&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt; resumes execution until the next breakpoint. &lt;code&gt;n&lt;/code&gt; or &lt;code&gt;next&lt;/code&gt; executes the next line as &lt;i&gt;a single instruction&lt;/i&gt;. &lt;code&gt;s&lt;/code&gt; or &lt;code&gt;step&lt;/code&gt; same as &lt;code&gt;next&lt;/code&gt; but doesn't treat functions as a single instruction, instead goes into the function to execute it line by line.
+&lt;/p&gt;
+
+&lt;p&gt;
+By the way &lt;code&gt;&amp;lt;ENTER&amp;gt;&lt;/code&gt; repeats the previous command. &lt;code&gt;l&lt;/code&gt; or &lt;code&gt;list&lt;/code&gt; can be used to print the source code, &lt;code&gt;l {lineNumber}&lt;/code&gt; can be used to view a specific line and &lt;code&gt;l {functionName}&lt;/code&gt; to show a function. &lt;code&gt;bt&lt;/code&gt; or &lt;code&gt;backtrack&lt;/code&gt; prints a backtrace of all stack frames. Finally &lt;code&gt;quit&lt;/code&gt; exits the gdb debugger.
+&lt;/p&gt;
+
+
+
+&lt;p&gt;
+Source: &lt;a href="https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/"&gt;https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/misc/debugging-with-gdb/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Usage of tar</title><link>https://example.com/posts/misc/tar-usage/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org4cff337" class="outline-2"&gt;
+&lt;h2 id="org4cff337"&gt;Usage of tar&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4cff337"&gt;
+&lt;p&gt;
+GNU's &lt;code&gt;tar&lt;/code&gt; is an archiving utility to store files into an archive and manipulate such archives.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org797228a" class="outline-3"&gt;
+&lt;h3 id="org797228a"&gt;Compressing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org797228a"&gt;
+&lt;p&gt;
+To compress files into an archive with tar use:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tar -cvzf &amp;lt;name of tarball archive&amp;gt;.tgz /filepath/or/path/to/source/folder &lt;span class="c1"&gt;# creates ".tgz" archive&lt;/span&gt;
+tar -cvzf &amp;lt;name of tarball archive&amp;gt;.tar /filepath/or/path/to/source/folder &lt;span class="c1"&gt;# creates ".tar" archive&lt;/span&gt;
+tar -cvzf &amp;lt;name of tarball archive&amp;gt;.tar.gz /filepath/or/path/to/source/folder &lt;span class="c1"&gt;# creates ".tar.gz" archive&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org07dd298" class="outline-3"&gt;
+&lt;h3 id="org07dd298"&gt;Extracting&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org07dd298"&gt;
+&lt;p&gt;
+To extract or decompress archives use:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tar -xvzf &amp;lt;name of archive&amp;gt;.tgz &lt;span class="c1"&gt;# decompresses the archive into the current directory&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgf4ef6d1" class="outline-3"&gt;
+&lt;h3 id="orgf4ef6d1"&gt;Flags&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf4ef6d1"&gt;
+&lt;p&gt;
+The flags stand for:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;c&lt;/b&gt; → &lt;b&gt;C&lt;/b&gt; ompress/create&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;x&lt;/b&gt; → e &lt;b&gt;X&lt;/b&gt; tract&lt;/li&gt;
+&lt;li&gt;z → zee (compression as in filter through gZip, Zlib, Zip)&lt;/li&gt;
+&lt;li&gt;f → file&lt;/li&gt;
+&lt;li&gt;v → verbose&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org76f78b3" class="outline-3"&gt;
+&lt;h3 id="org76f78b3"&gt;Mnemonic&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org76f78b3"&gt;
+&lt;p&gt;
+To remember this more easily:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;tar -czf&lt;/code&gt; → "tar Create Zipped File"&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tar -xzf&lt;/code&gt; → "tar eXtract Zipped File"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgc43f3c6" class="outline-2"&gt;
+&lt;h2 id="orgc43f3c6"&gt;Storage and memory&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc43f3c6"&gt;
+&lt;p&gt;
+Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;storing in the file system (good for big data sets but slow)&lt;/li&gt;
+&lt;li&gt;storing in memory (faster but limited in some aspects as well)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+We continue with the latter option (ᵔᴥᵔ).
+&lt;/p&gt;
+
+&lt;p&gt;
+C is theoretically able to write to and acces every place in memory. Due to the implied dangers of this, most operating systems prevent this to some degree. There are three fundamental methods to reserve (&lt;b&gt;allocate&lt;/b&gt;) memory:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;(implicit) "named" memory allocation at compile time&lt;/li&gt;
+&lt;li&gt;"anonymous" memory allocation at run time&lt;/li&gt;
+&lt;li&gt;parameters which allocate storage at run rime as well&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The terms "named" and "anonymous" are taken from the lecture script, I don't like them and think they're confusing. As I understand it the first method refers to the memory allocation that happens when you have e.g &lt;code&gt;int num = 5;&lt;/code&gt; in your code and the compiler allocates/reserves at least 16 bits (2 bytes), while the second method refers to dynamic memory allocation via &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;calloc()&lt;/code&gt;. I'm not entirely sure if this is what the professor means xD. 
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga456659" class="outline-3"&gt;
+&lt;h3 id="orga456659"&gt;Variables&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga456659"&gt;
+&lt;p&gt;
+Should the value of a place in memory be modified (purpose of the state model), you speak of (named or anonymous) &lt;i&gt;variables&lt;/i&gt;. Should the value in memory stay unchanged, then it is a &lt;i&gt;constant&lt;/i&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org2e6fdfa" class="outline-4"&gt;
+&lt;h4 id="org2e6fdfa"&gt;Named variables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2e6fdfa"&gt;
+&lt;p&gt;
+Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala &lt;code&gt;int x, y ,z;&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+When declaring a variable it is possible to also provide a &lt;i&gt;storage class&lt;/i&gt; and/or a &lt;i&gt;type qualifier&lt;/i&gt;. The storage class is declared via one of the following keywors &lt;code&gt;auto&lt;/code&gt;, &lt;code&gt;static&lt;/code&gt;, &lt;code&gt;extern&lt;/code&gt; or &lt;code&gt;register&lt;/code&gt;. These basically impact the &lt;i&gt;scope&lt;/i&gt;, &lt;i&gt;visibility&lt;/i&gt; and the &lt;i&gt;life time&lt;/i&gt; of the specific variable.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; (assumed by default if no other storage class is specified)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;not often written because it is the default&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; variables can only be accessed within the block of declaration which defines their scope&lt;/li&gt;
+&lt;li&gt;however they can be accessed outside their scope by using pointers&lt;/li&gt;
+&lt;li&gt;get a garbage value assigned whenever they are declared (without initilization)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;static&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;static&lt;/code&gt; variables preserve their (last) value even after they are out of scope&lt;/li&gt;
+&lt;li&gt;therefore &lt;i&gt;only initialized once&lt;/i&gt; and exist until program termination, thus no new memory is allocated because they are not redeclared&lt;/li&gt;
+&lt;li&gt;their scope is local to the function in which they were defined, global static variables can be accesed anywhere&lt;/li&gt;
+&lt;li&gt;are assigned &lt;code&gt;0&lt;/code&gt; by default from the compiler&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;register&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;same functionality as auto variables with the difference that the compiler tries to store these variables in the register of the microprocessor, which makes access much faster than that of the variables stored in memory&lt;/li&gt;
+&lt;li&gt;if no free register is available the variable is stored in memory&lt;/li&gt;
+&lt;li&gt;address of register variables is not retrievable using pointers&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Type qualifiers are declared via the keywords &lt;code&gt;const&lt;/code&gt;, &lt;code&gt;volatile&lt;/code&gt; or &lt;code&gt;restrict&lt;/code&gt; and give hints to the compiler about the usage of the variables.
+&lt;/p&gt;
+
+&lt;p&gt;
+Variables declared outside of any function are &lt;i&gt;global variables&lt;/i&gt;, while variables declared in blocks (&lt;code&gt;{..}&lt;/code&gt;) are &lt;i&gt;local variables&lt;/i&gt;. Only with the exception of variables with a storage class of &lt;code&gt;extern&lt;/code&gt;, variables are also &lt;i&gt;defined&lt;/i&gt; when they are &lt;i&gt;declared&lt;/i&gt; that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything.
+&lt;/p&gt;
+
+&lt;p&gt;
+When the variable has a storage class of &lt;code&gt;extern&lt;/code&gt; it is &lt;b&gt;only declared&lt;/b&gt; but not defined and therefore has to be &lt;i&gt;globally defined&lt;/i&gt; (in a different module).
+&lt;/p&gt;
+
+&lt;p&gt;
+A variable can be assigned a value via &lt;code&gt;0&lt;/code&gt;, this can also be done when declaring a variable → &lt;b&gt;initilization&lt;/b&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org6265d7a"&gt;&lt;/a&gt;Addresses&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org6265d7a"&gt;
+&lt;p&gt;
+Every variable has an address (place in memory where it is stored) that can be retrieved with the &lt;code&gt;&amp;amp;&lt;/code&gt; "address of" operator
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cm"&gt;/* addr .c -- address of a variable */&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;testVar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Variable var has the address %p and the value %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;testVar&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;testVar&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Variable var has the address 0x7ffc5d3f3694 and the value 42
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+Actually the identifier of a variable (eg &lt;code&gt;testVar&lt;/code&gt;) is just a synonym of the address.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://example.com/images/identifier-memory.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orga88de6b"&gt;&lt;/a&gt;Pointer&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orga88de6b"&gt;
+&lt;p&gt;
+Variables can also hold addresses themselves! The prefix &lt;code&gt;*&lt;/code&gt; infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another &lt;b&gt;specific&lt;/b&gt; type. For instance:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int *p&lt;/code&gt; → pointer that is pointing to an integer type&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;float *p&lt;/code&gt; → pointer that is pointing to a float type&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unsigned int *p&lt;/code&gt; → pointer that is pointing to an unsigned integer type&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+If a generic memory address without a specific type shall be used then the base type &lt;code&gt;void&lt;/code&gt; is used:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;void *p&lt;/code&gt; pointer that is pointing to an address&lt;/li&gt;
+&lt;li&gt;assigning void pointers is compatible to/with all other pointer types (→ no warnings!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* addr2 .c -- pointer to a variable */&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pvar&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;pvar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Variable var has the address %p and the value %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pvar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Variable pvar has the address %p and the value %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;pvar&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pvar&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"The value that the pointer stored in pvar points to is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pvar&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Variable var has the address 0x7ffd08a3f97c and the value 42
+Variable pvar has the address 0x7ffd08a3f980 and the value 0x7ffd08a3f97c
+The value that the pointer stored in pvar points to is 42
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+Example memory representation of the above code (addresses will differ):
+&lt;img src="https://example.com/images/pointer-memory-representation.png" alt="nil"&gt;
+&lt;/p&gt;
+
+
+&lt;p&gt;
+A type and its derived type (eg &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;int *&lt;/code&gt;) are &lt;i&gt;different&lt;/i&gt; types.
+&lt;/p&gt;
+
+&lt;p&gt;
+As seen in the code example above a pointer can be &lt;b&gt;dereferenced&lt;/b&gt; via the dereference operator &lt;code&gt;*&lt;/code&gt;
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* deref .c -- deref a pointer */&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"y=%d (at %p)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cm"&gt;/* same effect as printf ("y=%d\n" ,y); */&lt;/span&gt;
+  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* same effect as y=42 */&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"y=%d (at %p)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+y=23 (at 0x7ffeeff30f1c)
+y=42 (at 0x7ffeeff30f1c)
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgea0a277" class="outline-4"&gt;
+&lt;h4 id="orgea0a277"&gt;Anonymous variables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgea0a277"&gt;
+&lt;p&gt;
+Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at &lt;i&gt;run time&lt;/i&gt; with functions from the C standard library. Anonymous variables are &lt;b&gt;not declared&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+More specifically the following functions that are &lt;i&gt;declared&lt;/i&gt; in &lt;code&gt;stdlib.h&lt;/code&gt; are used to allocate memory at run time:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;void *malloc(size_t size)&lt;/code&gt; → reserves &lt;code&gt;size&lt;/code&gt; bytes in memory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void *calloc(size_t count, size_t size)&lt;/code&gt; → reserves &lt;code&gt;count x size&lt;/code&gt; bytes in memory and initializes them with a value of &lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Both functions retrun the &lt;b&gt;address&lt;/b&gt; of the anonymous variable.
+&lt;/p&gt;
+
+&lt;p&gt;
+To find out how much size/space is needed, C's &lt;code&gt;sizeof&lt;/code&gt; operator comes in handy because the size of eg an &lt;code&gt;int&lt;/code&gt; is not the same on all systems. It can be used on variables as well as on types and &lt;code&gt;sizeof(int)&lt;/code&gt; return for example &lt;code&gt;4&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The programmer has (in contrast to named variables) manage the scope and lifecycle of anonymous variables. To release the memory that was allocated for an anonymous variable &lt;code&gt;void free(void*)&lt;/code&gt; is used which takes the address of the anonymous variable.
+To be able to do this you of course need the address of the anonymous variable and that is (amongst other reasons) why you should store it somewhere!
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* malloc .c -- anonymous variables */&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// declare pointer to int&lt;/span&gt;
+
+  &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// allocate memory for an int and store the returned address of the allocated memory location and store it in p&lt;/span&gt;
+
+  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// dereference p and store the value 42&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Pointer p has address %p and points to %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Anonymous variable has the value %d which is stored in %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cm"&gt;/* pass address and release memory */&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Pointer p has address 0x7fff1376cea0 and points to 0x55ffde405260
+Anonymous variable has the value 42 which is stored in 0x55ffde405260
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+In the example above you can see that the variable is anonymous because the value &lt;code&gt;42&lt;/code&gt; is nowhere stored directly in a named variable but is retrieved by dereferencing the pointer that points to the memory location where &lt;code&gt;42&lt;/code&gt; is stored (&lt;code&gt;*p&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+Not releasing allocated memory can lead to so called &lt;i&gt;memory leaks&lt;/i&gt; and is a frequent error cause. Another frequent error is trying to use anonymous variables that are already released (&lt;i&gt;dangling pointer&lt;/i&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+Helping advice to avoid the above errors:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;when you allocate memory with eg &lt;code&gt;malloc&lt;/code&gt; immediately write the code to free the memory as well&lt;/li&gt;
+&lt;li&gt;when releasing/freeing an anonymous variable assign it the (symbolic) value &lt;code&gt;NULL&lt;/code&gt; which is defined in &lt;code&gt;stdlib.h&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;it is guaranteed that there is never another variable at a location that is described by &lt;code&gt;NULL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;dereferencing &lt;code&gt;NULL&lt;/code&gt; leads to a run time error&lt;/li&gt;
+&lt;li&gt;if functions like &lt;code&gt;malloc&lt;/code&gt; fail they also return &lt;code&gt;NULL&lt;/code&gt; therefore it is advised to check pointers against &lt;code&gt;null&lt;/code&gt; before using them&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org290f852" class="outline-4"&gt;
+&lt;h4 id="org290f852"&gt;Parameters&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Design of Distributed Systems - Lecture 02</title><link>https://example.com/posts/distributed_systems/distributed-systems-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org0abf5cc" class="outline-2"&gt;
+&lt;h2 id="org0abf5cc"&gt;System Architectures&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0abf5cc"&gt;
+&lt;p&gt;
+Architecture is the fundamental &lt;b&gt;organizsation&lt;/b&gt; of a &lt;b&gt;system&lt;/b&gt; embodied in its &lt;b&gt;components&lt;/b&gt;, their &lt;b&gt;relationships&lt;/b&gt; to each other and to the &lt;b&gt;environment&lt;/b&gt; and the principles guiding its design and evolution (Source: IEEE 1471 ← seems to be superseded by ISO/IEEE 42010).
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;b&gt;system&lt;/b&gt; is a &lt;b&gt;collection of components&lt;/b&gt; organized to accomplish a specific function or set of functions. The term "system" encompasses individual applications, systems in the traditional sense, subsystems, systems of systems, product lines, product families, whole enterprises and other aggregations of interet. A system exists to fulfill one or more &lt;b&gt;missions&lt;/b&gt; in its &lt;b&gt;environment&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;b&gt;environment&lt;/b&gt; (or "context") determines the setting and circumstances of developmental, operational, political and other influences upon that system.
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;b&gt;mission&lt;/b&gt; is a use or operation for which a system is intended by one or more &lt;b&gt;stakeholders&lt;/b&gt; to meet some set of objectives.
+&lt;/p&gt;
+
+&lt;p&gt;
+An architecture
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;defines structure&lt;/li&gt;
+&lt;li&gt;defines behavior&lt;/li&gt;
+&lt;li&gt;builds focus on the significant elements&lt;/li&gt;
+&lt;li&gt;balances stakeholder needs&lt;/li&gt;
+&lt;li&gt;embodies decision on rationale&lt;/li&gt;
+&lt;li&gt;may conform to an architectural styling&lt;/li&gt;
+&lt;li&gt;is influenced by its environment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org83db1f7" class="outline-3"&gt;
+&lt;h3 id="org83db1f7"&gt;Client/Server Model&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org83db1f7"&gt;
+&lt;p&gt;
+The Client/Server Model is a traditional approach, which is made use of in many others. As a role-based approach the &lt;b&gt;Server&lt;/b&gt; takes the role of a component on the &lt;i&gt;service providers' side&lt;/i&gt; and the &lt;b&gt;Client&lt;/b&gt; takes the role of a component on the &lt;i&gt;service users' side&lt;/i&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Examples of Client/Server Models would be TCP/IP, Sockets and Web Servers (plus many more!).
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://example.com/images/client-server-model.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+There are special types of the C/S Model for example:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;object-oriented model&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;units of communication and distribution are objects&lt;/li&gt;
+&lt;li&gt;according programming model&lt;/li&gt;
+&lt;li&gt;data access is realized by direct object access, data transfer by reference semantics, location is modifiable (object migration)&lt;/li&gt;
+&lt;li&gt;examples: Java RMI, SOAP, CORBA&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;component-based model&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;focus on reuse without the OO problem&lt;/li&gt;
+&lt;li&gt;black-box principle with a focus on configuration and deployment model&lt;/li&gt;
+&lt;li&gt;examples: Corba Components, Enterprise JavaBeans, .Net Components&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf219568" class="outline-3"&gt;
+&lt;h3 id="orgf219568"&gt;N-Tier Architecture&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf219568"&gt;
+&lt;p style="float:right; height: 500px; width: 100px;"&gt;
+&lt;img src="https://example.com/images/n-tier-architecture.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+N-tier architecture (or multitier architecture) is a client-server architecture in which, presentation, application processing and data management functions are physically separated. 
+&lt;/p&gt;
+
+&lt;p&gt;
+It structures distributed systems into layers/levels (typically according to functional aspects), their distribution and interfaces.
+N-tier architecture is mostly realized with the help of middleware.
+&lt;/p&gt;
+
+&lt;p&gt;
+Examples of n-tier architecture are:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;two-tier architecture&lt;/b&gt; which corresponds to a Client/Server with fixed interfaces&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;three-tier architecture&lt;/b&gt; which is commonly used in practice for structuring according to &lt;i&gt;presentation&lt;/i&gt;-, &lt;i&gt;processing&lt;/i&gt;- and &lt;i&gt;persistency&lt;/i&gt; layers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org93fe346" class="outline-3"&gt;
+&lt;h3 id="org93fe346"&gt;N-Tier Architecture: Cluster&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org93fe346"&gt;
+&lt;p style="float:right; height: 500px; width: 100px;"&gt;
+&lt;img src="https://example.com/images/n-tier-architecture.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;i&gt;cluster&lt;/i&gt; is a set of computers/servers, which are connected to each other over a fast network and can be seen as a single unit from the outside. This (often) entails the need/option for:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;load distribution&lt;/li&gt;
+&lt;li&gt;fault tolerance&lt;/li&gt;
+&lt;li&gt;parallel processing&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The Chemnitz-Hochleistungs-Linux-Clusters (CHiC) would be an example of a database cluster.
+&lt;/p&gt;
+
+&lt;p&gt;
+Structuring the distributed system into such layers/levels enables replication with an focus of the processing and persistency layers
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5cb935a" class="outline-3"&gt;
+&lt;h3 id="org5cb935a"&gt;Service-Oriented Architecture (SOA)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5cb935a"&gt;
+&lt;p&gt;
+Service-Oriented Architecture is often associated with technologies such as Web Services, but is in fact independent of the technology used. It is a style of software design with focus on the interplay of service providers, service users and service agents.
+&lt;/p&gt;
+
+&lt;p&gt;
+SOA is process-oriented with services as a base concept and enable cross-platform/-enterprise service delivery. Interface reuse and interoperability is amongst the main points in SOA. The service composition in SOA is done via &lt;i&gt;orchestration&lt;/i&gt; and &lt;i&gt;choreography&lt;/i&gt;.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;orchestration&lt;/b&gt; = creation of new complex services through &lt;i&gt;composition&lt;/i&gt; of existing ones → focus: &lt;i&gt;declarative composition&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;choreography&lt;/b&gt; = combination of services for business process → focus: description of message exchange procedure&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style="text-align:center;"&gt;
+&lt;img src="https://example.com/images/soa.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org57da31d" class="outline-3"&gt;
+&lt;h3 id="org57da31d"&gt;Grid Computing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org57da31d"&gt;
+&lt;p&gt;
+Grid computing is an approach to aggregation and shared use of heterogenous networked resources, such as computers, databases and scientific tools. The motivation behind grid computing lies (among other things) in the use of available but underutilized computers/resources.
+&lt;/p&gt;
+
+&lt;p&gt;
+The "grid" acts as a coordinator of resource distribution and use. It dictates the protocols and interfaces to be used to achieve a certain quality of service.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org28742a9" class="outline-3"&gt;
+&lt;h3 id="org28742a9"&gt;Peer-to-Peer Architecture&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org28742a9"&gt;
+&lt;p&gt;
+In peer-to-peer architectures peers communicate with each other and offer services to their partners (peers) or use the partners' services. Unlike typical C/S architectures with a few or one servers and many clients, P2P architectures have no fixed assignments.
+&lt;/p&gt;
+
+&lt;p&gt;
+Communication in P2P architectures requires peer coordination for service provisioning and service utilization purposes. The type of a P2P network is either pure, superpeer or hybrid. 
+The communication is structured  by means of algorithms for service discovery and addressing mostly via distributed hash table (DHT). 
+&lt;/p&gt;
+
+&lt;p&gt;
+Examples of P2P architectures are Gnutella, Napster or KaZaa for filesharing or collaboration tools.
+&lt;/p&gt;
+
+
+&lt;hr&gt;
+
+&lt;p style="color:red;"&gt;
+&lt;b&gt;Important: Read about SOLID &lt;a href="https://www.inrupt.com/blog/one-small-step-for-the-web" style="color:red;"&gt;https://www.inrupt.com/blog/one-small-step-for-the-web&lt;/a&gt; and must read: &lt;a href="https://solid.inrupt.com/docs"&gt;https://solid.inrupt.com/docs&lt;/a&gt;&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;
+Chapter 3 about basic communication models is skipped but can serve as reference material so you might want to skim through it.
+&lt;/p&gt;
+
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org99397cf" class="outline-2"&gt;
+&lt;h2 id="org99397cf"&gt;Communication in Programming&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org99397cf"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgff0a795" class="outline-3"&gt;
+&lt;h3 id="orgff0a795"&gt;Classical Programming&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgff0a795"&gt;
+&lt;p&gt;
+The key idea of classical programming is to utilize algorithm(s) / knowledge hidden in a reusable unit. There are different programming approaches and they also differ in the way they reuse units:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;procedural programming&lt;/b&gt;: Function
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;aggregation of functions (step-by-step, conditionals, loops etc)&lt;/li&gt;
+&lt;li&gt;the knowledge abstraction is low and achieved via functions&lt;/li&gt;
+&lt;li&gt;reuse is done via source code (same language)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;object oriented programming&lt;/b&gt;: Object
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;aggregation of data and functions (aka methods)&lt;/li&gt;
+&lt;li&gt;the knowledge abstraction is high and achieved via objects, composition etc&lt;/li&gt;
+&lt;li&gt;reuse is done via source code (same OO language)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;component-based software development&lt;/b&gt;: Component
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;separation between interface and component-based-software-development-knowledge&lt;/li&gt;
+&lt;li&gt;the knowledge abstraction is packaged as a binary unit&lt;/li&gt;
+&lt;li&gt;the reuse unit is very high via distribution of binary&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcc9d999" class="outline-3"&gt;
+&lt;h3 id="orgcc9d999"&gt;Reuse units in distributed systems?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcc9d999"&gt;
+&lt;p&gt;
+Different systems provide different abstractions (eg database, webserver, business logic,..). These abstractions range from small to large scale and are (or should be!) independent from programming paradigms.
+&lt;/p&gt;
+
+&lt;p&gt;
+To reuse units in distributed systems the focus is on &lt;b&gt;communication&lt;/b&gt; / &lt;b&gt;message exchange&lt;/b&gt;:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;as a means to provide functionality&lt;/li&gt;
+&lt;li&gt;zero-installation (provider did already)&lt;/li&gt;
+&lt;li&gt;risks and challenged are different from classical programming paradigm ones&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org63b21dd" class="outline-3"&gt;
+&lt;h3 id="org63b21dd"&gt;Communication&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org63b21dd"&gt;
+&lt;p&gt;
+Communication is a mechanism of &lt;i&gt;data exchange&lt;/i&gt; between components that are executed on host sytems.
+&lt;/p&gt;
+
+&lt;p&gt;
+Challenges of communication:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;message transport with regard to communication medium conditions&lt;/li&gt;
+&lt;li&gt;interoperability and cooperation of components and host systems&lt;/li&gt;
+&lt;li&gt;system architecture support with regards to communication - or programming model&lt;/li&gt;
+&lt;li&gt;much more: quality aspects, security trust&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc1c2cce" class="outline-4"&gt;
+&lt;h4 id="orgc1c2cce"&gt;Message Exchange Approach&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc1c2cce"&gt;
+&lt;p&gt;
+Message exchange approaches follow the Sender-Reciever paradigm:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;message&lt;/b&gt;: (typed) data is sent from a &lt;b&gt;Sender(S)&lt;/b&gt; to a &lt;b&gt;Reciever(R)&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;sender-reciever relationship
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;symmetric&lt;/b&gt; → S and R know each other&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;asymmetric&lt;/b&gt; → only S knows R&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+There are different message exchange models which follow the sender-reciever paradigm, for instance:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Direct Addressing Model&lt;/li&gt;
+&lt;li&gt;Queue Communication Model&lt;/li&gt;
+&lt;li&gt;Port-oriented Communication Model&lt;/li&gt;
+&lt;li&gt;Request/Response Model&lt;/li&gt;
+&lt;li&gt;Pull/Push Model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="orgfae816f"&gt;&lt;/a&gt;Direct Addressing Model&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgfae816f"&gt;
+&lt;p&gt;
+\[\fbox{SEND msg TO R} \rightarrow msg \rightarrow \fbox{RECV msg FROM R}\]
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a id="orgc31f726"&gt;&lt;/a&gt;Queue Communication Model&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgc31f726"&gt;
+&lt;p style="text-align:center;"&gt;
+&lt;img src="https://example.com/images/queue-communication.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a id="org43025f6"&gt;&lt;/a&gt;Port-oriented Communication Model&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org43025f6"&gt;
+&lt;p style="text-align:center;"&gt;
+&lt;img src="https://example.com/images/port-communication.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a id="orgdce6b79"&gt;&lt;/a&gt;Request/Response Model&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgdce6b79"&gt;
+&lt;p&gt;
+The request/response model is the standard idea of distributed computing. The focus lies on behavior of programming languages. Note that in contrast to message exchange models (kind of contradiction because this is listed as a message exchange model in the script as seen above?!), the request/response model is inherently synchronous. Each operation determines a communication relationship.
+&lt;/p&gt;
+&lt;p style="text-align:center;"&gt;
+&lt;img src="https://example.com/images/request-response-model.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a id="orga85871d"&gt;&lt;/a&gt;Pull/Push Model&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orga85871d"&gt;
+&lt;p&gt;
+&lt;b&gt;Pull-Medium&lt;/b&gt;: use of the endpoint originates from the user
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;eg: Request/Response approaches like HTTP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+&lt;b&gt;Push-Medium&lt;/b&gt;: user is notified of specific events / provided data by the endpont
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;eg: publish/subscribe approaches&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0dcc87b" class="outline-2"&gt;
+&lt;h2 id="org0dcc87b"&gt;Programming in Distributed Systems&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0dcc87b"&gt;
+&lt;p&gt;
+Programming in or with distributed systems requires a look at many different aspects:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;see above for the challenges discussed earlier&lt;/li&gt;
+&lt;li&gt;communication aspects between components&lt;/li&gt;
+&lt;li&gt;realisation of address, bindind and contract&lt;/li&gt;
+&lt;li&gt;programming paradigms to take care of&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+It all started with TCP/IP and sockets:
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org51f59d7" class="outline-3"&gt;
+&lt;h3 id="org51f59d7"&gt;TCP: Addressing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org51f59d7"&gt;
+&lt;p&gt;
+Identification of TCP services occurs over ports (TSAPs in OSI terminology). Port numbers up to 255 are reserved for frequently used services, eg 21 for FTP, 23 for TELNET, 80 for HTTP). A &lt;b&gt;socket&lt;/b&gt; consists of a computers' internet address and a port. The notation of a socket looks like &lt;code&gt;IP-Address:Port Number&lt;/code&gt; and is applied internet wide.
+&lt;/p&gt;
+
+&lt;p&gt;
+FOr example a FTP server on a computer with the IP address &lt;code&gt;129.13.35.7&lt;/code&gt; can be reachend on the &lt;code&gt;129.13.35.7:21&lt;/code&gt; socket.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org1f0a58a" class="outline-3"&gt;
+&lt;h3 id="org1f0a58a"&gt;TCP: Connection Setup&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1f0a58a"&gt;
+&lt;p&gt;
+Connections can be setup as &lt;b&gt;active&lt;/b&gt; (&lt;i&gt;connect&lt;/i&gt;) or &lt;b&gt;passive&lt;/b&gt; (&lt;i&gt;listen&lt;/i&gt; / &lt;i&gt;accept&lt;/i&gt;) after socket creation.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/distributed_systems/distributed-systems-02/</guid><pubDate>Mon, 22 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 05</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org1ba9382" class="outline-2"&gt;
+&lt;h2 id="org1ba9382"&gt;Type and signature&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1ba9382"&gt;
+&lt;p&gt;
+Similar to functions in math functions in C (or programming for that matter) have a domain (Defintionsbereich/Definitionsmenge) and a codomain (Wertebereich/Zielmenge). Additionally to the name a function declaration (respective definiton) contains the domain and codomain:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The type of the return value of euclid is &lt;code&gt;int&lt;/code&gt; and defines the codomain, which in this case is a set of integers. The domain is specified via the parameter types in this case &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;int&lt;/code&gt; so also sets of integers. Mathematically expressed the code would look like this &lt;code&gt;euclid: int x int ⟶ int&lt;/code&gt; (an element out of the integer set emerges out of the domain &lt;code&gt;int x int&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+Technically &lt;code&gt;int x int ⟶ int&lt;/code&gt; is the type of the function "euclid". Practically however it became established to view the codomain as "type" of the function. Following this you'd say "euclid" has the type &lt;code&gt;int&lt;/code&gt;, however &lt;i&gt;return type&lt;/i&gt; would be the more accurate term.
+&lt;/p&gt;
+
+&lt;p&gt;
+The type together with the name of a functions builds the functions &lt;i&gt;signature&lt;/i&gt;. A declaration therefore introduces function signature to the compiler.
+&lt;/p&gt;
+
+&lt;p&gt;
+Many operators look the same e.g &lt;code&gt;+&lt;/code&gt; but do different things depending on the context, which is the particular type. Typing helps the compiler to find the right procedure. Although there are other programming languages that do not require type declarations and infer types automatically for instance Javascript. This is called &lt;i&gt;type inference&lt;/i&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4af5273" class="outline-2"&gt;
+&lt;h2 id="org4af5273"&gt;Basic types (primitive data types)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4af5273"&gt;
+&lt;p&gt;
+C provides few basic types. Yet it is possible to "build" more types. Since the sets are described by the C types are not infinite they are subsets of for example the natural numbers.
+C99 knows the following basic types:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;subsets of integers&lt;/li&gt;
+&lt;li&gt;subsets of rational numbers&lt;/li&gt;
+&lt;li&gt;boolean values&lt;/li&gt;
+&lt;li&gt;subset of complex numbers&lt;/li&gt;
+&lt;li&gt;empty set&lt;/li&gt;
+&lt;li&gt;memory addresses (which are derived types!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+More on &lt;a href="https://en.wikipedia.org/wiki/C_data_types"&gt;C data types&lt;/a&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8664e9a" class="outline-3"&gt;
+&lt;h3 id="org8664e9a"&gt;Integers &amp;amp; Chars&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8664e9a"&gt;
+&lt;p&gt;
+C offers the following keywords in regards to integers
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;type specifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;modifiers: &lt;code&gt;short&lt;/code&gt; (not for &lt;code&gt;char&lt;/code&gt;!), &lt;code&gt;long&lt;/code&gt; (not for &lt;code&gt;char&lt;/code&gt;!), &lt;code&gt;unsigned&lt;/code&gt;, &lt;code&gt;signed&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+When the type &lt;code&gt;int&lt;/code&gt; is modified it may be omitted as a keyword.
+&lt;/p&gt;
+
+&lt;p&gt;
+But why do different types exist for integers? Well differently sized values need different amounts of storage space. A computer stores values in bits (&lt;b&gt;bi&lt;/b&gt; nary dig &lt;b&gt;its&lt;/b&gt;). In \(n\) bits it is possible to store \(2^n\) different values. Typically the smallest addressable unit is a &lt;b&gt;byte&lt;/b&gt; (= 8 bit). Values are therefore stored in one or more bytes.
+&lt;/p&gt;
+
+&lt;p&gt;
+Choosing the the "right" type is hence always a compromise between the amount of different values and the size in storage (+ access speed).
+&lt;/p&gt;
+
+&lt;p&gt;
+All types which name contains &lt;code&gt;unsigned&lt;/code&gt; are "vorzeichenlos", those which contain &lt;code&gt;signed&lt;/code&gt; are "vorzeichenbehaftet". In case of just &lt;code&gt;int&lt;/code&gt; without a sign modifier the type is always signed. In case of &lt;code&gt;char&lt;/code&gt; this is up to the compiler. For most types there are no concrete sets defined, however some ranges are guaranteed:
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Type&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Range&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Format specifier&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;char&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Smallest addressable unit of the machine that can contain basic character set. It is an integer type. Actual type can be either signed or unsigned.&lt;/td&gt;
+&lt;td class="org-left"&gt;%c&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;signed char&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Of the same size as &lt;code&gt;char&lt;/code&gt;, but guaranteed to be signed. Capable of containing at least the [−127, +127] range&lt;/td&gt;
+&lt;td class="org-left"&gt;%c (or %hhi for numerical output)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;unsigned char&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Of the same size as &lt;code&gt;char&lt;/code&gt;, but guaranteed to be unsigned. Contains at least the [0, 255] range&lt;/td&gt;
+&lt;td class="org-left"&gt;%c (or %hhu for numerical output)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;short&lt;/code&gt; &lt;code&gt;short int&lt;/code&gt; &lt;code&gt;signed short&lt;/code&gt; &lt;code&gt;signed short int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Short signed integer type. Capable of containing at least the [−32,767, +32,767] range* thus at least 16 bits in size&lt;/td&gt;
+&lt;td class="org-left"&gt;%hi&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;unsigned short&lt;/code&gt; &lt;code&gt;unsigned short int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Short unsigned integer type. Contains at least the [0, 65,535] range;&lt;/td&gt;
+&lt;td class="org-left"&gt;%hu&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;int&lt;/code&gt; &lt;code&gt;signed&lt;/code&gt; &lt;code&gt;signed int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Basic signed integer type. Capable of containing at least the [−32,767, +32,767] range thus, it is at least 16 bits in size.&lt;/td&gt;
+&lt;td class="org-left"&gt;%i or %d&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;unsigned&lt;/code&gt; &lt;code&gt;unsigned int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Basic unsigned integer type. Contains at least the [0, 65,535] range&lt;/td&gt;
+&lt;td class="org-left"&gt;%u&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;long&lt;/code&gt; &lt;code&gt;long int&lt;/code&gt; &lt;code&gt;signed long&lt;/code&gt; &lt;code&gt;signed long int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Long signed integer type. Capable of containing at least the [−2,147,483,647, +2,147,483,647] range;[3][4] thus, it is at least 32 bits in size&lt;/td&gt;
+&lt;td class="org-left"&gt;%li&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;unsigned long&lt;/code&gt; &lt;code&gt;unsigned long int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Long unsigned integer type. Capable of containing at least the [0, 4,294,967,295] range&lt;/td&gt;
+&lt;td class="org-left"&gt;%lu&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;long long&lt;/code&gt; &lt;code&gt;long long int&lt;/code&gt; &lt;code&gt;signed long long&lt;/code&gt; &lt;code&gt;signed long long int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Long long signed integer type. Capable of containing at least the [−9,223,372,036,854,775,807, +9,223,372,036,854,775,807] range thus, it is at least 64 bits in size, specified since C99&lt;/td&gt;
+&lt;td class="org-left"&gt;%lli%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;unsigned long long&lt;/code&gt; &lt;code&gt;unsigned long long int&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;Long long unsigned integer type. Contains at least the [0, +18,446,744,073,709,551,615] range, specified since C99&lt;/td&gt;
+&lt;td class="org-left"&gt;%llu%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;
+∗The negative value is −32767 (not −32768) due to the one's-complement and sign-magnitude representations allowed by the standard, though the two's-complement representation is much more common
+&lt;/p&gt;
+
+&lt;p&gt;
+Since C99 there is a header file called &lt;code&gt;stdint.h&lt;/code&gt; which defines integers with a fixed bit size like/if(?) they're present on the current platform/system. For example:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int8_t&lt;/code&gt; and &lt;code&gt;uint8_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 8 bit and therefore a cardinality of \(256\)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int16_t&lt;/code&gt; and &lt;code&gt;uint16_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 16 bit and therefore a cardinality of \(65536\)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int32_t&lt;/code&gt; and &lt;code&gt;uint32_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 32 bit and therefore a cardinality of \(4294967296\)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int64_t&lt;/code&gt; and &lt;code&gt;uint64_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 64 bit and therefore a cardinality of \(18446744073709551616\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+PS. Cardinality means the number of (distinct) elements in a set
+&lt;/p&gt;
+
+&lt;p&gt;
+C90 doesn't specify how a value "looks" in memory/storage meaning how it is exactly represented in bits. Nevertheless most platforms use a binary positional notation with two's complement for the representation of negative integers:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;unsigned: value \( = \sum_{i=1}^{n} b_i * 2^{i-1} \)&lt;/li&gt;
+&lt;li&gt;signed: value  \( = \begin{cases} \sum_{i=1}^{n-1} b_i * 2^{i-1}, \text{wenn } b_n = 0 \\ (- \sum_{i=1}^{n-1} (1- b_i ) * 2^{i-1}) - 1, \text{wenn } b_n = 1  \end{cases}\)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;
+Now a bit onto "char"s. Why is the name of an integer type &lt;code&gt;char&lt;/code&gt;?
+&lt;/p&gt;
+
+&lt;p&gt;
+Originally this type was meant to represent values in the range of &lt;b&gt;ASCII-Codes&lt;/b&gt; (7 bit) respective &lt;b&gt;ANSI-Codes&lt;/b&gt; (8 bit) → &lt;i&gt;character&lt;/i&gt;. C doesn't provide an explicit type for characters. The usage through &lt;code&gt;char&lt;/code&gt; is solely achieved through the interpretation of the integer when outputting.
+&lt;/p&gt;
+
+&lt;p&gt;
+Depending on the platform the same &lt;code&gt;char&lt;/code&gt; value can represent different characters. That's why today the usage of &lt;code&gt;wchar_t&lt;/code&gt; is encouraged because it eases internalization and standardization (importable from &lt;code&gt;wchar.h&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+However in this lecture we will continue with ASCII/ANSI codes for now.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* char .c -- interpretation of char type */&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="nf"&gt;addchar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c1&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+ &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Result is %c with the code %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="n"&gt;addchar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;'a'&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;addchar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;'a'&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+ &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Result is b with the code 98
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgacbdfec" class="outline-3"&gt;
+&lt;h3 id="orgacbdfec"&gt;Rational numbers&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgacbdfec"&gt;
+&lt;p&gt;
+Because of internal representation C can only represent rational numbers \(\mathbb{Q}\) and not generic reals \(\mathbb{R}\) (allgemeine reelle Zahlen). These numbers are commonly called &lt;i&gt;floating points numbers&lt;/i&gt;. C provides the following types to represent floating point numbers:
+&lt;code&gt;float&lt;/code&gt;, &lt;code&gt;double&lt;/code&gt; and &lt;code&gt;long double&lt;/code&gt;. Besides a limited codomain floats in C have a limited precision. Again there are no fixed sizes provided, but minimum ranges are guaranteed:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;float&lt;/code&gt; has a codomain of at least \(\pm 10^{\pm 37}\) and a precision of at least 6 decimal places (Nachkommastelle)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;double&lt;/code&gt; at least the codomain of &lt;code&gt;float&lt;/code&gt; and a precision of at least 10 decimal places&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;long double&lt;/code&gt; at least as "good" as &lt;code&gt;double&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+In practice almost all compilers follow the IEEE-754 standard that defines the binary representations of floats.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb36bdfb" class="outline-3"&gt;
+&lt;h3 id="orgb36bdfb"&gt;Void&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb36bdfb"&gt;
+&lt;p&gt;
+C knows the base type &lt;code&gt;void&lt;/code&gt;. &lt;code&gt;void&lt;/code&gt; is basically an "anti-type" because it is used when no type is wanted (→ empty set; leere Menge). Is helpful when parameters and/or return value are not needed.
+&lt;/p&gt;
+
+&lt;p&gt;
+If the return value of a function is &lt;code&gt;void&lt;/code&gt; the &lt;code&gt;return&lt;/code&gt; statement in the function can be omitted. Is the parameter list of a function empty (&lt;code&gt;void&lt;/code&gt; is its sole element) than it can be omitted as well.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge1854d4" class="outline-2"&gt;
+&lt;h2 id="orge1854d4"&gt;Type conversion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge1854d4"&gt;
+&lt;p&gt;
+The types in &lt;code&gt;a + b&lt;/code&gt; could be different for instance &lt;code&gt;unsigned char&lt;/code&gt; and &lt;code&gt;signed int&lt;/code&gt;. In those cases the types are automatically (implicit) converted. Generally all the data types of the variables are upgraded to the data type of the variable with largest data type.
+&lt;/p&gt;
+
+&lt;p&gt;
+However besides the implicit automatic conversion, type conversion may be triggered manually and therefore explicitly by writing the type in parens before the variable/expression. Using a type like this, it acts as a &lt;i&gt;cast operator&lt;/i&gt; and is type casting the value. Doing this type conversion to lower data types is possible as well.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* cast .c -- type cast */&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;,...);&lt;/span&gt;
+&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;ladd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Ergebnis : %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;ladd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// "(int)" type cast to int to get rid of warning and implicit conversion because of "%d" formatter&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+ &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;ladd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+A type declaration like in C is not needed in all languages. In python for example the types are dynamic, that means they're determined at runtime. Python in contrast to C also offers strings and numbers with arbitrary size and precision (and more!).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org552db6a" class="outline-2"&gt;
+&lt;h2 id="org552db6a"&gt;Literals&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org552db6a"&gt;
+&lt;p&gt;
+A "direct value" of a specific type is called &lt;i&gt;literal&lt;/i&gt;. Literals of specific types require a special notation, to prevent an unneccessary type conversion:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int&lt;/code&gt; literals can be written in decimal, octal and hexadecimal and if needed with a sign:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;decimal: only digits &lt;code&gt;0-9&lt;/code&gt; however not leading with a &lt;code&gt;0&lt;/code&gt; → e.g &lt;code&gt;42&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;octal: prefix of &lt;code&gt;0&lt;/code&gt; and then only digits &lt;code&gt;0-7&lt;/code&gt; → e.g &lt;code&gt;052&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;hexadecimal: prefix of &lt;code&gt;0x&lt;/code&gt; and then only digits &lt;code&gt;0-9&lt;/code&gt; and letters &lt;code&gt;A-F&lt;/code&gt; → e.g &lt;code&gt;0x2a&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unsigned int&lt;/code&gt; like int but with the suffix "u"/"U" → e.g &lt;code&gt;123U&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;long/unsigned long&lt;/code&gt; like int/unsigned int but with the suffix "l"/"L" → e.g &lt;code&gt;123L&lt;/code&gt; respective &lt;code&gt;123UL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;long long/unsigned long long&lt;/code&gt; like int/unsigned int but with the suffix "ll"/"LL" → e.g &lt;code&gt;123LL&lt;/code&gt; respective &lt;code&gt;123ULL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;double&lt;/code&gt; as a decimal with decimal place(s), decimal point, and/or "e"/"E" with following exponent→ e.g &lt;code&gt;1.23e10&lt;/code&gt;, &lt;code&gt;.23&lt;/code&gt; or &lt;code&gt;1e10&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;float&lt;/code&gt; like double but with the suffix "f"/"F" → e.g &lt;code&gt;1.23e10f&lt;/code&gt;, &lt;code&gt;.23f&lt;/code&gt; or &lt;code&gt;1e10f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;long double&lt;/code&gt; like double but with the suffix "l"/"L" → e.g &lt;code&gt;1.23e10L&lt;/code&gt;, &lt;code&gt;.23l&lt;/code&gt; or &lt;code&gt;1e10l&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;char&lt;/code&gt; literals have to be written in single quotes → e.g &lt;code&gt;'*'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wchar_t&lt;/code&gt; literals are written like &lt;code&gt;char&lt;/code&gt; with the prefix &lt;code&gt;L&lt;/code&gt; → e.g &lt;code&gt;L'a'&lt;/code&gt;. There also escape sequences to display sequences or characters that are difficult to represent else. &lt;a href="https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences"&gt;Here's a list&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-05/</guid><pubDate>Sun, 21 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 04</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgcce3ac4" class="outline-2"&gt;
+&lt;h2 id="orgcce3ac4"&gt;Libraries and Linker&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcce3ac4"&gt;
+&lt;p&gt;
+In the last A&amp;amp;P post we ended with this example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// declarations&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt; &lt;span class="c1"&gt;// print format -&amp;gt; write to output&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ascii to integer&lt;/span&gt;
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Here two functions were used that are not a &lt;i&gt;part&lt;/i&gt; of C. However they are a part of the &lt;i&gt;C standard library&lt;/i&gt; (or &lt;i&gt;libc&lt;/i&gt;). &lt;b&gt;Declarations&lt;/b&gt; of libraries are pooled in &lt;b&gt;header files&lt;/b&gt;. Header files may be included into the code via &lt;code&gt;#included&lt;/code&gt; directives. There are two variants of the &lt;code&gt;#include&lt;/code&gt; directive:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;#include &amp;lt;file name&amp;gt;&lt;/code&gt; → searches for &lt;i&gt;file name&lt;/i&gt; in the systems path for include files 
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the system path can be set via compiler options (for &lt;code&gt;gcc&lt;/code&gt; via &lt;code&gt;-I&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#include "file name"&lt;/code&gt; → searches for &lt;i&gt;file name&lt;/i&gt; in the local path
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;in this case if the file is not found locally it will be searched for in the systems' path globally&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Using header files the previous example would now look like this:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt; // for printf&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt; // for atoi&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The steps performed in the creation of a C program are not solely performed by the compiler. Rather a set of programs is called. More specifically the following happens:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;The &lt;b&gt;preprocessor&lt;/b&gt; evaluates the directives and inserts the content of the &lt;i&gt;header files&lt;/i&gt; into the code&lt;/li&gt;
+&lt;li&gt;The &lt;b&gt;compiler&lt;/b&gt; translates the C code into assembly language/code&lt;/li&gt;
+&lt;li&gt;The &lt;b&gt;assembler&lt;/b&gt; translates the assembler code into machine code and generates an object file&lt;/li&gt;
+&lt;li&gt;The &lt;b&gt;linker&lt;/b&gt; searches for external references in the object file und searches the associated objects in the standard libary or other libraries and ties it together into an executable program file.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+So remember: Header files only define the interface to the standard library functions, not the implementation; they (as a rule) don't contain any executable code.
+&lt;/p&gt;
+
+&lt;p&gt;
+I was wondering why the linker runs after the assembler. Don't the library function need to be compiled and assembled as well? 
+It depends on the compiler and platform, but typically the standard library functions have already been compiled and collected into binary files that your code is linked against to produce an executable. So the header files contain declarations like our manually created declaration in the first code listing, ala &lt;code&gt;extern int printf(const *char, ...)&lt;/code&gt;. For example in the &lt;code&gt;/usr/include/stdio.h&lt;/code&gt; on my system I can find this matching declaration &lt;code&gt;extern int printf (const char *__restrict __format, ...);&lt;/code&gt; which also just &lt;i&gt;declares&lt;/i&gt; and doesn't &lt;i&gt;implement&lt;/i&gt; the function &lt;code&gt;printf&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Furthermore the compiler can be instructed to only execute single steps of the creation process. For example the compiler option &lt;code&gt;-E&lt;/code&gt; stops the process after the preprocessor. With &lt;code&gt;-v&lt;/code&gt; (for verbose) the GNU compiler can be instructed to give a more detailed output of the steps involved and the process as a whole.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://example.com/images/verbose-compilation.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgdcdd18d" class="outline-2"&gt;
+&lt;h2 id="orgdcdd18d"&gt;Python&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdcdd18d"&gt;
+&lt;p&gt;
+Python is a scripting language that is interpreted at runtime. To execute a python script the interpreter has to be specified either directly when executing (&lt;code&gt;python file.py&lt;/code&gt;) or in the first line of the file &lt;code&gt;#! /usr/bin/env  python&lt;/code&gt; and then it needs to be made executable via &lt;code&gt;chmod a+x file.py&lt;/code&gt;. The euclidian algorithm in python would look as follows:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Python can be used interactively by going into a python shell and importing the function &lt;code&gt;euclid&lt;/code&gt; from our "module"
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python
+$ from temp import euclid
+$ euclid(45,30)
+&amp;gt; 15
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+After the last example a file called &lt;code&gt;temp.cpython-37.pyc&lt;/code&gt; can be found in our directory (in a folder called &lt;code&gt;__pycache__&lt;/code&gt; in my case). This file contains the intermediate represation (Zwischencode) byte code into which the program is translated before it is interpreted. If the file hasn't change a subsequent execution would lead directly to the execution of this byte code. 
+It is possible to translate a program explicitly without executing it:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;py_compile&lt;/span&gt;
+&lt;span class="n"&gt;py_compile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'xyz.py'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Alternatively all python files in a directory can be translated via &lt;code&gt;python -mcompileall .&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Python offers a lot of predefined modules. &lt;code&gt;sys&lt;/code&gt; for example provides an interface to the operating system and may be used to extend our program with IO:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;# file name&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"GCD is "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7540d25" class="outline-2"&gt;
+&lt;h2 id="org7540d25"&gt;Back to C&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7540d25"&gt;
+&lt;p&gt;
+Going back to C (but the same applies elsewhere!) it is necessary to provide the input arguments on the command line when executing the euclidian algorithm program with IO. Else it would lead to a segmentation fault. The compiler cannot catch things like this because they are built on runtime assumptions. Therefore it is a good idea to validate those assumptions explicitly and program in a defensive way:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt; // for printf&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt; // for atoi&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// v[0] is program name&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Error unsufficient number of arguments&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Since such validation of assumptions is really common, a library function &lt;code&gt;assert&lt;/code&gt; exists to achieve this:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;assert.h&amp;gt; // &amp;lt;- NEW for assert!&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org54d3eb5" class="outline-3"&gt;
+&lt;h3 id="org54d3eb5"&gt;Errors&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org54d3eb5"&gt;
+&lt;p&gt;
+There are at least three types of erros that can be distuingished:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;formal, "incorrect" C → syntax error (compiler error)&lt;/li&gt;
+&lt;li&gt;missing objects (e.g functions) or name collisions → linker error&lt;/li&gt;
+&lt;li&gt;intention has not been implemented correctly → semantic error (logic error)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+The first two of these are usually catched when translating the program.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-04/</guid><pubDate>Fri, 19 Oct 2018 12:57:04 GMT</pubDate></item><item><title>Computer Science I - Lecture 02</title><link>https://example.com/posts/computer_science_I/cs-I-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+There wasn't much new stuff in this lecture because a wrong announcement was made leading to students missing the first week's lecture. Therefore we did mostly repetitions that I'll skip now and summarize the additional slides.
+&lt;/p&gt;
+
+&lt;div id="outline-container-orgb71c2cc" class="outline-2"&gt;
+&lt;h2 id="orgb71c2cc"&gt;Data types in C++&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb71c2cc"&gt;
+&lt;p&gt;
+The data type constitutes three things:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;memory mapping&lt;/li&gt;
+&lt;li&gt;codomain/target set (Wertevorrat)&lt;/li&gt;
+&lt;li&gt;valid operations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Standard data types:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int&lt;/code&gt; = whole integers, usually 4 byte&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;float&lt;/code&gt; = real numbers, usually 4-8 byte&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;char&lt;/code&gt; = character (in single quotes!), usually 1 byte&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bool&lt;/code&gt; logical/boolean values (true and false)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgf030386" class="outline-3"&gt;
+&lt;h3 id="orgf030386"&gt;Type conversion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf030386"&gt;
+&lt;p&gt;
+Type conversion is done by calling the type on the object:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;one&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 02</title><link>https://example.com/posts/database_essentials/db-essentials-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org5e214d1" class="outline-2"&gt;
+&lt;h2 id="org5e214d1"&gt;Information Systems&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5e214d1"&gt;
+&lt;p&gt;
+The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Application Software, Hardware, Developers and Users.
+&lt;/p&gt;
+
+&lt;p&gt;
+Databases historically developed out of the needs of operational information systems. That's why we look at the &lt;i&gt;database development lifecycle&lt;/i&gt; with the usual requirements of information systems in mind. For smaller DBS and databases for the management of smaller data sets e.g in web development some of the steps can be simplified and/or aggregated(zusammengefasst).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0c66a64" class="outline-2"&gt;
+&lt;h2 id="org0c66a64"&gt;DBS Development Lifecycle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0c66a64"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;consists of &lt;b&gt;planning&lt;/b&gt; and &lt;b&gt;realisation&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5d8faf5" class="outline-3"&gt;
+&lt;h3 id="org5d8faf5"&gt;Planning&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5d8faf5"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge10aa43" class="outline-4"&gt;
+&lt;h4 id="orge10aa43"&gt;Goal Description and System Defintion&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge10aa43"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;What is the purpose of the DBS?&lt;/li&gt;
+&lt;li&gt;Which goals should be accomplished by using the DBS?&lt;/li&gt;
+&lt;li&gt;Description of individual user viewpoints (application categories)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Which (aspects of) data play a role for the user?&lt;/li&gt;
+&lt;li&gt;What does a user do with "his" data?&lt;/li&gt;
+&lt;li&gt;Where do needs overlap with other user(roles)?&lt;/li&gt;
+&lt;li&gt;&lt;img src="https://example.com/images/user-viewpoints.png" alt="nil"&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Creation of rules regarding data collection, data formats, documentation and naming (conventions)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgecd93a1" class="outline-4"&gt;
+&lt;h4 id="orgecd93a1"&gt;Requirement Specification&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgecd93a1"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;in this process data that should be managed by the DBS  is gathered/collected and analyzed&lt;/li&gt;
+&lt;li&gt;the specific data and its usage is described for each user view → adequate description (not too much or too less)&lt;/li&gt;
+&lt;li&gt;finally the requirements of each view have to be combined
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;there're two procedures for this (which can be combined):&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org2d0b5ff"&gt;&lt;/a&gt;Central integration&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org2d0b5ff"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;each user views requirements are combined in an aggregate of requirements for the DBS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a id="org41a013f"&gt;&lt;/a&gt;View integration&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org41a013f"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the requirements for each user view stay seperated for the time being&lt;/li&gt;
+&lt;li&gt;in the next stept a data model is designed for each user view&lt;/li&gt;
+&lt;li&gt;the resulting data models are merged into an uniform data model that represents all user requirements of the database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7ede374" class="outline-4"&gt;
+&lt;h4 id="org7ede374"&gt;Application Design and DB Design*&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org6653ff2" class="outline-3"&gt;
+&lt;h3 id="org6653ff2"&gt;Realisation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6653ff2"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;implementation of DB and application (F.4)&lt;/li&gt;
+&lt;li&gt;fill rest in&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7334eb1" class="outline-3"&gt;
+&lt;h3 id="org7334eb1"&gt;∗Database Design&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7334eb1"&gt;
+&lt;p&gt;
+F.9
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/database_essentials/db-essentials-02/</guid><pubDate>Tue, 16 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 03</title><link>https://example.com/posts/algos_and_programming/algos-and-prog-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;a href="https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout_de.pdf"&gt;Script (1-28)&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="outline-container-orgcb035f6" class="outline-2"&gt;
+&lt;h2 id="orgcb035f6"&gt;Terms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcb035f6"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;CPU&lt;/b&gt; = A central processing unit (CPU) is the electronic circuitry within a computer that carries out the instructions of a computer program by performing the basic arithmetic, logical, control and input/output (I/O) operations specified by the instructions. The computer industry has used the term "central processing unit" at least since the early 1960s. Traditionally, the term "CPU" refers to a processor, more specifically to its processing unit and control unit (CU), distinguishing these core elements of a computer from external components such as main memory and I/O circuitry.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;bit patterns&lt;/b&gt; / &lt;b&gt;binary code&lt;/b&gt; = A binary code represents text, computer processor instructions, or any other data using a two-symbol system. The two-symbol system used is often the binary number system's 0 and 1. The binary code assigns a pattern of binary digits, also known as bits, to each character, instruction, etc.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;core&lt;/b&gt; = A core is usually the basic computation unit of the CPU - it can run a single program context. A CPU may have one or more cores to perform tasks at a given time.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;processor design&lt;/b&gt; = refers to the way and scope that a core implements processor registers, control unit,  bus and  memory unit&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;processor register&lt;/b&gt; = quickly accessible location available to a computer's cpu, common register sizes are 8, 32 or 64-bit register&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org46cfc8e" class="outline-2"&gt;
+&lt;h2 id="org46cfc8e"&gt;Basics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org46cfc8e"&gt;
+&lt;p&gt;
+An algorithm has to be interpretable to be executed by the computer. A (digital) processor can interpret bit patterns. &lt;i&gt;Bit patterns&lt;/i&gt; are also called machine code. A &lt;i&gt;core&lt;/i&gt; is a real implementation of an &lt;i&gt;processor design&lt;/i&gt;. Processor designs differ in the way and scope that they implement &lt;i&gt;processor registers&lt;/i&gt;, &lt;i&gt;control unit&lt;/i&gt;,  &lt;i&gt;bus&lt;/i&gt; and  &lt;i&gt;memory unit&lt;/i&gt; (also see &lt;a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture"&gt;Von Neumann Architecture&lt;/a&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+Different types of processors that implement mostly the same core design my be summarized as a "&lt;i&gt;processor family&lt;/i&gt;". A new processor family is formed when a processor design is considerably changed or altered (those are almost always backward compatible).
+&lt;/p&gt;
+
+&lt;p&gt;
+In machine code the bit pattern \[11111010\] for example is treated by the x86-processor-family as a directive to ignore interrupts.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org78f84fc" class="outline-2"&gt;
+&lt;h2 id="org78f84fc"&gt;Compiler and interpreter&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org78f84fc"&gt;
+&lt;p&gt;
+Since machine code is not so handy for humans, programming languages have been created that should help with that. Programming languages use different models and abstractions. There is (atleast) one &lt;i&gt;assembly language&lt;/i&gt; that represents machine code in an easier to read manner (mnemonics). \(1111 1010\) (resp. \(0xFA\))* for example would be "cli" in assembly language for x86 processors (clear interrrupt flag). Programs are either &lt;b&gt;translated&lt;/b&gt; into machine code or are &lt;b&gt;interpreted&lt;/b&gt; by another program. This "translation" is done by the &lt;b&gt;compiler&lt;/b&gt; while the interpretation is done by the &lt;b&gt;interpreter&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+∗ The 0 tells the parser it's dealing with a constant (and not an identifier/reserved word). Something is still needed to specify the number base HEX: the x is an arbitrary choice.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orga512710" class="outline-3"&gt;
+&lt;h3 id="orga512710"&gt;Variants of execution&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga512710"&gt;
+&lt;p&gt;
+&lt;img src="https://example.com/images/execution-variants.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org488eaef" class="outline-2"&gt;
+&lt;h2 id="org488eaef"&gt;C&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org488eaef"&gt;
+&lt;p&gt;
+C is a programming language that is compiled into machine code without intermediate language representation (Zwischencode) or VM's.
+&lt;/p&gt;
+
+&lt;p&gt;
+In this course we'll stick to the C99-standard. Since computers usually support multiple standards, the standard has to be set when compiling. C is "close to the hardware". It is sometimes labeled as "middle language" eventhough it is still a high level programming language. Genereally a low level programming language is a language that provides no or little abstraction from a computer's instruction set architecture. Machine code and assembly language are usually counted as low level. However if you'd for example compare C with Ruby or Php it would be the low level language in that comparison because it offers far less abstractions. That's why some say it is a "middle language".
+&lt;/p&gt;
+
+&lt;p&gt;
+Usually C programs are really compact - they don't require a lot of overhead and storage. C is widely spread and presumably still the language in most of today's programs are writte.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is possible to write really efficient C programs (not guaranteed though) and that's why the speed of C programs is often used as a benchmark when it comes to speed and/or efficiency.
+&lt;/p&gt;
+
+&lt;p&gt;
+In this course the &lt;code&gt;clang&lt;/code&gt; compiler or the compiler from the GNU Compiler Collection (&lt;code&gt;gcc&lt;/code&gt;) is used. For example like this &lt;code&gt;cc -std=c99 -Wall program.c -o program&lt;/code&gt; or (&lt;code&gt;cc -std=c99 -Wall program.c -o program&lt;/code&gt;). If the compilation was succesfull, the program can be executed like this &lt;code&gt;./program&lt;/code&gt; and an return value (from the main method) could be retrived with &lt;code&gt;echo $?&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2233d4f" class="outline-3"&gt;
+&lt;h3 id="org2233d4f"&gt;Euclidian Algorithm in C&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2233d4f"&gt;
+&lt;p&gt;
+The Euclidian Algorithm may be used to find the Greates Common Divisor (GCD) of numbers greater than 0. What follows is an implementation of it in C code:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//static in this context means that the function is local and not exported to other modules&lt;/span&gt;
+  &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// function declaration&lt;/span&gt;
+
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// function definition&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Because the function &lt;code&gt;euclid&lt;/code&gt; is called in the main method before its defintion, it has to be declared before that so the compiler knows about it. If the function is &lt;i&gt;defined&lt;/i&gt; &lt;b&gt;before&lt;/b&gt; its first usage, the explicit declaration can be omitted. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Because it is common to use functions from different libraries or modules the declaration serves as an assurance to the compiler that a called function exists and may be called. Else a warning (&lt;code&gt;implicit-function-declaration&lt;/code&gt;) would be triggered when compiling, eventhough the compilation might still be successfull. 
+&lt;/p&gt;
+
+&lt;p&gt;
+This is risky because I can call the function without providing arguments for all the  parameters e.g &lt;code&gt;euclid(45);&lt;/code&gt; and my program would compile just fine. That is until I run it and get a segmentation fault. In that case a declaration of the function interface would have saved me from the runtime error and thrown a compilation error instead.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb4f76e6" class="outline-3"&gt;
+&lt;h3 id="orgb4f76e6"&gt;Input and Output in C&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb4f76e6"&gt;
+&lt;p&gt;
+Now we want to parameterize our euclidian algorithm (remember characteristic of an algorithm → should solve a batch of problems) and have an direct output, we need so called &lt;i&gt;library functions&lt;/i&gt;.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// euclidian algorithm with IO&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt; &lt;span class="c1"&gt;// print format -&amp;gt; write to output&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ascii to integer&lt;/span&gt;
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
+  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Read the comment and syntax carefully! Furthermore the functions &lt;code&gt;printf&lt;/code&gt; and &lt;code&gt;atoi&lt;/code&gt; are defined in C's standard library &lt;code&gt;stdlib&lt;/code&gt; which is always linked by default (directive to include a library &lt;code&gt;#include&amp;lt;stdlib.h&amp;gt;&lt;/code&gt;).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org3b7c13d" class="outline-3"&gt;
+&lt;h3 id="org3b7c13d"&gt;Operators&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3b7c13d"&gt;
+&lt;p&gt;
+Depending on the position of an operator (e.g &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;%&lt;/code&gt;, etc.) in regards to where the operator "gets its operands" it can be differentiated between:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;prefix operators (before an operand eg &lt;code&gt;++i&lt;/code&gt; → &lt;code&gt;i&lt;/code&gt; is incremented and then used)&lt;/li&gt;
+&lt;li&gt;postifx operators (after an operand eg &lt;code&gt;i++&lt;/code&gt; → &lt;code&gt;i&lt;/code&gt; is used and then incremented)&lt;/li&gt;
+&lt;li&gt;infix operators (between operands eg &lt;code&gt;5-2&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://example.com/posts/algos_and_programming/algos-and-prog-03/</guid><pubDate>Mon, 15 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>
