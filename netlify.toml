@@ -1,4 +1,0 @@
-[build]
-  base    = ""
-  publish = "output"
-  command = "pip install nikola;nikola build"
