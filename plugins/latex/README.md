@@ -105,11 +105,11 @@ The formula list environment `formulalist` can be defined in LaTeX as follows:
     \begin{list}{}{\rightmargin-0.5cm\leftmargin+0.5cm}\item[]%
     \ifnumequal{\formulalistcols}{1}{\begin{flushleft}}{\begin{multicols}{#1}}%
     \long\def\formula##1{\par\noindent##1}%
-  }%
+  %}
   {%
     \ifnumequal{\formulalistcols}{1}{\end{flushleft}}{\end{multicols}}%
     \end{list}%
-  }
+  %}
 ```
 
 
@@ -125,10 +125,10 @@ The picture group environment `picturegroup` can be defined in LaTeX as follows:
     \renewcommand{\arraystretch}{0.2}%
     \lineskip=10pt\baselineskip=0pt%
     \long\def\picture##1##2{\begin{tabular}[b]{c}\mbox{##2}\\\mbox{##1}\end{tabular}}%
-  }%
+  %}
   {%
     \end{center}%
-  }
+  %}
 ```
 
 
