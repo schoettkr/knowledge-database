@@ -1,0 +1,13 @@
+#+BEGIN_COMMENT
+.. title: Algos & Programming - Lecture 08
+.. slug: algos-and-prog-08
+.. date: 2018-11-02
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+* Complex Types

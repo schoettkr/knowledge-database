@@ -29,7 +29,7 @@ Should the value of a place in memory be modified (purpose of the state model), 
 *** Named variables
 Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala =int x, y ,z;=.
 
-When declaring a variable it is possible to also provide a /storage class/ and/or a /type qualifier/. The storage class is declared via one of the following keywors =auto=, =static=, =extern= or =register=. These basically impact the /scope/, /visibility/ and the /life time/ of the specific variable.
+When declaring a variable it is possible to also provide a /storage class/ and/or a /type qualifier/. The storage class is declared via one of the following keywors =auto=, =static=, =extern= or =register=. These basically impact the /scope/, /visibility/(?! might be wrong) and the /life time/ of the specific variable.
 - =auto= (assumed by default if no other storage class is specified)
   - not often written because it is the default
   - =auto= variables can only be accessed within the block of declaration which defines their scope
@@ -136,8 +136,8 @@ As seen in the code example above a pointer can be *dereferenced* via the derefe
 Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at /run time/ with functions from the C standard library. Anonymous variables are *not declared*.
 
 More specifically the following functions that are /declared/ in =stdlib.h= are used to allocate memory at run time:
-- =void *malloc(size_t size)= \rightarrow reserves =size= bytes in memory
-- =void *calloc(size_t count, size_t size)= \rightarrow reserves =count x size= bytes in memory and initializes them with a value of =0=
+- =void *malloc(size_t size)= \rightarrow reserves =size= bytes in memory (memory allocate)
+- =void *calloc(size_t count, size_t size)= \rightarrow reserves =count x size= bytes in memory and initializes them with a value of =0= (count allocate)
   
 Both functions retrun the *address* of the anonymous variable.
 
@@ -182,3 +182,4 @@ Helping advice to avoid the above errors:
   - dereferencing =NULL= leads to a run time error
   - if functions like =malloc= fail they also return =NULL= therefore it is advised to check pointers against =null= before using them
 *** Parameters
+Parameters are the third way memory is allocated to store values. We covered this in the next lecture (lecture 07). (¬‿¬)

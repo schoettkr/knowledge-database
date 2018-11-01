@@ -1,5 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 31 Oct 2018 16:52:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdcf07d2" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Thu, 01 Nov 2018 10:38:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org0243263" class="outline-2"&gt;
+&lt;h2 id="org0243263"&gt;Storage and memory&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0243263"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org87f7604" class="outline-3"&gt;
+&lt;h3 id="org87f7604"&gt;Parameters&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org87f7604"&gt;
+&lt;p&gt;
+Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables → &lt;b&gt;parameters&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Parameters are variables that are automatically created and initialized when a function is called.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;lifecycle&lt;/b&gt; → retention time (Verweilzeit) of the program in that function &lt;i&gt;instance&lt;/i&gt; (the surrounding function)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;visibility&lt;/b&gt; → whole function body as long as it's not shadowed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Parameters are declared and defined whith the function definition. They cannot have /storage classes/(auto, static, extern, register), but may have /storage types/(const, volatile, restrict).
+&lt;/p&gt;
+
+&lt;p&gt;
+The term parameter (sometimes called formal parameter) is used to refer to the variable as found in the function definition which is used in the function body, while argument (sometimes called actual parameter) refers to the actual input supplied at function call.
+&lt;/p&gt;
+
+&lt;p&gt;
+In general there are two ways of assocating an argument with a parameter. C for example uses &lt;b&gt;positional parameters&lt;/b&gt; &lt;i&gt;only&lt;/i&gt; which means arguments have to be provided in the order specified by the function definition. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Python in contrast provides the option to use positional arguments as well as &lt;b&gt;named parameters&lt;/b&gt;.
+A function call using named parameters differs from a regular function call in that the values are passed by associating each one with a parameter name, instead of providing an ordered list of values.
+&lt;/p&gt;
+
+&lt;p&gt;
+In languages with no named parameters, the order of parameters in a function call is necessarily fixed, since it is the only way that the language can identify which value is intended to be used for which purpose.
+&lt;/p&gt;
+
+&lt;p&gt;
+With named parameters, it is usually possible to provide the values in any arbitrary order, since the name attached to each value identifies its purpose. This reduces the connascence between parts of the program. A few languages use named parameters but still require the parameters to be provided in a specific order.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example usage of &lt;b&gt;ordered/positional parameters&lt;/b&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;testFun&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Title"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Example usage of &lt;b&gt;named parameters&lt;/b&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;testFun&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Title"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+	&lt;span class="n"&gt;xPosition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+	&lt;span class="n"&gt;yPosition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+	&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+	&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+	&lt;span class="n"&gt;drawingNow&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Besides the different ways to associate parameters and arguments, there are different ways in which arguments are &lt;i&gt;passed&lt;/i&gt; to the function!
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;call by value&lt;/b&gt;: the actual parameter (argument) is evaluated and the formal parameter recieves that value (the function recieves a copy of the value)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;call by name&lt;/b&gt;: the formal parameter is replaced by the name of the actual parameter&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;call by reference&lt;/b&gt;: the formal parameter becomes a "proxy object" (Stellvertreterobjekt) for the argument so that all changes are immediately effective outside of the function as well&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;call by copy/return&lt;/b&gt;: the argument is evaluated and the formal parameter gets this value at the begin of the function; when the function execution finishes the value of the formal parameter is assigned to the actual parameter (copy in - copy out, call by value - return)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+In C the only way of passing parameters is &lt;b&gt;by value&lt;/b&gt; and it does not know the concept of procedures and reference parameters. 
+&lt;/p&gt;
+
+&lt;p&gt;
+To be still able to manipulate values outside of the executing function one may pass &lt;i&gt;pointers&lt;/i&gt;. Changes outside of the function scope can then be realised via dereferencing those pointers. The effect of this is basically the same as it would be when calling by reference and is an often used practice in C.
+&lt;/p&gt;
+
+&lt;p&gt;
+A manipulation of values outside of a functions local variables (including parameters) is called &lt;i&gt;side effect&lt;/i&gt; (input &amp;amp; output is also a side effect).
+&lt;/p&gt;
+
+&lt;p&gt;
+Example of manipulating a value outside of a functions local scope via pointer and therefore simulating reference parameters:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* sideeffect .c -- simulated reference parameter */&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;sideeffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"x=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;sideeffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"x=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;sideeffect&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;x=42&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;x=23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Another use case of reference parameters is value input. The function &lt;code&gt;scanf()&lt;/code&gt; from the standard library provides this functionality. Similar to &lt;code&gt;printf()&lt;/code&gt; the parameters begin with a format string, followed by a sequence of pointers to the variables where the input should be stored in. &lt;code&gt;scanf&lt;/code&gt; returns the count of successfully read variables.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Give the point as &lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;(x,y )&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;: "&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scanf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"(%d ,%d)"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"You provided : (%d, %d).&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3bee214" class="outline-3"&gt;
+&lt;h3 id="org3bee214"&gt;Excursus: Variables and References in Python&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3bee214"&gt;
+&lt;p&gt;
+Parameter passing in Python is somewhat special. It is not one of the most known methods like "pass-by-value" or "pass-by-reference", in fact parameter passing in Python is &lt;b&gt;"pass-by-object-reference"&lt;/b&gt; of which is often said "Object references are passed by value".
+&lt;/p&gt;
+
+&lt;p&gt;
+What is actually happening when you make a variable assignment? This is an important question in Python, because the answer differs somewhat from what you’d find in many other programming languages.
+&lt;/p&gt;
+
+&lt;p&gt;
+Python is a highly object-oriented language. In fact, virtually every item of data in a Python program is an object of a specific type or class. 
+&lt;/p&gt;
+
+&lt;p&gt;
+When presented with the statement &lt;code&gt;print(300)&lt;/code&gt;, the interpreter does the following:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Creates an integer object&lt;/li&gt;
+&lt;li&gt;Gives it the value 300&lt;/li&gt;
+&lt;li&gt;Displays it to the console&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+A Python variable is a symbolic name that is a reference or pointer to an object. Once an object is assigned to a variable, you can refer to the object by that name. But the data itself is still contained within the object.
+&lt;/p&gt;
+
+&lt;p&gt;
+For example the assignment &lt;code&gt;n = 9000&lt;/code&gt; creates an integer object with the value &lt;code&gt;300&lt;/code&gt; and assigns the variable &lt;code&gt;n&lt;/code&gt; to point to that object:
+\[n \longrightarrow \fbox{9000}\]
+&lt;/p&gt;
+
+&lt;p&gt;
+Now consider the following statement &lt;code&gt;m = n&lt;/code&gt;. What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, &lt;code&gt;m&lt;/code&gt;, which points to the same object that &lt;code&gt;n&lt;/code&gt; points to.
+\[n \longrightarrow \fbox{9000} \longleftarrow m\]
+&lt;/p&gt;
+
+&lt;p&gt;
+Next suppose you do this &lt;code&gt;m = 400&lt;/code&gt;. Now Python creates a new integer object with the value &lt;code&gt;400&lt;/code&gt; and &lt;code&gt;m&lt;/code&gt; becomes a reference to it:
+\[n \longrightarrow \fbox{9000} \\ \fbox{400} \longleftarrow m\]
+&lt;/p&gt;
+
+&lt;p&gt;
+Lastly, suppose this statement is executed next &lt;code&gt;n = "foo"&lt;/code&gt; . Now Python creates a string object with the value &lt;code&gt;"foo"&lt;/code&gt; and makes &lt;code&gt;n&lt;/code&gt; reference that.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[n \longrightarrow \fbox{"foo"} \\ \fbox{9000} \\ \fbox{400} \longleftarrow m\]
+&lt;/p&gt;
+
+&lt;p&gt;
+There is no longer any reference to the integer object &lt;code&gt;9000&lt;/code&gt;. It is orphaned, and there is no way to access it.
+&lt;/p&gt;
+
+&lt;p&gt;
+An object’s life begins when it is created, at which time at least one reference to it is created. During an object’s lifetime, additional references to it may be created, as you saw above, and references to it may be deleted as well. An object stays alive, as it were, so long as there is at least one reference to it.
+&lt;/p&gt;
+
+&lt;p&gt;
+When the number of references to an object drops to zero, it is no longer accessible. At that point, its lifetime is over. Python will eventually notice that it is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge755b6b" class="outline-4"&gt;
+&lt;h4 id="orge755b6b"&gt;Object Identity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge755b6b"&gt;
+&lt;p&gt;
+In Python, every object that is created is given a number that uniquely identifies it. It is guaranteed that no two objects will have the same identifier during any period in which their lifetimes overlap. Once an object’s reference count drops to zero and it is garbage collected, as happened to the &lt;code&gt;9000&lt;/code&gt; object above, then its identifying number becomes available and may be used again.
+&lt;/p&gt;
+
+&lt;p&gt;
+The built-in Python function &lt;code&gt;id()&lt;/code&gt; returns an object’s integer identifier. Using the &lt;code&gt;id()&lt;/code&gt; function, you can verify that two variables indeed point to the same object:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;768&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+True
+
+&lt;/pre&gt;
+&lt;p&gt;
+After the assignment &lt;code&gt;m = n&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; both point to the same object, confirmed by the fact that &lt;code&gt;id(m)&lt;/code&gt; and &lt;code&gt;id(n)&lt;/code&gt; return the same number.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now take a look at the following code:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"a="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;", id(a)="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"b="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;", id(b)="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"a="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;", id(a)="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+a= 23 , id(a)= 140345766270720
+b= 42 , id(b)= 140345766271328
+a= 42 , id(a)= 140345766271328
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+When dealing with &lt;i&gt;immutable objects&lt;/i&gt; (eg integers, bool, string) a variable assignment like &lt;code&gt;a = a+19&lt;/code&gt; &lt;b&gt;does not&lt;/b&gt; modify the &lt;i&gt;object&lt;/i&gt;, instead
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;a &lt;b&gt;new object&lt;/b&gt; is created and referenced&lt;/li&gt;
+&lt;li&gt;or if such object (eg obj with value &lt;code&gt;42&lt;/code&gt;) already exists it is referenced&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Complex objects (eg list, dict, set) are &lt;i&gt;mutable&lt;/i&gt;. When operating on them, they are changed directly without the creation of new objects so the reference stays the same.
+&lt;/p&gt;
+
+&lt;p&gt;
+In the code example above an object holding the integer &lt;code&gt;42&lt;/code&gt; already existed and was referenced by &lt;code&gt;b&lt;/code&gt; and thats why assigning &lt;code&gt;42&lt;/code&gt; to &lt;code&gt;a&lt;/code&gt; changes the reference to point to the same object, which is verified by comparing the object ids with &lt;code&gt;id()&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+So parameter passing in Python passes &lt;b&gt;object references&lt;/b&gt;. 
+&lt;/p&gt;
+
+&lt;p&gt;
+In case of &lt;i&gt;immutable objects&lt;/i&gt; modifications inside the called function leads to creation and then referencing of other objects. Outside of the function the same ol' object is referenced, which was not modified so this has the same effect as "pass-by-value".
+&lt;/p&gt;
+
+&lt;p&gt;
+In case of &lt;i&gt;mutable objects&lt;/i&gt; no new references and objects would be created when modifications occur so variables outside of the function that refer to the same object reference the same object to which the modifications are applied. This has the same effect as "pass-by-reference".
+&lt;/p&gt;
+
+&lt;p&gt;
+Sources of the python excursus: &lt;a href="https://realpython.com/python-variables/"&gt;https://realpython.com/python-variables/&lt;/a&gt; and &lt;a href="https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/"&gt;https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</guid><pubDate>Mon, 29 Oct 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdcf07d2" class="outline-2"&gt;
 &lt;h2 id="orgdcf07d2"&gt;Characteristics of a language&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgdcf07d2"&gt;
 &lt;p&gt;
@@ -495,9 +779,9 @@ To remember this more easily:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgc43f3c6" class="outline-2"&gt;
-&lt;h2 id="orgc43f3c6"&gt;Storage and memory&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc43f3c6"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgd7ed0be" class="outline-2"&gt;
+&lt;h2 id="orgd7ed0be"&gt;Storage and memory&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd7ed0be"&gt;
 &lt;p&gt;
 Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:
 &lt;/p&gt;
@@ -524,22 +808,22 @@ The terms "named" and "anonymous" are taken from the lecture script, I don't lik
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga456659" class="outline-3"&gt;
-&lt;h3 id="orga456659"&gt;Variables&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga456659"&gt;
+&lt;div id="outline-container-org0846aad" class="outline-3"&gt;
+&lt;h3 id="org0846aad"&gt;Variables&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0846aad"&gt;
 &lt;p&gt;
 Should the value of a place in memory be modified (purpose of the state model), you speak of (named or anonymous) &lt;i&gt;variables&lt;/i&gt;. Should the value in memory stay unchanged, then it is a &lt;i&gt;constant&lt;/i&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2e6fdfa" class="outline-4"&gt;
-&lt;h4 id="org2e6fdfa"&gt;Named variables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org2e6fdfa"&gt;
+&lt;div id="outline-container-org65d39d8" class="outline-4"&gt;
+&lt;h4 id="org65d39d8"&gt;Named variables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org65d39d8"&gt;
 &lt;p&gt;
 Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala &lt;code&gt;int x, y ,z;&lt;/code&gt;.
 &lt;/p&gt;
 
 &lt;p&gt;
-When declaring a variable it is possible to also provide a &lt;i&gt;storage class&lt;/i&gt; and/or a &lt;i&gt;type qualifier&lt;/i&gt;. The storage class is declared via one of the following keywors &lt;code&gt;auto&lt;/code&gt;, &lt;code&gt;static&lt;/code&gt;, &lt;code&gt;extern&lt;/code&gt; or &lt;code&gt;register&lt;/code&gt;. These basically impact the &lt;i&gt;scope&lt;/i&gt;, &lt;i&gt;visibility&lt;/i&gt; and the &lt;i&gt;life time&lt;/i&gt; of the specific variable.
+When declaring a variable it is possible to also provide a &lt;i&gt;storage class&lt;/i&gt; and/or a &lt;i&gt;type qualifier&lt;/i&gt;. The storage class is declared via one of the following keywors &lt;code&gt;auto&lt;/code&gt;, &lt;code&gt;static&lt;/code&gt;, &lt;code&gt;extern&lt;/code&gt; or &lt;code&gt;register&lt;/code&gt;. These basically impact the &lt;i&gt;scope&lt;/i&gt;, &lt;i&gt;visibility/(?! might be wrong) and the /life time&lt;/i&gt; of the specific variable.
 &lt;/p&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;code&gt;auto&lt;/code&gt; (assumed by default if no other storage class is specified)
@@ -582,8 +866,8 @@ A variable can be assigned a value via &lt;code&gt;0&lt;/code&gt;, this can also
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org6265d7a"&gt;&lt;/a&gt;Addresses&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org6265d7a"&gt;
+&lt;li&gt;&lt;a id="orge7a24e6"&gt;&lt;/a&gt;Addresses&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orge7a24e6"&gt;
 &lt;p&gt;
 Every variable has an address (place in memory where it is stored) that can be retrieved with the &lt;code&gt;&amp;amp;&lt;/code&gt; "address of" operator
 &lt;/p&gt;
@@ -614,8 +898,8 @@ Actually the identifier of a variable (eg &lt;code&gt;testVar&lt;/code&gt;) is j
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orga88de6b"&gt;&lt;/a&gt;Pointer&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orga88de6b"&gt;
+&lt;li&gt;&lt;a id="org178ae60"&gt;&lt;/a&gt;Pointer&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org178ae60"&gt;
 &lt;p&gt;
 Variables can also hold addresses themselves! The prefix &lt;code&gt;*&lt;/code&gt; infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another &lt;b&gt;specific&lt;/b&gt; type. For instance:
 &lt;/p&gt;
@@ -692,9 +976,9 @@ y=42 (at 0x7ffeeff30f1c)
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgea0a277" class="outline-4"&gt;
-&lt;h4 id="orgea0a277"&gt;Anonymous variables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgea0a277"&gt;
+&lt;div id="outline-container-org498c93b" class="outline-4"&gt;
+&lt;h4 id="org498c93b"&gt;Anonymous variables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org498c93b"&gt;
 &lt;p&gt;
 Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at &lt;i&gt;run time&lt;/i&gt; with functions from the C standard library. Anonymous variables are &lt;b&gt;not declared&lt;/b&gt;.
 &lt;/p&gt;
@@ -703,8 +987,8 @@ Anonymous variables in C don't have a name but get memory allocated nevertheless
 More specifically the following functions that are &lt;i&gt;declared&lt;/i&gt; in &lt;code&gt;stdlib.h&lt;/code&gt; are used to allocate memory at run time:
 &lt;/p&gt;
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;void *malloc(size_t size)&lt;/code&gt; → reserves &lt;code&gt;size&lt;/code&gt; bytes in memory&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;void *calloc(size_t count, size_t size)&lt;/code&gt; → reserves &lt;code&gt;count x size&lt;/code&gt; bytes in memory and initializes them with a value of &lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void *malloc(size_t size)&lt;/code&gt; → reserves &lt;code&gt;size&lt;/code&gt; bytes in memory (memory allocate)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void *calloc(size_t count, size_t size)&lt;/code&gt; → reserves &lt;code&gt;count x size&lt;/code&gt; bytes in memory and initializes them with a value of &lt;code&gt;0&lt;/code&gt; (count allocate)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;
@@ -768,8 +1052,13 @@ Helping advice to avoid the above errors:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org290f852" class="outline-4"&gt;
-&lt;h4 id="org290f852"&gt;Parameters&lt;/h4&gt;
+&lt;div id="outline-container-org3b96daf" class="outline-4"&gt;
+&lt;h4 id="org3b96daf"&gt;Parameters&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3b96daf"&gt;
+&lt;p&gt;
+Parameters are the third way memory is allocated to store values. We covered this in the next lecture (lecture 07). (¬‿¬)
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Design of Distributed Systems - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org92ffd30" class="outline-2"&gt;
@@ -1838,167 +2127,4 @@ F.9
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</guid><pubDate>Tue, 16 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-&lt;a href="https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout_de.pdf"&gt;Script (1-28)&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;div id="outline-container-orgcb035f6" class="outline-2"&gt;
-&lt;h2 id="orgcb035f6"&gt;Terms&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcb035f6"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;CPU&lt;/b&gt; = A central processing unit (CPU) is the electronic circuitry within a computer that carries out the instructions of a computer program by performing the basic arithmetic, logical, control and input/output (I/O) operations specified by the instructions. The computer industry has used the term "central processing unit" at least since the early 1960s. Traditionally, the term "CPU" refers to a processor, more specifically to its processing unit and control unit (CU), distinguishing these core elements of a computer from external components such as main memory and I/O circuitry.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;bit patterns&lt;/b&gt; / &lt;b&gt;binary code&lt;/b&gt; = A binary code represents text, computer processor instructions, or any other data using a two-symbol system. The two-symbol system used is often the binary number system's 0 and 1. The binary code assigns a pattern of binary digits, also known as bits, to each character, instruction, etc.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;core&lt;/b&gt; = A core is usually the basic computation unit of the CPU - it can run a single program context. A CPU may have one or more cores to perform tasks at a given time.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;processor design&lt;/b&gt; = refers to the way and scope that a core implements processor registers, control unit,  bus and  memory unit&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;processor register&lt;/b&gt; = quickly accessible location available to a computer's cpu, common register sizes are 8, 32 or 64-bit register&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org46cfc8e" class="outline-2"&gt;
-&lt;h2 id="org46cfc8e"&gt;Basics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org46cfc8e"&gt;
-&lt;p&gt;
-An algorithm has to be interpretable to be executed by the computer. A (digital) processor can interpret bit patterns. &lt;i&gt;Bit patterns&lt;/i&gt; are also called machine code. A &lt;i&gt;core&lt;/i&gt; is a real implementation of an &lt;i&gt;processor design&lt;/i&gt;. Processor designs differ in the way and scope that they implement &lt;i&gt;processor registers&lt;/i&gt;, &lt;i&gt;control unit&lt;/i&gt;,  &lt;i&gt;bus&lt;/i&gt; and  &lt;i&gt;memory unit&lt;/i&gt; (also see &lt;a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture"&gt;Von Neumann Architecture&lt;/a&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-Different types of processors that implement mostly the same core design my be summarized as a "&lt;i&gt;processor family&lt;/i&gt;". A new processor family is formed when a processor design is considerably changed or altered (those are almost always backward compatible).
-&lt;/p&gt;
-
-&lt;p&gt;
-In machine code the bit pattern \[11111010\] for example is treated by the x86-processor-family as a directive to ignore interrupts.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org78f84fc" class="outline-2"&gt;
-&lt;h2 id="org78f84fc"&gt;Compiler and interpreter&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org78f84fc"&gt;
-&lt;p&gt;
-Since machine code is not so handy for humans, programming languages have been created that should help with that. Programming languages use different models and abstractions. There is (atleast) one &lt;i&gt;assembly language&lt;/i&gt; that represents machine code in an easier to read manner (mnemonics). \(1111 1010\) (resp. \(0xFA\))* for example would be "cli" in assembly language for x86 processors (clear interrrupt flag). Programs are either &lt;b&gt;translated&lt;/b&gt; into machine code or are &lt;b&gt;interpreted&lt;/b&gt; by another program. This "translation" is done by the &lt;b&gt;compiler&lt;/b&gt; while the interpretation is done by the &lt;b&gt;interpreter&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-∗ The 0 tells the parser it's dealing with a constant (and not an identifier/reserved word). Something is still needed to specify the number base HEX: the x is an arbitrary choice.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orga512710" class="outline-3"&gt;
-&lt;h3 id="orga512710"&gt;Variants of execution&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga512710"&gt;
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/execution-variants.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org488eaef" class="outline-2"&gt;
-&lt;h2 id="org488eaef"&gt;C&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org488eaef"&gt;
-&lt;p&gt;
-C is a programming language that is compiled into machine code without intermediate language representation (Zwischencode) or VM's.
-&lt;/p&gt;
-
-&lt;p&gt;
-In this course we'll stick to the C99-standard. Since computers usually support multiple standards, the standard has to be set when compiling. C is "close to the hardware". It is sometimes labeled as "middle language" eventhough it is still a high level programming language. Genereally a low level programming language is a language that provides no or little abstraction from a computer's instruction set architecture. Machine code and assembly language are usually counted as low level. However if you'd for example compare C with Ruby or Php it would be the low level language in that comparison because it offers far less abstractions. That's why some say it is a "middle language".
-&lt;/p&gt;
-
-&lt;p&gt;
-Usually C programs are really compact - they don't require a lot of overhead and storage. C is widely spread and presumably still the language in most of today's programs are writte.
-&lt;/p&gt;
-
-&lt;p&gt;
-It is possible to write really efficient C programs (not guaranteed though) and that's why the speed of C programs is often used as a benchmark when it comes to speed and/or efficiency.
-&lt;/p&gt;
-
-&lt;p&gt;
-In this course the &lt;code&gt;clang&lt;/code&gt; compiler or the compiler from the GNU Compiler Collection (&lt;code&gt;gcc&lt;/code&gt;) is used. For example like this &lt;code&gt;cc -std=c99 -Wall program.c -o program&lt;/code&gt; or (&lt;code&gt;cc -std=c99 -Wall program.c -o program&lt;/code&gt;). If the compilation was succesfull, the program can be executed like this &lt;code&gt;./program&lt;/code&gt; and an return value (from the main method) could be retrived with &lt;code&gt;echo $?&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org2233d4f" class="outline-3"&gt;
-&lt;h3 id="org2233d4f"&gt;Euclidian Algorithm in C&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2233d4f"&gt;
-&lt;p&gt;
-The Euclidian Algorithm may be used to find the Greates Common Divisor (GCD) of numbers greater than 0. What follows is an implementation of it in C code:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//static in this context means that the function is local and not exported to other modules&lt;/span&gt;
-  &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// function declaration&lt;/span&gt;
-
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// function definition&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Because the function &lt;code&gt;euclid&lt;/code&gt; is called in the main method before its defintion, it has to be declared before that so the compiler knows about it. If the function is &lt;i&gt;defined&lt;/i&gt; &lt;b&gt;before&lt;/b&gt; its first usage, the explicit declaration can be omitted. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Because it is common to use functions from different libraries or modules the declaration serves as an assurance to the compiler that a called function exists and may be called. Else a warning (&lt;code&gt;implicit-function-declaration&lt;/code&gt;) would be triggered when compiling, eventhough the compilation might still be successfull. 
-&lt;/p&gt;
-
-&lt;p&gt;
-This is risky because I can call the function without providing arguments for all the  parameters e.g &lt;code&gt;euclid(45);&lt;/code&gt; and my program would compile just fine. That is until I run it and get a segmentation fault. In that case a declaration of the function interface would have saved me from the runtime error and thrown a compilation error instead.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb4f76e6" class="outline-3"&gt;
-&lt;h3 id="orgb4f76e6"&gt;Input and Output in C&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb4f76e6"&gt;
-&lt;p&gt;
-Now we want to parameterize our euclidian algorithm (remember characteristic of an algorithm → should solve a batch of problems) and have an direct output, we need so called &lt;i&gt;library functions&lt;/i&gt;.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// euclidian algorithm with IO&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt; &lt;span class="c1"&gt;// print format -&amp;gt; write to output&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ascii to integer&lt;/span&gt;
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Read the comment and syntax carefully! Furthermore the functions &lt;code&gt;printf&lt;/code&gt; and &lt;code&gt;atoi&lt;/code&gt; are defined in C's standard library &lt;code&gt;stdlib&lt;/code&gt; which is always linked by default (directive to include a library &lt;code&gt;#include&amp;lt;stdlib.h&amp;gt;&lt;/code&gt;).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org3b7c13d" class="outline-3"&gt;
-&lt;h3 id="org3b7c13d"&gt;Operators&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3b7c13d"&gt;
-&lt;p&gt;
-Depending on the position of an operator (e.g &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;%&lt;/code&gt;, etc.) in regards to where the operator "gets its operands" it can be differentiated between:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;prefix operators (before an operand eg &lt;code&gt;++i&lt;/code&gt; → &lt;code&gt;i&lt;/code&gt; is incremented and then used)&lt;/li&gt;
-&lt;li&gt;postifx operators (after an operand eg &lt;code&gt;i++&lt;/code&gt; → &lt;code&gt;i&lt;/code&gt; is used and then incremented)&lt;/li&gt;
-&lt;li&gt;infix operators (between operands eg &lt;code&gt;5-2&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</guid><pubDate>Mon, 15 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</guid><pubDate>Tue, 16 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>

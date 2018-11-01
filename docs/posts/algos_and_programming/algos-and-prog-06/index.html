@@ -82,9 +82,9 @@ Up until now our C programs followed the function model (stateless). Storing dat
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgc43f3c6" class="outline-2">
-<h2 id="orgc43f3c6">Storage and memory</h2>
-<div class="outline-text-2" id="text-orgc43f3c6">
+        <div id="outline-container-orgd7ed0be" class="outline-2">
+<h2 id="orgd7ed0be">Storage and memory</h2>
+<div class="outline-text-2" id="text-orgd7ed0be">
 <p>
 Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:
 </p>
@@ -109,22 +109,22 @@ The terms "named" and "anonymous" are taken from the lecture script, I don't lik
 </p>
 </div>
 
-<div id="outline-container-orga456659" class="outline-3">
-<h3 id="orga456659">Variables</h3>
-<div class="outline-text-3" id="text-orga456659">
+<div id="outline-container-org0846aad" class="outline-3">
+<h3 id="org0846aad">Variables</h3>
+<div class="outline-text-3" id="text-org0846aad">
 <p>
 Should the value of a place in memory be modified (purpose of the state model), you speak of (named or anonymous) <i>variables</i>. Should the value in memory stay unchanged, then it is a <i>constant</i>.
 </p>
 </div>
-<div id="outline-container-org2e6fdfa" class="outline-4">
-<h4 id="org2e6fdfa">Named variables</h4>
-<div class="outline-text-4" id="text-org2e6fdfa">
+<div id="outline-container-org65d39d8" class="outline-4">
+<h4 id="org65d39d8">Named variables</h4>
+<div class="outline-text-4" id="text-org65d39d8">
 <p>
 Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala <code>int x, y ,z;</code>.
 </p>
 
 <p>
-When declaring a variable it is possible to also provide a <i>storage class</i> and/or a <i>type qualifier</i>. The storage class is declared via one of the following keywors <code>auto</code>, <code>static</code>, <code>extern</code> or <code>register</code>. These basically impact the <i>scope</i>, <i>visibility</i> and the <i>life time</i> of the specific variable.
+When declaring a variable it is possible to also provide a <i>storage class</i> and/or a <i>type qualifier</i>. The storage class is declared via one of the following keywors <code>auto</code>, <code>static</code>, <code>extern</code> or <code>register</code>. These basically impact the <i>scope</i>, <i>visibility/(?! might be wrong) and the /life time</i> of the specific variable.
 </p>
 <ul class="org-ul">
 <li>
@@ -175,7 +175,7 @@ A variable can be assigned a value via <code>0</code>, this can also be done whe
 
 <ul class="org-ul">
 <li>
-<a id="org6265d7a"></a>Addresses<br><div class="outline-text-5" id="text-org6265d7a">
+<a id="orge7a24e6"></a>Addresses<br><div class="outline-text-5" id="text-orge7a24e6">
 <p>
 Every variable has an address (place in memory where it is stored) that can be retrieved with the <code>&amp;</code> "address of" operator
 </p>
@@ -206,7 +206,7 @@ Actually the identifier of a variable (eg <code>testVar</code>) is just a synony
 </li>
 
 <li>
-<a id="orga88de6b"></a>Pointer<br><div class="outline-text-5" id="text-orga88de6b">
+<a id="org178ae60"></a>Pointer<br><div class="outline-text-5" id="text-org178ae60">
 <p>
 Variables can also hold addresses themselves! The prefix <code>*</code> infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another <b>specific</b> type. For instance:
 </p>
@@ -284,9 +284,9 @@ y=42 (at 0x7ffeeff30f1c)
 </li>
 </ul>
 </div>
-<div id="outline-container-orgea0a277" class="outline-4">
-<h4 id="orgea0a277">Anonymous variables</h4>
-<div class="outline-text-4" id="text-orgea0a277">
+<div id="outline-container-org498c93b" class="outline-4">
+<h4 id="org498c93b">Anonymous variables</h4>
+<div class="outline-text-4" id="text-org498c93b">
 <p>
 Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at <i>run time</i> with functions from the C standard library. Anonymous variables are <b>not declared</b>.
 </p>
@@ -296,10 +296,9 @@ More specifically the following functions that are <i>declared</i> in <code>stdl
 </p>
 <ul class="org-ul">
 <li>
-<code>void *malloc(size_t size)</code> → reserves <code>size</code> bytes in memory</li>
+<code>void *malloc(size_t size)</code> → reserves <code>size</code> bytes in memory (memory allocate)</li>
 <li>
-<code>void *calloc(size_t count, size_t size)</code> → reserves <code>count x size</code> bytes in memory and initializes them with a value of <code>0</code>
-</li>
+<code>void *calloc(size_t count, size_t size)</code> → reserves <code>count x size</code> bytes in memory and initializes them with a value of <code>0</code> (count allocate)</li>
 </ul>
 <p>
 Both functions retrun the <b>address</b> of the anonymous variable.
@@ -364,8 +363,13 @@ Helping advice to avoid the above errors:
 </ul>
 </div>
 </div>
-<div id="outline-container-org290f852" class="outline-4">
-<h4 id="org290f852">Parameters</h4>
+<div id="outline-container-org3b96daf" class="outline-4">
+<h4 id="org3b96daf">Parameters</h4>
+<div class="outline-text-4" id="text-org3b96daf">
+<p>
+Parameters are the third way memory is allocated to store values. We covered this in the next lecture (lecture 07). (¬‿¬)
+</p>
+</div>
 </div>
 </div>
 </div>
