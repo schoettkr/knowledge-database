@@ -1,3 +1,4 @@
+/* This is the served css */
 /* Fonts Loading */
 @import url(http://fonts.googleapis.com/css?family=McLaren);
 @import url(http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister);
@@ -387,6 +388,7 @@ footer .social .social-entry a:hover {
   border-bottom: 1px solid #7194b8;
   font-family: "Palatino", "Palatino Linotype", "Georgia", Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, serif;
 }
+
 #post-main a,
 #category-tag a {
   padding: 2px;
@@ -396,6 +398,21 @@ footer .social .social-entry a:hover {
 #category-tag a:hover {
   color: #fcf7f7;
   background-color: #304860;
+}
+
+#post-main img,
+p img,
+.math,
+.main img
+{
+  max-width: 100%;
+}
+#post-main a,
+{
+  overflow-wrap: break-word;
+}
+.MathJax_Display {
+  overflow: scroll;
 }
 /* code related, put it in top level, so that it can be overwritten */
 pre {

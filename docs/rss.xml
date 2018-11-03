@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Thu, 01 Nov 2018 10:38:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org0243263" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 03 Nov 2018 12:03:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org1c0f033" class="outline-2"&gt;
+&lt;h2 id="org1c0f033"&gt;Complex Types&lt;/h2&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org0243263" class="outline-2"&gt;
 &lt;h2 id="org0243263"&gt;Storage and memory&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org0243263"&gt;
 &lt;/div&gt;
@@ -2033,98 +2035,4 @@ Type conversion is done by calling the type on the object:
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org5e214d1" class="outline-2"&gt;
-&lt;h2 id="org5e214d1"&gt;Information Systems&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5e214d1"&gt;
-&lt;p&gt;
-The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Application Software, Hardware, Developers and Users.
-&lt;/p&gt;
-
-&lt;p&gt;
-Databases historically developed out of the needs of operational information systems. That's why we look at the &lt;i&gt;database development lifecycle&lt;/i&gt; with the usual requirements of information systems in mind. For smaller DBS and databases for the management of smaller data sets e.g in web development some of the steps can be simplified and/or aggregated(zusammengefasst).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0c66a64" class="outline-2"&gt;
-&lt;h2 id="org0c66a64"&gt;DBS Development Lifecycle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0c66a64"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;consists of &lt;b&gt;planning&lt;/b&gt; and &lt;b&gt;realisation&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org5d8faf5" class="outline-3"&gt;
-&lt;h3 id="org5d8faf5"&gt;Planning&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5d8faf5"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orge10aa43" class="outline-4"&gt;
-&lt;h4 id="orge10aa43"&gt;Goal Description and System Defintion&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge10aa43"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;What is the purpose of the DBS?&lt;/li&gt;
-&lt;li&gt;Which goals should be accomplished by using the DBS?&lt;/li&gt;
-&lt;li&gt;Description of individual user viewpoints (application categories)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Which (aspects of) data play a role for the user?&lt;/li&gt;
-&lt;li&gt;What does a user do with "his" data?&lt;/li&gt;
-&lt;li&gt;Where do needs overlap with other user(roles)?&lt;/li&gt;
-&lt;li&gt;&lt;img src="https://schoettkr.github.io/knowledge-database/images/user-viewpoints.png" alt="nil"&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Creation of rules regarding data collection, data formats, documentation and naming (conventions)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgecd93a1" class="outline-4"&gt;
-&lt;h4 id="orgecd93a1"&gt;Requirement Specification&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgecd93a1"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;in this process data that should be managed by the DBS  is gathered/collected and analyzed&lt;/li&gt;
-&lt;li&gt;the specific data and its usage is described for each user view → adequate description (not too much or too less)&lt;/li&gt;
-&lt;li&gt;finally the requirements of each view have to be combined
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;there're two procedures for this (which can be combined):&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org2d0b5ff"&gt;&lt;/a&gt;Central integration&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org2d0b5ff"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;each user views requirements are combined in an aggregate of requirements for the DBS&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a id="org41a013f"&gt;&lt;/a&gt;View integration&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org41a013f"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the requirements for each user view stay seperated for the time being&lt;/li&gt;
-&lt;li&gt;in the next stept a data model is designed for each user view&lt;/li&gt;
-&lt;li&gt;the resulting data models are merged into an uniform data model that represents all user requirements of the database.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org7ede374" class="outline-4"&gt;
-&lt;h4 id="org7ede374"&gt;Application Design and DB Design*&lt;/h4&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org6653ff2" class="outline-3"&gt;
-&lt;h3 id="org6653ff2"&gt;Realisation&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6653ff2"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;implementation of DB and application (F.4)&lt;/li&gt;
-&lt;li&gt;fill rest in&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org7334eb1" class="outline-3"&gt;
-&lt;h3 id="org7334eb1"&gt;∗Database Design&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7334eb1"&gt;
-&lt;p&gt;
-F.9
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</guid><pubDate>Tue, 16 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
