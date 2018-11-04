@@ -187,3 +187,19 @@ a >> b = 0000 0000 0111 1101 in binary = 125 in decimal
 #+END_SRC
 
 There is also a difference between logical, arithmetic and circular shifting that you may want to look up. 
+
+Also note that the "<<" ">>" as a stream operator takes precedence over bit shifting so the following code:
+#+BEGIN_SRC cpp
+int a, b;
+a = 1;
+b = 5;
+cout << b << a << endl;
+#+END_SRC
+Would yield =51=. To have it bitshifted one has to add parentheses:
+#+BEGIN_SRC cpp
+int a, b;
+a = 1;
+b = 5;
+cout << (b << a) << endl;
+#+END_SRC
+Which would yield =10= because b is leftshifted by a (=n=) which is equal to a multiplication with 2^n and this case =a= is =1= so =b= is multiplcated by 2 which gives 10.

@@ -11,7 +11,13 @@
 <meta property="og:site_name" content="Knowledge Database">
 <meta property="og:title" content="Algos &amp; Programming - Lecture 08">
 <meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/">
-<meta property="og:description" content="Complex Types">
+<meta property="og:description" content="Complex Types
+
+
+In C there are so called derived types. We already know one kind of a derived type, that is pointers. There are more types though:
+
+
+composite data types (Verbunddatentypen, struct and">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-11-02T00:00:00+01:00">
 </head>
@@ -76,8 +82,671 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org1c0f033" class="outline-2">
-<h2 id="org1c0f033">Complex Types</h2>
+        <div id="outline-container-orgcdc78f8" class="outline-2">
+<h2 id="orgcdc78f8">Complex Types</h2>
+<div class="outline-text-2" id="text-orgcdc78f8">
+<p>
+In C there are so called <b>derived types</b>. We already know one kind of a derived type, that is <i>pointers</i>. There are more types though:
+</p>
+<ul class="org-ul">
+<li>composite data types (Verbunddatentypen, <b>struct</b> and <b>union</b>)</li>
+<li>enumerated data types (Aufzählungstypen, <b>enum</b>)</li>
+<li>array data types (Felddatentypen, <b>arrays</b>)</li>
+</ul>
+<p>
+Derived types are sometimes also called <i>complex types</i>.
+</p>
+</div>
+
+<div id="outline-container-org9c705c9" class="outline-3">
+<h3 id="org9c705c9">Composite data type <code>struct</code>
+</h3>
+<div class="outline-text-3" id="text-org9c705c9">
+<p>
+The <code>struct</code> type can be used to deal with variables (elements/members) of different types in combination.
+A declaration of a struct type consists of the keyword <code>struct</code>, a <b>name</b> (tag) and a list of declarations of elements wrapped in a block of curly braces.
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+This declaration introduces the type and now variables of this type may be declared and defined in the usual way:
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="n">pt</span><span class="p">;</span>
+</pre></div>
+
+<p>
+Type and varibale declaration may also be done in one step:
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">pt</span><span class="p">,</span> <span class="n">pt2</span><span class="p">;</span>
+<span class="n">pt</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">45</span><span class="p">;</span>
+<span class="n">pt</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">43</span><span class="p">;</span>
+<span class="n">pt2</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">pt2</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span>
+</pre></div>
+
+<p>
+It is also possible to omit the name/tag (in this case "point") to create an anonymous type:
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">pt</span><span class="p">;</span>
+</pre></div>
+<p>
+However when omitting the tag it is not possible to create another type of the <b>same</b> type. Even another type that seem structurally equal won't be treated the same and behave as a different type. So remember that anonymous types are not compatible (Question: What happens if I declare multiple anonymous type variables at the same anonymous type declaration? Are those compatible?).
+</p>
+
+<p>
+To access an element of a <code>struct</code> the <code>.</code> operator is used.
+</p>
+
+<p>
+When declaring a <code>struct</code> it is also possible to initialize a variable of that struct type via <code>varName = { .. };</code>:
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">pt</span> <span class="o">=</span> <span class="p">{</span><span class="mi">42</span><span class="p">,</span> <span class="mi">25</span><span class="o">+</span><span class="mi">2</span><span class="p">},</span>
+<span class="n">pt2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">105</span><span class="p">,</span> <span class="mi">99</span><span class="p">};</span>
+</pre></div>
+<p>
+To only initialize specific elements by their name one can use the following notation with a leading dot to do so:
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">z</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">point</span> <span class="n">pt</span> <span class="o">=</span> <span class="p">{.</span><span class="n">z</span><span class="o">=</span><span class="mi">44</span><span class="p">,</span> <span class="p">.</span><span class="n">y</span><span class="o">=</span><span class="mi">25</span><span class="o">+</span><span class="mi">2</span><span class="p">};</span> <span class="c1">// order does not matter (ᵔᴥᵔ)</span>
+</pre></div>
+
+<p>
+There are only few operations and therefore operators allowed to be used on structs:
+</p>
+<ul class="org-ul">
+<li>assignment via  <code>=</code>
+</li>
+<li>retrieve address via <code>&amp;</code>
+</li>
+<li>access elements via <code>.</code>
+</li>
+</ul>
+<p>
+It is pretty common practice in C to create anonymous struct variables (the variable is anonymous not the struct!) with malloc/calloc and use them with pointers:
+</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">struct</span> <span class="n">point</span> <span class="o">*</span><span class="n">pt</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">point</span><span class="p">));</span>
+  <span class="p">(</span><span class="o">*</span><span class="n">pt</span><span class="p">).</span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="c1">// dot has precedence over * thats why you need parens!</span>
+  <span class="p">(</span><span class="o">*</span><span class="n">pt</span><span class="p">).</span><span class="n">y</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"member of pt: x=%d, y=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">pp</span><span class="p">).</span><span class="n">x</span> <span class="p">,(</span><span class="o">*</span><span class="n">ppt</span><span class="p">).</span><span class="n">y</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+Because you need to wrap the dereferencing part of a pointer in parens when accessing a member via <code>.</code> because the dot has higher precedence there is another notation for this common use case.
+The <code>-&gt;</code> operator does exactly this. The following code is therefore equivalent:
+</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="o">*</span><span class="n">pt</span><span class="p">).</span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="n">pt</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">=</span> <span class="mi">109</span><span class="p">;</span>
+</pre></div>
+
+<p>
+When creating a variable of specific struct type the <code>struct</code> keyword has always to be used. This gets pretty repetitive and boring quick! That's why you may want to do a little type alias via <code>typedef</code>.
+So instead of:
+</p>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">pointer</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">pointer</span> <span class="n">pt</span> <span class="o">=</span> <span class="p">{</span><span class="mi">20</span><span class="p">,</span> <span class="mi">44</span><span class="p">};</span>
+</pre></div>
+
+<p>
+You can do:
+</p>
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">pointer</span><span class="p">;</span>
+<span class="n">pointer</span> <span class="n">pt</span> <span class="o">=</span> <span class="p">{</span><span class="mi">20</span><span class="p">,</span> <span class="mi">44</span><span class="p">};</span>
+</pre></div>
+<p>
+Neat! (It is not possible to direclty initialize a variable with <code>typedef</code>)
+</p>
+</div>
+</div>
+<div id="outline-container-org2aff84e" class="outline-3">
+<h3 id="org2aff84e">Composite data type <code>union</code>
+</h3>
+<div class="outline-text-3" id="text-org2aff84e">
+<p>
+A union is a special data type available in C that allows to store different data types in the same memory location. You can define a union with many members, but only one member can contain a value at any given time. Unions provide an efficient way of using the same memory location for multiple-purpose.
+</p>
+<div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">Data</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+   <span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+<span class="p">}</span> <span class="n">data</span><span class="p">;</span>
+</pre></div>
+<p>
+Now, a variable of <code>Data</code> type can store an integer, a floating-point number, or a string of characters. It means a single variable, i.e., same memory location, can be used to store multiple types of data. You can use any built-in or user defined data types inside a union based on your requirement.
+</p>
+
+<p>
+The memory occupied by a union will be large enough to hold the largest member of the union. For example, in the above example, Data type will occupy 20 bytes of memory space because this is the maximum space which can be occupied by a character string.
+</p>
+
+<p>
+To access a member of a union the <b>member access operator</b> <code>.</code> is used as with structs.
+</p>
+</div>
+</div>
+<div id="outline-container-org696dd8a" class="outline-3">
+<h3 id="org696dd8a">Enumeration data type <code>enum</code>
+</h3>
+<div class="outline-text-3" id="text-org696dd8a">
+<p>
+With the help of enumeration data types it is possible to define types with discrete, named values. The corresponding keyword in C is <code>enum</code>.
+We can use this keyword to declare and initialize a sequence of integer constants eg <code>enum colors {RED, YELLOW, GREEN, BLUE};</code>
+</p>
+
+<p>
+Here, colors is the name given to the set of constants - the name is optional. Now, if you don't assign a value to a constant, the default value for the first one in the list - <code>RED</code> in our case, has the value of <code>0</code>. The rest of the undefined constants have a value <code>1</code> more than the one before, so in our case, <code>YELLOW</code> is <code>1</code>, GREEN is <code>2</code> and BLUE is <code>3</code>.
+</p>
+
+<p>
+But you can assign values if you wanted to also in random order as well:
+<code>enum colors {RED=1, YELLOW, GREEN=6, BLUE };</code>
+Now <code>RED=1</code>, <code>YELLOW=2</code>, <code>GREEN=6</code> and <code>BLUE=7</code>.
+</p>
+
+<p>
+The main advantage of enum is that if you don't initialize your constants, each one would have a unique value. The first would be zero and the rest would then count upwards.
+</p>
+
+<p>
+Enums are helpful to assign specific (constant) values:
+</p>
+<div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">month</span> <span class="p">{</span><span class="n">jan</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">feb</span><span class="p">,</span> <span class="n">mar</span><span class="p">,</span> <span class="n">apr</span><span class="p">,</span> <span class="n">may</span><span class="p">,</span> <span class="n">jun</span><span class="p">,</span> <span class="n">jul</span><span class="p">,</span> <span class="n">aug</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">oct</span><span class="p">,</span> <span class="n">nov</span><span class="p">,</span> <span class="n">dec</span><span class="p">};</span>
+<span class="k">enum</span> <span class="n">escape</span> <span class="p">{</span><span class="n">NL</span><span class="o">=</span><span class="sc">'\n'</span><span class="p">,</span> <span class="n">BACKSPACE</span><span class="o">=</span><span class="sc">'\b'</span><span class="p">,</span> <span class="n">TAB</span><span class="o">=</span><span class="sc">'\t'</span><span class="p">,</span> <span class="n">RETURN</span><span class="o">=</span><span class="sc">'\r'</span><span class="p">,</span> <span class="n">BELL</span><span class="o">=</span><span class="sc">'\a'</span><span class="p">};</span>
+</pre></div>
+
+<p>
+Enums are determined at compile time and offer therefore the ability to define constants. This is however <b>only</b> applies for integer constants.
+In contrast to <code>const</code> (see below) an "unused" (ungebrauchtes) <code>enum</code> does not need memory space at runtime.
+</p>
+
+<p>
+Since enums are basically treated like ints, they only offer restricted type safety.
+</p>
+</div>
+</div>
+<div id="outline-container-org54ddee1" class="outline-3">
+<h3 id="org54ddee1">Array data type</h3>
+<div class="outline-text-3" id="text-org54ddee1">
+<p>
+C provides the derived array type do deal with collection of values with the same type. The declaration of an array doesn't require a keyword, since it is done via the <i>index operator</i> <code>[]</code> in which the amount of elements has to be written in and which needs to go after the variable name <code>int xa[10]</code> (array of 10 ints).
+</p>
+
+<p>
+The base type of an array can be of any type, look at the following declarations:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">xa</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">pxa</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> <span class="c1">// Array of 10 pointers to integers</span>
+<span class="kt">double</span> <span class="n">f</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">pt</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> <span class="c1">// Array of 10 point structs</span>
+</pre></div>
+
+<p>
+Elements of an array are also accessed via the index operator <code>int x1 = xa[0];</code>, however keep in mind that an array of size n has the indexes 0 til n-1 because the indexing of arrays (in C) is zero based as in many programming languages.
+</p>
+
+<p>
+It is also possible to declare multidimensional arrays (array which elements are arrays themselves). Eg <code>int xa[4][3]</code> declares an 4x3 array, which is an array that has 4 elements and those 4 elements are arrays as well with a size of 3 elements that can hold ints.
+Basically this can be done for an arbitrary amount of arrays inside arrays <code>int xa[4][3][2]</code>.
+</p>
+
+<p>
+Since C90 it is possible to create variable arrays. That means arrays of variable length which is determined at runtime, for example:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kt">double</span> <span class="n">a</span><span class="p">[</span><span class="n">s</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+In C11 this is still possible however one should not rely on this with regards to portability.
+</p>
+
+<p>
+VLA (variable length array) also have some disadvantages:
+</p>
+<ul class="org-ul">
+<li>cannot be <code>static</code>
+</li>
+<li>cannot be part of <code>struct</code>
+</li>
+<li>"Der Steuerfluss darf niemals hinter die Deklaration eines VLA in dessen Gültigkeitsbereich gelangen" (? ლ,ᔑ•ﺪ͟͠•ᔐ.ლ)</li>
+</ul>
+<p>
+Similar to structs array can be initialized with curly braces <code>int xa[4] = {1, 2, 3, 4};</code> . This also works for multidimensional arrays:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">xa</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span>
+  <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">},</span>
+  <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>
+When an array is initialized when its defined the (last) dimension may also be ommitted <code>int xa[] = {5, 2, 1}</code>.
+</p>
+
+<p>
+Since C90 it is also possible to do a partial initialization ala <code>int xa[10] = { [4] = 43, [1] = 5 };</code> . The elements which are not explicitly initialized then default to <code>0</code>. Similar to enums the following is also possible:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">xa</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span> <span class="p">};</span>
+</pre></div>
+<p>
+… results in <code>200,0,0,43,8,5,0,0</code>
+</p>
+
+<p>
+When passing arrays to functions it is said that arrays "decay" into pointers.
+If you're passing an array by value, what you're really doing is copying a pointer - a pointer to the array's first element is copied to the parameter (whose type should also be a pointer the array element's type). This works due to array's decaying nature; once decayed, sizeof no longer gives the complete array's size, because it essentially becomes a pointer. This is why it's preferred (among other reasons) to pass by reference or pointer.
+</p>
+
+<div class="highlight"><pre><span></span><span class="cm">/* array.c -- an array decays */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">myarray</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">arrSize</span><span class="p">(</span><span class="n">myarray</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"Size of a: %ld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">));</span> <span class="c1">// really yields pointer size (8 byte on 64 bit machines)</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">myarray</span> <span class="n">x</span><span class="p">;</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"Size of x: %ld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+  <span class="n">arrSize</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+  <span class="kt">int</span> <span class="n">ax</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// decay looses dimensions thats why this is possible</span>
+  <span class="n">arrSize</span><span class="p">(</span><span class="n">ax</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Size</td>
+<td class="org-left">of</td>
+<td class="org-left">x:</td>
+<td class="org-right">40</td>
+</tr>
+<tr>
+<td class="org-left">Size</td>
+<td class="org-left">of</td>
+<td class="org-left">a:</td>
+<td class="org-right">8</td>
+</tr>
+<tr>
+<td class="org-left">Size</td>
+<td class="org-left">of</td>
+<td class="org-left">a:</td>
+<td class="org-right">8</td>
+</tr>
+</tbody>
+</table>
+<p>
+So when passing an array, what really gets passed is a pointer to the first element in the array. Therefore the following function declarations are equivalent:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">doSomething</span><span class="p">(</span><span class="kt">double</span><span class="p">[]);</span>
+<span class="kt">void</span> <span class="nf">doSomething</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="p">);</span>
+</pre></div>
+<p>
+A problem that occurs here is that there is no way to find out how big/large the array is that was passed. That's why many function which have arrays as parameters, have another (auxillary) parameter to specify the amount of elements of the array:
+</p>
+<div class="highlight"><pre><span></span><span class="cm">/* array_param .c -- auxiliary parameter */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">print_int_array</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span> <span class="p">[]);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">xa</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+  <span class="n">print_int_array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">xa</span><span class="p">);</span>
+
+  <span class="kt">int</span> <span class="n">randomArr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">654</span><span class="p">};</span>
+  <span class="n">print_int_array</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">randomArr</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="n">randomArr</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">print_int_array</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">,</span> <span class="kt">int</span> <span class="n">array</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right"> </td>
+<td class="org-right"> </td>
+<td class="org-right"> </td>
+<td class="org-right"> </td>
+</tr>
+<tr>
+<td class="org-right">32</td>
+<td class="org-right">32</td>
+<td class="org-right">45</td>
+<td class="org-right">54</td>
+<td class="org-right">23</td>
+<td class="org-right">77</td>
+<td class="org-right">654</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8ee8d7b" class="outline-2">
+<h2 id="org8ee8d7b">Memory Layout</h2>
+<div class="outline-text-2" id="text-org8ee8d7b">
+<p>
+Why is it that we can treat arrays as pointers? It is because array values are stored in contiguous memory locations. The array <code>int x[6] = {1, 2, 3, 4, 5, 6};</code> is for example stored like this in memory:
+<img src="../../../images/array-in-memory.png" alt="nil"></p>
+
+<p>
+This also applies to multidimensional arrays:
+<code>int x[4][12] = {{11,12}, {21,22}, {31,32}, {41,42}};</code>
+<img src="../../../images/multi-array-in-memory.png" alt="nil"></p>
+
+<p>
+The notion of <code>xa[i]</code> is actually just a different syntax for <code>*(&amp;xa+i)</code> (give me the address of xa which really gives the address of the first element of xa, then add i<sup>1</sup> to it and dereference the resulting address to give me the value).
+</p>
+
+<p>
+1 When adding an integer to a pointer, the integer is multiplied by the size of the type that the pointer points to because that is the "distance between the addresses" in memory. One memory location usually stores 1 Byte (8 bits) on modern systems. So when an integer is stored in 4 bytes than the offset between the first and second address of an int value in a array would be 4.
+</p>
+
+<p>
+Look at the following code which is really interesting and makes a lot of things clear:
+</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Size of int %ld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+
+  <span class="kt">int</span> <span class="n">xa</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Address: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">xa</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Address: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">xa</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Address: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">xa</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Address: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">xa</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-left"></colgroup>
+<tbody>
+<tr>
+<td class="org-left">Size  of  int  4</td>
+</tr>
+<tr>
+<td class="org-left">Address:  0x7ffff4f329d0</td>
+</tr>
+<tr>
+<td class="org-left">Address:  0x7ffff4f329d0</td>
+</tr>
+<tr>
+<td class="org-left">Address:  0x7ffff4f329d4</td>
+</tr>
+<tr>
+<td class="org-left">Address:  0x7ffff4f329d8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org7e54db6" class="outline-2">
+<h2 id="org7e54db6">Char Arrays</h2>
+<div class="outline-text-2" id="text-org7e54db6">
+<p>
+As we already know C does not provide strings by default. That's why <code>char</code> arrays are "abused" as such. There is a special way to intialize char arrays in C:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
+</pre></div>
+<p>
+which really is the equivalent to:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'e'</span><span class="p">,</span> <span class="sc">'l'</span><span class="p">,</span> <span class="sc">'l'</span><span class="p">,</span> <span class="sc">'o'</span><span class="p">,</span> <span class="sc">'!'</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</pre></div>
+
+<p>
+As you can see character strings are stored as an array containing the characters and are terminated with a <i>null character</i> (<code>0</code> or <code>'\0'</code>). Therefore <code>'\0'</code> musnt be in any string because it designates the ending of a string.
+</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"World"</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"5th ('last') char: %c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Really last element of the array %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Size of str: %ld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">str</span><span class="p">));</span> <span class="c1">// 5 characters + null character = 6</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+A terminating 0 is a C convention and many functions from the standard library for example assume that as well (<code>int printf(char*,...)</code>, <code>int atoi(char*)</code>). A convention can be broken tho! Look at the following example:
+</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'e'</span><span class="p">,</span> <span class="sc">'l'</span><span class="p">,</span> <span class="sc">'l'</span><span class="p">,</span> <span class="sc">'o'</span><span class="p">};</span> <span class="c1">// no terminating 0!</span>
+<span class="kt">char</span> <span class="n">bla</span><span class="p">[]</span> <span class="o">=</span> <span class="s">" This is top secret</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<pre class="example">
+Hello This is top secret
+
+</pre>
+
+<p>
+I faked this output result for illustrating purposes because most modern compilers do not store those stuff sequentially anymore to reduce vulnerabilities (reading out values). plz have mercy. It really just printed "Hello".
+</p>
+</div>
+</div>
+<div id="outline-container-org69385d5" class="outline-2">
+<h2 id="org69385d5">Parameters of <code>main()</code>
+</h2>
+<div class="outline-text-2" id="text-org69385d5">
+<p>
+The signature of C's  <code>main()</code> function is mentioned by C11 as the following:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[]);</span>
+</pre></div>
+
+<ul class="org-ul">
+<li>
+<code>int argc</code> ist the count of prorgam parameters
+<ul class="org-ul">
+<li>because the name of the program is always passed when executing main with params <code>argc</code> is at least <code>1</code> because that's the program name</li>
+</ul>
+</li>
+<li>
+<code>char* argv</code> is the argument vector resp. an array of <b>pointers</b> to C-Strings
+<ul class="org-ul">
+<li>each of those C-Strings holds a <i>program parameter</i> (inclusive the program name at <code>argv[0]</code>)</li>
+</ul>
+</li>
+</ul>
+<p>
+This is what the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1548.pdf">C11 standard</a> says:
+</p>
+<blockquote>
+<p>
+If the value of <code>argc</code> is greater than zero, the string pointed to by <code>argv[0]</code> represents the program name;
+<code>argv[0][0]</code> shall be the null character if the program name is not available from the host environment. 
+If the value of <code>argc</code> is greater than one, the strings pointed to by <code>argv[1]</code> through <code>argv[argc-1]</code> represent the program parameters.
+</p>
+</blockquote>
+
+<p>
+<img src="../../../images/argv-argc.png" alt="nil"></p>
+
+<p>
+As already mentioned the declaration <code>char *argv[]</code> stands for an <b>array of pointers to <code>char</code>'s</b>
+Calling for example the code from the picture above this is how the corresponding memory layout would look like:
+<img src="../../../images/argv-memory-layout.png" alt="nil"></p>
+</div>
+</div>
+
+
+<div id="outline-container-orgbc69c52" class="outline-2">
+<h2 id="orgbc69c52">Revision: Storage Classes and Storage Types/Attributes</h2>
+<div class="outline-text-2" id="text-orgbc69c52">
+<p>
+→ see "Named Variables" in Lecture 06
+</p>
+
+<p>
+Storage classes:
+</p>
+<ul class="org-ul">
+<li>
+<code>auto</code> → variables can only be accessed within the block of declaration which defines their scope</li>
+<li>
+<code>static</code> → life cycle does not end with ending scope and last value is preserved through program execution; does not affect visibility</li>
+<li>
+<code>extern</code> →  only declares a variable/function/we, addidtional definition is required (usally in another module or a library)</li>
+<li>
+<code>register</code> → same functionality as auto variables with the difference that the compiler tries to store these variables in the register of the microprocessor, which makes access much faster than that of the variables stored in memory
+<ul class="org-ul">
+<li>address of register variables <b>is not retrievable using pointers</b>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+The following code would not compile! (<code>error: address of register variable ‘fastInt’ requested</code>)
+</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">register</span> <span class="kt">int</span> <span class="n">fastInt</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="o">*</span> <span class="n">pf</span><span class="p">;</span>
+
+  <span class="n">pf</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fastInt</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Fast int: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">fastInt</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>
+Storage types (<b>Type Qualifiers</b> seems to be the proper term, Speicherattribute in Skript):
+</p>
+<ul class="org-ul">
+<li>
+<code>const</code>
+<ul class="org-ul">
+<li>constants are also like normal variables with the difference that their values can’t be modified by the program once they are defined (compiler prohibits assignment anywhere else than when initialized)</li>
+<li>enables the compiler to do some optimizations</li>
+<li>Gotchas:
+<ul class="org-ul">
+<li>
+<code>const int * p</code> declares a <i>variable</i> pointer to a <i>constant</i> integer</li>
+<li>
+<code>int * const p</code> declares a <i>constant</i> pointer to a <i>variable</i> integer</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>
+<p>
+<code>volatile</code>
+</p>
+<ul class="org-ul">
+<li>volatile (flüchtig, sprunghaft) variables indicate to the compiler that their value might have changed since the last explicit writing operation</li>
+<li>eg, if global variable’s address is passed to clock routine of the operating system to store the system time, the value in this address keep on changing without any assignment by the program</li>
+<li>indicates that the object should not be subject to compiler optimizations altering references to, or modifications of, the object</li>
+</ul>
+<ul class="org-ul">
+<li>
+<code>restrict</code>
+<ul class="org-ul">
+<li>introduced in C99</li>
+<li>only for pointer variables (and hereby derived for arrays)</li>
+<li>it doesn’t add any new functionality and it is only a way for programmers to inform about optimizations that the compiler can make</li>
+<li>when using <code>restrict</code> with a pointer <code>ptr</code>, it tells the compiler that <code>ptr</code> is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks
+<ul class="org-ul">
+<li>for example when a variable is restrict the compiler will not reload the value at that adddress in its assembly code and therefore the assembly code is optimized</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+(Since C11 there is also <code>_Atomic</code> <a href="https://en.cppreference.com/w/c/language/atomic">here is more</a>)
+</p>
+</div>
 </div>
         
         

@@ -388,6 +388,7 @@ footer .social .social-entry a:hover {
   border-bottom: 1px solid #7194b8;
   font-family: "Palatino", "Palatino Linotype", "Georgia", Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, serif;
 }
+
 #post-main a,
 #category-tag a {
   padding: 2px;
@@ -398,7 +399,11 @@ footer .social .social-entry a:hover {
   color: #fcf7f7;
   background-color: #304860;
 }
+
 #post-main img,
+p img,
+.math,
+.main img
 {
   max-width: 100%;
 }
@@ -406,8 +411,8 @@ footer .social .social-entry a:hover {
 {
   overflow-wrap: break-word;
 }
-p img {
-  max-width: 100%;
+.MathJax_Display {
+  overflow: scroll;
 }
 /* code related, put it in top level, so that it can be overwritten */
 pre {
@@ -579,5 +584,5 @@ blockquote {
     width: 970px;
   }
 }
-/* /\* responsive layout */
-/*  * ---------------------------------------------------*\/ */
+/* responsive layout
+ * ---------------------------------------------------*/

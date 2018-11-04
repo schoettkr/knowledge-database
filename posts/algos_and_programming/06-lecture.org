@@ -45,7 +45,7 @@ When declaring a variable it is possible to also provide a /storage class/ and/o
   - if no free register is available the variable is stored in memory
   - address of register variables is not retrievable using pointers
 
-Type qualifiers are declared via the keywords =const=, =volatile= or =restrict= and give hints to the compiler about the usage of the variables.
+Type qualifiers are declared via the keywords =const=, =volatile= or =restrict= and give hints to the compiler about the usage of the variables (see "Storage Classes and Storage Types/Attributes" in Lecture 08).
 
 Variables declared outside of any function are /global variables/, while variables declared in blocks (={..}=) are /local variables/. Only with the exception of variables with a storage class of =extern=, variables are also /defined/ when they are /declared/ that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything.
 

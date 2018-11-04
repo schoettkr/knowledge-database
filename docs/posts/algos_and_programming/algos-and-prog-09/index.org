@@ -1,0 +1,13 @@
+#+BEGIN_COMMENT
+.. title: Algos & Programming - Lecture 09
+.. slug: algos-and-prog-09
+.. date: 2018-11-05
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+* Complex Types in Python

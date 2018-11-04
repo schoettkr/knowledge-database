@@ -1,7 +1,837 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 03 Nov 2018 12:03:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org1c0f033" class="outline-2"&gt;
-&lt;h2 id="org1c0f033"&gt;Complex Types&lt;/h2&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org0243263" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 04 Nov 2018 16:41:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgcdc78f8" class="outline-2"&gt;
+&lt;h2 id="orgcdc78f8"&gt;Complex Types&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcdc78f8"&gt;
+&lt;p&gt;
+In C there are so called &lt;b&gt;derived types&lt;/b&gt;. We already know one kind of a derived type, that is &lt;i&gt;pointers&lt;/i&gt;. There are more types though:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;composite data types (Verbunddatentypen, &lt;b&gt;struct&lt;/b&gt; and &lt;b&gt;union&lt;/b&gt;)&lt;/li&gt;
+&lt;li&gt;enumerated data types (Aufzählungstypen, &lt;b&gt;enum&lt;/b&gt;)&lt;/li&gt;
+&lt;li&gt;array data types (Felddatentypen, &lt;b&gt;arrays&lt;/b&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Derived types are sometimes also called &lt;i&gt;complex types&lt;/i&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9c705c9" class="outline-3"&gt;
+&lt;h3 id="org9c705c9"&gt;Composite data type &lt;code&gt;struct&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9c705c9"&gt;
+&lt;p&gt;
+The &lt;code&gt;struct&lt;/code&gt; type can be used to deal with variables (elements/members) of different types in combination.
+A declaration of a struct type consists of the keyword &lt;code&gt;struct&lt;/code&gt;, a &lt;b&gt;name&lt;/b&gt; (tag) and a list of declarations of elements wrapped in a block of curly braces.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+This declaration introduces the type and now variables of this type may be declared and defined in the usual way:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Type and varibale declaration may also be done in one step:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pt2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pt2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pt2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+It is also possible to omit the name/tag (in this case "point") to create an anonymous type:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+However when omitting the tag it is not possible to create another type of the &lt;b&gt;same&lt;/b&gt; type. Even another type that seem structurally equal won't be treated the same and behave as a different type. So remember that anonymous types are not compatible (Question: What happens if I declare multiple anonymous type variables at the same anonymous type declaration? Are those compatible?).
+&lt;/p&gt;
+
+&lt;p&gt;
+To access an element of a &lt;code&gt;struct&lt;/code&gt; the &lt;code&gt;.&lt;/code&gt; operator is used.
+&lt;/p&gt;
+
+&lt;p&gt;
+When declaring a &lt;code&gt;struct&lt;/code&gt; it is also possible to initialize a variable of that struct type via &lt;code&gt;varName = { .. };&lt;/code&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="n"&gt;pt2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;105&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+To only initialize specific elements by their name one can use the following notation with a leading dot to do so:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{.&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// order does not matter (ᵔᴥᵔ)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+There are only few operations and therefore operators allowed to be used on structs:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assignment via  &lt;code&gt;=&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;retrieve address via &lt;code&gt;&amp;amp;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;access elements via &lt;code&gt;.&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+It is pretty common practice in C to create anonymous struct variables (the variable is anonymous not the struct!) with malloc/calloc and use them with pointers:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// dot has precedence over * thats why you need parens!&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"member of pt: x=%d, y=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pp&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ppt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Because you need to wrap the dereferencing part of a pointer in parens when accessing a member via &lt;code&gt;.&lt;/code&gt; because the dot has higher precedence there is another notation for this common use case.
+The &lt;code&gt;-&amp;gt;&lt;/code&gt; operator does exactly this. The following code is therefore equivalent:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;109&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+When creating a variable of specific struct type the &lt;code&gt;struct&lt;/code&gt; keyword has always to be used. This gets pretty repetitive and boring quick! That's why you may want to do a little type alias via &lt;code&gt;typedef&lt;/code&gt;.
+So instead of:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;pointer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;pointer&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+You can do:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pointer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pointer&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Neat! (It is not possible to direclty initialize a variable with &lt;code&gt;typedef&lt;/code&gt;)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org2aff84e" class="outline-3"&gt;
+&lt;h3 id="org2aff84e"&gt;Composite data type &lt;code&gt;union&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2aff84e"&gt;
+&lt;p&gt;
+A union is a special data type available in C that allows to store different data types in the same memory location. You can define a union with many members, but only one member can contain a value at any given time. Unions provide an efficient way of using the same memory location for multiple-purpose.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;union&lt;/span&gt; &lt;span class="n"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Now, a variable of &lt;code&gt;Data&lt;/code&gt; type can store an integer, a floating-point number, or a string of characters. It means a single variable, i.e., same memory location, can be used to store multiple types of data. You can use any built-in or user defined data types inside a union based on your requirement.
+&lt;/p&gt;
+
+&lt;p&gt;
+The memory occupied by a union will be large enough to hold the largest member of the union. For example, in the above example, Data type will occupy 20 bytes of memory space because this is the maximum space which can be occupied by a character string.
+&lt;/p&gt;
+
+&lt;p&gt;
+To access a member of a union the &lt;b&gt;member access operator&lt;/b&gt; &lt;code&gt;.&lt;/code&gt; is used as with structs.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org696dd8a" class="outline-3"&gt;
+&lt;h3 id="org696dd8a"&gt;Enumeration data type &lt;code&gt;enum&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org696dd8a"&gt;
+&lt;p&gt;
+With the help of enumeration data types it is possible to define types with discrete, named values. The corresponding keyword in C is &lt;code&gt;enum&lt;/code&gt;.
+We can use this keyword to declare and initialize a sequence of integer constants eg &lt;code&gt;enum colors {RED, YELLOW, GREEN, BLUE};&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Here, colors is the name given to the set of constants - the name is optional. Now, if you don't assign a value to a constant, the default value for the first one in the list - &lt;code&gt;RED&lt;/code&gt; in our case, has the value of &lt;code&gt;0&lt;/code&gt;. The rest of the undefined constants have a value &lt;code&gt;1&lt;/code&gt; more than the one before, so in our case, &lt;code&gt;YELLOW&lt;/code&gt; is &lt;code&gt;1&lt;/code&gt;, GREEN is &lt;code&gt;2&lt;/code&gt; and BLUE is &lt;code&gt;3&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+But you can assign values if you wanted to also in random order as well:
+&lt;code&gt;enum colors {RED=1, YELLOW, GREEN=6, BLUE };&lt;/code&gt;
+Now &lt;code&gt;RED=1&lt;/code&gt;, &lt;code&gt;YELLOW=2&lt;/code&gt;, &lt;code&gt;GREEN=6&lt;/code&gt; and &lt;code&gt;BLUE=7&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The main advantage of enum is that if you don't initialize your constants, each one would have a unique value. The first would be zero and the rest would then count upwards.
+&lt;/p&gt;
+
+&lt;p&gt;
+Enums are helpful to assign specific (constant) values:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;month&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;jan&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;feb&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;apr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jun&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jul&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aug&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sep&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;oct&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nov&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dec&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;escape&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;NL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\n'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;BACKSPACE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\b'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TAB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\t'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RETURN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\r'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;BELL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\a'&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Enums are determined at compile time and offer therefore the ability to define constants. This is however &lt;b&gt;only&lt;/b&gt; applies for integer constants.
+In contrast to &lt;code&gt;const&lt;/code&gt; (see below) an "unused" (ungebrauchtes) &lt;code&gt;enum&lt;/code&gt; does not need memory space at runtime.
+&lt;/p&gt;
+
+&lt;p&gt;
+Since enums are basically treated like ints, they only offer restricted type safety.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org54ddee1" class="outline-3"&gt;
+&lt;h3 id="org54ddee1"&gt;Array data type&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org54ddee1"&gt;
+&lt;p&gt;
+C provides the derived array type do deal with collection of values with the same type. The declaration of an array doesn't require a keyword, since it is done via the &lt;i&gt;index operator&lt;/i&gt; &lt;code&gt;[]&lt;/code&gt; in which the amount of elements has to be written in and which needs to go after the variable name &lt;code&gt;int xa[10]&lt;/code&gt; (array of 10 ints).
+&lt;/p&gt;
+
+&lt;p&gt;
+The base type of an array can be of any type, look at the following declarations:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pxa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// Array of 10 pointers to integers&lt;/span&gt;
+&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// Array of 10 point structs&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Elements of an array are also accessed via the index operator &lt;code&gt;int x1 = xa[0];&lt;/code&gt;, however keep in mind that an array of size n has the indexes 0 til n-1 because the indexing of arrays (in C) is zero based as in many programming languages.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is also possible to declare multidimensional arrays (array which elements are arrays themselves). Eg &lt;code&gt;int xa[4][3]&lt;/code&gt; declares an 4x3 array, which is an array that has 4 elements and those 4 elements are arrays as well with a size of 3 elements that can hold ints.
+Basically this can be done for an arbitrary amount of arrays inside arrays &lt;code&gt;int xa[4][3][2]&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Since C90 it is possible to create variable arrays. That means arrays of variable length which is determined at runtime, for example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+In C11 this is still possible however one should not rely on this with regards to portability.
+&lt;/p&gt;
+
+&lt;p&gt;
+VLA (variable length array) also have some disadvantages:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;cannot be &lt;code&gt;static&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;cannot be part of &lt;code&gt;struct&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;"Der Steuerfluss darf niemals hinter die Deklaration eines VLA in dessen Gültigkeitsbereich gelangen" (? ლ,ᔑ•ﺪ͟͠•ᔐ.ლ)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Similar to structs array can be initialized with curly braces &lt;code&gt;int xa[4] = {1, 2, 3, 4};&lt;/code&gt; . This also works for multidimensional arrays:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+When an array is initialized when its defined the (last) dimension may also be ommitted &lt;code&gt;int xa[] = {5, 2, 1}&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Since C90 it is also possible to do a partial initialization ala &lt;code&gt;int xa[10] = { [4] = 43, [1] = 5 };&lt;/code&gt; . The elements which are not explicitly initialized then default to &lt;code&gt;0&lt;/code&gt;. Similar to enums the following is also possible:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+… results in &lt;code&gt;200,0,0,43,8,5,0,0&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+When passing arrays to functions it is said that arrays "decay" into pointers.
+If you're passing an array by value, what you're really doing is copying a pointer - a pointer to the array's first element is copied to the parameter (whose type should also be a pointer the array element's type). This works due to array's decaying nature; once decayed, sizeof no longer gives the complete array's size, because it essentially becomes a pointer. This is why it's preferred (among other reasons) to pass by reference or pointer.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* array.c -- an array decays */&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;myarray&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;arrSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;myarray&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of a: %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// really yields pointer size (8 byte on 64 bit machines)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;myarray&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of x: %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="n"&gt;arrSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// decay looses dimensions thats why this is possible&lt;/span&gt;
+  &lt;span class="n"&gt;arrSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Size&lt;/td&gt;
+&lt;td class="org-left"&gt;of&lt;/td&gt;
+&lt;td class="org-left"&gt;x:&lt;/td&gt;
+&lt;td class="org-right"&gt;40&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Size&lt;/td&gt;
+&lt;td class="org-left"&gt;of&lt;/td&gt;
+&lt;td class="org-left"&gt;a:&lt;/td&gt;
+&lt;td class="org-right"&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Size&lt;/td&gt;
+&lt;td class="org-left"&gt;of&lt;/td&gt;
+&lt;td class="org-left"&gt;a:&lt;/td&gt;
+&lt;td class="org-right"&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+So when passing an array, what really gets passed is a pointer to the first element in the array. Therefore the following function declarations are equivalent:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="p"&gt;[]);&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+A problem that occurs here is that there is no way to find out how big/large the array is that was passed. That's why many function which have arrays as parameters, have another (auxillary) parameter to specify the amount of elements of the array:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* array_param .c -- auxiliary parameter */&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;[]);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+  &lt;span class="n"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;randomArr&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;654&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+  &lt;span class="n"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;randomArr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;randomArr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+    &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-right"&gt; &lt;/td&gt;
+&lt;td class="org-right"&gt; &lt;/td&gt;
+&lt;td class="org-right"&gt; &lt;/td&gt;
+&lt;td class="org-right"&gt; &lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;32&lt;/td&gt;
+&lt;td class="org-right"&gt;32&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;td class="org-right"&gt;54&lt;/td&gt;
+&lt;td class="org-right"&gt;23&lt;/td&gt;
+&lt;td class="org-right"&gt;77&lt;/td&gt;
+&lt;td class="org-right"&gt;654&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8ee8d7b" class="outline-2"&gt;
+&lt;h2 id="org8ee8d7b"&gt;Memory Layout&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8ee8d7b"&gt;
+&lt;p&gt;
+Why is it that we can treat arrays as pointers? It is because array values are stored in contiguous memory locations. The array &lt;code&gt;int x[6] = {1, 2, 3, 4, 5, 6};&lt;/code&gt; is for example stored like this in memory:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/array-in-memory.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This also applies to multidimensional arrays:
+&lt;code&gt;int x[4][12] = {{11,12}, {21,22}, {31,32}, {41,42}};&lt;/code&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/multi-array-in-memory.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The notion of &lt;code&gt;xa[i]&lt;/code&gt; is actually just a different syntax for &lt;code&gt;*(&amp;amp;xa+i)&lt;/code&gt; (give me the address of xa which really gives the address of the first element of xa, then add i&lt;sup&gt;1&lt;/sup&gt; to it and dereference the resulting address to give me the value).
+&lt;/p&gt;
+
+&lt;p&gt;
+1 When adding an integer to a pointer, the integer is multiplied by the size of the type that the pointer points to because that is the "distance between the addresses" in memory. One memory location usually stores 1 Byte (8 bits) on modern systems. So when an integer is stored in 4 bytes than the offset between the first and second address of an int value in a array would be 4.
+&lt;/p&gt;
+
+&lt;p&gt;
+Look at the following code which is really interesting and makes a lot of things clear:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of int %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Size  of  int  4&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Address:  0x7ffff4f329d0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Address:  0x7ffff4f329d0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Address:  0x7ffff4f329d4&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Address:  0x7ffff4f329d8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7e54db6" class="outline-2"&gt;
+&lt;h2 id="org7e54db6"&gt;Char Arrays&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e54db6"&gt;
+&lt;p&gt;
+As we already know C does not provide strings by default. That's why &lt;code&gt;char&lt;/code&gt; arrays are "abused" as such. There is a special way to intialize char arrays in C:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello!"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+which really is the equivalent to:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="sc"&gt;'H'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'!'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+As you can see character strings are stored as an array containing the characters and are terminated with a &lt;i&gt;null character&lt;/i&gt; (&lt;code&gt;0&lt;/code&gt; or &lt;code&gt;'\0'&lt;/code&gt;). Therefore &lt;code&gt;'\0'&lt;/code&gt; musnt be in any string because it designates the ending of a string.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"World"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"5th ('last') char: %c&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Really last element of the array %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of str: %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// 5 characters + null character = 6&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+A terminating 0 is a C convention and many functions from the standard library for example assume that as well (&lt;code&gt;int printf(char*,...)&lt;/code&gt;, &lt;code&gt;int atoi(char*)&lt;/code&gt;). A convention can be broken tho! Look at the following example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="sc"&gt;'H'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// no terminating 0!&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;bla&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;" This is top secret&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Hello This is top secret
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+I faked this output result for illustrating purposes because most modern compilers do not store those stuff sequentially anymore to reduce vulnerabilities (reading out values). plz have mercy. It really just printed "Hello".
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org69385d5" class="outline-2"&gt;
+&lt;h2 id="org69385d5"&gt;Parameters of &lt;code&gt;main()&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org69385d5"&gt;
+&lt;p&gt;
+The signature of C's  &lt;code&gt;main()&lt;/code&gt; function is mentioned by C11 as the following:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[]);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int argc&lt;/code&gt; ist the count of prorgam parameters
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;because the name of the program is always passed when executing main with params &lt;code&gt;argc&lt;/code&gt; is at least &lt;code&gt;1&lt;/code&gt; because that's the program name&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;char* argv&lt;/code&gt; is the argument vector resp. an array of &lt;b&gt;pointers&lt;/b&gt; to C-Strings
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;each of those C-Strings holds a &lt;i&gt;program parameter&lt;/i&gt; (inclusive the program name at &lt;code&gt;argv[0]&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+This is what the &lt;a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1548.pdf"&gt;C11 standard&lt;/a&gt; says:
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+If the value of &lt;code&gt;argc&lt;/code&gt; is greater than zero, the string pointed to by &lt;code&gt;argv[0]&lt;/code&gt; represents the program name;
+&lt;code&gt;argv[0][0]&lt;/code&gt; shall be the null character if the program name is not available from the host environment. 
+If the value of &lt;code&gt;argc&lt;/code&gt; is greater than one, the strings pointed to by &lt;code&gt;argv[1]&lt;/code&gt; through &lt;code&gt;argv[argc-1]&lt;/code&gt; represent the program parameters.
+&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/argv-argc.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+As already mentioned the declaration &lt;code&gt;char *argv[]&lt;/code&gt; stands for an &lt;b&gt;array of pointers to &lt;code&gt;char&lt;/code&gt;'s&lt;/b&gt;
+Calling for example the code from the picture above this is how the corresponding memory layout would look like:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/argv-memory-layout.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgbc69c52" class="outline-2"&gt;
+&lt;h2 id="orgbc69c52"&gt;Revision: Storage Classes and Storage Types/Attributes&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbc69c52"&gt;
+&lt;p&gt;
+→ see "Named Variables" in Lecture 06
+&lt;/p&gt;
+
+&lt;p&gt;
+Storage classes:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; → variables can only be accessed within the block of declaration which defines their scope&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;static&lt;/code&gt; → life cycle does not end with ending scope and last value is preserved through program execution; does not affect visibility&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extern&lt;/code&gt; →  only declares a variable/function/we, addidtional definition is required (usally in another module or a library)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;register&lt;/code&gt; → same functionality as auto variables with the difference that the compiler tries to store these variables in the register of the microprocessor, which makes access much faster than that of the variables stored in memory
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;address of register variables &lt;b&gt;is not retrievable using pointers&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The following code would not compile! (&lt;code&gt;error: address of register variable ‘fastInt’ requested&lt;/code&gt;)
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;register&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;fastInt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pf&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;pf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;fastInt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Fast int: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fastInt&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;
+Storage types (&lt;b&gt;Type Qualifiers&lt;/b&gt; seems to be the proper term, Speicherattribute in Skript):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;const&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;constants are also like normal variables with the difference that their values can’t be modified by the program once they are defined (compiler prohibits assignment anywhere else than when initialized)&lt;/li&gt;
+&lt;li&gt;enables the compiler to do some optimizations&lt;/li&gt;
+&lt;li&gt;Gotchas:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;const int * p&lt;/code&gt; declares a &lt;i&gt;variable&lt;/i&gt; pointer to a &lt;i&gt;constant&lt;/i&gt; integer&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int * const p&lt;/code&gt; declares a &lt;i&gt;constant&lt;/i&gt; pointer to a &lt;i&gt;variable&lt;/i&gt; integer&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;
+&lt;code&gt;volatile&lt;/code&gt;
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;volatile (flüchtig, sprunghaft) variables indicate to the compiler that their value might have changed since the last explicit writing operation&lt;/li&gt;
+&lt;li&gt;eg, if global variable’s address is passed to clock routine of the operating system to store the system time, the value in this address keep on changing without any assignment by the program&lt;/li&gt;
+&lt;li&gt;indicates that the object should not be subject to compiler optimizations altering references to, or modifications of, the object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;restrict&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;introduced in C99&lt;/li&gt;
+&lt;li&gt;only for pointer variables (and hereby derived for arrays)&lt;/li&gt;
+&lt;li&gt;it doesn’t add any new functionality and it is only a way for programmers to inform about optimizations that the compiler can make&lt;/li&gt;
+&lt;li&gt;when using &lt;code&gt;restrict&lt;/code&gt; with a pointer &lt;code&gt;ptr&lt;/code&gt;, it tells the compiler that &lt;code&gt;ptr&lt;/code&gt; is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for example when a variable is restrict the compiler will not reload the value at that adddress in its assembly code and therefore the assembly code is optimized&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+(Since C11 there is also &lt;code&gt;_Atomic&lt;/code&gt; &lt;a href="https://en.cppreference.com/w/c/language/atomic"&gt;here is more&lt;/a&gt;)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org28a5af2" class="outline-2"&gt;
+&lt;h2 id="org28a5af2"&gt;Comparison&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org28a5af2"&gt;
+&lt;p&gt;
+There are the following comparison operators which yield a boolean value ( &lt;code&gt;0&lt;/code&gt; for false and &lt;code&gt;≠0&lt;/code&gt; for true usually 1): &lt;code&gt;==&lt;/code&gt;, &lt;code&gt;!=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb7b5b82" class="outline-2"&gt;
+&lt;h2 id="orgb7b5b82"&gt;Assignment Shortcuts&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb7b5b82"&gt;
+&lt;p&gt;
+&lt;code&gt;a = a+5&lt;/code&gt; can be written more concise as &lt;code&gt;a+=5&lt;/code&gt; this is possible with all operators (*, /, %, +, -). Yes this is also possible with &lt;code&gt;%&lt;/code&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; a = a % b;&lt;/span&gt;
+
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Which yields &lt;code&gt;1&lt;/code&gt; for &lt;code&gt;a&lt;/code&gt;. But this is rather hard to read!
+&lt;/p&gt;
+
+&lt;p&gt;
+To increment/decrement by one it is even possible to write &lt;code&gt;a++&lt;/code&gt; and &lt;code&gt;a--&lt;/code&gt; , as well as &lt;code&gt;++a&lt;/code&gt; and &lt;code&gt;--a&lt;/code&gt;. The difference between &lt;code&gt;--&lt;/code&gt; and &lt;code&gt;++&lt;/code&gt; as a pre- or postfix operaror is that as a prefix operator (eg &lt;code&gt;--a&lt;/code&gt;) &lt;code&gt;a&lt;/code&gt; is first decremented and then evaluated and in case of a postfix operator (&lt;code&gt;a++&lt;/code&gt;) &lt;code&gt;a&lt;/code&gt; is first evaluated and then incremented. So in regards to the continued use &lt;code&gt;a++&lt;/code&gt; is incremented after the usage and &lt;code&gt;++a&lt;/code&gt; would be incremented before the usage so &lt;code&gt;a&lt;/code&gt; is already up by one when it is then used.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org178c56e" class="outline-2"&gt;
+&lt;h2 id="org178c56e"&gt;Flow Control&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org178c56e"&gt;
+&lt;p&gt;
+Flow in C++ can be controlled via &lt;code&gt;if (cond) { ... } else if (cond) { ... } else { ... }&lt;/code&gt; statements. Take a look at the following example to solve quadratic equations:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;cmath&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Solve Quadratic Equations &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Enter coefficient a, b, c: "&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Not a quadratic equation &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"no real resolution &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="k"&gt;else&lt;/span&gt;
+	&lt;span class="p"&gt;{&lt;/span&gt;
+	  &lt;span class="n"&gt;x1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	  &lt;span class="n"&gt;x2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"x1 = "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"x2 = "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+	&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The flow can also be controlled with a &lt;code&gt;switch-case&lt;/code&gt; statement. For example to "build a simple calculator":
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'+'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;// notice the single quotes '' because it is a char&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'-'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'/'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'*'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'%'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"*** Error ***"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Notice that without the &lt;code&gt;break;&lt;/code&gt; at each case the other cases would be checked and might be executed as well! Also the case values (eg &lt;code&gt;+&lt;/code&gt;) have to be unique and constant! Constant in that sense that there are no computations allowed (eg function calls).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org19fbc65" class="outline-2"&gt;
+&lt;h2 id="org19fbc65"&gt;Repetition&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org19fbc65"&gt;
+&lt;p&gt;
+There may be a situation, when you need to execute a block of code several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.
+&lt;/p&gt;
+
+&lt;p&gt;
+Programming languages provide various control structures that allow for more complicated execution paths.
+&lt;/p&gt;
+
+&lt;p&gt;
+A loop statement allows us to execute a statement or group of statements multiple times. C== provides the following types of loops:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;while loop&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;repeats a statement or group of statements while a given condition is true&lt;/li&gt;
+&lt;li&gt;it tests the condition before executing the loop body&lt;/li&gt;
+&lt;li&gt;eg &lt;code&gt;while (count &amp;lt; 100) { ... count++; ... }&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;do..while loop&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;like a ‘while’ statement, except that it tests the condition at the end of the loop body → therefore the "do..while" loop is executed at least one time&lt;/li&gt;
+&lt;li&gt;eg &lt;code&gt;do { ... count++; ... } while ( count &amp;lt; 100);&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;for loop&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;execute a sequence of statements multiple times and abbreviates the code that manages the loop variable&lt;/li&gt;
+&lt;li&gt;eg &lt;code&gt;for (int x = 0; x &amp;lt; 10; x++) { ... }&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+It is also possible to nest loops inside any other loop. 
+&lt;/p&gt;
+
+&lt;p&gt;
+An infinite loop like 
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"This loop will run forever.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+wont stop running by itself because an absent conditional expression is considered to be true. To interrupt the loop for example from the terminal press &lt;code&gt;Ctrl-C&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Use for loop when number of iterations is known beforehand, i.e. the number of times the loop body is needed to be executed is known.
+&lt;/p&gt;
+
+&lt;p&gt;
+Use while loops where exact number of iterations is not known but the loop termination condition is known.
+&lt;/p&gt;
+
+&lt;p&gt;
+Use do while loop if the code needs to be executed at least once like in Menu driven programs.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org0243263" class="outline-2"&gt;
 &lt;h2 id="org0243263"&gt;Storage and memory&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org0243263"&gt;
 &lt;/div&gt;
@@ -285,9 +1115,9 @@ Sources of the python excursus: &lt;a href="https://realpython.com/python-variab
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</guid><pubDate>Mon, 29 Oct 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdcf07d2" class="outline-2"&gt;
-&lt;h2 id="orgdcf07d2"&gt;Characteristics of a language&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdcf07d2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</guid><pubDate>Mon, 29 Oct 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgc1805d0" class="outline-2"&gt;
+&lt;h2 id="orgc1805d0"&gt;Characteristics of a language&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc1805d0"&gt;
 &lt;p&gt;
 Languages consist of three main characteristics:
 &lt;/p&gt;
@@ -298,9 +1128,9 @@ Languages consist of three main characteristics:
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org614b00b" class="outline-3"&gt;
-&lt;h3 id="org614b00b"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org614b00b"&gt;
+&lt;div id="outline-container-org8cc46c6" class="outline-3"&gt;
+&lt;h3 id="org8cc46c6"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8cc46c6"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;predefined identifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
@@ -331,16 +1161,16 @@ Languages consist of three main characteristics:
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org2c0ecdd" class="outline-3"&gt;
-&lt;h3 id="org2c0ecdd"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2c0ecdd"&gt;
+&lt;div id="outline-container-orgab5d83b" class="outline-3"&gt;
+&lt;h3 id="orgab5d83b"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgab5d83b"&gt;
 &lt;p&gt;
 A method to present syntax is to use syntax diagrams. They represent a graphical alternative to e.g Backus–Naur form to represent formal or context-free grammar.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgc8fba81" class="outline-4"&gt;
-&lt;h4 id="orgc8fba81"&gt;Elements of syntax diagrams&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc8fba81"&gt;
+&lt;div id="outline-container-orga965549" class="outline-4"&gt;
+&lt;h4 id="orga965549"&gt;Elements of syntax diagrams&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga965549"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;▭ a rectangle with sharp corners represents an abstract entity&lt;/li&gt;
 &lt;li&gt;▢ a ellipse (rectangle with rounded corners) represents a concrete term of the language, therefore an element of the lexis&lt;/li&gt;
@@ -359,9 +1189,9 @@ Example of an include directive represented as a syntax graph:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org93998a6" class="outline-2"&gt;
-&lt;h2 id="org93998a6"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org93998a6"&gt;
+&lt;div id="outline-container-org32203af" class="outline-2"&gt;
+&lt;h2 id="org32203af"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org32203af"&gt;
 &lt;p&gt;
 C++ has the data type &lt;code&gt;bool&lt;/code&gt; which can either be &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. In integers a &lt;code&gt;0&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; and everything &lt;code&gt;≠0&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.
 &lt;/p&gt;
@@ -426,9 +1256,9 @@ Using these boolean operators in C++, yields values of type &lt;code&gt;bool&lt;
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0242a28" class="outline-3"&gt;
-&lt;h3 id="org0242a28"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0242a28"&gt;
+&lt;div id="outline-container-org5412f4d" class="outline-3"&gt;
+&lt;h3 id="org5412f4d"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5412f4d"&gt;
 &lt;p&gt;
 In digital computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations. 
 &lt;/p&gt;
@@ -442,9 +1272,9 @@ What is really important to understand is, that bitwise operators operate on the
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3cace2a" class="outline-4"&gt;
-&lt;h4 id="org3cace2a"&gt;Bitwise NOT&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3cace2a"&gt;
+&lt;div id="outline-container-org06e81b4" class="outline-4"&gt;
+&lt;h4 id="org06e81b4"&gt;Bitwise NOT&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org06e81b4"&gt;
 &lt;p&gt;
 The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones' complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example
 &lt;/p&gt;
@@ -460,9 +1290,9 @@ bitwise NOT: ~1_d = 0_d; ~5_d = ~0101_b = 1010_b = 10_d
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7d55751" class="outline-4"&gt;
-&lt;h4 id="org7d55751"&gt;Bitwise OR&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7d55751"&gt;
+&lt;div id="outline-container-orgcb73de3" class="outline-4"&gt;
+&lt;h4 id="orgcb73de3"&gt;Bitwise OR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgcb73de3"&gt;
 &lt;p&gt;
 A bitwise OR takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:
 &lt;/p&gt;
@@ -484,9 +1314,9 @@ For example &lt;code&gt;0010&lt;/code&gt; may be seen as a list of flags where t
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org83e7e8d" class="outline-4"&gt;
-&lt;h4 id="org83e7e8d"&gt;Bitwise AND&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org83e7e8d"&gt;
+&lt;div id="outline-container-org63ab488" class="outline-4"&gt;
+&lt;h4 id="org63ab488"&gt;Bitwise AND&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org63ab488"&gt;
 &lt;p&gt;
 A bitwise AND takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). For example:
 &lt;/p&gt;
@@ -535,9 +1365,9 @@ The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8cd0cd3" class="outline-4"&gt;
-&lt;h4 id="org8cd0cd3"&gt;Bitwise XOR&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8cd0cd3"&gt;
+&lt;div id="outline-container-orgcb56c47" class="outline-4"&gt;
+&lt;h4 id="orgcb56c47"&gt;Bitwise XOR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgcb56c47"&gt;
 &lt;p&gt;
 In addition to &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;and&lt;/code&gt; there is also &lt;code&gt;xor&lt;/code&gt; (exclusive or → only one value true):
 &lt;/p&gt;
@@ -614,9 +1444,9 @@ Assembly language programmers and optimizing compilers sometimes use XOR as a sh
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org571d36f" class="outline-3"&gt;
-&lt;h3 id="org571d36f"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org571d36f"&gt;
+&lt;div id="outline-container-orgd6acf25" class="outline-3"&gt;
+&lt;h3 id="orgd6acf25"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd6acf25"&gt;
 &lt;p&gt;
 The bit shifts are sometimes considered bitwise operations, because they treat a value as a series of bits rather than as a numerical quantity. In these operations the digits are moved, or shifted, to the left or right. Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end.
 &lt;/p&gt;
@@ -650,6 +1480,26 @@ Another example:
 
 &lt;p&gt;
 There is also a difference between logical, arithmetic and circular shifting that you may want to look up. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Also note that the "&lt;a id="orge5ab449"&gt;&lt;/a&gt;" as a stream operator takes precedence over bit shifting so the following code:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Would yield &lt;code&gt;51&lt;/code&gt;. To have it bitshifted one has to add parentheses:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Which would yield &lt;code&gt;10&lt;/code&gt; because b is leftshifted by a (&lt;code&gt;n&lt;/code&gt;) which is equal to a multiplication with 2&lt;sup&gt;n&lt;/sup&gt; and this case &lt;code&gt;a&lt;/code&gt; is &lt;code&gt;1&lt;/code&gt; so &lt;code&gt;b&lt;/code&gt; is multiplcated by 2 which gives 10.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -781,9 +1631,9 @@ To remember this more easily:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgd7ed0be" class="outline-2"&gt;
-&lt;h2 id="orgd7ed0be"&gt;Storage and memory&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd7ed0be"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org7b038e2" class="outline-2"&gt;
+&lt;h2 id="org7b038e2"&gt;Storage and memory&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7b038e2"&gt;
 &lt;p&gt;
 Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:
 &lt;/p&gt;
@@ -810,16 +1660,16 @@ The terms "named" and "anonymous" are taken from the lecture script, I don't lik
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0846aad" class="outline-3"&gt;
-&lt;h3 id="org0846aad"&gt;Variables&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0846aad"&gt;
+&lt;div id="outline-container-org4042391" class="outline-3"&gt;
+&lt;h3 id="org4042391"&gt;Variables&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4042391"&gt;
 &lt;p&gt;
 Should the value of a place in memory be modified (purpose of the state model), you speak of (named or anonymous) &lt;i&gt;variables&lt;/i&gt;. Should the value in memory stay unchanged, then it is a &lt;i&gt;constant&lt;/i&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org65d39d8" class="outline-4"&gt;
-&lt;h4 id="org65d39d8"&gt;Named variables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org65d39d8"&gt;
+&lt;div id="outline-container-org57be548" class="outline-4"&gt;
+&lt;h4 id="org57be548"&gt;Named variables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org57be548"&gt;
 &lt;p&gt;
 Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala &lt;code&gt;int x, y ,z;&lt;/code&gt;.
 &lt;/p&gt;
@@ -851,7 +1701,7 @@ When declaring a variable it is possible to also provide a &lt;i&gt;storage clas
 &lt;/ul&gt;
 
 &lt;p&gt;
-Type qualifiers are declared via the keywords &lt;code&gt;const&lt;/code&gt;, &lt;code&gt;volatile&lt;/code&gt; or &lt;code&gt;restrict&lt;/code&gt; and give hints to the compiler about the usage of the variables.
+Type qualifiers are declared via the keywords &lt;code&gt;const&lt;/code&gt;, &lt;code&gt;volatile&lt;/code&gt; or &lt;code&gt;restrict&lt;/code&gt; and give hints to the compiler about the usage of the variables (see "Storage Classes and Storage Types/Attributes" in Lecture 08).
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -868,8 +1718,8 @@ A variable can be assigned a value via &lt;code&gt;0&lt;/code&gt;, this can also
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orge7a24e6"&gt;&lt;/a&gt;Addresses&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orge7a24e6"&gt;
+&lt;li&gt;&lt;a id="org9d0d51f"&gt;&lt;/a&gt;Addresses&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org9d0d51f"&gt;
 &lt;p&gt;
 Every variable has an address (place in memory where it is stored) that can be retrieved with the &lt;code&gt;&amp;amp;&lt;/code&gt; "address of" operator
 &lt;/p&gt;
@@ -900,8 +1750,8 @@ Actually the identifier of a variable (eg &lt;code&gt;testVar&lt;/code&gt;) is j
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org178ae60"&gt;&lt;/a&gt;Pointer&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org178ae60"&gt;
+&lt;li&gt;&lt;a id="org0fdc0a4"&gt;&lt;/a&gt;Pointer&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org0fdc0a4"&gt;
 &lt;p&gt;
 Variables can also hold addresses themselves! The prefix &lt;code&gt;*&lt;/code&gt; infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another &lt;b&gt;specific&lt;/b&gt; type. For instance:
 &lt;/p&gt;
@@ -978,9 +1828,9 @@ y=42 (at 0x7ffeeff30f1c)
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org498c93b" class="outline-4"&gt;
-&lt;h4 id="org498c93b"&gt;Anonymous variables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org498c93b"&gt;
+&lt;div id="outline-container-orgbbbc0eb" class="outline-4"&gt;
+&lt;h4 id="orgbbbc0eb"&gt;Anonymous variables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgbbbc0eb"&gt;
 &lt;p&gt;
 Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at &lt;i&gt;run time&lt;/i&gt; with functions from the C standard library. Anonymous variables are &lt;b&gt;not declared&lt;/b&gt;.
 &lt;/p&gt;
@@ -1054,9 +1904,9 @@ Helping advice to avoid the above errors:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org3b96daf" class="outline-4"&gt;
-&lt;h4 id="org3b96daf"&gt;Parameters&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3b96daf"&gt;
+&lt;div id="outline-container-org08a3c8e" class="outline-4"&gt;
+&lt;h4 id="org08a3c8e"&gt;Parameters&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org08a3c8e"&gt;
 &lt;p&gt;
 Parameters are the third way memory is allocated to store values. We covered this in the next lecture (lecture 07). (¬‿¬)
 &lt;/p&gt;
@@ -1995,44 +2845,4 @@ The first two of these are usually catched when translating the program.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</guid><pubDate>Fri, 19 Oct 2018 12:57:04 GMT</pubDate></item><item><title>Computer Science I - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-There wasn't much new stuff in this lecture because a wrong announcement was made leading to students missing the first week's lecture. Therefore we did mostly repetitions that I'll skip now and summarize the additional slides.
-&lt;/p&gt;
-
-&lt;div id="outline-container-orgb71c2cc" class="outline-2"&gt;
-&lt;h2 id="orgb71c2cc"&gt;Data types in C++&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb71c2cc"&gt;
-&lt;p&gt;
-The data type constitutes three things:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;memory mapping&lt;/li&gt;
-&lt;li&gt;codomain/target set (Wertevorrat)&lt;/li&gt;
-&lt;li&gt;valid operations&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Standard data types:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;int&lt;/code&gt; = whole integers, usually 4 byte&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;float&lt;/code&gt; = real numbers, usually 4-8 byte&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;char&lt;/code&gt; = character (in single quotes!), usually 1 byte&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;bool&lt;/code&gt; logical/boolean values (true and false)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-
-&lt;div id="outline-container-orgf030386" class="outline-3"&gt;
-&lt;h3 id="orgf030386"&gt;Type conversion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf030386"&gt;
-&lt;p&gt;
-Type conversion is done by calling the type on the object:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;one&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</guid><pubDate>Fri, 19 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>
