@@ -2,7 +2,7 @@
 .. title: Algos & Programming - Lecture 01
 .. slug: algos-and-prog-01
 .. date: 2018-10-08 15:24:13 UTC+02:00
-.. tags: 
+.. tags: university, A&P 
 .. category: 
 .. link: 
 .. description: 

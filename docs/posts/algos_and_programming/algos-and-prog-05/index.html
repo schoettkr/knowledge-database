@@ -17,6 +17,8 @@
 Similar to functions in math functions in C (or programming for that matter) have a domain (Defintionsbereich/Definitionsmenge) and a codomain (Wertebereich/Zielmenge). Additional">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-10-22T00:00:00+02:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -71,6 +73,12 @@ Similar to functions in math functions in C (or programming for that matter) hav
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -79,9 +87,9 @@ Similar to functions in math functions in C (or programming for that matter) hav
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org1ba9382" class="outline-2">
-<h2 id="org1ba9382">Type and signature</h2>
-<div class="outline-text-2" id="text-org1ba9382">
+        <div id="outline-container-org808418c" class="outline-2">
+<h2 id="org808418c">Type and signature</h2>
+<div class="outline-text-2" id="text-org808418c">
 <p>
 Similar to functions in math functions in C (or programming for that matter) have a domain (Defintionsbereich/Definitionsmenge) and a codomain (Wertebereich/Zielmenge). Additionally to the name a function declaration (respective definiton) contains the domain and codomain:
 </p>
@@ -105,9 +113,9 @@ Many operators look the same e.g <code>+</code> but do different things dependin
 </div>
 </div>
 
-<div id="outline-container-org4af5273" class="outline-2">
-<h2 id="org4af5273">Basic types (primitive data types)</h2>
-<div class="outline-text-2" id="text-org4af5273">
+<div id="outline-container-org5291cee" class="outline-2">
+<h2 id="org5291cee">Basic types (primitive data types)</h2>
+<div class="outline-text-2" id="text-org5291cee">
 <p>
 C provides few basic types. Yet it is possible to "build" more types. Since the sets are described by the C types are not infinite they are subsets of for example the natural numbers.
 C99 knows the following basic types:
@@ -125,9 +133,9 @@ More on <a href="https://en.wikipedia.org/wiki/C_data_types">C data types</a>.
 </p>
 </div>
 
-<div id="outline-container-org8664e9a" class="outline-3">
-<h3 id="org8664e9a">Integers &amp; Chars</h3>
-<div class="outline-text-3" id="text-org8664e9a">
+<div id="outline-container-org0d9fb7e" class="outline-3">
+<h3 id="org0d9fb7e">Integers &amp; Chars</h3>
+<div class="outline-text-3" id="text-org0d9fb7e">
 <p>
 C offers the following keywords in regards to integers
 </p>
@@ -310,9 +318,9 @@ Result is b with the code 98
 </div>
 </div>
 
-<div id="outline-container-orgacbdfec" class="outline-3">
-<h3 id="orgacbdfec">Rational numbers</h3>
-<div class="outline-text-3" id="text-orgacbdfec">
+<div id="outline-container-org3f8a8f4" class="outline-3">
+<h3 id="org3f8a8f4">Rational numbers</h3>
+<div class="outline-text-3" id="text-org3f8a8f4">
 <p>
 Because of internal representation C can only represent rational numbers \(\mathbb{Q}\) and not generic reals \(\mathbb{R}\) (allgemeine reelle Zahlen). These numbers are commonly called <i>floating points numbers</i>. C provides the following types to represent floating point numbers:
 <code>float</code>, <code>double</code> and <code>long double</code>. Besides a limited codomain floats in C have a limited precision. Again there are no fixed sizes provided, but minimum ranges are guaranteed:
@@ -332,9 +340,9 @@ In practice almost all compilers follow the IEEE-754 standard that defines the b
 </div>
 </div>
 
-<div id="outline-container-orgb36bdfb" class="outline-3">
-<h3 id="orgb36bdfb">Void</h3>
-<div class="outline-text-3" id="text-orgb36bdfb">
+<div id="outline-container-orgb0f5476" class="outline-3">
+<h3 id="orgb0f5476">Void</h3>
+<div class="outline-text-3" id="text-orgb0f5476">
 <p>
 C knows the base type <code>void</code>. <code>void</code> is basically an "anti-type" because it is used when no type is wanted (→ empty set; leere Menge). Is helpful when parameters and/or return value are not needed.
 </p>
@@ -346,9 +354,9 @@ If the return value of a function is <code>void</code> the <code>return</code> s
 </div>
 </div>
 
-<div id="outline-container-orge1854d4" class="outline-2">
-<h2 id="orge1854d4">Type conversion</h2>
-<div class="outline-text-2" id="text-orge1854d4">
+<div id="outline-container-org8738d0b" class="outline-2">
+<h2 id="org8738d0b">Type conversion</h2>
+<div class="outline-text-2" id="text-org8738d0b">
 <p>
 The types in <code>a + b</code> could be different for instance <code>unsigned char</code> and <code>signed int</code>. In those cases the types are automatically (implicit) converted. Generally all the data types of the variables are upgraded to the data type of the variable with largest data type.
 </p>
@@ -377,9 +385,9 @@ A type declaration like in C is not needed in all languages. In python for examp
 </div>
 </div>
 
-<div id="outline-container-org552db6a" class="outline-2">
-<h2 id="org552db6a">Literals</h2>
-<div class="outline-text-2" id="text-org552db6a">
+<div id="outline-container-org3c89e93" class="outline-2">
+<h2 id="org3c89e93">Literals</h2>
+<div class="outline-text-2" id="text-org3c89e93">
 <p>
 A "direct value" of a specific type is called <i>literal</i>. Literals of specific types require a special notation, to prevent an unneccessary type conversion:
 </p>

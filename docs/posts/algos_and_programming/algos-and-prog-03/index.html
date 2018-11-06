@@ -21,6 +21,8 @@ Terms
 CPU = A central processing unit (CPU) is the electronic circuitry within a computer that carries out the instructions of a computer program by performing the basic arithmetic,">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-10-15T14:57:04+02:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -75,6 +77,12 @@ CPU = A central processing unit (CPU) is the electronic circuitry within a compu
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -87,9 +95,9 @@ CPU = A central processing unit (CPU) is the electronic circuitry within a compu
 <a href="https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout_de.pdf">Script (1-28)</a>
 </p>
 
-<div id="outline-container-orgcb035f6" class="outline-2">
-<h2 id="orgcb035f6">Terms</h2>
-<div class="outline-text-2" id="text-orgcb035f6">
+<div id="outline-container-orgbe23c5c" class="outline-2">
+<h2 id="orgbe23c5c">Terms</h2>
+<div class="outline-text-2" id="text-orgbe23c5c">
 <ul class="org-ul">
 <li>
 <b>CPU</b> = A central processing unit (CPU) is the electronic circuitry within a computer that carries out the instructions of a computer program by performing the basic arithmetic, logical, control and input/output (I/O) operations specified by the instructions. The computer industry has used the term "central processing unit" at least since the early 1960s. Traditionally, the term "CPU" refers to a processor, more specifically to its processing unit and control unit (CU), distinguishing these core elements of a computer from external components such as main memory and I/O circuitry.</li>
@@ -105,9 +113,9 @@ CPU = A central processing unit (CPU) is the electronic circuitry within a compu
 </div>
 </div>
 
-<div id="outline-container-org46cfc8e" class="outline-2">
-<h2 id="org46cfc8e">Basics</h2>
-<div class="outline-text-2" id="text-org46cfc8e">
+<div id="outline-container-orgb3ed1a5" class="outline-2">
+<h2 id="orgb3ed1a5">Basics</h2>
+<div class="outline-text-2" id="text-orgb3ed1a5">
 <p>
 An algorithm has to be interpretable to be executed by the computer. A (digital) processor can interpret bit patterns. <i>Bit patterns</i> are also called machine code. A <i>core</i> is a real implementation of an <i>processor design</i>. Processor designs differ in the way and scope that they implement <i>processor registers</i>, <i>control unit</i>,  <i>bus</i> and  <i>memory unit</i> (also see <a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann Architecture</a>).
 </p>
@@ -122,9 +130,9 @@ In machine code the bit pattern \[11111010\] for example is treated by the x86-p
 </div>
 </div>
 
-<div id="outline-container-org78f84fc" class="outline-2">
-<h2 id="org78f84fc">Compiler and interpreter</h2>
-<div class="outline-text-2" id="text-org78f84fc">
+<div id="outline-container-orgae2a06d" class="outline-2">
+<h2 id="orgae2a06d">Compiler and interpreter</h2>
+<div class="outline-text-2" id="text-orgae2a06d">
 <p>
 Since machine code is not so handy for humans, programming languages have been created that should help with that. Programming languages use different models and abstractions. There is (atleast) one <i>assembly language</i> that represents machine code in an easier to read manner (mnemonics). \(1111 1010\) (resp. \(0xFA\))* for example would be "cli" in assembly language for x86 processors (clear interrrupt flag). Programs are either <b>translated</b> into machine code or are <b>interpreted</b> by another program. This "translation" is done by the <b>compiler</b> while the interpretation is done by the <b>interpreter</b>.
 </p>
@@ -133,18 +141,18 @@ Since machine code is not so handy for humans, programming languages have been c
 ∗ The 0 tells the parser it's dealing with a constant (and not an identifier/reserved word). Something is still needed to specify the number base HEX: the x is an arbitrary choice.
 </p>
 </div>
-<div id="outline-container-orga512710" class="outline-3">
-<h3 id="orga512710">Variants of execution</h3>
-<div class="outline-text-3" id="text-orga512710">
+<div id="outline-container-orgae21a62" class="outline-3">
+<h3 id="orgae21a62">Variants of execution</h3>
+<div class="outline-text-3" id="text-orgae21a62">
 <p>
 <img src="../../../images/execution-variants.png" alt="nil"></p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org488eaef" class="outline-2">
-<h2 id="org488eaef">C</h2>
-<div class="outline-text-2" id="text-org488eaef">
+<div id="outline-container-org90220c0" class="outline-2">
+<h2 id="org90220c0">C</h2>
+<div class="outline-text-2" id="text-org90220c0">
 <p>
 C is a programming language that is compiled into machine code without intermediate language representation (Zwischencode) or VM's.
 </p>
@@ -166,9 +174,9 @@ In this course the <code>clang</code> compiler or the compiler from the GNU Comp
 </p>
 </div>
 
-<div id="outline-container-org2233d4f" class="outline-3">
-<h3 id="org2233d4f">Euclidian Algorithm in C</h3>
-<div class="outline-text-3" id="text-org2233d4f">
+<div id="outline-container-orga8dd24d" class="outline-3">
+<h3 id="orga8dd24d">Euclidian Algorithm in C</h3>
+<div class="outline-text-3" id="text-orga8dd24d">
 <p>
 The Euclidian Algorithm may be used to find the Greates Common Divisor (GCD) of numbers greater than 0. What follows is an implementation of it in C code:
 </p>
@@ -202,9 +210,9 @@ This is risky because I can call the function without providing arguments for al
 </div>
 </div>
 
-<div id="outline-container-orgb4f76e6" class="outline-3">
-<h3 id="orgb4f76e6">Input and Output in C</h3>
-<div class="outline-text-3" id="text-orgb4f76e6">
+<div id="outline-container-org5c99558" class="outline-3">
+<h3 id="org5c99558">Input and Output in C</h3>
+<div class="outline-text-3" id="text-org5c99558">
 <p>
 Now we want to parameterize our euclidian algorithm (remember characteristic of an algorithm → should solve a batch of problems) and have an direct output, we need so called <i>library functions</i>.
 </p>
@@ -237,9 +245,9 @@ Read the comment and syntax carefully! Furthermore the functions <code>printf</c
 </p>
 </div>
 </div>
-<div id="outline-container-org3b7c13d" class="outline-3">
-<h3 id="org3b7c13d">Operators</h3>
-<div class="outline-text-3" id="text-org3b7c13d">
+<div id="outline-container-org247ccd5" class="outline-3">
+<h3 id="org247ccd5">Operators</h3>
+<div class="outline-text-3" id="text-org247ccd5">
 <p>
 Depending on the position of an operator (e.g <code>+</code>, <code>-</code>, <code>%</code>, etc.) in regards to where the operator "gets its operands" it can be differentiated between:
 </p>

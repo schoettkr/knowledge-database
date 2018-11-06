@@ -6,6 +6,14 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
+  <loc>https://schoettkr.github.io/knowledge-database/categories/ap.xml</loc>
+  <lastmod>2018-11-06T10:11:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://schoettkr.github.io/knowledge-database/categories/university.xml</loc>
+  <lastmod>2018-11-06T10:11:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/galleries/demo/rss.xml</loc>
   <lastmod>2018-10-31T16:52:00Z</lastmod>
  </sitemap>
@@ -15,10 +23,10 @@
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/rss.xml</loc>
-  <lastmod>2018-11-03T20:59:00Z</lastmod>
+  <lastmod>2018-11-06T10:11:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/sitemap.xml</loc>
-  <lastmod>2018-11-03T20:59:00Z</lastmod>
+  <lastmod>2018-11-06T10:11:00Z</lastmod>
  </sitemap>
 </sitemapindex>

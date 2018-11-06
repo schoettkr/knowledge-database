@@ -21,6 +21,8 @@ extern int printf(const char*, ...); // print format -&gt; write to output
 extern int atoi(const char*); // ascii ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-10-19T14:57:04+02:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -75,6 +77,12 @@ extern int atoi(const char*); // ascii ">
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -83,9 +91,9 @@ extern int atoi(const char*); // ascii ">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgcce3ac4" class="outline-2">
-<h2 id="orgcce3ac4">Libraries and Linker</h2>
-<div class="outline-text-2" id="text-orgcce3ac4">
+        <div id="outline-container-org8249be2" class="outline-2">
+<h2 id="org8249be2">Libraries and Linker</h2>
+<div class="outline-text-2" id="text-org8249be2">
 <p>
 In the last A&amp;P post we ended with this example:
 </p>
@@ -185,9 +193,9 @@ Furthermore the compiler can be instructed to only execute single steps of the c
 </div>
 </div>
 
-<div id="outline-container-orgdcdd18d" class="outline-2">
-<h2 id="orgdcdd18d">Python</h2>
-<div class="outline-text-2" id="text-orgdcdd18d">
+<div id="outline-container-orge78e512" class="outline-2">
+<h2 id="orge78e512">Python</h2>
+<div class="outline-text-2" id="text-orge78e512">
 <p>
 Python is a scripting language that is interpreted at runtime. To execute a python script the interpreter has to be specified either directly when executing (<code>python file.py</code>) or in the first line of the file <code>#! /usr/bin/env  python</code> and then it needs to be made executable via <code>chmod a+x file.py</code>. The euclidian algorithm in python would look as follows:
 </p>
@@ -231,9 +239,9 @@ Python offers a lot of predefined modules. <code>sys</code> for example provides
 </div>
 </div>
 
-<div id="outline-container-org7540d25" class="outline-2">
-<h2 id="org7540d25">Back to C</h2>
-<div class="outline-text-2" id="text-org7540d25">
+<div id="outline-container-orge9447a2" class="outline-2">
+<h2 id="orge9447a2">Back to C</h2>
+<div class="outline-text-2" id="text-orge9447a2">
 <p>
 Going back to C (but the same applies elsewhere!) it is necessary to provide the input arguments on the command line when executing the euclidian algorithm program with IO. Else it would lead to a segmentation fault. The compiler cannot catch things like this because they are built on runtime assumptions. Therefore it is a good idea to validate those assumptions explicitly and program in a defensive way:
 </p>
@@ -293,9 +301,9 @@ Since such validation of assumptions is really common, a library function <code>
 </pre></div>
 </div>
 
-<div id="outline-container-org54d3eb5" class="outline-3">
-<h3 id="org54d3eb5">Errors</h3>
-<div class="outline-text-3" id="text-org54d3eb5">
+<div id="outline-container-org6743da7" class="outline-3">
+<h3 id="org6743da7">Errors</h3>
+<div class="outline-text-3" id="text-org6743da7">
 <p>
 There are at least three types of erros that can be distuingished:
 </p>

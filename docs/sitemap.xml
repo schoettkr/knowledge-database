@@ -15,11 +15,19 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-11-03T20:59:00Z</lastmod>
+  <lastmod>2018-11-06T10:07:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
-  <lastmod>2018-10-31T16:40:00Z</lastmod>
+  <lastmod>2018-11-06T10:09:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/categories/ap/</loc>
+  <lastmod>2018-11-06T10:09:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/categories/university/</loc>
+  <lastmod>2018-11-06T10:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/galleries/</loc>
@@ -31,7 +39,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-1.html</loc>
-  <lastmod>2018-11-03T20:59:00Z</lastmod>
+  <lastmod>2018-11-06T10:11:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -132,6 +140,10 @@
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</loc>
   <lastmod>2018-11-01T10:38:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</loc>
+  <lastmod>2018-11-04T16:41:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</loc>

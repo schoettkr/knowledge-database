@@ -2,7 +2,7 @@
 .. title: Algos & Programming - Lecture 08
 .. slug: algos-and-prog-08
 .. date: 2018-11-02
-.. tags: 
+.. tags: university, A&P 
 .. category: 
 .. link: 
 .. description: 

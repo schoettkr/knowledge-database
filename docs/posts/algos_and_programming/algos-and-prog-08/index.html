@@ -20,6 +20,8 @@ In C there are so called derived types. We already know one kind of a derived ty
 composite data types (Verbunddatentypen, struct and">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-11-02T00:00:00+01:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -74,6 +76,12 @@ composite data types (Verbunddatentypen, struct and">
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -82,9 +90,9 @@ composite data types (Verbunddatentypen, struct and">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgcdc78f8" class="outline-2">
-<h2 id="orgcdc78f8">Complex Types</h2>
-<div class="outline-text-2" id="text-orgcdc78f8">
+        <div id="outline-container-orgf22ea76" class="outline-2">
+<h2 id="orgf22ea76">Complex Types</h2>
+<div class="outline-text-2" id="text-orgf22ea76">
 <p>
 In C there are so called <b>derived types</b>. We already know one kind of a derived type, that is <i>pointers</i>. There are more types though:
 </p>
@@ -98,10 +106,10 @@ Derived types are sometimes also called <i>complex types</i>.
 </p>
 </div>
 
-<div id="outline-container-org9c705c9" class="outline-3">
-<h3 id="org9c705c9">Composite data type <code>struct</code>
+<div id="outline-container-org343ae46" class="outline-3">
+<h3 id="org343ae46">Composite data type <code>struct</code>
 </h3>
-<div class="outline-text-3" id="text-org9c705c9">
+<div class="outline-text-3" id="text-org343ae46">
 <p>
 The <code>struct</code> type can be used to deal with variables (elements/members) of different types in combination.
 A declaration of a struct type consists of the keyword <code>struct</code>, a <b>name</b> (tag) and a list of declarations of elements wrapped in a block of curly braces.
@@ -233,10 +241,10 @@ Neat! (It is not possible to direclty initialize a variable with <code>typedef</
 </p>
 </div>
 </div>
-<div id="outline-container-org2aff84e" class="outline-3">
-<h3 id="org2aff84e">Composite data type <code>union</code>
+<div id="outline-container-org5158ea7" class="outline-3">
+<h3 id="org5158ea7">Composite data type <code>union</code>
 </h3>
-<div class="outline-text-3" id="text-org2aff84e">
+<div class="outline-text-3" id="text-org5158ea7">
 <p>
 A union is a special data type available in C that allows to store different data types in the same memory location. You can define a union with many members, but only one member can contain a value at any given time. Unions provide an efficient way of using the same memory location for multiple-purpose.
 </p>
@@ -259,10 +267,10 @@ To access a member of a union the <b>member access operator</b> <code>.</code> i
 </p>
 </div>
 </div>
-<div id="outline-container-org696dd8a" class="outline-3">
-<h3 id="org696dd8a">Enumeration data type <code>enum</code>
+<div id="outline-container-orga68558a" class="outline-3">
+<h3 id="orga68558a">Enumeration data type <code>enum</code>
 </h3>
-<div class="outline-text-3" id="text-org696dd8a">
+<div class="outline-text-3" id="text-orga68558a">
 <p>
 With the help of enumeration data types it is possible to define types with discrete, named values. The corresponding keyword in C is <code>enum</code>.
 We can use this keyword to declare and initialize a sequence of integer constants eg <code>enum colors {RED, YELLOW, GREEN, BLUE};</code>
@@ -299,9 +307,9 @@ Since enums are basically treated like ints, they only offer restricted type saf
 </p>
 </div>
 </div>
-<div id="outline-container-org54ddee1" class="outline-3">
-<h3 id="org54ddee1">Array data type</h3>
-<div class="outline-text-3" id="text-org54ddee1">
+<div id="outline-container-orgd6f4856" class="outline-3">
+<h3 id="orgd6f4856">Array data type</h3>
+<div class="outline-text-3" id="text-orgd6f4856">
 <p>
 C provides the derived array type do deal with collection of values with the same type. The declaration of an array doesn't require a keyword, since it is done via the <i>index operator</i> <code>[]</code> in which the amount of elements has to be written in and which needs to go after the variable name <code>int xa[10]</code> (array of 10 ints).
 </p>
@@ -492,9 +500,9 @@ A problem that occurs here is that there is no way to find out how big/large the
 </div>
 </div>
 
-<div id="outline-container-org8ee8d7b" class="outline-2">
-<h2 id="org8ee8d7b">Memory Layout</h2>
-<div class="outline-text-2" id="text-org8ee8d7b">
+<div id="outline-container-org97ebf84" class="outline-2">
+<h2 id="org97ebf84">Memory Layout</h2>
+<div class="outline-text-2" id="text-org97ebf84">
 <p>
 Why is it that we can treat arrays as pointers? It is because array values are stored in contiguous memory locations. The array <code>int x[6] = {1, 2, 3, 4, 5, 6};</code> is for example stored like this in memory:
 <img src="../../../images/array-in-memory.png" alt="nil"></p>
@@ -554,9 +562,9 @@ Look at the following code which is really interesting and makes a lot of things
 </div>
 </div>
 
-<div id="outline-container-org7e54db6" class="outline-2">
-<h2 id="org7e54db6">Char Arrays</h2>
-<div class="outline-text-2" id="text-org7e54db6">
+<div id="outline-container-orgdd810cc" class="outline-2">
+<h2 id="orgdd810cc">Char Arrays</h2>
+<div class="outline-text-2" id="text-orgdd810cc">
 <p>
 As we already know C does not provide strings by default. That's why <code>char</code> arrays are "abused" as such. There is a special way to intialize char arrays in C:
 </p>
@@ -608,10 +616,10 @@ I faked this output result for illustrating purposes because most modern compile
 </p>
 </div>
 </div>
-<div id="outline-container-org69385d5" class="outline-2">
-<h2 id="org69385d5">Parameters of <code>main()</code>
+<div id="outline-container-orga704855" class="outline-2">
+<h2 id="orga704855">Parameters of <code>main()</code>
 </h2>
-<div class="outline-text-2" id="text-org69385d5">
+<div class="outline-text-2" id="text-orga704855">
 <p>
 The signature of C's  <code>main()</code> function is mentioned by C11 as the following:
 </p>
@@ -655,9 +663,9 @@ Calling for example the code from the picture above this is how the correspondin
 </div>
 
 
-<div id="outline-container-orgbc69c52" class="outline-2">
-<h2 id="orgbc69c52">Revision: Storage Classes and Storage Types/Attributes</h2>
-<div class="outline-text-2" id="text-orgbc69c52">
+<div id="outline-container-org3b6c440" class="outline-2">
+<h2 id="org3b6c440">Revision: Storage Classes and Storage Types/Attributes</h2>
+<div class="outline-text-2" id="text-org3b6c440">
 <p>
 → see "Named Variables" in Lecture 06
 </p>

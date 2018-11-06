@@ -21,6 +21,8 @@ Parameters
 Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-10-30T00:00:00+01:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -75,6 +77,12 @@ Besides the named variables for which memory is allocated at compile time and an
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -83,13 +91,13 @@ Besides the named variables for which memory is allocated at compile time and an
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org0243263" class="outline-2">
-<h2 id="org0243263">Storage and memory</h2>
-<div class="outline-text-2" id="text-org0243263">
+        <div id="outline-container-orgb6513fa" class="outline-2">
+<h2 id="orgb6513fa">Storage and memory</h2>
+<div class="outline-text-2" id="text-orgb6513fa">
 </div>
-<div id="outline-container-org87f7604" class="outline-3">
-<h3 id="org87f7604">Parameters</h3>
-<div class="outline-text-3" id="text-org87f7604">
+<div id="outline-container-orge040e05" class="outline-3">
+<h3 id="orge040e05">Parameters</h3>
+<div class="outline-text-3" id="text-orge040e05">
 <p>
 Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables → <b>parameters</b>.
 </p>
@@ -222,9 +230,9 @@ Another use case of reference parameters is value input. The function <code>scan
 </div>
 </div>
 
-<div id="outline-container-org3bee214" class="outline-3">
-<h3 id="org3bee214">Excursus: Variables and References in Python</h3>
-<div class="outline-text-3" id="text-org3bee214">
+<div id="outline-container-org8c9f9d6" class="outline-3">
+<h3 id="org8c9f9d6">Excursus: Variables and References in Python</h3>
+<div class="outline-text-3" id="text-org8c9f9d6">
 <p>
 Parameter passing in Python is somewhat special. It is not one of the most known methods like "pass-by-value" or "pass-by-reference", in fact parameter passing in Python is <b>"pass-by-object-reference"</b> of which is often said "Object references are passed by value".
 </p>
@@ -285,9 +293,9 @@ When the number of references to an object drops to zero, it is no longer access
 </p>
 </div>
 
-<div id="outline-container-orge755b6b" class="outline-4">
-<h4 id="orge755b6b">Object Identity</h4>
-<div class="outline-text-4" id="text-orge755b6b">
+<div id="outline-container-org7f04363" class="outline-4">
+<h4 id="org7f04363">Object Identity</h4>
+<div class="outline-text-4" id="text-org7f04363">
 <p>
 In Python, every object that is created is given a number that uniquely identifies it. It is guaranteed that no two objects will have the same identifier during any period in which their lifetimes overlap. Once an object’s reference count drops to zero and it is garbage collected, as happened to the <code>9000</code> object above, then its identifying number becomes available and may be used again.
 </p>
