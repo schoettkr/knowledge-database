@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/</loc>
-  <lastmod>2018-10-31T16:40:00Z</lastmod>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/2018/</loc>
@@ -15,15 +15,19 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-11-06T10:07:00Z</lastmod>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
-  <lastmod>2018-11-06T10:09:00Z</lastmod>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/ap/</loc>
   <lastmod>2018-11-06T10:09:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01/</loc>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/university/</loc>
@@ -39,7 +43,11 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-1.html</loc>
-  <lastmod>2018-11-06T10:11:00Z</lastmod>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/index-2.html</loc>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -162,12 +170,20 @@
   <lastmod>2018-11-03T20:59:00Z</lastmod>
  </url>
  <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</loc>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/</loc>
+  <lastmod>2018-11-09T18:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-01/</loc>

@@ -3,7 +3,7 @@
 .. slug: cs-I-01
 .. date: 2018-10-12 10:35:48 UTC+02:00
 .. tags: 
-.. category: 
+.. category: university cs01
 .. link: 
 .. description: 
 .. type: text

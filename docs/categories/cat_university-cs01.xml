@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Fri, 09 Nov 2018 18:36:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+A type alias is a different name by which a type can be identified. In C++, any valid type can be aliased so that it can be referred to with a different identifier.
+It is possible to do type definitions via the following syntax &lt;code&gt;typedef TYP typename;&lt;/code&gt;, eg &lt;code&gt;typedef unsigned short ushort;&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;div id="outline-container-orgcd6eb0d" class="outline-2"&gt;
+&lt;h2 id="orgcd6eb0d"&gt;Enumerated Type&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcd6eb0d"&gt;
+&lt;p&gt;
+Enumerated types are types that are defined with a set of custom identifiers, known as enumerators, as possible values. Objects of these enumerated types can take any of these enumerators as value.
+&lt;/p&gt;
+
+&lt;p&gt;
+Their syntax is:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;type_name&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;value1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;value2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;value3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;object_names&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+This creates the type &lt;code&gt;type_name&lt;/code&gt;, which can take any of &lt;code&gt;value1&lt;/code&gt;, &lt;code&gt;value2&lt;/code&gt;, &lt;code&gt;value3&lt;/code&gt;, … as value. Objects (variables) of this type can directly be instantiated as &lt;code&gt;object_names&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Notice that this declaration includes no other type, neither fundamental nor compound, in its definition. To say it another way, somehow, this creates a whole new data type from scratch without basing it on any other existing type. The possible values that variables of this new type &lt;code&gt;color_t&lt;/code&gt; may take are the enumerators listed within braces. For example, once the &lt;code&gt;colors_t&lt;/code&gt; enumerated type is declared, the following expressions will be valid:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;colors_t&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;red&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;testColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;yourFavColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;colors_t&lt;/span&gt; &lt;span class="n"&gt;myFavColor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;myFavColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;testColor&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// green is equivalent to 1&lt;/span&gt;
+    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"'testColor is "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;myFavColor&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;yourFavColor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Hey we have the same favorite colors :D"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+'testColor is 1
+Hey we have the same favorite colors :D
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+Values of enumerated types declared with &lt;code&gt;enum&lt;/code&gt; are implicitly convertible to an integer type, and vice versa. In fact, the elements of such an enum are always assigned an integer numerical equivalent internally, to which they can be implicitly converted to or from. If it is not specified otherwise, the integer value equivalent to the first possible value is &lt;code&gt;0&lt;/code&gt;, the equivalent to the second is &lt;code&gt;1&lt;/code&gt;, to the third is &lt;code&gt;2&lt;/code&gt;, and so on… Therefore, in the data type &lt;code&gt;colors_t&lt;/code&gt; defined above, &lt;code&gt;red&lt;/code&gt; would be equivalent to &lt;code&gt;0&lt;/code&gt;, &lt;code&gt;green&lt;/code&gt; would be equivalent to &lt;code&gt;1&lt;/code&gt;, blue to &lt;code&gt;2&lt;/code&gt;, and so on…
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0f5f262" class="outline-2"&gt;
+&lt;h2 id="org0f5f262"&gt;Arrays&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0f5f262"&gt;
+&lt;p&gt;
+An array is a series of elements of the same type placed in contiguous memory locations that can be individually referenced by adding an index to a unique identifier.
+&lt;/p&gt;
+
+&lt;p&gt;
+That means that, for example, five values of type int can be declared as an array without having to declare 5 different variables (each with its own identifier). Instead, using an array, the five int values are stored in contiguous memory locations, and all five can be accessed using the same identifier, with the proper index.
+&lt;/p&gt;
+
+&lt;p&gt;
+A typical declaration for an array in C++ is &lt;code&gt;type name [elements num];&lt;/code&gt; where &lt;code&gt;type&lt;/code&gt; is a valid type (such as int, float…), &lt;code&gt;name&lt;/code&gt; is a valid identifier and the &lt;code&gt;elements num&lt;/code&gt; (which is always enclosed in square brackets &lt;code&gt;[]&lt;/code&gt;), specifies the length of the array in terms of the number of elements.
+&lt;/p&gt;
+
+&lt;p&gt;
+Therefore, the &lt;code&gt;foo&lt;/code&gt; array, with five elements of type &lt;code&gt;int&lt;/code&gt;, can be declared as: &lt;code&gt;int foo [5];&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+NOTE: The number of elements within square brackets &lt;code&gt;[]&lt;/code&gt;, representing the number of elements in the array, must be a &lt;i&gt;constant expression&lt;/i&gt;, since arrays are blocks of static memory whose size must be determined at compile time, before the program runs.
+&lt;/p&gt;
+
+&lt;p&gt;
+Elements in an array can be explicitly initialized to specific values when it is declared, by enclosing those initial values in braces &lt;code&gt;{}&lt;/code&gt;. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12071&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The number of values between braces &lt;code&gt;{}&lt;/code&gt; shall not be greater than the number of elements in the array. For example, in the example above, &lt;code&gt;foo&lt;/code&gt; was declared having 5 elements (as specified by the number enclosed in square brackets, []), and the braces {} contained exactly 5 values, one for each element. If declared with less, the remaining elements are set to their default values (which for fundamental types, means they are filled with zeroes). For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;bar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Results in bar consisting of &lt;code&gt;10, 20, 30, 0, 0&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The initializer can even have no values, just the braces &lt;code&gt;int baz[5] = { };&lt;/code&gt;.
+This creates an array of five int values, each initialized with a value of zero:
+&lt;/p&gt;
+
+&lt;p&gt;
+When omitting the initialization completely by default, regular arrays of &lt;i&gt;local scope&lt;/i&gt; (for example, those declared within a function) are left uninitialized. This means that none of its elements are set to any particular value; their contents are undetermined at the point the array is declared.
+&lt;/p&gt;
+
+&lt;p&gt;
+Static arrays, and those declared directly in a namespace (outside any function), are always initialized. If no explicit initializer is specified, all the elements are default-initialized (with zeroes, for fundamental types)
+&lt;/p&gt;
+
+&lt;p&gt;
+When an initialization of values is provided for an array, C++ allows the possibility of leaving the square brackets empty &lt;code&gt;[]&lt;/code&gt;. In this case, the compiler will assume automatically a size for the array that matches the number of values included between the braces &lt;code&gt;{}&lt;/code&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12071&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+To access array values one uses the bracket notation:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12071&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; 16&lt;/span&gt;
+&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; 12071&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Char arrays are somewhat a special case. There are multiple equivalent ways to define char arrays:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="sc"&gt;'H'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'\0'&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 6 because of delimiting 0&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Functions to work with such strings in C++ are provided via the header file &lt;code&gt;&amp;lt;cstring&amp;gt;&lt;/code&gt;
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;find out length via &lt;code&gt;int strlen(char *s)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;comparison via &lt;code&gt;int strcmp(char *s1, char *s2)&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;returns 0 for "equal" strings (equal string content)&lt;/li&gt;
+&lt;li&gt;returns &amp;lt; 0 when &lt;code&gt;s1&lt;/code&gt; is &amp;lt; than &lt;code&gt;s2&lt;/code&gt; eg s1 holds "a" which in ascii is smaller than "b" so &lt;code&gt;strcmp&lt;/code&gt; would return &lt;code&gt;-1&lt;/code&gt; because that is the difference&lt;/li&gt;
+&lt;li&gt;returns &amp;gt; 0 when &lt;code&gt;s1&lt;/code&gt; is &amp;gt; than &lt;code&gt;s2&lt;/code&gt; eg &lt;code&gt;s1&lt;/code&gt; holds "c" and &lt;code&gt;s2&lt;/code&gt; holds "a" then &lt;code&gt;strcmp&lt;/code&gt; returns &lt;code&gt;2&lt;/code&gt; because that is the ascii distance&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;copy strings with &lt;code&gt;char * strcpy(char *destination, char *source)&lt;/code&gt; and &lt;code&gt;char * strcat(char *destination, char *source)&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;strcpy()&lt;/code&gt; copies a string from source to destination. The function takes two string variables as arguments: the destination, and the source, then returns the updated destination variable.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strcat()&lt;/code&gt; concatenates two strings. It appends a copy of the source string to the end of the destination string, and then returns the destination string.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgdfb20a9" class="outline-2"&gt;
+&lt;h2 id="orgdfb20a9"&gt;Struct&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdfb20a9"&gt;
+&lt;p&gt;
+A struct is a type consisting of a sequence of members whose storage is allocated in an ordered sequence (as opposed to union, which is a type consisting of a sequence of members whose storage overlaps). There are many instances in programming where we need more than one variable in order to represent an object. For example, to represent yourself, you might want to store your name, your birthday, your height, your weight, or any other number of characteristics about yourself.
+&lt;/p&gt;
+
+&lt;p&gt;
+Fortunately, C++ allows us to create our own user-defined aggregate data types. An &lt;i&gt;aggregate data type&lt;/i&gt; is a data type that groups multiple individual variables together. One of the simplest aggregate data types is the struct. A &lt;b&gt;struct&lt;/b&gt; (short for structure) allows us to group variables of mixed data types together into a single unit.
+&lt;/p&gt;
+
+&lt;p&gt;
+Because structs are user-defined, we first have to tell the compiler what our struct looks like before we can begin using it. To do this, we declare our struct using the &lt;code&gt;struct&lt;/code&gt; keyword. Here is an example of a struct declaration:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Employee&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;wage&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+This tells the compiler that we are defining a struct named Employee. The Employee struct contains 3 variables inside of it: a short named &lt;code&gt;id&lt;/code&gt;, an int named &lt;code&gt;age&lt;/code&gt;, and a double named &lt;code&gt;wage&lt;/code&gt;. These variables that are part of the struct are called members (or fields). Keep in mind that Employee is just a declaration – even though we are telling the compiler that the struct will have member variables, no memory is allocated at this time. By convention, struct names start with a capital letter to distinguish them from variable names.
+&lt;/p&gt;
+
+&lt;p&gt;
+In order to use the Employee struct, we simply declare a variable of type Employee &lt;code&gt;Employee john;&lt;/code&gt; . This defines a variable of type &lt;code&gt;Employee&lt;/code&gt; named &lt;code&gt;john&lt;/code&gt;. As with normal variables, defining a struct variable allocates memory for that variable.
+&lt;/p&gt;
+
+&lt;p&gt;
+When we define a variable such as &lt;code&gt;Employee john&lt;/code&gt;, &lt;code&gt;john&lt;/code&gt; refers to the entire struct (which contains the member variables). In order to access the individual members, we use the member selection operator &lt;code&gt;.&lt;/code&gt; (which is a period). Here is an example of using the member selection operator to initialize each member variable:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Employee&lt;/span&gt; &lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// create an Employee struct for John&lt;/span&gt;
+&lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// assign a value to member id within struct john&lt;/span&gt;
+&lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// assign a value to member age within struct john&lt;/span&gt;
+&lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;24.15&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// assign a value to member wage within struct john&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+As with normal variables, struct member variables are not initialized, and will typically contain junk. We must initialize them manually.
+&lt;/p&gt;
+
+&lt;p&gt;
+Initializing structs by assigning values member by member is a little cumbersome, so C++ supports a faster way to initialize structs using an initializer list. This allows you to initialize some or all the members of a struct at declaration time.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Employee&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;wage&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="n"&gt;Employee&lt;/span&gt; &lt;span class="n"&gt;john&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;60000.0&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// john.id = 1, john.age = 32, john.wage = 60000.0&lt;/span&gt;
+&lt;span class="n"&gt;Employee&lt;/span&gt; &lt;span class="n"&gt;frank&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;28&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// frank.id = 2, frank.age = 28, frank.wage = 0.0 (default initialization)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+If the initializer list does not contain an initializer for some elements, those elements are initialized to a default value (that generally corresponds to the zero state for that type). In the above example, we see that frank.wage gets default initialized to 0.0 because we did not specify an explicit initialization value for it.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org2c2e2b2" class="outline-2"&gt;
+&lt;h2 id="org2c2e2b2"&gt;Comparison&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2c2e2b2"&gt;
+&lt;p&gt;
+There are the following comparison operators which yield a boolean value ( &lt;code&gt;0&lt;/code&gt; for false and &lt;code&gt;≠0&lt;/code&gt; for true usually 1): &lt;code&gt;==&lt;/code&gt;, &lt;code&gt;!=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgbc06939" class="outline-2"&gt;
+&lt;h2 id="orgbc06939"&gt;Assignment Shortcuts&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbc06939"&gt;
+&lt;p&gt;
+&lt;code&gt;a = a+5&lt;/code&gt; can be written more concise as &lt;code&gt;a+=5&lt;/code&gt; this is possible with all operators (*, /, %, +, -). Yes this is also possible with &lt;code&gt;%&lt;/code&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; a = a % b;&lt;/span&gt;
+
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Which yields &lt;code&gt;1&lt;/code&gt; for &lt;code&gt;a&lt;/code&gt;. But this is rather hard to read!
+&lt;/p&gt;
+
+&lt;p&gt;
+To increment/decrement by one it is even possible to write &lt;code&gt;a++&lt;/code&gt; and &lt;code&gt;a--&lt;/code&gt; , as well as &lt;code&gt;++a&lt;/code&gt; and &lt;code&gt;--a&lt;/code&gt;. The difference between &lt;code&gt;--&lt;/code&gt; and &lt;code&gt;++&lt;/code&gt; as a pre- or postfix operaror is that as a prefix operator (eg &lt;code&gt;--a&lt;/code&gt;) &lt;code&gt;a&lt;/code&gt; is first decremented and then evaluated and in case of a postfix operator (&lt;code&gt;a++&lt;/code&gt;) &lt;code&gt;a&lt;/code&gt; is first evaluated and then incremented. So in regards to the continued use &lt;code&gt;a++&lt;/code&gt; is incremented after the usage and &lt;code&gt;++a&lt;/code&gt; would be incremented before the usage so &lt;code&gt;a&lt;/code&gt; is already up by one when it is then used.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org48e22fb" class="outline-2"&gt;
+&lt;h2 id="org48e22fb"&gt;Flow Control&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org48e22fb"&gt;
+&lt;p&gt;
+Flow in C++ can be controlled via &lt;code&gt;if (cond) { ... } else if (cond) { ... } else { ... }&lt;/code&gt; statements. Take a look at the following example to solve quadratic equations:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;cmath&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Solve Quadratic Equations &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Enter coefficient a, b, c: "&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Not a quadratic equation &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"no real resolution &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="k"&gt;else&lt;/span&gt;
+	&lt;span class="p"&gt;{&lt;/span&gt;
+	  &lt;span class="n"&gt;x1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	  &lt;span class="n"&gt;x2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"x1 = "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"x2 = "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+	&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The flow can also be controlled with a &lt;code&gt;switch-case&lt;/code&gt; statement. For example to "build a simple calculator":
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'+'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;// notice the single quotes '' because it is a char&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'-'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'/'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'*'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'%'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"*** Error ***"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Notice that without the &lt;code&gt;break;&lt;/code&gt; at each case the other cases would be checked and might be executed as well! Also the case values (eg &lt;code&gt;+&lt;/code&gt;) have to be unique and constant! Constant in that sense that there are no computations allowed (eg function calls).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org9aed735" class="outline-2"&gt;
+&lt;h2 id="org9aed735"&gt;Repetition&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9aed735"&gt;
+&lt;p&gt;
+There may be a situation, when you need to execute a block of code several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.
+&lt;/p&gt;
+
+&lt;p&gt;
+Programming languages provide various control structures that allow for more complicated execution paths.
+&lt;/p&gt;
+
+&lt;p&gt;
+A loop statement allows us to execute a statement or group of statements multiple times. C== provides the following types of loops:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;while loop&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;repeats a statement or group of statements while a given condition is true&lt;/li&gt;
+&lt;li&gt;it tests the condition before executing the loop body&lt;/li&gt;
+&lt;li&gt;eg &lt;code&gt;while (count &amp;lt; 100) { ... count++; ... }&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;do..while loop&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;like a ‘while’ statement, except that it tests the condition at the end of the loop body → therefore the "do..while" loop is executed at least one time&lt;/li&gt;
+&lt;li&gt;eg &lt;code&gt;do { ... count++; ... } while ( count &amp;lt; 100);&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;for loop&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;execute a sequence of statements multiple times and abbreviates the code that manages the loop variable&lt;/li&gt;
+&lt;li&gt;eg &lt;code&gt;for (int x = 0; x &amp;lt; 10; x++) { ... }&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+It is also possible to nest loops inside any other loop. 
+&lt;/p&gt;
+
+&lt;p&gt;
+An infinite loop like 
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"This loop will run forever.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+wont stop running by itself because an absent conditional expression is considered to be true. To interrupt the loop for example from the terminal press &lt;code&gt;Ctrl-C&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Use for loop when number of iterations is known beforehand, i.e. the number of times the loop body is needed to be executed is known.
+&lt;/p&gt;
+
+&lt;p&gt;
+Use while loops where exact number of iterations is not known but the loop termination condition is known.
+&lt;/p&gt;
+
+&lt;p&gt;
+Use do while loop if the code needs to be executed at least once like in Menu driven programs.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org7adc5cb" class="outline-2"&gt;
+&lt;h2 id="org7adc5cb"&gt;Characteristics of a language&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7adc5cb"&gt;
+&lt;p&gt;
+Languages consist of three main characteristics:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;Lexis (specification on formation of words)&lt;/li&gt;
+&lt;li&gt;Syntax (specification on formation of sentences)&lt;/li&gt;
+&lt;li&gt;Semantic (meaning)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga85113b" class="outline-3"&gt;
+&lt;h3 id="orga85113b"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga85113b"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;predefined identifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;identifiers: &lt;code&gt;temp1&lt;/code&gt;, &lt;code&gt;diff&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;have to start with a letter (&lt;code&gt;_&lt;/code&gt; is allowed aswell)&lt;/li&gt;
+&lt;li&gt;can then contain arbitrary amount of characters/numbers&lt;/li&gt;
+&lt;li&gt;are case sensitive&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;special symbols:  ; , : . + − ∗ / % &amp;gt; &amp;lt; = ! ˜ ˆ &amp;amp; | [ ] { } ( )&lt;/li&gt;
+&lt;li&gt;separators: whitespace, tabulator, newline&lt;/li&gt;
+&lt;li&gt;numeric values:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;decimal: &lt;code&gt;255&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;octal: &lt;code&gt;377&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;hexadecimal: &lt;code&gt;0xff&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;floats: &lt;code&gt;1.5&lt;/code&gt; or &lt;code&gt;3.1e-15&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;characters: &lt;code&gt;'a'&lt;/code&gt;, &lt;code&gt;'#'&lt;/code&gt;, &lt;code&gt;'\n'&lt;/code&gt; (in single quotes!)&lt;/li&gt;
+&lt;li&gt;strings: &lt;code&gt;"Test 1 \n"&lt;/code&gt; (in double quotes!)&lt;/li&gt;
+&lt;li&gt;comments: 
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;//&lt;/code&gt; until end of line&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/* ... */&lt;/code&gt; multiple lines&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgb57f58a" class="outline-3"&gt;
+&lt;h3 id="orgb57f58a"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb57f58a"&gt;
+&lt;p&gt;
+A method to present syntax is to use syntax diagrams. They represent a graphical alternative to e.g Backus–Naur form to represent formal or context-free grammar.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org859f90b" class="outline-4"&gt;
+&lt;h4 id="org859f90b"&gt;Elements of syntax diagrams&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org859f90b"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;▭ a rectangle with sharp corners represents an abstract entity&lt;/li&gt;
+&lt;li&gt;▢ a ellipse (rectangle with rounded corners) represents a concrete term of the language, therefore an element of the lexis&lt;/li&gt;
+&lt;li&gt;⟶  an arrow indicates the flow direction (to build "sentences")&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Example of an include directive represented as a syntax graph:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/include-directive-graph.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org24f7b3e" class="outline-2"&gt;
+&lt;h2 id="org24f7b3e"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org24f7b3e"&gt;
+&lt;p&gt;
+C++ has the data type &lt;code&gt;bool&lt;/code&gt; which can either be &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. In integers a &lt;code&gt;0&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; and everything &lt;code&gt;≠0&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;a &amp;amp;&amp;amp; b&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;a ‖ b&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+There is also the &lt;code&gt;!&lt;/code&gt; not operator to negate boolean values.
+&lt;/p&gt;
+
+&lt;p&gt;
+Using these boolean operators in C++, yields values of type &lt;code&gt;bool&lt;/code&gt; (→ &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;)
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org035c414" class="outline-3"&gt;
+&lt;h3 id="org035c414"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org035c414"&gt;
+&lt;p&gt;
+In digital computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations. 
+&lt;/p&gt;
+
+&lt;p&gt;
+These are the bitwise operators in C++ &lt;code&gt;|&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;, &lt;code&gt;~&lt;/code&gt; and &lt;code&gt;^&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+What is really important to understand is, that bitwise operators operate on the single bits (in comparison to boolean operators who operate on the whole value and yield true or false and are not bitwise operators!).
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb9ff8ff" class="outline-4"&gt;
+&lt;h4 id="orgb9ff8ff"&gt;Bitwise NOT&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb9ff8ff"&gt;
+&lt;p&gt;
+The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones' complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~0111
+= 1000
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Comparing bitwise NOT to boolean NOT (the last letter indicates the number system e.g &lt;code&gt;d&lt;/code&gt; = decimal, &lt;code&gt;b&lt;/code&gt; = binary):
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boolean NOT: !1_d = 0_d; !5_d = 0_d
+bitwise NOT: ~1_d = 0_d; ~5_d = ~0101_b = 1010_b = 10_d 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org160731e" class="outline-4"&gt;
+&lt;h4 id="org160731e"&gt;Bitwise OR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org160731e"&gt;
+&lt;p&gt;
+A bitwise OR takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0101 | 0011
+= 0111
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The bitwise OR shall not be confused with the boolean OR that treats its operands as boolean values and returns such.
+The bitwise OR can be used to manage flags if a program has to handle a lot of booleans and the memory is really limited. Each bit of a binary number could itself represent a boolean value (eg &lt;code&gt;0&lt;/code&gt; = false, &lt;code&gt;1&lt;/code&gt; true).
+&lt;/p&gt;
+
+&lt;p&gt;
+For example &lt;code&gt;0010&lt;/code&gt; may be seen as a list of flags where the first, second and fourth flag is not set (&lt;code&gt;0&lt;/code&gt;), while the third flag is set (&lt;code&gt;1&lt;/code&gt;). To set the first flag, this bit string can be combined with another bitstring that has a &lt;code&gt;1&lt;/code&gt; in the first place:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="mo"&gt;0010&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;
+&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc871cb7" class="outline-4"&gt;
+&lt;h4 id="orgc871cb7"&gt;Bitwise AND&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc871cb7"&gt;
+&lt;p&gt;
+A bitwise AND takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The operation may be used to determine whether a particular bit is &lt;i&gt;set&lt;/i&gt; (1) or &lt;i&gt;clear&lt;/i&gt; (0). For example, given a bit pattern &lt;code&gt;0011&lt;/code&gt; (decimal 3), to determine whether the second bit is set we use a bitwise AND with a bit pattern containing 1 only in the second bit:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Because the result &lt;code&gt;0010&lt;/code&gt; is non-zero, we know the second bit in the original pattern was set. This is often called bit masking. (By analogy, the use of masking tape covers, or masks, portions that should not be altered or portions that are not of interest. In this case, the 0 values mask the bits that are not of interest.)
+&lt;/p&gt;
+
+&lt;p&gt;
+The bitwise AND may be used to clear selected bits (or flags) of a register in which each bit represents an individual Boolean state. This technique is an efficient way to store a number of Boolean values using as little memory as possible.
+&lt;/p&gt;
+
+&lt;p&gt;
+For example, &lt;code&gt;0110&lt;/code&gt; (decimal 6) can be considered a set of four flags, where the first and fourth flags are clear (0), and the second and third flags are set (1). The second bit may be cleared by using a bitwise AND with the pattern that has a zero only in the second bit:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mi"&gt;1011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a binary number, by checking the value of the lowest valued bit (&lt;code&gt;1_d&lt;/code&gt;) which would be &lt;code&gt;1_b&lt;/code&gt; if the number is odd:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt;
+
+    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;odd&lt;/span&gt;
+
+    &lt;span class="mo"&gt;0100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2c4b277" class="outline-4"&gt;
+&lt;h4 id="org2c4b277"&gt;Bitwise XOR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2c4b277"&gt;
+&lt;p&gt;
+In addition to &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;and&lt;/code&gt; there is also &lt;code&gt;xor&lt;/code&gt; (exclusive or → only one value true):
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;a XOR b&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;true&lt;/td&gt;
+&lt;td class="org-left"&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+The bitwise &lt;code&gt;XOR&lt;/code&gt; operator in C++ is &lt;code&gt;^&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+A bitwise XOR takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only the first bit is 1 or only the second bit is 1, but will be 0 if both are 0 or both are 1. In this we perform the comparison of two bits, being 1 if the two bits are different, and 0 if they are the same. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;XOR&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The bitwise XOR may be used to invert selected bits in a register (also called toggle or flip). Any bit may be toggled by XORing it with 1. For example, given the bit pattern &lt;code&gt;0010&lt;/code&gt; (decimal 2) the second and fourth bits may be toggled by a bitwise XOR with a bit pattern containing 1 in the second and fourth positions:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;XOR&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+This technique may be used to manipulate bit patterns representing sets of Boolean states.
+&lt;/p&gt;
+
+&lt;p&gt;
+Assembly language programmers and optimizing compilers sometimes use XOR as a short-cut to setting the value of a register to zero. Performing XOR on a value against itself always yields zero, and on many architectures this operation requires fewer clock cycles and memory than loading a zero value and saving it to the register (german: Wendet man XOR auf zwei identische Operanden an, so erhält man immer 0. In vielen Architekturen benötigt diese Operation weniger Rechenzeit, als man für das Laden einer 0 und das Speichern im Register benötigt).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge6b8083" class="outline-3"&gt;
+&lt;h3 id="orge6b8083"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge6b8083"&gt;
+&lt;p&gt;
+The bit shifts are sometimes considered bitwise operations, because they treat a value as a series of bits rather than as a numerical quantity. In these operations the digits are moved, or shifted, to the left or right. Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end.
+&lt;/p&gt;
+
+&lt;p&gt;
+The operator &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; shifts to the left by the following value and &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; shifts to the right by the following value. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+So &lt;code&gt;6 &amp;lt;&amp;lt; 1 = 12&lt;/code&gt; because the underlying bits are moved/shifted by 1 place to the left. Shifting left is equivalent to multiplication by powers of 2. So &lt;code&gt;6 &amp;lt;&amp;lt; 1&lt;/code&gt; is equivalent to &lt;code&gt;6 * 2&lt;/code&gt;, and &lt;code&gt;6 &amp;lt;&amp;lt; 3&lt;/code&gt; is equivalent to &lt;code&gt;6 * 2^3 = 6 * 8&lt;/code&gt;. A good optimizing compiler will replace multiplications with shifts when possible.
+&lt;/p&gt;
+
+&lt;p&gt;
+A logical right shift is the converse to the left shift. Rather than moving bits to the left, they simply move to the right. For example, shifting the number 12:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;1100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+That will get us back our original 6. So we see that shifting to the right is equivalent to division by powers of 2.
+&lt;/p&gt;
+
+&lt;p&gt;
+Another example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="mi"&gt;1110&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="mi"&gt;1111&lt;/span&gt; &lt;span class="mo"&gt;0100&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0111&lt;/span&gt; &lt;span class="mi"&gt;1101&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;125&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+There is also a difference between logical, arithmetic and circular shifting that you may want to look up. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Also note that the "&lt;a id="org45db69a"&gt;&lt;/a&gt;" as a stream operator takes precedence over bit shifting so the following code:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Would yield &lt;code&gt;51&lt;/code&gt;. To have it bitshifted one has to add parentheses:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Which would yield &lt;code&gt;10&lt;/code&gt; because b is leftshifted by a (&lt;code&gt;n&lt;/code&gt;) which is equal to a multiplication with 2&lt;sup&gt;n&lt;/sup&gt; and this case &lt;code&gt;a&lt;/code&gt; is &lt;code&gt;1&lt;/code&gt; so &lt;code&gt;b&lt;/code&gt; is multiplcated by 2 which gives 10.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+There wasn't much new stuff in this lecture because a wrong announcement was made leading to students missing the first week's lecture. Therefore we did mostly repetitions that I'll skip now and summarize the additional slides.
+&lt;/p&gt;
+
+&lt;div id="outline-container-orgafa3fb7" class="outline-2"&gt;
+&lt;h2 id="orgafa3fb7"&gt;Data types in C++&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgafa3fb7"&gt;
+&lt;p&gt;
+The data type constitutes three things:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;memory mapping&lt;/li&gt;
+&lt;li&gt;codomain/target set (Wertevorrat)&lt;/li&gt;
+&lt;li&gt;valid operations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Standard data types:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int&lt;/code&gt; = whole integers, usually 4 byte&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;float&lt;/code&gt; = real numbers, usually 4-8 byte&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;char&lt;/code&gt; = character (in single quotes!), usually 1 byte&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bool&lt;/code&gt; logical/boolean values (true and false)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org3d74770" class="outline-3"&gt;
+&lt;h3 id="org3d74770"&gt;Type conversion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3d74770"&gt;
+&lt;p&gt;
+Type conversion is done by calling the type on the object:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;one&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-02/</guid><pubDate>Thu, 18 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 01</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgf824c94" class="outline-2"&gt;
+&lt;h2 id="orgf824c94"&gt;Organization&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf824c94"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Course Page: &lt;a href="https://www.tu-chemnitz.de/informatik/friz/Grundl-Inf/"&gt;tu-chemnitz.de/fritz/course&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Script: &lt;a href="https://www.tu-chemnitz.de/informatik/friz/Grundl-Inf/Scriptum-Druck/"&gt;tu-chemnitz.de/fritz/script&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lecture: Friday 07:30AM - 09:00AM&lt;/li&gt;
+&lt;li&gt;Excercise/Field work: Friday 09:30AM-10:00AM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1c4d86e" class="outline-2"&gt;
+&lt;h2 id="org1c4d86e"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1c4d86e"&gt;
+&lt;p&gt;
+An algorithm is an ordered sequence of instructions, that can deliver a certain result with a finite amount of steps.
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;i&gt;binary system&lt;/i&gt; is a numeral system that represents numbers with 0 and 1. It therefore is base-2 while our common day to day decimal numeral system is base-10, consisting of the 10 digits: 0,1,2,3,4,5,6,8,9. A computer uses the binary numeral system because distinguishing for example between 10 digits is not practical. With the binary system it is much easier because there are just 2 options. This goes back to a circuit either having voltage or not.
+&lt;/p&gt;
+
+&lt;p&gt;
+There are several methods to convert base-10 to base-2 and vica versa, so I'll just show two here.
+&lt;/p&gt;
+
+&lt;p&gt;
+Method 1: Binary digit (0 or 1) times 2&lt;sup&gt;n&lt;/sup&gt; where n = place (zero-indexed):
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;1001 = 1 * 2&lt;sup&gt;3&lt;/sup&gt; + 0 * 2&lt;sup&gt;2&lt;/sup&gt; + 0 * 2&lt;sup&gt;1&lt;/sup&gt; + 1 * 2&lt;sup&gt;0&lt;/sup&gt; = 9&lt;/li&gt;
+&lt;li&gt;111 = 1 * 2&lt;sup&gt;2&lt;/sup&gt; + 1 * 2&lt;sup&gt;1&lt;/sup&gt; + 1 * 2&lt;sup&gt;0&lt;/sup&gt; = 7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Method 2: Divide the number by 2 (split it in half) and ignore the remainder, write down the results from right to left and then write an 1 below each odd number and a 0 below each even number:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Example with 9:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-right"&gt;4&lt;/td&gt;
+&lt;td class="org-right"&gt;&lt;b&gt;9&lt;/b&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Example with 43:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-right"&gt;10&lt;/td&gt;
+&lt;td class="org-right"&gt;21&lt;/td&gt;
+&lt;td class="org-right"&gt;&lt;b&gt;43&lt;/b&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+&lt;p&gt;
+Amongst other common numeral systems are the hexadecimal(16) system (0-9, A-F) and the octal(8) system (0-7).
+&lt;/p&gt;
+
+&lt;p&gt;
+The basic rule to convert into a number system is: value * base&lt;sup&gt;place&lt;/sup&gt; for each cyper/digit.
+&lt;/p&gt;
+
+&lt;p&gt;
+As C++ is the main programming language in this course a short intro follows:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;temp1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;temp2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;temp1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// console input&lt;/span&gt;
+  &lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;temp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;temp1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;temp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// console output&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+&lt;code&gt;cout&lt;/code&gt; (object of type &lt;code&gt;ostream&lt;/code&gt;) and &lt;code&gt;cin&lt;/code&gt; (object of type &lt;code&gt;istream&lt;/code&gt;) overload the bitshift operators &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;. &lt;code&gt;istream&lt;/code&gt; and &lt;code&gt;ostream&lt;/code&gt; are, amongst other things, pooled in &lt;code&gt;iostream&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgaf70939" class="outline-2"&gt;
+&lt;h2 id="orgaf70939"&gt;Training excercises&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaf70939"&gt;
+&lt;p&gt;
+1.) What is a numeral system and which exist? Which one is used in computers?
+&lt;/p&gt;
+
+&lt;p&gt;
+→ From wikipedia: A numeral system (or system of numeration) is a writing system for expressing numbers; that is, a mathematical notation for representing numbers of a given set, using digits or other symbols in a consistent manner. The same sequence of symbols may represent different numbers in different numeral systems. For example, "11" represents the number three in the binary numeral system (used in computers) and the number eleven in the decimal numeral system (used in common life) 
+&lt;/p&gt;
+
+&lt;p&gt;
+2.) Convert the following numbers to decimal: 1011, 101010, 1FF, A7
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;1011 =  1 * 2&lt;sup&gt;3&lt;/sup&gt; + 0 * 2&lt;sup&gt;2&lt;/sup&gt; + 1 * 2&lt;sup&gt;1&lt;/sup&gt; + 1 * 2&lt;sup&gt;0&lt;/sup&gt; = 8 + 0 + 2 + 1 = 11&lt;/li&gt;
+&lt;li&gt;101010 = 1 * 2&lt;sup&gt;5&lt;/sup&gt; + 0 * 2&lt;sup&gt;4&lt;/sup&gt; + 1 * 2&lt;sup&gt;3&lt;/sup&gt; + 0 * 2&lt;sup&gt;2&lt;/sup&gt; + 1 * 2&lt;sup&gt;1&lt;/sup&gt; + 0 * 2&lt;sup&gt;0&lt;/sup&gt; = 32 + 8 + 2 = 42&lt;/li&gt;
+&lt;li&gt;1FF = 1 * 15 + 16 * 15 + 256 * 1 = 511&lt;/li&gt;
+&lt;li&gt;A7 = 1 * 7 + 16 * 10 = 167&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+3.) Convert the following numbers to binary: 42, 324, BC5, 7D
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;42 = 1 2 5 10 21 42 = 101010&lt;/li&gt;
+&lt;li&gt;324 = 1 2 5 10 20 40 81 162 324 = 101000100&lt;/li&gt;
+&lt;li&gt;BC5 = B = 1011; C = 1100; 5 = 0101 → = 101111000101&lt;/li&gt;
+&lt;li&gt;7D = 7 = 111; D = 1101 → 1111101&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+4.) Convert the following numbers to hexadecimal: 100011, 11011, 255, 256
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;10011 = 0001 = 1; 0011 = 3 = 13&lt;/li&gt;
+&lt;li&gt;11011 = 0001 = 1; 1011 = 11(=B) = 1B&lt;/li&gt;
+&lt;li&gt;255 = FF&lt;/li&gt;
+&lt;li&gt;256 = 100&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+5.) Add the following binary numbers: 11101 + 1110 and 101001 + 11001
+&lt;/p&gt;
+
+&lt;p&gt;
+Align the numbers horizontically and add them together in binary, when adding e.g 1+1 = 2 convert the 2 to binary → 10 and write down the 0 and take the 1 with you to the next column:
+&lt;/p&gt;
+
+&lt;p&gt;
+a.)  
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt;+&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;=&lt;/td&gt;
+&lt;td class="org-left"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+b.)
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt;+&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;=&lt;/td&gt;
+&lt;td class="org-left"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-right"&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+6.) Which range of natural numbers can be represented with 8 bits? What happens if you 1 to the maximum representable number without increasing the available bits?
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;natural numbers = integers &amp;gt;= 0 → N = {0, 1, 2, 3, …}&lt;/li&gt;
+&lt;li&gt;8 bits (usually = 1 byte) may represent natural numbers from 0 to 255 (1's in all 8 bit places = 1+2+4+8+16+32+64+128=255)&lt;/li&gt;
+&lt;li&gt;increasing the number by 1 to 256 without increasing the bits would lead to the following representation: 00000000&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+7.) What would be an option to represent negative numbers (reffering to excercise 6)?
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;The largest bit could represent the sign (e.g 0 = positive and 1 = negative) → signed magnitude representation. Then numbers from -127 to +127 could be represented with 8 bits (1 2 4 8 16 32 64 sign)&lt;/li&gt;
+&lt;li&gt;Another and most common method is to build the two's complement meaning build the one's complement and add 1 to the result. To build the one's complement you invert all bits (0 to 1 and 1 to 0), C has the bitwise ~ NOT operator for this action. E.g you have: 01001 which is 9 then you invert it to 10110 and add 1 = 10111.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Alternatively (in my opinion less error prone) you could go from right to left and invert every bit AFTER the first 1. Lets say you represent 2 with 5 bits:
+00010 → 11110
+&lt;/p&gt;
+
+&lt;p&gt;
+Or for 9: ~01001 = 10111
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</guid><pubDate>Fri, 12 Oct 2018 08:35:48 GMT</pubDate></item></channel></rss>
