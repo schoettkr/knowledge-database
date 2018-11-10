@@ -155,3 +155,6 @@ Employee frank = { 2, 28 }; // frank.id = 2, frank.age = 28, frank.wage = 0.0 (d
 #+END_SRC
 If the initializer list does not contain an initializer for some elements, those elements are initialized to a default value (that generally corresponds to the zero state for that type). In the above example, we see that frank.wage gets default initialized to 0.0 because we did not specify an explicit initialization value for it.
 
+------
+Source(s): https://www.learncpp.com/cpp-tutorial/47-structs/
+

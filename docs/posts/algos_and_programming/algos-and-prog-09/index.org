@@ -351,3 +351,237 @@ Dont forget it is possible to have more complex conditions and multiple assignme
 : 5, 4
 
 ** =break= and =continue=
+Loops run as long as the loop condition evaluates to true. There are however two ways to modify the control flow from /inside the function body/:
+- =break= stops execution of the loop regardless of the loop condition
+- =continue= immediately starts the next evaluation of first the loop condition and possibly the next loop iteration
+  
+=break= and =continue= should be used sparsely - an excessive use might be an indicator for insufficient program logic.
+
+#+BEGIN_SRC cpp :results print output :exports both
+  /* reciprocal .c -- calculate reciprocal value of array elements */
+  #include <stdio.h>
+
+  /* a negative value indicates end of list */
+  double f[]= {1.0 , .5 , 3.1415 , .33333 , 0.0 , 2.7182 , 42.23 , -1};
+
+  int main ()
+  {
+    int i ;
+    for (i = 0; ; i++) {
+      if (f[i] < 0.0) break ;
+      if (f[i] <= 0.0001) continue ;
+      f[i]= 1/f[i];
+    }
+
+    for (i = 0; f[i] >= 0.0; i++) // notice the condition!
+      printf ("%d value : %f\n", i, f[i]);
+
+    return 0;
+  }
+#+END_SRC
+
+#+RESULTS:
+: 0 value : 1.000000
+: 1 value : 2.000000
+: 2 value : 0.318319
+: 3 value : 3.000030
+: 4 value : 0.000000
+: 5 value : 0.367891
+: 6 value : 0.023680
+* Loops in Python
+There are two types of loops in Python =for= and =while=.
+The =while= loops are similar to their pendants in C:
+#+BEGIN_SRC python :results output print :exports both
+  i = 5;
+  while (i > 0):
+      print("i =", i)
+      i = i -1
+#+END_SRC
+
+#+RESULTS:
+: i = 5
+: i = 4
+: i = 3
+: i = 2
+: i = 1
+
+=break= and =continue= are also available in Python with the same semantic as in C.
+
+In addition to what we know from C in Python there can be an optional =else= branch after a loop which is executed *after the loop finished* if it was *not canceled*:
+#+BEGIN_SRC python :results output print :exports both
+  i = 0;
+
+  while (i < 3):
+      print(i)
+      i += 1;
+  else:
+      print("1. Loop finished execution")
+
+  print("------------")
+  i = 0;
+  while (True):
+      print(i)
+      i += 1;
+      if (i == 3):
+          break
+  else:
+      print("2. Loop finished execution") # not executed because loop doesnt finish naturally but is canceled
+#+END_SRC
+
+#+RESULTS:
+: 0
+: 1
+: 2
+: 1. Loop finished execution
+: ------------
+: 0
+: 1
+: 2
+
+=else= can also be used with the for loop in Python!
+
+The =for= loop in Python iterates over a given /sequence/ or /set/ (an iterable type!):
+#+BEGIN_SRC python
+for i in ITERABLE:
+    do_something(i)
+#+END_SRC
+In the example above the elements of =ITERABLE= are assigned to =i= one by one per iteration.
+
+#+BEGIN_SRC python :results output print :exports both
+  for x in ['John','Paul','George','Pete']:
+   print (x)
+#+END_SRC
+
+#+RESULTS:
+: John
+: Paul
+: George
+: Pete
+
+This also works for mixed types:
+#+BEGIN_SRC python :results output print :exports both
+  T = ('Alpha', 48, 0.2, (1, 2, 3))
+  for x in T:
+      print(2 * x)
+#+END_SRC
+
+#+RESULTS:
+: AlphaAlpha
+: 96
+: 0.4
+: (1, 2, 3, 1, 2, 3)
+
+To "mimic" the C for loop we can iterate over a /sequence/ of numbers using the =range= function:
+#+BEGIN_SRC python :results output print :exports both
+  # range([start,] stop [, step]) # generate from 'start' up to and NOT INCLUDING 'stop' and increment by 'step'
+
+  for i in range(0, 6, 2):
+      print(i)
+
+  print("------------")
+  
+  for i in range(3):
+      print(i)
+#+END_SRC
+
+#+RESULTS:
+: 0
+: 2
+: 4
+: ------------
+: 0
+: 1
+: 2
+* Iterators and Loop Functions in C
+Code sample of an iterator with C:
+#+BEGIN_SRC C :results output print :exports both
+  #include <stdio.h>
+
+  char *names[] = {"John", "Paul", "George", "Ringo", NULL};
+
+  static int index = 0;
+
+  char* first() {
+    return names[index = 0]; // so the iterator can be used multiple times -> first ALWAYS returns first element
+  }
+
+  char* next() {
+    if (names[index] == NULL) index = 0; // set index to 0 when arrived at last element delmiited via NULL
+    else index++;
+
+    return names[index];
+  }
+
+  int main() {
+    for (char* str = first(); str != NULL; str = next()) {
+      printf("%s ", str);
+    }
+
+    return 0;
+  }
+#+END_SRC
+
+#+RESULTS:
+: John Paul George Ringo
+
+Iterators like those above are more common in C++ where they are more elegant (also in C there are prettier ways to do this).
+
+Until now we used loops with assignments (state model). It is also possible to have loops in the functional model where they are realized via recursion:
+#+BEGIN_SRC C :results output print :exports both
+  #include <stdio.h>
+
+  void say_it(int i) {
+    if (i == 0) return;
+    printf("Ctuhlu!\n");
+    say_it(--i); // i-- would NOT work because i is evaluated -> 3 and passed to the function and THEN decremented -> endless loop
+  }
+
+  int main() {
+    say_it(3);
+    return 0;
+  }
+#+END_SRC
+
+#+RESULTS:
+: Ctuhlu!
+: Ctuhlu!
+: Ctuhlu!
+
+It is also possible to separate the loop body from the "loop mechanic" \rightarrow /generic loop function/. To do so we use a /pointer to functions/.
+#+BEGIN_SRC C :results output print :exports both
+  #include <stdio.h>
+
+  typedef void (*functionPointer) (int); // functions are passed by pointer (efficiency) need to be wrapped in () else it would be interpreted as "void*" return type (pointer to void) instead
+
+  void loop(functionPointer func, int start, int end, unsigned int step) {
+    if (start <= end) {
+      func(start);
+      loop(func, start+step, end, step);
+    } 
+  }
+
+  void loopBody(int i) {
+    printf("%d^2 = %d\n", i, i * i);
+  }
+
+  int main() {
+    loop(loopBody, 0, 5, 1);
+    return 0;
+  }
+
+#+END_SRC
+
+#+RESULTS:
+: 0^2 = 0
+: 1^2 = 1
+: 2^2 = 4
+: 3^2 = 9
+: 4^2 = 16
+: 5^2 = 25
+
+In Python such things are achievable more easily via [[https://www.programiz.com/python-programming/anonymous-function][lambda functions]].
+
+* Equivalence
+Generally every loop in a program can be translated into a recursive function and each (trivially) recursive function can be computed via loops. To be precise: /primitive-recursive functions/ can be computed with /a priori limited/ loops, for the so called /μ-recursive functions/ (/my/ "müh" xD as i like to call it). The ACKERMANN-Function for example is not trivially recursive.
+
+So for the most practical use cases loops and recursion are equipotent (gleichmächtig). However loops are usually more clearer (übersichtlicher), but there are also cases where recursion are the handier solution.

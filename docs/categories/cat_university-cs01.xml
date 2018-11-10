@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Fri, 09 Nov 2018 18:36:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 10 Nov 2018 12:58:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 A type alias is a different name by which a type can be identified. In C++, any valid type can be aliased so that it can be referred to with a different identifier.
 It is possible to do type definitions via the following syntax &lt;code&gt;typedef TYP typename;&lt;/code&gt;, eg &lt;code&gt;typedef unsigned short ushort;&lt;/code&gt;
 &lt;/p&gt;
 
-&lt;div id="outline-container-orgcd6eb0d" class="outline-2"&gt;
-&lt;h2 id="orgcd6eb0d"&gt;Enumerated Type&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcd6eb0d"&gt;
+&lt;div id="outline-container-org94ab293" class="outline-2"&gt;
+&lt;h2 id="org94ab293"&gt;Enumerated Type&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org94ab293"&gt;
 &lt;p&gt;
 Enumerated types are types that are defined with a set of custom identifiers, known as enumerators, as possible values. Objects of these enumerated types can take any of these enumerators as value.
 &lt;/p&gt;
@@ -62,9 +62,9 @@ Values of enumerated types declared with &lt;code&gt;enum&lt;/code&gt; are impli
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0f5f262" class="outline-2"&gt;
-&lt;h2 id="org0f5f262"&gt;Arrays&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0f5f262"&gt;
+&lt;div id="outline-container-orgb3b4ad8" class="outline-2"&gt;
+&lt;h2 id="orgb3b4ad8"&gt;Arrays&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb3b4ad8"&gt;
 &lt;p&gt;
 An array is a series of elements of the same type placed in contiguous memory locations that can be individually referenced by adding an index to a unique identifier.
 &lt;/p&gt;
@@ -153,9 +153,9 @@ Functions to work with such strings in C++ are provided via the header file &lt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgdfb20a9" class="outline-2"&gt;
-&lt;h2 id="orgdfb20a9"&gt;Struct&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdfb20a9"&gt;
+&lt;div id="outline-container-org283cc6e" class="outline-2"&gt;
+&lt;h2 id="org283cc6e"&gt;Struct&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org283cc6e"&gt;
 &lt;p&gt;
 A struct is a type consisting of a sequence of members whose storage is allocated in an ordered sequence (as opposed to union, which is a type consisting of a sequence of members whose storage overlaps). There are many instances in programming where we need more than one variable in order to represent an object. For example, to represent yourself, you might want to store your name, your birthday, your height, your weight, or any other number of characteristics about yourself.
 &lt;/p&gt;
@@ -209,6 +209,11 @@ Initializing structs by assigning values member by member is a little cumbersome
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 If the initializer list does not contain an initializer for some elements, those elements are initialized to a default value (that generally corresponds to the zero state for that type). In the above example, we see that frank.wage gets default initialized to 0.0 because we did not specify an explicit initialization value for it.
+&lt;/p&gt;
+
+&lt;hr&gt;
+&lt;p&gt;
+Source(s): &lt;a href="https://www.learncpp.com/cpp-tutorial/47-structs/"&gt;https://www.learncpp.com/cpp-tutorial/47-structs/&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org2c2e2b2" class="outline-2"&gt;
