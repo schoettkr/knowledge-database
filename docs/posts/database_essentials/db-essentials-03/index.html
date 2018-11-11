@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Database Essentials - Lecture 03 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Database Essentials - Lecture 03">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/">
+<meta property="og:description" content="As we have learned in the last lecture there are three distinct phases of database design:
+
+
+Conceptual Design (lecture 02)
+
+creation of a semantic data model that describes all important aspects from">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-10-24T00:00:00+02:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Database Essentials - Lecture 03
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-10-24T00:00:00+02:00">2018/10/24</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+As we have learned in the last lecture there are three distinct phases of database design:
+</p>
+<ol class="org-ol">
+<li>
+<b>Conceptual Design</b> (lecture 02)
+<ul class="org-ul">
+<li>creation of a semantic data model that describes all important aspects from the requirement analysis</li>
+<li>primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way</li>
+</ul>
+</li>
+<li>
+<b>Logical Design</b> (this lecture)
+<ul class="org-ul">
+<li>transforms the conceptual model into a concrete data model, which can be implemented in a database system</li>
+<li>the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware</li>
+</ul>
+</li>
+<li>
+<b>Physical Design</b> (Lecture 04)
+<ul class="org-ul">
+<li>describes the actual implementation of the logical data model</li>
+</ul>
+</li>
+</ol>
+<p>
+In this lecture we turn or focus onto the <b>logical design</b>
+</p>
+
+<div id="outline-container-org9225047" class="outline-2">
+<h2 id="org9225047">Logical Data Model</h2>
+<div class="outline-text-2" id="text-org9225047">
+<p>
+Which <i>data model</i> is appropiate for the <i>logical design process</i>? The <b>relational data model</b> because it has a simple structure, an elegant theoretical foundation (formal description) and is economically relevant (about ~80% of database systems are based on the relational paradigm despite development/creation of alternatives).
+</p>
+</div>
+
+<div id="outline-container-orgbbcc737" class="outline-3">
+<h3 id="orgbbcc737">Relational Model</h3>
+<div class="outline-text-3" id="text-orgbbcc737">
+<p>
+The relational model (RM) was introduced in a paper by E.F. Codd in 1970, which pertains as a milestone to this day. The most know prototype of this theoretical approach was created by IBM in 1975 (System R). The in the process developed query language SEQUEL was later standardized as SQL and is the most common query language for relational DBMS today.
+</p>
+
+<p>
+The first commercial systems were released at the end of the 70s for example Orcale (by Orcale Corporation) or DB2 (by IBM). Today there are hundreds of DBMS that are based on the relational data model.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ea1111" class="outline-3">
+<h3 id="org7ea1111">Relational Model - Terms and Definitions</h3>
+<div class="outline-text-3" id="text-org7ea1111">
+<p>
+The relational model is based on the mathematical concept of a (finitary?) relation, which can be represented well as a table consisting of <i>rows</i> and <i>columns</i>.
+<b>Rows</b> represent <b>different attributes</b> of <b>one entity</b>. <b>Columns</b> represent the <b>same attribute</b> of <b>all entities</b>. An attribute corresponds with the attribute idea in the Entity Relationship Model (conceptual design) and is a property/characteristic of an entity.
+</p>
+
+<ul class="org-ul">
+<li>
+<b>domain</b>
+<ul class="org-ul">
+<li>describes the domain(Wertebereich, aber Wertebereich ist eig codomain und definitionsmenge ist domain..) of an attribute</li>
+<li>this domain has to be <b>atomic</b> → cannot hold nested structures and/or sets</li>
+</ul>
+</li>
+<li>
+<b>relation</b>
+<ul class="org-ul">
+<li>a relation R is a subset of the cartesian product of \(n\) domains \(D_i\):</li>
+</ul>
+</li>
+</ul>
+<p>
+\( R \subseteq D_1 * D_2 ... * D_i ... D_n \)
+</p>
+<ul class="org-ul">
+<li>
+<b>tuple</b>
+<ul class="org-ul">
+<li>an element (row) of a relation is called "tuple"</li>
+</ul>
+</li>
+<li>
+<b>degree</b> (Grad) 
+<ul class="org-ul">
+<li>the degree of a relation R describes the amount of attributes resp involved domains</li>
+<li>symbol: degree(R) / Grad(R)</li>
+</ul>
+</li>
+<li>
+<b>cardinality</b>
+<ul class="org-ul">
+<li>the cardinality of a relation R describes the amount of tuples (rows/elements) in R</li>
+<li>symbol: |R|</li>
+</ul>
+</li>
+</ul>
+<p>
+<img src="../../../images/rel-model-example.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-orgda081ad" class="outline-3">
+<h3 id="orgda081ad">Relations and Schemas</h3>
+<div class="outline-text-3" id="text-orgda081ad">
+<p>
+<b>database context</b>
+</p>
+<ul class="org-ul">
+<li>the mathematical definition of a relation just describes a set of tuples</li>
+<li>an attribute results from the position of the attribute domain when forming the product (Produktbildung)</li>
+<li>since database context attributes shall be comfortably identifiable via their name, we need an additional compononent to describe the relation</li>
+</ul>
+<p>
+<b>relation schema</b>
+</p>
+<ul class="org-ul">
+<li>includes the specification of the domains and sets of all domain names/identifiers (attributes) which are uniquely to a relation (umfasst die Spezifikation der Domänen und die Menge aller - innerhalb einer Relation eindeutigen - Domänenbezeichnungen (Attribute))</li>
+<li>describes the creation procedure (Bildungsvorschrift/Schablone) for a relation
+<ul class="org-ul">
+<li>a relation is a set of tuples that is created with the help of this procedure guide</li>
+</ul>
+</li>
+<li>databases usually manage multiple tables, therefore multiple relation schemas have to be described - this is done through <b>database schemas</b>
+</li>
+<li>when \(A_1, A_2, ..., A_n\) are named attributes with the domains \(D_1, D_2, ..., D_n\) then the set \({A_1:D_1, A_2:D_2, ..., A_n:D_n}\) is the according relation schema</li>
+</ul>
+<p>
+<b>relation</b>
+</p>
+<ul class="org-ul">
+<li>a relation R that is defined by a relation schema S is a set of projection (Menge von Abbildungen) of attribute names onto their corresponding domains
+<ul class="org-ul">
+<li>that means R is a set of \(n\) tuples \(A_1:d_1, A_2:d_2, ..., A_n:d_n\) with \(d_1 \in D_1, d_2 \in D_2, ..., d_n \in D_n\)</li>
+</ul>
+</li>
+<li>eg: Buch \(\subseteq\) string(isbn) x string(titel) x decimal(preis)</li>
+<li>in the common use of language the terms "relation" and "relation schema" are often used interchangebly
+<ul class="org-ul">
+<li>so the term "relation" may refer to the relation schema, the manifestation (Ausprägung) of a schema or both</li>
+</ul>
+</li>
+<li>however it is important to keep both aspects in mind: <b>a relation underlies (unterliegt) a schema and is itself an instance (Ausprägung) of that schema</b>
+</li>
+<li>one of Codds requirements was that domains are atomic → the term <b>normalized relation</b> clarifies this demand and usually "relation" is meant as "normalized relation"</li>
+</ul>
+<p>
+<b>database schema</b>
+</p>
+<ul class="org-ul">
+<li>when \(R_1, R_2, ..., R_n\) are differently named relation schemas then the set \(R = {R_1, R_2, ..., R_n}\) represents the relation database schema R</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf680d6b" class="outline-3">
+<h3 id="orgf680d6b">Relations and Tables</h3>
+<div class="outline-text-3" id="text-orgf680d6b">
+<p>
+Tables are physical representation forms of relation with some differences:
+</p>
+<ul class="org-ul">
+<li>
+<b>finiteness</b> (Endlichkeit)
+<ul class="org-ul">
+<li>tables are finite (because of limited ressources)</li>
+<li>relations can be infinite (as long as at least one domain is finite)</li>
+</ul>
+</li>
+<li>
+<b>order</b> (Sortierung)
+<ul class="org-ul">
+<li>tables are always sorted (even when the sorting criteria is not immediately obvious)</li>
+<li>in case of relations only the existence of a tuple is relevant, for existing tuples is doesnt matter at which position they are</li>
+</ul>
+</li>
+<li>
+<b>duplications</b> (Duplikate)
+<ul class="org-ul">
+<li>tables may hold entries multiple times / duplicates</li>
+<li>all tuples of a relation are pairwise distinct</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgefa620e" class="outline-3">
+<h3 id="orgefa620e">Alternative Terms</h3>
+<div class="outline-text-3" id="text-orgefa620e">
+<p>
+Especially when using a concrete DBMS alternative terms than those of the relation model are used that are closer to the physical representation (I also added those somewhere above by myself b4 reading this because it felt more natural :D ):
+</p>
+<ul class="org-ul">
+<li>a "relation" is often called a "table" or a "file"</li>
+<li>a "tuple" is often called a "row" or "data record"</li>
+<li>an "attribute" is often called a "column" or "field"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1877c2a" class="outline-3">
+<h3 id="org1877c2a">Relational Keys</h3>
+<div class="outline-text-3" id="text-org1877c2a">
+<p>
+<b>superkeys</b>
+</p>
+<ul class="org-ul">
+<li>a superkey represents a set of attributes which allows to differentiate all tuples of a relation</li>
+</ul>
+<p>
+<b>candidate keys</b>
+</p>
+<ul class="org-ul">
+<li>a canidate key is a superkey who'se attribute set is minimal → that means no subset of his attributes allows the unique identification of all tuples of a relation (so viel attribute wie nötig um eindeutig zu unterscheiden/identifizieren und mit weniger attributen nicht möglich)</li>
+</ul>
+<p>
+<b>primary keys</b>
+</p>
+<ul class="org-ul">
+<li>a primary key is a canidate which is used primarily to distingiush tuples of a relation</li>
+</ul>
+<p>
+<img src="../../../images/relational-keys.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org427ac2c" class="outline-3">
+<h3 id="org427ac2c">Relational Model - Relationships</h3>
+<div class="outline-text-3" id="text-org427ac2c">
+<p>
+Relations can be associated with each other. To achieve that primary key attributes of the relation which should be associated is added to the relation which realizes that relationship. The primary key which was added to a relation for this purpose is called <b>foreign key</b>. Therefore <i>every foreign key has to be a primary key somewhere in a relation</i>.
+</p>
+
+<p>
+<img src="../../../images/relationship-rm.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org3ec2f7e" class="outline-3">
+<h3 id="org3ec2f7e">Null Values</h3>
+<div class="outline-text-3" id="text-org3ec2f7e">
+<p>
+For some tuples of a relation the concrete value of an attribute may not be known (yet) or it may be inappropiate to have an value existing there. To represent such cases the <b>null value</b> (null) exists which is a "non-value" alas "unknown value" (which shall not be confused with the value 0).
+</p>
+
+<p>
+Null values have to be treated differently than the usual attribute values. There's an trivalent (dreiwertig) logic to deal with them (more on that later).
+</p>
+
+<p>
+It should be a goal to minimize the cases where null values are needed although this is often not possible to realize. An excessive use should be avoided, this is especially true when representing relationships.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19fd1a6" class="outline-2">
+<h2 id="org19fd1a6">Logical Design: ERM to RM</h2>
+<div class="outline-text-2" id="text-org19fd1a6">
+<p>
+The task at hand is to translate the conceptual data model (ERM, entity relationship model) from the conceptual design phase into the logical data model (RM, relational model).
+</p>
+
+<p>
+The steps required are:
+</p>
+<ul class="org-ul">
+<li>derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)</li>
+<li>normalization of relations</li>
+<li>validation of relations in regards to user transactions</li>
+<li>verification of integrity conditions (Integritätsbeziehungen)</li>
+<li>consultation (Rücksprache) with users</li>
+</ul>
+</div>
+
+<div id="outline-container-org21276df" class="outline-3">
+<h3 id="org21276df">ERM to RM</h3>
+<div class="outline-text-3" id="text-org21276df">
+<p>
+Lets start with the conversion of strong entity types.
+</p>
+</div>
+<div id="outline-container-org3525a8e" class="outline-4">
+<h4 id="org3525a8e">ERM to RM - Strong Enitity Types</h4>
+<div class="outline-text-4" id="text-org3525a8e">
+<p>
+For each strong entity type we create a relation:
+</p>
+<ul class="org-ul">
+<li>simple attributes are just copied into the relation</li>
+<li>in case of compound attributes only the underlying/simple attributes are copied</li>
+<li>we'll later deal with derived and multivalent (see Lecture 02 for a reminder on this)</li>
+<li>the primary key of the entity type will also be the primary key of the relation 
+<ul class="org-ul">
+<li>the primary key is designated via underlining</li>
+</ul>
+</li>
+</ul>
+<p>
+Example of a Student relation: Student( <span class="underline">matrikelnum</span> , firstname, lastname, birthdate)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7ace31" class="outline-4">
+<h4 id="orgc7ace31">ERM to RM - Relationship Types</h4>
+<div class="outline-text-4" id="text-orgc7ace31">
+<p>
+Create a new relation for each relationship types (not always required as we'll see later why/how):
+</p>
+<ul class="org-ul">
+<li>copy (if existing) relationship attributes to the new relation</li>
+<li>add the primary keys of the involved entity types and mark them as foreign keys
+<ul class="org-ul">
+<li>foreign keys are visualized via a <b>bold font</b> (in the exam you can draw a rectangle around because bold font is difficult)</li>
+</ul>
+</li>
+<li>depending on the cardinality of the relationship type mark a <i>subset of the foreign keys</i> as the primary key of the relationship relation:
+<ul class="org-ul">
+<li>
+<code>1:1</code> → one of the two foreign keys becomes the primary key</li>
+<li>
+<code>1:N</code> → the foreign key which stems from the <code>N</code> side becomes the primary key</li>
+<li>
+<code>N:M</code> → both foreign keys have to become primary keys</li>
+<li>complex relationships → sensible identification via complexity reduction (? lol)</li>
+</ul>
+</li>
+</ul>
+<p>
+In general all relationship types can be expressed like this. The advantages are a simple and uniform procedure/strategy and the prevention of null values. However there are some disadvantages because there needs to be a relation created for each relationship type which can be a lot! Also some integrity conditions regarding cardinality may not be expressable adequately.
+</p>
+
+<p>
+So as an alternative relationship types of certain cardinalities can be expressed more efficient and adequately.
+</p>
+</div>
+
+<ul class="org-ul">
+<li>
+<a id="orgc64e369"></a><code>N:M</code> Relationship<br><div class="outline-text-5" id="text-orgc64e369">
+<p>
+The previous paragraph is not applicable for <code>N:M</code> relationship types. For those we always need a dedicated relation:
+<img src="../../../images/n-to-m-relation.png" alt="nil"></p>
+
+<p>
+In case of the other cardinalities we can use the alternative approach.
+</p>
+</div>
+</li>
+
+<li>
+<a id="orgbc107e7"></a><code>1:N</code> Relationship<br><div class="outline-text-5" id="text-orgbc107e7">
+<p>
+We add the primary key of the entity type from the <code>1</code> side of the relationship as a foreign key to the entity type from the <code>N</code> side. If the relationship type has attributes, then those are also added to the entity relation from the <code>N</code> side of the relationship.
+<img src="../../../images/one-to-n-inline-rel.png" alt="nil">
+This is however optional and if for example null values are unacceptable then we have to express the relationship type in its own relationship relation.
+</p>
+</div>
+</li>
+
+<li>
+<a id="org1744167"></a><code>1:1</code> Relationship<br><div class="outline-text-5" id="text-org1744167">
+<p>
+Since all entities of both entity types participate in the relationship, both entity relations and the relationship attributes could be merged into one relation. Then one of the two primary keys would serve as the primary key for the resulting relation. (<b>Merging</b>)
+</p>
+
+<p>
+However if both entity types are participating in other relationships as well (especially relationships with 1:N or N:M cardinalities) then it is not possible to merge them. In that case we add the primary key of one of the entity relations to the other entity relation as a foreign key (as well as the relationship attributes if existing). So to one relation you add the primary key of the other relation as a foreign key and all the relationship attributes. (<b>Referencing</b>)
+</p>
+
+<p>
+Example of merging the relationship as well as the entity relations:
+<img src="../../../images/merge-relation.png" alt="nil"></p>
+
+<p>
+Example of referencing (Variante A):
+<img src="../../../images/ref-relation.png" alt="nil"></p>
+
+<p>
+Example of referencing (Variante B):
+<img src="../../../images/ref-relation-2.png" alt="nil"></p>
+
+<p>
+\(\hookrightarrow\) in <code>1:1</code> the reference can be in either relation (see the above pictures)
+</p>
+
+
+<p style="color:red;">
+TODO obligatorische/optionale partizipation nachfragen und ergaenzen bei 1:N, sowie 1:1 Beziehungen!
+<a href="http://users.informatik.uni-halle.de/~brass/db05/d3_ermod.pdf" style="color:red;">http://users.informatik.uni-halle.de/~brass/db05/d3_ermod.pdf</a> S.69
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

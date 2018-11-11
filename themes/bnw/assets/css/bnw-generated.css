@@ -414,6 +414,9 @@ p img,
 .MathJax_Display {
   overflow: scroll;
 }
+.underline {
+  text-decoration: underline;
+}
 /* code related, put it in top level, so that it can be overwritten */
 pre {
   border: 1px solid #7194b8;

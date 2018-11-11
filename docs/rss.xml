@@ -1,5 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 10 Nov 2018 12:58:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 11 Nov 2018 18:24:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgcfa223a" class="outline-2"&gt;
+&lt;h2 id="orgcfa223a"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcfa223a"&gt;
+&lt;p&gt;
+How does the compiler know whether a program is "correct" (in the sense of compilable) or not?
+We basically distinguish between &lt;b&gt;grammar&lt;/b&gt; and &lt;b&gt;semantics&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Grammar&lt;/b&gt; (like we know it from school) consists of  &lt;i&gt;morphology&lt;/i&gt; (Formenlehre v Wörtern) and syntax (Sätze). In the realm of programming morphology practically doesn't matter therefore &lt;i&gt;grammar&lt;/i&gt; and &lt;i&gt;syntax&lt;/i&gt; are mostly used interchangeably.
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;b&gt;semantics&lt;/b&gt; (&lt;i&gt;meaning of a sentence&lt;/i&gt;) do not matter to the compiler.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0a1bb6a" class="outline-2"&gt;
+&lt;h2 id="org0a1bb6a"&gt;Syntax&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0a1bb6a"&gt;
+&lt;p&gt;
+The &lt;b&gt;syntax&lt;/b&gt; of a language is a &lt;i&gt;set of rules&lt;/i&gt; after which &lt;i&gt;expressions&lt;/i&gt; are built. This is true for natural languages like English and for formal languages likes C or Python, as well as mathematical logic or description languages etc.
+&lt;/p&gt;
+
+&lt;p&gt;
+Expressions in the above definition might be phrases, formulas are program/code statements.
+&lt;/p&gt;
+
+&lt;p&gt;
+Often times the better you understand the semantics the harder it gets to recognize the syntax (for example in my motherlanguage I don't think about the SPO-rule for subject-predicate-object at all).
+&lt;/p&gt;
+
+&lt;p&gt;
+Every formal language consists of &lt;b&gt;symbols/tokens&lt;/b&gt;. A symbol is the &lt;b&gt;smallest&lt;/b&gt; observable unit in a language (kleinste Einheit der Betrachtung innerhalb der Sprache). Symbols can be single tokens, combinations of such or whole words.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;Every finite, non-empty set \(\sum\) of symbols is called &lt;b&gt;alphabet&lt;/b&gt;.&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+With the elements in \(\sum\) we can build &lt;b&gt;expression&lt;/b&gt;. The "empty expression" is represented as \(\epsilon\)  (epsilon).
+&lt;/p&gt;
+
+&lt;p&gt;
+The set \(\sum = {0,1,2,3,4,5,6,7,8,9}\) for example is sufficient to build all natural numbers in the decimal system.
+&lt;/p&gt;
+
+&lt;p&gt;
+/The set of all strings(combinations) (Zeichenketten) the symbols from \(\sum\) can build is called &lt;b&gt;Kleene star&lt;/b&gt; \(\sum *\) of \(\sum\) (Kleenesche Hülle).
+&lt;/p&gt;
+
+&lt;p&gt;
+For example:
+\[\sum = {a,b} \Rightarrow \sum * = {\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...} \\]
+&lt;/p&gt;
+
+&lt;p&gt;
+The set of all string without the empty string is represented as \(sum +\) Kleene Plus.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;Each subset \(L \subseteq \sum*\) is also a &lt;b&gt;formal language&lt;/b&gt;&lt;/i&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+In the following context we focus on formal languages and "languages" then refers to such.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd7cff39" class="outline-2"&gt;
+&lt;h2 id="orgd7cff39"&gt;Formal languages and generative/formal grammar&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd7cff39"&gt;
+&lt;p&gt;
+How can the syntax of a language be described? Which expressions/strings in a language are valid and which aren't? An enumeration of valid expressions is usually unpractical because the quantity of expressions is often times enormously big or infinite. 
+&lt;/p&gt;
+
+&lt;p&gt;
+A solution to this is to &lt;i&gt;describe&lt;/i&gt; how valid expressions can/may be &lt;b&gt;generated&lt;/b&gt;. These "rules" are called &lt;b&gt;generative/formal grammar&lt;/b&gt;. From wikipedia: "In formal language theory, a grammar (when the context is not given, often called a formal grammar for clarity) is a set of production rules for strings in a formal language. The rules describe how to form strings from the language's alphabet that are valid according to the language's syntax. A grammar does not describe the meaning of the strings or what can be done with them in whatever context—only their form."
+&lt;/p&gt;
+
+&lt;p&gt;
+For generative grammar of a language \(L\) a second alphabet \(V\) of variables is used in addition to the alphabet \(\sum\).
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;elements of \(\sum\) are called &lt;b&gt;terminal symbols&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;elementary symbols of a language&lt;/li&gt;
+&lt;li&gt;cannot be replaced/reproduced via production rules&lt;/li&gt;
+&lt;li&gt;eg: "for", "if"&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;elements of \(V\) are called &lt;b&gt;nonterminal symbols&lt;/b&gt; (in some literature it is N instead of V)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;are reproducable/replacable via production rules&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+When speaking about those elements in an abstract way usually lower case letters (a,b,c..) are used for elements of \(\sum\) and uppercase letters for elements of \(V\).
+&lt;/p&gt;
+
+&lt;p&gt;
+A grammar is defined by production rules (or just 'productions') that specify which symbols may replace which other symbols; these rules may be used to generate strings, or to parse them. Each such rule has a head, or left-hand side, which consists of the string that may be replaced, and a body, or right-hand side, which consists of a string that may replace it. Rules are often written in the form head → body; e.g., the rule a → b specifies that a can be replaced by b.
+&lt;/p&gt;
+
+&lt;p&gt;
+To generate an expression we begin with a &lt;b&gt;start symbol&lt;/b&gt; \(S \in V\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Then depending on the nature of the rules \(P\) we distinguish between different kind of grammars (a regular grammar is a left or a right regular grammar):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;a left regular grammar  is a formal grammar (V, Σ, P, S), such that all rules in P obey the forms:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;A → a - where A is a non-terminal in V and a is a terminal in Σ&lt;/li&gt;
+&lt;li&gt;A → Ba - where A and B are in V and a is in Σ&lt;/li&gt;
+&lt;li&gt;A → ε - where A is in N and ε is the empty string.&lt;/li&gt;
+&lt;li&gt;so only &lt;b&gt;one nonterminal symbol&lt;/b&gt; on the &lt;i&gt;left side&lt;/i&gt; and on the &lt;i&gt;right side&lt;/i&gt; &lt;b&gt;one terminal symbol&lt;/b&gt; that &lt;i&gt;may be&lt;/i&gt; &lt;b&gt;preceeded&lt;/b&gt; by &lt;i&gt;one nonterminal symbol max&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;a &lt;b&gt;right regular grammar&lt;/b&gt; is a formal grammar (V, Σ, P, S) such that all the production rules in P are of one of the following forms:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;B → a - where B is a non-terminal in V and a is a terminal in Σ&lt;/li&gt;
+&lt;li&gt;B → aC - where B and C are non-terminals in V and a is in Σ&lt;/li&gt;
+&lt;li&gt;B → ε - where B is in V and ε denotes the empty string, i.e. the string of length 0.&lt;/li&gt;
+&lt;li&gt;so only &lt;b&gt;one nonterminal symbol&lt;/b&gt; on the &lt;i&gt;left side&lt;/i&gt; and on the &lt;i&gt;right side&lt;/i&gt; &lt;b&gt;one terminal symbol&lt;/b&gt; that &lt;i&gt;may be&lt;/i&gt; &lt;b&gt;followed&lt;/b&gt; by &lt;i&gt;one nonterminal symbol max&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Types of grammars:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;regular grammar&lt;/b&gt; (reguläre Grammatik) → either &lt;i&gt;all&lt;/i&gt; rules of P are of left regular grammar nature &lt;i&gt;or&lt;/i&gt; right regular grammar nature (not both/mixed)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;context-free grammar&lt;/b&gt; (kontextfreie Grammatik) → a context-free grammar is a grammar in which the left-hand side of each production rule consists of &lt;i&gt;only a single nonterminal symbol&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;context-sensitive grammar&lt;/b&gt; (kontextbehaftet/sensitive Grammatik) → a context-sensitive grammar is a formal grammar in which the left-hand sides and right-hand sides of any production rules may be surrounded by a context of &lt;b&gt;the same&lt;/b&gt; terminal and nonterminal symbols &lt;code&gt;αAβ → αγβ&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;unrestricted grammar&lt;/b&gt; (allgemeine Grammatik)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+After the american linguist Noam Chomsky those grammars build the so called &lt;b&gt;Chomsky-Hierarchy&lt;/b&gt; in which they're also called as:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;Type-0 grammars&lt;/b&gt; → &lt;i&gt;unrestricted grammars&lt;/i&gt; (allgemeine Grammatiken)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Type-1 grammars&lt;/b&gt; → &lt;i&gt;context-sensitive grammars&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Type-2 grammars&lt;/b&gt; → &lt;i&gt;context-free grammars&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Type-3 grammars&lt;/b&gt; → &lt;i&gt;regular grammars&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Each n-1 grammar can "do everything and more" that a grammar of type n can do (a type 1 grammar can do everything a type 2 grammar can and so on; Grammatiken niedrigeren Typs sind erzeugungsmächtiger als die höherer Typen)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org11cc094" class="outline-2"&gt;
+&lt;h2 id="org11cc094"&gt;Syntax Diagrams&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org11cc094"&gt;
+&lt;p&gt;
+How may we describe the rules of grammars? For the following we limit us to (maximal) contrext free grammars. To describe grammar rules there exist two main approaches:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;syntax diagrams&lt;/li&gt;
+&lt;li&gt;(extended) Backus-Naur form&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style="color:red;"&gt;
+I was told that these were asked in last years exam
+&lt;/p&gt;
+
+&lt;p&gt;
+Syntax diagrams consist of of:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;boxes with round corners → terminal symbols (lowercase, see above)&lt;/li&gt;
+&lt;li&gt;boxes with straight corners → nonterminal symbols (uppercase, see above)&lt;/li&gt;
+&lt;li&gt;connections via lines and arrows&lt;/li&gt;
+&lt;li&gt;each walkable way (in arrow direction) is valid a expression (Jeder (in Pfeilrichtung) begehbare Weg ist ein valider Ausdruck)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Components:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-intro.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+An example of a (simplified) function declaration in C in a syntax diagram:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-func-decl.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org453a901" class="outline-2"&gt;
+&lt;h2 id="org453a901"&gt;Backus-Naur Form&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org453a901"&gt;
+&lt;p&gt;
+While syntax diagrams are easy to read, they're quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).
+&lt;/p&gt;
+
+&lt;p&gt;
+BNF uses meta symbols:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;::=&lt;/code&gt; definition symbol&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; alternative symbol&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt; nonterminal brackets which convert any sequence of letters, digits and spaces into a nonterminal symbol&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+All symbols which are neither meta symbols nor nonterminalsymbols are terminal symbols.
+&lt;/p&gt;
+
+&lt;p&gt;
+BNF is directly translatable into context-free grammar, but needs (for example for loops) syntactic helper variables.
+&lt;/p&gt;
+
+&lt;p&gt;
+That's why there's also the Extended Backus-Naur form (EBNF) which is like BNF plus:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;[ ... ]&lt;/code&gt; → description of &lt;b&gt;optional parts&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{ ... }&lt;/code&gt; → description of &lt;b&gt;repetitions&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+There are also some syntactic differences:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;arbitrary paren placement (Klammerung)&lt;/li&gt;
+&lt;li&gt;definition symbol is &lt;code&gt;=&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;terminal symbols are wrapped in &lt;code&gt;""&lt;/code&gt; or &lt;code&gt;''&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;nonterminal symbols arent specially marked
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;there also might be whitespaces in nonterminal symbol identifiers, the sequence is then separated via commas eg &lt;code&gt;signed integer = sign, integer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;expressions end with semicolons &lt;code&gt;;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;specific repetitions via &lt;code&gt;4 * (...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;comments via &lt;code&gt;(* This is a comment*)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+A (E)BNF defintion or a syntax diagram is &lt;b&gt;complete&lt;/b&gt; (vollständig) if a rule exist on the left side for every nonterminal symbol on the right hand rule side.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org2cc8986" class="outline-2"&gt;
+&lt;h2 id="org2cc8986"&gt;Regular Grammar in Action&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2cc8986"&gt;
+&lt;p&gt;
+Now we'll introduce &lt;b&gt;regular expressions&lt;/b&gt; which are a compact notation for regular grammars.
+&lt;/p&gt;
+
+&lt;p&gt;
+String searching or pattern matching in (certain) files is such a common task that "tools" using regular expression exist to help with it (for example grep, sed, awk, perl, Python, C#.. provide ways to pattern match with regular expressions).
+&lt;/p&gt;
+
+&lt;p&gt;
+Since the 1980s, different syntaxes for writing regular expressions exist, one being the POSIX standard and another, widely used, being the Perl syntax.
+&lt;/p&gt;
+
+&lt;p&gt;
+Because there is only a limited amount of symbols/characters/tokens (Zeichen) available regular expressions differentiate between regular("normal") (terminal)symbols and meta characters, with a special meaning. Common but not all meta characters are:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;^&lt;/code&gt; matches the starting position within the string&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; dot wildcard matches any single character (newlines sometimes excluded tho)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[ ]&lt;/code&gt; a bracket expression matches a single character that is contained within the brackets eg &lt;code&gt;[abc]&lt;/code&gt; matches "a", "b", or "c"
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;[^ ]&lt;/code&gt; matches a single character that is &lt;i&gt;not&lt;/i&gt; contained within the brackets&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+= &lt;code&gt;$&lt;/code&gt; matches the ending position of the string or the position just before a string-ending newline (in line-based tools, it matches the ending position of any line)
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; matches the preceding element &lt;i&gt;zero or more&lt;/i&gt; times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; matches the preceding element &lt;i&gt;one or more&lt;/i&gt; times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{n,m}&lt;/code&gt; matches the preceding element at least &lt;code&gt;n&lt;/code&gt; and not more than &lt;code&gt;m&lt;/code&gt; times (eg &lt;code&gt;a{1,3}&lt;/code&gt; matches only &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;aa&lt;/code&gt; and &lt;code&gt;aaa&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\&lt;/code&gt; escapes the previous meta character&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+There are also character classes which are the most basic regex concept after a literal match. It makes one small sequence of characters match a larget set of characters (eg in ASCII [a-z] for lowercase letters). Some examples of POSIX character classes:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;[:alpha:]&lt;/code&gt; for alphabetic characters (A-Z, a-z)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[:digit:]&lt;/code&gt; for digits (0-9)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[:alnum:]&lt;/code&gt; for alphanumeric characters (A-Z,a-z,0-9)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[:blank:]&lt;/code&gt; for space and tab&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[:print:]&lt;/code&gt; visible characters and the space character (printable characters)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Example usage of grep which finds all defintions of &lt;code&gt;time_t&lt;/code&gt; in header files (option -E stands for extended-regexp):
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;grep −E &lt;span class="s2"&gt;"typedef ([_[:alpha:]][_[:alnum:]]*[[:blank:]]+)+time_t;"&lt;/span&gt; *.h &lt;span class="c1"&gt;# (copied from slides doesnt work for me :D)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org253815f" class="outline-2"&gt;
+&lt;h2 id="org253815f"&gt;Compiler&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org253815f"&gt;
+&lt;p&gt;
+F29
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 A type alias is a different name by which a type can be identified. In C++, any valid type can be aliased so that it can be referred to with a different identifier.
 It is possible to do type definitions via the following syntax &lt;code&gt;typedef TYP typename;&lt;/code&gt;, eg &lt;code&gt;typedef unsigned short ushort;&lt;/code&gt;
 &lt;/p&gt;
@@ -2884,271 +3193,4 @@ Parameters are the third way memory is allocated to store values. We covered thi
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-As we have learned in the last lecture there are three distinct phases of database design:
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;b&gt;Conceptual Design&lt;/b&gt; (lecture 02)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;creation of a semantic data model that describes all important aspects from the requirement analysis&lt;/li&gt;
-&lt;li&gt;primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;Logical Design&lt;/b&gt; (this lecture)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;transforms the conceptual model into a concrete data model, which can be implemented in a database system&lt;/li&gt;
-&lt;li&gt;the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;Physical Design&lt;/b&gt; (Lecture 04)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;describes the actual implementation of the logical data model&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;
-In this lecture we turn or focus onto the &lt;b&gt;logical design&lt;/b&gt;
-&lt;/p&gt;
-
-&lt;div id="outline-container-orgd4e09a4" class="outline-2"&gt;
-&lt;h2 id="orgd4e09a4"&gt;Logical Data Model&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd4e09a4"&gt;
-&lt;p&gt;
-Which &lt;i&gt;data model&lt;/i&gt; is appropiate for the &lt;i&gt;logical design process&lt;/i&gt;? The &lt;b&gt;relational data model&lt;/b&gt; because it has a simple structure, an elegant theoretical foundation (formal description) and is economically relevant (about ~80% of database systems are based on the relational paradigm despite development/creation of alternatives).
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgfceda2c" class="outline-3"&gt;
-&lt;h3 id="orgfceda2c"&gt;Relational Model&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgfceda2c"&gt;
-&lt;p&gt;
-The relational model (RM) was introduced in a paper by E.F. Codd in 1970, which pertains as a milestone to this day. The most know prototype of this theoretical approach was created by IBM in 1975 (System R). The in the process developed query language SEQUEL was later standardized as SQL and is the most common query language for relational DBMS today.
-&lt;/p&gt;
-
-&lt;p&gt;
-The first commercial systems were released at the end of the 70s for example Orcale (by Orcale Corporation) or DB2 (by IBM). Today there are hundreds of DBMS that are based on the relational data model.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgec60c46" class="outline-3"&gt;
-&lt;h3 id="orgec60c46"&gt;Relational Model - Terms and Definitions&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgec60c46"&gt;
-&lt;p&gt;
-The relational model is based on the mathematical concept of a (finitary?) relation, which can be represented well as a table consisting of &lt;i&gt;rows&lt;/i&gt; and &lt;i&gt;columns&lt;/i&gt;.
-&lt;b&gt;Rows&lt;/b&gt; represent &lt;b&gt;different attributes&lt;/b&gt; of &lt;b&gt;one entity&lt;/b&gt;. &lt;b&gt;Columns&lt;/b&gt; represent the &lt;b&gt;same attribute&lt;/b&gt; of &lt;b&gt;all entities&lt;/b&gt;. An attribute corresponds with the attribute idea in the Entity Relationship Model (conceptual design) and is a property/characteristic of an entity.
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;domain&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;describes the domain(Wertebereich, aber Wertebereich ist eig codomain und definitionsmenge ist domain..) of an attribute&lt;/li&gt;
-&lt;li&gt;this domain has to be &lt;b&gt;atomic&lt;/b&gt; → cannot hold nested structures and/or sets&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;relation&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a relation R is a subset of the cartesian product of \(n\) domains \(D_i\):&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
-\( R \subseteq D_1 * D_2 ... * D_i ... D_n \)
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;tuple&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;an element (row) of a relation is called "tuple"&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;degree&lt;/b&gt; (Grad) 
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the degree of a relation R describes the amount of attributes resp involved domains&lt;/li&gt;
-&lt;li&gt;symbol: degree(R) / Grad(R)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;cardinality&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the cardinality of a relation R describes the amount of tuples (rows/elements) in R&lt;/li&gt;
-&lt;li&gt;symbol: |R|&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/rel-model-example.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3456940" class="outline-3"&gt;
-&lt;h3 id="org3456940"&gt;Relations and Schemas&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3456940"&gt;
-&lt;p&gt;
-&lt;b&gt;database context&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the mathematical definition of a relation just describes a set of tuples&lt;/li&gt;
-&lt;li&gt;an attribute results from the position of the attribute domain when forming the product (Produktbildung)&lt;/li&gt;
-&lt;li&gt;since database context attributes shall be comfortably identifiable via their name, we need an additional compononent to describe the relation&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;relation schema&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;includes the specification of the domains and sets of all domain names/identifiers (attributes) which are uniquely to a relation (umfasst die Spezifikation der Domänen und die Menge aller - innerhalb einer Relation eindeutigen - Domänenbezeichnungen (Attribute))&lt;/li&gt;
-&lt;li&gt;describes the creation procedure (Bildungsvorschrift/Schablone) for a relation
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a relation is a set of tuples that is created with the help of this procedure guide&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;databases usually manage multiple tables, therefore multiple relation schemas have to be described - this is done through &lt;b&gt;database schemas&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;when \(A_1, A_2, ..., A_n\) are named attributes with the domains \(D_1, D_2, ..., D_n\) then the set \({A_1:D_1, A_2:D_2, ..., A_n:D_n}\) is the according relation schema&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;relation&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a relation R that is defined by a relation schema S is a set of projection (Menge von Abbildungen) of attribute names onto their corresponding domains
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;that means R is a set of \(n\) tuples \(A_1:d_1, A_2:d_2, ..., A_n:d_n\) with \(d_1 \in D_1, d_2 \in D_2, ..., d_n \in D_n\)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;eg: Buch \(\subseteq\) string(isbn) x string(titel) x decimal(preis)&lt;/li&gt;
-&lt;li&gt;in the common use of language the terms "relation" and "relation schema" are often used interchangebly
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;so the term "relation" may refer to the relation schema, the manifestation (Ausprägung) of a schema or both&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;however it is important to keep both aspects in mind: &lt;b&gt;a relation underlies (unterliegt) a schema and is itself an instance (Ausprägung) of that schema&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;one of Codds requirements was that domains are atomic → the term &lt;b&gt;normalized relation&lt;/b&gt; clarifies this demand and usually "relation" is meant as "normalized relation"&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;database schema&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;when \(R_1, R_2, ..., R_n\) are differently named relation schemas then the set \(R = {R_1, R_2, ..., R_n}\) represents the relation database schema R&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5b3bc8d" class="outline-3"&gt;
-&lt;h3 id="org5b3bc8d"&gt;Relations and Tables&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5b3bc8d"&gt;
-&lt;p&gt;
-Tables are physical representation forms of relation with some differences:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;finiteness&lt;/b&gt; (Endlichkeit)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;tables are finite (because of limited ressources)&lt;/li&gt;
-&lt;li&gt;relations can be infinite (as long as at least one domain is finite)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;order&lt;/b&gt; (Sortierung)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;tables are always sorted (even when the sorting criteria is not immediately obvious)&lt;/li&gt;
-&lt;li&gt;in case of relations only the existence of a tuple is relevant, for existing tuples is doesnt matter at which position they are&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;duplications&lt;/b&gt; (Duplikate)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;tables may hold entries multiple times / duplicates&lt;/li&gt;
-&lt;li&gt;all tuples of a relation are pairwise distinct&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org7a1b9f6" class="outline-3"&gt;
-&lt;h3 id="org7a1b9f6"&gt;Alternative Terms&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7a1b9f6"&gt;
-&lt;p&gt;
-Especially when using a concrete DBMS alternative terms than those of the relation model are used that are closer to the physical representation (I also added those somewhere above by myself b4 reading this because it felt more natural :D ):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a "relation" is often called a "table" or a "file"&lt;/li&gt;
-&lt;li&gt;a "tuple" is often called a "row" or "data record"&lt;/li&gt;
-&lt;li&gt;an "attribute" is often called a "column" or "field"&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orge0e4ba8" class="outline-3"&gt;
-&lt;h3 id="orge0e4ba8"&gt;Relational Keys&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge0e4ba8"&gt;
-&lt;p&gt;
-&lt;b&gt;superkeys&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a superkey represents a set of attributes which allows to differentiate all tuples of a relation&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;candidate keys&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a canidate key is a superkey who'se attribute set is minimal → that means no subset of his attributes allows the unique identification of all tuples of a relation (so viel attribute wie nötig um eindeutig zu unterscheiden/identifizieren und mit weniger attributen nicht möglich)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;primary keys&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a primary key is a canidate which is used primarily to distingiush tuples of a relation&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/relational-keys.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org0470387" class="outline-3"&gt;
-&lt;h3 id="org0470387"&gt;Relational Model - Relationships&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0470387"&gt;
-&lt;p&gt;
-Relations can be associated with each other. To achieve that primary key attributes of the relation which should be associated is added to the relation which realizes that relationship. The primary key which was added to a relation for this purpose is called &lt;b&gt;foreign key&lt;/b&gt;. Therefore &lt;i&gt;every foreign key has to be a primary key somewhere in a relation&lt;/i&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/relationship-rm.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgacd83c0" class="outline-3"&gt;
-&lt;h3 id="orgacd83c0"&gt;Null Values&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgacd83c0"&gt;
-&lt;p&gt;
-For some tuples of a relation the concrete value of an attribute may not be known (yet) or it may be inappropiate to have an value existing there. To represent such cases the &lt;b&gt;null value&lt;/b&gt; (null) exists which is a "non-value" alas "unknown value" (which shall not be confused with the value 0).
-&lt;/p&gt;
-
-&lt;p&gt;
-Null values have to be treated differently than the usual attribute values. There's an trivalent (dreiwertig) logic to deal with them (more on that later).
-&lt;/p&gt;
-
-&lt;p&gt;
-It should be a goal to minimize the cases where null values are needed although this is often not possible to realize. An excessive use should be avoided, this is especially true when representing relationships.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org2f31216" class="outline-2"&gt;
-&lt;h2 id="org2f31216"&gt;Logical Design: ERM to RM&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2f31216"&gt;
-&lt;p&gt;
-The task at hand is to translate the conceptual data model (ERM, entity relationship model) from the conceptual design phase into the logical data model (RM, relational model).
-&lt;/p&gt;
-
-&lt;p&gt;
-The steps required are:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)&lt;/li&gt;
-&lt;li&gt;normalization of relations&lt;/li&gt;
-&lt;li&gt;validation of relations in regards to user transactions&lt;/li&gt;
-&lt;li&gt;verification of integrity conditions (Integritätsbeziehungen)&lt;/li&gt;
-&lt;li&gt;consultation (Rücksprache) with users&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org9b8d34a" class="outline-3"&gt;
-&lt;h3 id="org9b8d34a"&gt;ERM to RM&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org9b8d34a"&gt;
-&lt;p&gt;
-F 20
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/</guid><pubDate>Tue, 23 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
