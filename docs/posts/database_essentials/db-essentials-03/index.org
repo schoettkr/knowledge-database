@@ -123,7 +123,7 @@ The steps required are:
 - derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)
 - normalization of relations
 - validation of relations in regards to user transactions
-- verification of integrity conditions (Integritätsbeziehungen)
+- verification of integrity conditions (Integritätsbedingungen)
 - consultation (Rücksprache) with users
 
 ** ERM to RM
@@ -162,9 +162,16 @@ In case of the other cardinalities we can use the alternative approach.
 **** =1:N= Relationship
 We add the primary key of the entity type from the =1= side of the relationship as a foreign key to the entity type from the =N= side. If the relationship type has attributes, then those are also added to the entity relation from the =N= side of the relationship.
 [[img-url:/images/one-to-n-inline-rel.png]]
+
 This is however optional and if for example null values are unacceptable then we have to express the relationship type in its own relationship relation.
 
+The above already kind of leads us to /optional/ and /obligatory/ participation of entities in relationships. As we've seen above the primary key of the 1-side entity gets added as a foreign key to the n-side entity. This works perfectly as long as the participation of the 1-side entity is /obligatory/ meaning that a n-side entity always gets a foreign key of a 1-side entity assigned since it is mandatory in that kind of relationship. However there might be other cases where a participation of 1-side entities might be completely /optional/. This would then lead to empty tuples / null values in some n-side entities. As already state above (after the picture) if this (null/empty values) are acceptable everything can be done as is, else there has to be created a designated relationship relation.
+
+#+ATTR_HTML: :style color:salmon;
+/I find this is kind of hard to explain and therefore I split the general information (paragraphs around the picture) and the thing with the obligatory and optional participation. I advise to take a look at the lecture slides in regards to optional and obligatory participation. Don't know how important it is for the course tho, until now we did not speak about it really (in the tutorium for example)./
+
 **** =1:1= Relationship
+*In case of an /obligatory/ participation on /both/ sides of the relationship:*
 Since all entities of both entity types participate in the relationship, both entity relations and the relationship attributes could be merged into one relation. Then one of the two primary keys would serve as the primary key for the resulting relation. (*Merging*)
 
 However if both entity types are participating in other relationships as well (especially relationships with 1:N or N:M cardinalities) then it is not possible to merge them. In that case we add the primary key of one of the entity relations to the other entity relation as a foreign key (as well as the relationship attributes if existing). So to one relation you add the primary key of the other relation as a foreign key and all the relationship attributes. (*Referencing*)
@@ -178,9 +185,68 @@ Example of referencing (Variante A):
 Example of referencing (Variante B):
 [[img-url:/images/ref-relation-2.png]]
 
-\(\hookrightarrow\) in =1:1= the reference can be in either relation (see the above pictures)
+\(\hookrightarrow\) in obligatory =1:1= the reference can be in either relation (see the above pictures)
+
+*In case of an /obligatory/ participation on /one/ side of the relationship:*
+We add the primary key of the entity type that is /obligatory participating/ =(1..1)= in the relationship as a foreign key to the entity type that is /optionally participating/ (=0..1=). If the relationship type has attributes, then those are also added to the entity relation that is optionally participating in the relationship.
+[[img-url:/images/one-to-one-optional.png]]
+Think about how this helps or why we do it this way. Look at the picture above, as you can see a faculty is always lead by exactly one professor, but a professor leads either 0 or 1 faculties. So if we would have put the faculty name as a foreign key into the professor relation then there can be null values in the case where a concrete professor entity does not lead a faculty. It is better like we did it! Because a faculty always has a professor that leads it (1..1 \rightarrow obligatory) there won't be null values in the faculty relation since there /has/ to be a =persNr= of an professor that leads it :) I hope this explanation helps.
+
+*In case of an /optional/ participation on /both/ sides of the relationship:*
+When null values are not allowed / inacceptable a new relationship relation has to be created. In that relation the primary keys of the entity relations are added as foreign keys as well as potential relationship attributes. One of the foreignkeys also becomes the primary key of newly created relationship entity.
+
+When null values are allowed / acceptable then the primary key of one relation and potential relationship attributes are added to the other entity relation type. Theoretically it doesn't matter which entity relation is linked via it's primary key, however knowledge about the relationships and amount of data (rows for each relation) might help to pick the one where less null values would occur. If there is for example a entity relation type where we have two data sets forest 1 and forest 2 which are optionally managed by one ranger (Förster) at max (=0..1=). And we have 500 data sets of rangers which can optionally manage a forest (=0..1=) then it would make more sense to add the rangers PK as a foreign key to the forests instead of the other way round, since =forestID= as a foreign key in the ranger entity relation will be empty alot!
+
+Another example from the slides:
+[[img-url:/images/one-to-one-both-optional.png]]
+*** ERM to RM - Weak Entity Types
+The expression of a weak entity type in the relational model always has to include the relationship to the superior strong entity type (übergeordneter starker Entitytyp). The following steps describe how do this, they are however optimizable:
+- create a relation for every weak entity type in the ERM
+- add the attributes to the relation in the same manner as you'd do it for strong entity types
+- then the primary key of the superior strong entity type is added as a foreign key
+- the primary key of this new relation consists of the original primary key of the weak entity type (if existing) and the foreign key which stems from the super strong entity type
+[[img-url:/images/weak-entity-type.png]]
+
+In case of an obligatory participation of all entities of both sides of a =1:1= relationship between a weak and a strong entity type, they entity types can be merged into one relation (as it is with obligatory =1:1= between strong ETs):
+[[img-url:/images/weak-entity-merge.png]]
+
+*** ERM to RM - Multivalent (Mehrwertige) Attributes
+To translate multivalent attribute types into the relational model:
+- create a relation \(R\) for the multivalent attribute \(A\) (empty relation with name of the attribute "type")
+- add the primary key \(K\) of the entity relation type and \(A\) to \(R\)
+- mark \(K\) as a foreign key
+- mark \(K\) and \(A\) as primary key of \(R\)
+  - exception: if \(A\) itself serves as a primary key of the original entity type, then \(A\) is the primary key of \(R\)
+[[img-url:/images/multivalent-attr.png]]
+
+-------
 
 
-#+ATTR_HTML: :style color:red;
-TODO obligatorische/optionale partizipation nachfragen und ergaenzen bei 1:N, sowie 1:1 Beziehungen!
-http://users.informatik.uni-halle.de/~brass/db05/d3_ermod.pdf S.69
+Now remember the steps required to translate from ERM to RM from the beginning of this post:
+#+BEGIN_QUOTE
+"The steps required are:
+- derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)
+- normalization of relations
+- validation of relations in regards to user transactions
+- verification of integrity conditions (Integritätsbedingungen)
+- consultation (Rücksprache) with users"
+#+END_QUOTE
+
+At this point we covered the first step /yay/. 
+
+The normalization of relations will be covered latter and now we'll shortly turn to integrity conditions.
+
+** Integrity Conditions and Data Integrity
+Integrity conditions/rules describe a set of requirements to guarantee the consistency, the correctness and completeness of data. It is required to document all integrity rules in the logical design phase.
+
+The following kinds of integrity constraints have to be respected:
+- *entity integrity* \rightarrow is an integrity rule which states that a primary key should be unique and not null
+- *referential integrity* \rightarrow integrity rule that states any foreign-key value can only be null or the value of some existing primary key; it has to be specified what happens when changing operations on PKs and FKs occur
+- *domain integrity* \rightarrow the value of an attribute has to be part of the (co)domain (Wertebereich) of its attribute domain
+- *obligatory data* \rightarrow for some attributes a concrete value has to be specified for every tuple (eg key attributes)
+- *cardinality and participation* \rightarrow rules that describe restrictions of relationships
+- *other* \rightarrow rules that describe all other integrity constraints derived from requirements of the real world "problem"
+
+  
+** Interim Conclusion (Zwischenfazit)
+Since the expressiveness (Ausdruckskraft) of the relational model (logical design) is much lower than the epressiveness of a conceptual model (eg ERM), the conceptual model should always be done and done first! The meaning of things is often times not clear without additional knowledge from the conceptual design.

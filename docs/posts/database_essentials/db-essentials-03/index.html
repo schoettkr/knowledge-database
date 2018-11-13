@@ -110,17 +110,17 @@ As we have learned in the last lecture there are three distinct phases of databa
 In this lecture we turn or focus onto the <b>logical design</b>
 </p>
 
-<div id="outline-container-org9225047" class="outline-2">
-<h2 id="org9225047">Logical Data Model</h2>
-<div class="outline-text-2" id="text-org9225047">
+<div id="outline-container-orgd7c24bd" class="outline-2">
+<h2 id="orgd7c24bd">Logical Data Model</h2>
+<div class="outline-text-2" id="text-orgd7c24bd">
 <p>
 Which <i>data model</i> is appropiate for the <i>logical design process</i>? The <b>relational data model</b> because it has a simple structure, an elegant theoretical foundation (formal description) and is economically relevant (about ~80% of database systems are based on the relational paradigm despite development/creation of alternatives).
 </p>
 </div>
 
-<div id="outline-container-orgbbcc737" class="outline-3">
-<h3 id="orgbbcc737">Relational Model</h3>
-<div class="outline-text-3" id="text-orgbbcc737">
+<div id="outline-container-org071a98a" class="outline-3">
+<h3 id="org071a98a">Relational Model</h3>
+<div class="outline-text-3" id="text-org071a98a">
 <p>
 The relational model (RM) was introduced in a paper by E.F. Codd in 1970, which pertains as a milestone to this day. The most know prototype of this theoretical approach was created by IBM in 1975 (System R). The in the process developed query language SEQUEL was later standardized as SQL and is the most common query language for relational DBMS today.
 </p>
@@ -131,9 +131,9 @@ The first commercial systems were released at the end of the 70s for example Orc
 </div>
 </div>
 
-<div id="outline-container-org7ea1111" class="outline-3">
-<h3 id="org7ea1111">Relational Model - Terms and Definitions</h3>
-<div class="outline-text-3" id="text-org7ea1111">
+<div id="outline-container-orgac534fb" class="outline-3">
+<h3 id="orgac534fb">Relational Model - Terms and Definitions</h3>
+<div class="outline-text-3" id="text-orgac534fb">
 <p>
 The relational model is based on the mathematical concept of a (finitary?) relation, which can be represented well as a table consisting of <i>rows</i> and <i>columns</i>.
 <b>Rows</b> represent <b>different attributes</b> of <b>one entity</b>. <b>Columns</b> represent the <b>same attribute</b> of <b>all entities</b>. An attribute corresponds with the attribute idea in the Entity Relationship Model (conceptual design) and is a property/characteristic of an entity.
@@ -184,9 +184,9 @@ The relational model is based on the mathematical concept of a (finitary?) relat
 </div>
 </div>
 
-<div id="outline-container-orgda081ad" class="outline-3">
-<h3 id="orgda081ad">Relations and Schemas</h3>
-<div class="outline-text-3" id="text-orgda081ad">
+<div id="outline-container-org10e77e3" class="outline-3">
+<h3 id="org10e77e3">Relations and Schemas</h3>
+<div class="outline-text-3" id="text-org10e77e3">
 <p>
 <b>database context</b>
 </p>
@@ -237,9 +237,9 @@ The relational model is based on the mathematical concept of a (finitary?) relat
 </div>
 </div>
 
-<div id="outline-container-orgf680d6b" class="outline-3">
-<h3 id="orgf680d6b">Relations and Tables</h3>
-<div class="outline-text-3" id="text-orgf680d6b">
+<div id="outline-container-orged6f988" class="outline-3">
+<h3 id="orged6f988">Relations and Tables</h3>
+<div class="outline-text-3" id="text-orged6f988">
 <p>
 Tables are physical representation forms of relation with some differences:
 </p>
@@ -269,9 +269,9 @@ Tables are physical representation forms of relation with some differences:
 </div>
 </div>
 
-<div id="outline-container-orgefa620e" class="outline-3">
-<h3 id="orgefa620e">Alternative Terms</h3>
-<div class="outline-text-3" id="text-orgefa620e">
+<div id="outline-container-orgc85ee7a" class="outline-3">
+<h3 id="orgc85ee7a">Alternative Terms</h3>
+<div class="outline-text-3" id="text-orgc85ee7a">
 <p>
 Especially when using a concrete DBMS alternative terms than those of the relation model are used that are closer to the physical representation (I also added those somewhere above by myself b4 reading this because it felt more natural :D ):
 </p>
@@ -283,9 +283,9 @@ Especially when using a concrete DBMS alternative terms than those of the relati
 </div>
 </div>
 
-<div id="outline-container-org1877c2a" class="outline-3">
-<h3 id="org1877c2a">Relational Keys</h3>
-<div class="outline-text-3" id="text-org1877c2a">
+<div id="outline-container-orgf0b4052" class="outline-3">
+<h3 id="orgf0b4052">Relational Keys</h3>
+<div class="outline-text-3" id="text-orgf0b4052">
 <p>
 <b>superkeys</b>
 </p>
@@ -308,9 +308,9 @@ Especially when using a concrete DBMS alternative terms than those of the relati
 <img src="../../../images/relational-keys.png" alt="nil"></p>
 </div>
 </div>
-<div id="outline-container-org427ac2c" class="outline-3">
-<h3 id="org427ac2c">Relational Model - Relationships</h3>
-<div class="outline-text-3" id="text-org427ac2c">
+<div id="outline-container-org53487ad" class="outline-3">
+<h3 id="org53487ad">Relational Model - Relationships</h3>
+<div class="outline-text-3" id="text-org53487ad">
 <p>
 Relations can be associated with each other. To achieve that primary key attributes of the relation which should be associated is added to the relation which realizes that relationship. The primary key which was added to a relation for this purpose is called <b>foreign key</b>. Therefore <i>every foreign key has to be a primary key somewhere in a relation</i>.
 </p>
@@ -319,9 +319,9 @@ Relations can be associated with each other. To achieve that primary key attribu
 <img src="../../../images/relationship-rm.png" alt="nil"></p>
 </div>
 </div>
-<div id="outline-container-org3ec2f7e" class="outline-3">
-<h3 id="org3ec2f7e">Null Values</h3>
-<div class="outline-text-3" id="text-org3ec2f7e">
+<div id="outline-container-org3ab58dc" class="outline-3">
+<h3 id="org3ab58dc">Null Values</h3>
+<div class="outline-text-3" id="text-org3ab58dc">
 <p>
 For some tuples of a relation the concrete value of an attribute may not be known (yet) or it may be inappropiate to have an value existing there. To represent such cases the <b>null value</b> (null) exists which is a "non-value" alas "unknown value" (which shall not be confused with the value 0).
 </p>
@@ -337,9 +337,9 @@ It should be a goal to minimize the cases where null values are needed although 
 </div>
 </div>
 
-<div id="outline-container-org19fd1a6" class="outline-2">
-<h2 id="org19fd1a6">Logical Design: ERM to RM</h2>
-<div class="outline-text-2" id="text-org19fd1a6">
+<div id="outline-container-orgc2361d1" class="outline-2">
+<h2 id="orgc2361d1">Logical Design: ERM to RM</h2>
+<div class="outline-text-2" id="text-orgc2361d1">
 <p>
 The task at hand is to translate the conceptual data model (ERM, entity relationship model) from the conceptual design phase into the logical data model (RM, relational model).
 </p>
@@ -351,21 +351,21 @@ The steps required are:
 <li>derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)</li>
 <li>normalization of relations</li>
 <li>validation of relations in regards to user transactions</li>
-<li>verification of integrity conditions (Integritätsbeziehungen)</li>
+<li>verification of integrity conditions (Integritätsbedingungen)</li>
 <li>consultation (Rücksprache) with users</li>
 </ul>
 </div>
 
-<div id="outline-container-org21276df" class="outline-3">
-<h3 id="org21276df">ERM to RM</h3>
-<div class="outline-text-3" id="text-org21276df">
+<div id="outline-container-org211ac2d" class="outline-3">
+<h3 id="org211ac2d">ERM to RM</h3>
+<div class="outline-text-3" id="text-org211ac2d">
 <p>
 Lets start with the conversion of strong entity types.
 </p>
 </div>
-<div id="outline-container-org3525a8e" class="outline-4">
-<h4 id="org3525a8e">ERM to RM - Strong Enitity Types</h4>
-<div class="outline-text-4" id="text-org3525a8e">
+<div id="outline-container-org528e75e" class="outline-4">
+<h4 id="org528e75e">ERM to RM - Strong Enitity Types</h4>
+<div class="outline-text-4" id="text-org528e75e">
 <p>
 For each strong entity type we create a relation:
 </p>
@@ -385,9 +385,9 @@ Example of a Student relation: Student( <span class="underline">matrikelnum</spa
 </div>
 </div>
 
-<div id="outline-container-orgc7ace31" class="outline-4">
-<h4 id="orgc7ace31">ERM to RM - Relationship Types</h4>
-<div class="outline-text-4" id="text-orgc7ace31">
+<div id="outline-container-org624b4a0" class="outline-4">
+<h4 id="org624b4a0">ERM to RM - Relationship Types</h4>
+<div class="outline-text-4" id="text-org624b4a0">
 <p>
 Create a new relation for each relationship types (not always required as we'll see later why/how):
 </p>
@@ -421,7 +421,7 @@ So as an alternative relationship types of certain cardinalities can be expresse
 
 <ul class="org-ul">
 <li>
-<a id="orgc64e369"></a><code>N:M</code> Relationship<br><div class="outline-text-5" id="text-orgc64e369">
+<a id="org96dbc47"></a><code>N:M</code> Relationship<br><div class="outline-text-5" id="text-org96dbc47">
 <p>
 The previous paragraph is not applicable for <code>N:M</code> relationship types. For those we always need a dedicated relation:
 <img src="../../../images/n-to-m-relation.png" alt="nil"></p>
@@ -433,18 +433,29 @@ In case of the other cardinalities we can use the alternative approach.
 </li>
 
 <li>
-<a id="orgbc107e7"></a><code>1:N</code> Relationship<br><div class="outline-text-5" id="text-orgbc107e7">
+<a id="org0ba8f61"></a><code>1:N</code> Relationship<br><div class="outline-text-5" id="text-org0ba8f61">
 <p>
 We add the primary key of the entity type from the <code>1</code> side of the relationship as a foreign key to the entity type from the <code>N</code> side. If the relationship type has attributes, then those are also added to the entity relation from the <code>N</code> side of the relationship.
-<img src="../../../images/one-to-n-inline-rel.png" alt="nil">
+<img src="../../../images/one-to-n-inline-rel.png" alt="nil"></p>
+
+<p>
 This is however optional and if for example null values are unacceptable then we have to express the relationship type in its own relationship relation.
+</p>
+
+<p>
+The above already kind of leads us to <i>optional</i> and <i>obligatory</i> participation of entities in relationships. As we've seen above the primary key of the 1-side entity gets added as a foreign key to the n-side entity. This works perfectly as long as the participation of the 1-side entity is <i>obligatory</i> meaning that a n-side entity always gets a foreign key of a 1-side entity assigned since it is mandatory in that kind of relationship. However there might be other cases where a participation of 1-side entities might be completely <i>optional</i>. This would then lead to empty tuples / null values in some n-side entities. As already state above (after the picture) if this (null/empty values) are acceptable everything can be done as is, else there has to be created a designated relationship relation.
+</p>
+
+<p style="color:salmon;">
+<i>I find this is kind of hard to explain and therefore I split the general information (paragraphs around the picture) and the thing with the obligatory and optional participation. I advise to take a look at the lecture slides in regards to optional and obligatory participation. Don't know how important it is for the course tho, until now we did not speak about it really (in the tutorium for example).</i>
 </p>
 </div>
 </li>
 
 <li>
-<a id="org1744167"></a><code>1:1</code> Relationship<br><div class="outline-text-5" id="text-org1744167">
+<a id="org54c8524"></a><code>1:1</code> Relationship<br><div class="outline-text-5" id="text-org54c8524">
 <p>
+<b>In case of an <i>obligatory</i> participation on <i>both</i> sides of the relationship:</b>
 Since all entities of both entity types participate in the relationship, both entity relations and the relationship attributes could be merged into one relation. Then one of the two primary keys would serve as the primary key for the resulting relation. (<b>Merging</b>)
 </p>
 
@@ -465,17 +476,134 @@ Example of referencing (Variante B):
 <img src="../../../images/ref-relation-2.png" alt="nil"></p>
 
 <p>
-\(\hookrightarrow\) in <code>1:1</code> the reference can be in either relation (see the above pictures)
+\(\hookrightarrow\) in obligatory <code>1:1</code> the reference can be in either relation (see the above pictures)
 </p>
 
-
-<p style="color:red;">
-TODO obligatorische/optionale partizipation nachfragen und ergaenzen bei 1:N, sowie 1:1 Beziehungen!
-<a href="http://users.informatik.uni-halle.de/~brass/db05/d3_ermod.pdf" style="color:red;">http://users.informatik.uni-halle.de/~brass/db05/d3_ermod.pdf</a> S.69
+<p>
+<b>In case of an <i>obligatory</i> participation on <i>one</i> side of the relationship:</b>
+We add the primary key of the entity type that is <i>obligatory participating</i> <code>(1..1)</code> in the relationship as a foreign key to the entity type that is <i>optionally participating</i> (<code>0..1</code>). If the relationship type has attributes, then those are also added to the entity relation that is optionally participating in the relationship.
+<img src="../../../images/one-to-one-optional.png" alt="nil">
+Think about how this helps or why we do it this way. Look at the picture above, as you can see a faculty is always lead by exactly one professor, but a professor leads either 0 or 1 faculties. So if we would have put the faculty name as a foreign key into the professor relation then there can be null values in the case where a concrete professor entity does not lead a faculty. It is better like we did it! Because a faculty always has a professor that leads it (1..1 → obligatory) there won't be null values in the faculty relation since there <i>has</i> to be a <code>persNr</code> of an professor that leads it :) I hope this explanation helps.
 </p>
+
+<p>
+<b>In case of an <i>optional</i> participation on <i>both</i> sides of the relationship:</b>
+When null values are not allowed / inacceptable a new relationship relation has to be created. In that relation the primary keys of the entity relations are added as foreign keys as well as potential relationship attributes. One of the foreignkeys also becomes the primary key of newly created relationship entity.
+</p>
+
+<p>
+When null values are allowed / acceptable then the primary key of one relation and potential relationship attributes are added to the other entity relation type. Theoretically it doesn't matter which entity relation is linked via it's primary key, however knowledge about the relationships and amount of data (rows for each relation) might help to pick the one where less null values would occur. If there is for example a entity relation type where we have two data sets forest 1 and forest 2 which are optionally managed by one ranger (Förster) at max (<code>0..1</code>). And we have 500 data sets of rangers which can optionally manage a forest (<code>0..1</code>) then it would make more sense to add the rangers PK as a foreign key to the forests instead of the other way round, since <code>forestID</code> as a foreign key in the ranger entity relation will be empty alot!
+</p>
+
+<p>
+Another example from the slides:
+<img src="../../../images/one-to-one-both-optional.png" alt="nil"></p>
 </div>
 </li>
 </ul>
+</div>
+<div id="outline-container-org52ef717" class="outline-4">
+<h4 id="org52ef717">ERM to RM - Weak Entity Types</h4>
+<div class="outline-text-4" id="text-org52ef717">
+<p>
+The expression of a weak entity type in the relational model always has to include the relationship to the superior strong entity type (übergeordneter starker Entitytyp). The following steps describe how do this, they are however optimizable:
+</p>
+<ul class="org-ul">
+<li>create a relation for every weak entity type in the ERM</li>
+<li>add the attributes to the relation in the same manner as you'd do it for strong entity types</li>
+<li>then the primary key of the superior strong entity type is added as a foreign key</li>
+<li>the primary key of this new relation consists of the original primary key of the weak entity type (if existing) and the foreign key which stems from the super strong entity type</li>
+</ul>
+<p>
+<img src="../../../images/weak-entity-type.png" alt="nil"></p>
+
+<p>
+In case of an obligatory participation of all entities of both sides of a <code>1:1</code> relationship between a weak and a strong entity type, they entity types can be merged into one relation (as it is with obligatory <code>1:1</code> between strong ETs):
+<img src="../../../images/weak-entity-merge.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org3831ea6" class="outline-4">
+<h4 id="org3831ea6">ERM to RM - Multivalent (Mehrwertige) Attributes</h4>
+<div class="outline-text-4" id="text-org3831ea6">
+<p>
+To translate multivalent attribute types into the relational model:
+</p>
+<ul class="org-ul">
+<li>create a relation \(R\) for the multivalent attribute \(A\) (empty relation with name of the attribute "type")</li>
+<li>add the primary key \(K\) of the entity relation type and \(A\) to \(R\)</li>
+<li>mark \(K\) as a foreign key</li>
+<li>mark \(K\) and \(A\) as primary key of \(R\)
+<ul class="org-ul">
+<li>exception: if \(A\) itself serves as a primary key of the original entity type, then \(A\) is the primary key of \(R\)</li>
+</ul>
+</li>
+</ul>
+<p>
+<img src="../../../images/multivalent-attr.png" alt="nil"></p>
+
+<hr>
+<p>
+Now remember the steps required to translate from ERM to RM from the beginning of this post:
+</p>
+<blockquote>
+<p>
+"The steps required are:
+</p>
+<ul class="org-ul">
+<li>derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)</li>
+<li>normalization of relations</li>
+<li>validation of relations in regards to user transactions</li>
+<li>verification of integrity conditions (Integritätsbedingungen)</li>
+<li>consultation (Rücksprache) with users"</li>
+</ul>
+</blockquote>
+
+<p>
+At this point we covered the first step <i>yay</i>. 
+</p>
+
+<p>
+The normalization of relations will be covered latter and now we'll shortly turn to integrity conditions.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7b2be8" class="outline-3">
+<h3 id="orge7b2be8">Integrity Conditions and Data Integrity</h3>
+<div class="outline-text-3" id="text-orge7b2be8">
+<p>
+Integrity conditions/rules describe a set of requirements to guarantee the consistency, the correctness and completeness of data. It is required to document all integrity rules in the logical design phase.
+</p>
+
+<p>
+The following kinds of integrity constraints have to be respected:
+</p>
+<ul class="org-ul">
+<li>
+<b>entity integrity</b> → is an integrity rule which states that a primary key should be unique and not null</li>
+<li>
+<b>referential integrity</b> → integrity rule that states any foreign-key value can only be null or the value of some existing primary key; it has to be specified what happens when changing operations on PKs and FKs occur</li>
+<li>
+<b>domain integrity</b> → the value of an attribute has to be part of the (co)domain (Wertebereich) of its attribute domain</li>
+<li>
+<b>obligatory data</b> → for some attributes a concrete value has to be specified for every tuple (eg key attributes)</li>
+<li>
+<b>cardinality and participation</b> → rules that describe restrictions of relationships</li>
+<li>
+<b>other</b> → rules that describe all other integrity constraints derived from requirements of the real world "problem"</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgda90644" class="outline-3">
+<h3 id="orgda90644">Interim Conclusion (Zwischenfazit)</h3>
+<div class="outline-text-3" id="text-orgda90644">
+<p>
+Since the expressiveness (Ausdruckskraft) of the relational model (logical design) is much lower than the epressiveness of a conceptual model (eg ERM), the conceptual model should always be done and done first! The meaning of things is often times not clear without additional knowledge from the conceptual design.
+</p>
 </div>
 </div>
 </div>
