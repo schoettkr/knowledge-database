@@ -36,9 +36,9 @@ The set \(\sum = {0,1,2,3,4,5,6,7,8,9}\) for example is sufficient to build all 
 /The set of all strings(combinations) (Zeichenketten) the symbols from \(\sum\) can build is called *Kleene star* \(\sum *\) of \(\sum\) (Kleenesche Hülle).
 
 For example:
-$$\sum = {a,b} \Rightarrow \sum * = {\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...} \$$
+$$ \sum = \{a,b\} \Rightarrow \sum * = \{\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...\} $$
 
-The set of all string without the empty string is represented as \(sum +\) Kleene Plus.
+The set of all strings without the empty string is represented as \(sum +\) Kleene Plus.
 
 /Each subset \(L \subseteq \sum*\) is also a *formal language*/.
 
@@ -109,6 +109,9 @@ Components:
 An example of a (simplified) function declaration in C in a syntax diagram:
 [[img-url:/images/syntax-diagram-func-decl.png]]
 
+Example of a syntax diagram for a while loop in python:
+[[img-url:/images/syntax-diagram-python.png]]
+
 * Backus-Naur Form
 While syntax diagrams are easy to read, they're quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).
 
@@ -167,4 +170,82 @@ grep −E "typedef ([_[:alpha:]][_[:alnum:]]*[[:blank:]]+)+time_t;" *.h # (copie
 #+END_SRC
 
 * Compiler
-F29
+A modern compiler uses multiple formal grammars for different purposes:
+**** Lexical Analysis
+Lexical Analysis is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning). 
+
+Lexical analysis is the first phase of a compiler. It takes the modified source code from language preprocessors that are written in the form of sentences. The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace (in C, not in python because they belong to the syntax) or comments in the source code.
+
+If the lexical analyzer finds a token invalid, it generates an error. The lexical analyzer works closely with the syntax analyzer. It reads character streams from the source code, checks for legal tokens, and passes the data to the syntax analyzer when it demands.
+
+This is often done via a lexical specification that is defined using regular expressions.
+
+**** Syntax Analysis
+Syntax analysis or parsing is the second phase of a compiler. We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses /context-free grammar/ (CFG), which is recognized by push-down automata.
+
+CFG, on the other hand, is a superset of Regular Grammar. This implies that every Regular Grammar is also context-free, but there exists some problems, which are beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages (take a look at [[https://www.tutorialspoint.com/compiler_design/compiler_design_syntax_analysis.htm][this]] resource which is pretty good and also has some more explanations for terminal symbols etc). 
+
+A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a parse tree.
+
+This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.
+
+Parsers are expected to parse the whole code even if some errors exist in the program. 
+
+*Limitations of syntax analyzers*
+
+Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks:
+- it cannot determine if a token is valid
+- it cannot determine if a token is declared before it is being used
+- it cannot determine if a token is initialized before it is being used
+- it cannot determine if an operation performed on a token type is valid or not
+
+These tasks are accomplished by the /semantic analyzer/
+
+**** Semantic Analyzer
+A parser constructs parse trees as seen in the section about the parser / syntax analyzer above.
+
+The plain parse-tree constructed in that phase is generally of no use for a compiler, as it does not carry any information of how to evaluate the tree. The productions of context-free grammar, which makes the rules of the language, do not accommodate how to interpret them.
+
+Semantics of a language provide meaning to its constructs, like tokens and syntax structure. Semantics help interpret symbols, their types, and their relations with each other. Semantic analysis judges whether the syntax structure constructed in the source program derives any meaning or not.
+
+For example:
+#+BEGIN_SRC java
+int a = "value";
+#+END_SRC
+The code above should not issue an error in lexical and syntax analysis phase, as it is lexically and structurally correct, but it should generate a semantic error as the type of the assignment differs. These rules are set by the grammar of the language and evaluated in semantic analysis. The following tasks should be performed in semantic analysis:
+- Scope resolution
+- Type checking
+- Array-bound checking
+
+From the lecture slides: "usually context-sensitive language is used to perform semantic analysis"
+
+
+* Excourse: General Difference between Expressions and Statements
+A statement is like an instruction that the runtime performs. Programs consist of statements. Without statements, there is nothing to do. 
+
+An expression is a piece of code that can be 'evaluated', meaning it can be reduced to a value. 
+
+The two concepts are not related, or even similar. They may coincide with the same piece of code, but they do very different things. 
+
+=x = 1= is not a statement. ='x = 1'= is an /expression/ that evaluates to 1, with the side effect of assigning the value 1 to x. 
+
+=x = 1;= is a /statement/ (note the semi-colon at the end) that performs this assignment. 
+
+In many languages (Java, C, JavaScript), it's easy to distinguish statements. Statements usually end with a semi-colon. Statements can't be evaluated, they just do something. 
+
+Expressions are harder to distinguish: The following statement consists of 9 expressions: =f[x] = 2*x+1;=
+1. =f= variable
+2. =x= variable
+3. =f[x]= binary postfix operation
+4. =2= literal
+5. =2*x= binary operation   
+6. =1= literal
+8. =2*x+1= binary operation
+9. =f[x] = 2*x+1= assignment operation
+
+   
+In some languages there is no distinction between expressions and staments. In Lisp for example all code and data are written as expressions. When an expression is evaluated, it produces a value.
+
+------
+
+Sources: https://www.tutorialspoint.com

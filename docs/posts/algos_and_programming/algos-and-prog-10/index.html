@@ -92,9 +92,9 @@ Grammar (like we know it from s'>
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgcfa223a" class="outline-2">
-<h2 id="orgcfa223a">Introduction</h2>
-<div class="outline-text-2" id="text-orgcfa223a">
+        <div id="outline-container-org3412ab9" class="outline-2">
+<h2 id="org3412ab9">Introduction</h2>
+<div class="outline-text-2" id="text-org3412ab9">
 <p>
 How does the compiler know whether a program is "correct" (in the sense of compilable) or not?
 We basically distinguish between <b>grammar</b> and <b>semantics</b>.
@@ -110,9 +110,9 @@ The <b>semantics</b> (<i>meaning of a sentence</i>) do not matter to the compile
 </div>
 </div>
 
-<div id="outline-container-org0a1bb6a" class="outline-2">
-<h2 id="org0a1bb6a">Syntax</h2>
-<div class="outline-text-2" id="text-org0a1bb6a">
+<div id="outline-container-orgc7b3af8" class="outline-2">
+<h2 id="orgc7b3af8">Syntax</h2>
+<div class="outline-text-2" id="text-orgc7b3af8">
 <p>
 The <b>syntax</b> of a language is a <i>set of rules</i> after which <i>expressions</i> are built. This is true for natural languages like English and for formal languages likes C or Python, as well as mathematical logic or description languages etc.
 </p>
@@ -147,11 +147,11 @@ The set \(\sum = {0,1,2,3,4,5,6,7,8,9}\) for example is sufficient to build all 
 
 <p>
 For example:
-\[\sum = {a,b} \Rightarrow \sum * = {\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...} \\]
+\[ \sum = \{a,b\} \Rightarrow \sum * = \{\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...\} \]
 </p>
 
 <p>
-The set of all string without the empty string is represented as \(sum +\) Kleene Plus.
+The set of all strings without the empty string is represented as \(sum +\) Kleene Plus.
 </p>
 
 <p>
@@ -164,9 +164,9 @@ In the following context we focus on formal languages and "languages" then refer
 </div>
 </div>
 
-<div id="outline-container-orgd7cff39" class="outline-2">
-<h2 id="orgd7cff39">Formal languages and generative/formal grammar</h2>
-<div class="outline-text-2" id="text-orgd7cff39">
+<div id="outline-container-org5262b4a" class="outline-2">
+<h2 id="org5262b4a">Formal languages and generative/formal grammar</h2>
+<div class="outline-text-2" id="text-org5262b4a">
 <p>
 How can the syntax of a language be described? Which expressions/strings in a language are valid and which aren't? An enumeration of valid expressions is usually unpractical because the quantity of expressions is often times enormously big or infinite. 
 </p>
@@ -264,9 +264,9 @@ Each n-1 grammar can "do everything and more" that a grammar of type n can do (a
 </div>
 </div>
 
-<div id="outline-container-org11cc094" class="outline-2">
-<h2 id="org11cc094">Syntax Diagrams</h2>
-<div class="outline-text-2" id="text-org11cc094">
+<div id="outline-container-org69566a8" class="outline-2">
+<h2 id="org69566a8">Syntax Diagrams</h2>
+<div class="outline-text-2" id="text-org69566a8">
 <p>
 How may we describe the rules of grammars? For the following we limit us to (maximal) contrext free grammars. To describe grammar rules there exist two main approaches:
 </p>
@@ -294,12 +294,16 @@ Components:
 <p>
 An example of a (simplified) function declaration in C in a syntax diagram:
 <img src="../../../images/syntax-diagram-func-decl.png" alt="nil"></p>
+
+<p>
+Example of a syntax diagram for a while loop in python:
+<img src="../../../images/syntax-diagram-python.png" alt="nil"></p>
 </div>
 </div>
 
-<div id="outline-container-org453a901" class="outline-2">
-<h2 id="org453a901">Backus-Naur Form</h2>
-<div class="outline-text-2" id="text-org453a901">
+<div id="outline-container-org94ed424" class="outline-2">
+<h2 id="org94ed424">Backus-Naur Form</h2>
+<div class="outline-text-2" id="text-org94ed424">
 <p>
 While syntax diagrams are easy to read, they're quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).
 </p>
@@ -361,9 +365,9 @@ A (E)BNF defintion or a syntax diagram is <b>complete</b> (vollständig) if a ru
 </p>
 </div>
 </div>
-<div id="outline-container-org2cc8986" class="outline-2">
-<h2 id="org2cc8986">Regular Grammar in Action</h2>
-<div class="outline-text-2" id="text-org2cc8986">
+<div id="outline-container-org7d07cca" class="outline-2">
+<h2 id="org7d07cca">Regular Grammar in Action</h2>
+<div class="outline-text-2" id="text-org7d07cca">
 <p>
 Now we'll introduce <b>regular expressions</b> which are a compact notation for regular grammars.
 </p>
@@ -428,11 +432,166 @@ Example usage of grep which finds all defintions of <code>time_t</code> in heade
 </div>
 </div>
 
-<div id="outline-container-org253815f" class="outline-2">
-<h2 id="org253815f">Compiler</h2>
-<div class="outline-text-2" id="text-org253815f">
+<div id="outline-container-orgc58be84" class="outline-2">
+<h2 id="orgc58be84">Compiler</h2>
+<div class="outline-text-2" id="text-orgc58be84">
 <p>
-F29
+A modern compiler uses multiple formal grammars for different purposes:
+</p>
+</div>
+<ul class="org-ul">
+<li>
+<a id="orgb26bd0f"></a>Lexical Analysis<br><div class="outline-text-5" id="text-orgb26bd0f">
+<p>
+Lexical Analysis is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning). 
+</p>
+
+<p>
+Lexical analysis is the first phase of a compiler. It takes the modified source code from language preprocessors that are written in the form of sentences. The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace (in C, not in python because they belong to the syntax) or comments in the source code.
+</p>
+
+<p>
+If the lexical analyzer finds a token invalid, it generates an error. The lexical analyzer works closely with the syntax analyzer. It reads character streams from the source code, checks for legal tokens, and passes the data to the syntax analyzer when it demands.
+</p>
+
+<p>
+This is often done via a lexical specification that is defined using regular expressions.
+</p>
+</div>
+</li>
+
+<li>
+<a id="org837dc09"></a>Syntax Analysis<br><div class="outline-text-5" id="text-org837dc09">
+<p>
+Syntax analysis or parsing is the second phase of a compiler. We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses <i>context-free grammar</i> (CFG), which is recognized by push-down automata.
+</p>
+
+<p>
+CFG, on the other hand, is a superset of Regular Grammar. This implies that every Regular Grammar is also context-free, but there exists some problems, which are beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages (take a look at <a href="https://www.tutorialspoint.com/compiler_design/compiler_design_syntax_analysis.htm">this</a> resource which is pretty good and also has some more explanations for terminal symbols etc). 
+</p>
+
+<p>
+A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a parse tree.
+</p>
+
+<p>
+This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.
+</p>
+
+<p>
+Parsers are expected to parse the whole code even if some errors exist in the program. 
+</p>
+
+<p>
+<b>Limitations of syntax analyzers</b>
+</p>
+
+<p>
+Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks:
+</p>
+<ul class="org-ul">
+<li>it cannot determine if a token is valid</li>
+<li>it cannot determine if a token is declared before it is being used</li>
+<li>it cannot determine if a token is initialized before it is being used</li>
+<li>it cannot determine if an operation performed on a token type is valid or not</li>
+</ul>
+<p>
+These tasks are accomplished by the <i>semantic analyzer</i>
+</p>
+</div>
+</li>
+
+<li>
+<a id="org8e4d771"></a>Semantic Analyzer<br><div class="outline-text-5" id="text-org8e4d771">
+<p>
+A parser constructs parse trees as seen in the section about the parser / syntax analyzer above.
+</p>
+
+<p>
+The plain parse-tree constructed in that phase is generally of no use for a compiler, as it does not carry any information of how to evaluate the tree. The productions of context-free grammar, which makes the rules of the language, do not accommodate how to interpret them.
+</p>
+
+<p>
+Semantics of a language provide meaning to its constructs, like tokens and syntax structure. Semantics help interpret symbols, their types, and their relations with each other. Semantic analysis judges whether the syntax structure constructed in the source program derives any meaning or not.
+</p>
+
+<p>
+For example:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"value"</span><span class="o">;</span>
+</pre></div>
+<p>
+The code above should not issue an error in lexical and syntax analysis phase, as it is lexically and structurally correct, but it should generate a semantic error as the type of the assignment differs. These rules are set by the grammar of the language and evaluated in semantic analysis. The following tasks should be performed in semantic analysis:
+</p>
+<ul class="org-ul">
+<li>Scope resolution</li>
+<li>Type checking</li>
+<li>Array-bound checking</li>
+</ul>
+<p>
+From the lecture slides: "usually context-sensitive language is used to perform semantic analysis"
+</p>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="outline-container-org7d80d47" class="outline-2">
+<h2 id="org7d80d47">Excourse: General Difference between Expressions and Statements</h2>
+<div class="outline-text-2" id="text-org7d80d47">
+<p>
+A statement is like an instruction that the runtime performs. Programs consist of statements. Without statements, there is nothing to do. 
+</p>
+
+<p>
+An expression is a piece of code that can be 'evaluated', meaning it can be reduced to a value. 
+</p>
+
+<p>
+The two concepts are not related, or even similar. They may coincide with the same piece of code, but they do very different things. 
+</p>
+
+<p>
+<code>x = 1</code> is not a statement. <code>'x = 1'</code> is an <i>expression</i> that evaluates to 1, with the side effect of assigning the value 1 to x. 
+</p>
+
+<p>
+<code>x = 1;</code> is a <i>statement</i> (note the semi-colon at the end) that performs this assignment. 
+</p>
+
+<p>
+In many languages (Java, C, JavaScript), it's easy to distinguish statements. Statements usually end with a semi-colon. Statements can't be evaluated, they just do something. 
+</p>
+
+<p>
+Expressions are harder to distinguish: The following statement consists of 9 expressions: <code>f[x] = 2*x+1;</code>
+</p>
+<ol class="org-ol">
+<li>
+<code>f</code> variable</li>
+<li>
+<code>x</code> variable</li>
+<li>
+<code>f[x]</code> binary postfix operation</li>
+<li>
+<code>2</code> literal</li>
+<li>
+<code>2*x</code> binary operation</li>
+<li>
+<code>1</code> literal</li>
+<li>
+<code>2*x+1</code> binary operation</li>
+<li>
+<code>f[x] = 2*x+1</code> assignment operation</li>
+</ol>
+<p>
+In some languages there is no distinction between expressions and staments. In Lisp for example all code and data are written as expressions. When an expression is evaluated, it produces a value.
+</p>
+
+<hr>
+<p>
+Sources: <a href="https://www.tutorialspoint.com">https://www.tutorialspoint.com</a>
 </p>
 </div>
 </div>

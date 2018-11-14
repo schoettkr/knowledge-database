@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/university.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 11 Nov 2018 15:22:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgcfa223a" class="outline-2"&gt;
-&lt;h2 id="orgcfa223a"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcfa223a"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/university.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 14 Nov 2018 12:44:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org3412ab9" class="outline-2"&gt;
+&lt;h2 id="org3412ab9"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3412ab9"&gt;
 &lt;p&gt;
 How does the compiler know whether a program is "correct" (in the sense of compilable) or not?
 We basically distinguish between &lt;b&gt;grammar&lt;/b&gt; and &lt;b&gt;semantics&lt;/b&gt;.
@@ -17,9 +17,9 @@ The &lt;b&gt;semantics&lt;/b&gt; (&lt;i&gt;meaning of a sentence&lt;/i&gt;) do n
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0a1bb6a" class="outline-2"&gt;
-&lt;h2 id="org0a1bb6a"&gt;Syntax&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0a1bb6a"&gt;
+&lt;div id="outline-container-orgc7b3af8" class="outline-2"&gt;
+&lt;h2 id="orgc7b3af8"&gt;Syntax&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc7b3af8"&gt;
 &lt;p&gt;
 The &lt;b&gt;syntax&lt;/b&gt; of a language is a &lt;i&gt;set of rules&lt;/i&gt; after which &lt;i&gt;expressions&lt;/i&gt; are built. This is true for natural languages like English and for formal languages likes C or Python, as well as mathematical logic or description languages etc.
 &lt;/p&gt;
@@ -54,11 +54,11 @@ The set \(\sum = {0,1,2,3,4,5,6,7,8,9}\) for example is sufficient to build all 
 
 &lt;p&gt;
 For example:
-\[\sum = {a,b} \Rightarrow \sum * = {\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...} \\]
+\[ \sum = \{a,b\} \Rightarrow \sum * = \{\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...\} \]
 &lt;/p&gt;
 
 &lt;p&gt;
-The set of all string without the empty string is represented as \(sum +\) Kleene Plus.
+The set of all strings without the empty string is represented as \(sum +\) Kleene Plus.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -71,9 +71,9 @@ In the following context we focus on formal languages and "languages" then refer
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd7cff39" class="outline-2"&gt;
-&lt;h2 id="orgd7cff39"&gt;Formal languages and generative/formal grammar&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd7cff39"&gt;
+&lt;div id="outline-container-org5262b4a" class="outline-2"&gt;
+&lt;h2 id="org5262b4a"&gt;Formal languages and generative/formal grammar&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5262b4a"&gt;
 &lt;p&gt;
 How can the syntax of a language be described? Which expressions/strings in a language are valid and which aren't? An enumeration of valid expressions is usually unpractical because the quantity of expressions is often times enormously big or infinite. 
 &lt;/p&gt;
@@ -156,9 +156,9 @@ Each n-1 grammar can "do everything and more" that a grammar of type n can do (a
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org11cc094" class="outline-2"&gt;
-&lt;h2 id="org11cc094"&gt;Syntax Diagrams&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org11cc094"&gt;
+&lt;div id="outline-container-org69566a8" class="outline-2"&gt;
+&lt;h2 id="org69566a8"&gt;Syntax Diagrams&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org69566a8"&gt;
 &lt;p&gt;
 How may we describe the rules of grammars? For the following we limit us to (maximal) contrext free grammars. To describe grammar rules there exist two main approaches:
 &lt;/p&gt;
@@ -190,12 +190,17 @@ Components:
 An example of a (simplified) function declaration in C in a syntax diagram:
 &lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-func-decl.png" alt="nil"&gt;
 &lt;/p&gt;
+
+&lt;p&gt;
+Example of a syntax diagram for a while loop in python:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-python.png" alt="nil"&gt;
+&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org453a901" class="outline-2"&gt;
-&lt;h2 id="org453a901"&gt;Backus-Naur Form&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org453a901"&gt;
+&lt;div id="outline-container-org94ed424" class="outline-2"&gt;
+&lt;h2 id="org94ed424"&gt;Backus-Naur Form&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org94ed424"&gt;
 &lt;p&gt;
 While syntax diagrams are easy to read, they're quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).
 &lt;/p&gt;
@@ -246,9 +251,9 @@ A (E)BNF defintion or a syntax diagram is &lt;b&gt;complete&lt;/b&gt; (vollstän
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2cc8986" class="outline-2"&gt;
-&lt;h2 id="org2cc8986"&gt;Regular Grammar in Action&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2cc8986"&gt;
+&lt;div id="outline-container-org7d07cca" class="outline-2"&gt;
+&lt;h2 id="org7d07cca"&gt;Regular Grammar in Action&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7d07cca"&gt;
 &lt;p&gt;
 Now we'll introduce &lt;b&gt;regular expressions&lt;/b&gt; which are a compact notation for regular grammars.
 &lt;/p&gt;
@@ -301,11 +306,163 @@ Example usage of grep which finds all defintions of &lt;code&gt;time_t&lt;/code&
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org253815f" class="outline-2"&gt;
-&lt;h2 id="org253815f"&gt;Compiler&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org253815f"&gt;
+&lt;div id="outline-container-orgc58be84" class="outline-2"&gt;
+&lt;h2 id="orgc58be84"&gt;Compiler&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc58be84"&gt;
 &lt;p&gt;
-F29
+A modern compiler uses multiple formal grammars for different purposes:
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="orgb26bd0f"&gt;&lt;/a&gt;Lexical Analysis&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgb26bd0f"&gt;
+&lt;p&gt;
+Lexical Analysis is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning). 
+&lt;/p&gt;
+
+&lt;p&gt;
+Lexical analysis is the first phase of a compiler. It takes the modified source code from language preprocessors that are written in the form of sentences. The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace (in C, not in python because they belong to the syntax) or comments in the source code.
+&lt;/p&gt;
+
+&lt;p&gt;
+If the lexical analyzer finds a token invalid, it generates an error. The lexical analyzer works closely with the syntax analyzer. It reads character streams from the source code, checks for legal tokens, and passes the data to the syntax analyzer when it demands.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is often done via a lexical specification that is defined using regular expressions.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org837dc09"&gt;&lt;/a&gt;Syntax Analysis&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org837dc09"&gt;
+&lt;p&gt;
+Syntax analysis or parsing is the second phase of a compiler. We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses &lt;i&gt;context-free grammar&lt;/i&gt; (CFG), which is recognized by push-down automata.
+&lt;/p&gt;
+
+&lt;p&gt;
+CFG, on the other hand, is a superset of Regular Grammar. This implies that every Regular Grammar is also context-free, but there exists some problems, which are beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages (take a look at &lt;a href="https://www.tutorialspoint.com/compiler_design/compiler_design_syntax_analysis.htm"&gt;this&lt;/a&gt; resource which is pretty good and also has some more explanations for terminal symbols etc). 
+&lt;/p&gt;
+
+&lt;p&gt;
+A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a parse tree.
+&lt;/p&gt;
+
+&lt;p&gt;
+This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.
+&lt;/p&gt;
+
+&lt;p&gt;
+Parsers are expected to parse the whole code even if some errors exist in the program. 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Limitations of syntax analyzers&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;it cannot determine if a token is valid&lt;/li&gt;
+&lt;li&gt;it cannot determine if a token is declared before it is being used&lt;/li&gt;
+&lt;li&gt;it cannot determine if a token is initialized before it is being used&lt;/li&gt;
+&lt;li&gt;it cannot determine if an operation performed on a token type is valid or not&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+These tasks are accomplished by the &lt;i&gt;semantic analyzer&lt;/i&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org8e4d771"&gt;&lt;/a&gt;Semantic Analyzer&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org8e4d771"&gt;
+&lt;p&gt;
+A parser constructs parse trees as seen in the section about the parser / syntax analyzer above.
+&lt;/p&gt;
+
+&lt;p&gt;
+The plain parse-tree constructed in that phase is generally of no use for a compiler, as it does not carry any information of how to evaluate the tree. The productions of context-free grammar, which makes the rules of the language, do not accommodate how to interpret them.
+&lt;/p&gt;
+
+&lt;p&gt;
+Semantics of a language provide meaning to its constructs, like tokens and syntax structure. Semantics help interpret symbols, their types, and their relations with each other. Semantic analysis judges whether the syntax structure constructed in the source program derives any meaning or not.
+&lt;/p&gt;
+
+&lt;p&gt;
+For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"value"&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The code above should not issue an error in lexical and syntax analysis phase, as it is lexically and structurally correct, but it should generate a semantic error as the type of the assignment differs. These rules are set by the grammar of the language and evaluated in semantic analysis. The following tasks should be performed in semantic analysis:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Scope resolution&lt;/li&gt;
+&lt;li&gt;Type checking&lt;/li&gt;
+&lt;li&gt;Array-bound checking&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+From the lecture slides: "usually context-sensitive language is used to perform semantic analysis"
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org7d80d47" class="outline-2"&gt;
+&lt;h2 id="org7d80d47"&gt;Excourse: General Difference between Expressions and Statements&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7d80d47"&gt;
+&lt;p&gt;
+A statement is like an instruction that the runtime performs. Programs consist of statements. Without statements, there is nothing to do. 
+&lt;/p&gt;
+
+&lt;p&gt;
+An expression is a piece of code that can be 'evaluated', meaning it can be reduced to a value. 
+&lt;/p&gt;
+
+&lt;p&gt;
+The two concepts are not related, or even similar. They may coincide with the same piece of code, but they do very different things. 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;code&gt;x = 1&lt;/code&gt; is not a statement. &lt;code&gt;'x = 1'&lt;/code&gt; is an &lt;i&gt;expression&lt;/i&gt; that evaluates to 1, with the side effect of assigning the value 1 to x. 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;code&gt;x = 1;&lt;/code&gt; is a &lt;i&gt;statement&lt;/i&gt; (note the semi-colon at the end) that performs this assignment. 
+&lt;/p&gt;
+
+&lt;p&gt;
+In many languages (Java, C, JavaScript), it's easy to distinguish statements. Statements usually end with a semi-colon. Statements can't be evaluated, they just do something. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Expressions are harder to distinguish: The following statement consists of 9 expressions: &lt;code&gt;f[x] = 2*x+1;&lt;/code&gt;
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;&lt;code&gt;f&lt;/code&gt; variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt; variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f[x]&lt;/code&gt; binary postfix operation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;2&lt;/code&gt; literal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;2*x&lt;/code&gt; binary operation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt; literal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;2*x+1&lt;/code&gt; binary operation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f[x] = 2*x+1&lt;/code&gt; assignment operation&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;
+In some languages there is no distinction between expressions and staments. In Lisp for example all code and data are written as expressions. When an expression is evaluated, it produces a value.
+&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;
+Sources: &lt;a href="https://www.tutorialspoint.com"&gt;https://www.tutorialspoint.com&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 09</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org80666c1" class="outline-2"&gt;
