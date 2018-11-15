@@ -1,5 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/university.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 14 Nov 2018 12:44:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org3412ab9" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/university.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Thu, 15 Nov 2018 15:46:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 11</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org164a485" class="outline-2"&gt;
+&lt;h2 id="org164a485"&gt;Logic and Abstract Machines (Automaten)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org164a485"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org572d1f0" class="outline-3"&gt;
+&lt;h3 id="org572d1f0"&gt;Boolean Algebra&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org572d1f0"&gt;
+&lt;p&gt;
+Boolean algebra is the branch of algebra in which the values of the variables are the truth values true and false, usually denoted 1 and 0 respectively.
+&lt;b&gt;Propositional logic&lt;/b&gt; (Aussagenlogik) is a branch of logic which deals with propositions (which can be true or false) and argument flow. Compound propositions are formed by connecting propositions by logical connectives. The propositions without logical connectives are called atomic propositions. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Principles:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;principle of bivalence&lt;/b&gt; (Zweiwertigkeit) → every proposition (Aussage) is either true (truthy) or false (falsy)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;principle/law of excluded third/middle&lt;/b&gt; → for any proposition, either that proposition is true or its negation is true - no third possibility is given&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;principle/law of noncontradiction&lt;/b&gt; → no proposition can be true and false at the same time&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;principle of extensionality&lt;/b&gt; → the truth value of a composite proposition (Aussageverknüpfung) only depends on the truth value of its components&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+F 3./4.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5450ebe" class="outline-4"&gt;
+&lt;h4 id="org5450ebe"&gt;Logical Composition&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5450ebe"&gt;
+&lt;p&gt;
+The following logical compositions (Verknüpfungsfunktionen) will be inserted as pictures from the lecture slides because it is pretty time-consuming to port it over.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/logical-comp-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/logical-comp-2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+A set of logical compositions that is able to express all other compositions is called &lt;b&gt;logically/functionally complete&lt;/b&gt; (logisch vollständig)
+&lt;/p&gt;
+
+&lt;p&gt;
+More laws and rules from lecture slides:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/bool-law-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/bool-law-2.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7a92ea1" class="outline-4"&gt;
+&lt;h4 id="org7a92ea1"&gt;Normal Form&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7a92ea1"&gt;
+&lt;p&gt;
+Normal forms can help with unifying boolean expressions/propositions which can get unclearly fast (unübersichtlich):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;disjunctive normal form&lt;/b&gt; → is a standardization (or normalization) of a logical formula which is a disjunction of conjunctive clauses; it can also be described as an &lt;b&gt;OR&lt;/b&gt; of &lt;b&gt;ANDs&lt;/b&gt; or a sum of products
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;slides: Eine boolsche Funktion ist in disjunktiver Normalform (DNF), wenn sie eine Disjunktion (Oder) von Konjunktionsstermen (Und) ist, wobei die Konjunktionsterme nur (ggf. negierten) Funktionsparameter enthält&lt;/li&gt;
+&lt;li&gt;\(y = \vee_i (\wedge_j [\neg] x_{i,j}) \)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;conjunctive normal form&lt;/b&gt; → is a conjunction of one or more clauses, where a clause is a disjunction of literals; otherwise put, it is an &lt;b&gt;AND&lt;/b&gt; of &lt;b&gt;ORs&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;slides: Eine boolsche Funktion ist in konjunktiver Normalform (KNF), wenn sie eine Konjunktion (Und) von Disjunktionstermen (Oder) ist, wobei die Disjunktionsterme nur (ggf. negierten) Funktionsparameter enthält&lt;/li&gt;
+&lt;li&gt;\(y = \wedge_i (\vee_j  [\neg] x_{i,j}) \)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+There are different ways to create normal forms eg conversions via boolean algebra or by using truth tables:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/normalform.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+At this point the Karnaugh-Veitch Diagram for optimization purposes was mentioned which I'm skipping here. Take a look at slide 13 if you want (I don't lol).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org629634b" class="outline-2"&gt;
+&lt;h2 id="org629634b"&gt;Logic in C&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org629634b"&gt;
+&lt;p&gt;
+C uses logical (boolean) propositions/expressions and knows an according type. However since that type is so close to integer, it was not made explicitly available before C99. Since C99 however there is &lt;code&gt;_Bool&lt;/code&gt;. Via including &lt;code&gt;stdbool.h&lt;/code&gt; the type &lt;code&gt;bool&lt;/code&gt; is available which is a synonym for &lt;code&gt;_Bool&lt;/code&gt; and can hold the values &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.
+But remember that everywhere were a boolean type is required there can always be an integer. If so &lt;code&gt;0&lt;/code&gt; is always interpreted as &lt;code&gt;false&lt;/code&gt; and &lt;i&gt;every other&lt;/i&gt; value as &lt;code&gt;true&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The logic/boolean operators &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; in C do so called &lt;b&gt;short-circuit evaluation&lt;/b&gt; from left to right which means the second argument is executed or evaluated only if the first argument does not suffice to determine the value of the expression: when the first argument of the &lt;b&gt;AND&lt;/b&gt; function evaluates to &lt;code&gt;false&lt;/code&gt;, the overall value must be &lt;code&gt;false&lt;/code&gt;; and when the first argument of the &lt;b&gt;OR&lt;/b&gt; function evaluates to &lt;code&gt;true&lt;/code&gt;, the overall value must be &lt;code&gt;true&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Short-circuit operators are, in effect, control structures rather than simple arithmetic operators, as they are not strict. In imperative language terms (notably C and C++), where side effects are important, short-circuit operators introduce a sequence point – they completely evaluate the first argument, including any side effects, before (optionally) processing the second argument (es ist eine gängige Programmiertechnik, links im Kurzschlussoperator eine Bedingung abzusichern, die rechts zu einem Laufzeitfehler führen würde)
+&lt;/p&gt;
+
+&lt;p&gt;
+Bad code example from the lecture slides follows, BRACE YOURSELF:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* shortcut .c -- partial evaluation */&lt;/span&gt;
+&lt;span class="cp"&gt;# include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d. value : %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Some imho more practical pseudo examples could look like this:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;firedMissles&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CanFireMissiles&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;FireMissiles&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* or */&lt;/span&gt;
+
+&lt;span class="n"&gt;isFileReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;getFileReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+C also provides a &lt;i&gt;conditional operator&lt;/i&gt;. If any operator is used on three operands or variable is also known as &lt;i&gt;Ternary Operator&lt;/i&gt;. It can be represented with &lt;code&gt;"? : "&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The ternary operator is used to execute code based on the result of a binary condition.
+&lt;/p&gt;
+
+&lt;p&gt;
+It takes in a binary condition as input, which makes it similar to an 'if-else' control flow block. It also, however, returns a value, behaving similar to a function (functional model).
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;binaryCondition&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;valueReturnedIfTrue&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;valueReturnedIfFalse&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The ternary cannot be used to execute code. It must be either returned in a function, or set equal to a variable with the same data type as the returned values:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;findMaximum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="c1"&gt;//if a &amp;gt; b, it returns a, if not it returns b&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Some interesting notes and observations about the ternary operator can be found &lt;a href="https://www.geeksforgeeks.org/cc-ternary-operator-some-interesting-observations/"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The next lecture topic was the switch-case. I already covered that in &lt;a href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/#org48e22fb"&gt;this CS01 post&lt;/a&gt; and the rules from C++ apply to C aswell (other way round technically :D). Remember that "switch case" works with constant values as its cases and is used to "jump" to a specific statement from where execution will be continued until you &lt;code&gt;break&lt;/code&gt; or &lt;code&gt;return&lt;/code&gt;! so following cases would be executed as well (avoid this and rather group cases together).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</guid><pubDate>Sun, 11 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org3412ab9" class="outline-2"&gt;
 &lt;h2 id="org3412ab9"&gt;Introduction&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org3412ab9"&gt;
 &lt;p&gt;
@@ -3289,71 +3460,4 @@ An algorithm can consist of `if-then`-Rules (conditional clauses). The condition
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-02/</guid><pubDate>Fri, 12 Oct 2018 12:57:04 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 01</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-01/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-Today was the first lecture of "Algorithms and Programming", which is part of the module "Algorithms and Datastructures". As it is with most lectures in the first week, we mainly talked about organizational stuff. That's probably not interesting at all for anyone besides myself so you might aswell skip this.
-&lt;/p&gt;
-
-&lt;p&gt;
-Links:
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Course Website: &lt;a href="http://www.mytuc.org/smzl"&gt;mytuc.org/smzl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Opal Page: &lt;a href="http://www.mytuc.org/lyph"&gt;mytuc.org/lyph&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Complete script: &lt;a href="http://osg.informatik.tu-chemnitz.de/lehre/aup/aup-script.pdf"&gt;AuP-Skript&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Rated excercise submission: &lt;a href="https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/18109005842/CourseNode/94518022301219"&gt;Opal Link&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-There's accompanied programming on tuesdays and a Q &amp;amp; A session on wednesdays.
-&lt;/p&gt;
-
-&lt;p&gt;
-Besides the script, there will be slides to each lecture that are uploaded on the course website.
-There will be optional training excercises as well as rated exercises. Success in the rated exercises, may provide 10% bonus points for the written test at the end of the semester. In my case the written test is a required pre-exam to the final examination which will happen in the summer semester in the lecture Datastructures.
-&lt;/p&gt;
-
-&lt;p&gt;
-However I'll still do the rated exercises, as well as the training exercises (when they're useful) to practice more.
-&lt;/p&gt;
-
-&lt;p&gt;
-The first one of these is an essay (lol) about a (personal) pioneer in the field of computer science. I've picked David Heinemeier Hansson (short &lt;i&gt;dhh&lt;/i&gt;). I don't include the essay here because it needs to be in German anyway :P.
-&lt;/p&gt;
-
-&lt;p&gt;
-Todays small exercises were:
-&lt;/p&gt;
-
-&lt;p&gt;
-Have a look at the following number sequence:
-9 44 32 12 7 42 34 92 35 37 41 8 20 27 83 64 61 28 39 93 29 17 13 14 55 21 66 72 23 73 99 1 2 88 77 3 65 83 84 62 5 11 74 68 76 78 67 75 69 70 22 71 24 25 26
-&lt;/p&gt;
-
-&lt;p&gt;
-a) Cross out as little as possible numbers to still have an increasing sequence.
-&lt;/p&gt;
-
-&lt;p&gt;
-b) Do it again but this time the sequence should be decreasing.
-&lt;/p&gt;
-
-&lt;p&gt;
-c) Describe the required steps to find an optimal solution for these tasks for any number sequence.
-&lt;/p&gt;
-
-&lt;p&gt;
-Find a connected and closed (start=end) way in the following pentagon structure so that every dot is visited one time only (not all green lines need to be used):
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/pentagon.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-My solution: 
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/pentagon-solution.png" alt="nil"&gt;
-&lt;/p&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-01/</guid><pubDate>Mon, 08 Oct 2018 13:24:13 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-02/</guid><pubDate>Fri, 12 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>

@@ -1,5 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 14 Nov 2018 12:44:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org3412ab9" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Thu, 15 Nov 2018 15:46:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 11</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org164a485" class="outline-2"&gt;
+&lt;h2 id="org164a485"&gt;Logic and Abstract Machines (Automaten)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org164a485"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org572d1f0" class="outline-3"&gt;
+&lt;h3 id="org572d1f0"&gt;Boolean Algebra&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org572d1f0"&gt;
+&lt;p&gt;
+Boolean algebra is the branch of algebra in which the values of the variables are the truth values true and false, usually denoted 1 and 0 respectively.
+&lt;b&gt;Propositional logic&lt;/b&gt; (Aussagenlogik) is a branch of logic which deals with propositions (which can be true or false) and argument flow. Compound propositions are formed by connecting propositions by logical connectives. The propositions without logical connectives are called atomic propositions. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Principles:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;principle of bivalence&lt;/b&gt; (Zweiwertigkeit) → every proposition (Aussage) is either true (truthy) or false (falsy)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;principle/law of excluded third/middle&lt;/b&gt; → for any proposition, either that proposition is true or its negation is true - no third possibility is given&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;principle/law of noncontradiction&lt;/b&gt; → no proposition can be true and false at the same time&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;principle of extensionality&lt;/b&gt; → the truth value of a composite proposition (Aussageverknüpfung) only depends on the truth value of its components&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+F 3./4.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5450ebe" class="outline-4"&gt;
+&lt;h4 id="org5450ebe"&gt;Logical Composition&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5450ebe"&gt;
+&lt;p&gt;
+The following logical compositions (Verknüpfungsfunktionen) will be inserted as pictures from the lecture slides because it is pretty time-consuming to port it over.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/logical-comp-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/logical-comp-2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+A set of logical compositions that is able to express all other compositions is called &lt;b&gt;logically/functionally complete&lt;/b&gt; (logisch vollständig)
+&lt;/p&gt;
+
+&lt;p&gt;
+More laws and rules from lecture slides:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/bool-law-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/bool-law-2.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7a92ea1" class="outline-4"&gt;
+&lt;h4 id="org7a92ea1"&gt;Normal Form&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7a92ea1"&gt;
+&lt;p&gt;
+Normal forms can help with unifying boolean expressions/propositions which can get unclearly fast (unübersichtlich):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;disjunctive normal form&lt;/b&gt; → is a standardization (or normalization) of a logical formula which is a disjunction of conjunctive clauses; it can also be described as an &lt;b&gt;OR&lt;/b&gt; of &lt;b&gt;ANDs&lt;/b&gt; or a sum of products
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;slides: Eine boolsche Funktion ist in disjunktiver Normalform (DNF), wenn sie eine Disjunktion (Oder) von Konjunktionsstermen (Und) ist, wobei die Konjunktionsterme nur (ggf. negierten) Funktionsparameter enthält&lt;/li&gt;
+&lt;li&gt;\(y = \vee_i (\wedge_j [\neg] x_{i,j}) \)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;conjunctive normal form&lt;/b&gt; → is a conjunction of one or more clauses, where a clause is a disjunction of literals; otherwise put, it is an &lt;b&gt;AND&lt;/b&gt; of &lt;b&gt;ORs&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;slides: Eine boolsche Funktion ist in konjunktiver Normalform (KNF), wenn sie eine Konjunktion (Und) von Disjunktionstermen (Oder) ist, wobei die Disjunktionsterme nur (ggf. negierten) Funktionsparameter enthält&lt;/li&gt;
+&lt;li&gt;\(y = \wedge_i (\vee_j  [\neg] x_{i,j}) \)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+There are different ways to create normal forms eg conversions via boolean algebra or by using truth tables:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/normalform.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+At this point the Karnaugh-Veitch Diagram for optimization purposes was mentioned which I'm skipping here. Take a look at slide 13 if you want (I don't lol).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org629634b" class="outline-2"&gt;
+&lt;h2 id="org629634b"&gt;Logic in C&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org629634b"&gt;
+&lt;p&gt;
+C uses logical (boolean) propositions/expressions and knows an according type. However since that type is so close to integer, it was not made explicitly available before C99. Since C99 however there is &lt;code&gt;_Bool&lt;/code&gt;. Via including &lt;code&gt;stdbool.h&lt;/code&gt; the type &lt;code&gt;bool&lt;/code&gt; is available which is a synonym for &lt;code&gt;_Bool&lt;/code&gt; and can hold the values &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.
+But remember that everywhere were a boolean type is required there can always be an integer. If so &lt;code&gt;0&lt;/code&gt; is always interpreted as &lt;code&gt;false&lt;/code&gt; and &lt;i&gt;every other&lt;/i&gt; value as &lt;code&gt;true&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The logic/boolean operators &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; in C do so called &lt;b&gt;short-circuit evaluation&lt;/b&gt; from left to right which means the second argument is executed or evaluated only if the first argument does not suffice to determine the value of the expression: when the first argument of the &lt;b&gt;AND&lt;/b&gt; function evaluates to &lt;code&gt;false&lt;/code&gt;, the overall value must be &lt;code&gt;false&lt;/code&gt;; and when the first argument of the &lt;b&gt;OR&lt;/b&gt; function evaluates to &lt;code&gt;true&lt;/code&gt;, the overall value must be &lt;code&gt;true&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Short-circuit operators are, in effect, control structures rather than simple arithmetic operators, as they are not strict. In imperative language terms (notably C and C++), where side effects are important, short-circuit operators introduce a sequence point – they completely evaluate the first argument, including any side effects, before (optionally) processing the second argument (es ist eine gängige Programmiertechnik, links im Kurzschlussoperator eine Bedingung abzusichern, die rechts zu einem Laufzeitfehler führen würde)
+&lt;/p&gt;
+
+&lt;p&gt;
+Bad code example from the lecture slides follows, BRACE YOURSELF:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* shortcut .c -- partial evaluation */&lt;/span&gt;
+&lt;span class="cp"&gt;# include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d. value : %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Some imho more practical pseudo examples could look like this:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;firedMissles&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CanFireMissiles&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;FireMissiles&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* or */&lt;/span&gt;
+
+&lt;span class="n"&gt;isFileReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;getFileReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+C also provides a &lt;i&gt;conditional operator&lt;/i&gt;. If any operator is used on three operands or variable is also known as &lt;i&gt;Ternary Operator&lt;/i&gt;. It can be represented with &lt;code&gt;"? : "&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The ternary operator is used to execute code based on the result of a binary condition.
+&lt;/p&gt;
+
+&lt;p&gt;
+It takes in a binary condition as input, which makes it similar to an 'if-else' control flow block. It also, however, returns a value, behaving similar to a function (functional model).
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;binaryCondition&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;valueReturnedIfTrue&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;valueReturnedIfFalse&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The ternary cannot be used to execute code. It must be either returned in a function, or set equal to a variable with the same data type as the returned values:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;findMaximum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="c1"&gt;//if a &amp;gt; b, it returns a, if not it returns b&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Some interesting notes and observations about the ternary operator can be found &lt;a href="https://www.geeksforgeeks.org/cc-ternary-operator-some-interesting-observations/"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The next lecture topic was the switch-case. I already covered that in &lt;a href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/#org48e22fb"&gt;this CS01 post&lt;/a&gt; and the rules from C++ apply to C aswell (other way round technically :D). Remember that "switch case" works with constant values as its cases and is used to "jump" to a specific statement from where execution will be continued until you &lt;code&gt;break&lt;/code&gt; or &lt;code&gt;return&lt;/code&gt;! so following cases would be executed as well (avoid this and rather group cases together).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</guid><pubDate>Sun, 11 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org3412ab9" class="outline-2"&gt;
 &lt;h2 id="org3412ab9"&gt;Introduction&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org3412ab9"&gt;
 &lt;p&gt;
@@ -3068,286 +3239,4 @@ To remember this more easily:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org28bcc5a" class="outline-2"&gt;
-&lt;h2 id="org28bcc5a"&gt;Storage and memory&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org28bcc5a"&gt;
-&lt;p&gt;
-Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;storing in the file system (good for big data sets but slow)&lt;/li&gt;
-&lt;li&gt;storing in memory (faster but limited in some aspects as well)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-We continue with the latter option (ᵔᴥᵔ).
-&lt;/p&gt;
-
-&lt;p&gt;
-C is theoretically able to write to and acces every place in memory. Due to the implied dangers of this, most operating systems prevent this to some degree. There are three fundamental methods to reserve (&lt;b&gt;allocate&lt;/b&gt;) memory:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;(implicit) "named" memory allocation at compile time&lt;/li&gt;
-&lt;li&gt;"anonymous" memory allocation at run time&lt;/li&gt;
-&lt;li&gt;parameters which allocate storage at run rime as well&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-The terms "named" and "anonymous" are taken from the lecture script, I don't like them and think they're confusing. As I understand it the first method refers to the memory allocation that happens when you have e.g &lt;code&gt;int num = 5;&lt;/code&gt; in your code and the compiler allocates/reserves at least 16 bits (2 bytes), while the second method refers to dynamic memory allocation via &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;calloc()&lt;/code&gt;. I'm not entirely sure if this is what the professor means xD. 
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgee5753f" class="outline-3"&gt;
-&lt;h3 id="orgee5753f"&gt;Variables&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgee5753f"&gt;
-&lt;p&gt;
-Should the value of a place in memory be modified (purpose of the state model), you speak of (named or anonymous) &lt;i&gt;variables&lt;/i&gt;. Should the value in memory stay unchanged, then it is a &lt;i&gt;constant&lt;/i&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org0b77064" class="outline-4"&gt;
-&lt;h4 id="org0b77064"&gt;Named variables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org0b77064"&gt;
-&lt;p&gt;
-Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala &lt;code&gt;int x, y ,z;&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-When declaring a variable it is possible to also provide a &lt;i&gt;storage class&lt;/i&gt; and/or a &lt;i&gt;type qualifier&lt;/i&gt;. The storage class is declared via one of the following keywors &lt;code&gt;auto&lt;/code&gt;, &lt;code&gt;static&lt;/code&gt;, &lt;code&gt;extern&lt;/code&gt; or &lt;code&gt;register&lt;/code&gt;. These basically impact the &lt;i&gt;scope&lt;/i&gt;, &lt;i&gt;visibility/(?! might be wrong) and the /life time&lt;/i&gt; of the specific variable.
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; (assumed by default if no other storage class is specified)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;not often written because it is the default&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; variables can only be accessed within the block of declaration which defines their scope&lt;/li&gt;
-&lt;li&gt;however they can be accessed outside their scope by using pointers&lt;/li&gt;
-&lt;li&gt;get a garbage value assigned whenever they are declared (without initilization)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;static&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;static&lt;/code&gt; variables preserve their (last) value even after they are out of scope&lt;/li&gt;
-&lt;li&gt;therefore &lt;i&gt;only initialized once&lt;/i&gt; and exist until program termination, thus no new memory is allocated because they are not redeclared&lt;/li&gt;
-&lt;li&gt;their scope is local to the function in which they were defined, global static variables can be accesed anywhere&lt;/li&gt;
-&lt;li&gt;are assigned &lt;code&gt;0&lt;/code&gt; by default from the compiler&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;register&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;same functionality as auto variables with the difference that the compiler tries to store these variables in the register of the microprocessor, which makes access much faster than that of the variables stored in memory&lt;/li&gt;
-&lt;li&gt;if no free register is available the variable is stored in memory&lt;/li&gt;
-&lt;li&gt;address of register variables is not retrievable using pointers&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Type qualifiers are declared via the keywords &lt;code&gt;const&lt;/code&gt;, &lt;code&gt;volatile&lt;/code&gt; or &lt;code&gt;restrict&lt;/code&gt; and give hints to the compiler about the usage of the variables (see "Storage Classes and Storage Types/Attributes" in Lecture 08).
-&lt;/p&gt;
-
-&lt;p&gt;
-Variables declared outside of any function are &lt;i&gt;global variables&lt;/i&gt;, while variables declared in blocks (&lt;code&gt;{..}&lt;/code&gt;) are &lt;i&gt;local variables&lt;/i&gt;. Only with the exception of variables with a storage class of &lt;code&gt;extern&lt;/code&gt;, variables are also &lt;i&gt;defined&lt;/i&gt; when they are &lt;i&gt;declared&lt;/i&gt; that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything.
-&lt;/p&gt;
-
-&lt;p&gt;
-When the variable has a storage class of &lt;code&gt;extern&lt;/code&gt; it is &lt;b&gt;only declared&lt;/b&gt; but not defined and therefore has to be &lt;i&gt;globally defined&lt;/i&gt; (in a different module).
-&lt;/p&gt;
-
-&lt;p&gt;
-A variable can be assigned a value via &lt;code&gt;0&lt;/code&gt;, this can also be done when declaring a variable → &lt;b&gt;initilization&lt;/b&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org34ce971"&gt;&lt;/a&gt;Addresses&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org34ce971"&gt;
-&lt;p&gt;
-Every variable has an address (place in memory where it is stored) that can be retrieved with the &lt;code&gt;&amp;amp;&lt;/code&gt; "address of" operator
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cm"&gt;/* addr .c -- address of a variable */&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;testVar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Variable var has the address %p and the value %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;testVar&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;testVar&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Variable var has the address 0x7ffc5d3f3694 and the value 42
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Actually the identifier of a variable (eg &lt;code&gt;testVar&lt;/code&gt;) is just a synonym of the address.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/identifier-memory.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="orgcbb85d2"&gt;&lt;/a&gt;Pointer&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgcbb85d2"&gt;
-&lt;p&gt;
-Variables can also hold addresses themselves! The prefix &lt;code&gt;*&lt;/code&gt; infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another &lt;b&gt;specific&lt;/b&gt; type. For instance:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;int *p&lt;/code&gt; → pointer that is pointing to an integer type&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;float *p&lt;/code&gt; → pointer that is pointing to a float type&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;unsigned int *p&lt;/code&gt; → pointer that is pointing to an unsigned integer type&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-If a generic memory address without a specific type shall be used then the base type &lt;code&gt;void&lt;/code&gt; is used:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;void *p&lt;/code&gt; pointer that is pointing to an address&lt;/li&gt;
-&lt;li&gt;assigning void pointers is compatible to/with all other pointer types (→ no warnings!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* addr2 .c -- pointer to a variable */&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pvar&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;pvar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Variable var has the address %p and the value %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pvar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Variable pvar has the address %p and the value %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;pvar&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pvar&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"The value that the pointer stored in pvar points to is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pvar&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Variable var has the address 0x7ffd08a3f97c and the value 42
-Variable pvar has the address 0x7ffd08a3f980 and the value 0x7ffd08a3f97c
-The value that the pointer stored in pvar points to is 42
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Example memory representation of the above code (addresses will differ):
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/pointer-memory-representation.png" alt="nil"&gt;
-&lt;/p&gt;
-
-
-&lt;p&gt;
-A type and its derived type (eg &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;int *&lt;/code&gt;) are &lt;i&gt;different&lt;/i&gt; types.
-&lt;/p&gt;
-
-&lt;p&gt;
-As seen in the code example above a pointer can be &lt;b&gt;dereferenced&lt;/b&gt; via the dereference operator &lt;code&gt;*&lt;/code&gt;
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* deref .c -- deref a pointer */&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"y=%d (at %p)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cm"&gt;/* same effect as printf ("y=%d\n" ,y); */&lt;/span&gt;
-  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* same effect as y=42 */&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"y=%d (at %p)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-y=23 (at 0x7ffeeff30f1c)
-y=42 (at 0x7ffeeff30f1c)
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgf8a29f4" class="outline-4"&gt;
-&lt;h4 id="orgf8a29f4"&gt;Anonymous variables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf8a29f4"&gt;
-&lt;p&gt;
-Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at &lt;i&gt;run time&lt;/i&gt; with functions from the C standard library. Anonymous variables are &lt;b&gt;not declared&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-More specifically the following functions that are &lt;i&gt;declared&lt;/i&gt; in &lt;code&gt;stdlib.h&lt;/code&gt; are used to allocate memory at run time:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;void *malloc(size_t size)&lt;/code&gt; → reserves &lt;code&gt;size&lt;/code&gt; bytes in memory (memory allocate)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;void *calloc(size_t count, size_t size)&lt;/code&gt; → reserves &lt;code&gt;count x size&lt;/code&gt; bytes in memory and initializes them with a value of &lt;code&gt;0&lt;/code&gt; (count allocate)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Both functions retrun the &lt;b&gt;address&lt;/b&gt; of the anonymous variable.
-&lt;/p&gt;
-
-&lt;p&gt;
-To find out how much size/space is needed, C's &lt;code&gt;sizeof&lt;/code&gt; operator comes in handy because the size of eg an &lt;code&gt;int&lt;/code&gt; is not the same on all systems. It can be used on variables as well as on types and &lt;code&gt;sizeof(int)&lt;/code&gt; return for example &lt;code&gt;4&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-The programmer has (in contrast to named variables) manage the scope and lifecycle of anonymous variables. To release the memory that was allocated for an anonymous variable &lt;code&gt;void free(void*)&lt;/code&gt; is used which takes the address of the anonymous variable.
-To be able to do this you of course need the address of the anonymous variable and that is (amongst other reasons) why you should store it somewhere!
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* malloc .c -- anonymous variables */&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// declare pointer to int&lt;/span&gt;
-
-  &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// allocate memory for an int and store the returned address of the allocated memory location and store it in p&lt;/span&gt;
-
-  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// dereference p and store the value 42&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Pointer p has address %p and points to %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Anonymous variable has the value %d which is stored in %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cm"&gt;/* pass address and release memory */&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Pointer p has address 0x7fff1376cea0 and points to 0x55ffde405260
-Anonymous variable has the value 42 which is stored in 0x55ffde405260
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-In the example above you can see that the variable is anonymous because the value &lt;code&gt;42&lt;/code&gt; is nowhere stored directly in a named variable but is retrieved by dereferencing the pointer that points to the memory location where &lt;code&gt;42&lt;/code&gt; is stored (&lt;code&gt;*p&lt;/code&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-Not releasing allocated memory can lead to so called &lt;i&gt;memory leaks&lt;/i&gt; and is a frequent error cause. Another frequent error is trying to use anonymous variables that are already released (&lt;i&gt;dangling pointer&lt;/i&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-Helping advice to avoid the above errors:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;when you allocate memory with eg &lt;code&gt;malloc&lt;/code&gt; immediately write the code to free the memory as well&lt;/li&gt;
-&lt;li&gt;when releasing/freeing an anonymous variable assign it the (symbolic) value &lt;code&gt;NULL&lt;/code&gt; which is defined in &lt;code&gt;stdlib.h&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;it is guaranteed that there is never another variable at a location that is described by &lt;code&gt;NULL&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;dereferencing &lt;code&gt;NULL&lt;/code&gt; leads to a run time error&lt;/li&gt;
-&lt;li&gt;if functions like &lt;code&gt;malloc&lt;/code&gt; fail they also return &lt;code&gt;NULL&lt;/code&gt; therefore it is advised to check pointers against &lt;code&gt;null&lt;/code&gt; before using them&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org1ed2e62" class="outline-4"&gt;
-&lt;h4 id="org1ed2e62"&gt;Parameters&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org1ed2e62"&gt;
-&lt;p&gt;
-Parameters are the third way memory is allocated to store values. We covered this in the next lecture (lecture 07). (¬‿¬)
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/tar-usage/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
