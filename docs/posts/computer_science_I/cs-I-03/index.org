@@ -178,6 +178,14 @@ A logical right shift is the converse to the left shift. Rather than moving bits
 #+END_SRC
 That will get us back our original 6. So we see that shifting to the right is equivalent to division by powers of 2.
 
+But attention: If the variable ch contains the bit pattern =11100101=, then =ch >> 1= will produce the result =01110010=, and =ch >> 2= will produce =00111001=.
+Here blank spaces are generated simultaneously on the left when the bits are shifted to the right. When performed on an *unsigned type*, the operation performed is a logical shift, causing the blanks to be filled by =0s= (zeros). When performed on a *signed type*, the result is technically undefined and compiler dependent, however most compilers will perform an arithmetic shift, causing the blank to be filled with the sign bit of the left operand which might be =1s= (ones).
+
+From stackoverflow: Shifts on unsigned types are well defined (as long as the right operand is in non-negative and less than the width of the left operand), and they always zero-fill.
+
+Shifts (or any bitwise operations) on signed types are generally not a good idea. If the left operand is negative then << has undefined behavior, and >> yields an implementation-defined result (meaning that the compiler has to document what it does, but there's no way for you to control it). For non-negative values of a signed type, the result is what you'd expect -- as long as it doesn't overflow (if it overflows, the behavior is undefined).
+
+
 Another example:
 #+BEGIN_SRC c
 a = 1000 in decimal = 0000 0011 1110 1000 in binary

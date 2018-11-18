@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 10 Nov 2018 12:58:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 17 Nov 2018 13:17:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 A type alias is a different name by which a type can be identified. In C++, any valid type can be aliased so that it can be referred to with a different identifier.
 It is possible to do type definitions via the following syntax &lt;code&gt;typedef TYP typename;&lt;/code&gt;, eg &lt;code&gt;typedef unsigned short ushort;&lt;/code&gt;
 &lt;/p&gt;
@@ -377,9 +377,9 @@ Use while loops where exact number of iterations is not known but the loop termi
 Use do while loop if the code needs to be executed at least once like in Menu driven programs.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org7adc5cb" class="outline-2"&gt;
-&lt;h2 id="org7adc5cb"&gt;Characteristics of a language&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7adc5cb"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org261376a" class="outline-2"&gt;
+&lt;h2 id="org261376a"&gt;Characteristics of a language&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org261376a"&gt;
 &lt;p&gt;
 Languages consist of three main characteristics:
 &lt;/p&gt;
@@ -390,9 +390,9 @@ Languages consist of three main characteristics:
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga85113b" class="outline-3"&gt;
-&lt;h3 id="orga85113b"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga85113b"&gt;
+&lt;div id="outline-container-org714a8a5" class="outline-3"&gt;
+&lt;h3 id="org714a8a5"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org714a8a5"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;predefined identifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
@@ -423,16 +423,16 @@ Languages consist of three main characteristics:
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgb57f58a" class="outline-3"&gt;
-&lt;h3 id="orgb57f58a"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb57f58a"&gt;
+&lt;div id="outline-container-org777c42f" class="outline-3"&gt;
+&lt;h3 id="org777c42f"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org777c42f"&gt;
 &lt;p&gt;
 A method to present syntax is to use syntax diagrams. They represent a graphical alternative to e.g Backus–Naur form to represent formal or context-free grammar.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org859f90b" class="outline-4"&gt;
-&lt;h4 id="org859f90b"&gt;Elements of syntax diagrams&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org859f90b"&gt;
+&lt;div id="outline-container-org7b588a8" class="outline-4"&gt;
+&lt;h4 id="org7b588a8"&gt;Elements of syntax diagrams&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7b588a8"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;▭ a rectangle with sharp corners represents an abstract entity&lt;/li&gt;
 &lt;li&gt;▢ a ellipse (rectangle with rounded corners) represents a concrete term of the language, therefore an element of the lexis&lt;/li&gt;
@@ -451,9 +451,9 @@ Example of an include directive represented as a syntax graph:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org24f7b3e" class="outline-2"&gt;
-&lt;h2 id="org24f7b3e"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org24f7b3e"&gt;
+&lt;div id="outline-container-orgbae2e81" class="outline-2"&gt;
+&lt;h2 id="orgbae2e81"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbae2e81"&gt;
 &lt;p&gt;
 C++ has the data type &lt;code&gt;bool&lt;/code&gt; which can either be &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. In integers a &lt;code&gt;0&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; and everything &lt;code&gt;≠0&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.
 &lt;/p&gt;
@@ -518,9 +518,9 @@ Using these boolean operators in C++, yields values of type &lt;code&gt;bool&lt;
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org035c414" class="outline-3"&gt;
-&lt;h3 id="org035c414"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org035c414"&gt;
+&lt;div id="outline-container-orgcb557b4" class="outline-3"&gt;
+&lt;h3 id="orgcb557b4"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcb557b4"&gt;
 &lt;p&gt;
 In digital computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations. 
 &lt;/p&gt;
@@ -534,9 +534,9 @@ What is really important to understand is, that bitwise operators operate on the
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb9ff8ff" class="outline-4"&gt;
-&lt;h4 id="orgb9ff8ff"&gt;Bitwise NOT&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgb9ff8ff"&gt;
+&lt;div id="outline-container-orgf293b4f" class="outline-4"&gt;
+&lt;h4 id="orgf293b4f"&gt;Bitwise NOT&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf293b4f"&gt;
 &lt;p&gt;
 The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones' complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example
 &lt;/p&gt;
@@ -552,9 +552,9 @@ bitwise NOT: ~1_d = 0_d; ~5_d = ~0101_b = 1010_b = 10_d
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org160731e" class="outline-4"&gt;
-&lt;h4 id="org160731e"&gt;Bitwise OR&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org160731e"&gt;
+&lt;div id="outline-container-orgfccd9f3" class="outline-4"&gt;
+&lt;h4 id="orgfccd9f3"&gt;Bitwise OR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgfccd9f3"&gt;
 &lt;p&gt;
 A bitwise OR takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:
 &lt;/p&gt;
@@ -576,9 +576,9 @@ For example &lt;code&gt;0010&lt;/code&gt; may be seen as a list of flags where t
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc871cb7" class="outline-4"&gt;
-&lt;h4 id="orgc871cb7"&gt;Bitwise AND&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc871cb7"&gt;
+&lt;div id="outline-container-org79b743d" class="outline-4"&gt;
+&lt;h4 id="org79b743d"&gt;Bitwise AND&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org79b743d"&gt;
 &lt;p&gt;
 A bitwise AND takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). For example:
 &lt;/p&gt;
@@ -627,9 +627,9 @@ The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2c4b277" class="outline-4"&gt;
-&lt;h4 id="org2c4b277"&gt;Bitwise XOR&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org2c4b277"&gt;
+&lt;div id="outline-container-org45bbaf3" class="outline-4"&gt;
+&lt;h4 id="org45bbaf3"&gt;Bitwise XOR&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org45bbaf3"&gt;
 &lt;p&gt;
 In addition to &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;and&lt;/code&gt; there is also &lt;code&gt;xor&lt;/code&gt; (exclusive or → only one value true):
 &lt;/p&gt;
@@ -706,9 +706,9 @@ Assembly language programmers and optimizing compilers sometimes use XOR as a sh
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge6b8083" class="outline-3"&gt;
-&lt;h3 id="orge6b8083"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge6b8083"&gt;
+&lt;div id="outline-container-org648dc0b" class="outline-3"&gt;
+&lt;h3 id="org648dc0b"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org648dc0b"&gt;
 &lt;p&gt;
 The bit shifts are sometimes considered bitwise operations, because they treat a value as a series of bits rather than as a numerical quantity. In these operations the digits are moved, or shifted, to the left or right. Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end.
 &lt;/p&gt;
@@ -732,6 +732,20 @@ That will get us back our original 6. So we see that shifting to the right is eq
 &lt;/p&gt;
 
 &lt;p&gt;
+But attention: If the variable ch contains the bit pattern &lt;code&gt;11100101&lt;/code&gt;, then &lt;code&gt;ch &amp;gt;&amp;gt; 1&lt;/code&gt; will produce the result &lt;code&gt;01110010&lt;/code&gt;, and &lt;code&gt;ch &amp;gt;&amp;gt; 2&lt;/code&gt; will produce &lt;code&gt;00111001&lt;/code&gt;.
+Here blank spaces are generated simultaneously on the left when the bits are shifted to the right. When performed on an &lt;b&gt;unsigned type&lt;/b&gt;, the operation performed is a logical shift, causing the blanks to be filled by &lt;code&gt;0s&lt;/code&gt; (zeros). When performed on a &lt;b&gt;signed type&lt;/b&gt;, the result is technically undefined and compiler dependent, however most compilers will perform an arithmetic shift, causing the blank to be filled with the sign bit of the left operand which might be &lt;code&gt;1s&lt;/code&gt; (ones).
+&lt;/p&gt;
+
+&lt;p&gt;
+From stackoverflow: Shifts on unsigned types are well defined (as long as the right operand is in non-negative and less than the width of the left operand), and they always zero-fill.
+&lt;/p&gt;
+
+&lt;p&gt;
+Shifts (or any bitwise operations) on signed types are generally not a good idea. If the left operand is negative then &amp;lt;&amp;lt; has undefined behavior, and &amp;gt;&amp;gt; yields an implementation-defined result (meaning that the compiler has to document what it does, but there's no way for you to control it). For non-negative values of a signed type, the result is what you'd expect – as long as it doesn't overflow (if it overflows, the behavior is undefined).
+&lt;/p&gt;
+
+
+&lt;p&gt;
 Another example:
 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="mi"&gt;1110&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt;
@@ -745,7 +759,7 @@ There is also a difference between logical, arithmetic and circular shifting tha
 &lt;/p&gt;
 
 &lt;p&gt;
-Also note that the "&lt;a id="org45db69a"&gt;&lt;/a&gt;" as a stream operator takes precedence over bit shifting so the following code:
+Also note that the "&lt;a id="orgc6767ea"&gt;&lt;/a&gt;" as a stream operator takes precedence over bit shifting so the following code:
 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;

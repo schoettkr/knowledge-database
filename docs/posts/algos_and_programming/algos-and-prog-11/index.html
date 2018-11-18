@@ -91,13 +91,13 @@ Boolean algebra is the branch of algebra in which the values of the variables ar
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org164a485" class="outline-2">
-<h2 id="org164a485">Logic and Abstract Machines (Automaten)</h2>
-<div class="outline-text-2" id="text-org164a485">
+        <div id="outline-container-org35c18e5" class="outline-2">
+<h2 id="org35c18e5">Logic and Abstract Machines (Automaten)</h2>
+<div class="outline-text-2" id="text-org35c18e5">
 </div>
-<div id="outline-container-org572d1f0" class="outline-3">
-<h3 id="org572d1f0">Boolean Algebra</h3>
-<div class="outline-text-3" id="text-org572d1f0">
+<div id="outline-container-orgc02a1f6" class="outline-3">
+<h3 id="orgc02a1f6">Boolean Algebra</h3>
+<div class="outline-text-3" id="text-orgc02a1f6">
 <p>
 Boolean algebra is the branch of algebra in which the values of the variables are the truth values true and false, usually denoted 1 and 0 respectively.
 <b>Propositional logic</b> (Aussagenlogik) is a branch of logic which deals with propositions (which can be true or false) and argument flow. Compound propositions are formed by connecting propositions by logical connectives. The propositions without logical connectives are called atomic propositions. 
@@ -120,9 +120,9 @@ Principles:
 F 3./4.
 </p>
 </div>
-<div id="outline-container-org5450ebe" class="outline-4">
-<h4 id="org5450ebe">Logical Composition</h4>
-<div class="outline-text-4" id="text-org5450ebe">
+<div id="outline-container-orgbcbba1b" class="outline-4">
+<h4 id="orgbcbba1b">Logical Composition</h4>
+<div class="outline-text-4" id="text-orgbcbba1b">
 <p>
 The following logical compositions (Verknüpfungsfunktionen) will be inserted as pictures from the lecture slides because it is pretty time-consuming to port it over.
 </p>
@@ -149,9 +149,9 @@ More laws and rules from lecture slides:
 </div>
 </div>
 
-<div id="outline-container-org7a92ea1" class="outline-4">
-<h4 id="org7a92ea1">Normal Form</h4>
-<div class="outline-text-4" id="text-org7a92ea1">
+<div id="outline-container-org3cb7059" class="outline-4">
+<h4 id="org3cb7059">Normal Form</h4>
+<div class="outline-text-4" id="text-org3cb7059">
 <p>
 Normal forms can help with unifying boolean expressions/propositions which can get unclearly fast (unübersichtlich):
 </p>
@@ -185,9 +185,9 @@ At this point the Karnaugh-Veitch Diagram for optimization purposes was mentione
 </div>
 </div>
 </div>
-<div id="outline-container-org629634b" class="outline-2">
-<h2 id="org629634b">Logic in C</h2>
-<div class="outline-text-2" id="text-org629634b">
+<div id="outline-container-orgc3eee68" class="outline-2">
+<h2 id="orgc3eee68">Logic in C</h2>
+<div class="outline-text-2" id="text-orgc3eee68">
 <p>
 C uses logical (boolean) propositions/expressions and knows an according type. However since that type is so close to integer, it was not made explicitly available before C99. Since C99 however there is <code>_Bool</code>. Via including <code>stdbool.h</code> the type <code>bool</code> is available which is a synonym for <code>_Bool</code> and can hold the values <code>true</code> or <code>false</code>.
 But remember that everywhere were a boolean type is required there can always be an integer. If so <code>0</code> is always interpreted as <code>false</code> and <i>every other</i> value as <code>true</code>.
@@ -260,7 +260,7 @@ Some interesting notes and observations about the ternary operator can be found 
 </p>
 
 <p>
-The next lecture topic was the switch-case. I already covered that in <a href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/#org48e22fb">this CS01 post</a> and the rules from C++ apply to C aswell (other way round technically :D). Remember that "switch case" works with constant values as its cases and is used to "jump" to a specific statement from where execution will be continued until you <code>break</code> or <code>return</code>! so following cases would be executed as well (avoid this and rather group cases together).
+The next lecture topic was the switch-case. I already covered that in <a href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/#org48e22fb">this CS01 post</a> and the rules from C++ apply to C aswell (other way round technically :D). Remember that "switch case" works with constant values as its cases and is used to "jump" to a specific statement from where execution will be continued until you <code>break</code> or <code>return</code>! so following cases would be executed as well (avoid this and rather group cases together. It is also important to know that cases inside a switch are like "goto" labels and share scope, thats why often times people wrap the cases code inside "{}" to create case specific code and dont "skip" initialization of variables).
 </p>
 </div>
 </div>
