@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Computer Science I - Lecture 06 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Computer Science I - Lecture 06">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/">
+<meta property="og:description" content="Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).
+
+
+
+I'll list what we did in this lecture so you can look at those parts in the l">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-11-16T00:00:00+01:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Computer Science I - Lecture 06
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-11-16T00:00:00+01:00">2018/11/16</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).
+</p>
+
+<p>
+I'll list what we did in this lecture so you can look at those parts in the last blog post (or elsewhere :D ):
+</p>
+<ul class="org-ul">
+<li>array initialization (+ with loops)</li>
+<li>string functions</li>
+<li>mutlidimensional arrays</li>
+</ul>
+<p>
+Because I didn't really get into multidimensional arrays in the last post and because I don't think the slides are particulary useful on that topic I'll write a bit about them here.
+</p>
+
+<p>
+The simplest form of multidimensional array is the two-dimensional array. A two-dimensional array is, in essence, a list of one-dimensional arrays. To declare a two-dimensional integer array of size <code>[x][y]</code>, you would write something like <code>int arrayName[x][y];</code>.
+A two-dimensional array can be considered as a table which will have <code>x</code> number of rows and <code>y</code> number of columns. A two-dimensional array <code>a</code>, which contains three rows and four columns can be shown as follows:
+</p>
+
+<p>
+<img src="../../../images/2D-arr.jpg" alt="nil"></p>
+
+<p>
+Thus, every element in the array <code>a</code> is identified by an element name of the form <code>a[i][j]</code>, where <code>a</code> is the name of the array, and <code>i</code> and <code>j</code> are the subscripts that uniquely identify each element in <code>a</code>.
+</p>
+
+<p>
+Multidimensional arrays may be initialized by specifying bracketed values for each row. Following is an array with 3 rows and each row has 4 columns.
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// 3 rows which hold 4 elements each -&gt; 3 * 4 elements = 12</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+	       <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="c1">// initialize first row indexed by 0</span>
+	       <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">},</span> <span class="c1">// initialize second row indexed by 1</span>
+	       <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">},</span> <span class="c1">// initialize third row indexed by 2</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+The nested braces, which indicate the intended row, are optional. The following initialization is equivalent to the previous example:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">};</span>
+</pre></div>
+
+<p>
+An element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// -&gt; 11</span>
+</pre></div>
+<p>
+The above statement will take the 4th element from the 3rd row of the array which is the last one (11). So you first access the row and then the column. Remember that this is zero indexed :D !
+</p>
+
+<p>
+Okay that's it already, so not much new stuff in this lecture ^_^
+</p>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

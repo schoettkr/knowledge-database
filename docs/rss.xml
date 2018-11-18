@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 18 Nov 2018 08:01:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 12</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org9e75314" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 18 Nov 2018 09:08:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 12</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org9e75314" class="outline-2"&gt;
 &lt;h2 id="org9e75314"&gt;Bit Operators&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org9e75314"&gt;
 &lt;p&gt;
@@ -507,7 +507,64 @@ Finite state machines are closely related to regular grammars because to every r
 However a FSM is not sufficient for context free languages.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 11</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org35c18e5" class="outline-2"&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).
+&lt;/p&gt;
+
+&lt;p&gt;
+I'll list what we did in this lecture so you can look at those parts in the last blog post (or elsewhere :D ):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;array initialization (+ with loops)&lt;/li&gt;
+&lt;li&gt;string functions&lt;/li&gt;
+&lt;li&gt;mutlidimensional arrays&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Because I didn't really get into multidimensional arrays in the last post and because I don't think the slides are particulary useful on that topic I'll write a bit about them here.
+&lt;/p&gt;
+
+&lt;p&gt;
+The simplest form of multidimensional array is the two-dimensional array. A two-dimensional array is, in essence, a list of one-dimensional arrays. To declare a two-dimensional integer array of size &lt;code&gt;[x][y]&lt;/code&gt;, you would write something like &lt;code&gt;int arrayName[x][y];&lt;/code&gt;.
+A two-dimensional array can be considered as a table which will have &lt;code&gt;x&lt;/code&gt; number of rows and &lt;code&gt;y&lt;/code&gt; number of columns. A two-dimensional array &lt;code&gt;a&lt;/code&gt;, which contains three rows and four columns can be shown as follows:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/2D-arr.jpg" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Thus, every element in the array &lt;code&gt;a&lt;/code&gt; is identified by an element name of the form &lt;code&gt;a[i][j]&lt;/code&gt;, where &lt;code&gt;a&lt;/code&gt; is the name of the array, and &lt;code&gt;i&lt;/code&gt; and &lt;code&gt;j&lt;/code&gt; are the subscripts that uniquely identify each element in &lt;code&gt;a&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Multidimensional arrays may be initialized by specifying bracketed values for each row. Following is an array with 3 rows and each row has 4 columns.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// 3 rows which hold 4 elements each -&amp;gt; 3 * 4 elements = 12&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	       &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;// initialize first row indexed by 0&lt;/span&gt;
+	       &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;// initialize second row indexed by 1&lt;/span&gt;
+	       &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;// initialize third row indexed by 2&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The nested braces, which indicate the intended row, are optional. The following initialization is equivalent to the previous example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+An element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; 11&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The above statement will take the 4th element from the 3rd row of the array which is the last one (11). So you first access the row and then the column. Remember that this is zero indexed :D !
+&lt;/p&gt;
+
+&lt;p&gt;
+Okay that's it already, so not much new stuff in this lecture ^_^
+&lt;/p&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 11</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org35c18e5" class="outline-2"&gt;
 &lt;h2 id="org35c18e5"&gt;Logic and Abstract Machines (Automaten)&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org35c18e5"&gt;
 &lt;/div&gt;
@@ -3633,75 +3690,4 @@ Which would yield &lt;code&gt;10&lt;/code&gt; because b is leftshifted by a (&lt
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Debugging with gdb</title><link>https://schoettkr.github.io/knowledge-database/posts/misc/debugging-with-gdb/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgdb798a8" class="outline-2"&gt;
-&lt;h2 id="orgdb798a8"&gt;How to debug a c program with gdb&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdb798a8"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org99d4498" class="outline-4"&gt;
-&lt;h4 id="org99d4498"&gt;Step 1. Compile the C program with debugging option&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org99d4498"&gt;
-&lt;p&gt;
-Compile the C program with the debugging option which is usually &lt;code&gt;-g&lt;/code&gt; for most compilers. This allows the compiler to collect the debugging information.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gcc -g example.c
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The above command creates a &lt;code&gt;a.out&lt;/code&gt; file which will be used for debugging. Of course other compiler options e.g specifying file name or turning on warnings is possible!
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgd898800" class="outline-4"&gt;
-&lt;h4 id="orgd898800"&gt;Step 2. Launch gdb&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd898800"&gt;
-&lt;p&gt;
-Launch the C debugger gdb as shown below:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gdb a.out
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org313e7fd" class="outline-4"&gt;
-&lt;h4 id="org313e7fd"&gt;Step 3. Set breakpoints&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org313e7fd"&gt;
-&lt;p&gt;
-Places break point in the C program, where you suspect errors. While executing the program, the debugger will stop at the break point, and gives you the prompt to debug.
-To set a breakpoint enter the following:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;break&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;linenumber&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Additionally it is also possible to do so in the following formats/ways (the filename is optional):
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;break&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;filename:&lt;span class="o"&gt;}{&lt;/span&gt;lineNumber&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;span class="nb"&gt;break&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;filename:&lt;span class="o"&gt;}{&lt;/span&gt;functionName&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org3ec17d2" class="outline-4"&gt;
-&lt;h4 id="org3ec17d2"&gt;Step 4. Execute the C program&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3ec17d2"&gt;
-&lt;p&gt;
-Now the program can be executed using the &lt;code&gt;run&lt;/code&gt; command in the gdb debugger. It is now also possible to specify command line arguments via &lt;code&gt;run {args}&lt;/code&gt;.
-The program then executes until it encounters the first breakpoint or finishes execution and stops.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org7115561" class="outline-4"&gt;
-&lt;h4 id="org7115561"&gt;Step 5. It stopped - now what?!&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7115561"&gt;
-&lt;p&gt;
-Now since the execution is halted there multiple things you can do. &lt;code&gt;print {varName}&lt;/code&gt; prints the current value of an variable (can be shortened to &lt;code&gt;p&lt;/code&gt;). &lt;code&gt;c&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt; resumes execution until the next breakpoint. &lt;code&gt;n&lt;/code&gt; or &lt;code&gt;next&lt;/code&gt; executes the next line as &lt;i&gt;a single instruction&lt;/i&gt;. &lt;code&gt;s&lt;/code&gt; or &lt;code&gt;step&lt;/code&gt; same as &lt;code&gt;next&lt;/code&gt; but doesn't treat functions as a single instruction, instead goes into the function to execute it line by line.
-&lt;/p&gt;
-
-&lt;p&gt;
-By the way &lt;code&gt;&amp;lt;ENTER&amp;gt;&lt;/code&gt; repeats the previous command. &lt;code&gt;l&lt;/code&gt; or &lt;code&gt;list&lt;/code&gt; can be used to print the source code, &lt;code&gt;l {lineNumber}&lt;/code&gt; can be used to view a specific line and &lt;code&gt;l {functionName}&lt;/code&gt; to show a function. &lt;code&gt;bt&lt;/code&gt; or &lt;code&gt;backtrack&lt;/code&gt; prints a backtrace of all stack frames. Finally &lt;code&gt;quit&lt;/code&gt; exits the gdb debugger.
-&lt;/p&gt;
-
-
-
-&lt;p&gt;
-Source: &lt;a href="https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/"&gt;https://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/misc/debugging-with-gdb/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
