@@ -1,5 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about A&amp;P)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/ap.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 18 Nov 2018 08:01:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 12</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org9e75314" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about A&amp;P)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/ap.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 26 Nov 2018 14:47:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 14</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org193541e" class="outline-2"&gt;
+&lt;h2 id="org193541e"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org193541e"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org035cf35" class="outline-3"&gt;
+&lt;h3 id="org035cf35"&gt;Pseudocode&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org035cf35"&gt;
+&lt;p&gt;
+As we've learnt in the last lecture &lt;i&gt;pseudocode&lt;/i&gt; is one of the most popular semiformal specification languages.
+&lt;/p&gt;
+
+&lt;p&gt;
+Pseudocode generally defines a set of instructions, there are no strict rules on how pseudocode needs to look like, therefore there are many forms of it, which is okay as long as it is intuitively readable.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example pseudocode for the Euclidian Algorithm:
+&lt;/p&gt;
+
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;Require:&lt;/b&gt; A, B ∈ N, A &amp;gt; 0 ∩ B &amp;gt; 0&lt;br&gt;
+&lt;b&gt;Ensure:&lt;/b&gt; a = b = gcd(A, B)&lt;br&gt;
+a ← A; b ← B&lt;br&gt;
+&lt;b&gt;while&lt;/b&gt; a ≠ b &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+   &lt;b&gt;if&lt;/b&gt; a &amp;lt; b &lt;b&gt;then&lt;/b&gt;&lt;br&gt;
+      b ← b - a&lt;br&gt;
+   &lt;b&gt;else&lt;/b&gt;&lt;br&gt;
+      a ← a - b&lt;br&gt;
+   &lt;b&gt;end if&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;end while&lt;/b&gt;&lt;br&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The slides note at this point that in the future we'll often look at algorithms in pseudo code.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6a583f8" class="outline-3"&gt;
+&lt;h3 id="org6a583f8"&gt;Correctness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6a583f8"&gt;
+&lt;p&gt;
+When you find an approach for a problem / an algorithm, the &lt;i&gt;correctness&lt;/i&gt; has to be validated.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is advised to verify the correctness of the idea first and then the correctness of the concrete algorithm.
+The correctness of an idea cannot be verified formally, but the following things should be pondered:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;does the idea work &lt;i&gt;in general&lt;/i&gt; or just for a &lt;i&gt;specific case&lt;/i&gt;?&lt;/li&gt;
+&lt;li&gt;are there &lt;i&gt;special cases&lt;/i&gt; in which the idea does not work out? are these relevant?&lt;/li&gt;
+&lt;li&gt;try finding an &lt;i&gt;counter-example&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;what about &lt;i&gt;extreme cases&lt;/i&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+What follows on slides 25-30 are some example problems and ideas to solve them, take a look there if you want.
+&lt;/p&gt;
+
+&lt;p&gt;
+As stated before the correctness of the concrete algorithm also has to be validated. There are in general two ways to do this:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;Exhaustive Testing&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;verify that there is no incorrect behaviour in the implementation of the algorithm by testing/executing it with all possible data inputs/combinations&lt;/li&gt;
+&lt;li&gt;Problems:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;usually this is &lt;i&gt;impossible&lt;/i&gt; since the possible data combinations are really large or even infinite&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;partial testing&lt;/i&gt; may boost the confidence in regards to the correctness of a program/algorithm, but does not replace a proof&lt;/li&gt;
+&lt;li&gt;a good selection of test cases is difficult&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Correctness Proof&lt;/b&gt; (Korrektheitsbeweis)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;verify correct behaviour via mathematical methods/proofs&lt;/li&gt;
+&lt;li&gt;Problems:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;are difficult or impossible on the level of implementation because of lacking formalization&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+To proof the correctness it can be performed on a more &lt;i&gt;abstract level&lt;/i&gt; instead. Mistakes are then however possible when performing the concrete implementation. We'll continue to look at proofs and not tests.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org050c734" class="outline-3"&gt;
+&lt;h3 id="org050c734"&gt;Proofs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org050c734"&gt;
+&lt;p&gt;
+Slides: Informale Definition = Ein Beweis ist eine Herleitung einer Aussage aus bereits bewiesenen Aussagen und/oder Grundannahmen (Axiomen)
+&lt;/p&gt;
+
+&lt;p&gt;
+We know a few different (but still combinable) methods for proofs:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;deduction&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;classical proof via combination of premises&lt;/li&gt;
+&lt;li&gt;eg: all humans are mortal(premise 1) &amp;amp; all kings are humans (premise 2) → all kings are mortal (conclusion/deduction)&lt;/li&gt;
+&lt;li&gt;the correctness of the premises has to be given axiomatically or already been proven&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;complete case analysis/differentiation&lt;/b&gt; (vollständige Fallunterscheidung)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;when there are a finite amount of cases/variants then each one can be inspected individually&lt;/li&gt;
+&lt;li&gt;if a statement is true for &lt;i&gt;every&lt;/i&gt; case/variant then the statement is true as a whole&lt;/li&gt;
+&lt;li&gt;eg: "all odd integers in the intervall [2&lt;sup&gt;1&lt;/sup&gt;, 2&lt;sup&gt;3&lt;/sup&gt;] are prime numbers" (statement) → 3 is prime, 5 is prime, 7 is prime → statement is true&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;complete /transfinite induction&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;base cases (Induktionsanker/-anfang IA) show that a statement is valid for a special (smallest/first) case (often \(n = 0\) or \(n = 1\))&lt;/li&gt;
+&lt;li&gt;step case / inductive step (Induktionsschritt)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assume that the statement holds true for \(n=k\) (Induktionsvoraussetzung IV) and prove that then the statements holds for \(n=k+1\); proof that the &lt;i&gt;induction hypothesis&lt;/i&gt; follows from the &lt;i&gt;induction requirement&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;Induktionsschluss → inference (Folgerung) that the statement holds for all cases starting at the first&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;indirect proof&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assume the opposite of the hypothesis/statement and find a disproof via axioms and proven concepts → inference that the assumption is wrong and therefore the hypothesis/statment is true&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org6d2bb1e" class="outline-3"&gt;
+&lt;h3 id="org6d2bb1e"&gt;Proofs of Algorithms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6d2bb1e"&gt;
+&lt;p&gt;
+To prove an algorithm you have to ask two questions. 1) What is there to be proven (Specification)? 2.) What is already known?
+&lt;/p&gt;
+
+&lt;p&gt;
+A distinction is made between 2 kinds of "correctness":
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;partial correctness&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;an algorithm is &lt;i&gt;partially correct&lt;/i&gt; if an answer is returned that this answer will be correct (slides: ein Algorithmus is partiell korrekt, wenn er für eine spezifizerte erfüllte Vorbedingung Q bei einer eventuellen/möglichen Terminierung eine spezifizerte Nachbedingung R erreicht, dh R is nach Ausführung erfüllt)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;total correctness&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;total correctness requires additionally to partial correctness that the algorithm &lt;b&gt;terminates&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+So, &lt;i&gt;if&lt;/i&gt; a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
+&lt;/p&gt;
+
+&lt;p&gt;
+In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</guid><pubDate>Fri, 23 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 13</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org8c4d7fa" class="outline-2"&gt;
+&lt;h2 id="org8c4d7fa"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8c4d7fa"&gt;
+&lt;p&gt;
+The first slides of this lecture chapter is just some meta information about the right mindset to create algorithms, which I find to be trivial, that's why I don't repeat that here (slides 1-5).
+&lt;/p&gt;
+
+&lt;p&gt;
+We usually create a model for a problem (Modellierung) to abstract and reduce it. Especially mathematical concepts are suited as modeling approaches (Modellierungsansätze):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;sets, multisets&lt;/li&gt;
+&lt;li&gt;permutations&lt;/li&gt;
+&lt;li&gt;trees/hierarchies&lt;/li&gt;
+&lt;li&gt;graphs&lt;/li&gt;
+&lt;li&gt;points (geometry)&lt;/li&gt;
+&lt;li&gt;polygons&lt;/li&gt;
+&lt;li&gt;strings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga3744c0" class="outline-3"&gt;
+&lt;h3 id="orga3744c0"&gt;Excourse: Graphs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga3744c0"&gt;
+&lt;p&gt;
+Graphs are often used for modelling. A graph is a ordered pair \((V,E)\), where \(V\) is a set of nodes/vertices (Knoten) \(V = {v_1, v_2, v_3,.., v_n}\) and \(E\) is a set of edges (Kanten/Linien) \(E = {e_1, e_2, .., e_m}\). Depending on the type of graph, \(E\) is:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;in &lt;b&gt;undirected*/*simple&lt;/b&gt; (ungerichtete) graphs &lt;b&gt;without multiple edges&lt;/b&gt; \(E\) is a &lt;b&gt;2-element subset&lt;/b&gt; of \(V\)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;directed&lt;/b&gt; (gerichteten) graphs &lt;b&gt;without multiple edges&lt;/b&gt; \(E\) is a &lt;b&gt;subset&lt;/b&gt; of all pairs/2-tuples (i,j) which result from the cartesian product of \(V * V\)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;undirected&lt;/b&gt; graphs with "zusammengefassten" &lt;b&gt;multiple edges&lt;/b&gt; (=Multigraph) \(E\) is a &lt;b&gt;multiset&lt;/b&gt; (Menge die Duplikate erlaubt) "über die Menge \(W\)" of all &lt;b&gt;2-element subsets&lt;/b&gt; of \(V\) (?weighted graph?)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;directed&lt;/b&gt; graphs with "zusammengefassten" &lt;b&gt;multiple edges&lt;/b&gt; (=Multigraph) \(E\) is a &lt;b&gt;multiset&lt;/b&gt;  "über dem kartesischen Produkt \(V * V\)" (?weighted graph?)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;hypergraphs&lt;/b&gt; \(E\) is a subset of the power set of \(V\)&lt;/li&gt;
+&lt;li&gt;wiki: in gerichteten Graphen mit eigenständigen Mehrfachkanten eine beliebige Menge, deren Elemente mit Hilfe von zwei Funktionen {\displaystyle \mathrm {src} ,\mathrm {tgt} : E→ V} {\mathrm  {src}},{\mathrm  {tgt}}: E→ V die den Elementen einen Quell- bzw. Zielknoten zuordnen, als Kanten angesehen werden (so ein Graph ist dasselbe wie ein Funktor {\displaystyle G: {\mathcal {G}}→ \mathbf {Set} } G: {\mathcal  G}→ {\mathbf  {Set}}, wobei {\displaystyle {\mathcal {G}}} {\mathcal  G} die recht überschaubare Kategorie {\displaystyle {\mathcal {G}}=\{V{\stackrel {\mathrm {src} }{\longleftarrow }}E{\stackrel {\mathrm {tgt} }{\longrightarrow }}V\}} {\mathcal  G}=\{V{\stackrel  {{\mathrm  {src}}}\longleftarrow }E{\stackrel  {{\mathrm  {tgt}}}\longrightarrow }V\} mit zwei Objekten und zwei ausgezeichneten Pfeilen ist)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Slides: Kanten können Werte (Gewichte) zugewiesen werden, w : E → R. In diesem Fall spricht man von einem gewichteten Graph.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;i&gt;gerichteter&lt;/i&gt; Graph hat Pfeile an Kanten die die Richtung angeben&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;gewichteter&lt;/i&gt; Graph hat Werte an Kanten stehen&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Two blog posts on graphs:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8"&gt;https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38"&gt;https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The model of the graph is seperate of any concrete data structures. C for example does not have a built-in data type for graphs so you might need to implement one yourself. Furthermore just because a problem was modeled with a specific approach/model does not mean that a respective data structure is always needed to implement the approach.
+&lt;/p&gt;
+
+&lt;p&gt;
+However if you find yourself in the need of such data structure there are a multitude of approaches to implement it such. Here are two:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;via &lt;b&gt;adjacency matrix&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;a square matrix to represent a finite graph&lt;/li&gt;
+&lt;li&gt;the elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph&lt;/li&gt;
+&lt;li&gt;in 2d array each element &lt;code&gt;a_{i,j}&lt;/code&gt; holds information weather or not an edge connects the vertices &lt;code&gt;v_i&lt;/code&gt; and &lt;code&gt;v_j&lt;/code&gt; or which weight the edge has:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; edge between verticle 0 and verticle 1 exists&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;via &lt;b&gt;structs and pointers&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;vertices can be modelled as structs and edges as pointers inside of those:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;maxDegree&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;maxDegree&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+  &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;maxDegree&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;node_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Since graph theory is a relatively old field of mathematics there are a lot of theorems, laws and standard algorithms for solving certain problems.
+&lt;/p&gt;
+
+&lt;p style="color:red;"&gt;
+TODO check those code examples
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org38e59ea" class="outline-3"&gt;
+&lt;h3 id="org38e59ea"&gt;Specification&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org38e59ea"&gt;
+&lt;p style="color:red;"&gt;
+TODO check those code examples
+&lt;/p&gt;
+
+&lt;p&gt;
+An algorithm has to be described somehow. One variant to do so would be in a concrete programming language. The problem with that is that different programming languages know different concepts and no programming language knows all concepts. C for example does not know data types and operations for mathematical sets by itself. Set operations in C could therefore look a bit unclear and obfuscate (verschleiern) the underlying algorithm which is the real point of interest.
+&lt;/p&gt;
+
+&lt;p&gt;
+A solution to this is writing algorithms in a &lt;i&gt;specification&lt;/i&gt; (Spezifikationsprachen) of which there are many (natural languages are too inprecise btw) when the algorithm itself is the point of interest. 
+&lt;/p&gt;
+
+&lt;p&gt;
+There are &lt;b&gt;formal&lt;/b&gt; and &lt;b&gt;semiformal&lt;/b&gt; specification languages. The former are automatically processable for example theorem proofs, however these are often hard to read. The latter serve the purpose of communicating about algorithms.
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll use the probably most popular semiformal specification language for imperative algorithms which is &lt;b&gt;pseudocode&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+And this (pseudocode) is where we will continue in the next lecture. Cya :)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</guid><pubDate>Sun, 18 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 12</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org9e75314" class="outline-2"&gt;
 &lt;h2 id="org9e75314"&gt;Bit Operators&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org9e75314"&gt;
 &lt;p&gt;
@@ -3455,393 +3741,4 @@ A "direct value" of a specific type is called &lt;i&gt;literal&lt;/i&gt;. Litera
 &lt;li&gt;&lt;code&gt;wchar_t&lt;/code&gt; literals are written like &lt;code&gt;char&lt;/code&gt; with the prefix &lt;code&gt;L&lt;/code&gt; → e.g &lt;code&gt;L'a'&lt;/code&gt;. There also escape sequences to display sequences or characters that are difficult to represent else. &lt;a href="https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences"&gt;Here's a list&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</guid><pubDate>Sun, 21 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org8249be2" class="outline-2"&gt;
-&lt;h2 id="org8249be2"&gt;Libraries and Linker&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8249be2"&gt;
-&lt;p&gt;
-In the last A&amp;amp;P post we ended with this example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// declarations&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt; &lt;span class="c1"&gt;// print format -&amp;gt; write to output&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ascii to integer&lt;/span&gt;
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Here two functions were used that are not a &lt;i&gt;part&lt;/i&gt; of C. However they are a part of the &lt;i&gt;C standard library&lt;/i&gt; (or &lt;i&gt;libc&lt;/i&gt;). &lt;b&gt;Declarations&lt;/b&gt; of libraries are pooled in &lt;b&gt;header files&lt;/b&gt;. Header files may be included into the code via &lt;code&gt;#included&lt;/code&gt; directives. There are two variants of the &lt;code&gt;#include&lt;/code&gt; directive:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;#include &amp;lt;file name&amp;gt;&lt;/code&gt; → searches for &lt;i&gt;file name&lt;/i&gt; in the systems path for include files 
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the system path can be set via compiler options (for &lt;code&gt;gcc&lt;/code&gt; via &lt;code&gt;-I&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;#include "file name"&lt;/code&gt; → searches for &lt;i&gt;file name&lt;/i&gt; in the local path
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;in this case if the file is not found locally it will be searched for in the systems' path globally&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Using header files the previous example would now look like this:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt; // for printf&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt; // for atoi&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-The steps performed in the creation of a C program are not solely performed by the compiler. Rather a set of programs is called. More specifically the following happens:
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;The &lt;b&gt;preprocessor&lt;/b&gt; evaluates the directives and inserts the content of the &lt;i&gt;header files&lt;/i&gt; into the code&lt;/li&gt;
-&lt;li&gt;The &lt;b&gt;compiler&lt;/b&gt; translates the C code into assembly language/code&lt;/li&gt;
-&lt;li&gt;The &lt;b&gt;assembler&lt;/b&gt; translates the assembler code into machine code and generates an object file&lt;/li&gt;
-&lt;li&gt;The &lt;b&gt;linker&lt;/b&gt; searches for external references in the object file und searches the associated objects in the standard libary or other libraries and ties it together into an executable program file.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;
-So remember: Header files only define the interface to the standard library functions, not the implementation; they (as a rule) don't contain any executable code.
-&lt;/p&gt;
-
-&lt;p&gt;
-I was wondering why the linker runs after the assembler. Don't the library function need to be compiled and assembled as well? 
-It depends on the compiler and platform, but typically the standard library functions have already been compiled and collected into binary files that your code is linked against to produce an executable. So the header files contain declarations like our manually created declaration in the first code listing, ala &lt;code&gt;extern int printf(const *char, ...)&lt;/code&gt;. For example in the &lt;code&gt;/usr/include/stdio.h&lt;/code&gt; on my system I can find this matching declaration &lt;code&gt;extern int printf (const char *__restrict __format, ...);&lt;/code&gt; which also just &lt;i&gt;declares&lt;/i&gt; and doesn't &lt;i&gt;implement&lt;/i&gt; the function &lt;code&gt;printf&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Furthermore the compiler can be instructed to only execute single steps of the creation process. For example the compiler option &lt;code&gt;-E&lt;/code&gt; stops the process after the preprocessor. With &lt;code&gt;-v&lt;/code&gt; (for verbose) the GNU compiler can be instructed to give a more detailed output of the steps involved and the process as a whole.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/verbose-compilation.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orge78e512" class="outline-2"&gt;
-&lt;h2 id="orge78e512"&gt;Python&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge78e512"&gt;
-&lt;p&gt;
-Python is a scripting language that is interpreted at runtime. To execute a python script the interpreter has to be specified either directly when executing (&lt;code&gt;python file.py&lt;/code&gt;) or in the first line of the file &lt;code&gt;#! /usr/bin/env  python&lt;/code&gt; and then it needs to be made executable via &lt;code&gt;chmod a+x file.py&lt;/code&gt;. The euclidian algorithm in python would look as follows:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Python can be used interactively by going into a python shell and importing the function &lt;code&gt;euclid&lt;/code&gt; from our "module"
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python
-$ from temp import euclid
-$ euclid(45,30)
-&amp;gt; 15
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-After the last example a file called &lt;code&gt;temp.cpython-37.pyc&lt;/code&gt; can be found in our directory (in a folder called &lt;code&gt;__pycache__&lt;/code&gt; in my case). This file contains the intermediate represation (Zwischencode) byte code into which the program is translated before it is interpreted. If the file hasn't change a subsequent execution would lead directly to the execution of this byte code. 
-It is possible to translate a program explicitly without executing it:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;py_compile&lt;/span&gt;
-&lt;span class="n"&gt;py_compile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'xyz.py'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Alternatively all python files in a directory can be translated via &lt;code&gt;python -mcompileall .&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Python offers a lot of predefined modules. &lt;code&gt;sys&lt;/code&gt; for example provides an interface to the operating system and may be used to extend our program with IO:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;# file name&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"GCD is "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orge9447a2" class="outline-2"&gt;
-&lt;h2 id="orge9447a2"&gt;Back to C&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge9447a2"&gt;
-&lt;p&gt;
-Going back to C (but the same applies elsewhere!) it is necessary to provide the input arguments on the command line when executing the euclidian algorithm program with IO. Else it would lead to a segmentation fault. The compiler cannot catch things like this because they are built on runtime assumptions. Therefore it is a good idea to validate those assumptions explicitly and program in a defensive way:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt; // for printf&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt; // for atoi&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// v[0] is program name&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Error unsufficient number of arguments&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Since such validation of assumptions is really common, a library function &lt;code&gt;assert&lt;/code&gt; exists to achieve this:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;assert.h&amp;gt; // &amp;lt;- NEW for assert!&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org6743da7" class="outline-3"&gt;
-&lt;h3 id="org6743da7"&gt;Errors&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6743da7"&gt;
-&lt;p&gt;
-There are at least three types of erros that can be distuingished:
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;formal, "incorrect" C → syntax error (compiler error)&lt;/li&gt;
-&lt;li&gt;missing objects (e.g functions) or name collisions → linker error&lt;/li&gt;
-&lt;li&gt;intention has not been implemented correctly → semantic error (logic error)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;
-The first two of these are usually catched when translating the program.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-04/</guid><pubDate>Fri, 19 Oct 2018 12:57:04 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-&lt;a href="https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout_de.pdf"&gt;Script (1-28)&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;div id="outline-container-orgbe23c5c" class="outline-2"&gt;
-&lt;h2 id="orgbe23c5c"&gt;Terms&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbe23c5c"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;CPU&lt;/b&gt; = A central processing unit (CPU) is the electronic circuitry within a computer that carries out the instructions of a computer program by performing the basic arithmetic, logical, control and input/output (I/O) operations specified by the instructions. The computer industry has used the term "central processing unit" at least since the early 1960s. Traditionally, the term "CPU" refers to a processor, more specifically to its processing unit and control unit (CU), distinguishing these core elements of a computer from external components such as main memory and I/O circuitry.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;bit patterns&lt;/b&gt; / &lt;b&gt;binary code&lt;/b&gt; = A binary code represents text, computer processor instructions, or any other data using a two-symbol system. The two-symbol system used is often the binary number system's 0 and 1. The binary code assigns a pattern of binary digits, also known as bits, to each character, instruction, etc.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;core&lt;/b&gt; = A core is usually the basic computation unit of the CPU - it can run a single program context. A CPU may have one or more cores to perform tasks at a given time.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;processor design&lt;/b&gt; = refers to the way and scope that a core implements processor registers, control unit,  bus and  memory unit&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;processor register&lt;/b&gt; = quickly accessible location available to a computer's cpu, common register sizes are 8, 32 or 64-bit register&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb3ed1a5" class="outline-2"&gt;
-&lt;h2 id="orgb3ed1a5"&gt;Basics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb3ed1a5"&gt;
-&lt;p&gt;
-An algorithm has to be interpretable to be executed by the computer. A (digital) processor can interpret bit patterns. &lt;i&gt;Bit patterns&lt;/i&gt; are also called machine code. A &lt;i&gt;core&lt;/i&gt; is a real implementation of an &lt;i&gt;processor design&lt;/i&gt;. Processor designs differ in the way and scope that they implement &lt;i&gt;processor registers&lt;/i&gt;, &lt;i&gt;control unit&lt;/i&gt;,  &lt;i&gt;bus&lt;/i&gt; and  &lt;i&gt;memory unit&lt;/i&gt; (also see &lt;a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture"&gt;Von Neumann Architecture&lt;/a&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-Different types of processors that implement mostly the same core design my be summarized as a "&lt;i&gt;processor family&lt;/i&gt;". A new processor family is formed when a processor design is considerably changed or altered (those are almost always backward compatible).
-&lt;/p&gt;
-
-&lt;p&gt;
-In machine code the bit pattern \[11111010\] for example is treated by the x86-processor-family as a directive to ignore interrupts.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgae2a06d" class="outline-2"&gt;
-&lt;h2 id="orgae2a06d"&gt;Compiler and interpreter&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgae2a06d"&gt;
-&lt;p&gt;
-Since machine code is not so handy for humans, programming languages have been created that should help with that. Programming languages use different models and abstractions. There is (atleast) one &lt;i&gt;assembly language&lt;/i&gt; that represents machine code in an easier to read manner (mnemonics). \(1111 1010\) (resp. \(0xFA\))* for example would be "cli" in assembly language for x86 processors (clear interrrupt flag). Programs are either &lt;b&gt;translated&lt;/b&gt; into machine code or are &lt;b&gt;interpreted&lt;/b&gt; by another program. This "translation" is done by the &lt;b&gt;compiler&lt;/b&gt; while the interpretation is done by the &lt;b&gt;interpreter&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-∗ The 0 tells the parser it's dealing with a constant (and not an identifier/reserved word). Something is still needed to specify the number base HEX: the x is an arbitrary choice.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgae21a62" class="outline-3"&gt;
-&lt;h3 id="orgae21a62"&gt;Variants of execution&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgae21a62"&gt;
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/execution-variants.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org90220c0" class="outline-2"&gt;
-&lt;h2 id="org90220c0"&gt;C&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org90220c0"&gt;
-&lt;p&gt;
-C is a programming language that is compiled into machine code without intermediate language representation (Zwischencode) or VM's.
-&lt;/p&gt;
-
-&lt;p&gt;
-In this course we'll stick to the C99-standard. Since computers usually support multiple standards, the standard has to be set when compiling. C is "close to the hardware". It is sometimes labeled as "middle language" eventhough it is still a high level programming language. Genereally a low level programming language is a language that provides no or little abstraction from a computer's instruction set architecture. Machine code and assembly language are usually counted as low level. However if you'd for example compare C with Ruby or Php it would be the low level language in that comparison because it offers far less abstractions. That's why some say it is a "middle language".
-&lt;/p&gt;
-
-&lt;p&gt;
-Usually C programs are really compact - they don't require a lot of overhead and storage. C is widely spread and presumably still the language in most of today's programs are writte.
-&lt;/p&gt;
-
-&lt;p&gt;
-It is possible to write really efficient C programs (not guaranteed though) and that's why the speed of C programs is often used as a benchmark when it comes to speed and/or efficiency.
-&lt;/p&gt;
-
-&lt;p&gt;
-In this course the &lt;code&gt;clang&lt;/code&gt; compiler or the compiler from the GNU Compiler Collection (&lt;code&gt;gcc&lt;/code&gt;) is used. For example like this &lt;code&gt;cc -std=c99 -Wall program.c -o program&lt;/code&gt; or (&lt;code&gt;cc -std=c99 -Wall program.c -o program&lt;/code&gt;). If the compilation was succesfull, the program can be executed like this &lt;code&gt;./program&lt;/code&gt; and an return value (from the main method) could be retrived with &lt;code&gt;echo $?&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orga8dd24d" class="outline-3"&gt;
-&lt;h3 id="orga8dd24d"&gt;Euclidian Algorithm in C&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga8dd24d"&gt;
-&lt;p&gt;
-The Euclidian Algorithm may be used to find the Greates Common Divisor (GCD) of numbers greater than 0. What follows is an implementation of it in C code:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//static in this context means that the function is local and not exported to other modules&lt;/span&gt;
-  &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// function declaration&lt;/span&gt;
-
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// function definition&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Because the function &lt;code&gt;euclid&lt;/code&gt; is called in the main method before its defintion, it has to be declared before that so the compiler knows about it. If the function is &lt;i&gt;defined&lt;/i&gt; &lt;b&gt;before&lt;/b&gt; its first usage, the explicit declaration can be omitted. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Because it is common to use functions from different libraries or modules the declaration serves as an assurance to the compiler that a called function exists and may be called. Else a warning (&lt;code&gt;implicit-function-declaration&lt;/code&gt;) would be triggered when compiling, eventhough the compilation might still be successfull. 
-&lt;/p&gt;
-
-&lt;p&gt;
-This is risky because I can call the function without providing arguments for all the  parameters e.g &lt;code&gt;euclid(45);&lt;/code&gt; and my program would compile just fine. That is until I run it and get a segmentation fault. In that case a declaration of the function interface would have saved me from the runtime error and thrown a compilation error instead.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5c99558" class="outline-3"&gt;
-&lt;h3 id="org5c99558"&gt;Input and Output in C&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5c99558"&gt;
-&lt;p&gt;
-Now we want to parameterize our euclidian algorithm (remember characteristic of an algorithm → should solve a batch of problems) and have an direct output, we need so called &lt;i&gt;library functions&lt;/i&gt;.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// euclidian algorithm with IO&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...);&lt;/span&gt; &lt;span class="c1"&gt;// print format -&amp;gt; write to output&lt;/span&gt;
-&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ascii to integer&lt;/span&gt;
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"c is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// number of command line arguments passed&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"v[0] is %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// path the program&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// const because declared as const in the parameter list&lt;/span&gt;
-  &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"GCD of %s and %s is %d.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt; &lt;span class="c1"&gt;// formatter "%s" expects char*&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Read the comment and syntax carefully! Furthermore the functions &lt;code&gt;printf&lt;/code&gt; and &lt;code&gt;atoi&lt;/code&gt; are defined in C's standard library &lt;code&gt;stdlib&lt;/code&gt; which is always linked by default (directive to include a library &lt;code&gt;#include&amp;lt;stdlib.h&amp;gt;&lt;/code&gt;).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org247ccd5" class="outline-3"&gt;
-&lt;h3 id="org247ccd5"&gt;Operators&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org247ccd5"&gt;
-&lt;p&gt;
-Depending on the position of an operator (e.g &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;%&lt;/code&gt;, etc.) in regards to where the operator "gets its operands" it can be differentiated between:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;prefix operators (before an operand eg &lt;code&gt;++i&lt;/code&gt; → &lt;code&gt;i&lt;/code&gt; is incremented and then used)&lt;/li&gt;
-&lt;li&gt;postifx operators (after an operand eg &lt;code&gt;i++&lt;/code&gt; → &lt;code&gt;i&lt;/code&gt; is used and then incremented)&lt;/li&gt;
-&lt;li&gt;infix operators (between operands eg &lt;code&gt;5-2&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-03/</guid><pubDate>Mon, 15 Oct 2018 12:57:04 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</guid><pubDate>Sun, 21 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>

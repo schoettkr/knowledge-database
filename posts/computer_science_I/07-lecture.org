@@ -1,0 +1,26 @@
+#+BEGIN_COMMENT
+.. title: Computer Science I - Lecture 07
+.. slug: cs-I-07
+.. date: 2018-11-23
+.. tags: 
+.. category: university cs01
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+*Disclaimer:* /I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms & Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&P a classmate hands me the covered slides)/
+
+Okay so I'll continute based on where we left off last time, which leads us to the next chapter in the slides:
+
+* Functions
+To be honest, while scimming through this lecture chapter I found it to be pretty basic. It is imho not worth it to cover here because there is nothing new in comparison to what we already covered in the A&P lectures, so look there if you want to refresh your memory on:
+- why we use functions
+- how to use functions
+- domain (Definitionsmenge/Definitionsbereich) and codomain (Zielmenge/Wertebereich)
+- return values
+
+What I'll cover here though are reference parameters and reference return values because the slides look interesting/funny and I want to understand them. I think this was also covered in some A&P posts but maybe there's something special in the regard to C++ or who knows what else :) So we'll look at that now:
+
+F48 

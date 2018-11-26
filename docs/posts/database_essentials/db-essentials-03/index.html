@@ -14,7 +14,7 @@
 <meta property="og:description" content="As we have learned in the last lecture there are three distinct phases of database design:
 
 
-Conceptual Design (lecture 02)
+Conceptual Design (Lecture 02)
 
 creation of a semantic data model that describes all important aspects from">
 <meta property="og:type" content="article">
@@ -86,21 +86,21 @@ As we have learned in the last lecture there are three distinct phases of databa
 </p>
 <ol class="org-ol">
 <li>
-<b>Conceptual Design</b> (lecture 02)
+<b>Conceptual Design</b> (Lecture 02)
 <ul class="org-ul">
 <li>creation of a semantic data model that describes all important aspects from the requirement analysis</li>
 <li>primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way</li>
 </ul>
 </li>
 <li>
-<b>Logical Design</b> (this lecture)
+<b>Logical Design</b> (this lecture until ???)
 <ul class="org-ul">
 <li>transforms the conceptual model into a concrete data model, which can be implemented in a database system</li>
 <li>the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware</li>
 </ul>
 </li>
 <li>
-<b>Physical Design</b> (Lecture 04)
+<b>Physical Design</b> (Lecture ???)
 <ul class="org-ul">
 <li>describes the actual implementation of the logical data model</li>
 </ul>
@@ -110,17 +110,17 @@ As we have learned in the last lecture there are three distinct phases of databa
 In this lecture we turn or focus onto the <b>logical design</b>
 </p>
 
-<div id="outline-container-orgd7c24bd" class="outline-2">
-<h2 id="orgd7c24bd">Logical Data Model</h2>
-<div class="outline-text-2" id="text-orgd7c24bd">
+<div id="outline-container-orgc6e9df2" class="outline-2">
+<h2 id="orgc6e9df2">Logical Data Model</h2>
+<div class="outline-text-2" id="text-orgc6e9df2">
 <p>
 Which <i>data model</i> is appropiate for the <i>logical design process</i>? The <b>relational data model</b> because it has a simple structure, an elegant theoretical foundation (formal description) and is economically relevant (about ~80% of database systems are based on the relational paradigm despite development/creation of alternatives).
 </p>
 </div>
 
-<div id="outline-container-org071a98a" class="outline-3">
-<h3 id="org071a98a">Relational Model</h3>
-<div class="outline-text-3" id="text-org071a98a">
+<div id="outline-container-orge721310" class="outline-3">
+<h3 id="orge721310">Relational Model</h3>
+<div class="outline-text-3" id="text-orge721310">
 <p>
 The relational model (RM) was introduced in a paper by E.F. Codd in 1970, which pertains as a milestone to this day. The most know prototype of this theoretical approach was created by IBM in 1975 (System R). The in the process developed query language SEQUEL was later standardized as SQL and is the most common query language for relational DBMS today.
 </p>
@@ -131,9 +131,9 @@ The first commercial systems were released at the end of the 70s for example Orc
 </div>
 </div>
 
-<div id="outline-container-orgac534fb" class="outline-3">
-<h3 id="orgac534fb">Relational Model - Terms and Definitions</h3>
-<div class="outline-text-3" id="text-orgac534fb">
+<div id="outline-container-org250b54d" class="outline-3">
+<h3 id="org250b54d">Relational Model - Terms and Definitions</h3>
+<div class="outline-text-3" id="text-org250b54d">
 <p>
 The relational model is based on the mathematical concept of a (finitary?) relation, which can be represented well as a table consisting of <i>rows</i> and <i>columns</i>.
 <b>Rows</b> represent <b>different attributes</b> of <b>one entity</b>. <b>Columns</b> represent the <b>same attribute</b> of <b>all entities</b>. An attribute corresponds with the attribute idea in the Entity Relationship Model (conceptual design) and is a property/characteristic of an entity.
@@ -184,9 +184,9 @@ The relational model is based on the mathematical concept of a (finitary?) relat
 </div>
 </div>
 
-<div id="outline-container-org10e77e3" class="outline-3">
-<h3 id="org10e77e3">Relations and Schemas</h3>
-<div class="outline-text-3" id="text-org10e77e3">
+<div id="outline-container-orge9a0a07" class="outline-3">
+<h3 id="orge9a0a07">Relations and Schemas</h3>
+<div class="outline-text-3" id="text-orge9a0a07">
 <p>
 <b>database context</b>
 </p>
@@ -237,9 +237,9 @@ The relational model is based on the mathematical concept of a (finitary?) relat
 </div>
 </div>
 
-<div id="outline-container-orged6f988" class="outline-3">
-<h3 id="orged6f988">Relations and Tables</h3>
-<div class="outline-text-3" id="text-orged6f988">
+<div id="outline-container-org1bbd377" class="outline-3">
+<h3 id="org1bbd377">Relations and Tables</h3>
+<div class="outline-text-3" id="text-org1bbd377">
 <p>
 Tables are physical representation forms of relation with some differences:
 </p>
@@ -269,9 +269,9 @@ Tables are physical representation forms of relation with some differences:
 </div>
 </div>
 
-<div id="outline-container-orgc85ee7a" class="outline-3">
-<h3 id="orgc85ee7a">Alternative Terms</h3>
-<div class="outline-text-3" id="text-orgc85ee7a">
+<div id="outline-container-org4740b08" class="outline-3">
+<h3 id="org4740b08">Alternative Terms</h3>
+<div class="outline-text-3" id="text-org4740b08">
 <p>
 Especially when using a concrete DBMS alternative terms than those of the relation model are used that are closer to the physical representation (I also added those somewhere above by myself b4 reading this because it felt more natural :D ):
 </p>
@@ -283,9 +283,9 @@ Especially when using a concrete DBMS alternative terms than those of the relati
 </div>
 </div>
 
-<div id="outline-container-orgf0b4052" class="outline-3">
-<h3 id="orgf0b4052">Relational Keys</h3>
-<div class="outline-text-3" id="text-orgf0b4052">
+<div id="outline-container-orgfa0d25e" class="outline-3">
+<h3 id="orgfa0d25e">Relational Keys</h3>
+<div class="outline-text-3" id="text-orgfa0d25e">
 <p>
 <b>superkeys</b>
 </p>
@@ -308,9 +308,9 @@ Especially when using a concrete DBMS alternative terms than those of the relati
 <img src="../../../images/relational-keys.png" alt="nil"></p>
 </div>
 </div>
-<div id="outline-container-org53487ad" class="outline-3">
-<h3 id="org53487ad">Relational Model - Relationships</h3>
-<div class="outline-text-3" id="text-org53487ad">
+<div id="outline-container-orgd84f501" class="outline-3">
+<h3 id="orgd84f501">Relational Model - Relationships</h3>
+<div class="outline-text-3" id="text-orgd84f501">
 <p>
 Relations can be associated with each other. To achieve that primary key attributes of the relation which should be associated is added to the relation which realizes that relationship. The primary key which was added to a relation for this purpose is called <b>foreign key</b>. Therefore <i>every foreign key has to be a primary key somewhere in a relation</i>.
 </p>
@@ -319,9 +319,9 @@ Relations can be associated with each other. To achieve that primary key attribu
 <img src="../../../images/relationship-rm.png" alt="nil"></p>
 </div>
 </div>
-<div id="outline-container-org3ab58dc" class="outline-3">
-<h3 id="org3ab58dc">Null Values</h3>
-<div class="outline-text-3" id="text-org3ab58dc">
+<div id="outline-container-orgc177d1f" class="outline-3">
+<h3 id="orgc177d1f">Null Values</h3>
+<div class="outline-text-3" id="text-orgc177d1f">
 <p>
 For some tuples of a relation the concrete value of an attribute may not be known (yet) or it may be inappropiate to have an value existing there. To represent such cases the <b>null value</b> (null) exists which is a "non-value" alas "unknown value" (which shall not be confused with the value 0).
 </p>
@@ -337,9 +337,9 @@ It should be a goal to minimize the cases where null values are needed although 
 </div>
 </div>
 
-<div id="outline-container-orgc2361d1" class="outline-2">
-<h2 id="orgc2361d1">Logical Design: ERM to RM</h2>
-<div class="outline-text-2" id="text-orgc2361d1">
+<div id="outline-container-org69a867e" class="outline-2">
+<h2 id="org69a867e">Logical Design: ERM to RM</h2>
+<div class="outline-text-2" id="text-org69a867e">
 <p>
 The task at hand is to translate the conceptual data model (ERM, entity relationship model) from the conceptual design phase into the logical data model (RM, relational model).
 </p>
@@ -356,16 +356,16 @@ The steps required are:
 </ul>
 </div>
 
-<div id="outline-container-org211ac2d" class="outline-3">
-<h3 id="org211ac2d">ERM to RM</h3>
-<div class="outline-text-3" id="text-org211ac2d">
+<div id="outline-container-org9123fc7" class="outline-3">
+<h3 id="org9123fc7">ERM to RM</h3>
+<div class="outline-text-3" id="text-org9123fc7">
 <p>
 Lets start with the conversion of strong entity types.
 </p>
 </div>
-<div id="outline-container-org528e75e" class="outline-4">
-<h4 id="org528e75e">ERM to RM - Strong Enitity Types</h4>
-<div class="outline-text-4" id="text-org528e75e">
+<div id="outline-container-org0ec8e13" class="outline-4">
+<h4 id="org0ec8e13">ERM to RM - Strong Enitity Types</h4>
+<div class="outline-text-4" id="text-org0ec8e13">
 <p>
 For each strong entity type we create a relation:
 </p>
@@ -385,9 +385,9 @@ Example of a Student relation: Student( <span class="underline">matrikelnum</spa
 </div>
 </div>
 
-<div id="outline-container-org624b4a0" class="outline-4">
-<h4 id="org624b4a0">ERM to RM - Relationship Types</h4>
-<div class="outline-text-4" id="text-org624b4a0">
+<div id="outline-container-orgc5dca1c" class="outline-4">
+<h4 id="orgc5dca1c">ERM to RM - Relationship Types</h4>
+<div class="outline-text-4" id="text-orgc5dca1c">
 <p>
 Create a new relation for each relationship types (not always required as we'll see later why/how):
 </p>
@@ -421,7 +421,7 @@ So as an alternative relationship types of certain cardinalities can be expresse
 
 <ul class="org-ul">
 <li>
-<a id="org96dbc47"></a><code>N:M</code> Relationship<br><div class="outline-text-5" id="text-org96dbc47">
+<a id="org19b6a37"></a><code>N:M</code> Relationship<br><div class="outline-text-5" id="text-org19b6a37">
 <p>
 The previous paragraph is not applicable for <code>N:M</code> relationship types. For those we always need a dedicated relation:
 <img src="../../../images/n-to-m-relation.png" alt="nil"></p>
@@ -433,7 +433,7 @@ In case of the other cardinalities we can use the alternative approach.
 </li>
 
 <li>
-<a id="org0ba8f61"></a><code>1:N</code> Relationship<br><div class="outline-text-5" id="text-org0ba8f61">
+<a id="orgbc73c3a"></a><code>1:N</code> Relationship<br><div class="outline-text-5" id="text-orgbc73c3a">
 <p>
 We add the primary key of the entity type from the <code>1</code> side of the relationship as a foreign key to the entity type from the <code>N</code> side. If the relationship type has attributes, then those are also added to the entity relation from the <code>N</code> side of the relationship.
 <img src="../../../images/one-to-n-inline-rel.png" alt="nil"></p>
@@ -453,7 +453,7 @@ The above already kind of leads us to <i>optional</i> and <i>obligatory</i> part
 </li>
 
 <li>
-<a id="org54c8524"></a><code>1:1</code> Relationship<br><div class="outline-text-5" id="text-org54c8524">
+<a id="org1cdfb7b"></a><code>1:1</code> Relationship<br><div class="outline-text-5" id="text-org1cdfb7b">
 <p>
 <b>In case of an <i>obligatory</i> participation on <i>both</i> sides of the relationship:</b>
 Since all entities of both entity types participate in the relationship, both entity relations and the relationship attributes could be merged into one relation. Then one of the two primary keys would serve as the primary key for the resulting relation. (<b>Merging</b>)
@@ -502,9 +502,9 @@ Another example from the slides:
 </li>
 </ul>
 </div>
-<div id="outline-container-org52ef717" class="outline-4">
-<h4 id="org52ef717">ERM to RM - Weak Entity Types</h4>
-<div class="outline-text-4" id="text-org52ef717">
+<div id="outline-container-orgea9043d" class="outline-4">
+<h4 id="orgea9043d">ERM to RM - Weak Entity Types</h4>
+<div class="outline-text-4" id="text-orgea9043d">
 <p>
 The expression of a weak entity type in the relational model always has to include the relationship to the superior strong entity type (übergeordneter starker Entitytyp). The following steps describe how do this, they are however optimizable:
 </p>
@@ -523,9 +523,9 @@ In case of an obligatory participation of all entities of both sides of a <code>
 </div>
 </div>
 
-<div id="outline-container-org3831ea6" class="outline-4">
-<h4 id="org3831ea6">ERM to RM - Multivalent (Mehrwertige) Attributes</h4>
-<div class="outline-text-4" id="text-org3831ea6">
+<div id="outline-container-orga257ed2" class="outline-4">
+<h4 id="orga257ed2">ERM to RM - Multivalent (Mehrwertige) Attributes</h4>
+<div class="outline-text-4" id="text-orga257ed2">
 <p>
 To translate multivalent attribute types into the relational model:
 </p>
@@ -570,9 +570,9 @@ The normalization of relations will be covered latter and now we'll shortly turn
 </div>
 </div>
 
-<div id="outline-container-orge7b2be8" class="outline-3">
-<h3 id="orge7b2be8">Integrity Conditions and Data Integrity</h3>
-<div class="outline-text-3" id="text-orge7b2be8">
+<div id="outline-container-orgbbae01b" class="outline-3">
+<h3 id="orgbbae01b">Integrity Conditions and Data Integrity</h3>
+<div class="outline-text-3" id="text-orgbbae01b">
 <p>
 Integrity conditions/rules describe a set of requirements to guarantee the consistency, the correctness and completeness of data. It is required to document all integrity rules in the logical design phase.
 </p>
@@ -597,10 +597,9 @@ The following kinds of integrity constraints have to be respected:
 </div>
 </div>
 
-
-<div id="outline-container-orgda90644" class="outline-3">
-<h3 id="orgda90644">Interim Conclusion (Zwischenfazit)</h3>
-<div class="outline-text-3" id="text-orgda90644">
+<div id="outline-container-orgf7d5686" class="outline-3">
+<h3 id="orgf7d5686">Interim Conclusion (Zwischenfazit)</h3>
+<div class="outline-text-3" id="text-orgf7d5686">
 <p>
 Since the expressiveness (Ausdruckskraft) of the relational model (logical design) is much lower than the epressiveness of a conceptual model (eg ERM), the conceptual model should always be done and done first! The meaning of things is often times not clear without additional knowledge from the conceptual design.
 </p>

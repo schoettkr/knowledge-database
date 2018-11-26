@@ -1,0 +1,91 @@
+#+BEGIN_COMMENT
+.. title: Algos & Programming - Lecture 14
+.. slug: algos-and-prog-14
+.. date: 2018-11-24
+.. tags: university, A&P 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+* Design and Correctness of Algorithms 
+** Pseudocode
+As we've learnt in the last lecture /pseudocode/ is one of the most popular semiformal specification languages.
+
+Pseudocode generally defines a set of instructions, there are no strict rules on how pseudocode needs to look like, therefore there are many forms of it, which is okay as long as it is intuitively readable.
+
+Example pseudocode for the Euclidian Algorithm:
+
+#+ATTR_HTML: :style background:lightgrey;
+*Require:* A, B \in N, A > 0 \cap B > 0\\
+*Ensure:* a = b = gcd(A, B)\\
+a \leftarrow A; b \leftarrow B\\
+*while* a \neq b *do*\\
+   *if* a < b *then*\\
+      b \leftarrow b - a\\
+   *else*\\
+      a \leftarrow a - b\\
+   *end if*\\
+*end while*\\
+
+The slides note at this point that in the future we'll often look at algorithms in pseudo code.
+
+** Correctness
+When you find an approach for a problem / an algorithm, the /correctness/ has to be validated.
+
+It is advised to verify the correctness of the idea first and then the correctness of the concrete algorithm.
+The correctness of an idea cannot be verified formally, but the following things should be pondered:
+- does the idea work /in general/ or just for a /specific case/?
+- are there /special cases/ in which the idea does not work out? are these relevant?
+- try finding an /counter-example/
+- what about /extreme cases/?
+
+What follows on slides 25-30 are some example problems and ideas to solve them, take a look there if you want.
+
+As stated before the correctness of the concrete algorithm also has to be validated. There are in general two ways to do this:
+- *Exhaustive Testing*
+  - verify that there is no incorrect behaviour in the implementation of the algorithm by testing/executing it with all possible data inputs/combinations
+  - Problems:
+    - usually this is /impossible/ since the possible data combinations are really large or even infinite
+    - /partial testing/ may boost the confidence in regards to the correctness of a program/algorithm, but does not replace a proof
+    - a good selection of test cases is difficult
+- *Correctness Proof* (Korrektheitsbeweis)
+  - verify correct behaviour via mathematical methods/proofs
+  - Problems:
+    - are difficult or impossible on the level of implementation because of lacking formalization
+    
+To proof the correctness it can be performed on a more /abstract level/ instead. Mistakes are then however possible when performing the concrete implementation. We'll continue to look at proofs and not tests.
+
+** Proofs
+Slides: Informale Definition = Ein Beweis ist eine Herleitung einer Aussage aus bereits bewiesenen Aussagen und/oder Grundannahmen (Axiomen)
+
+We know a few different (but still combinable) methods for proofs:
+- *deduction*
+  - classical proof via combination of premises
+  - eg: all humans are mortal(premise 1) & all kings are humans (premise 2) \rightarrow all kings are mortal (conclusion/deduction)
+  - the correctness of the premises has to be given axiomatically or already been proven
+- *complete case analysis/differentiation* (vollständige Fallunterscheidung)
+  - when there are a finite amount of cases/variants then each one can be inspected individually
+  - if a statement is true for /every/ case/variant then the statement is true as a whole
+  - eg: "all odd integers in the intervall [2^1, 2^3] are prime numbers" (statement) \rightarrow 3 is prime, 5 is prime, 7 is prime \rightarrow statement is true
+- *complete /transfinite induction*
+  - base cases (Induktionsanker/-anfang IA) show that a statement is valid for a special (smallest/first) case (often \(n = 0\) or \(n = 1\))
+  - step case / inductive step (Induktionsschritt)
+    - assume that the statement holds true for \(n=k\) (Induktionsvoraussetzung IV) and prove that then the statements holds for \(n=k+1\); proof that the /induction hypothesis/ follows from the /induction requirement/
+    - Induktionsschluss \rightarrow inference (Folgerung) that the statement holds for all cases starting at the first
+- *indirect proof*
+  - assume the opposite of the hypothesis/statement and find a disproof via axioms and proven concepts \rightarrow inference that the assumption is wrong and therefore the hypothesis/statment is true
+** Proofs of Algorithms
+To prove an algorithm you have to ask two questions. 1) What is there to be proven (Specification)? 2.) What is already known?
+
+A distinction is made between 2 kinds of "correctness":
+- *partial correctness*
+  - an algorithm is /partially correct/ if an answer is returned that this answer will be correct (slides: ein Algorithmus is partiell korrekt, wenn er für eine spezifizerte erfüllte Vorbedingung Q bei einer eventuellen/möglichen Terminierung eine spezifizerte Nachbedingung R erreicht, dh R is nach Ausführung erfüllt)
+- *total correctness*
+  - total correctness requires additionally to partial correctness that the algorithm *terminates*
+    
+So, /if/ a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
+
+In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P

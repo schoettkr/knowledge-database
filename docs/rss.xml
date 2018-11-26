@@ -1,5 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 18 Nov 2018 09:08:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 12</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org9e75314" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 26 Nov 2018 14:47:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 14</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org193541e" class="outline-2"&gt;
+&lt;h2 id="org193541e"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org193541e"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org035cf35" class="outline-3"&gt;
+&lt;h3 id="org035cf35"&gt;Pseudocode&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org035cf35"&gt;
+&lt;p&gt;
+As we've learnt in the last lecture &lt;i&gt;pseudocode&lt;/i&gt; is one of the most popular semiformal specification languages.
+&lt;/p&gt;
+
+&lt;p&gt;
+Pseudocode generally defines a set of instructions, there are no strict rules on how pseudocode needs to look like, therefore there are many forms of it, which is okay as long as it is intuitively readable.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example pseudocode for the Euclidian Algorithm:
+&lt;/p&gt;
+
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;Require:&lt;/b&gt; A, B ∈ N, A &amp;gt; 0 ∩ B &amp;gt; 0&lt;br&gt;
+&lt;b&gt;Ensure:&lt;/b&gt; a = b = gcd(A, B)&lt;br&gt;
+a ← A; b ← B&lt;br&gt;
+&lt;b&gt;while&lt;/b&gt; a ≠ b &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+   &lt;b&gt;if&lt;/b&gt; a &amp;lt; b &lt;b&gt;then&lt;/b&gt;&lt;br&gt;
+      b ← b - a&lt;br&gt;
+   &lt;b&gt;else&lt;/b&gt;&lt;br&gt;
+      a ← a - b&lt;br&gt;
+   &lt;b&gt;end if&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;end while&lt;/b&gt;&lt;br&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The slides note at this point that in the future we'll often look at algorithms in pseudo code.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6a583f8" class="outline-3"&gt;
+&lt;h3 id="org6a583f8"&gt;Correctness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6a583f8"&gt;
+&lt;p&gt;
+When you find an approach for a problem / an algorithm, the &lt;i&gt;correctness&lt;/i&gt; has to be validated.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is advised to verify the correctness of the idea first and then the correctness of the concrete algorithm.
+The correctness of an idea cannot be verified formally, but the following things should be pondered:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;does the idea work &lt;i&gt;in general&lt;/i&gt; or just for a &lt;i&gt;specific case&lt;/i&gt;?&lt;/li&gt;
+&lt;li&gt;are there &lt;i&gt;special cases&lt;/i&gt; in which the idea does not work out? are these relevant?&lt;/li&gt;
+&lt;li&gt;try finding an &lt;i&gt;counter-example&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;what about &lt;i&gt;extreme cases&lt;/i&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+What follows on slides 25-30 are some example problems and ideas to solve them, take a look there if you want.
+&lt;/p&gt;
+
+&lt;p&gt;
+As stated before the correctness of the concrete algorithm also has to be validated. There are in general two ways to do this:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;Exhaustive Testing&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;verify that there is no incorrect behaviour in the implementation of the algorithm by testing/executing it with all possible data inputs/combinations&lt;/li&gt;
+&lt;li&gt;Problems:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;usually this is &lt;i&gt;impossible&lt;/i&gt; since the possible data combinations are really large or even infinite&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;partial testing&lt;/i&gt; may boost the confidence in regards to the correctness of a program/algorithm, but does not replace a proof&lt;/li&gt;
+&lt;li&gt;a good selection of test cases is difficult&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Correctness Proof&lt;/b&gt; (Korrektheitsbeweis)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;verify correct behaviour via mathematical methods/proofs&lt;/li&gt;
+&lt;li&gt;Problems:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;are difficult or impossible on the level of implementation because of lacking formalization&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+To proof the correctness it can be performed on a more &lt;i&gt;abstract level&lt;/i&gt; instead. Mistakes are then however possible when performing the concrete implementation. We'll continue to look at proofs and not tests.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org050c734" class="outline-3"&gt;
+&lt;h3 id="org050c734"&gt;Proofs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org050c734"&gt;
+&lt;p&gt;
+Slides: Informale Definition = Ein Beweis ist eine Herleitung einer Aussage aus bereits bewiesenen Aussagen und/oder Grundannahmen (Axiomen)
+&lt;/p&gt;
+
+&lt;p&gt;
+We know a few different (but still combinable) methods for proofs:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;deduction&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;classical proof via combination of premises&lt;/li&gt;
+&lt;li&gt;eg: all humans are mortal(premise 1) &amp;amp; all kings are humans (premise 2) → all kings are mortal (conclusion/deduction)&lt;/li&gt;
+&lt;li&gt;the correctness of the premises has to be given axiomatically or already been proven&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;complete case analysis/differentiation&lt;/b&gt; (vollständige Fallunterscheidung)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;when there are a finite amount of cases/variants then each one can be inspected individually&lt;/li&gt;
+&lt;li&gt;if a statement is true for &lt;i&gt;every&lt;/i&gt; case/variant then the statement is true as a whole&lt;/li&gt;
+&lt;li&gt;eg: "all odd integers in the intervall [2&lt;sup&gt;1&lt;/sup&gt;, 2&lt;sup&gt;3&lt;/sup&gt;] are prime numbers" (statement) → 3 is prime, 5 is prime, 7 is prime → statement is true&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;complete /transfinite induction&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;base cases (Induktionsanker/-anfang IA) show that a statement is valid for a special (smallest/first) case (often \(n = 0\) or \(n = 1\))&lt;/li&gt;
+&lt;li&gt;step case / inductive step (Induktionsschritt)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assume that the statement holds true for \(n=k\) (Induktionsvoraussetzung IV) and prove that then the statements holds for \(n=k+1\); proof that the &lt;i&gt;induction hypothesis&lt;/i&gt; follows from the &lt;i&gt;induction requirement&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;Induktionsschluss → inference (Folgerung) that the statement holds for all cases starting at the first&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;indirect proof&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assume the opposite of the hypothesis/statement and find a disproof via axioms and proven concepts → inference that the assumption is wrong and therefore the hypothesis/statment is true&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org6d2bb1e" class="outline-3"&gt;
+&lt;h3 id="org6d2bb1e"&gt;Proofs of Algorithms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6d2bb1e"&gt;
+&lt;p&gt;
+To prove an algorithm you have to ask two questions. 1) What is there to be proven (Specification)? 2.) What is already known?
+&lt;/p&gt;
+
+&lt;p&gt;
+A distinction is made between 2 kinds of "correctness":
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;partial correctness&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;an algorithm is &lt;i&gt;partially correct&lt;/i&gt; if an answer is returned that this answer will be correct (slides: ein Algorithmus is partiell korrekt, wenn er für eine spezifizerte erfüllte Vorbedingung Q bei einer eventuellen/möglichen Terminierung eine spezifizerte Nachbedingung R erreicht, dh R is nach Ausführung erfüllt)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;total correctness&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;total correctness requires additionally to partial correctness that the algorithm &lt;b&gt;terminates&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+So, &lt;i&gt;if&lt;/i&gt; a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
+&lt;/p&gt;
+
+&lt;p&gt;
+In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</guid><pubDate>Fri, 23 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Okay so I'll continute based on where we left off last time, which leads us to the next chapter in the slides:
+&lt;/p&gt;
+
+&lt;div id="outline-container-org5cf3b21" class="outline-2"&gt;
+&lt;h2 id="org5cf3b21"&gt;Functions&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5cf3b21"&gt;
+&lt;p&gt;
+To be honest, while scimming through this lecture chapter I found it to be pretty basic. It is imho not worth it to cover here because there is nothing new in comparison to what we already covered in the A&amp;amp;P lectures, so look there if you want to refresh your memory on:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;why we use functions&lt;/li&gt;
+&lt;li&gt;how to use functions&lt;/li&gt;
+&lt;li&gt;domain (Definitionsmenge/Definitionsbereich) and codomain (Zielmenge/Wertebereich)&lt;/li&gt;
+&lt;li&gt;return values&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+What I'll cover here though are reference parameters and reference return values because the slides look interesting/funny and I want to understand them. I think this was also covered in some A&amp;amp;P posts but maybe there's something special in the regard to C++ or who knows what else :) So we'll look at that now:
+&lt;/p&gt;
+
+&lt;p&gt;
+F48 
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 13</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org8c4d7fa" class="outline-2"&gt;
+&lt;h2 id="org8c4d7fa"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8c4d7fa"&gt;
+&lt;p&gt;
+The first slides of this lecture chapter is just some meta information about the right mindset to create algorithms, which I find to be trivial, that's why I don't repeat that here (slides 1-5).
+&lt;/p&gt;
+
+&lt;p&gt;
+We usually create a model for a problem (Modellierung) to abstract and reduce it. Especially mathematical concepts are suited as modeling approaches (Modellierungsansätze):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;sets, multisets&lt;/li&gt;
+&lt;li&gt;permutations&lt;/li&gt;
+&lt;li&gt;trees/hierarchies&lt;/li&gt;
+&lt;li&gt;graphs&lt;/li&gt;
+&lt;li&gt;points (geometry)&lt;/li&gt;
+&lt;li&gt;polygons&lt;/li&gt;
+&lt;li&gt;strings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga3744c0" class="outline-3"&gt;
+&lt;h3 id="orga3744c0"&gt;Excourse: Graphs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga3744c0"&gt;
+&lt;p&gt;
+Graphs are often used for modelling. A graph is a ordered pair \((V,E)\), where \(V\) is a set of nodes/vertices (Knoten) \(V = {v_1, v_2, v_3,.., v_n}\) and \(E\) is a set of edges (Kanten/Linien) \(E = {e_1, e_2, .., e_m}\). Depending on the type of graph, \(E\) is:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;in &lt;b&gt;undirected*/*simple&lt;/b&gt; (ungerichtete) graphs &lt;b&gt;without multiple edges&lt;/b&gt; \(E\) is a &lt;b&gt;2-element subset&lt;/b&gt; of \(V\)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;directed&lt;/b&gt; (gerichteten) graphs &lt;b&gt;without multiple edges&lt;/b&gt; \(E\) is a &lt;b&gt;subset&lt;/b&gt; of all pairs/2-tuples (i,j) which result from the cartesian product of \(V * V\)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;undirected&lt;/b&gt; graphs with "zusammengefassten" &lt;b&gt;multiple edges&lt;/b&gt; (=Multigraph) \(E\) is a &lt;b&gt;multiset&lt;/b&gt; (Menge die Duplikate erlaubt) "über die Menge \(W\)" of all &lt;b&gt;2-element subsets&lt;/b&gt; of \(V\) (?weighted graph?)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;directed&lt;/b&gt; graphs with "zusammengefassten" &lt;b&gt;multiple edges&lt;/b&gt; (=Multigraph) \(E\) is a &lt;b&gt;multiset&lt;/b&gt;  "über dem kartesischen Produkt \(V * V\)" (?weighted graph?)&lt;/li&gt;
+&lt;li&gt;in &lt;b&gt;hypergraphs&lt;/b&gt; \(E\) is a subset of the power set of \(V\)&lt;/li&gt;
+&lt;li&gt;wiki: in gerichteten Graphen mit eigenständigen Mehrfachkanten eine beliebige Menge, deren Elemente mit Hilfe von zwei Funktionen {\displaystyle \mathrm {src} ,\mathrm {tgt} : E→ V} {\mathrm  {src}},{\mathrm  {tgt}}: E→ V die den Elementen einen Quell- bzw. Zielknoten zuordnen, als Kanten angesehen werden (so ein Graph ist dasselbe wie ein Funktor {\displaystyle G: {\mathcal {G}}→ \mathbf {Set} } G: {\mathcal  G}→ {\mathbf  {Set}}, wobei {\displaystyle {\mathcal {G}}} {\mathcal  G} die recht überschaubare Kategorie {\displaystyle {\mathcal {G}}=\{V{\stackrel {\mathrm {src} }{\longleftarrow }}E{\stackrel {\mathrm {tgt} }{\longrightarrow }}V\}} {\mathcal  G}=\{V{\stackrel  {{\mathrm  {src}}}\longleftarrow }E{\stackrel  {{\mathrm  {tgt}}}\longrightarrow }V\} mit zwei Objekten und zwei ausgezeichneten Pfeilen ist)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Slides: Kanten können Werte (Gewichte) zugewiesen werden, w : E → R. In diesem Fall spricht man von einem gewichteten Graph.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;i&gt;gerichteter&lt;/i&gt; Graph hat Pfeile an Kanten die die Richtung angeben&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;gewichteter&lt;/i&gt; Graph hat Werte an Kanten stehen&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Two blog posts on graphs:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8"&gt;https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38"&gt;https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The model of the graph is seperate of any concrete data structures. C for example does not have a built-in data type for graphs so you might need to implement one yourself. Furthermore just because a problem was modeled with a specific approach/model does not mean that a respective data structure is always needed to implement the approach.
+&lt;/p&gt;
+
+&lt;p&gt;
+However if you find yourself in the need of such data structure there are a multitude of approaches to implement it such. Here are two:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;via &lt;b&gt;adjacency matrix&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;a square matrix to represent a finite graph&lt;/li&gt;
+&lt;li&gt;the elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph&lt;/li&gt;
+&lt;li&gt;in 2d array each element &lt;code&gt;a_{i,j}&lt;/code&gt; holds information weather or not an edge connects the vertices &lt;code&gt;v_i&lt;/code&gt; and &lt;code&gt;v_j&lt;/code&gt; or which weight the edge has:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; edge between verticle 0 and verticle 1 exists&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;via &lt;b&gt;structs and pointers&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;vertices can be modelled as structs and edges as pointers inside of those:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;maxDegree&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;maxDegree&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+  &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;maxDegree&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;node_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Since graph theory is a relatively old field of mathematics there are a lot of theorems, laws and standard algorithms for solving certain problems.
+&lt;/p&gt;
+
+&lt;p style="color:red;"&gt;
+TODO check those code examples
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org38e59ea" class="outline-3"&gt;
+&lt;h3 id="org38e59ea"&gt;Specification&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org38e59ea"&gt;
+&lt;p style="color:red;"&gt;
+TODO check those code examples
+&lt;/p&gt;
+
+&lt;p&gt;
+An algorithm has to be described somehow. One variant to do so would be in a concrete programming language. The problem with that is that different programming languages know different concepts and no programming language knows all concepts. C for example does not know data types and operations for mathematical sets by itself. Set operations in C could therefore look a bit unclear and obfuscate (verschleiern) the underlying algorithm which is the real point of interest.
+&lt;/p&gt;
+
+&lt;p&gt;
+A solution to this is writing algorithms in a &lt;i&gt;specification&lt;/i&gt; (Spezifikationsprachen) of which there are many (natural languages are too inprecise btw) when the algorithm itself is the point of interest. 
+&lt;/p&gt;
+
+&lt;p&gt;
+There are &lt;b&gt;formal&lt;/b&gt; and &lt;b&gt;semiformal&lt;/b&gt; specification languages. The former are automatically processable for example theorem proofs, however these are often hard to read. The latter serve the purpose of communicating about algorithms.
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll use the probably most popular semiformal specification language for imperative algorithms which is &lt;b&gt;pseudocode&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+And this (pseudocode) is where we will continue in the next lecture. Cya :)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</guid><pubDate>Sun, 18 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 12</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org9e75314" class="outline-2"&gt;
 &lt;h2 id="org9e75314"&gt;Bit Operators&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org9e75314"&gt;
 &lt;p&gt;
@@ -1418,7 +1733,935 @@ If the initializer list does not contain an initializer for some elements, those
 Source(s): &lt;a href="https://www.learncpp.com/cpp-tutorial/47-structs/"&gt;https://www.learncpp.com/cpp-tutorial/47-structs/&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 09</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org80666c1" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+Well, to be honest I would have expected that we cover the physical design phase of our database design cycle in this lecture. Turns out we didn't. Did we? I don't know :D ! It seems that lecturers tend to provide some course outline which they then don't (explicitly) follow how you would expect it.
+&lt;/p&gt;
+
+&lt;p&gt;
+So in this lecture it was all about &lt;b&gt;relational algebra&lt;/b&gt;, which I think can be associated to the logical design phase (remember that the RM &lt;b&gt;relational&lt;/b&gt; model was the central topic there), so yeah there's that :D.
+&lt;/p&gt;
+
+&lt;p&gt;
+(╯°□°)╯︵ ┻━┻
+&lt;/p&gt;
+
+&lt;p&gt;
+Nevermind let's go!
+&lt;/p&gt;
+
+&lt;p&gt;
+By the way put that table down 
+&lt;/p&gt;
+
+&lt;p&gt;
+┬─┬ノ( º _ ºノ)
+&lt;/p&gt;
+
+&lt;p&gt;
+Good…
+&lt;/p&gt;
+
+&lt;div id="outline-container-org0521997" class="outline-2"&gt;
+&lt;h2 id="org0521997"&gt;Relational Algebra - Fundamental Operations&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0521997"&gt;
+&lt;p&gt;
+Remember from &lt;a href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/#outline-container-org01e0d8f"&gt;here&lt;/a&gt; (lecture 2) that a data model consists of a structural part, an operatoinal part and integrity rules. Relational algebra which we'll deal with in this lecture belongs to the &lt;b&gt;operational part&lt;/b&gt;, which describes permitted operations on the data and their outcome.
+&lt;/p&gt;
+
+&lt;p&gt;
+Relational algebra is a formal language with the purpose of extracting information/data out of relations.
+&lt;/p&gt;
+
+&lt;p&gt;
+A relational expression (relationaler Ausdruck) derives a new relation out of existing or constant base relation(s) (Basisrelation) via a relational operation.
+There are different relational operations/operators (there are more than those listed below):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;unary operations: selection, projection, rename&lt;/li&gt;
+&lt;li&gt;binary operations: join (Vereinigung), (set) difference (Differenz), cartesian product (Kreuzprodukt)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+A set has &lt;b&gt;closure&lt;/b&gt; (Abgeschlossenheit) under an operation if performance of that operation on members of the set always produces a member of the same set; in this case we also say that the set is closed under the operation. In case of relational algebra a operation always creates another relation.
+&lt;/p&gt;
+
+&lt;p&gt;
+The consequence of closure is that we are able to continue doing operations with the result of an operation ("weiterrechnen"). If X and Y are relational expressions (base expressions (relations) or compound expressions (resulting relations)?) then X ∪ Y, X-Y, X×Y, σ&lt;sub&gt;P&lt;/sub&gt;(X), π&lt;sub&gt;A&lt;/sub&gt;(X) and \roh(X) are also relational expressions/propositions (relationale Ausdrücke).
+To specify the evaluation order of relational terms, they may be put into parentheses.
+&lt;/p&gt;
+
+&lt;p&gt;
+Slides: We won't look at operations to define/change relations (now or for ever ?:D dunno)
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2657d03" class="outline-3"&gt;
+&lt;h3 id="org2657d03"&gt;Selection&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2657d03"&gt;
+&lt;p&gt;
+A selection is visualized as σ&lt;sub&gt;P&lt;/sub&gt;(R) . That fancy little greek letter σ you see there is called sigma. It in fact is a &lt;i&gt;small&lt;/i&gt; sigma (the big sigma is the sum sign!). So to perform a selection we first need \(R\). \(R\) is a &lt;i&gt;relation&lt;/i&gt;. And the subscript parameter \(P\) is a &lt;i&gt;predicate&lt;/i&gt; (logical proposition/expression which refers to attributes of \(R\)). The result of such selection operation is a relation with the same relation schema as \(R\) which holds all tuples from R that fulfill the criteria of the predicate \(P\) (predicate is like a condition/selection criteria).
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;b&gt;degree&lt;/b&gt; of the resulting relation σ&lt;sub&gt;P&lt;/sub&gt;(R) is equal to the degree of R: \(deg(\sigma_P(R)) = deg(R)\). What is the degree you ask? 
+We had this in lecture 3 my friend but I'll copy it from there: &lt;i&gt;"the degree of a relation R describes the amount of attributes resp involved domains"&lt;/i&gt; (Also from wikipedia: The number of attributes constituting a heading is called the degree, which term also applies to tuples and relations. The term n-tuple refers to a tuple of degree n (n ≥ 0).)
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;b&gt;cardinality&lt;/b&gt; of the resulting relation σ&lt;sub&gt;P&lt;/sub&gt;(R) is smaller or equal to the cardinality of R: \(|\sigma_P(R)| \leq |(R)|\). What is the cardinality you also ask? Well my friend we &lt;i&gt;also&lt;/i&gt; had this in lecture 3, but you're lucky that I'm such a nice fellow copy-and-pasterer :D: &lt;i&gt;"the cardinality of a relation R describes the amount of tuples (rows/elements) in R"&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Okay suppose we have the following relation &lt;b&gt;R&lt;/b&gt;:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;23&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-left"&gt;a2&lt;/td&gt;
+&lt;td class="org-right"&gt;13&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;4&lt;/td&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;99&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;10&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Now let's do some selections:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;σ&lt;sub&gt;e=5&lt;/sub&gt;(R)&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;23&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-left"&gt;a2&lt;/td&gt;
+&lt;td class="org-right"&gt;13&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;σ&lt;sub&gt;c&amp;gt;40∧e&amp;lt;7&lt;/sub&gt;(R)&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;σ&lt;sub&gt;b='a3'&lt;/sub&gt;(R)&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;a&lt;/td&gt;
+&lt;td class="org-left"&gt;b&lt;/td&gt;
+&lt;td class="org-left"&gt;c&lt;/td&gt;
+&lt;td class="org-left"&gt;d&lt;/td&gt;
+&lt;td class="org-left"&gt;e&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+As you can see the degree is always the same (5) while the cardinality varies (3, 1, 0).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgf0bd3d3" class="outline-3"&gt;
+&lt;h3 id="orgf0bd3d3"&gt;Projection&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf0bd3d3"&gt;
+&lt;p&gt;
+A projection is visualized as π&lt;sub&gt;A&lt;/sub&gt;(R). I think everybody knows this greek letter π it is called pi for those who don't. So to perform a projection we first need \(R\). \(R\) is a &lt;i&gt;relation&lt;/i&gt;. And the subscript parameter \(A\) is an &lt;i&gt;attribute set&lt;/i&gt; (Attributmenge) that solely holds attributes of R. The result of such projection operation is:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;a relation of all tuples from R, the schema of the resulting relation solely consists of the attributes of A (all tuples but just the specified attributes)&lt;/li&gt;
+&lt;li&gt;if A does not contain key attributes (to identify uniquely) the amount of tuples will be reduced because duplicates won't be included&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;
+The &lt;b&gt;degree&lt;/b&gt; of the resulting relation π&lt;sub&gt;A&lt;/sub&gt;(R) is smaller or equal to the degree of R: \(deg(\pi_A(R)) \leq deg(R)\).
+&lt;/p&gt;
+
+
+&lt;p&gt;
+The &lt;b&gt;cardinality&lt;/b&gt; of the resulting relation π&lt;sub&gt;A&lt;/sub&gt;(R) is smaller or equal to the cardinality of R if key attributes aren't included: \(|\pi_A(R)| \leq |(R)|\). When key attributes are kept via A then the cardinality of π&lt;sub&gt;A&lt;/sub&gt;(R) is equal to the cardinality of R: \(|\pi_A(R)| = |(R)|\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Okay again suppose we have the following relation &lt;b&gt;R&lt;/b&gt;:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;23&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-left"&gt;a2&lt;/td&gt;
+&lt;td class="org-right"&gt;13&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;4&lt;/td&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;99&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;10&lt;/td&gt;
+&lt;td class="org-left"&gt;xx&lt;/td&gt;
+&lt;td class="org-right"&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Now let's do some projections:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;π{a,b,c}(R)&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;23&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-left"&gt;a2&lt;/td&gt;
+&lt;td class="org-right"&gt;13&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;4&lt;/td&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;99&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;π{b,e}(R)&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;a1&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;a2&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;b1&lt;/td&gt;
+&lt;td class="org-right"&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;π{d}(R)&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;xxx&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+So notice that projection gives us unique attribute combinations.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org6a487d7" class="outline-3"&gt;
+&lt;h3 id="org6a487d7"&gt;Rename&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6a487d7"&gt;
+&lt;p&gt;
+A rename is a unary operation (one relation) denoted with this \roh which is callled "roh". It can be used to:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;rename a relation: \roh&lt;sub&gt;S&lt;/sub&gt;(R) = R is renamed to S&lt;/li&gt;
+&lt;li&gt;rename an attribute: \roh&lt;sub&gt;b ← a&lt;/sub&gt;(R) = attribute a is renamed to b (of relation R)&lt;/li&gt;
+&lt;li&gt;rename all attributes: \roh&lt;sub&gt;(x,y,z,..)&lt;/sub&gt;(R) = all attributes of R are renamed to the names in parens, this case x, y and z&lt;/li&gt;
+&lt;li&gt;combined renaming: \roh&lt;sub&gt;S(a,b,c)&lt;/sub&gt;(R) = relation R is renamed to S and all its attributes are renamed to a, b, c&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Example of rename operation:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/rename.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5932ab5" class="outline-3"&gt;
+&lt;h3 id="org5932ab5"&gt;Join&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5932ab5"&gt;
+&lt;p&gt;
+To perform a join we need two relations R and S with the same schema (same attribute domains). The attributes of R and S can be named differently though as long as they have the same domain (and of course semantic). A join is visualized like \(R \cup S\). In set theory "∪" denotes the union.
+&lt;/p&gt;
+
+&lt;p&gt;
+The result of a join is a relation with the schema of R (same as S) with all tuples from R and S. If there are identical tuples in R and S those duplicates are eliminated.
+&lt;/p&gt;
+
+
+&lt;p&gt;
+The &lt;b&gt;degree&lt;/b&gt; of the resulting relation R ∪ S is equal to the degree of R: \(deg(R \cup S) = deg(R) = deg(S)\).
+&lt;/p&gt;
+
+
+&lt;p&gt;
+The &lt;b&gt;cardinality&lt;/b&gt; of the resulting relation R ∪ S is equal to the cardinality of R plus the cardinality of S if there are no duplicate tuples → \(|R \cup S| = |R| + |S|\). However if there are duplicate tuples then the cardinality of R ∪ S is smaller: \(|R \cup S| &amp;lt; |R| + |S|\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Example join operation without duplicates:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/join-without-dupl.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Example join operation with duplicates:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/join-with-dupl.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org98b0506" class="outline-3"&gt;
+&lt;h3 id="org98b0506"&gt;Difference&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org98b0506"&gt;
+&lt;p&gt;
+To perform a set difference we need two relations R and S with the same schema (same attribute domains). The attributes of R and S can be named differently though as long as they have the same domain (and of course semantic). A set difference is visualized like \(R - S\). 
+The result of a set difference operation are the tuples, which are present in R but are &lt;b&gt;not&lt;/b&gt; in the second relation S.
+&lt;/p&gt;
+
+&lt;p&gt;
+The degree of \(deg(R-S)\) is equal to \(deg(R)\). 
+&lt;/p&gt;
+
+&lt;p&gt;
+If there is no overlap between the cardinality of R-S is equal to the cardinality of R: \(|R-S| = |R|\). Think about this makes sense because nothing from R is removed if it not in S. But usually there's some overlap so the cardinality is \(|R-S| &amp;lt; |R|\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Example set difference with overlap:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-with-overlap.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Example set difference without overlap:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-without-overlap.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgdbce71d" class="outline-3"&gt;
+&lt;h3 id="orgdbce71d"&gt;Cartesian Product&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdbce71d"&gt;
+&lt;p&gt;
+The cartesian product (Kreuzprodukt) is also a binary operation which means that it acts on two relations R and S. In contrast to the operations we looked at so far, the cartesian product &lt;i&gt;does not&lt;/i&gt; require the relations to have the same schema. The cartesian product operation is denoted as \(R × S\).
+&lt;/p&gt;
+
+&lt;p&gt;
+The resulting relation of a cartesian product operation has a schema consisting of the schema of R and S. The tuple set of the resulting relation is a set of every possible combination of tuples from R and S.
+&lt;/p&gt;
+
+&lt;p&gt;
+The degree is \(deg(R × S) = deg(R) + deg(S)\) and the cardinality \(|R × S| = |R| * |S|\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Beware that because of the combination of all tuples the resulting relation can get quite big.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example of a cartesian product operation:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/cartesian-prod.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Extending the Notation&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+It is a somewhat common use case that two relations need to be combined (via cartesian product) and those relations have attributes with the same name in their schema which we need to distinguish after performing the cartesian product operation.
+&lt;/p&gt;
+
+&lt;p&gt;
+To do so and to avoid cumbersome rename operations we prefix identically named attributes with their origin relation name and a dot ".".
+&lt;/p&gt;
+
+&lt;p&gt;
+An example of &lt;i&gt;attribue qualification&lt;/i&gt;:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/attribute-quali.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This should however be used for temporary relation requests only. If it is planned to continue using the resulting/product relation (Produktrelation) we should qualify the attribute names distinctively via explicit renaming.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org63e0b11" class="outline-2"&gt;
+&lt;h2 id="org63e0b11"&gt;A practicle example request en detail&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org63e0b11"&gt;
+&lt;p&gt;
+Take the following Entity-Relationship Model(UML) and the derived Relational Model:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/practicle-example.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+So, we want to know which lectures the student with matricle number 134534 attended.
+To find out we will first formulate the query/request in relational algebra:
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\pi[titel](\sigma[matrNr=134534 \wedge Lehrveranstaltung.nummer=Hört.Nummer](Lehrveranstaltung × Hört))
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+↑ Notice that to improve readability we can put the subscript parameters and subscript attributes in brackets instead
+&lt;/p&gt;
+
+&lt;p&gt;
+Now let's take a detailed look at the individual steps of what really happens here:
+&lt;/p&gt;
+
+&lt;p&gt;
+First we create a new (temporary) relation via the cartesian product:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/example-cartesian-product.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Then we select all tuples where the Lehrveranstaltung.nummer(lecture number) matches the Hört.nummer (hears number). This is crucial because the cartesian product operation combines &lt;i&gt;all&lt;/i&gt; tuples and we kind of want to "filter" to where the original tuples match (think about what is done here and why! it is important)
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/example-selection-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+and of those we select the tuple(s) where the matrNr is what we search for (134534)
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/example-selection-2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The following image shows the resulting relation of which we then &lt;i&gt;project&lt;/i&gt; the attribute that we are interested in (title) to get to our final result relation:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/projection-example.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd198e22" class="outline-2"&gt;
+&lt;h2 id="orgd198e22"&gt;Another Example&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd198e22"&gt;
+&lt;p&gt;
+Take a look at this new (similar to the previous but different!) model:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-example.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Now we want to know the names of the students that attend the lecture "Datenstrukturen".
+&lt;/p&gt;
+
+&lt;p&gt;
+This is the according relational algebra formula:
+\[
+\pi[name](\sigma[titel='Datenstrukturen' \wedge Lehrveranstaltung.nummer=Hört.Nummer \wedge Student.matrNr=Hört.matrNr](Student × Lehrveranstaltung × Hört))
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+First the cartesian product of the three relations:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-cartesian.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Then the selection which is again really crucial (!!!):
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-selection.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+And finally the projection to select the attribute of interest 'name':
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-projection.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org393e4b6" class="outline-2"&gt;
+&lt;h2 id="org393e4b6"&gt;Relational Algebra - Extending the Fundamental Operations&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org393e4b6"&gt;
+&lt;p&gt;
+The six operations (selection, projection, join, difference, cartesian product) that we covered in the previous sections are the fundamental/base operations (Basisoperationen) of relational algebra.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now we'll introduce more operations that are for commonly used functionality. All of these are however expressable via the fundamental/base operations as well.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org26fefca" class="outline-3"&gt;
+&lt;h3 id="org26fefca"&gt;Theta-Join&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org26fefca"&gt;
+&lt;p&gt;
+When we perform the cartesian product operation we almost always perform a corresponding selection with it (/afterwards) because all tuples are combined but we only want those which match on a certain attribue. The motivation behind a &lt;b&gt;Theta-Join&lt;/b&gt; is to combine these two steps into one logical operation.
+&lt;/p&gt;
+
+&lt;p&gt;
+A theta join is visualized with a bowtie ⋈ and a theta θ. The θ represents a predicate similar to the predicate P in a selection (selection criteria). A theta-join between to relations R and S would look like this R ⋈&lt;sub&gt;θ&lt;/sub&gt; S.
+&lt;/p&gt;
+
+&lt;p&gt;
+This shows the equivalence of a theta-join to a cartesian product and selection operation: R ⋈&lt;sub&gt;θ&lt;/sub&gt; S = σ&lt;sub&gt;θ&lt;/sub&gt;(R × S)
+&lt;/p&gt;
+
+&lt;p&gt;
+By the way when the predicate θ only holds equality operators/assignments/conditions the term &lt;i&gt;equi-join&lt;/i&gt; is used for this operation.
+&lt;/p&gt;
+
+&lt;p&gt;
+The degree of a relation resulting from a theta join is equal to the degree of both relations that are joined: \(deg(R ⋈_{\theta} S) = deg(R) + deg(S)\).
+&lt;/p&gt;
+
+&lt;p&gt;
+The cardinality of a relation resulting from a theta join is smaller or equal to the cardinality of both relations multiplied with each other: \|R ⋈&lt;sub&gt;θ&lt;/sub&gt; S| ≤ |R| * |S| )\)
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/theta-join-example.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org4a5e8fd" class="outline-3"&gt;
+&lt;h3 id="org4a5e8fd"&gt;Natural Join&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4a5e8fd"&gt;
+&lt;p&gt;
+While the predicate of a theta-join can be used to compare arbitrary attributes, it is pretty common to join on attribute of the same name which for example represent a primary in one and a foreign key in the other relation.
+&lt;/p&gt;
+
+&lt;p&gt;
+From SO: 
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;i&gt;theta join&lt;/i&gt; allows for arbitrary comparison relationships (such as ≥).
+&lt;/p&gt;
+
+&lt;p&gt;
+An &lt;i&gt;equijoin&lt;/i&gt; is a theta join using the equality operator.
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;i&gt;natural join&lt;/i&gt; is an equijoin on attributes that have the same name in each relationship
+&lt;/p&gt;
+
+&lt;p&gt;
+Back to slides:
+"In der Regel wird der Verbund zwischen zwei Relationen aufgrund einer SchlüsselFremdschlüssel - Beziehung hergestellt. Da diese Zuordnung meist aufgrund der Übereinstimmung von Werten getroffen wird und Schlüssel und Fremdschlüssel oft gleich benannt sind, nutzt der Natural Join diese Situation aus und führt die Zuordnung durch."
+&lt;/p&gt;
+
+&lt;p&gt;
+To perform a natural join we need two relations R and S that are in a key - foreign-key relationship with identically named attributes.
+&lt;/p&gt;
+
+&lt;p&gt;
+The result of a natural join is a relation consisting of the attributes of R and S. The tuples in that relation are the tuple combinations from R and S that match in &lt;i&gt;all identically named attributes&lt;/i&gt;. All attributes with the same name are only included once in the resulting relation.
+&lt;/p&gt;
+
+&lt;p&gt;
+A natural join is visualized with this symbol ⊗ (symbol for tensor product) and here is an example of a natural join:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/natural-join-example.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This shows the equivalence of a natural-join first to projection on a theta join and then completely in fundamental/base operations:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/natural-join-equivalence.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The degree of a relation resulting from a natural join is equal to the degree of one relation plus the other minus the cardinality of the same named attributes in those:
+\(deg(R \otimes S) = \deg(R) + \deg(S) - |C|\)
+&lt;/p&gt;
+
+&lt;p&gt;
+The cardinality is: \(R \otimes S \leq |R| * |S|\)
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's an example that visualizes the result equivalence of a natural join:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/natural-join-equivalence-example.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+And here's an link to a wikipedia section about joins &lt;a href="https://en.wikipedia.org/wiki/Relational_algebra#Natural_join_(%E2%8B%88)"&gt;https://en.wikipedia.org/wiki/Relational_algebra#Natural_join_(⋈)&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcacc306" class="outline-3"&gt;
+&lt;h3 id="orgcacc306"&gt;Intersection (Schnittmenge)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcacc306"&gt;
+&lt;p&gt;
+To perform an intersection operation we need two relations with an identical schema. The attributes can be named differently but need to have the same domain (and semantic).
+&lt;/p&gt;
+
+&lt;p&gt;
+The intersection operation is visualized with this "∩" (cap; set intersection).
+&lt;/p&gt;
+
+&lt;p&gt;
+The result of such operation is a relation with the schema of R that holds all tuples which are present in R &lt;i&gt;and&lt;/i&gt; S.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is the intersection operation in two fundamental operations (difference operation):
+R ∩ S = R - (R - S) 
+&lt;/p&gt;
+
+&lt;p&gt;
+Think about it: (R - S) removes all duplicates between the two relations so the result are only the unique tuples. Those are then removed from the original R relation so that we only have the duplicates which is the intersection (Überschneidung) ^_^
+&lt;/p&gt;
+
+&lt;p&gt;
+The degree (attribute count) of R ∩ S is equal to \(deg(R) = \deg(S)\).
+&lt;/p&gt;
+
+&lt;p&gt;
+The cardinality (tuple count) of R ∩ S is less than or equal to the smaller cardinality of R and S. This makes sense because only tuples that are in one relation can be duplicated in the other. So if one relation holds 3 tuples (cardinality = 3) and the other holds 8 (cardinality = 8) then there can only be 3 duplications (=intersections) at max therefore the cardinality would be less than or equal (at max when all are duplicated) to 3: |R ∩ S| ≤ min(|R|, |S|)
+&lt;/p&gt;
+
+&lt;p&gt;
+Intersection operation example:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/intersection-example.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org07b5a63" class="outline-3"&gt;
+&lt;h3 id="org07b5a63"&gt;Division&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org07b5a63"&gt;
+&lt;p&gt;
+The division is a binary operation that is written as R ÷ S. The result consists of the restrictions of tuples in R to the attribute names unique to R, i.e., in the header of R but not in the header of S, for which it holds that all their combinations with tuples in S are present in R (from wikipedia).
+&lt;/p&gt;
+
+&lt;p&gt;
+Slides: To perform a division we need a relation R with an attribute set A and a relation S with an attribute set B. The attribute set B needs to be a subset of A: B \subseteq A. 
+Now if we build the difference of A and B: A - B = C we get C which is a set that holds all attributes from A, that are not elements in B.
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;i&gt;division&lt;/i&gt; R ÷ S  returns all tuples from R for which there's a match in each tuple of S. The schema of the resulting relation T is just C.
+&lt;/p&gt;
+
+&lt;p&gt;
+Degree: \(deg(R \div S) = |C|\)
+Cardinality: |R ÷ S| ≤ |R|
+&lt;/p&gt;
+
+&lt;p&gt;
+Equivalence and example of a division operation:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/division-example.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org73b3e8b" class="outline-2"&gt;
+&lt;h2 id="org73b3e8b"&gt;Further Extension of the Algebra&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org73b3e8b"&gt;
+&lt;p&gt;
+In the context of database application there's often a wish for operations which exceed the capabilities of the fundamental operations of relational algebra.
+&lt;/p&gt;
+
+&lt;p&gt;
+For some of this wanted functionality there are extensions of the relational algebra, for example:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;aggregate functions
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;operate on all values of an attribute of a tuple set, eg sum, min, max, mean&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;grouping functions
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;create groups of tuples that hold the same value in specific attributes&lt;/li&gt;
+&lt;li&gt;aggregate functions then evaluate these groups&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/</guid><pubDate>Tue, 06 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 09</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org80666c1" class="outline-2"&gt;
 &lt;h2 id="org80666c1"&gt;Complex Types in Python&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org80666c1"&gt;
 &lt;p&gt;
@@ -2172,1522 +3415,4 @@ Generally every loop in a program can be translated into a recursive function an
 So for the most practical use cases loops and recursion are equipotent (gleichmächtig). However loops are usually more clearer (übersichtlicher), but there are also cases where recursion are the handier solution.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</guid><pubDate>Sun, 04 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgf22ea76" class="outline-2"&gt;
-&lt;h2 id="orgf22ea76"&gt;Complex Types&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf22ea76"&gt;
-&lt;p&gt;
-In C there are so called &lt;b&gt;derived types&lt;/b&gt;. We already know one kind of a derived type, that is &lt;i&gt;pointers&lt;/i&gt;. There are more types though:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;composite data types (Verbunddatentypen, &lt;b&gt;struct&lt;/b&gt; and &lt;b&gt;union&lt;/b&gt;)&lt;/li&gt;
-&lt;li&gt;enumerated data types (Aufzählungstypen, &lt;b&gt;enum&lt;/b&gt;)&lt;/li&gt;
-&lt;li&gt;array data types (Felddatentypen, &lt;b&gt;arrays&lt;/b&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Derived types are sometimes also called &lt;i&gt;complex types&lt;/i&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org343ae46" class="outline-3"&gt;
-&lt;h3 id="org343ae46"&gt;Composite data type &lt;code&gt;struct&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org343ae46"&gt;
-&lt;p&gt;
-The &lt;code&gt;struct&lt;/code&gt; type can be used to deal with variables (elements/members) of different types in combination.
-A declaration of a struct type consists of the keyword &lt;code&gt;struct&lt;/code&gt;, a &lt;b&gt;name&lt;/b&gt; (tag) and a list of declarations of elements wrapped in a block of curly braces.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-This declaration introduces the type and now variables of this type may be declared and defined in the usual way:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Type and varibale declaration may also be done in one step:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pt2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;pt2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;pt2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-It is also possible to omit the name/tag (in this case "point") to create an anonymous type:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-However when omitting the tag it is not possible to create another type of the &lt;b&gt;same&lt;/b&gt; type. Even another type that seem structurally equal won't be treated the same and behave as a different type. So remember that anonymous types are not compatible (Question: What happens if I declare multiple anonymous type variables at the same anonymous type declaration? Are those compatible?).
-&lt;/p&gt;
-
-&lt;p&gt;
-To access an element of a &lt;code&gt;struct&lt;/code&gt; the &lt;code&gt;.&lt;/code&gt; operator is used.
-&lt;/p&gt;
-
-&lt;p&gt;
-When declaring a &lt;code&gt;struct&lt;/code&gt; it is also possible to initialize a variable of that struct type via &lt;code&gt;varName = { .. };&lt;/code&gt;:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-&lt;span class="n"&gt;pt2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;105&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-To only initialize specific elements by their name one can use the following notation with a leading dot to do so:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{.&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// order does not matter (ᵔᴥᵔ)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-There are only few operations and therefore operators allowed to be used on structs:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;assignment via  &lt;code&gt;=&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;retrieve address via &lt;code&gt;&amp;amp;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;access elements via &lt;code&gt;.&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-It is pretty common practice in C to create anonymous struct variables (the variable is anonymous not the struct!) with malloc/calloc and use them with pointers:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// dot has precedence over * thats why you need parens!&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"member of pt: x=%d, y=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pp&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="p"&gt;,(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ppt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Because you need to wrap the dereferencing part of a pointer in parens when accessing a member via &lt;code&gt;.&lt;/code&gt; because the dot has higher precedence there is another notation for this common use case.
-The &lt;code&gt;-&amp;gt;&lt;/code&gt; operator does exactly this. The following code is therefore equivalent:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;109&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-When creating a variable of specific struct type the &lt;code&gt;struct&lt;/code&gt; keyword has always to be used. This gets pretty repetitive and boring quick! That's why you may want to do a little type alias via &lt;code&gt;typedef&lt;/code&gt;.
-So instead of:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;pointer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;pointer&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-You can do:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pointer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;pointer&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Neat! (It is not possible to direclty initialize a variable with &lt;code&gt;typedef&lt;/code&gt;)
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org5158ea7" class="outline-3"&gt;
-&lt;h3 id="org5158ea7"&gt;Composite data type &lt;code&gt;union&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5158ea7"&gt;
-&lt;p&gt;
-A union is a special data type available in C that allows to store different data types in the same memory location. You can define a union with many members, but only one member can contain a value at any given time. Unions provide an efficient way of using the same memory location for multiple-purpose.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;union&lt;/span&gt; &lt;span class="n"&gt;Data&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Now, a variable of &lt;code&gt;Data&lt;/code&gt; type can store an integer, a floating-point number, or a string of characters. It means a single variable, i.e., same memory location, can be used to store multiple types of data. You can use any built-in or user defined data types inside a union based on your requirement.
-&lt;/p&gt;
-
-&lt;p&gt;
-The memory occupied by a union will be large enough to hold the largest member of the union. For example, in the above example, Data type will occupy 20 bytes of memory space because this is the maximum space which can be occupied by a character string.
-&lt;/p&gt;
-
-&lt;p&gt;
-To access a member of a union the &lt;b&gt;member access operator&lt;/b&gt; &lt;code&gt;.&lt;/code&gt; is used as with structs.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orga68558a" class="outline-3"&gt;
-&lt;h3 id="orga68558a"&gt;Enumeration data type &lt;code&gt;enum&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga68558a"&gt;
-&lt;p&gt;
-With the help of enumeration data types it is possible to define types with discrete, named values. The corresponding keyword in C is &lt;code&gt;enum&lt;/code&gt;.
-We can use this keyword to declare and initialize a sequence of integer constants eg &lt;code&gt;enum colors {RED, YELLOW, GREEN, BLUE};&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Here, colors is the name given to the set of constants - the name is optional. Now, if you don't assign a value to a constant, the default value for the first one in the list - &lt;code&gt;RED&lt;/code&gt; in our case, has the value of &lt;code&gt;0&lt;/code&gt;. The rest of the undefined constants have a value &lt;code&gt;1&lt;/code&gt; more than the one before, so in our case, &lt;code&gt;YELLOW&lt;/code&gt; is &lt;code&gt;1&lt;/code&gt;, GREEN is &lt;code&gt;2&lt;/code&gt; and BLUE is &lt;code&gt;3&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-But you can assign values if you wanted to also in random order as well:
-&lt;code&gt;enum colors {RED=1, YELLOW, GREEN=6, BLUE };&lt;/code&gt;
-Now &lt;code&gt;RED=1&lt;/code&gt;, &lt;code&gt;YELLOW=2&lt;/code&gt;, &lt;code&gt;GREEN=6&lt;/code&gt; and &lt;code&gt;BLUE=7&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-The main advantage of enum is that if you don't initialize your constants, each one would have a unique value. The first would be zero and the rest would then count upwards.
-&lt;/p&gt;
-
-&lt;p&gt;
-Enums are helpful to assign specific (constant) values:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;month&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;jan&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;feb&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;apr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jun&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jul&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aug&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sep&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;oct&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nov&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dec&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;escape&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;NL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\n'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;BACKSPACE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\b'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TAB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\t'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RETURN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\r'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;BELL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sc"&gt;'\a'&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Enums are determined at compile time and offer therefore the ability to define constants. This is however &lt;b&gt;only&lt;/b&gt; applies for integer constants.
-In contrast to &lt;code&gt;const&lt;/code&gt; (see below) an "unused" (ungebrauchtes) &lt;code&gt;enum&lt;/code&gt; does not need memory space at runtime.
-&lt;/p&gt;
-
-&lt;p&gt;
-Since enums are basically treated like ints, they only offer restricted type safety.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgd6f4856" class="outline-3"&gt;
-&lt;h3 id="orgd6f4856"&gt;Array data type&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd6f4856"&gt;
-&lt;p&gt;
-C provides the derived array type do deal with collection of values with the same type. The declaration of an array doesn't require a keyword, since it is done via the &lt;i&gt;index operator&lt;/i&gt; &lt;code&gt;[]&lt;/code&gt; in which the amount of elements has to be written in and which needs to go after the variable name &lt;code&gt;int xa[10]&lt;/code&gt; (array of 10 ints).
-&lt;/p&gt;
-
-&lt;p&gt;
-The base type of an array can be of any type, look at the following declarations:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pxa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// Array of 10 pointers to integers&lt;/span&gt;
-&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;pt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// Array of 10 point structs&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Elements of an array are also accessed via the index operator &lt;code&gt;int x1 = xa[0];&lt;/code&gt;, however keep in mind that an array of size n has the indexes 0 til n-1 because the indexing of arrays (in C) is zero based as in many programming languages.
-&lt;/p&gt;
-
-&lt;p&gt;
-It is also possible to declare multidimensional arrays (array which elements are arrays themselves). Eg &lt;code&gt;int xa[4][3]&lt;/code&gt; declares an 4x3 array, which is an array that has 4 elements and those 4 elements are arrays as well with a size of 3 elements that can hold ints.
-Basically this can be done for an arbitrary amount of arrays inside arrays &lt;code&gt;int xa[4][3][2]&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Since C90 it is possible to create variable arrays. That means arrays of variable length which is determined at runtime, for example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
- &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-In C11 this is still possible however one should not rely on this with regards to portability.
-&lt;/p&gt;
-
-&lt;p&gt;
-VLA (variable length array) also have some disadvantages:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;cannot be &lt;code&gt;static&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;cannot be part of &lt;code&gt;struct&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;"Der Steuerfluss darf niemals hinter die Deklaration eines VLA in dessen Gültigkeitsbereich gelangen" (? ლ,ᔑ•ﺪ͟͠•ᔐ.ლ)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Similar to structs array can be initialized with curly braces &lt;code&gt;int xa[4] = {1, 2, 3, 4};&lt;/code&gt; . This also works for multidimensional arrays:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-When an array is initialized when its defined the (last) dimension may also be ommitted &lt;code&gt;int xa[] = {5, 2, 1}&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Since C90 it is also possible to do a partial initialization ala &lt;code&gt;int xa[10] = { [4] = 43, [1] = 5 };&lt;/code&gt; . The elements which are not explicitly initialized then default to &lt;code&gt;0&lt;/code&gt;. Similar to enums the following is also possible:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-… results in &lt;code&gt;200,0,0,43,8,5,0,0&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-When passing arrays to functions it is said that arrays "decay" into pointers.
-If you're passing an array by value, what you're really doing is copying a pointer - a pointer to the array's first element is copied to the parameter (whose type should also be a pointer the array element's type). This works due to array's decaying nature; once decayed, sizeof no longer gives the complete array's size, because it essentially becomes a pointer. This is why it's preferred (among other reasons) to pass by reference or pointer.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* array.c -- an array decays */&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;myarray&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;arrSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;myarray&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of a: %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// really yields pointer size (8 byte on 64 bit machines)&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;myarray&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of x: %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
-  &lt;span class="n"&gt;arrSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// decay looses dimensions thats why this is possible&lt;/span&gt;
-  &lt;span class="n"&gt;arrSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Size&lt;/td&gt;
-&lt;td class="org-left"&gt;of&lt;/td&gt;
-&lt;td class="org-left"&gt;x:&lt;/td&gt;
-&lt;td class="org-right"&gt;40&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Size&lt;/td&gt;
-&lt;td class="org-left"&gt;of&lt;/td&gt;
-&lt;td class="org-left"&gt;a:&lt;/td&gt;
-&lt;td class="org-right"&gt;8&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Size&lt;/td&gt;
-&lt;td class="org-left"&gt;of&lt;/td&gt;
-&lt;td class="org-left"&gt;a:&lt;/td&gt;
-&lt;td class="org-right"&gt;8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-So when passing an array, what really gets passed is a pointer to the first element in the array. Therefore the following function declarations are equivalent:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="p"&gt;[]);&lt;/span&gt;
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doSomething&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-A problem that occurs here is that there is no way to find out how big/large the array is that was passed. That's why many function which have arrays as parameters, have another (auxillary) parameter to specify the amount of elements of the array:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* array_param .c -- auxiliary parameter */&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;[]);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-  &lt;span class="n"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;randomArr&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;654&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-  &lt;span class="n"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;randomArr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;randomArr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;print_int_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-    &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;1&lt;/td&gt;
-&lt;td class="org-right"&gt;2&lt;/td&gt;
-&lt;td class="org-right"&gt;3&lt;/td&gt;
-&lt;td class="org-right"&gt; &lt;/td&gt;
-&lt;td class="org-right"&gt; &lt;/td&gt;
-&lt;td class="org-right"&gt; &lt;/td&gt;
-&lt;td class="org-right"&gt; &lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;32&lt;/td&gt;
-&lt;td class="org-right"&gt;32&lt;/td&gt;
-&lt;td class="org-right"&gt;45&lt;/td&gt;
-&lt;td class="org-right"&gt;54&lt;/td&gt;
-&lt;td class="org-right"&gt;23&lt;/td&gt;
-&lt;td class="org-right"&gt;77&lt;/td&gt;
-&lt;td class="org-right"&gt;654&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org97ebf84" class="outline-2"&gt;
-&lt;h2 id="org97ebf84"&gt;Memory Layout&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org97ebf84"&gt;
-&lt;p&gt;
-Why is it that we can treat arrays as pointers? It is because array values are stored in contiguous memory locations. The array &lt;code&gt;int x[6] = {1, 2, 3, 4, 5, 6};&lt;/code&gt; is for example stored like this in memory:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/array-in-memory.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-This also applies to multidimensional arrays:
-&lt;code&gt;int x[4][12] = {{11,12}, {21,22}, {31,32}, {41,42}};&lt;/code&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/multi-array-in-memory.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-The notion of &lt;code&gt;xa[i]&lt;/code&gt; is actually just a different syntax for &lt;code&gt;*(&amp;amp;xa+i)&lt;/code&gt; (give me the address of xa which really gives the address of the first element of xa, then add i&lt;sup&gt;1&lt;/sup&gt; to it and dereference the resulting address to give me the value).
-&lt;/p&gt;
-
-&lt;p&gt;
-1 When adding an integer to a pointer, the integer is multiplied by the size of the type that the pointer points to because that is the "distance between the addresses" in memory. One memory location usually stores 1 Byte (8 bits) on modern systems. So when an integer is stored in 4 bytes than the offset between the first and second address of an int value in a array would be 4.
-&lt;/p&gt;
-
-&lt;p&gt;
-Look at the following code which is really interesting and makes a lot of things clear:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of int %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
-
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Address: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;xa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Size  of  int  4&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Address:  0x7ffff4f329d0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Address:  0x7ffff4f329d0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Address:  0x7ffff4f329d4&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Address:  0x7ffff4f329d8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgdd810cc" class="outline-2"&gt;
-&lt;h2 id="orgdd810cc"&gt;Char Arrays&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdd810cc"&gt;
-&lt;p&gt;
-As we already know C does not provide strings by default. That's why &lt;code&gt;char&lt;/code&gt; arrays are "abused" as such. There is a special way to intialize char arrays in C:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello!"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-which really is the equivalent to:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="sc"&gt;'H'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'!'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-As you can see character strings are stored as an array containing the characters and are terminated with a &lt;i&gt;null character&lt;/i&gt; (&lt;code&gt;0&lt;/code&gt; or &lt;code&gt;'\0'&lt;/code&gt;). Therefore &lt;code&gt;'\0'&lt;/code&gt; musnt be in any string because it designates the ending of a string.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-  &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"World"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"5th ('last') char: %c&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Really last element of the array %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Size of str: %ld&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// 5 characters + null character = 6&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-A terminating 0 is a C convention and many functions from the standard library for example assume that as well (&lt;code&gt;int printf(char*,...)&lt;/code&gt;, &lt;code&gt;int atoi(char*)&lt;/code&gt;). A convention can be broken tho! Look at the following example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="sc"&gt;'H'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// no terminating 0!&lt;/span&gt;
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;bla&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;" This is top secret&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Hello This is top secret
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-I faked this output result for illustrating purposes because most modern compilers do not store those stuff sequentially anymore to reduce vulnerabilities (reading out values). plz have mercy. It really just printed "Hello".
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orga704855" class="outline-2"&gt;
-&lt;h2 id="orga704855"&gt;Parameters of &lt;code&gt;main()&lt;/code&gt;&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga704855"&gt;
-&lt;p&gt;
-The signature of C's  &lt;code&gt;main()&lt;/code&gt; function is mentioned by C11 as the following:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[]);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;int argc&lt;/code&gt; ist the count of prorgam parameters
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;because the name of the program is always passed when executing main with params &lt;code&gt;argc&lt;/code&gt; is at least &lt;code&gt;1&lt;/code&gt; because that's the program name&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;char* argv&lt;/code&gt; is the argument vector resp. an array of &lt;b&gt;pointers&lt;/b&gt; to C-Strings
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;each of those C-Strings holds a &lt;i&gt;program parameter&lt;/i&gt; (inclusive the program name at &lt;code&gt;argv[0]&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-This is what the &lt;a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1548.pdf"&gt;C11 standard&lt;/a&gt; says:
-&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;
-If the value of &lt;code&gt;argc&lt;/code&gt; is greater than zero, the string pointed to by &lt;code&gt;argv[0]&lt;/code&gt; represents the program name;
-&lt;code&gt;argv[0][0]&lt;/code&gt; shall be the null character if the program name is not available from the host environment. 
-If the value of &lt;code&gt;argc&lt;/code&gt; is greater than one, the strings pointed to by &lt;code&gt;argv[1]&lt;/code&gt; through &lt;code&gt;argv[argc-1]&lt;/code&gt; represent the program parameters.
-&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/argv-argc.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-As already mentioned the declaration &lt;code&gt;char *argv[]&lt;/code&gt; stands for an &lt;b&gt;array of pointers to &lt;code&gt;char&lt;/code&gt;'s&lt;/b&gt;
-Calling for example the code from the picture above this is how the corresponding memory layout would look like:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/argv-memory-layout.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;div id="outline-container-org3b6c440" class="outline-2"&gt;
-&lt;h2 id="org3b6c440"&gt;Revision: Storage Classes and Storage Types/Attributes&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3b6c440"&gt;
-&lt;p&gt;
-→ see "Named Variables" in Lecture 06
-&lt;/p&gt;
-
-&lt;p&gt;
-Storage classes:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; → variables can only be accessed within the block of declaration which defines their scope&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;static&lt;/code&gt; → life cycle does not end with ending scope and last value is preserved through program execution; does not affect visibility&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;extern&lt;/code&gt; →  only declares a variable/function/we, addidtional definition is required (usally in another module or a library)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;register&lt;/code&gt; → same functionality as auto variables with the difference that the compiler tries to store these variables in the register of the microprocessor, which makes access much faster than that of the variables stored in memory
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;address of register variables &lt;b&gt;is not retrievable using pointers&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-The following code would not compile! (&lt;code&gt;error: address of register variable ‘fastInt’ requested&lt;/code&gt;)
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;register&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;fastInt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pf&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="n"&gt;pf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;fastInt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Fast int: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fastInt&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;
-Storage types (&lt;b&gt;Type Qualifiers&lt;/b&gt; seems to be the proper term, Speicherattribute in Skript):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;const&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;constants are also like normal variables with the difference that their values can’t be modified by the program once they are defined (compiler prohibits assignment anywhere else than when initialized)&lt;/li&gt;
-&lt;li&gt;enables the compiler to do some optimizations&lt;/li&gt;
-&lt;li&gt;Gotchas:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;const int * p&lt;/code&gt; declares a &lt;i&gt;variable&lt;/i&gt; pointer to a &lt;i&gt;constant&lt;/i&gt; integer&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;int * const p&lt;/code&gt; declares a &lt;i&gt;constant&lt;/i&gt; pointer to a &lt;i&gt;variable&lt;/i&gt; integer&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-&lt;code&gt;volatile&lt;/code&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;volatile (flüchtig, sprunghaft) variables indicate to the compiler that their value might have changed since the last explicit writing operation&lt;/li&gt;
-&lt;li&gt;eg, if global variable’s address is passed to clock routine of the operating system to store the system time, the value in this address keep on changing without any assignment by the program&lt;/li&gt;
-&lt;li&gt;indicates that the object should not be subject to compiler optimizations altering references to, or modifications of, the object&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;restrict&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;introduced in C99&lt;/li&gt;
-&lt;li&gt;only for pointer variables (and hereby derived for arrays)&lt;/li&gt;
-&lt;li&gt;it doesn’t add any new functionality and it is only a way for programmers to inform about optimizations that the compiler can make&lt;/li&gt;
-&lt;li&gt;when using &lt;code&gt;restrict&lt;/code&gt; with a pointer &lt;code&gt;ptr&lt;/code&gt;, it tells the compiler that &lt;code&gt;ptr&lt;/code&gt; is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;for example when a variable is restrict the compiler will not reload the value at that adddress in its assembly code and therefore the assembly code is optimized&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-(Since C11 there is also &lt;code&gt;_Atomic&lt;/code&gt; &lt;a href="https://en.cppreference.com/w/c/language/atomic"&gt;here is more&lt;/a&gt;)
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-08/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org2c2e2b2" class="outline-2"&gt;
-&lt;h2 id="org2c2e2b2"&gt;Comparison&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2c2e2b2"&gt;
-&lt;p&gt;
-There are the following comparison operators which yield a boolean value ( &lt;code&gt;0&lt;/code&gt; for false and &lt;code&gt;≠0&lt;/code&gt; for true usually 1): &lt;code&gt;==&lt;/code&gt;, &lt;code&gt;!=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgbc06939" class="outline-2"&gt;
-&lt;h2 id="orgbc06939"&gt;Assignment Shortcuts&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbc06939"&gt;
-&lt;p&gt;
-&lt;code&gt;a = a+5&lt;/code&gt; can be written more concise as &lt;code&gt;a+=5&lt;/code&gt; this is possible with all operators (*, /, %, +, -). Yes this is also possible with &lt;code&gt;%&lt;/code&gt;:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; a = a % b;&lt;/span&gt;
-
-&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Which yields &lt;code&gt;1&lt;/code&gt; for &lt;code&gt;a&lt;/code&gt;. But this is rather hard to read!
-&lt;/p&gt;
-
-&lt;p&gt;
-To increment/decrement by one it is even possible to write &lt;code&gt;a++&lt;/code&gt; and &lt;code&gt;a--&lt;/code&gt; , as well as &lt;code&gt;++a&lt;/code&gt; and &lt;code&gt;--a&lt;/code&gt;. The difference between &lt;code&gt;--&lt;/code&gt; and &lt;code&gt;++&lt;/code&gt; as a pre- or postfix operaror is that as a prefix operator (eg &lt;code&gt;--a&lt;/code&gt;) &lt;code&gt;a&lt;/code&gt; is first decremented and then evaluated and in case of a postfix operator (&lt;code&gt;a++&lt;/code&gt;) &lt;code&gt;a&lt;/code&gt; is first evaluated and then incremented. So in regards to the continued use &lt;code&gt;a++&lt;/code&gt; is incremented after the usage and &lt;code&gt;++a&lt;/code&gt; would be incremented before the usage so &lt;code&gt;a&lt;/code&gt; is already up by one when it is then used.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org48e22fb" class="outline-2"&gt;
-&lt;h2 id="org48e22fb"&gt;Flow Control&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org48e22fb"&gt;
-&lt;p&gt;
-Flow in C++ can be controlled via &lt;code&gt;if (cond) { ... } else if (cond) { ... } else { ... }&lt;/code&gt; statements. Take a look at the following example to solve quadratic equations:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;cmath&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Solve Quadratic Equations &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Enter coefficient a, b, c: "&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Not a quadratic equation &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"no real resolution &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-      &lt;span class="k"&gt;else&lt;/span&gt;
-	&lt;span class="p"&gt;{&lt;/span&gt;
-	  &lt;span class="n"&gt;x1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-	  &lt;span class="n"&gt;x2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-	  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"x1 = "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"x2 = "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-	&lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-The flow can also be controlled with a &lt;code&gt;switch-case&lt;/code&gt; statement. For example to "build a simple calculator":
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;cin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;op&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
- &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'+'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;// notice the single quotes '' because it is a char&lt;/span&gt;
-   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'-'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'/'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'*'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'%'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-   &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"*** Error ***"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Notice that without the &lt;code&gt;break;&lt;/code&gt; at each case the other cases would be checked and might be executed as well! Also the case values (eg &lt;code&gt;+&lt;/code&gt;) have to be unique and constant! Constant in that sense that there are no computations allowed (eg function calls).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org9aed735" class="outline-2"&gt;
-&lt;h2 id="org9aed735"&gt;Repetition&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9aed735"&gt;
-&lt;p&gt;
-There may be a situation, when you need to execute a block of code several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.
-&lt;/p&gt;
-
-&lt;p&gt;
-Programming languages provide various control structures that allow for more complicated execution paths.
-&lt;/p&gt;
-
-&lt;p&gt;
-A loop statement allows us to execute a statement or group of statements multiple times. C== provides the following types of loops:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;while loop&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;repeats a statement or group of statements while a given condition is true&lt;/li&gt;
-&lt;li&gt;it tests the condition before executing the loop body&lt;/li&gt;
-&lt;li&gt;eg &lt;code&gt;while (count &amp;lt; 100) { ... count++; ... }&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;do..while loop&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;like a ‘while’ statement, except that it tests the condition at the end of the loop body → therefore the "do..while" loop is executed at least one time&lt;/li&gt;
-&lt;li&gt;eg &lt;code&gt;do { ... count++; ... } while ( count &amp;lt; 100);&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;for loop&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;execute a sequence of statements multiple times and abbreviates the code that manages the loop variable&lt;/li&gt;
-&lt;li&gt;eg &lt;code&gt;for (int x = 0; x &amp;lt; 10; x++) { ... }&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-It is also possible to nest loops inside any other loop. 
-&lt;/p&gt;
-
-&lt;p&gt;
-An infinite loop like 
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"This loop will run forever.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-wont stop running by itself because an absent conditional expression is considered to be true. To interrupt the loop for example from the terminal press &lt;code&gt;Ctrl-C&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Use for loop when number of iterations is known beforehand, i.e. the number of times the loop body is needed to be executed is known.
-&lt;/p&gt;
-
-&lt;p&gt;
-Use while loops where exact number of iterations is not known but the loop termination condition is known.
-&lt;/p&gt;
-
-&lt;p&gt;
-Use do while loop if the code needs to be executed at least once like in Menu driven programs.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/</guid><pubDate>Thu, 01 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgb6513fa" class="outline-2"&gt;
-&lt;h2 id="orgb6513fa"&gt;Storage and memory&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb6513fa"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orge040e05" class="outline-3"&gt;
-&lt;h3 id="orge040e05"&gt;Parameters&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge040e05"&gt;
-&lt;p&gt;
-Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables → &lt;b&gt;parameters&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Parameters are variables that are automatically created and initialized when a function is called.
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;lifecycle&lt;/b&gt; → retention time (Verweilzeit) of the program in that function &lt;i&gt;instance&lt;/i&gt; (the surrounding function)&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;visibility&lt;/b&gt; → whole function body as long as it's not shadowed&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Parameters are declared and defined whith the function definition. They cannot have /storage classes/(auto, static, extern, register), but may have /storage types/(const, volatile, restrict).
-&lt;/p&gt;
-
-&lt;p&gt;
-The term parameter (sometimes called formal parameter) is used to refer to the variable as found in the function definition which is used in the function body, while argument (sometimes called actual parameter) refers to the actual input supplied at function call.
-&lt;/p&gt;
-
-&lt;p&gt;
-In general there are two ways of assocating an argument with a parameter. C for example uses &lt;b&gt;positional parameters&lt;/b&gt; &lt;i&gt;only&lt;/i&gt; which means arguments have to be provided in the order specified by the function definition. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Python in contrast provides the option to use positional arguments as well as &lt;b&gt;named parameters&lt;/b&gt;.
-A function call using named parameters differs from a regular function call in that the values are passed by associating each one with a parameter name, instead of providing an ordered list of values.
-&lt;/p&gt;
-
-&lt;p&gt;
-In languages with no named parameters, the order of parameters in a function call is necessarily fixed, since it is the only way that the language can identify which value is intended to be used for which purpose.
-&lt;/p&gt;
-
-&lt;p&gt;
-With named parameters, it is usually possible to provide the values in any arbitrary order, since the name attached to each value identifies its purpose. This reduces the connascence between parts of the program. A few languages use named parameters but still require the parameters to be provided in a specific order.
-&lt;/p&gt;
-
-&lt;p&gt;
-Example usage of &lt;b&gt;ordered/positional parameters&lt;/b&gt;:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;testFun&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Title"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Example usage of &lt;b&gt;named parameters&lt;/b&gt;:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;testFun&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Title"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-	&lt;span class="n"&gt;xPosition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-	&lt;span class="n"&gt;yPosition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-	&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-	&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-	&lt;span class="n"&gt;drawingNow&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Besides the different ways to associate parameters and arguments, there are different ways in which arguments are &lt;i&gt;passed&lt;/i&gt; to the function!
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;call by value&lt;/b&gt;: the actual parameter (argument) is evaluated and the formal parameter recieves that value (the function recieves a copy of the value)&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;call by name&lt;/b&gt;: the formal parameter is replaced by the name of the actual parameter&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;call by reference&lt;/b&gt;: the formal parameter becomes a "proxy object" (Stellvertreterobjekt) for the argument so that all changes are immediately effective outside of the function as well&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;call by copy/return&lt;/b&gt;: the argument is evaluated and the formal parameter gets this value at the begin of the function; when the function execution finishes the value of the formal parameter is assigned to the actual parameter (copy in - copy out, call by value - return)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-In C the only way of passing parameters is &lt;b&gt;by value&lt;/b&gt; and it does not know the concept of procedures and reference parameters. 
-&lt;/p&gt;
-
-&lt;p&gt;
-To be still able to manipulate values outside of the executing function one may pass &lt;i&gt;pointers&lt;/i&gt;. Changes outside of the function scope can then be realised via dereferencing those pointers. The effect of this is basically the same as it would be when calling by reference and is an often used practice in C.
-&lt;/p&gt;
-
-&lt;p&gt;
-A manipulation of values outside of a functions local variables (including parameters) is called &lt;i&gt;side effect&lt;/i&gt; (input &amp;amp; output is also a side effect).
-&lt;/p&gt;
-
-&lt;p&gt;
-Example of manipulating a value outside of a functions local scope via pointer and therefore simulating reference parameters:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* sideeffect .c -- simulated reference parameter */&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;sideeffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"x=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;sideeffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"x=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;sideeffect&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;x=42&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;x=23&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-Another use case of reference parameters is value input. The function &lt;code&gt;scanf()&lt;/code&gt; from the standard library provides this functionality. Similar to &lt;code&gt;printf()&lt;/code&gt; the parameters begin with a format string, followed by a sequence of pointers to the variables where the input should be stored in. &lt;code&gt;scanf&lt;/code&gt; returns the count of successfully read variables.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Give the point as &lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;(x,y )&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;: "&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scanf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"(%d ,%d)"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"You provided : (%d, %d).&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8c9f9d6" class="outline-3"&gt;
-&lt;h3 id="org8c9f9d6"&gt;Excursus: Variables and References in Python&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org8c9f9d6"&gt;
-&lt;p&gt;
-Parameter passing in Python is somewhat special. It is not one of the most known methods like "pass-by-value" or "pass-by-reference", in fact parameter passing in Python is &lt;b&gt;"pass-by-object-reference"&lt;/b&gt; of which is often said "Object references are passed by value".
-&lt;/p&gt;
-
-&lt;p&gt;
-What is actually happening when you make a variable assignment? This is an important question in Python, because the answer differs somewhat from what you’d find in many other programming languages.
-&lt;/p&gt;
-
-&lt;p&gt;
-Python is a highly object-oriented language. In fact, virtually every item of data in a Python program is an object of a specific type or class. 
-&lt;/p&gt;
-
-&lt;p&gt;
-When presented with the statement &lt;code&gt;print(300)&lt;/code&gt;, the interpreter does the following:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Creates an integer object&lt;/li&gt;
-&lt;li&gt;Gives it the value 300&lt;/li&gt;
-&lt;li&gt;Displays it to the console&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-A Python variable is a symbolic name that is a reference or pointer to an object. Once an object is assigned to a variable, you can refer to the object by that name. But the data itself is still contained within the object.
-&lt;/p&gt;
-
-&lt;p&gt;
-For example the assignment &lt;code&gt;n = 9000&lt;/code&gt; creates an integer object with the value &lt;code&gt;300&lt;/code&gt; and assigns the variable &lt;code&gt;n&lt;/code&gt; to point to that object:
-\[n \longrightarrow \fbox{9000}\]
-&lt;/p&gt;
-
-&lt;p&gt;
-Now consider the following statement &lt;code&gt;m = n&lt;/code&gt;. What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, &lt;code&gt;m&lt;/code&gt;, which points to the same object that &lt;code&gt;n&lt;/code&gt; points to.
-\[n \longrightarrow \fbox{9000} \longleftarrow m\]
-&lt;/p&gt;
-
-&lt;p&gt;
-Next suppose you do this &lt;code&gt;m = 400&lt;/code&gt;. Now Python creates a new integer object with the value &lt;code&gt;400&lt;/code&gt; and &lt;code&gt;m&lt;/code&gt; becomes a reference to it:
-\[n \longrightarrow \fbox{9000} \\ \fbox{400} \longleftarrow m\]
-&lt;/p&gt;
-
-&lt;p&gt;
-Lastly, suppose this statement is executed next &lt;code&gt;n = "foo"&lt;/code&gt; . Now Python creates a string object with the value &lt;code&gt;"foo"&lt;/code&gt; and makes &lt;code&gt;n&lt;/code&gt; reference that.
-&lt;/p&gt;
-
-&lt;p&gt;
-\[n \longrightarrow \fbox{"foo"} \\ \fbox{9000} \\ \fbox{400} \longleftarrow m\]
-&lt;/p&gt;
-
-&lt;p&gt;
-There is no longer any reference to the integer object &lt;code&gt;9000&lt;/code&gt;. It is orphaned, and there is no way to access it.
-&lt;/p&gt;
-
-&lt;p&gt;
-An object’s life begins when it is created, at which time at least one reference to it is created. During an object’s lifetime, additional references to it may be created, as you saw above, and references to it may be deleted as well. An object stays alive, as it were, so long as there is at least one reference to it.
-&lt;/p&gt;
-
-&lt;p&gt;
-When the number of references to an object drops to zero, it is no longer accessible. At that point, its lifetime is over. Python will eventually notice that it is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org7f04363" class="outline-4"&gt;
-&lt;h4 id="org7f04363"&gt;Object Identity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7f04363"&gt;
-&lt;p&gt;
-In Python, every object that is created is given a number that uniquely identifies it. It is guaranteed that no two objects will have the same identifier during any period in which their lifetimes overlap. Once an object’s reference count drops to zero and it is garbage collected, as happened to the &lt;code&gt;9000&lt;/code&gt; object above, then its identifying number becomes available and may be used again.
-&lt;/p&gt;
-
-&lt;p&gt;
-The built-in Python function &lt;code&gt;id()&lt;/code&gt; returns an object’s integer identifier. Using the &lt;code&gt;id()&lt;/code&gt; function, you can verify that two variables indeed point to the same object:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;768&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-True
-
-&lt;/pre&gt;
-&lt;p&gt;
-After the assignment &lt;code&gt;m = n&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; both point to the same object, confirmed by the fact that &lt;code&gt;id(m)&lt;/code&gt; and &lt;code&gt;id(n)&lt;/code&gt; return the same number.
-&lt;/p&gt;
-
-&lt;p&gt;
-Now take a look at the following code:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"a="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;", id(a)="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"b="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;", id(b)="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"a="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;", id(a)="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-a= 23 , id(a)= 140345766270720
-b= 42 , id(b)= 140345766271328
-a= 42 , id(a)= 140345766271328
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-When dealing with &lt;i&gt;immutable objects&lt;/i&gt; (eg integers, bool, string) a variable assignment like &lt;code&gt;a = a+19&lt;/code&gt; &lt;b&gt;does not&lt;/b&gt; modify the &lt;i&gt;object&lt;/i&gt;, instead
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a &lt;b&gt;new object&lt;/b&gt; is created and referenced&lt;/li&gt;
-&lt;li&gt;or if such object (eg obj with value &lt;code&gt;42&lt;/code&gt;) already exists it is referenced&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Complex objects (eg list, dict, set) are &lt;i&gt;mutable&lt;/i&gt;. When operating on them, they are changed directly without the creation of new objects so the reference stays the same.
-&lt;/p&gt;
-
-&lt;p&gt;
-In the code example above an object holding the integer &lt;code&gt;42&lt;/code&gt; already existed and was referenced by &lt;code&gt;b&lt;/code&gt; and thats why assigning &lt;code&gt;42&lt;/code&gt; to &lt;code&gt;a&lt;/code&gt; changes the reference to point to the same object, which is verified by comparing the object ids with &lt;code&gt;id()&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-So parameter passing in Python passes &lt;b&gt;object references&lt;/b&gt;. 
-&lt;/p&gt;
-
-&lt;p&gt;
-In case of &lt;i&gt;immutable objects&lt;/i&gt; modifications inside the called function leads to creation and then referencing of other objects. Outside of the function the same ol' object is referenced, which was not modified so this has the same effect as "pass-by-value".
-&lt;/p&gt;
-
-&lt;p&gt;
-In case of &lt;i&gt;mutable objects&lt;/i&gt; no new references and objects would be created when modifications occur so variables outside of the function that refer to the same object reference the same object to which the modifications are applied. This has the same effect as "pass-by-reference".
-&lt;/p&gt;
-
-&lt;p&gt;
-Sources of the python excursus: &lt;a href="https://realpython.com/python-variables/"&gt;https://realpython.com/python-variables/&lt;/a&gt; and &lt;a href="https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/"&gt;https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-07/</guid><pubDate>Mon, 29 Oct 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 03</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org261376a" class="outline-2"&gt;
-&lt;h2 id="org261376a"&gt;Characteristics of a language&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org261376a"&gt;
-&lt;p&gt;
-Languages consist of three main characteristics:
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;Lexis (specification on formation of words)&lt;/li&gt;
-&lt;li&gt;Syntax (specification on formation of sentences)&lt;/li&gt;
-&lt;li&gt;Semantic (meaning)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org714a8a5" class="outline-3"&gt;
-&lt;h3 id="org714a8a5"&gt;Lexis and lexical elements of C++&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org714a8a5"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;predefined identifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;identifiers: &lt;code&gt;temp1&lt;/code&gt;, &lt;code&gt;diff&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;have to start with a letter (&lt;code&gt;_&lt;/code&gt; is allowed aswell)&lt;/li&gt;
-&lt;li&gt;can then contain arbitrary amount of characters/numbers&lt;/li&gt;
-&lt;li&gt;are case sensitive&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;special symbols:  ; , : . + − ∗ / % &amp;gt; &amp;lt; = ! ˜ ˆ &amp;amp; | [ ] { } ( )&lt;/li&gt;
-&lt;li&gt;separators: whitespace, tabulator, newline&lt;/li&gt;
-&lt;li&gt;numeric values:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;decimal: &lt;code&gt;255&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;octal: &lt;code&gt;377&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;hexadecimal: &lt;code&gt;0xff&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;floats: &lt;code&gt;1.5&lt;/code&gt; or &lt;code&gt;3.1e-15&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;characters: &lt;code&gt;'a'&lt;/code&gt;, &lt;code&gt;'#'&lt;/code&gt;, &lt;code&gt;'\n'&lt;/code&gt; (in single quotes!)&lt;/li&gt;
-&lt;li&gt;strings: &lt;code&gt;"Test 1 \n"&lt;/code&gt; (in double quotes!)&lt;/li&gt;
-&lt;li&gt;comments: 
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;//&lt;/code&gt; until end of line&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;/* ... */&lt;/code&gt; multiple lines&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;div id="outline-container-org777c42f" class="outline-3"&gt;
-&lt;h3 id="org777c42f"&gt;Syntax and presentation method (Darstellungsmittel)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org777c42f"&gt;
-&lt;p&gt;
-A method to present syntax is to use syntax diagrams. They represent a graphical alternative to e.g Backus–Naur form to represent formal or context-free grammar.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org7b588a8" class="outline-4"&gt;
-&lt;h4 id="org7b588a8"&gt;Elements of syntax diagrams&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7b588a8"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;▭ a rectangle with sharp corners represents an abstract entity&lt;/li&gt;
-&lt;li&gt;▢ a ellipse (rectangle with rounded corners) represents a concrete term of the language, therefore an element of the lexis&lt;/li&gt;
-&lt;li&gt;⟶  an arrow indicates the flow direction (to build "sentences")&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Example of an include directive represented as a syntax graph:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/include-directive-graph.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgbae2e81" class="outline-2"&gt;
-&lt;h2 id="orgbae2e81"&gt;Boolean algebra, logical connectives and truth tables&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbae2e81"&gt;
-&lt;p&gt;
-C++ has the data type &lt;code&gt;bool&lt;/code&gt; which can either be &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. In integers a &lt;code&gt;0&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; and everything &lt;code&gt;≠0&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;a &amp;amp;&amp;amp; b&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;a ‖ b&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-There is also the &lt;code&gt;!&lt;/code&gt; not operator to negate boolean values.
-&lt;/p&gt;
-
-&lt;p&gt;
-Using these boolean operators in C++, yields values of type &lt;code&gt;bool&lt;/code&gt; (→ &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;)
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgcb557b4" class="outline-3"&gt;
-&lt;h3 id="orgcb557b4"&gt;Bitwise AND, OR, XOR, NOT&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcb557b4"&gt;
-&lt;p&gt;
-In digital computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations. 
-&lt;/p&gt;
-
-&lt;p&gt;
-These are the bitwise operators in C++ &lt;code&gt;|&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;, &lt;code&gt;~&lt;/code&gt; and &lt;code&gt;^&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-What is really important to understand is, that bitwise operators operate on the single bits (in comparison to boolean operators who operate on the whole value and yield true or false and are not bitwise operators!).
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgf293b4f" class="outline-4"&gt;
-&lt;h4 id="orgf293b4f"&gt;Bitwise NOT&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf293b4f"&gt;
-&lt;p&gt;
-The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones' complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~0111
-= 1000
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Comparing bitwise NOT to boolean NOT (the last letter indicates the number system e.g &lt;code&gt;d&lt;/code&gt; = decimal, &lt;code&gt;b&lt;/code&gt; = binary):
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boolean NOT: !1_d = 0_d; !5_d = 0_d
-bitwise NOT: ~1_d = 0_d; ~5_d = ~0101_b = 1010_b = 10_d 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgfccd9f3" class="outline-4"&gt;
-&lt;h4 id="orgfccd9f3"&gt;Bitwise OR&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgfccd9f3"&gt;
-&lt;p&gt;
-A bitwise OR takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0101 | 0011
-= 0111
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The bitwise OR shall not be confused with the boolean OR that treats its operands as boolean values and returns such.
-The bitwise OR can be used to manage flags if a program has to handle a lot of booleans and the memory is really limited. Each bit of a binary number could itself represent a boolean value (eg &lt;code&gt;0&lt;/code&gt; = false, &lt;code&gt;1&lt;/code&gt; true).
-&lt;/p&gt;
-
-&lt;p&gt;
-For example &lt;code&gt;0010&lt;/code&gt; may be seen as a list of flags where the first, second and fourth flag is not set (&lt;code&gt;0&lt;/code&gt;), while the third flag is set (&lt;code&gt;1&lt;/code&gt;). To set the first flag, this bit string can be combined with another bitstring that has a &lt;code&gt;1&lt;/code&gt; in the first place:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="mo"&gt;0010&lt;/span&gt;
-&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;
-&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org79b743d" class="outline-4"&gt;
-&lt;h4 id="org79b743d"&gt;Bitwise AND&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org79b743d"&gt;
-&lt;p&gt;
-A bitwise AND takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The operation may be used to determine whether a particular bit is &lt;i&gt;set&lt;/i&gt; (1) or &lt;i&gt;clear&lt;/i&gt; (0). For example, given a bit pattern &lt;code&gt;0011&lt;/code&gt; (decimal 3), to determine whether the second bit is set we use a bitwise AND with a bit pattern containing 1 only in the second bit:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Because the result &lt;code&gt;0010&lt;/code&gt; is non-zero, we know the second bit in the original pattern was set. This is often called bit masking. (By analogy, the use of masking tape covers, or masks, portions that should not be altered or portions that are not of interest. In this case, the 0 values mask the bits that are not of interest.)
-&lt;/p&gt;
-
-&lt;p&gt;
-The bitwise AND may be used to clear selected bits (or flags) of a register in which each bit represents an individual Boolean state. This technique is an efficient way to store a number of Boolean values using as little memory as possible.
-&lt;/p&gt;
-
-&lt;p&gt;
-For example, &lt;code&gt;0110&lt;/code&gt; (decimal 6) can be considered a set of four flags, where the first and fourth flags are clear (0), and the second and third flags are set (1). The second bit may be cleared by using a bitwise AND with the pattern that has a zero only in the second bit:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;   &lt;span class="mi"&gt;1011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a binary number, by checking the value of the lowest valued bit (&lt;code&gt;1_d&lt;/code&gt;) which would be &lt;code&gt;1_b&lt;/code&gt; if the number is odd:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt;
-
-    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;odd&lt;/span&gt;
-
-    &lt;span class="mo"&gt;0100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;even&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org45bbaf3" class="outline-4"&gt;
-&lt;h4 id="org45bbaf3"&gt;Bitwise XOR&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org45bbaf3"&gt;
-&lt;p&gt;
-In addition to &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;and&lt;/code&gt; there is also &lt;code&gt;xor&lt;/code&gt; (exclusive or → only one value true):
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;a XOR b&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;true&lt;/td&gt;
-&lt;td class="org-left"&gt;false&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;
-The bitwise &lt;code&gt;XOR&lt;/code&gt; operator in C++ is &lt;code&gt;^&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-A bitwise XOR takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only the first bit is 1 or only the second bit is 1, but will be 0 if both are 0 or both are 1. In this we perform the comparison of two bits, being 1 if the two bits are different, and 0 if they are the same. For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0101&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;XOR&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-The bitwise XOR may be used to invert selected bits in a register (also called toggle or flip). Any bit may be toggled by XORing it with 1. For example, given the bit pattern &lt;code&gt;0010&lt;/code&gt; (decimal 2) the second and fourth bits may be toggled by a bitwise XOR with a bit pattern containing 1 in the second and fourth positions:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="mo"&gt;0010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;XOR&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-This technique may be used to manipulate bit patterns representing sets of Boolean states.
-&lt;/p&gt;
-
-&lt;p&gt;
-Assembly language programmers and optimizing compilers sometimes use XOR as a short-cut to setting the value of a register to zero. Performing XOR on a value against itself always yields zero, and on many architectures this operation requires fewer clock cycles and memory than loading a zero value and saving it to the register (german: Wendet man XOR auf zwei identische Operanden an, so erhält man immer 0. In vielen Architekturen benötigt diese Operation weniger Rechenzeit, als man für das Laden einer 0 und das Speichern im Register benötigt).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org648dc0b" class="outline-3"&gt;
-&lt;h3 id="org648dc0b"&gt;Bitwise shifting / bit shifts&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org648dc0b"&gt;
-&lt;p&gt;
-The bit shifts are sometimes considered bitwise operations, because they treat a value as a series of bits rather than as a numerical quantity. In these operations the digits are moved, or shifted, to the left or right. Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end.
-&lt;/p&gt;
-
-&lt;p&gt;
-The operator &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; shifts to the left by the following value and &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; shifts to the right by the following value. For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-So &lt;code&gt;6 &amp;lt;&amp;lt; 1 = 12&lt;/code&gt; because the underlying bits are moved/shifted by 1 place to the left. Shifting left is equivalent to multiplication by powers of 2. So &lt;code&gt;6 &amp;lt;&amp;lt; 1&lt;/code&gt; is equivalent to &lt;code&gt;6 * 2&lt;/code&gt;, and &lt;code&gt;6 &amp;lt;&amp;lt; 3&lt;/code&gt; is equivalent to &lt;code&gt;6 * 2^3 = 6 * 8&lt;/code&gt;. A good optimizing compiler will replace multiplications with shifts when possible.
-&lt;/p&gt;
-
-&lt;p&gt;
-A logical right shift is the converse to the left shift. Rather than moving bits to the left, they simply move to the right. For example, shifting the number 12:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;1100&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0110&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-That will get us back our original 6. So we see that shifting to the right is equivalent to division by powers of 2.
-&lt;/p&gt;
-
-&lt;p&gt;
-But attention: If the variable ch contains the bit pattern &lt;code&gt;11100101&lt;/code&gt;, then &lt;code&gt;ch &amp;gt;&amp;gt; 1&lt;/code&gt; will produce the result &lt;code&gt;01110010&lt;/code&gt;, and &lt;code&gt;ch &amp;gt;&amp;gt; 2&lt;/code&gt; will produce &lt;code&gt;00111001&lt;/code&gt;.
-Here blank spaces are generated simultaneously on the left when the bits are shifted to the right. When performed on an &lt;b&gt;unsigned type&lt;/b&gt;, the operation performed is a logical shift, causing the blanks to be filled by &lt;code&gt;0s&lt;/code&gt; (zeros). When performed on a &lt;b&gt;signed type&lt;/b&gt;, the result is technically undefined and compiler dependent, however most compilers will perform an arithmetic shift, causing the blank to be filled with the sign bit of the left operand which might be &lt;code&gt;1s&lt;/code&gt; (ones).
-&lt;/p&gt;
-
-&lt;p&gt;
-From stackoverflow: Shifts on unsigned types are well defined (as long as the right operand is in non-negative and less than the width of the left operand), and they always zero-fill.
-&lt;/p&gt;
-
-&lt;p&gt;
-Shifts (or any bitwise operations) on signed types are generally not a good idea. If the left operand is negative then &amp;lt;&amp;lt; has undefined behavior, and &amp;gt;&amp;gt; yields an implementation-defined result (meaning that the compiler has to document what it does, but there's no way for you to control it). For non-negative values of a signed type, the result is what you'd expect – as long as it doesn't overflow (if it overflows, the behavior is undefined).
-&lt;/p&gt;
-
-
-&lt;p&gt;
-Another example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0011&lt;/span&gt; &lt;span class="mi"&gt;1110&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0001&lt;/span&gt; &lt;span class="mi"&gt;1111&lt;/span&gt; &lt;span class="mo"&gt;0100&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0000&lt;/span&gt; &lt;span class="mo"&gt;0111&lt;/span&gt; &lt;span class="mi"&gt;1101&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;125&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;decimal&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-There is also a difference between logical, arithmetic and circular shifting that you may want to look up. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Also note that the "&lt;a id="orgc6767ea"&gt;&lt;/a&gt;" as a stream operator takes precedence over bit shifting so the following code:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Would yield &lt;code&gt;51&lt;/code&gt;. To have it bitshifted one has to add parentheses:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Which would yield &lt;code&gt;10&lt;/code&gt; because b is leftshifted by a (&lt;code&gt;n&lt;/code&gt;) which is equal to a multiplication with 2&lt;sup&gt;n&lt;/sup&gt; and this case &lt;code&gt;a&lt;/code&gt; is &lt;code&gt;1&lt;/code&gt; so &lt;code&gt;b&lt;/code&gt; is multiplcated by 2 which gives 10.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/</guid><pubDate>Fri, 26 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</guid><pubDate>Sun, 04 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>

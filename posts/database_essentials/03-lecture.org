@@ -11,13 +11,13 @@
 #+END_COMMENT
 
 As we have learned in the last lecture there are three distinct phases of database design:
-1. *Conceptual Design* (lecture 02)
+1. *Conceptual Design* (Lecture 02)
    - creation of a semantic data model that describes all important aspects from the requirement analysis
    - primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way
-2. *Logical Design* (this lecture)
+2. *Logical Design* (this lecture until ???)
    - transforms the conceptual model into a concrete data model, which can be implemented in a database system
    - the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware
-3. *Physical Design* (Lecture 04)
+3. *Physical Design* (Lecture ???)
    - describes the actual implementation of the logical data model
      
 In this lecture we turn or focus onto the *logical design*
@@ -247,6 +247,5 @@ The following kinds of integrity constraints have to be respected:
 - *cardinality and participation* \rightarrow rules that describe restrictions of relationships
 - *other* \rightarrow rules that describe all other integrity constraints derived from requirements of the real world "problem"
 
-  
 ** Interim Conclusion (Zwischenfazit)
 Since the expressiveness (Ausdruckskraft) of the relational model (logical design) is much lower than the epressiveness of a conceptual model (eg ERM), the conceptual model should always be done and done first! The meaning of things is often times not clear without additional knowledge from the conceptual design.

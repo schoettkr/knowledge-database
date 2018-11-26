@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Database Essentials - Lecture 04 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Database Essentials - Lecture 04">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/">
+<meta property="og:description" content="Well, to be honest I would have expected that we cover the physical design phase of our database design cycle in this lecture. Turns out we didn't. Did we? I don't know :D ! It seems that lecturers te">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-11-07T00:00:00+01:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Database Essentials - Lecture 04
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-11-07T00:00:00+01:00">2018/11/07</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+Well, to be honest I would have expected that we cover the physical design phase of our database design cycle in this lecture. Turns out we didn't. Did we? I don't know :D ! It seems that lecturers tend to provide some course outline which they then don't (explicitly) follow how you would expect it.
+</p>
+
+<p>
+So in this lecture it was all about <b>relational algebra</b>, which I think can be associated to the logical design phase (remember that the RM <b>relational</b> model was the central topic there), so yeah there's that :D.
+</p>
+
+<p>
+(╯°□°)╯︵ ┻━┻
+</p>
+
+<p>
+Nevermind let's go!
+</p>
+
+<p>
+By the way put that table down 
+</p>
+
+<p>
+┬─┬ノ( º _ ºノ)
+</p>
+
+<p>
+Good…
+</p>
+
+<div id="outline-container-org0521997" class="outline-2">
+<h2 id="org0521997">Relational Algebra - Fundamental Operations</h2>
+<div class="outline-text-2" id="text-org0521997">
+<p>
+Remember from <a href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/#outline-container-org01e0d8f">here</a> (lecture 2) that a data model consists of a structural part, an operatoinal part and integrity rules. Relational algebra which we'll deal with in this lecture belongs to the <b>operational part</b>, which describes permitted operations on the data and their outcome.
+</p>
+
+<p>
+Relational algebra is a formal language with the purpose of extracting information/data out of relations.
+</p>
+
+<p>
+A relational expression (relationaler Ausdruck) derives a new relation out of existing or constant base relation(s) (Basisrelation) via a relational operation.
+There are different relational operations/operators (there are more than those listed below):
+</p>
+<ul class="org-ul">
+<li>unary operations: selection, projection, rename</li>
+<li>binary operations: join (Vereinigung), (set) difference (Differenz), cartesian product (Kreuzprodukt)</li>
+</ul>
+<p>
+A set has <b>closure</b> (Abgeschlossenheit) under an operation if performance of that operation on members of the set always produces a member of the same set; in this case we also say that the set is closed under the operation. In case of relational algebra a operation always creates another relation.
+</p>
+
+<p>
+The consequence of closure is that we are able to continue doing operations with the result of an operation ("weiterrechnen"). If X and Y are relational expressions (base expressions (relations) or compound expressions (resulting relations)?) then X ∪ Y, X-Y, X×Y, σ<sub>P</sub>(X), π<sub>A</sub>(X) and \roh(X) are also relational expressions/propositions (relationale Ausdrücke).
+To specify the evaluation order of relational terms, they may be put into parentheses.
+</p>
+
+<p>
+Slides: We won't look at operations to define/change relations (now or for ever ?:D dunno)
+</p>
+</div>
+
+<div id="outline-container-org2657d03" class="outline-3">
+<h3 id="org2657d03">Selection</h3>
+<div class="outline-text-3" id="text-org2657d03">
+<p>
+A selection is visualized as σ<sub>P</sub>(R) . That fancy little greek letter σ you see there is called sigma. It in fact is a <i>small</i> sigma (the big sigma is the sum sign!). So to perform a selection we first need \(R\). \(R\) is a <i>relation</i>. And the subscript parameter \(P\) is a <i>predicate</i> (logical proposition/expression which refers to attributes of \(R\)). The result of such selection operation is a relation with the same relation schema as \(R\) which holds all tuples from R that fulfill the criteria of the predicate \(P\) (predicate is like a condition/selection criteria).
+</p>
+
+<p>
+The <b>degree</b> of the resulting relation σ<sub>P</sub>(R) is equal to the degree of R: \(deg(\sigma_P(R)) = deg(R)\). What is the degree you ask? 
+We had this in lecture 3 my friend but I'll copy it from there: <i>"the degree of a relation R describes the amount of attributes resp involved domains"</i> (Also from wikipedia: The number of attributes constituting a heading is called the degree, which term also applies to tuples and relations. The term n-tuple refers to a tuple of degree n (n ≥ 0).)
+</p>
+
+<p>
+The <b>cardinality</b> of the resulting relation σ<sub>P</sub>(R) is smaller or equal to the cardinality of R: \(|\sigma_P(R)| \leq |(R)|\). What is the cardinality you also ask? Well my friend we <i>also</i> had this in lecture 3, but you're lucky that I'm such a nice fellow copy-and-pasterer :D: <i>"the cardinality of a relation R describes the amount of tuples (rows/elements) in R"</i>
+</p>
+
+<p>
+Okay suppose we have the following relation <b>R</b>:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">a</th>
+<th scope="col" class="org-left">b</th>
+<th scope="col" class="org-right">c</th>
+<th scope="col" class="org-left">d</th>
+<th scope="col" class="org-right">e</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">a1</td>
+<td class="org-right">45</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">a1</td>
+<td class="org-right">23</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">a2</td>
+<td class="org-right">13</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">b1</td>
+<td class="org-right">99</td>
+<td class="org-left">xx</td>
+<td class="org-right">7</td>
+</tr>
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">b1</td>
+<td class="org-right">10</td>
+<td class="org-left">xx</td>
+<td class="org-right">7</td>
+</tr>
+</tbody>
+</table>
+<p>
+Now let's do some selections:
+</p>
+<ul class="org-ul">
+<li><b>σ<sub>e=5</sub>(R)</b></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">a</th>
+<th scope="col" class="org-left">b</th>
+<th scope="col" class="org-right">c</th>
+<th scope="col" class="org-left">d</th>
+<th scope="col" class="org-right">e</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">a1</td>
+<td class="org-right">45</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">a1</td>
+<td class="org-right">23</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">a2</td>
+<td class="org-right">13</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li><b>σ<sub>c&gt;40∧e&lt;7</sub>(R)</b></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">a</th>
+<th scope="col" class="org-left">b</th>
+<th scope="col" class="org-right">c</th>
+<th scope="col" class="org-left">d</th>
+<th scope="col" class="org-right">e</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-right">1</td>
+<td class="org-left">a1</td>
+<td class="org-right">45</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr></tbody>
+</table>
+<ul class="org-ul">
+<li><b>σ<sub>b='a3'</sub>(R)</b></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+<col class="org-left">
+<col class="org-left">
+<col class="org-left">
+</colgroup>
+<tbody><tr>
+<td class="org-left">a</td>
+<td class="org-left">b</td>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+<td class="org-left">e</td>
+</tr></tbody>
+</table>
+<p>
+As you can see the degree is always the same (5) while the cardinality varies (3, 1, 0).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf0bd3d3" class="outline-3">
+<h3 id="orgf0bd3d3">Projection</h3>
+<div class="outline-text-3" id="text-orgf0bd3d3">
+<p>
+A projection is visualized as π<sub>A</sub>(R). I think everybody knows this greek letter π it is called pi for those who don't. So to perform a projection we first need \(R\). \(R\) is a <i>relation</i>. And the subscript parameter \(A\) is an <i>attribute set</i> (Attributmenge) that solely holds attributes of R. The result of such projection operation is:
+</p>
+<ul class="org-ul">
+<li>a relation of all tuples from R, the schema of the resulting relation solely consists of the attributes of A (all tuples but just the specified attributes)</li>
+<li>if A does not contain key attributes (to identify uniquely) the amount of tuples will be reduced because duplicates won't be included</li>
+</ul>
+<p>
+The <b>degree</b> of the resulting relation π<sub>A</sub>(R) is smaller or equal to the degree of R: \(deg(\pi_A(R)) \leq deg(R)\).
+</p>
+
+
+<p>
+The <b>cardinality</b> of the resulting relation π<sub>A</sub>(R) is smaller or equal to the cardinality of R if key attributes aren't included: \(|\pi_A(R)| \leq |(R)|\). When key attributes are kept via A then the cardinality of π<sub>A</sub>(R) is equal to the cardinality of R: \(|\pi_A(R)| = |(R)|\).
+</p>
+
+<p>
+Okay again suppose we have the following relation <b>R</b>:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">a</th>
+<th scope="col" class="org-left">b</th>
+<th scope="col" class="org-right">c</th>
+<th scope="col" class="org-left">d</th>
+<th scope="col" class="org-right">e</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">a1</td>
+<td class="org-right">45</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">a1</td>
+<td class="org-right">23</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">a2</td>
+<td class="org-right">13</td>
+<td class="org-left">xx</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">b1</td>
+<td class="org-right">99</td>
+<td class="org-left">xx</td>
+<td class="org-right">7</td>
+</tr>
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">b1</td>
+<td class="org-right">10</td>
+<td class="org-left">xx</td>
+<td class="org-right">7</td>
+</tr>
+</tbody>
+</table>
+<p>
+Now let's do some projections:
+</p>
+<ul class="org-ul">
+<li><b>π{a,b,c}(R)</b></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">a</th>
+<th scope="col" class="org-left">b</th>
+<th scope="col" class="org-right">c</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">a1</td>
+<td class="org-right">45</td>
+</tr>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">a1</td>
+<td class="org-right">23</td>
+</tr>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">a2</td>
+<td class="org-right">13</td>
+</tr>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">b1</td>
+<td class="org-right">99</td>
+</tr>
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">b1</td>
+<td class="org-right">10</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li><b>π{b,e}(R)</b></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left">b</th>
+<th scope="col" class="org-right">e</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">a1</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-left">a2</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-left">b1</td>
+<td class="org-right">7</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li><b>π{d}(R)</b></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-left"></colgroup>
+<thead><tr>
+<th scope="col" class="org-left">d</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-left">xxx</td>
+</tr></tbody>
+</table>
+<p>
+So notice that projection gives us unique attribute combinations.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a487d7" class="outline-3">
+<h3 id="org6a487d7">Rename</h3>
+<div class="outline-text-3" id="text-org6a487d7">
+<p>
+A rename is a unary operation (one relation) denoted with this \roh which is callled "roh". It can be used to:
+</p>
+<ul class="org-ul">
+<li>rename a relation: \roh<sub>S</sub>(R) = R is renamed to S</li>
+<li>rename an attribute: \roh<sub>b ← a</sub>(R) = attribute a is renamed to b (of relation R)</li>
+<li>rename all attributes: \roh<sub>(x,y,z,..)</sub>(R) = all attributes of R are renamed to the names in parens, this case x, y and z</li>
+<li>combined renaming: \roh<sub>S(a,b,c)</sub>(R) = relation R is renamed to S and all its attributes are renamed to a, b, c</li>
+</ul>
+<p>
+Example of rename operation:
+</p>
+
+<p>
+<img src="../../../images/rename.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org5932ab5" class="outline-3">
+<h3 id="org5932ab5">Join</h3>
+<div class="outline-text-3" id="text-org5932ab5">
+<p>
+To perform a join we need two relations R and S with the same schema (same attribute domains). The attributes of R and S can be named differently though as long as they have the same domain (and of course semantic). A join is visualized like \(R \cup S\). In set theory "∪" denotes the union.
+</p>
+
+<p>
+The result of a join is a relation with the schema of R (same as S) with all tuples from R and S. If there are identical tuples in R and S those duplicates are eliminated.
+</p>
+
+
+<p>
+The <b>degree</b> of the resulting relation R ∪ S is equal to the degree of R: \(deg(R \cup S) = deg(R) = deg(S)\).
+</p>
+
+
+<p>
+The <b>cardinality</b> of the resulting relation R ∪ S is equal to the cardinality of R plus the cardinality of S if there are no duplicate tuples → \(|R \cup S| = |R| + |S|\). However if there are duplicate tuples then the cardinality of R ∪ S is smaller: \(|R \cup S| &lt; |R| + |S|\).
+</p>
+
+<p>
+Example join operation without duplicates:
+<img src="../../../images/join-without-dupl.png" alt="nil"></p>
+
+<p>
+Example join operation with duplicates:
+<img src="../../../images/join-with-dupl.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org98b0506" class="outline-3">
+<h3 id="org98b0506">Difference</h3>
+<div class="outline-text-3" id="text-org98b0506">
+<p>
+To perform a set difference we need two relations R and S with the same schema (same attribute domains). The attributes of R and S can be named differently though as long as they have the same domain (and of course semantic). A set difference is visualized like \(R - S\). 
+The result of a set difference operation are the tuples, which are present in R but are <b>not</b> in the second relation S.
+</p>
+
+<p>
+The degree of \(deg(R-S)\) is equal to \(deg(R)\). 
+</p>
+
+<p>
+If there is no overlap between the cardinality of R-S is equal to the cardinality of R: \(|R-S| = |R|\). Think about this makes sense because nothing from R is removed if it not in S. But usually there's some overlap so the cardinality is \(|R-S| &lt; |R|\).
+</p>
+
+<p>
+Example set difference with overlap:
+<img src="../../../images/set-with-overlap.png" alt="nil"></p>
+
+<p>
+Example set difference without overlap:
+<img src="../../../images/set-without-overlap.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-orgdbce71d" class="outline-3">
+<h3 id="orgdbce71d">Cartesian Product</h3>
+<div class="outline-text-3" id="text-orgdbce71d">
+<p>
+The cartesian product (Kreuzprodukt) is also a binary operation which means that it acts on two relations R and S. In contrast to the operations we looked at so far, the cartesian product <i>does not</i> require the relations to have the same schema. The cartesian product operation is denoted as \(R × S\).
+</p>
+
+<p>
+The resulting relation of a cartesian product operation has a schema consisting of the schema of R and S. The tuple set of the resulting relation is a set of every possible combination of tuples from R and S.
+</p>
+
+<p>
+The degree is \(deg(R × S) = deg(R) + deg(S)\) and the cardinality \(|R × S| = |R| * |S|\).
+</p>
+
+<p>
+Beware that because of the combination of all tuples the resulting relation can get quite big.
+</p>
+
+<p>
+Example of a cartesian product operation:
+</p>
+
+<p>
+<img src="../../../images/cartesian-prod.png" alt="nil"></p>
+
+<p>
+<b>Extending the Notation</b>
+</p>
+
+<p>
+It is a somewhat common use case that two relations need to be combined (via cartesian product) and those relations have attributes with the same name in their schema which we need to distinguish after performing the cartesian product operation.
+</p>
+
+<p>
+To do so and to avoid cumbersome rename operations we prefix identically named attributes with their origin relation name and a dot ".".
+</p>
+
+<p>
+An example of <i>attribue qualification</i>:
+<img src="../../../images/attribute-quali.png" alt="nil"></p>
+
+<p>
+This should however be used for temporary relation requests only. If it is planned to continue using the resulting/product relation (Produktrelation) we should qualify the attribute names distinctively via explicit renaming.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org63e0b11" class="outline-2">
+<h2 id="org63e0b11">A practicle example request en detail</h2>
+<div class="outline-text-2" id="text-org63e0b11">
+<p>
+Take the following Entity-Relationship Model(UML) and the derived Relational Model:
+</p>
+
+<p>
+<img src="../../../images/practicle-example.png" alt="nil"></p>
+
+<p>
+So, we want to know which lectures the student with matricle number 134534 attended.
+To find out we will first formulate the query/request in relational algebra:
+</p>
+
+<p>
+\[
+\pi[titel](\sigma[matrNr=134534 \wedge Lehrveranstaltung.nummer=Hört.Nummer](Lehrveranstaltung × Hört))
+\]
+</p>
+
+<p>
+↑ Notice that to improve readability we can put the subscript parameters and subscript attributes in brackets instead
+</p>
+
+<p>
+Now let's take a detailed look at the individual steps of what really happens here:
+</p>
+
+<p>
+First we create a new (temporary) relation via the cartesian product:
+</p>
+
+<p>
+<img src="../../../images/example-cartesian-product.png" alt="nil"></p>
+
+<p>
+Then we select all tuples where the Lehrveranstaltung.nummer(lecture number) matches the Hört.nummer (hears number). This is crucial because the cartesian product operation combines <i>all</i> tuples and we kind of want to "filter" to where the original tuples match (think about what is done here and why! it is important)
+<img src="../../../images/example-selection-1.png" alt="nil"></p>
+
+<p>
+and of those we select the tuple(s) where the matrNr is what we search for (134534)
+</p>
+
+<p>
+<img src="../../../images/example-selection-2.png" alt="nil"></p>
+
+<p>
+The following image shows the resulting relation of which we then <i>project</i> the attribute that we are interested in (title) to get to our final result relation:
+</p>
+
+<p>
+<img src="../../../images/projection-example.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-orgd198e22" class="outline-2">
+<h2 id="orgd198e22">Another Example</h2>
+<div class="outline-text-2" id="text-orgd198e22">
+<p>
+Take a look at this new (similar to the previous but different!) model:
+</p>
+
+<p>
+<img src="../../../images/three-relations-example.png" alt="nil"></p>
+
+<p>
+Now we want to know the names of the students that attend the lecture "Datenstrukturen".
+</p>
+
+<p>
+This is the according relational algebra formula:
+\[
+\pi[name](\sigma[titel='Datenstrukturen' \wedge Lehrveranstaltung.nummer=Hört.Nummer \wedge Student.matrNr=Hört.matrNr](Student × Lehrveranstaltung × Hört))
+\]
+</p>
+
+<p>
+First the cartesian product of the three relations:
+</p>
+
+<p>
+<img src="../../../images/three-relations-cartesian.png" alt="nil"></p>
+
+<p>
+Then the selection which is again really crucial (!!!):
+</p>
+
+<p>
+<img src="../../../images/three-relations-selection.png" alt="nil"></p>
+
+<p>
+And finally the projection to select the attribute of interest 'name':
+</p>
+
+<p>
+<img src="../../../images/three-relations-projection.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org393e4b6" class="outline-2">
+<h2 id="org393e4b6">Relational Algebra - Extending the Fundamental Operations</h2>
+<div class="outline-text-2" id="text-org393e4b6">
+<p>
+The six operations (selection, projection, join, difference, cartesian product) that we covered in the previous sections are the fundamental/base operations (Basisoperationen) of relational algebra.
+</p>
+
+<p>
+Now we'll introduce more operations that are for commonly used functionality. All of these are however expressable via the fundamental/base operations as well.
+</p>
+</div>
+
+<div id="outline-container-org26fefca" class="outline-3">
+<h3 id="org26fefca">Theta-Join</h3>
+<div class="outline-text-3" id="text-org26fefca">
+<p>
+When we perform the cartesian product operation we almost always perform a corresponding selection with it (/afterwards) because all tuples are combined but we only want those which match on a certain attribue. The motivation behind a <b>Theta-Join</b> is to combine these two steps into one logical operation.
+</p>
+
+<p>
+A theta join is visualized with a bowtie ⋈ and a theta θ. The θ represents a predicate similar to the predicate P in a selection (selection criteria). A theta-join between to relations R and S would look like this R ⋈<sub>θ</sub> S.
+</p>
+
+<p>
+This shows the equivalence of a theta-join to a cartesian product and selection operation: R ⋈<sub>θ</sub> S = σ<sub>θ</sub>(R × S)
+</p>
+
+<p>
+By the way when the predicate θ only holds equality operators/assignments/conditions the term <i>equi-join</i> is used for this operation.
+</p>
+
+<p>
+The degree of a relation resulting from a theta join is equal to the degree of both relations that are joined: \(deg(R ⋈_{\theta} S) = deg(R) + deg(S)\).
+</p>
+
+<p>
+The cardinality of a relation resulting from a theta join is smaller or equal to the cardinality of both relations multiplied with each other: \|R ⋈<sub>θ</sub> S| ≤ |R| * |S| )\)
+</p>
+
+<p>
+<img src="../../../images/theta-join-example.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org4a5e8fd" class="outline-3">
+<h3 id="org4a5e8fd">Natural Join</h3>
+<div class="outline-text-3" id="text-org4a5e8fd">
+<p>
+While the predicate of a theta-join can be used to compare arbitrary attributes, it is pretty common to join on attribute of the same name which for example represent a primary in one and a foreign key in the other relation.
+</p>
+
+<p>
+From SO: 
+</p>
+
+<p>
+A <i>theta join</i> allows for arbitrary comparison relationships (such as ≥).
+</p>
+
+<p>
+An <i>equijoin</i> is a theta join using the equality operator.
+</p>
+
+<p>
+A <i>natural join</i> is an equijoin on attributes that have the same name in each relationship
+</p>
+
+<p>
+Back to slides:
+"In der Regel wird der Verbund zwischen zwei Relationen aufgrund einer SchlüsselFremdschlüssel - Beziehung hergestellt. Da diese Zuordnung meist aufgrund der Übereinstimmung von Werten getroffen wird und Schlüssel und Fremdschlüssel oft gleich benannt sind, nutzt der Natural Join diese Situation aus und führt die Zuordnung durch."
+</p>
+
+<p>
+To perform a natural join we need two relations R and S that are in a key - foreign-key relationship with identically named attributes.
+</p>
+
+<p>
+The result of a natural join is a relation consisting of the attributes of R and S. The tuples in that relation are the tuple combinations from R and S that match in <i>all identically named attributes</i>. All attributes with the same name are only included once in the resulting relation.
+</p>
+
+<p>
+A natural join is visualized with this symbol ⊗ (symbol for tensor product) and here is an example of a natural join:
+</p>
+
+<p>
+<img src="../../../images/natural-join-example.png" alt="nil"></p>
+
+<p>
+This shows the equivalence of a natural-join first to projection on a theta join and then completely in fundamental/base operations:
+</p>
+
+<p>
+<img src="../../../images/natural-join-equivalence.png" alt="nil"></p>
+
+<p>
+The degree of a relation resulting from a natural join is equal to the degree of one relation plus the other minus the cardinality of the same named attributes in those:
+\(deg(R \otimes S) = \deg(R) + \deg(S) - |C|\)
+</p>
+
+<p>
+The cardinality is: \(R \otimes S \leq |R| * |S|\)
+</p>
+
+<p>
+Here's an example that visualizes the result equivalence of a natural join:
+</p>
+
+<p>
+<img src="../../../images/natural-join-equivalence-example.png" alt="nil"></p>
+
+<p>
+And here's an link to a wikipedia section about joins <a href="https://en.wikipedia.org/wiki/Relational_algebra#Natural_join_(%E2%8B%88)">https://en.wikipedia.org/wiki/Relational_algebra#Natural_join_(⋈)</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcacc306" class="outline-3">
+<h3 id="orgcacc306">Intersection (Schnittmenge)</h3>
+<div class="outline-text-3" id="text-orgcacc306">
+<p>
+To perform an intersection operation we need two relations with an identical schema. The attributes can be named differently but need to have the same domain (and semantic).
+</p>
+
+<p>
+The intersection operation is visualized with this "∩" (cap; set intersection).
+</p>
+
+<p>
+The result of such operation is a relation with the schema of R that holds all tuples which are present in R <i>and</i> S.
+</p>
+
+<p>
+This is the intersection operation in two fundamental operations (difference operation):
+R ∩ S = R - (R - S) 
+</p>
+
+<p>
+Think about it: (R - S) removes all duplicates between the two relations so the result are only the unique tuples. Those are then removed from the original R relation so that we only have the duplicates which is the intersection (Überschneidung) ^_^
+</p>
+
+<p>
+The degree (attribute count) of R ∩ S is equal to \(deg(R) = \deg(S)\).
+</p>
+
+<p>
+The cardinality (tuple count) of R ∩ S is less than or equal to the smaller cardinality of R and S. This makes sense because only tuples that are in one relation can be duplicated in the other. So if one relation holds 3 tuples (cardinality = 3) and the other holds 8 (cardinality = 8) then there can only be 3 duplications (=intersections) at max therefore the cardinality would be less than or equal (at max when all are duplicated) to 3: |R ∩ S| ≤ min(|R|, |S|)
+</p>
+
+<p>
+Intersection operation example:
+</p>
+
+<p>
+<img src="../../../images/intersection-example.png" alt="nil"></p>
+</div>
+</div>
+<div id="outline-container-org07b5a63" class="outline-3">
+<h3 id="org07b5a63">Division</h3>
+<div class="outline-text-3" id="text-org07b5a63">
+<p>
+The division is a binary operation that is written as R ÷ S. The result consists of the restrictions of tuples in R to the attribute names unique to R, i.e., in the header of R but not in the header of S, for which it holds that all their combinations with tuples in S are present in R (from wikipedia).
+</p>
+
+<p>
+Slides: To perform a division we need a relation R with an attribute set A and a relation S with an attribute set B. The attribute set B needs to be a subset of A: B \subseteq A. 
+Now if we build the difference of A and B: A - B = C we get C which is a set that holds all attributes from A, that are not elements in B.
+</p>
+
+<p>
+The <i>division</i> R ÷ S  returns all tuples from R for which there's a match in each tuple of S. The schema of the resulting relation T is just C.
+</p>
+
+<p>
+Degree: \(deg(R \div S) = |C|\)
+Cardinality: |R ÷ S| ≤ |R|
+</p>
+
+<p>
+Equivalence and example of a division operation:
+<img src="../../../images/division-example.png" alt="nil"></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org73b3e8b" class="outline-2">
+<h2 id="org73b3e8b">Further Extension of the Algebra</h2>
+<div class="outline-text-2" id="text-org73b3e8b">
+<p>
+In the context of database application there's often a wish for operations which exceed the capabilities of the fundamental operations of relational algebra.
+</p>
+
+<p>
+For some of this wanted functionality there are extensions of the relational algebra, for example:
+</p>
+<ul class="org-ul">
+<li>aggregate functions
+<ul class="org-ul">
+<li>operate on all values of an attribute of a tuple set, eg sum, min, max, mean</li>
+</ul>
+</li>
+<li>grouping functions
+<ul class="org-ul">
+<li>create groups of tuples that hold the same value in specific attributes</li>
+<li>aggregate functions then evaluate these groups</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

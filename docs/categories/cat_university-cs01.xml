@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 18 Nov 2018 09:08:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 25 Nov 2018 21:14:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Okay so I'll continute based on where we left off last time, which leads us to the next chapter in the slides:
+&lt;/p&gt;
+
+&lt;div id="outline-container-org5cf3b21" class="outline-2"&gt;
+&lt;h2 id="org5cf3b21"&gt;Functions&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5cf3b21"&gt;
+&lt;p&gt;
+To be honest, while scimming through this lecture chapter I found it to be pretty basic. It is imho not worth it to cover here because there is nothing new in comparison to what we already covered in the A&amp;amp;P lectures, so look there if you want to refresh your memory on:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;why we use functions&lt;/li&gt;
+&lt;li&gt;how to use functions&lt;/li&gt;
+&lt;li&gt;domain (Definitionsmenge/Definitionsbereich) and codomain (Zielmenge/Wertebereich)&lt;/li&gt;
+&lt;li&gt;return values&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+What I'll cover here though are reference parameters and reference return values because the slides look interesting/funny and I want to understand them. I think this was also covered in some A&amp;amp;P posts but maybe there's something special in the regard to C++ or who knows what else :) So we'll look at that now:
+&lt;/p&gt;
+
+&lt;p&gt;
+F48 
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).
 &lt;/p&gt;
 

@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-11-18T09:08:00Z</lastmod>
+  <lastmod>2018-11-25T21:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
@@ -43,11 +43,11 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-1.html</loc>
-  <lastmod>2018-11-09T18:36:00Z</lastmod>
+  <lastmod>2018-11-18T09:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-2.html</loc>
-  <lastmod>2018-11-18T09:08:00Z</lastmod>
+  <lastmod>2018-11-25T21:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -166,6 +166,14 @@
   <lastmod>2018-11-17T13:17:00Z</lastmod>
  </url>
  <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</loc>
+  <lastmod>2018-11-21T11:32:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</loc>
+  <lastmod>2018-11-25T21:14:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
@@ -190,6 +198,10 @@
   <lastmod>2018-11-18T09:08:00Z</lastmod>
  </url>
  <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</loc>
+  <lastmod>2018-11-25T21:14:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
@@ -200,6 +212,10 @@
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/</loc>
   <lastmod>2018-11-09T18:36:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/</loc>
+  <lastmod>2018-11-18T09:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-01/</loc>

@@ -76,10 +76,10 @@ There are multiple criteria for a optimal data model, the following list is base
 1. *Conceptual Design* (This lecture)
    - creation of a semantic data model that describes all important aspects from the requirement analysis
    - primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way
-2. *Logical Design* (Lecture 03)
+2. *Logical Design* (Lecture 03 until ???)
    - transforms the conceptual model into a concrete data model, which can be implemented in a database system
    - the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware
-3. *Physical Design* (Lecture 04)
+3. *Physical Design* (Lecture ???)
    - describes the actual implementation of the logical data model
      
 * 1. Conceptual DB-Design
@@ -296,4 +296,4 @@ Note that because of too much overhead visualizing this manually I'll just inser
 7. validation wether or not the conceptual data model serves (the transactions of) the real world operations \rightarrow involvement of the users
 
 * 2. Logical DB-Design
-\rightarrow The logical database design process is examined in the next lecture (lecture 03).
+\rightarrow We will begin to examine the logical database design process in the next lecture (lecture 03).
