@@ -1,0 +1,93 @@
+#+BEGIN_COMMENT
+.. title: Algos & Programming - Lecture 15 & 16
+.. slug: algos-and-prog-15-16
+.. date: 2018-11-26
+.. tags: university, A&P 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
+
+* Complexity
+As you've hopefully already noticed there are algorithms that differ in regards to /efficiency/. *Algorithmic efficiency* refers to the number of *computational resources* (/computation time/ and /memory space/) used by the algorithm.
+
+For maximum efficiency we wish to minimize resource usage. However, different resources such as time and space complexity cannot be compared directly, so which of two algorithms is considered to be more efficient often depends on which measure of efficiency is considered most important.
+
+** RAM Model
+It is impractical to measure the computation time with a stopwatch or operating system functions because then there'd be a lot of other factors involved such as compiler, hardware and operating system.
+
+But to measure the quality of /algorithms/ (not their implementation) we don't even need a time because we use /abstract computer models/. For example the *Random Access Machine* (RAM model) which is used for computational complexity analysis.
+
+RAM Components:
+- *program*
+  - numbered, finite series of instructions
+- *storage*
+  - enumerable (infinite) amount of storage locations(registers) (slides: abzählbar (unendlich) viele Speicherstellen (Register))
+  - arbitrarily accessible
+  - every register can store an arbitrary integer
+- *in-/output*
+  - continuous sequences (bänder, ribbons)
+  - either input (read) or output (write) in the given situation
+- central processing unit
+  - instruction counter that holds the number of the instruction that is to be executed
+  - accumulator = target register of computations, address 0
+  - arithmetic logic unit = enginge / functional unit for execution of operations
+
+[[img-url:/images/random-access-machine.png ]]
+
+The "common/usual" instructions are available in a RAM:
+- basic arithmetic operations: + - * / mod
+- comparisons: > < = \geq \leq
+- branching/conditions: if
+- jumps : GOTO (loops are branches with jumps btw)
+- loading/storing: LOAD, STORE
+- in-/output: READ, WRITE
+  
+Operands:
+- registers (can be chosen arbitrarily), also indirectly
+- accumulator (implicit)
+- input sequence and output sequence (not arbitrarily ~ nicht wahlfrei)
+  
+For the RAM there are two models of measuring the time cost:
+- uniform cost measure: every instruction has a time cost of 1 time unit (eg Takt/clock signal or millisecond ..)
+  - since every instruction has the same length/duration the instrucion *executions* are determining the cost
+- logarithmic time cost measure: the length of the numbers that have to be processed determine the time
+  - length l(x) of x \in G:  l(0) = 1, l(x) = (log_2 |x|) + 1
+  - the logarithmic time costs of an instruction are equal to the sum of the length of the numbers that have to be processed
+  - the logarithmic time cost measure should be usend when the size/length of the numbers is of critical significance
+  - in addition to the instruction executions the size of the operands is of importance in regards to the cost
+
+Instructions that are executed in a loop are counted repeatedly and since the execution of instructions (and loop iterations) often depends on the input size n we measure the amount of instructions that are executed with T_A(n), for example:
+| Algorithm | T_A(n)      | optimal for        |
+|-----------+-------------+--------------------|
+| A_1       | 1000 * n    | n \geq 101         |
+| A_2       | 200*n*log n | never              |
+| A_3       | 10 * n^2    | 10 \leq n \leq 100 |
+| A_4       | 2^n         | 1 \leq n \leq 9    |
+
+**** Run-time Analysis
+Even for constant \(n\) is T_A not always the same:
+- worst case analysis
+  - for every n define the runtime as T(n) = max(t(Input)), \forall |Input| = n
+  - guaranteed boundaries for every input
+  - used as standard
+- average case analysis
+  - for every n define the runtime as T(n) = \(\bar{t}\)(Input) \forall |Input| = n
+  - depends on the definition of average \rightarrow distribution of inputs
+  - rarely used (hard to determine the average)
+- best case analysis
+  - for every n define the runtime as T(n) = min(t(Input)), \forall |Input| = n
+  - looks for minimal runtime
+  - shows design mistakes (Entwurfsfehler)
+  - has no real significance (easy to cheat)
+
+In general the analysis of T_A is rather hard that's why /order of magnitudes/ (Größenordnungen) are used more commonly. We know such from real life eg: v_{Laufen} < v_{Rad} < v_{Auto} < v_{Flugzeug} 
+
+Note: I skipped the slides on "big A notation" here because I fail to see the relevance of it and cant find anything about in the internet (slides 14-15, chapter 8).
+* Big O Notation
+F16
+# \(\mathcal{O}\)

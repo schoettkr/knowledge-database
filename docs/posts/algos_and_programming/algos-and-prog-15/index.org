@@ -1,0 +1,11 @@
+#+BEGIN_COMMENT
+.. title: Algos & Programming - Lecture 15
+.. slug: algos-and-prog-15
+.. date: 2018-11-26
+.. tags: university, A&P 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
