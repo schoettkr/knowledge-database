@@ -1,11 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about A&amp;P)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/ap.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 26 Nov 2018 14:47:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 14</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org193541e" class="outline-2"&gt;
-&lt;h2 id="org193541e"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org193541e"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about A&amp;P)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/ap.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 28 Nov 2018 11:01:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org7ccbb17" class="outline-2"&gt;
+&lt;h2 id="org7ccbb17"&gt;Complexity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7ccbb17"&gt;
+&lt;p&gt;
+As you've hopefully already noticed there are algorithms that differ in regards to &lt;i&gt;efficiency&lt;/i&gt;. &lt;b&gt;Algorithmic efficiency&lt;/b&gt; refers to the number of &lt;b&gt;computational resources&lt;/b&gt; (&lt;i&gt;computation time&lt;/i&gt; and &lt;i&gt;memory space&lt;/i&gt;) used by the algorithm.
+&lt;/p&gt;
+
+&lt;p&gt;
+For maximum efficiency we wish to minimize resource usage. However, different resources such as time and space complexity cannot be compared directly, so which of two algorithms is considered to be more efficient often depends on which measure of efficiency is considered most important.
+&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org035cf35" class="outline-3"&gt;
-&lt;h3 id="org035cf35"&gt;Pseudocode&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org035cf35"&gt;
+
+&lt;div id="outline-container-orgd1a70eb" class="outline-3"&gt;
+&lt;h3 id="orgd1a70eb"&gt;RAM Model&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd1a70eb"&gt;
+&lt;p&gt;
+It is impractical to measure the computation time with a stopwatch or operating system functions because then there'd be a lot of other factors involved such as compiler, hardware and operating system.
+&lt;/p&gt;
+
+&lt;p&gt;
+But to measure the quality of &lt;i&gt;algorithms&lt;/i&gt; (not their implementation) we don't even need a time because we use &lt;i&gt;abstract computer models&lt;/i&gt;. For example the &lt;b&gt;Random Access Machine&lt;/b&gt; (RAM model) which is used for computational complexity analysis.
+&lt;/p&gt;
+
+&lt;p&gt;
+RAM Components:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;program&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;numbered, finite series of instructions&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;storage&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;enumerable (infinite) amount of storage locations(registers) (slides: abzählbar (unendlich) viele Speicherstellen (Register))&lt;/li&gt;
+&lt;li&gt;arbitrarily accessible&lt;/li&gt;
+&lt;li&gt;every register can store an arbitrary integer&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;in-/output&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;continuous sequences (bänder, ribbons)&lt;/li&gt;
+&lt;li&gt;either input (read) or output (write) in the given situation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;central processing unit
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;instruction counter that holds the number of the instruction that is to be executed&lt;/li&gt;
+&lt;li&gt;accumulator = target register of computations, address 0&lt;/li&gt;
+&lt;li&gt;arithmetic logic unit = enginge / functional unit for execution of operations&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/random-access-machine.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The "common/usual" instructions are available in a RAM:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;basic arithmetic operations: + - * / mod&lt;/li&gt;
+&lt;li&gt;comparisons: &amp;gt; &amp;lt; = ≥ ≤&lt;/li&gt;
+&lt;li&gt;branching/conditions: if&lt;/li&gt;
+&lt;li&gt;jumps : GOTO (loops are branches with jumps btw)&lt;/li&gt;
+&lt;li&gt;loading/storing: LOAD, STORE&lt;/li&gt;
+&lt;li&gt;in-/output: READ, WRITE&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Operands:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;registers (can be chosen arbitrarily), also indirectly&lt;/li&gt;
+&lt;li&gt;accumulator (implicit)&lt;/li&gt;
+&lt;li&gt;input sequence and output sequence (not arbitrarily ~ nicht wahlfrei)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+For the RAM there are two models of measuring the time cost:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;uniform cost measure: every instruction has a time cost of 1 time unit (eg Takt/clock signal or millisecond ..)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;since every instruction has the same length/duration the instrucion &lt;b&gt;executions&lt;/b&gt; are determining the cost&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;logarithmic time cost measure: the length of the numbers that have to be processed determine the time
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;length l(x) of x ∈ G:  l(0) = 1, l(x) = (log&lt;sub&gt;2&lt;/sub&gt; |x|) + 1&lt;/li&gt;
+&lt;li&gt;the logarithmic time costs of an instruction are equal to the sum of the length of the numbers that have to be processed&lt;/li&gt;
+&lt;li&gt;the logarithmic time cost measure should be usend when the size/length of the numbers is of critical significance&lt;/li&gt;
+&lt;li&gt;in addition to the instruction executions the size of the operands is of importance in regards to the cost&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Instructions that are executed in a loop are counted repeatedly and since the execution of instructions (and loop iterations) often depends on the input size n we measure the amount of instructions that are executed with T&lt;sub&gt;A&lt;/sub&gt;(n), for example:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Algorithm&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;T&lt;sub&gt;A&lt;/sub&gt;(n)&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;optimal for&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;1&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;1000 * n&lt;/td&gt;
+&lt;td class="org-left"&gt;n ≥ 101&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;200*n*log n&lt;/td&gt;
+&lt;td class="org-left"&gt;never&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;3&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;10 * n&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;10 ≤ n ≤ 100&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;4&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;2&lt;sup&gt;n&lt;/sup&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;1 ≤ n ≤ 9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org6fee8c1"&gt;&lt;/a&gt;Run-time Analysis&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org6fee8c1"&gt;
+&lt;p&gt;
+Even for constant \(n\) is T&lt;sub&gt;A&lt;/sub&gt; not always the same:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;worst case analysis
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for every n define the runtime as T(n) = max(t(Input)), ∀ |Input| = n&lt;/li&gt;
+&lt;li&gt;guaranteed boundaries for every input&lt;/li&gt;
+&lt;li&gt;used as standard&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;average case analysis
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for every n define the runtime as T(n) = \(\bar{t}\)(Input) ∀ |Input| = n&lt;/li&gt;
+&lt;li&gt;depends on the definition of average → distribution of inputs&lt;/li&gt;
+&lt;li&gt;rarely used (hard to determine the average)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;best case analysis
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for every n define the runtime as T(n) = min(t(Input)), ∀ |Input| = n&lt;/li&gt;
+&lt;li&gt;looks for minimal runtime&lt;/li&gt;
+&lt;li&gt;shows design mistakes (Entwurfsfehler)&lt;/li&gt;
+&lt;li&gt;has no real significance (easy to cheat)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+In general the analysis of T&lt;sub&gt;A&lt;/sub&gt; is rather hard that's why &lt;i&gt;order of magnitudes&lt;/i&gt; (Größenordnungen) are used more commonly. We know such from real life eg: v&lt;sub&gt;Laufen&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Rad&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Auto&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Flugzeug&lt;/sub&gt; 
+&lt;/p&gt;
+
+&lt;p&gt;
+Note: I skipped the slides on "big A notation" here because I fail to see the relevance of it and cant find anything about in the internet (slides 14-15, chapter 8).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgfa81238" class="outline-2"&gt;
+&lt;h2 id="orgfa81238"&gt;Big O Notation&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfa81238"&gt;
+&lt;p&gt;
+F16
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</guid><pubDate>Sun, 25 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 14</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org6e8cbea" class="outline-2"&gt;
+&lt;h2 id="org6e8cbea"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6e8cbea"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org53555a0" class="outline-3"&gt;
+&lt;h3 id="org53555a0"&gt;Pseudocode&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org53555a0"&gt;
 &lt;p&gt;
 As we've learnt in the last lecture &lt;i&gt;pseudocode&lt;/i&gt; is one of the most popular semiformal specification languages.
 &lt;/p&gt;
@@ -37,9 +228,9 @@ The slides note at this point that in the future we'll often look at algorithms 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6a583f8" class="outline-3"&gt;
-&lt;h3 id="org6a583f8"&gt;Correctness&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6a583f8"&gt;
+&lt;div id="outline-container-org9ee54eb" class="outline-3"&gt;
+&lt;h3 id="org9ee54eb"&gt;Correctness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9ee54eb"&gt;
 &lt;p&gt;
 When you find an approach for a problem / an algorithm, the &lt;i&gt;correctness&lt;/i&gt; has to be validated.
 &lt;/p&gt;
@@ -89,9 +280,9 @@ To proof the correctness it can be performed on a more &lt;i&gt;abstract level&l
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org050c734" class="outline-3"&gt;
-&lt;h3 id="org050c734"&gt;Proofs&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org050c734"&gt;
+&lt;div id="outline-container-org35c579b" class="outline-3"&gt;
+&lt;h3 id="org35c579b"&gt;Proofs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org35c579b"&gt;
 &lt;p&gt;
 Slides: Informale Definition = Ein Beweis ist eine Herleitung einer Aussage aus bereits bewiesenen Aussagen und/oder Grundannahmen (Axiomen)
 &lt;/p&gt;
@@ -128,9 +319,9 @@ We know a few different (but still combinable) methods for proofs:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org6d2bb1e" class="outline-3"&gt;
-&lt;h3 id="org6d2bb1e"&gt;Proofs of Algorithms&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6d2bb1e"&gt;
+&lt;div id="outline-container-orgb6ea655" class="outline-3"&gt;
+&lt;h3 id="orgb6ea655"&gt;Proofs of Algorithms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb6ea655"&gt;
 &lt;p&gt;
 To prove an algorithm you have to ask two questions. 1) What is there to be proven (Specification)? 2.) What is already known?
 &lt;/p&gt;
@@ -152,9 +343,162 @@ A distinction is made between 2 kinds of "correctness":
 &lt;p&gt;
 So, &lt;i&gt;if&lt;/i&gt; a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
 &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgbcd9ec5" class="outline-4"&gt;
+&lt;h4 id="orgbcd9ec5"&gt;Proving Sort Algorithms&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgbcd9ec5"&gt;
+&lt;p&gt;
+We already got to know a sorting algorithm in one of the first lectures (bubble sort). The correctness of a solution to the problem of sorting can be expressed independently from the algorithm: Input = sequence of elements (e&lt;sub&gt;1&lt;/sub&gt;, e&lt;sub&gt;2&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;) → Output = permutation (e'&lt;sub&gt;1&lt;/sub&gt;, e'&lt;sub&gt;2&lt;/sub&gt;, …, e'&lt;sub&gt;n&lt;/sub&gt;) of (e&lt;sub&gt;1&lt;/sub&gt;, e&lt;sub&gt;2&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;) so that e'&lt;sub&gt;1&lt;/sub&gt; ≤ e'&lt;sub&gt;2&lt;/sub&gt; ≤ … ≤ e'&lt;sub&gt;n&lt;/sub&gt;
+&lt;/p&gt;
 
 &lt;p&gt;
-In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+The bubble sort algorithm would look like this in pseudocode:
+&lt;/p&gt;
+
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;Require:&lt;/b&gt; e&lt;sub&gt;1&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;&lt;br&gt;
+&lt;b&gt;Ensure:&lt;/b&gt; ∀ i ∈ {1, n-1}, e&lt;sub&gt;i&lt;/sub&gt; ≤ e&lt;sub&gt;i+1&lt;/sub&gt;&lt;br&gt;
+&lt;/p&gt;
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;repeat&lt;/b&gt;&lt;br&gt;
+  &lt;i&gt;changed&lt;/i&gt; ← false&lt;br&gt;
+  &lt;b&gt;for&lt;/b&gt; &lt;i&gt;i&lt;/i&gt; ← 1, …, &lt;i&gt;n&lt;/i&gt;-1 &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+   &lt;b&gt;if&lt;/b&gt; e&lt;sub&gt;i&lt;/sub&gt; &amp;gt; e&lt;sub&gt;i+1&lt;/sub&gt; &lt;b&gt;then&lt;/b&gt;&lt;br&gt;
+    SWAP(e&lt;sub&gt;i&lt;/sub&gt;, e&lt;sub&gt;i+1&lt;/sub&gt;)&lt;br&gt;
+    &lt;i&gt;changed&lt;/i&gt; ← true&lt;br&gt;
+   &lt;b&gt;end if&lt;/b&gt;&lt;br&gt;
+  &lt;b&gt;end for&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;until&lt;/b&gt; &lt;i&gt;changed&lt;/i&gt; = false&lt;br&gt;
+ 
+Proving the &lt;i&gt;partial correctness&lt;/i&gt; is simple: If this algorithm terminates &lt;i&gt;changed&lt;/i&gt; has to be &lt;i&gt;false&lt;/i&gt; which implicates that for no i ∈ {1, …, n-1} this e&lt;sub&gt;i&lt;/sub&gt; &amp;gt; e&lt;sub&gt;i+1&lt;/sub&gt; can be true which in reverse means that ∀ i ∈ {1, …, n-1}, e&lt;sub&gt;i&lt;/sub&gt; ≤ e&lt;sub&gt;i+1&lt;/sub&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;a href="https://en.wikipedia.org/wiki/Insertion_sort"&gt;&lt;i&gt;Insertion Sort&lt;/i&gt;&lt;/a&gt; is an alternative algorithm to solve the sorting problem. This is the corresponding pseudocode:
+&lt;/p&gt;
+
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;Require:&lt;/b&gt; e&lt;sub&gt;1&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;&lt;br&gt;
+&lt;b&gt;Ensure:&lt;/b&gt; ∀ i ∈ {1, n-1}, e&lt;sub&gt;i&lt;/sub&gt; ≤ e&lt;sub&gt;i+1&lt;/sub&gt;&lt;br&gt;
+&lt;/p&gt;
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;for&lt;/b&gt; j ← 2, …, n &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+  &lt;i&gt;key&lt;/i&gt; ← e&lt;sub&gt;j&lt;/sub&gt;&lt;br&gt;
+  &lt;i&gt;i&lt;/i&gt; ← j-1&lt;br&gt;
+  &lt;b&gt;while&lt;/b&gt; (&lt;i&gt;i&lt;/i&gt; &amp;gt; 0) ∧ (e&lt;sub&gt;i&lt;/sub&gt; &amp;gt; key) &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+   e&lt;sub&gt;i+1&lt;/sub&gt; ← e&lt;sub&gt;i&lt;/sub&gt;           ; move all elements that are greater than &lt;i&gt;key&lt;/i&gt; right&lt;br&gt;
+   i ← i-1&lt;br&gt;
+  &lt;b&gt;end while&lt;/b&gt;&lt;br&gt;
+  e&lt;sub&gt;i&lt;/sub&gt;+1 ← key          ; fill the gap with &lt;i&gt;key&lt;/i&gt;&lt;br&gt;
+&lt;b&gt;end for&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Take a look at slides 47 - 50 (chapter 7) for details on how to prove the correctness of insertion sort with lemmas.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org77d2b4b" class="outline-3"&gt;
+&lt;h3 id="org77d2b4b"&gt;Soundness (Korrektheitskalküle)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org77d2b4b"&gt;
+&lt;p&gt;
+Proofs like the one we saw for bubble sort are &lt;i&gt;ad hoc&lt;/i&gt;. There are/is a special logic/calculus (Kalküle → formales System zum Ziehen logischer Schlüsse) in regards to the correctness of programs, for example the &lt;b&gt;FLoyd-Hoare logic&lt;/b&gt; (Hoare-Kalkül) or the &lt;b&gt;wp-Kalkül&lt;/b&gt; (Edsger Dijkstra).
+&lt;/p&gt;
+
+&lt;p&gt;
+These logics/calculus use triples: {Precondition} Code {Postcondition}. There are axiomatic rules: \frac{premise}{consequence}
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org89042db" class="outline-3"&gt;
+&lt;h3 id="org89042db"&gt;Termination&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org89042db"&gt;
+&lt;p&gt;
+&lt;b&gt;Partial Correctness&lt;/b&gt; is proven under the assumption that the code &lt;i&gt;terminates&lt;/i&gt;. Therefore termination has to be proven to prove &lt;b&gt;total correctness&lt;/b&gt;. This is especially critical when dealing with recursion (abort after finite steps and reach the recursion base) and loops (loop condition has to evaluate to false after finite steps and the loop body also has to terminate in each iteration).
+&lt;/p&gt;
+
+&lt;p&gt;
+To prove termination of a loop a &lt;b&gt;termination function&lt;/b&gt; τ (Tau) has to be specified:
+\[ \tau : V \rightarrow \mathbb{N} \]
+&lt;/p&gt;
+
+&lt;p&gt;
+The termination function has to have the following characteristics:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;its values are natural numbers (including 0)&lt;/li&gt;
+&lt;li&gt;each iteration resp. execution of the loop body &lt;b&gt;reduces&lt;/b&gt; its value (strictly monotonically decreasing)&lt;/li&gt;
+&lt;li&gt;the loop condition is &lt;i&gt;false&lt;/i&gt; when τ = 0&lt;/li&gt;
+&lt;li&gt;τ is the upper boundary for the loop iterations that are left&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+If a termination function is known a &lt;b&gt;termination rule&lt;/b&gt; can be used:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/termination-rule.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+So &lt;b&gt;if&lt;/b&gt; a termination function is &lt;i&gt;strictly monotonically decreasing&lt;/i&gt; &lt;b&gt;and&lt;/b&gt; the value 0 leads to the end of the loop &lt;b&gt;and&lt;/b&gt; the loop body terminates, &lt;b&gt;then&lt;/b&gt; the loop &lt;b&gt;terminates&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+So this has to be shown:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;strictly monotonically decrease of τ&lt;/li&gt;
+&lt;li&gt;the implication that the loop condition B is not met at the lowest τ&lt;/li&gt;
+&lt;li&gt;the termination of the body P&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+Example of a termination function for a loop that calculates the square of a nonnegative integer:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* { Input: 0 &amp;lt;= a} */&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* { Output: x = a^2} */&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Pick the termination function τ = a - y
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;τ is decremented in each iteration, since 'y' is incremented and 'a' is constant&lt;/li&gt;
+&lt;li&gt;if τ = 0 then y = a therefore the loop condition y != a evaluates to &lt;i&gt;false&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;the loop body does not contain recursions, gotos or other loops, termination is therefore trivial&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+→ The loop terminates!
+&lt;/p&gt;
+
+&lt;p&gt;
+To prove the termination of recursions the same procedure as with loops can be applied. A termination function τ is created that gets smaller with increasing recursion depth. The following has to apply:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;the values are natural numbers (incl 0)&lt;/li&gt;
+&lt;li&gt;the value of τ decreases with each method call (recursion)&lt;/li&gt;
+&lt;li&gt;discontinuation is forced at τ = 0 (or earlier)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* Fibonacci Example */&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;
+However proving termination is not always possible (eg golbachs conjecture for expressing integers as sum of primes)
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3421,324 +3765,4 @@ Parameters are the third way memory is allocated to store values. We covered thi
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org808418c" class="outline-2"&gt;
-&lt;h2 id="org808418c"&gt;Type and signature&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org808418c"&gt;
-&lt;p&gt;
-Similar to functions in math functions in C (or programming for that matter) have a domain (Defintionsbereich/Definitionsmenge) and a codomain (Wertebereich/Zielmenge). Additionally to the name a function declaration (respective definiton) contains the domain and codomain:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;euclid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The type of the return value of euclid is &lt;code&gt;int&lt;/code&gt; and defines the codomain, which in this case is a set of integers. The domain is specified via the parameter types in this case &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;int&lt;/code&gt; so also sets of integers. Mathematically expressed the code would look like this &lt;code&gt;euclid: int x int ⟶ int&lt;/code&gt; (an element out of the integer set emerges out of the domain &lt;code&gt;int x int&lt;/code&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-Technically &lt;code&gt;int x int ⟶ int&lt;/code&gt; is the type of the function "euclid". Practically however it became established to view the codomain as "type" of the function. Following this you'd say "euclid" has the type &lt;code&gt;int&lt;/code&gt;, however &lt;i&gt;return type&lt;/i&gt; would be the more accurate term.
-&lt;/p&gt;
-
-&lt;p&gt;
-The type together with the name of a functions builds the functions &lt;i&gt;signature&lt;/i&gt;. A declaration therefore introduces function signature to the compiler.
-&lt;/p&gt;
-
-&lt;p&gt;
-Many operators look the same e.g &lt;code&gt;+&lt;/code&gt; but do different things depending on the context, which is the particular type. Typing helps the compiler to find the right procedure. Although there are other programming languages that do not require type declarations and infer types automatically for instance Javascript. This is called &lt;i&gt;type inference&lt;/i&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5291cee" class="outline-2"&gt;
-&lt;h2 id="org5291cee"&gt;Basic types (primitive data types)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5291cee"&gt;
-&lt;p&gt;
-C provides few basic types. Yet it is possible to "build" more types. Since the sets are described by the C types are not infinite they are subsets of for example the natural numbers.
-C99 knows the following basic types:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;subsets of integers&lt;/li&gt;
-&lt;li&gt;subsets of rational numbers&lt;/li&gt;
-&lt;li&gt;boolean values&lt;/li&gt;
-&lt;li&gt;subset of complex numbers&lt;/li&gt;
-&lt;li&gt;empty set&lt;/li&gt;
-&lt;li&gt;memory addresses (which are derived types!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-More on &lt;a href="https://en.wikipedia.org/wiki/C_data_types"&gt;C data types&lt;/a&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0d9fb7e" class="outline-3"&gt;
-&lt;h3 id="org0d9fb7e"&gt;Integers &amp;amp; Chars&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0d9fb7e"&gt;
-&lt;p&gt;
-C offers the following keywords in regards to integers
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;type specifiers: &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;char&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;modifiers: &lt;code&gt;short&lt;/code&gt; (not for &lt;code&gt;char&lt;/code&gt;!), &lt;code&gt;long&lt;/code&gt; (not for &lt;code&gt;char&lt;/code&gt;!), &lt;code&gt;unsigned&lt;/code&gt;, &lt;code&gt;signed&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-When the type &lt;code&gt;int&lt;/code&gt; is modified it may be omitted as a keyword.
-&lt;/p&gt;
-
-&lt;p&gt;
-But why do different types exist for integers? Well differently sized values need different amounts of storage space. A computer stores values in bits (&lt;b&gt;bi&lt;/b&gt; nary dig &lt;b&gt;its&lt;/b&gt;). In \(n\) bits it is possible to store \(2^n\) different values. Typically the smallest addressable unit is a &lt;b&gt;byte&lt;/b&gt; (= 8 bit). Values are therefore stored in one or more bytes.
-&lt;/p&gt;
-
-&lt;p&gt;
-Choosing the the "right" type is hence always a compromise between the amount of different values and the size in storage (+ access speed).
-&lt;/p&gt;
-
-&lt;p&gt;
-All types which name contains &lt;code&gt;unsigned&lt;/code&gt; are "vorzeichenlos", those which contain &lt;code&gt;signed&lt;/code&gt; are "vorzeichenbehaftet". In case of just &lt;code&gt;int&lt;/code&gt; without a sign modifier the type is always signed. In case of &lt;code&gt;char&lt;/code&gt; this is up to the compiler. For most types there are no concrete sets defined, however some ranges are guaranteed:
-&lt;/p&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;Type&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;Range&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;Format specifier&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;char&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Smallest addressable unit of the machine that can contain basic character set. It is an integer type. Actual type can be either signed or unsigned.&lt;/td&gt;
-&lt;td class="org-left"&gt;%c&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;signed char&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Of the same size as &lt;code&gt;char&lt;/code&gt;, but guaranteed to be signed. Capable of containing at least the [−127, +127] range&lt;/td&gt;
-&lt;td class="org-left"&gt;%c (or %hhi for numerical output)&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;unsigned char&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Of the same size as &lt;code&gt;char&lt;/code&gt;, but guaranteed to be unsigned. Contains at least the [0, 255] range&lt;/td&gt;
-&lt;td class="org-left"&gt;%c (or %hhu for numerical output)&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;short&lt;/code&gt; &lt;code&gt;short int&lt;/code&gt; &lt;code&gt;signed short&lt;/code&gt; &lt;code&gt;signed short int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Short signed integer type. Capable of containing at least the [−32,767, +32,767] range* thus at least 16 bits in size&lt;/td&gt;
-&lt;td class="org-left"&gt;%hi&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;unsigned short&lt;/code&gt; &lt;code&gt;unsigned short int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Short unsigned integer type. Contains at least the [0, 65,535] range;&lt;/td&gt;
-&lt;td class="org-left"&gt;%hu&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;int&lt;/code&gt; &lt;code&gt;signed&lt;/code&gt; &lt;code&gt;signed int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Basic signed integer type. Capable of containing at least the [−32,767, +32,767] range thus, it is at least 16 bits in size.&lt;/td&gt;
-&lt;td class="org-left"&gt;%i or %d&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;unsigned&lt;/code&gt; &lt;code&gt;unsigned int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Basic unsigned integer type. Contains at least the [0, 65,535] range&lt;/td&gt;
-&lt;td class="org-left"&gt;%u&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;long&lt;/code&gt; &lt;code&gt;long int&lt;/code&gt; &lt;code&gt;signed long&lt;/code&gt; &lt;code&gt;signed long int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Long signed integer type. Capable of containing at least the [−2,147,483,647, +2,147,483,647] range;[3][4] thus, it is at least 32 bits in size&lt;/td&gt;
-&lt;td class="org-left"&gt;%li&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;unsigned long&lt;/code&gt; &lt;code&gt;unsigned long int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Long unsigned integer type. Capable of containing at least the [0, 4,294,967,295] range&lt;/td&gt;
-&lt;td class="org-left"&gt;%lu&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;long long&lt;/code&gt; &lt;code&gt;long long int&lt;/code&gt; &lt;code&gt;signed long long&lt;/code&gt; &lt;code&gt;signed long long int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Long long signed integer type. Capable of containing at least the [−9,223,372,036,854,775,807, +9,223,372,036,854,775,807] range thus, it is at least 64 bits in size, specified since C99&lt;/td&gt;
-&lt;td class="org-left"&gt;%lli%&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;&lt;code&gt;unsigned long long&lt;/code&gt; &lt;code&gt;unsigned long long int&lt;/code&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;Long long unsigned integer type. Contains at least the [0, +18,446,744,073,709,551,615] range, specified since C99&lt;/td&gt;
-&lt;td class="org-left"&gt;%llu%&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-&lt;p&gt;
-∗The negative value is −32767 (not −32768) due to the one's-complement and sign-magnitude representations allowed by the standard, though the two's-complement representation is much more common
-&lt;/p&gt;
-
-&lt;p&gt;
-Since C99 there is a header file called &lt;code&gt;stdint.h&lt;/code&gt; which defines integers with a fixed bit size like/if(?) they're present on the current platform/system. For example:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;int8_t&lt;/code&gt; and &lt;code&gt;uint8_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 8 bit and therefore a cardinality of \(256\)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;int16_t&lt;/code&gt; and &lt;code&gt;uint16_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 16 bit and therefore a cardinality of \(65536\)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;int32_t&lt;/code&gt; and &lt;code&gt;uint32_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 32 bit and therefore a cardinality of \(4294967296\)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;int64_t&lt;/code&gt; and &lt;code&gt;uint64_t&lt;/code&gt; for signed and unsigned integers with &lt;i&gt;exactly&lt;/i&gt; 64 bit and therefore a cardinality of \(18446744073709551616\)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-PS. Cardinality means the number of (distinct) elements in a set
-&lt;/p&gt;
-
-&lt;p&gt;
-C90 doesn't specify how a value "looks" in memory/storage meaning how it is exactly represented in bits. Nevertheless most platforms use a binary positional notation with two's complement for the representation of negative integers:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;unsigned: value \( = \sum_{i=1}^{n} b_i * 2^{i-1} \)&lt;/li&gt;
-&lt;li&gt;signed: value  \( = \begin{cases} \sum_{i=1}^{n-1} b_i * 2^{i-1}, \text{wenn } b_n = 0 \\ (- \sum_{i=1}^{n-1} (1- b_i ) * 2^{i-1}) - 1, \text{wenn } b_n = 1  \end{cases}\)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;
-Now a bit onto "char"s. Why is the name of an integer type &lt;code&gt;char&lt;/code&gt;?
-&lt;/p&gt;
-
-&lt;p&gt;
-Originally this type was meant to represent values in the range of &lt;b&gt;ASCII-Codes&lt;/b&gt; (7 bit) respective &lt;b&gt;ANSI-Codes&lt;/b&gt; (8 bit) → &lt;i&gt;character&lt;/i&gt;. C doesn't provide an explicit type for characters. The usage through &lt;code&gt;char&lt;/code&gt; is solely achieved through the interpretation of the integer when outputting.
-&lt;/p&gt;
-
-&lt;p&gt;
-Depending on the platform the same &lt;code&gt;char&lt;/code&gt; value can represent different characters. That's why today the usage of &lt;code&gt;wchar_t&lt;/code&gt; is encouraged because it eases internalization and standardization (importable from &lt;code&gt;wchar.h&lt;/code&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-However in this lecture we will continue with ASCII/ANSI codes for now.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* char .c -- interpretation of char type */&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="nf"&gt;addchar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c1&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
- &lt;span class="p"&gt;{&lt;/span&gt;
- &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Result is %c with the code %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
- &lt;span class="n"&gt;addchar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;'a'&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;addchar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;'a'&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
- &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Result is b with the code 98
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3f8a8f4" class="outline-3"&gt;
-&lt;h3 id="org3f8a8f4"&gt;Rational numbers&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3f8a8f4"&gt;
-&lt;p&gt;
-Because of internal representation C can only represent rational numbers \(\mathbb{Q}\) and not generic reals \(\mathbb{R}\) (allgemeine reelle Zahlen). These numbers are commonly called &lt;i&gt;floating points numbers&lt;/i&gt;. C provides the following types to represent floating point numbers:
-&lt;code&gt;float&lt;/code&gt;, &lt;code&gt;double&lt;/code&gt; and &lt;code&gt;long double&lt;/code&gt;. Besides a limited codomain floats in C have a limited precision. Again there are no fixed sizes provided, but minimum ranges are guaranteed:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;float&lt;/code&gt; has a codomain of at least \(\pm 10^{\pm 37}\) and a precision of at least 6 decimal places (Nachkommastelle)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;double&lt;/code&gt; at least the codomain of &lt;code&gt;float&lt;/code&gt; and a precision of at least 10 decimal places&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;long double&lt;/code&gt; at least as "good" as &lt;code&gt;double&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-In practice almost all compilers follow the IEEE-754 standard that defines the binary representations of floats.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb0f5476" class="outline-3"&gt;
-&lt;h3 id="orgb0f5476"&gt;Void&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb0f5476"&gt;
-&lt;p&gt;
-C knows the base type &lt;code&gt;void&lt;/code&gt;. &lt;code&gt;void&lt;/code&gt; is basically an "anti-type" because it is used when no type is wanted (→ empty set; leere Menge). Is helpful when parameters and/or return value are not needed.
-&lt;/p&gt;
-
-&lt;p&gt;
-If the return value of a function is &lt;code&gt;void&lt;/code&gt; the &lt;code&gt;return&lt;/code&gt; statement in the function can be omitted. Is the parameter list of a function empty (&lt;code&gt;void&lt;/code&gt; is its sole element) than it can be omitted as well.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8738d0b" class="outline-2"&gt;
-&lt;h2 id="org8738d0b"&gt;Type conversion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8738d0b"&gt;
-&lt;p&gt;
-The types in &lt;code&gt;a + b&lt;/code&gt; could be different for instance &lt;code&gt;unsigned char&lt;/code&gt; and &lt;code&gt;signed int&lt;/code&gt;. In those cases the types are automatically (implicit) converted. Generally all the data types of the variables are upgraded to the data type of the variable with largest data type.
-&lt;/p&gt;
-
-&lt;p&gt;
-However besides the implicit automatic conversion, type conversion may be triggered manually and therefore explicitly by writing the type in parens before the variable/expression. Using a type like this, it acts as a &lt;i&gt;cast operator&lt;/i&gt; and is type casting the value. Doing this type conversion to lower data types is possible as well.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* cast .c -- type cast */&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;,...);&lt;/span&gt;
-&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;ladd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" Ergebnis : %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;ladd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// "(int)" type cast to int to get rid of warning and implicit conversion because of "%d" formatter&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
- &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;ladd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
- &lt;span class="p"&gt;{&lt;/span&gt;
- &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
- &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-A type declaration like in C is not needed in all languages. In python for example the types are dynamic, that means they're determined at runtime. Python in contrast to C also offers strings and numbers with arbitrary size and precision (and more!).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3c89e93" class="outline-2"&gt;
-&lt;h2 id="org3c89e93"&gt;Literals&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3c89e93"&gt;
-&lt;p&gt;
-A "direct value" of a specific type is called &lt;i&gt;literal&lt;/i&gt;. Literals of specific types require a special notation, to prevent an unneccessary type conversion:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;int&lt;/code&gt; literals can be written in decimal, octal and hexadecimal and if needed with a sign:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;decimal: only digits &lt;code&gt;0-9&lt;/code&gt; however not leading with a &lt;code&gt;0&lt;/code&gt; → e.g &lt;code&gt;42&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;octal: prefix of &lt;code&gt;0&lt;/code&gt; and then only digits &lt;code&gt;0-7&lt;/code&gt; → e.g &lt;code&gt;052&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;hexadecimal: prefix of &lt;code&gt;0x&lt;/code&gt; and then only digits &lt;code&gt;0-9&lt;/code&gt; and letters &lt;code&gt;A-F&lt;/code&gt; → e.g &lt;code&gt;0x2a&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;unsigned int&lt;/code&gt; like int but with the suffix "u"/"U" → e.g &lt;code&gt;123U&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;long/unsigned long&lt;/code&gt; like int/unsigned int but with the suffix "l"/"L" → e.g &lt;code&gt;123L&lt;/code&gt; respective &lt;code&gt;123UL&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;long long/unsigned long long&lt;/code&gt; like int/unsigned int but with the suffix "ll"/"LL" → e.g &lt;code&gt;123LL&lt;/code&gt; respective &lt;code&gt;123ULL&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;double&lt;/code&gt; as a decimal with decimal place(s), decimal point, and/or "e"/"E" with following exponent→ e.g &lt;code&gt;1.23e10&lt;/code&gt;, &lt;code&gt;.23&lt;/code&gt; or &lt;code&gt;1e10&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;float&lt;/code&gt; like double but with the suffix "f"/"F" → e.g &lt;code&gt;1.23e10f&lt;/code&gt;, &lt;code&gt;.23f&lt;/code&gt; or &lt;code&gt;1e10f&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;long double&lt;/code&gt; like double but with the suffix "l"/"L" → e.g &lt;code&gt;1.23e10L&lt;/code&gt;, &lt;code&gt;.23l&lt;/code&gt; or &lt;code&gt;1e10l&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;char&lt;/code&gt; literals have to be written in single quotes → e.g &lt;code&gt;'*'&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;wchar_t&lt;/code&gt; literals are written like &lt;code&gt;char&lt;/code&gt; with the prefix &lt;code&gt;L&lt;/code&gt; → e.g &lt;code&gt;L'a'&lt;/code&gt;. There also escape sequences to display sequences or characters that are difficult to represent else. &lt;a href="https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences"&gt;Here's a list&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-05/</guid><pubDate>Sun, 21 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-06/</guid><pubDate>Thu, 25 Oct 2018 22:00:00 GMT</pubDate></item></channel></rss>

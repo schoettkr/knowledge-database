@@ -1,11 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 26 Nov 2018 14:47:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 14</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org193541e" class="outline-2"&gt;
-&lt;h2 id="org193541e"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org193541e"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Wed, 28 Nov 2018 11:07:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org7ccbb17" class="outline-2"&gt;
+&lt;h2 id="org7ccbb17"&gt;Complexity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7ccbb17"&gt;
+&lt;p&gt;
+As you've hopefully already noticed there are algorithms that differ in regards to &lt;i&gt;efficiency&lt;/i&gt;. &lt;b&gt;Algorithmic efficiency&lt;/b&gt; refers to the number of &lt;b&gt;computational resources&lt;/b&gt; (&lt;i&gt;computation time&lt;/i&gt; and &lt;i&gt;memory space&lt;/i&gt;) used by the algorithm.
+&lt;/p&gt;
+
+&lt;p&gt;
+For maximum efficiency we wish to minimize resource usage. However, different resources such as time and space complexity cannot be compared directly, so which of two algorithms is considered to be more efficient often depends on which measure of efficiency is considered most important.
+&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org035cf35" class="outline-3"&gt;
-&lt;h3 id="org035cf35"&gt;Pseudocode&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org035cf35"&gt;
+
+&lt;div id="outline-container-orgd1a70eb" class="outline-3"&gt;
+&lt;h3 id="orgd1a70eb"&gt;RAM Model&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd1a70eb"&gt;
+&lt;p&gt;
+It is impractical to measure the computation time with a stopwatch or operating system functions because then there'd be a lot of other factors involved such as compiler, hardware and operating system.
+&lt;/p&gt;
+
+&lt;p&gt;
+But to measure the quality of &lt;i&gt;algorithms&lt;/i&gt; (not their implementation) we don't even need a time because we use &lt;i&gt;abstract computer models&lt;/i&gt;. For example the &lt;b&gt;Random Access Machine&lt;/b&gt; (RAM model) which is used for computational complexity analysis.
+&lt;/p&gt;
+
+&lt;p&gt;
+RAM Components:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;program&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;numbered, finite series of instructions&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;storage&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;enumerable (infinite) amount of storage locations(registers) (slides: abzählbar (unendlich) viele Speicherstellen (Register))&lt;/li&gt;
+&lt;li&gt;arbitrarily accessible&lt;/li&gt;
+&lt;li&gt;every register can store an arbitrary integer&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;in-/output&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;continuous sequences (bänder, ribbons)&lt;/li&gt;
+&lt;li&gt;either input (read) or output (write) in the given situation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;central processing unit
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;instruction counter that holds the number of the instruction that is to be executed&lt;/li&gt;
+&lt;li&gt;accumulator = target register of computations, address 0&lt;/li&gt;
+&lt;li&gt;arithmetic logic unit = enginge / functional unit for execution of operations&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/random-access-machine.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The "common/usual" instructions are available in a RAM:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;basic arithmetic operations: + - * / mod&lt;/li&gt;
+&lt;li&gt;comparisons: &amp;gt; &amp;lt; = ≥ ≤&lt;/li&gt;
+&lt;li&gt;branching/conditions: if&lt;/li&gt;
+&lt;li&gt;jumps : GOTO (loops are branches with jumps btw)&lt;/li&gt;
+&lt;li&gt;loading/storing: LOAD, STORE&lt;/li&gt;
+&lt;li&gt;in-/output: READ, WRITE&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Operands:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;registers (can be chosen arbitrarily), also indirectly&lt;/li&gt;
+&lt;li&gt;accumulator (implicit)&lt;/li&gt;
+&lt;li&gt;input sequence and output sequence (not arbitrarily ~ nicht wahlfrei)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+For the RAM there are two models of measuring the time cost:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;uniform cost measure: every instruction has a time cost of 1 time unit (eg Takt/clock signal or millisecond ..)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;since every instruction has the same length/duration the instrucion &lt;b&gt;executions&lt;/b&gt; are determining the cost&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;logarithmic time cost measure: the length of the numbers that have to be processed determine the time
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;length l(x) of x ∈ G:  l(0) = 1, l(x) = (log&lt;sub&gt;2&lt;/sub&gt; |x|) + 1&lt;/li&gt;
+&lt;li&gt;the logarithmic time costs of an instruction are equal to the sum of the length of the numbers that have to be processed&lt;/li&gt;
+&lt;li&gt;the logarithmic time cost measure should be usend when the size/length of the numbers is of critical significance&lt;/li&gt;
+&lt;li&gt;in addition to the instruction executions the size of the operands is of importance in regards to the cost&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Instructions that are executed in a loop are counted repeatedly and since the execution of instructions (and loop iterations) often depends on the input size n we measure the amount of instructions that are executed with T&lt;sub&gt;A&lt;/sub&gt;(n), for example:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Algorithm&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;T&lt;sub&gt;A&lt;/sub&gt;(n)&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;optimal for&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;1&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;1000 * n&lt;/td&gt;
+&lt;td class="org-left"&gt;n ≥ 101&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;200*n*log n&lt;/td&gt;
+&lt;td class="org-left"&gt;never&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;3&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;10 * n&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;10 ≤ n ≤ 100&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;A&lt;sub&gt;4&lt;/sub&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;2&lt;sup&gt;n&lt;/sup&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;1 ≤ n ≤ 9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org6fee8c1"&gt;&lt;/a&gt;Run-time Analysis&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org6fee8c1"&gt;
+&lt;p&gt;
+Even for constant \(n\) is T&lt;sub&gt;A&lt;/sub&gt; not always the same:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;worst case analysis
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for every n define the runtime as T(n) = max(t(Input)), ∀ |Input| = n&lt;/li&gt;
+&lt;li&gt;guaranteed boundaries for every input&lt;/li&gt;
+&lt;li&gt;used as standard&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;average case analysis
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for every n define the runtime as T(n) = \(\bar{t}\)(Input) ∀ |Input| = n&lt;/li&gt;
+&lt;li&gt;depends on the definition of average → distribution of inputs&lt;/li&gt;
+&lt;li&gt;rarely used (hard to determine the average)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;best case analysis
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for every n define the runtime as T(n) = min(t(Input)), ∀ |Input| = n&lt;/li&gt;
+&lt;li&gt;looks for minimal runtime&lt;/li&gt;
+&lt;li&gt;shows design mistakes (Entwurfsfehler)&lt;/li&gt;
+&lt;li&gt;has no real significance (easy to cheat)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+In general the analysis of T&lt;sub&gt;A&lt;/sub&gt; is rather hard that's why &lt;i&gt;order of magnitudes&lt;/i&gt; (Größenordnungen) are used more commonly. We know such from real life eg: v&lt;sub&gt;Laufen&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Rad&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Auto&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Flugzeug&lt;/sub&gt; 
+&lt;/p&gt;
+
+&lt;p&gt;
+Note: I skipped the slides on "big A notation" here because I fail to see the relevance of it and cant find anything about in the internet (slides 14-15, chapter 8).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgfa81238" class="outline-2"&gt;
+&lt;h2 id="orgfa81238"&gt;Big O Notation&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfa81238"&gt;
+&lt;p&gt;
+F16
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</guid><pubDate>Sun, 25 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 14</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org6e8cbea" class="outline-2"&gt;
+&lt;h2 id="org6e8cbea"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6e8cbea"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org53555a0" class="outline-3"&gt;
+&lt;h3 id="org53555a0"&gt;Pseudocode&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org53555a0"&gt;
 &lt;p&gt;
 As we've learnt in the last lecture &lt;i&gt;pseudocode&lt;/i&gt; is one of the most popular semiformal specification languages.
 &lt;/p&gt;
@@ -37,9 +228,9 @@ The slides note at this point that in the future we'll often look at algorithms 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6a583f8" class="outline-3"&gt;
-&lt;h3 id="org6a583f8"&gt;Correctness&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6a583f8"&gt;
+&lt;div id="outline-container-org9ee54eb" class="outline-3"&gt;
+&lt;h3 id="org9ee54eb"&gt;Correctness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9ee54eb"&gt;
 &lt;p&gt;
 When you find an approach for a problem / an algorithm, the &lt;i&gt;correctness&lt;/i&gt; has to be validated.
 &lt;/p&gt;
@@ -89,9 +280,9 @@ To proof the correctness it can be performed on a more &lt;i&gt;abstract level&l
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org050c734" class="outline-3"&gt;
-&lt;h3 id="org050c734"&gt;Proofs&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org050c734"&gt;
+&lt;div id="outline-container-org35c579b" class="outline-3"&gt;
+&lt;h3 id="org35c579b"&gt;Proofs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org35c579b"&gt;
 &lt;p&gt;
 Slides: Informale Definition = Ein Beweis ist eine Herleitung einer Aussage aus bereits bewiesenen Aussagen und/oder Grundannahmen (Axiomen)
 &lt;/p&gt;
@@ -128,9 +319,9 @@ We know a few different (but still combinable) methods for proofs:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org6d2bb1e" class="outline-3"&gt;
-&lt;h3 id="org6d2bb1e"&gt;Proofs of Algorithms&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6d2bb1e"&gt;
+&lt;div id="outline-container-orgb6ea655" class="outline-3"&gt;
+&lt;h3 id="orgb6ea655"&gt;Proofs of Algorithms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb6ea655"&gt;
 &lt;p&gt;
 To prove an algorithm you have to ask two questions. 1) What is there to be proven (Specification)? 2.) What is already known?
 &lt;/p&gt;
@@ -152,9 +343,162 @@ A distinction is made between 2 kinds of "correctness":
 &lt;p&gt;
 So, &lt;i&gt;if&lt;/i&gt; a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
 &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgbcd9ec5" class="outline-4"&gt;
+&lt;h4 id="orgbcd9ec5"&gt;Proving Sort Algorithms&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgbcd9ec5"&gt;
+&lt;p&gt;
+We already got to know a sorting algorithm in one of the first lectures (bubble sort). The correctness of a solution to the problem of sorting can be expressed independently from the algorithm: Input = sequence of elements (e&lt;sub&gt;1&lt;/sub&gt;, e&lt;sub&gt;2&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;) → Output = permutation (e'&lt;sub&gt;1&lt;/sub&gt;, e'&lt;sub&gt;2&lt;/sub&gt;, …, e'&lt;sub&gt;n&lt;/sub&gt;) of (e&lt;sub&gt;1&lt;/sub&gt;, e&lt;sub&gt;2&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;) so that e'&lt;sub&gt;1&lt;/sub&gt; ≤ e'&lt;sub&gt;2&lt;/sub&gt; ≤ … ≤ e'&lt;sub&gt;n&lt;/sub&gt;
+&lt;/p&gt;
 
 &lt;p&gt;
-In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+The bubble sort algorithm would look like this in pseudocode:
+&lt;/p&gt;
+
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;Require:&lt;/b&gt; e&lt;sub&gt;1&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;&lt;br&gt;
+&lt;b&gt;Ensure:&lt;/b&gt; ∀ i ∈ {1, n-1}, e&lt;sub&gt;i&lt;/sub&gt; ≤ e&lt;sub&gt;i+1&lt;/sub&gt;&lt;br&gt;
+&lt;/p&gt;
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;repeat&lt;/b&gt;&lt;br&gt;
+  &lt;i&gt;changed&lt;/i&gt; ← false&lt;br&gt;
+  &lt;b&gt;for&lt;/b&gt; &lt;i&gt;i&lt;/i&gt; ← 1, …, &lt;i&gt;n&lt;/i&gt;-1 &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+   &lt;b&gt;if&lt;/b&gt; e&lt;sub&gt;i&lt;/sub&gt; &amp;gt; e&lt;sub&gt;i+1&lt;/sub&gt; &lt;b&gt;then&lt;/b&gt;&lt;br&gt;
+    SWAP(e&lt;sub&gt;i&lt;/sub&gt;, e&lt;sub&gt;i+1&lt;/sub&gt;)&lt;br&gt;
+    &lt;i&gt;changed&lt;/i&gt; ← true&lt;br&gt;
+   &lt;b&gt;end if&lt;/b&gt;&lt;br&gt;
+  &lt;b&gt;end for&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;until&lt;/b&gt; &lt;i&gt;changed&lt;/i&gt; = false&lt;br&gt;
+ 
+Proving the &lt;i&gt;partial correctness&lt;/i&gt; is simple: If this algorithm terminates &lt;i&gt;changed&lt;/i&gt; has to be &lt;i&gt;false&lt;/i&gt; which implicates that for no i ∈ {1, …, n-1} this e&lt;sub&gt;i&lt;/sub&gt; &amp;gt; e&lt;sub&gt;i+1&lt;/sub&gt; can be true which in reverse means that ∀ i ∈ {1, …, n-1}, e&lt;sub&gt;i&lt;/sub&gt; ≤ e&lt;sub&gt;i+1&lt;/sub&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;a href="https://en.wikipedia.org/wiki/Insertion_sort"&gt;&lt;i&gt;Insertion Sort&lt;/i&gt;&lt;/a&gt; is an alternative algorithm to solve the sorting problem. This is the corresponding pseudocode:
+&lt;/p&gt;
+
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;Require:&lt;/b&gt; e&lt;sub&gt;1&lt;/sub&gt;, …, e&lt;sub&gt;n&lt;/sub&gt;&lt;br&gt;
+&lt;b&gt;Ensure:&lt;/b&gt; ∀ i ∈ {1, n-1}, e&lt;sub&gt;i&lt;/sub&gt; ≤ e&lt;sub&gt;i+1&lt;/sub&gt;&lt;br&gt;
+&lt;/p&gt;
+&lt;p style="background:lightgrey;"&gt;
+&lt;b&gt;for&lt;/b&gt; j ← 2, …, n &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+  &lt;i&gt;key&lt;/i&gt; ← e&lt;sub&gt;j&lt;/sub&gt;&lt;br&gt;
+  &lt;i&gt;i&lt;/i&gt; ← j-1&lt;br&gt;
+  &lt;b&gt;while&lt;/b&gt; (&lt;i&gt;i&lt;/i&gt; &amp;gt; 0) ∧ (e&lt;sub&gt;i&lt;/sub&gt; &amp;gt; key) &lt;b&gt;do&lt;/b&gt;&lt;br&gt;
+   e&lt;sub&gt;i+1&lt;/sub&gt; ← e&lt;sub&gt;i&lt;/sub&gt;           ; move all elements that are greater than &lt;i&gt;key&lt;/i&gt; right&lt;br&gt;
+   i ← i-1&lt;br&gt;
+  &lt;b&gt;end while&lt;/b&gt;&lt;br&gt;
+  e&lt;sub&gt;i&lt;/sub&gt;+1 ← key          ; fill the gap with &lt;i&gt;key&lt;/i&gt;&lt;br&gt;
+&lt;b&gt;end for&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Take a look at slides 47 - 50 (chapter 7) for details on how to prove the correctness of insertion sort with lemmas.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org77d2b4b" class="outline-3"&gt;
+&lt;h3 id="org77d2b4b"&gt;Soundness (Korrektheitskalküle)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org77d2b4b"&gt;
+&lt;p&gt;
+Proofs like the one we saw for bubble sort are &lt;i&gt;ad hoc&lt;/i&gt;. There are/is a special logic/calculus (Kalküle → formales System zum Ziehen logischer Schlüsse) in regards to the correctness of programs, for example the &lt;b&gt;FLoyd-Hoare logic&lt;/b&gt; (Hoare-Kalkül) or the &lt;b&gt;wp-Kalkül&lt;/b&gt; (Edsger Dijkstra).
+&lt;/p&gt;
+
+&lt;p&gt;
+These logics/calculus use triples: {Precondition} Code {Postcondition}. There are axiomatic rules: \frac{premise}{consequence}
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org89042db" class="outline-3"&gt;
+&lt;h3 id="org89042db"&gt;Termination&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org89042db"&gt;
+&lt;p&gt;
+&lt;b&gt;Partial Correctness&lt;/b&gt; is proven under the assumption that the code &lt;i&gt;terminates&lt;/i&gt;. Therefore termination has to be proven to prove &lt;b&gt;total correctness&lt;/b&gt;. This is especially critical when dealing with recursion (abort after finite steps and reach the recursion base) and loops (loop condition has to evaluate to false after finite steps and the loop body also has to terminate in each iteration).
+&lt;/p&gt;
+
+&lt;p&gt;
+To prove termination of a loop a &lt;b&gt;termination function&lt;/b&gt; τ (Tau) has to be specified:
+\[ \tau : V \rightarrow \mathbb{N} \]
+&lt;/p&gt;
+
+&lt;p&gt;
+The termination function has to have the following characteristics:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;its values are natural numbers (including 0)&lt;/li&gt;
+&lt;li&gt;each iteration resp. execution of the loop body &lt;b&gt;reduces&lt;/b&gt; its value (strictly monotonically decreasing)&lt;/li&gt;
+&lt;li&gt;the loop condition is &lt;i&gt;false&lt;/i&gt; when τ = 0&lt;/li&gt;
+&lt;li&gt;τ is the upper boundary for the loop iterations that are left&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+If a termination function is known a &lt;b&gt;termination rule&lt;/b&gt; can be used:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/termination-rule.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+So &lt;b&gt;if&lt;/b&gt; a termination function is &lt;i&gt;strictly monotonically decreasing&lt;/i&gt; &lt;b&gt;and&lt;/b&gt; the value 0 leads to the end of the loop &lt;b&gt;and&lt;/b&gt; the loop body terminates, &lt;b&gt;then&lt;/b&gt; the loop &lt;b&gt;terminates&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+So this has to be shown:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;strictly monotonically decrease of τ&lt;/li&gt;
+&lt;li&gt;the implication that the loop condition B is not met at the lowest τ&lt;/li&gt;
+&lt;li&gt;the termination of the body P&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+Example of a termination function for a loop that calculates the square of a nonnegative integer:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* { Input: 0 &amp;lt;= a} */&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* { Output: x = a^2} */&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Pick the termination function τ = a - y
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;τ is decremented in each iteration, since 'y' is incremented and 'a' is constant&lt;/li&gt;
+&lt;li&gt;if τ = 0 then y = a therefore the loop condition y != a evaluates to &lt;i&gt;false&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;the loop body does not contain recursions, gotos or other loops, termination is therefore trivial&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+→ The loop terminates!
+&lt;/p&gt;
+
+&lt;p&gt;
+To prove the termination of recursions the same procedure as with loops can be applied. A termination function τ is created that gets smaller with increasing recursion depth. The following has to apply:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;the values are natural numbers (incl 0)&lt;/li&gt;
+&lt;li&gt;the value of τ decreases with each method call (recursion)&lt;/li&gt;
+&lt;li&gt;discontinuation is forced at τ = 0 (or earlier)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* Fibonacci Example */&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;
+However proving termination is not always possible (eg golbachs conjecture for expressing integers as sum of primes)
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -187,7 +531,881 @@ What I'll cover here though are reference parameters and reference return values
 F48 
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 13</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org8c4d7fa" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgbec6786" class="outline-2"&gt;
+&lt;h2 id="orgbec6786"&gt;Relational Calculus (Relationenkalkül)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbec6786"&gt;
+&lt;p&gt;
+The expressions in &lt;i&gt;relational algebra&lt;/i&gt; form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate relation results. This way describes they way of &lt;i&gt;how&lt;/i&gt; you come to the relation result.
+&lt;/p&gt;
+
+&lt;p&gt;
+There is an alternative however to describe a query result without specifying the derivation (Herleitungsvorschrift), which is called &lt;b&gt;relational calculus&lt;/b&gt;. In relational calculus only the requirements of the desired resulting tuples are specified/described but not the way they are retrieved. This way describes &lt;i&gt;what&lt;/i&gt; is contained in the result relation.
+&lt;/p&gt;
+
+&lt;p&gt;
+A calculus (Kalkül) is a method, that is determined by a set of rules, to deal with certain mathematical problems in a systematic manner and solve them automatically (slides: ist eine durch ein System von Regeln festgelegte Methode, mit deren Hilfe bestimmte mathematische Probleme systematisch behandelt und automatisch gelöst werden können) 
+&lt;/p&gt;
+
+&lt;p&gt;
+The basis for relational calculus is predicate/quantifier logic  of the first degree (Prädikatenlogik erster Ordnung) and the result of a query is a set of tuples. In relational calculus calculus expressions (Kalkülausdrücke) are used, in particular the &lt;b&gt;tuple calculus&lt;/b&gt; and the &lt;b&gt;domain calculus&lt;/b&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgaeab930" class="outline-3"&gt;
+&lt;h3 id="orgaeab930"&gt;Tuple Calculus&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgaeab930"&gt;
+&lt;p&gt;
+The query notation for tuple calculus is {t | P(t)} where t is a tuple variable and P is a predicate over t. The result of such query is a set of all tuples for which the evaluation of the predicate P(t) yields &lt;i&gt;true&lt;/i&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Take the following example relation "Student":
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;major&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123456&lt;/td&gt;
+&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
+&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;134534&lt;/td&gt;
+&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
+&lt;td class="org-left"&gt;Philosophy&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;145698&lt;/td&gt;
+&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
+&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Query: {s | s ∈ Student ∧ s.major='Computer Science'}
+&lt;/p&gt;
+
+&lt;p&gt;
+Result: 
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;major&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123456&lt;/td&gt;
+&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
+&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;145698&lt;/td&gt;
+&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
+&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="orgd35aced"&gt;&lt;/a&gt;Tuple Calculus - Atoms and Formulas&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgd35aced"&gt;
+&lt;p&gt;
+For the construction of formula we define sets of atomic formulas.
+&lt;b&gt;Atoms&lt;/b&gt; in tuple calculus:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;t&lt;sub&gt;i&lt;/sub&gt; ∈ R&lt;sub&gt;j&lt;/sub&gt; → the relation R&lt;sub&gt;j&lt;/sub&gt; is assigned as the codomain(Wertebereich) to the tuple variable t&lt;sub&gt;i&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;t&lt;sub&gt;i.A&lt;/sub&gt; Θ t&lt;sub&gt;j.B&lt;/sub&gt; → comparison operation between two attributes A and B which are attributes of the relations that were assigned as codomains to t&lt;sub&gt;i&lt;/sub&gt; and t&lt;sub&gt;j&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;t&lt;sub&gt;i.A&lt;/sub&gt; Θ c → comparison operation between attribute A and constant C&lt;/li&gt;
+&lt;li&gt;c Θ t&lt;sub&gt;i.A&lt;/sub&gt; → comparison operation between constant c and attribute A&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The comparison operation denoted by Θ encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are &amp;lt;, &amp;gt;, ≤, ≥, =, ≠ and =, ≠ for boolean values.
+&lt;/p&gt;
+
+&lt;p&gt;
+Every atom is a &lt;i&gt;formula&lt;/i&gt;. When F&lt;sub&gt;1&lt;/sub&gt; and F&lt;sub&gt;2&lt;/sub&gt; are formulas then the following constructs are formulas as well:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;F&lt;sub&gt;1&lt;/sub&gt; ∧ F&lt;sub&gt;2&lt;/sub&gt; = Conjunction&lt;/li&gt;
+&lt;li&gt;F&lt;sub&gt;1&lt;/sub&gt; ∨ F&lt;sub&gt;2&lt;/sub&gt; = Disjunction&lt;/li&gt;
+&lt;li&gt;¬ F&lt;sub&gt;1&lt;/sub&gt;  = Negation&lt;/li&gt;
+&lt;li&gt;(F&lt;sub&gt;1&lt;/sub&gt;) = wrapping (Klammerung)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+When F is a formula and t is a tuple variable in F then the following constructs are formulas:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;(∃ t)(F) = existential quantifier (Existenzquantifizierung)&lt;/li&gt;
+&lt;li&gt;(∀ t)(F) = universal quantifier (Universalquantifizierung)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgfb47392"&gt;&lt;/a&gt;Tuple Calculus - Free and Bounded Tuple Variables&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgfb47392"&gt;
+&lt;p&gt;
+A tuple variable in an atom (respective in a formula consisting of one atom) is &lt;b&gt;free&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+A tuple variable in a formula that is composed via negation, conjunction or disconjuction of other partial formulas is &lt;b&gt;free&lt;/b&gt; or &lt;b&gt;bound&lt;/b&gt; depending on its state in the other partial formulas. In this case a tuple variable can be free and bound at the same time.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Free&lt;/b&gt; tuple variables t of a formula F get &lt;b&gt;bound&lt;/b&gt; to the respective quantifier F' when they are embedded in one of the following formulas F':
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;F' = (∃ t)(F)&lt;/li&gt;
+&lt;li&gt;F' = (∀ t)(F)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Examples:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;F&lt;sub&gt;1&lt;/sub&gt;: s.name = 'Cleopatra'&lt;/li&gt;
+&lt;li&gt;F&lt;sub&gt;2&lt;/sub&gt;: (∃ t)(s.matrNr = t.matrNr)&lt;/li&gt;
+&lt;li&gt;F&lt;sub&gt;3&lt;/sub&gt;: (∀ s)(s.name = 'Cleopatra')&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org60984c5"&gt;&lt;/a&gt;Tuple Calculus - Computing Formulas (Substitution)&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org60984c5"&gt;
+&lt;p&gt;
+Given that F(s) is a formula with the tuple variable s ∈ R and a tuple t ∈ R. Then the following happens in each atom of F(S) with a &lt;i&gt;free&lt;/i&gt; s:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;s ∈ R is replaced with true&lt;/li&gt;
+&lt;li&gt;s.A Θ u.B is replaced with t.A Θ u.B (A and B are atrtibutes, u is another tuple variable u ≠ s)&lt;/li&gt;
+&lt;li&gt;s.A Θ c is replaced with the concrete boolean value of the operation t.A Θ c&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+These steps are repeated for further tuple variables if necessary until F(s) only holds (possibly logically connected) boolean constants (true/false) and atoms with bound variables.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example:
+Given tuple variable s and t from a schema R(a,b) and the formula ∀ t(t ∈ R ∧ t.a = s.a ∧ t.b &amp;lt; s.b) the substitution happens/looks like this:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the tuple s = (8, 12) → ∀ t(t ∈ R ∧ t.a = 8 ∧ t.b &amp;lt; 12)&lt;/li&gt;
+&lt;li&gt;then the tuple t = (8, 9) → ∀ t(true ∧ 8 = 8 ∧ 9 &amp;lt; 12) → ∀ t(true ∧ true ∧ true) → ∀ t(true)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orga48ad2d"&gt;&lt;/a&gt;Tuple Calculus - Computing Formulas for bound Tuple Variables&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orga48ad2d"&gt;
+&lt;p&gt;
+Given a tuple variable s ∈ R:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the formula (∃ t)(F) evaluates to &lt;i&gt;true&lt;/i&gt; if F becomes true for at least one substitution of s and the formula evaluates to false otherwise
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;this means that at least one tuple can be associated with the free tuple variable s for which F becomes true&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;the formular (∀ t)(F) evaluates to &lt;i&gt;true&lt;/i&gt; if F becomes true for &lt;i&gt;all&lt;/i&gt; substitutions of s
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;this means that F is true/fulfilled for all tuples that can be assigned to the free tuple variable s&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;b&gt;Final Formula Computation&lt;/b&gt; = formulas now only hold logically connected boolean values which can be evaluated accordingly.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgd659ffd"&gt;&lt;/a&gt;Tuple Calculus - Expressions and Queries&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgd659ffd"&gt;
+&lt;p&gt;
+In general an expression/query of the tuple calculus is of the following form: {t&lt;sub&gt;1.A&lt;/sub&gt;&lt;sub&gt;1&lt;/sub&gt;, t&lt;sub&gt;2.A&lt;/sub&gt;&lt;sub&gt;2&lt;/sub&gt;, …, t&lt;sub&gt;n.A&lt;/sub&gt;&lt;sub&gt;n&lt;/sub&gt; | F(t&lt;sub&gt;1&lt;/sub&gt;, …, t&lt;sub&gt;m&lt;/sub&gt;)}
+&lt;/p&gt;
+
+&lt;p&gt;
+t&lt;sub&gt;i&lt;/sub&gt; are tuple variables (which in general encompass all tuples of the so called univesere, that's why they are usually assigned to a relation) and A&lt;sub&gt;i&lt;/sub&gt; are attributes of the relation that is assigned to the tuple variable t&lt;sub&gt;i&lt;/sub&gt;, while F(t&lt;sub&gt;1&lt;/sub&gt;, …, t&lt;sub&gt;m&lt;/sub&gt;) is the formula of the tuple calculus.
+&lt;/p&gt;
+
+&lt;p&gt;
+Taking our previous student relation:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;major&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123456&lt;/td&gt;
+&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
+&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;134534&lt;/td&gt;
+&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
+&lt;td class="org-left"&gt;Philosophy&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;145698&lt;/td&gt;
+&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
+&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Query: {s.matrNr, s.name | s ∈ Student ∧ s.major='Philosophy'} yields
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;134534&lt;/td&gt;
+&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;
+Now onto another example. Given the relations teacher
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;3467&lt;/td&gt;
+&lt;td class="org-left"&gt;Ares&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;43467&lt;/td&gt;
+&lt;td class="org-left"&gt;Hera&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+and lectures
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;43467&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+we want to know the names of the teachers that hold at least one lecture:
+{t.name | t ∈ Teacher ∧ (∃ l)(l ∈ lectures ∧ t.persNr = l.persNr)} which leads to this resulting relation
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Hera&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;
+To query the lecture titles of lectures given by Zeus we'd use the following:
+{t.title | t ∈ Lectures ∧ (∃ l)(l ∈ teacher ∧ t.persNr = l.persNr ∧ l.name='Zeus') } to get
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;
+For the next example queries I embed the slides because it is more clearer and not so much overhead.
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/tuple-calc-ex1.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/tuple-calc-ex2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+One problem with queries of tuple calculus is that they can sometimes produce an infinite result relation, eg { s | ≠(s ∈ Student) }.
+&lt;/p&gt;
+
+&lt;p&gt;
+The domain of a formula contains all constant values of a formula and all possible attribute values of all tuples in the referenced relations.
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;b&gt;safe query&lt;/b&gt; is a query where the result of the query stems from the domain of the formula → we only use safe queries (all queries we've seen so far are safe).
+&lt;/p&gt;
+
+&lt;p&gt;
+Also see &lt;a href="https://en.wikipedia.org/wiki/Tuple_relational_calculus"&gt;https://en.wikipedia.org/wiki/Tuple_relational_calculus&lt;/a&gt; for more
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org065eceb" class="outline-3"&gt;
+&lt;h3 id="org065eceb"&gt;Domain Calculus&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org065eceb"&gt;
+&lt;p&gt;
+The domain relational calculus is also a calculus that serves as a declarative database query language for the relational data model. In DRC queries have this form {d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;n&lt;/sub&gt; | F(d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;m&lt;/sub&gt;)} with m ≥ n where d&lt;sub&gt;i&lt;/sub&gt; are domain variables which describe the values of attribute domains and F(d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;m&lt;/sub&gt;) is the formula. The formula consists, like in the relational calculus (tuple?), of either a an atom, a logical connection of formulas or a formula with a domain variable which is existential quantified or universal quantified.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org3529dfd"&gt;&lt;/a&gt;Domain Calculus - Atoms and Comparison&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org3529dfd"&gt;
+&lt;p&gt;
+Given the relation R of degree n where every d&lt;sub&gt;i&lt;/sub&gt; is a domain variable, the atom \(R(d_1, d_2, ..., d_n)\) expresses that the codomain (Werteliste) &amp;lt;d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;n&lt;/sub&gt;&amp;gt; has to be a tuple of the relation R.
+&lt;/p&gt;
+
+&lt;p&gt;
+Comparisons
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;d&lt;sub&gt;i&lt;/sub&gt; θ d&lt;sub&gt;j&lt;/sub&gt; → comparison operation between two domain variables d&lt;sub&gt;i&lt;/sub&gt; and d&lt;sub&gt;j&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;d&lt;sub&gt;i&lt;/sub&gt; θ c → comparison operation between domain variable d&lt;sub&gt;i&lt;/sub&gt; and constant c&lt;/li&gt;
+&lt;li&gt;c θ d&lt;sub&gt;i&lt;/sub&gt; → comparison operation between constant c and domain variable d&lt;sub&gt;i&lt;/sub&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The comparison operation denoted by Θ encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are &amp;lt;, &amp;gt;, ≤, ≥, =, ≠ and =, ≠ for boolean values (required that the elements of the domain can be compared pairwise).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org8e57725"&gt;&lt;/a&gt;Domain Calculus - Example Queries&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org8e57725"&gt;
+&lt;p&gt;
+Given the relations teacher
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;43467&lt;/td&gt;
+&lt;td class="org-left"&gt;Ares&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;43424&lt;/td&gt;
+&lt;td class="org-left"&gt;Hera&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+and lectures
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;43467&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+&lt;b&gt;1.)&lt;/b&gt; List the lecture titles that are held by teacher with persNr 6897?
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;The query {b | (∃ a) (∃ c) (Lecture(a,b,c) ∧ c=6897)} yields:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;
+&lt;b&gt;2.)&lt;/b&gt; What are the numbers and titles of lectures held by Zeus?
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;The query {a, b | (∃ c) (∃ d) (∃ e) (Lecture(a,b,c) ∧ teacher(d,e) ∧ c=d ∧ e='Zeus')} yields:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;
+&lt;b&gt;3.)&lt;/b&gt; What's the title of lectures hold by teacher with persNr6987 with at least 5 Credits?
+&lt;/p&gt;
+
+&lt;p&gt;
+We now have an additional column in our lecture relation:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;credits&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-right"&gt;43467&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Alternatively a query can be formulated with a direct specification of constant attribute values: {b | (Lecture(a, b, &lt;i&gt;5&lt;/i&gt;, &lt;i&gt;6897&lt;/i&gt;))} which yields
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+(slides: alle Variablen, die nicht „links“ auftreten, sind hierbei automatisch existenzquantifiziert)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org00f3352" class="outline-2"&gt;
+&lt;h2 id="org00f3352"&gt;Relational Languages&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org00f3352"&gt;
+&lt;p&gt;
+The following query languages possess the same expresiveness (Ausdrucksmächtigkeit):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;relational algebra&lt;/li&gt;
+&lt;li&gt;tuple calculus (limited to safe queries)&lt;/li&gt;
+&lt;li&gt;domain calculus (limited to safe queries)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Queries can be converted between those languages at any time.
+&lt;/p&gt;
+
+&lt;p&gt;
+In praxis the &lt;b&gt;relational calculus&lt;/b&gt; is the foundation for "real" query languages of relational DBMS:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;tuple calculus is the foundation of SQL (Structured Query Language)&lt;/li&gt;
+&lt;li&gt;domain calculus is the foundation of QBE (Query By Example)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;b&gt;Relational algebgra&lt;/b&gt; is the foundation for the realisation of queries in the query languages. The sequence of operations describes the path to the result of a query (which can be optimized in some circumstances).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org805185e" class="outline-2"&gt;
+&lt;h2 id="org805185e"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org805185e"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge8aa45d" class="outline-4"&gt;
+&lt;h4 id="orge8aa45d"&gt;History&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge8aa45d"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;1970: Codd presents the relational model&lt;/li&gt;
+&lt;li&gt;1974: development of the relational query language SEQUEL (Structured English Query Language)&lt;/li&gt;
+&lt;li&gt;1976: further development (Weiterentwicklung) of SEQUEL served as a foundation of the DBMS prototype "System R" by IBM, which was later renamed to SQL (Structured Query Language)&lt;/li&gt;
+&lt;li&gt;in the early 80s: a lot of DBMS emerge by different commercial providers → standardization is needed&lt;/li&gt;
+&lt;li&gt;1987: first SQL Standard&lt;/li&gt;
+&lt;li&gt;1992: big expansion of the standard → SQL 2 (SQL-92)&lt;/li&gt;
+&lt;li&gt;since then continuous evolution: SQL-99 → SQL:2003 → SQL:2006 → SQL:2008 → SQL:2011&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org655834a" class="outline-4"&gt;
+&lt;h4 id="org655834a"&gt;Introduction to SQL - Components&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org655834a"&gt;
+&lt;p&gt;
+There two high level components of SQL:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Data Definition Language (DDL)&lt;/b&gt;
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;defines the database structure&lt;/li&gt;
+&lt;li&gt;manages the access rights to the data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+and 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Data Manipulation Language (DML)&lt;/b&gt;
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;used to formulate queries for the data sets&lt;/li&gt;
+&lt;li&gt;create, read, update, delete of data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+For now we'll focus on the Data Manipulation Language.
+&lt;/p&gt;
+
+&lt;p&gt;
+SQL does not operate on relations, but rather their physical representation form which are &lt;b&gt;tables&lt;/b&gt;. In tables duplicate entries are possible which we may have to exclude. In contrast to relations there is one more advantage to table which is that they can be sorted.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0310734" class="outline-4"&gt;
+&lt;h4 id="org0310734"&gt;Introduction to SQL - Queries&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0310734"&gt;
+&lt;p&gt;
+All queries to a database in SQL are realized via the &lt;code&gt;select&lt;/code&gt; statement.
+This is the general construction:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;select&lt;/code&gt; &lt;code&gt;attribute|expression&lt;/code&gt; → which attributes should the result table contain?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;from&lt;/code&gt; &lt;code&gt;list of tables&lt;/code&gt; → which tables are required for the query?&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;where&lt;/code&gt;  &lt;code&gt;condition&lt;/code&gt; ] → which conditions should the result tuples fulfill?&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;group by&lt;/code&gt;  &lt;code&gt;list of attributes&lt;/code&gt; ] → summarize/condense identical attribute values&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;having&lt;/code&gt;  &lt;code&gt;condition&lt;/code&gt; ] → condition in regards to grouped tables&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;
+[ &lt;code&gt;order by&lt;/code&gt;  &lt;code&gt;sort&lt;/code&gt; ] → specification of sorting for the resulting table
+&lt;/p&gt;
+
+&lt;p&gt;
+Now let's look at some simple example queries (mostly π projection and \roh rename at one point):
+&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+I insert the slides here because they are visually more appealing/clear :D
+&lt;/p&gt;
+
+&lt;p&gt;
+Three simple queries:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-1.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-2.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-3.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Sorting:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-4.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-5.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Simple query with &lt;i&gt;distinct&lt;/i&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-6.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-05/</guid><pubDate>Tue, 20 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 13</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-13/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org8c4d7fa" class="outline-2"&gt;
 &lt;h2 id="org8c4d7fa"&gt;Design and Correctness of Algorithms&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org8c4d7fa"&gt;
 &lt;p&gt;
@@ -1733,1686 +2951,4 @@ If the initializer list does not contain an initializer for some elements, those
 Source(s): &lt;a href="https://www.learncpp.com/cpp-tutorial/47-structs/"&gt;https://www.learncpp.com/cpp-tutorial/47-structs/&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 04</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-Well, to be honest I would have expected that we cover the physical design phase of our database design cycle in this lecture. Turns out we didn't. Did we? I don't know :D ! It seems that lecturers tend to provide some course outline which they then don't (explicitly) follow how you would expect it.
-&lt;/p&gt;
-
-&lt;p&gt;
-So in this lecture it was all about &lt;b&gt;relational algebra&lt;/b&gt;, which I think can be associated to the logical design phase (remember that the RM &lt;b&gt;relational&lt;/b&gt; model was the central topic there), so yeah there's that :D.
-&lt;/p&gt;
-
-&lt;p&gt;
-(╯°□°)╯︵ ┻━┻
-&lt;/p&gt;
-
-&lt;p&gt;
-Nevermind let's go!
-&lt;/p&gt;
-
-&lt;p&gt;
-By the way put that table down 
-&lt;/p&gt;
-
-&lt;p&gt;
-┬─┬ノ( º _ ºノ)
-&lt;/p&gt;
-
-&lt;p&gt;
-Good…
-&lt;/p&gt;
-
-&lt;div id="outline-container-org0521997" class="outline-2"&gt;
-&lt;h2 id="org0521997"&gt;Relational Algebra - Fundamental Operations&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0521997"&gt;
-&lt;p&gt;
-Remember from &lt;a href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/#outline-container-org01e0d8f"&gt;here&lt;/a&gt; (lecture 2) that a data model consists of a structural part, an operatoinal part and integrity rules. Relational algebra which we'll deal with in this lecture belongs to the &lt;b&gt;operational part&lt;/b&gt;, which describes permitted operations on the data and their outcome.
-&lt;/p&gt;
-
-&lt;p&gt;
-Relational algebra is a formal language with the purpose of extracting information/data out of relations.
-&lt;/p&gt;
-
-&lt;p&gt;
-A relational expression (relationaler Ausdruck) derives a new relation out of existing or constant base relation(s) (Basisrelation) via a relational operation.
-There are different relational operations/operators (there are more than those listed below):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;unary operations: selection, projection, rename&lt;/li&gt;
-&lt;li&gt;binary operations: join (Vereinigung), (set) difference (Differenz), cartesian product (Kreuzprodukt)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-A set has &lt;b&gt;closure&lt;/b&gt; (Abgeschlossenheit) under an operation if performance of that operation on members of the set always produces a member of the same set; in this case we also say that the set is closed under the operation. In case of relational algebra a operation always creates another relation.
-&lt;/p&gt;
-
-&lt;p&gt;
-The consequence of closure is that we are able to continue doing operations with the result of an operation ("weiterrechnen"). If X and Y are relational expressions (base expressions (relations) or compound expressions (resulting relations)?) then X ∪ Y, X-Y, X×Y, σ&lt;sub&gt;P&lt;/sub&gt;(X), π&lt;sub&gt;A&lt;/sub&gt;(X) and \roh(X) are also relational expressions/propositions (relationale Ausdrücke).
-To specify the evaluation order of relational terms, they may be put into parentheses.
-&lt;/p&gt;
-
-&lt;p&gt;
-Slides: We won't look at operations to define/change relations (now or for ever ?:D dunno)
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org2657d03" class="outline-3"&gt;
-&lt;h3 id="org2657d03"&gt;Selection&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2657d03"&gt;
-&lt;p&gt;
-A selection is visualized as σ&lt;sub&gt;P&lt;/sub&gt;(R) . That fancy little greek letter σ you see there is called sigma. It in fact is a &lt;i&gt;small&lt;/i&gt; sigma (the big sigma is the sum sign!). So to perform a selection we first need \(R\). \(R\) is a &lt;i&gt;relation&lt;/i&gt;. And the subscript parameter \(P\) is a &lt;i&gt;predicate&lt;/i&gt; (logical proposition/expression which refers to attributes of \(R\)). The result of such selection operation is a relation with the same relation schema as \(R\) which holds all tuples from R that fulfill the criteria of the predicate \(P\) (predicate is like a condition/selection criteria).
-&lt;/p&gt;
-
-&lt;p&gt;
-The &lt;b&gt;degree&lt;/b&gt; of the resulting relation σ&lt;sub&gt;P&lt;/sub&gt;(R) is equal to the degree of R: \(deg(\sigma_P(R)) = deg(R)\). What is the degree you ask? 
-We had this in lecture 3 my friend but I'll copy it from there: &lt;i&gt;"the degree of a relation R describes the amount of attributes resp involved domains"&lt;/i&gt; (Also from wikipedia: The number of attributes constituting a heading is called the degree, which term also applies to tuples and relations. The term n-tuple refers to a tuple of degree n (n ≥ 0).)
-&lt;/p&gt;
-
-&lt;p&gt;
-The &lt;b&gt;cardinality&lt;/b&gt; of the resulting relation σ&lt;sub&gt;P&lt;/sub&gt;(R) is smaller or equal to the cardinality of R: \(|\sigma_P(R)| \leq |(R)|\). What is the cardinality you also ask? Well my friend we &lt;i&gt;also&lt;/i&gt; had this in lecture 3, but you're lucky that I'm such a nice fellow copy-and-pasterer :D: &lt;i&gt;"the cardinality of a relation R describes the amount of tuples (rows/elements) in R"&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Okay suppose we have the following relation &lt;b&gt;R&lt;/b&gt;:
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;1&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;45&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;2&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;23&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;3&lt;/td&gt;
-&lt;td class="org-left"&gt;a2&lt;/td&gt;
-&lt;td class="org-right"&gt;13&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;4&lt;/td&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;99&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;7&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;10&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;7&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-Now let's do some selections:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;σ&lt;sub&gt;e=5&lt;/sub&gt;(R)&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;1&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;45&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;2&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;23&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;3&lt;/td&gt;
-&lt;td class="org-left"&gt;a2&lt;/td&gt;
-&lt;td class="org-right"&gt;13&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;σ&lt;sub&gt;c&amp;gt;40∧e&amp;lt;7&lt;/sub&gt;(R)&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;1&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;45&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;σ&lt;sub&gt;b='a3'&lt;/sub&gt;(R)&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;a&lt;/td&gt;
-&lt;td class="org-left"&gt;b&lt;/td&gt;
-&lt;td class="org-left"&gt;c&lt;/td&gt;
-&lt;td class="org-left"&gt;d&lt;/td&gt;
-&lt;td class="org-left"&gt;e&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-As you can see the degree is always the same (5) while the cardinality varies (3, 1, 0).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgf0bd3d3" class="outline-3"&gt;
-&lt;h3 id="orgf0bd3d3"&gt;Projection&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf0bd3d3"&gt;
-&lt;p&gt;
-A projection is visualized as π&lt;sub&gt;A&lt;/sub&gt;(R). I think everybody knows this greek letter π it is called pi for those who don't. So to perform a projection we first need \(R\). \(R\) is a &lt;i&gt;relation&lt;/i&gt;. And the subscript parameter \(A\) is an &lt;i&gt;attribute set&lt;/i&gt; (Attributmenge) that solely holds attributes of R. The result of such projection operation is:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a relation of all tuples from R, the schema of the resulting relation solely consists of the attributes of A (all tuples but just the specified attributes)&lt;/li&gt;
-&lt;li&gt;if A does not contain key attributes (to identify uniquely) the amount of tuples will be reduced because duplicates won't be included&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;
-The &lt;b&gt;degree&lt;/b&gt; of the resulting relation π&lt;sub&gt;A&lt;/sub&gt;(R) is smaller or equal to the degree of R: \(deg(\pi_A(R)) \leq deg(R)\).
-&lt;/p&gt;
-
-
-&lt;p&gt;
-The &lt;b&gt;cardinality&lt;/b&gt; of the resulting relation π&lt;sub&gt;A&lt;/sub&gt;(R) is smaller or equal to the cardinality of R if key attributes aren't included: \(|\pi_A(R)| \leq |(R)|\). When key attributes are kept via A then the cardinality of π&lt;sub&gt;A&lt;/sub&gt;(R) is equal to the cardinality of R: \(|\pi_A(R)| = |(R)|\).
-&lt;/p&gt;
-
-&lt;p&gt;
-Okay again suppose we have the following relation &lt;b&gt;R&lt;/b&gt;:
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;1&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;45&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;2&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;23&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;3&lt;/td&gt;
-&lt;td class="org-left"&gt;a2&lt;/td&gt;
-&lt;td class="org-right"&gt;13&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;4&lt;/td&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;99&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;7&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;10&lt;/td&gt;
-&lt;td class="org-left"&gt;xx&lt;/td&gt;
-&lt;td class="org-right"&gt;7&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-Now let's do some projections:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;π{a,b,c}(R)&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;a&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;c&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;1&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;45&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;2&lt;/td&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;23&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;3&lt;/td&gt;
-&lt;td class="org-left"&gt;a2&lt;/td&gt;
-&lt;td class="org-right"&gt;13&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;4&lt;/td&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;99&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;π{b,e}(R)&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;b&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;e&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;a1&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;a2&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;b1&lt;/td&gt;
-&lt;td class="org-right"&gt;7&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;π{d}(R)&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;d&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;xxx&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-So notice that projection gives us unique attribute combinations.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org6a487d7" class="outline-3"&gt;
-&lt;h3 id="org6a487d7"&gt;Rename&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6a487d7"&gt;
-&lt;p&gt;
-A rename is a unary operation (one relation) denoted with this \roh which is callled "roh". It can be used to:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;rename a relation: \roh&lt;sub&gt;S&lt;/sub&gt;(R) = R is renamed to S&lt;/li&gt;
-&lt;li&gt;rename an attribute: \roh&lt;sub&gt;b ← a&lt;/sub&gt;(R) = attribute a is renamed to b (of relation R)&lt;/li&gt;
-&lt;li&gt;rename all attributes: \roh&lt;sub&gt;(x,y,z,..)&lt;/sub&gt;(R) = all attributes of R are renamed to the names in parens, this case x, y and z&lt;/li&gt;
-&lt;li&gt;combined renaming: \roh&lt;sub&gt;S(a,b,c)&lt;/sub&gt;(R) = relation R is renamed to S and all its attributes are renamed to a, b, c&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Example of rename operation:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/rename.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org5932ab5" class="outline-3"&gt;
-&lt;h3 id="org5932ab5"&gt;Join&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5932ab5"&gt;
-&lt;p&gt;
-To perform a join we need two relations R and S with the same schema (same attribute domains). The attributes of R and S can be named differently though as long as they have the same domain (and of course semantic). A join is visualized like \(R \cup S\). In set theory "∪" denotes the union.
-&lt;/p&gt;
-
-&lt;p&gt;
-The result of a join is a relation with the schema of R (same as S) with all tuples from R and S. If there are identical tuples in R and S those duplicates are eliminated.
-&lt;/p&gt;
-
-
-&lt;p&gt;
-The &lt;b&gt;degree&lt;/b&gt; of the resulting relation R ∪ S is equal to the degree of R: \(deg(R \cup S) = deg(R) = deg(S)\).
-&lt;/p&gt;
-
-
-&lt;p&gt;
-The &lt;b&gt;cardinality&lt;/b&gt; of the resulting relation R ∪ S is equal to the cardinality of R plus the cardinality of S if there are no duplicate tuples → \(|R \cup S| = |R| + |S|\). However if there are duplicate tuples then the cardinality of R ∪ S is smaller: \(|R \cup S| &amp;lt; |R| + |S|\).
-&lt;/p&gt;
-
-&lt;p&gt;
-Example join operation without duplicates:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/join-without-dupl.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Example join operation with duplicates:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/join-with-dupl.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org98b0506" class="outline-3"&gt;
-&lt;h3 id="org98b0506"&gt;Difference&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org98b0506"&gt;
-&lt;p&gt;
-To perform a set difference we need two relations R and S with the same schema (same attribute domains). The attributes of R and S can be named differently though as long as they have the same domain (and of course semantic). A set difference is visualized like \(R - S\). 
-The result of a set difference operation are the tuples, which are present in R but are &lt;b&gt;not&lt;/b&gt; in the second relation S.
-&lt;/p&gt;
-
-&lt;p&gt;
-The degree of \(deg(R-S)\) is equal to \(deg(R)\). 
-&lt;/p&gt;
-
-&lt;p&gt;
-If there is no overlap between the cardinality of R-S is equal to the cardinality of R: \(|R-S| = |R|\). Think about this makes sense because nothing from R is removed if it not in S. But usually there's some overlap so the cardinality is \(|R-S| &amp;lt; |R|\).
-&lt;/p&gt;
-
-&lt;p&gt;
-Example set difference with overlap:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-with-overlap.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Example set difference without overlap:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-without-overlap.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgdbce71d" class="outline-3"&gt;
-&lt;h3 id="orgdbce71d"&gt;Cartesian Product&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdbce71d"&gt;
-&lt;p&gt;
-The cartesian product (Kreuzprodukt) is also a binary operation which means that it acts on two relations R and S. In contrast to the operations we looked at so far, the cartesian product &lt;i&gt;does not&lt;/i&gt; require the relations to have the same schema. The cartesian product operation is denoted as \(R × S\).
-&lt;/p&gt;
-
-&lt;p&gt;
-The resulting relation of a cartesian product operation has a schema consisting of the schema of R and S. The tuple set of the resulting relation is a set of every possible combination of tuples from R and S.
-&lt;/p&gt;
-
-&lt;p&gt;
-The degree is \(deg(R × S) = deg(R) + deg(S)\) and the cardinality \(|R × S| = |R| * |S|\).
-&lt;/p&gt;
-
-&lt;p&gt;
-Beware that because of the combination of all tuples the resulting relation can get quite big.
-&lt;/p&gt;
-
-&lt;p&gt;
-Example of a cartesian product operation:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/cartesian-prod.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Extending the Notation&lt;/b&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-It is a somewhat common use case that two relations need to be combined (via cartesian product) and those relations have attributes with the same name in their schema which we need to distinguish after performing the cartesian product operation.
-&lt;/p&gt;
-
-&lt;p&gt;
-To do so and to avoid cumbersome rename operations we prefix identically named attributes with their origin relation name and a dot ".".
-&lt;/p&gt;
-
-&lt;p&gt;
-An example of &lt;i&gt;attribue qualification&lt;/i&gt;:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/attribute-quali.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-This should however be used for temporary relation requests only. If it is planned to continue using the resulting/product relation (Produktrelation) we should qualify the attribute names distinctively via explicit renaming.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org63e0b11" class="outline-2"&gt;
-&lt;h2 id="org63e0b11"&gt;A practicle example request en detail&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org63e0b11"&gt;
-&lt;p&gt;
-Take the following Entity-Relationship Model(UML) and the derived Relational Model:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/practicle-example.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-So, we want to know which lectures the student with matricle number 134534 attended.
-To find out we will first formulate the query/request in relational algebra:
-&lt;/p&gt;
-
-&lt;p&gt;
-\[
-\pi[titel](\sigma[matrNr=134534 \wedge Lehrveranstaltung.nummer=Hört.Nummer](Lehrveranstaltung × Hört))
-\]
-&lt;/p&gt;
-
-&lt;p&gt;
-↑ Notice that to improve readability we can put the subscript parameters and subscript attributes in brackets instead
-&lt;/p&gt;
-
-&lt;p&gt;
-Now let's take a detailed look at the individual steps of what really happens here:
-&lt;/p&gt;
-
-&lt;p&gt;
-First we create a new (temporary) relation via the cartesian product:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/example-cartesian-product.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Then we select all tuples where the Lehrveranstaltung.nummer(lecture number) matches the Hört.nummer (hears number). This is crucial because the cartesian product operation combines &lt;i&gt;all&lt;/i&gt; tuples and we kind of want to "filter" to where the original tuples match (think about what is done here and why! it is important)
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/example-selection-1.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-and of those we select the tuple(s) where the matrNr is what we search for (134534)
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/example-selection-2.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-The following image shows the resulting relation of which we then &lt;i&gt;project&lt;/i&gt; the attribute that we are interested in (title) to get to our final result relation:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/projection-example.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgd198e22" class="outline-2"&gt;
-&lt;h2 id="orgd198e22"&gt;Another Example&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd198e22"&gt;
-&lt;p&gt;
-Take a look at this new (similar to the previous but different!) model:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-example.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Now we want to know the names of the students that attend the lecture "Datenstrukturen".
-&lt;/p&gt;
-
-&lt;p&gt;
-This is the according relational algebra formula:
-\[
-\pi[name](\sigma[titel='Datenstrukturen' \wedge Lehrveranstaltung.nummer=Hört.Nummer \wedge Student.matrNr=Hört.matrNr](Student × Lehrveranstaltung × Hört))
-\]
-&lt;/p&gt;
-
-&lt;p&gt;
-First the cartesian product of the three relations:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-cartesian.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Then the selection which is again really crucial (!!!):
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-selection.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-And finally the projection to select the attribute of interest 'name':
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/three-relations-projection.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org393e4b6" class="outline-2"&gt;
-&lt;h2 id="org393e4b6"&gt;Relational Algebra - Extending the Fundamental Operations&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org393e4b6"&gt;
-&lt;p&gt;
-The six operations (selection, projection, join, difference, cartesian product) that we covered in the previous sections are the fundamental/base operations (Basisoperationen) of relational algebra.
-&lt;/p&gt;
-
-&lt;p&gt;
-Now we'll introduce more operations that are for commonly used functionality. All of these are however expressable via the fundamental/base operations as well.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org26fefca" class="outline-3"&gt;
-&lt;h3 id="org26fefca"&gt;Theta-Join&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org26fefca"&gt;
-&lt;p&gt;
-When we perform the cartesian product operation we almost always perform a corresponding selection with it (/afterwards) because all tuples are combined but we only want those which match on a certain attribue. The motivation behind a &lt;b&gt;Theta-Join&lt;/b&gt; is to combine these two steps into one logical operation.
-&lt;/p&gt;
-
-&lt;p&gt;
-A theta join is visualized with a bowtie ⋈ and a theta θ. The θ represents a predicate similar to the predicate P in a selection (selection criteria). A theta-join between to relations R and S would look like this R ⋈&lt;sub&gt;θ&lt;/sub&gt; S.
-&lt;/p&gt;
-
-&lt;p&gt;
-This shows the equivalence of a theta-join to a cartesian product and selection operation: R ⋈&lt;sub&gt;θ&lt;/sub&gt; S = σ&lt;sub&gt;θ&lt;/sub&gt;(R × S)
-&lt;/p&gt;
-
-&lt;p&gt;
-By the way when the predicate θ only holds equality operators/assignments/conditions the term &lt;i&gt;equi-join&lt;/i&gt; is used for this operation.
-&lt;/p&gt;
-
-&lt;p&gt;
-The degree of a relation resulting from a theta join is equal to the degree of both relations that are joined: \(deg(R ⋈_{\theta} S) = deg(R) + deg(S)\).
-&lt;/p&gt;
-
-&lt;p&gt;
-The cardinality of a relation resulting from a theta join is smaller or equal to the cardinality of both relations multiplied with each other: \|R ⋈&lt;sub&gt;θ&lt;/sub&gt; S| ≤ |R| * |S| )\)
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/theta-join-example.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org4a5e8fd" class="outline-3"&gt;
-&lt;h3 id="org4a5e8fd"&gt;Natural Join&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4a5e8fd"&gt;
-&lt;p&gt;
-While the predicate of a theta-join can be used to compare arbitrary attributes, it is pretty common to join on attribute of the same name which for example represent a primary in one and a foreign key in the other relation.
-&lt;/p&gt;
-
-&lt;p&gt;
-From SO: 
-&lt;/p&gt;
-
-&lt;p&gt;
-A &lt;i&gt;theta join&lt;/i&gt; allows for arbitrary comparison relationships (such as ≥).
-&lt;/p&gt;
-
-&lt;p&gt;
-An &lt;i&gt;equijoin&lt;/i&gt; is a theta join using the equality operator.
-&lt;/p&gt;
-
-&lt;p&gt;
-A &lt;i&gt;natural join&lt;/i&gt; is an equijoin on attributes that have the same name in each relationship
-&lt;/p&gt;
-
-&lt;p&gt;
-Back to slides:
-"In der Regel wird der Verbund zwischen zwei Relationen aufgrund einer SchlüsselFremdschlüssel - Beziehung hergestellt. Da diese Zuordnung meist aufgrund der Übereinstimmung von Werten getroffen wird und Schlüssel und Fremdschlüssel oft gleich benannt sind, nutzt der Natural Join diese Situation aus und führt die Zuordnung durch."
-&lt;/p&gt;
-
-&lt;p&gt;
-To perform a natural join we need two relations R and S that are in a key - foreign-key relationship with identically named attributes.
-&lt;/p&gt;
-
-&lt;p&gt;
-The result of a natural join is a relation consisting of the attributes of R and S. The tuples in that relation are the tuple combinations from R and S that match in &lt;i&gt;all identically named attributes&lt;/i&gt;. All attributes with the same name are only included once in the resulting relation.
-&lt;/p&gt;
-
-&lt;p&gt;
-A natural join is visualized with this symbol ⊗ (symbol for tensor product) and here is an example of a natural join:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/natural-join-example.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-This shows the equivalence of a natural-join first to projection on a theta join and then completely in fundamental/base operations:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/natural-join-equivalence.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-The degree of a relation resulting from a natural join is equal to the degree of one relation plus the other minus the cardinality of the same named attributes in those:
-\(deg(R \otimes S) = \deg(R) + \deg(S) - |C|\)
-&lt;/p&gt;
-
-&lt;p&gt;
-The cardinality is: \(R \otimes S \leq |R| * |S|\)
-&lt;/p&gt;
-
-&lt;p&gt;
-Here's an example that visualizes the result equivalence of a natural join:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/natural-join-equivalence-example.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-And here's an link to a wikipedia section about joins &lt;a href="https://en.wikipedia.org/wiki/Relational_algebra#Natural_join_(%E2%8B%88)"&gt;https://en.wikipedia.org/wiki/Relational_algebra#Natural_join_(⋈)&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgcacc306" class="outline-3"&gt;
-&lt;h3 id="orgcacc306"&gt;Intersection (Schnittmenge)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcacc306"&gt;
-&lt;p&gt;
-To perform an intersection operation we need two relations with an identical schema. The attributes can be named differently but need to have the same domain (and semantic).
-&lt;/p&gt;
-
-&lt;p&gt;
-The intersection operation is visualized with this "∩" (cap; set intersection).
-&lt;/p&gt;
-
-&lt;p&gt;
-The result of such operation is a relation with the schema of R that holds all tuples which are present in R &lt;i&gt;and&lt;/i&gt; S.
-&lt;/p&gt;
-
-&lt;p&gt;
-This is the intersection operation in two fundamental operations (difference operation):
-R ∩ S = R - (R - S) 
-&lt;/p&gt;
-
-&lt;p&gt;
-Think about it: (R - S) removes all duplicates between the two relations so the result are only the unique tuples. Those are then removed from the original R relation so that we only have the duplicates which is the intersection (Überschneidung) ^_^
-&lt;/p&gt;
-
-&lt;p&gt;
-The degree (attribute count) of R ∩ S is equal to \(deg(R) = \deg(S)\).
-&lt;/p&gt;
-
-&lt;p&gt;
-The cardinality (tuple count) of R ∩ S is less than or equal to the smaller cardinality of R and S. This makes sense because only tuples that are in one relation can be duplicated in the other. So if one relation holds 3 tuples (cardinality = 3) and the other holds 8 (cardinality = 8) then there can only be 3 duplications (=intersections) at max therefore the cardinality would be less than or equal (at max when all are duplicated) to 3: |R ∩ S| ≤ min(|R|, |S|)
-&lt;/p&gt;
-
-&lt;p&gt;
-Intersection operation example:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/intersection-example.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org07b5a63" class="outline-3"&gt;
-&lt;h3 id="org07b5a63"&gt;Division&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org07b5a63"&gt;
-&lt;p&gt;
-The division is a binary operation that is written as R ÷ S. The result consists of the restrictions of tuples in R to the attribute names unique to R, i.e., in the header of R but not in the header of S, for which it holds that all their combinations with tuples in S are present in R (from wikipedia).
-&lt;/p&gt;
-
-&lt;p&gt;
-Slides: To perform a division we need a relation R with an attribute set A and a relation S with an attribute set B. The attribute set B needs to be a subset of A: B \subseteq A. 
-Now if we build the difference of A and B: A - B = C we get C which is a set that holds all attributes from A, that are not elements in B.
-&lt;/p&gt;
-
-&lt;p&gt;
-The &lt;i&gt;division&lt;/i&gt; R ÷ S  returns all tuples from R for which there's a match in each tuple of S. The schema of the resulting relation T is just C.
-&lt;/p&gt;
-
-&lt;p&gt;
-Degree: \(deg(R \div S) = |C|\)
-Cardinality: |R ÷ S| ≤ |R|
-&lt;/p&gt;
-
-&lt;p&gt;
-Equivalence and example of a division operation:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/division-example.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org73b3e8b" class="outline-2"&gt;
-&lt;h2 id="org73b3e8b"&gt;Further Extension of the Algebra&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org73b3e8b"&gt;
-&lt;p&gt;
-In the context of database application there's often a wish for operations which exceed the capabilities of the fundamental operations of relational algebra.
-&lt;/p&gt;
-
-&lt;p&gt;
-For some of this wanted functionality there are extensions of the relational algebra, for example:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;aggregate functions
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;operate on all values of an attribute of a tuple set, eg sum, min, max, mean&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;grouping functions
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;create groups of tuples that hold the same value in specific attributes&lt;/li&gt;
-&lt;li&gt;aggregate functions then evaluate these groups&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/</guid><pubDate>Tue, 06 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 09</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org80666c1" class="outline-2"&gt;
-&lt;h2 id="org80666c1"&gt;Complex Types in Python&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org80666c1"&gt;
-&lt;p&gt;
-There are built-in types in Python which offer similar functionality to the complex types in C and more.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org9f298c6" class="outline-3"&gt;
-&lt;h3 id="org9f298c6"&gt;Python Strings&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org9f298c6"&gt;
-&lt;p&gt;
-Strings are character sequences of a fixed length and are to be precise &lt;b&gt;not&lt;/b&gt; a complex type (why?).
-String literals are enclosed by double or single quotes (and triple quotes to span eg multiple lines; single quotes are most used).
-&lt;/p&gt;
-
-&lt;p&gt;
-Python strings are "immutable" which means they cannot be changed after they are created. Since strings can't be changed, we construct &lt;b&gt;new&lt;/b&gt; strings as we go to represent computed values. So for example the expression &lt;code&gt;'hello' + 'there'&lt;/code&gt; takes in the 2 strings &lt;code&gt;'hello'&lt;/code&gt; and &lt;code&gt;'there'&lt;/code&gt; and builds a new string &lt;code&gt;'hellothere'&lt;/code&gt;. The resulting string has a different &lt;code&gt;id()&lt;/code&gt; because a new object is created and the others may then be garbage collected.
-&lt;/p&gt;
-
-&lt;p&gt;
-Python string also recognize escape sequences similarly to C for example &lt;code&gt;'\n'&lt;/code&gt;  is recognized as a ASCII Linefeed. To prevent parsing of those one may use a &lt;i&gt;raw string&lt;/i&gt; by prepending and &lt;code&gt;r&lt;/code&gt; or &lt;code&gt;R&lt;/code&gt; to the string:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"H&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;i"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;"H\ni"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Hello"&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Id of "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;" "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s2"&gt;" World"&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Id of "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;" "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-H
-i
-H\ni
-Id of Hello 139710321381872
-Id of Hello World 139710321440048
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Individual characters of a string can be accessed via &lt;code&gt;[]&lt;/code&gt; bracket notation.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org2c8ba19" class="outline-3"&gt;
-&lt;h3 id="org2c8ba19"&gt;Python Lists&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2c8ba19"&gt;
-&lt;p&gt;
-Python has a great built-in list type named "list". List literals are written within square brackets &lt;code&gt;[ ]&lt;/code&gt;. Lists work similarly to strings - use the &lt;code&gt;len()&lt;/code&gt; function and square brackets [ ] to access data, with the first element at index &lt;code&gt;0&lt;/code&gt;. To access elements from the back use negative indices.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'red'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'blue'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'green'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
-
-&lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'red'&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'blue'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Assignment with an &lt;code&gt;=&lt;/code&gt; on lists does not make a copy. Instead, assignment makes the two variables point to the one list in memory.
-&lt;/p&gt;
-
-&lt;p&gt;
-The "empty list" is just an empty pair of brackets &lt;code&gt;[ ]&lt;/code&gt;. The &lt;code&gt;+&lt;/code&gt; works to append two lists, so &lt;code&gt;[1, 2] + [3, 4]&lt;/code&gt; yields &lt;code&gt;[1, 2, 3, 4]&lt;/code&gt; (this is just like &lt;code&gt;+&lt;/code&gt; with strings).
-&lt;/p&gt;
-
-&lt;p&gt;
-Lists in Python can (in contrast to arrays in C) hold values of different types.
-&lt;/p&gt;
-
-&lt;p&gt;
-Python lists are also &lt;i&gt;mutable&lt;/i&gt;. In fact there are a lot of &lt;i&gt;methods&lt;/i&gt; to modify lists eg &lt;code&gt;append&lt;/code&gt;, &lt;code&gt;insert&lt;/code&gt;, &lt;code&gt;remove&lt;/code&gt;, &lt;code&gt;pop&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org5896b74" class="outline-3"&gt;
-&lt;h3 id="org5896b74"&gt;Python Tuples&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5896b74"&gt;
-&lt;p&gt;
-Tuples in Python are similar to lists with the difference that they are &lt;b&gt;immutable&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-A tuple is a sequence of immutable Python objects. Tuples are sequences, just like lists. The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses, whereas lists use square brackets.
-&lt;/p&gt;
-
-&lt;p&gt;
-Creating a tuple is as simple as putting different comma-separated values. Optionally you can put these comma-separated values between parentheses also. For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;tup1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'physics'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'chemistry'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1997&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;tup2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;tup3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"a"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"b"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"c"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"d"&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-The empty tuple is written as two parens containing nothing &lt;code&gt;tup1 = ()&lt;/code&gt;. To write a tuple containing a single value you have to include a comma, even though there is only one value &lt;code&gt;(77,)&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Like string indices, tuple indices start at 0, and they can be sliced, concatenated, and so on.
-&lt;/p&gt;
-
-&lt;p&gt;
-However if tuples are eg concatenated via &lt;code&gt;+&lt;/code&gt; a new tuple is created:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"tuple: "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"with id: "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"tuple: "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"with id: "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-tuple:  (1, 2) with id:  140056518200328
-tuple:  (1, 2, 3, 4) with id:  140056518172568
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org80a4df1" class="outline-3"&gt;
-&lt;h3 id="org80a4df1"&gt;Python Sets&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org80a4df1"&gt;
-&lt;p&gt;
-Since Python 2.6 there are set types (Mengentypen). 
-A Set in Python is a data structure equivalent to sets in mathematics. It may consist of various elements; the order of elements in a set is undefined. You can add and delete elements of a set, you can iterate the elements of the set, you can perform standard operations on sets (union, intersection, difference). Besides that, you can check if an element belongs to a set.
-&lt;/p&gt;
-
-&lt;p&gt;
-Unlike arrays, where the elements are stored as ordered list, the order of elements in a set is undefined (moreover, the set elements are usually not stored in order of appearance in the set; this allows checking if an element belongs to a set faster than just going through all the elements of the set).
-&lt;/p&gt;
-
-&lt;p&gt;
-Any immutable data type can be an element of a set: a number, a string, a tuple. Mutable (changeable) data types cannot be elements of the set. In particular, lists cannot be an element of a set (but tuple can), and another set cannot be an element of a set. The requirement of immutability follows from the way how do computers represent sets in memory.
-&lt;/p&gt;
-
-&lt;p&gt;
-Sets unlike lists or tuples can't have multiple occurrences of the same element → &lt;code&gt;set('a','b','c','a','b','c')&lt;/code&gt; → &lt;code&gt;{'a','b','c'}&lt;/code&gt; no values are duplicated.
-&lt;/p&gt;
-
-&lt;p&gt;
-To create a set the &lt;code&gt;set()&lt;/code&gt; is called which constructs a Python set from the given iterable and returns it.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# empty set&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-
-&lt;span class="c1"&gt;# from string&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Python'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="c1"&gt;# from tuple&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s1"&gt;'a'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'i'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'u'&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-&lt;span class="c1"&gt;# from list&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;'a'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'i'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'u'&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
-
-&lt;span class="c1"&gt;# from range&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-set()
-{'t', 'y', 'h', 'o', 'n', 'P'}
-{'e', 'u', 'o', 'a', 'i'}
-{'e', 'u', 'o', 'a', 'i'}
-{0, 1, 2, 3, 4}
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Sets are implemented in a way, which doesn't allow mutable objects. The following example demonstrates that we cannot include, for example, lists as elements:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="s2"&gt;"Python"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;"Perl"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Paris"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Berlin"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"London"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="c1"&gt;# valid set of tuples&lt;/span&gt;
-
-&lt;span class="n"&gt;cities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(([&lt;/span&gt;&lt;span class="s2"&gt;"Python"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;"Perl"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"Paris"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Berlin"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"London"&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="c1"&gt;# -&amp;gt; TypeError: unhashable type: 'list'&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Although sets can't contain mutable objects, sets are mutable themselves. Elements may for example added via the &lt;code&gt;add&lt;/code&gt; method (&lt;code&gt;cities.add("Tokyo")&lt;/code&gt;).
-&lt;/p&gt;
-
-&lt;p&gt;
-Frozensets are like sets except that they cannot be changed so they are immutable:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;frozenset&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;"Frankfurt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Basel"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;"Freiburg"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;cities&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Strasbourg"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# AttributeError: 'frozenset' object  has no attribute 'add'&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-There's also a simplified shorter notation to construct sets:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"London"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Paris"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Madrid"&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cities&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-&amp;lt;class 'set'&amp;gt;
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-The known operations from set theory are also available via Python Sets (following part in German xD):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;len(s)&lt;/code&gt; gibt Mächtigkeit der Menge &lt;code&gt;s&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;s1 | s2&lt;/code&gt; gibt Vereinigungsmenge von &lt;code&gt;s1&lt;/code&gt; und &lt;code&gt;s1&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;s1 &amp;amp; s2&lt;/code&gt; gibt Schnittmenge von &lt;code&gt;s1&lt;/code&gt; und &lt;code&gt;s1&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;s1 - s2&lt;/code&gt; gibt Differenzmenge von &lt;code&gt;s1&lt;/code&gt; und &lt;code&gt;s1&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;s1 ^ s2&lt;/code&gt; gibt symmetrische Differenzmenge von &lt;code&gt;s1&lt;/code&gt; und &lt;code&gt;s1&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org89f6671" class="outline-3"&gt;
-&lt;h3 id="org89f6671"&gt;Python Dictionaries&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org89f6671"&gt;
-&lt;p&gt;
-A dictionary is a collection which is unordered, changeable (mutable) and indexed. In Python dictionaries are written with curly brackets, and they have keys and values.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;thisdict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;	&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"value"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;"brand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"Ford"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;"model"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"Mustang"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;"year"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1964&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;thisdict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-You can access the items of a dictionary by referring to its key name, inside square brackets:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;thisdict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;	&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"value"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;"brand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"Ford"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;"model"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"Mustang"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;"year"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1964&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;thisdict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;thisdict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"model"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;thisdict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"year"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-value
-Mustang
-1964
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-More on dictionaries and how to work with them / their methods &lt;a href="https://www.w3schools.com/python/python_dictionaries.asp"&gt;here&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb2c2bcc" class="outline-2"&gt;
-&lt;h2 id="orgb2c2bcc"&gt;Loops and Iterations&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb2c2bcc"&gt;
-&lt;p&gt;
-In C there are three types of loops:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;while loop&lt;/li&gt;
-&lt;li&gt;do while loop&lt;/li&gt;
-&lt;li&gt;for loop&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-All of these loops use conditions are able to simulate one another. Which one to use is often a matter of personal taste.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org184bfcc" class="outline-3"&gt;
-&lt;h3 id="org184bfcc"&gt;While Loop&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org184bfcc"&gt;
-&lt;p&gt;
-The while loop executes as long as a conditions is true resp. until a condition is false. This is the procedure:
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;Check if condition &lt;code&gt;while (expression/Condition)&lt;/code&gt; evaluates to true (nonzero)&lt;/li&gt;
-&lt;li&gt;If yes: execute body of the loop and jump to 1.&lt;/li&gt;
-&lt;li&gt;If no: resume program execution after the loop&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Program to find factorial of a number&lt;/span&gt;
-&lt;span class="c1"&gt;// For a positive integer n, factorial = 1*2*3...n&lt;/span&gt;
-
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-    &lt;span class="c1"&gt;// printf("Enter an integer: ");&lt;/span&gt;
-    &lt;span class="c1"&gt;// scanf("%d",&amp;amp;number); // cannot read from stdio in my blog :)&lt;/span&gt;
-    &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-    &lt;span class="n"&gt;factorial&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-    &lt;span class="c1"&gt;// loop terminates when number is less than or equal to 0&lt;/span&gt;
-    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt;
-	&lt;span class="n"&gt;factorial&lt;/span&gt; &lt;span class="o"&gt;*=&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// factorial = factorial*number;&lt;/span&gt;
-	&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-	&lt;span class="c1"&gt;// alternatively: factorial *= number--;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Factorial= %lld"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Factorial= 120
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Loops can be used to fill fields of an array:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;arraySize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// constant for array size&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraySize&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;arraySize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 0,1,2...11&lt;/span&gt;
-    &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;arraySize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 0,1,2...11&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Element %d of arr: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-    &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Element 0 of arr: 0
-Element 1 of arr: 1
-Element 2 of arr: 4
-Element 3 of arr: 9
-Element 4 of arr: 16
-Element 5 of arr: 25
-Element 6 of arr: 36
-Element 7 of arr: 49
-Element 8 of arr: 64
-Element 9 of arr: 81
-Element 10 of arr: 100
-Element 11 of arr: 121
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org5a72cc7" class="outline-3"&gt;
-&lt;h3 id="org5a72cc7"&gt;Do While Loop&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5a72cc7"&gt;
-&lt;p&gt;
-The do while loop is similar to the while loop with the difference being that the do while loop checks the condition &lt;b&gt;after&lt;/b&gt; it has run, therefore it always runs at least one time.
-The syntax is
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;statement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;condition&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// notice the semicolon!&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org312c1c8" class="outline-3"&gt;
-&lt;h3 id="org312c1c8"&gt;For Loop&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org312c1c8"&gt;
-&lt;p&gt;
-A for loop is a repetition control structure that allows you to efficiently write a loop that needs to execute a specific number of times.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;condition&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;mutation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eg&lt;/span&gt; &lt;span class="n"&gt;increment&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;decrement&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// "conditon" and "mutation" are expressions (see C standard) but that is how they're used commonly&lt;/span&gt;
-  &lt;span class="n"&gt;statement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Here is the flow of control in a 'for' loop :
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the init step is executed first, and only once
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;this step allows you to declare and initialize any loop control variables&lt;/li&gt;
-&lt;li&gt;you are not required to put a statement here, as long as a semicolon appears&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;next, the condition is evaluated
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;if it is true, the body of the loop is executed&lt;/li&gt;
-&lt;li&gt;if it is false, the body of the loop does not execute and the flow of control jumps to the next statement just after the 'for' loop&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;after the body of the 'for' loop executes, the flow of control jumps back up to the mutation statement
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;this statement allows you to update any loop control variables&lt;/li&gt;
-&lt;li&gt;This statement can be left blank, as long as a semicolon appears after the condition&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;the condition is now evaluated again 
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;if it is true, the loop executes and the process repeats itself (body of loop, then mutation step, and then again condition)&lt;/li&gt;
-&lt;li&gt;after the condition becomes false, the 'for' loop terminates&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Omitting expressions:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// omitting initalization&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d. argument: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-
-
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(;;)&lt;/span&gt; &lt;span class="c1"&gt;// endless loop&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"The answer is 42&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
-
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// never reached&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Dont forget it is possible to have more complex conditions and multiple assignments!
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d, %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-2, 1
-3, 2
-4, 3
-5, 4
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org7aba6ab" class="outline-3"&gt;
-&lt;h3 id="org7aba6ab"&gt;&lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7aba6ab"&gt;
-&lt;p&gt;
-Loops run as long as the loop condition evaluates to true. There are however two ways to modify the control flow from &lt;i&gt;inside the function body&lt;/i&gt;:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;break&lt;/code&gt; stops execution of the loop regardless of the loop condition&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;continue&lt;/code&gt; immediately starts the next evaluation of first the loop condition and possibly the next loop iteration&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt; should be used sparsely - an excessive use might be an indicator for insufficient program logic.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* reciprocal .c -- calculate reciprocal value of array elements */&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="cm"&gt;/* a negative value indicates end of list */&lt;/span&gt;
-&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;.5&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;3.1415&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;.33333&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.7182&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;42.23&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mf"&gt;0.0001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;continue&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// notice the condition!&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d value : %f&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-0 value : 1.000000
-1 value : 2.000000
-2 value : 0.318319
-3 value : 3.000030
-4 value : 0.000000
-5 value : 0.367891
-6 value : 0.023680
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org8e0127e" class="outline-2"&gt;
-&lt;h2 id="org8e0127e"&gt;Loops in Python&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8e0127e"&gt;
-&lt;p&gt;
-There are two types of loops in Python &lt;code&gt;for&lt;/code&gt; and &lt;code&gt;while&lt;/code&gt;.
-The &lt;code&gt;while&lt;/code&gt; loops are similar to their pendants in C:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"i ="&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-i = 5
-i = 4
-i = 3
-i = 2
-i = 1
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-&lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt; are also available in Python with the same semantic as in C.
-&lt;/p&gt;
-
-&lt;p&gt;
-In addition to what we know from C in Python there can be an optional &lt;code&gt;else&lt;/code&gt; branch after a loop which is executed &lt;b&gt;after the loop finished&lt;/b&gt; if it was &lt;b&gt;not canceled&lt;/b&gt;:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"1. Loop finished execution"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"------------"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-	&lt;span class="k"&gt;break&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"2. Loop finished execution"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# not executed because loop doesnt finish naturally but is canceled&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-0
-1
-2
-1. Loop finished execution
-------------
-0
-1
-2
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-&lt;code&gt;else&lt;/code&gt; can also be used with the for loop in Python!
-&lt;/p&gt;
-
-&lt;p&gt;
-The &lt;code&gt;for&lt;/code&gt; loop in Python iterates over a given &lt;i&gt;sequence&lt;/i&gt; or &lt;i&gt;set&lt;/i&gt; (an iterable type!):
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ITERABLE&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;do_something&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-In the example above the elements of &lt;code&gt;ITERABLE&lt;/code&gt; are assigned to &lt;code&gt;i&lt;/code&gt; one by one per iteration.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'John'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Paul'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'George'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Pete'&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
- &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-John
-Paul
-George
-Pete
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-This also works for mixed types:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Alpha'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-AlphaAlpha
-96
-0.4
-(1, 2, 3, 1, 2, 3)
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-To "mimic" the C for loop we can iterate over a &lt;i&gt;sequence&lt;/i&gt; of numbers using the &lt;code&gt;range&lt;/code&gt; function:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# range([start,] stop [, step]) # generate from 'start' up to and NOT INCLUDING 'stop' and increment by 'step'&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"------------"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-0
-2
-4
-------------
-0
-1
-2
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org90be5d3" class="outline-2"&gt;
-&lt;h2 id="org90be5d3"&gt;Iterators and Loop Functions in C&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org90be5d3"&gt;
-&lt;p&gt;
-Code sample of an iterator with C:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;"John"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Paul"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"George"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Ringo"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;first&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// so the iterator can be used multiple times -&amp;gt; first ALWAYS returns first element&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;next&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// set index to 0 when arrived at last element delmiited via NULL&lt;/span&gt;
-  &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%s "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-John Paul George Ringo
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Iterators like those above are more common in C++ where they are more elegant (also in C there are prettier ways to do this).
-&lt;/p&gt;
-
-&lt;p&gt;
-Until now we used loops with assignments (state model). It is also possible to have loops in the functional model where they are realized via recursion:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;say_it&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Ctuhlu!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;say_it&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// i-- would NOT work because i is evaluated -&amp;gt; 3 and passed to the function and THEN decremented -&amp;gt; endless loop&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;say_it&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-Ctuhlu!
-Ctuhlu!
-Ctuhlu!
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-It is also possible to separate the loop body from the "loop mechanic" → &lt;i&gt;generic loop function&lt;/i&gt;. To do so we use a &lt;i&gt;pointer to functions&lt;/i&gt;.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="nf"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;functionPointer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// functions are passed by pointer (efficiency) need to be wrapped in () else it would be interpreted as "void*" return type (pointer to void) instead&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;functionPointer&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt; 
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loopBody&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d^2 = %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loopBody&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-0^2 = 0
-1^2 = 1
-2^2 = 4
-3^2 = 9
-4^2 = 16
-5^2 = 25
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-In Python such things are achievable more easily via &lt;a href="https://www.programiz.com/python-programming/anonymous-function"&gt;lambda functions&lt;/a&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org54d7fb9" class="outline-2"&gt;
-&lt;h2 id="org54d7fb9"&gt;Equivalence&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org54d7fb9"&gt;
-&lt;p&gt;
-Generally every loop in a program can be translated into a recursive function and each (trivially) recursive function can be computed via loops. To be precise: &lt;i&gt;primitive-recursive functions&lt;/i&gt; can be computed with &lt;i&gt;a priori limited&lt;/i&gt; loops, for the so called &lt;i&gt;μ-recursive functions&lt;/i&gt; (&lt;i&gt;my&lt;/i&gt; "müh" xD as i like to call it). The ACKERMANN-Function for example is not trivially recursive.
-&lt;/p&gt;
-
-&lt;p&gt;
-So for the most practical use cases loops and recursion are equipotent (gleichmächtig). However loops are usually more clearer (übersichtlicher), but there are also cases where recursion are the handier solution.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-09/</guid><pubDate>Sun, 04 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>

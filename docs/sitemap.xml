@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/</loc>
-  <lastmod>2018-11-09T18:36:00Z</lastmod>
+  <lastmod>2018-11-27T08:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/2018/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-11-25T21:14:00Z</lastmod>
+  <lastmod>2018-11-27T17:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
@@ -47,7 +47,11 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-2.html</loc>
-  <lastmod>2018-11-25T21:14:00Z</lastmod>
+  <lastmod>2018-11-27T08:28:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/index-3.html</loc>
+  <lastmod>2018-11-27T17:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -174,6 +178,14 @@
   <lastmod>2018-11-25T21:14:00Z</lastmod>
  </url>
  <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</loc>
+  <lastmod>2018-11-27T20:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15/</loc>
+  <lastmod>2018-11-27T17:20:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
@@ -216,6 +228,10 @@
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-04/</loc>
   <lastmod>2018-11-18T09:50:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-05/</loc>
+  <lastmod>2018-11-27T08:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-01/</loc>

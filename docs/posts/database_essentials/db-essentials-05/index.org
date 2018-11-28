@@ -1,0 +1,290 @@
+#+BEGIN_COMMENT
+.. title: Database Essentials - Lecture 05
+.. slug: db-essentials-05
+.. date: 2018-11-21
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+* Relational Calculus (Relationenkalkül)
+The expressions in /relational algebra/ form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate relation results. This way describes they way of /how/ you come to the relation result.
+
+There is an alternative however to describe a query result without specifying the derivation (Herleitungsvorschrift), which is called *relational calculus*. In relational calculus only the requirements of the desired resulting tuples are specified/described but not the way they are retrieved. This way describes /what/ is contained in the result relation.
+
+A calculus (Kalkül) is a method, that is determined by a set of rules, to deal with certain mathematical problems in a systematic manner and solve them automatically (slides: ist eine durch ein System von Regeln festgelegte Methode, mit deren Hilfe bestimmte mathematische Probleme systematisch behandelt und automatisch gelöst werden können) 
+
+The basis for relational calculus is predicate/quantifier logic  of the first degree (Prädikatenlogik erster Ordnung) and the result of a query is a set of tuples. In relational calculus calculus expressions (Kalkülausdrücke) are used, in particular the *tuple calculus* and the *domain calculus*.
+
+** Tuple Calculus
+The query notation for tuple calculus is {t | P(t)} where t is a tuple variable and P is a predicate over t. The result of such query is a set of all tuples for which the evaluation of the predicate P(t) yields /true/.
+
+Take the following example relation "Student":
+| matrNr{PK} | name       | major            |
+|------------+------------+------------------|
+|     123456 | Archimedes | Computer Science |
+|     134534 | Sophokles  | Philosophy       |
+|     145698 | Cleopatra  | Computer Science |
+
+Query: {s | s \in Student \wedge s.major='Computer Science'}
+
+Result: 
+| matrNr{PK} | name       | major            |
+|------------+------------+------------------|
+|     123456 | Archimedes | Computer Science |
+|     145698 | Cleopatra  | Computer Science |
+
+**** Tuple Calculus - Atoms and Formulas
+For the construction of formula we define sets of atomic formulas.
+*Atoms* in tuple calculus:
+- t_i \in R_j \rightarrow the relation R_j is assigned as the codomain(Wertebereich) to the tuple variable t_i
+- t_i.A \Theta t_j.B \rightarrow comparison operation between two attributes A and B which are attributes of the relations that were assigned as codomains to t_i and t_j
+- t_i.A \Theta c \rightarrow comparison operation between attribute A and constant C
+- c \Theta t_i.A \rightarrow comparison operation between constant c and attribute A
+  
+The comparison operation denoted by \Theta encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are <, >, \leq, \geq, =, \neq and =, \neq for boolean values.
+
+Every atom is a /formula/. When F_1 and F_2 are formulas then the following constructs are formulas as well:
+- F_1 \wedge F_2 = Conjunction
+- F_1 \vee F_2 = Disjunction
+- \neg F_1  = Negation
+- (F_1) = wrapping (Klammerung)
+  
+When F is a formula and t is a tuple variable in F then the following constructs are formulas:
+- (\exists t)(F) = existential quantifier (Existenzquantifizierung)
+- (\forall t)(F) = universal quantifier (Universalquantifizierung)
+
+**** Tuple Calculus - Free and Bounded Tuple Variables
+A tuple variable in an atom (respective in a formula consisting of one atom) is *free*.
+
+A tuple variable in a formula that is composed via negation, conjunction or disconjuction of other partial formulas is *free* or *bound* depending on its state in the other partial formulas. In this case a tuple variable can be free and bound at the same time.
+
+*Free* tuple variables t of a formula F get *bound* to the respective quantifier F' when they are embedded in one of the following formulas F':
+- F' = (\exists t)(F)
+- F' = (\forall t)(F)
+  
+Examples:
+- F_1: s.name = 'Cleopatra'
+- F_2: (\exists t)(s.matrNr = t.matrNr)
+- F_3: (\forall s)(s.name = 'Cleopatra')
+  
+**** Tuple Calculus - Computing Formulas (Substitution)
+Given that F(s) is a formula with the tuple variable s \in R and a tuple t \in R. Then the following happens in each atom of F(S) with a /free/ s:
+- s \in R is replaced with true
+- s.A \Theta u.B is replaced with t.A \Theta u.B (A and B are atrtibutes, u is another tuple variable u \neq s)
+- s.A \Theta c is replaced with the concrete boolean value of the operation t.A \Theta c
+  
+These steps are repeated for further tuple variables if necessary until F(s) only holds (possibly logically connected) boolean constants (true/false) and atoms with bound variables.
+
+Example:
+Given tuple variable s and t from a schema R(a,b) and the formula \forall t(t \in R \wedge t.a = s.a \wedge t.b < s.b) the substitution happens/looks like this:
+- the tuple s = (8, 12) \rightarrow \forall t(t \in R \wedge t.a = 8 \wedge t.b < 12)
+- then the tuple t = (8, 9) \rightarrow \forall t(true \wedge 8 = 8 \wedge 9 < 12) \rightarrow \forall t(true \wedge true \wedge true) \rightarrow \forall t(true)
+  
+**** Tuple Calculus - Computing Formulas for bound Tuple Variables
+Given a tuple variable s \in R:
+- the formula (\exists t)(F) evaluates to /true/ if F becomes true for at least one substitution of s and the formula evaluates to false otherwise
+  - this means that at least one tuple can be associated with the free tuple variable s for which F becomes true
+- the formular (\forall t)(F) evaluates to /true/ if F becomes true for /all/ substitutions of s
+  - this means that F is true/fulfilled for all tuples that can be assigned to the free tuple variable s 
+    
+*Final Formula Computation* = formulas now only hold logically connected boolean values which can be evaluated accordingly.
+
+**** Tuple Calculus - Expressions and Queries
+In general an expression/query of the tuple calculus is of the following form: {t_1.A_1, t_2.A_2, ..., t_n.A_n | F(t_1, ..., t_m)}
+
+t_i are tuple variables (which in general encompass all tuples of the so called univesere, that's why they are usually assigned to a relation) and A_i are attributes of the relation that is assigned to the tuple variable t_i, while F(t_1, ..., t_m) is the formula of the tuple calculus.
+
+Taking our previous student relation:
+| matrNr{PK} | name       | major            |
+|------------+------------+------------------|
+|     123456 | Archimedes | Computer Science |
+|     134534 | Sophokles  | Philosophy       |
+|     145698 | Cleopatra  | Computer Science |
+
+Query: {s.matrNr, s.name | s \in Student \wedge s.major='Philosophy'} yields
+
+| matrNr{PK} | name      |
+|------------+-----------|
+|     134534 | Sophokles |
+
+------ 
+ 
+Now onto another example. Given the relations teacher
+| persNr{PK} | name |
+|------------+------|
+|       3467 | Ares |
+|       6897 | Zeus |
+|      43467 | Hera |
+and lectures
+| number{PK} | title                    | persNr{FK} |
+|------------+--------------------------+------------|
+|        123 | Data Structures          |       6897 |
+|        234 | Databases in Praxis      |       6897 |
+|        345 | Database Essentials      |      43467 |
+|        456 | Exercise Data Structures |       6897 |
+
+we want to know the names of the teachers that hold at least one lecture:
+{t.name | t \in Teacher \wedge (\exists l)(l \in lectures \wedge t.persNr = l.persNr)} which leads to this resulting relation
+| name |
+|------|
+| Zeus |
+| Hera |
+
+------- 
+
+To query the lecture titles of lectures given by Zeus we'd use the following:
+{t.title | t \in Lectures \wedge (\exists l)(l \in teacher \wedge t.persNr = l.persNr \wedge l.name='Zeus') } to get
+| title                    |
+|--------------------------|
+| Data Structures          |
+| Databases in Praxis      |
+| Exercise Data Structures |
+
+-------
+
+For the next example queries I embed the slides because it is more clearer and not so much overhead.
+[[img-url:/images/tuple-calc-ex1.png ]]
+[[img-url:/images/tuple-calc-ex2.png ]]
+
+One problem with queries of tuple calculus is that they can sometimes produce an infinite result relation, eg { s | \neq(s \in Student) }.
+
+The domain of a formula contains all constant values of a formula and all possible attribute values of all tuples in the referenced relations.
+
+A *safe query* is a query where the result of the query stems from the domain of the formula \rightarrow we only use safe queries (all queries we've seen so far are safe).
+
+Also see https://en.wikipedia.org/wiki/Tuple_relational_calculus for more
+** Domain Calculus
+The domain relational calculus is also a calculus that serves as a declarative database query language for the relational data model. In DRC queries have this form {d_1, d_2, ..., d_n | F(d_1, d_2, ..., d_m)} with m \geq n where d_i are domain variables which describe the values of attribute domains and F(d_1, d_2, ..., d_m) is the formula. The formula consists, like in the relational calculus (tuple?), of either a an atom, a logical connection of formulas or a formula with a domain variable which is existential quantified or universal quantified.
+**** Domain Calculus - Atoms and Comparison
+Given the relation R of degree n where every d_i is a domain variable, the atom \(R(d_1, d_2, ..., d_n)\) expresses that the codomain (Werteliste) <d_1, d_2, ..., d_n> has to be a tuple of the relation R.
+
+Comparisons
+- d_i \theta d_j \rightarrow comparison operation between two domain variables d_i and d_j
+- d_i \theta c \rightarrow comparison operation between domain variable d_i and constant c
+- c \theta d_i \rightarrow comparison operation between constant c and domain variable d_i
+  
+The comparison operation denoted by \Theta encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are <, >, \leq, \geq, =, \neq and =, \neq for boolean values (required that the elements of the domain can be compared pairwise).
+
+**** Domain Calculus - Example Queries
+Given the relations teacher
+| persNr{PK} | name |
+|------------+------|
+|      43467 | Ares |
+|       6897 | Zeus |
+|      43424 | Hera |
+and lectures
+| number{PK} | title                    | persNr{FK} |
+|------------+--------------------------+------------|
+|        123 | Data Structures          |       6897 |
+|        234 | Databases in Praxis      |       6897 |
+|        345 | Database Essentials      |      43467 |
+|        456 | Exercise Data Structures |       6897 |
+
+*1.)* List the lecture titles that are held by teacher with persNr 6897?
+- The query {b | (\exists a) (\exists c) (Lecture(a,b,c) \wedge c=6897)} yields:
+| title                    |
+|--------------------------|
+| Data Structures          |
+| Databases in Praxis      |
+| Exercise Data Structures |
+
+
+*2.)* What are the numbers and titles of lectures held by Zeus?
+- The query {a, b | (\exists c) (\exists d) (\exists e) (Lecture(a,b,c) \wedge teacher(d,e) \wedge c=d \wedge e='Zeus')} yields:
+| number{PK} | title                    |
+|------------+--------------------------|
+|        123 | Data Structures          |
+|        234 | Databases in Praxis      |
+|        456 | Exercise Data Structures |
+
+
+*3.)* What's the title of lectures hold by teacher with persNr6987 with at least 5 Credits?
+
+We now have an additional column in our lecture relation:
+| number{PK} | title                    | credits | persNr{FK} |
+|------------+--------------------------+---------+------------|
+|        123 | Data Structures          |       5 |       6897 |
+|        234 | Databases in Praxis      |       5 |       6897 |
+|        345 | Database Essentials      |       5 |      43467 |
+|        456 | Exercise Data Structures |       2 |       6897 |
+
+Alternatively a query can be formulated with a direct specification of constant attribute values: {b | (Lecture(a, b, /5/, /6897/))} which yields
+| title               |
+|---------------------|
+| Data Structures     |
+| Databases in Praxis |
+(slides: alle Variablen, die nicht „links“ auftreten, sind hierbei automatisch existenzquantifiziert)
+
+* Relational Languages
+The following query languages possess the same expresiveness (Ausdrucksmächtigkeit):
+- relational algebra
+- tuple calculus (limited to safe queries) 
+- domain calculus (limited to safe queries)
+  
+Queries can be converted between those languages at any time.
+
+In praxis the *relational calculus* is the foundation for "real" query languages of relational DBMS:
+- tuple calculus is the foundation of SQL (Structured Query Language)
+- domain calculus is the foundation of QBE (Query By Example)
+  
+*Relational algebgra* is the foundation for the realisation of queries in the query languages. The sequence of operations describes the path to the result of a query (which can be optimized in some circumstances).
+
+* Introduction to SQL
+*** History
+- 1970: Codd presents the relational model
+- 1974: development of the relational query language SEQUEL (Structured English Query Language)
+- 1976: further development (Weiterentwicklung) of SEQUEL served as a foundation of the DBMS prototype "System R" by IBM, which was later renamed to SQL (Structured Query Language)
+- in the early 80s: a lot of DBMS emerge by different commercial providers \rightarrow standardization is needed
+- 1987: first SQL Standard
+- 1992: big expansion of the standard \rightarrow SQL 2 (SQL-92)
+- since then continuous evolution: SQL-99 \rightarrow SQL:2003 \rightarrow SQL:2006 \rightarrow SQL:2008 \rightarrow SQL:2011
+
+*** Introduction to SQL - Components
+There two high level components of SQL:
+
+*Data Definition Language (DDL)*
+- defines the database structure
+- manages the access rights to the data
+
+and 
+
+*Data Manipulation Language (DML)*
+- used to formulate queries for the data sets
+- create, read, update, delete of data
+  
+For now we'll focus on the Data Manipulation Language.
+
+SQL does not operate on relations, but rather their physical representation form which are *tables*. In tables duplicate entries are possible which we may have to exclude. In contrast to relations there is one more advantage to table which is that they can be sorted.
+
+*** Introduction to SQL - Queries
+All queries to a database in SQL are realized via the =select= statement.
+This is the general construction:
+- =select= =attribute|expression= \rightarrow which attributes should the result table contain?
+- =from= =list of tables= \rightarrow which tables are required for the query?
+- [ =where=  =condition= ] \rightarrow which conditions should the result tuples fulfill?
+- [ =group by=  =list of attributes= ] \rightarrow summarize/condense identical attribute values
+- [ =having=  =condition= ] \rightarrow condition in regards to grouped tables
+- [ =order by=  =sort= ] \rightarrow specification of sorting for the resulting table
+
+ Now let's look at some simple example queries (mostly \pi projection and \roh rename at one point):
+
+I insert the slides here because they are visually more appealing/clear :D
+
+Three simple queries:
+[[img-url:/images/simple-sql-1.png ]]
+[[img-url:/images/simple-sql-2.png ]]
+[[img-url:/images/simple-sql-3.png ]]
+
+Sorting:
+[[img-url:/images/simple-sql-4.png ]]
+[[img-url:/images/simple-sql-5.png ]]
+
+Simple query with /distinct/
+[[img-url:/images/simple-sql-6.png ]]
+
+
+ 
