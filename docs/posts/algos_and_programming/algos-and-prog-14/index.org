@@ -88,4 +88,105 @@ A distinction is made between 2 kinds of "correctness":
     
 So, /if/ a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
 
-In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+# In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+*** Proving Sort Algorithms
+We already got to know a sorting algorithm in one of the first lectures (bubble sort). The correctness of a solution to the problem of sorting can be expressed independently from the algorithm: Input = sequence of elements (e_1, e_2, ..., e_n) \rightarrow Output = permutation (e'_1, e'_2, ..., e'_n) of (e_1, e_2, ..., e_n) so that e'_1 \leq e'_2 \leq ... \leq e'_n
+
+The bubble sort algorithm would look like this in pseudocode:
+
+#+ATTR_HTML: :style background:lightgrey;
+*Require:* e_1, ..., e_n\\
+*Ensure:* \forall i \in {1, n-1}, e_i \leq e_{i+1}\\
+#+ATTR_HTML: :style background:lightgrey;
+*repeat*\\
+  /changed/ \leftarrow false\\
+  *for* /i/ \leftarrow 1, ..., /n/-1 *do*\\
+   *if* e_i > e_{i+1} *then*\\
+    SWAP(e_i, e_{i+1})\\
+    /changed/ \leftarrow true\\
+   *end if*\\
+  *end for*\\
+*until* /changed/ = false\\
+ 
+Proving the /partial correctness/ is simple: If this algorithm terminates /changed/ has to be /false/ which implicates that for no i \in {1, ..., n-1} this e_i > e_{i+1} can be true which in reverse means that \forall i \in {1, ..., n-1}, e_i \leq e_{i+1}
+
+[[https://en.wikipedia.org/wiki/Insertion_sort][/Insertion Sort/]] is an alternative algorithm to solve the sorting problem. This is the corresponding pseudocode:
+
+#+ATTR_HTML: :style background:lightgrey;
+*Require:* e_1, ..., e_n\\
+*Ensure:* \forall i \in {1, n-1}, e_i \leq e_{i+1}\\
+#+ATTR_HTML: :style background:lightgrey;
+*for* j \leftarrow 2, ..., n *do*\\
+  /key/ \leftarrow e_j\\
+  /i/ \leftarrow j-1\\
+  *while* (/i/ > 0) \wedge (e_i > key) *do*\\
+   e_{i+1} \leftarrow e_i           ; move all elements that are greater than /key/ right\\
+   i \leftarrow i-1\\
+  *end while*\\
+  e_i+1 \leftarrow key          ; fill the gap with /key/\\
+*end for*
+
+Take a look at slides 47 - 50 (chapter 7) for details on how to prove the correctness of insertion sort with lemmas.
+
+** Soundness (Korrektheitskalküle)
+Proofs like the one we saw for bubble sort are /ad hoc/. There are/is a special logic/calculus (Kalküle \rightarrow formales System zum Ziehen logischer Schlüsse) in regards to the correctness of programs, for example the *FLoyd-Hoare logic* (Hoare-Kalkül) or the *wp-Kalkül* (Edsger Dijkstra).
+
+These logics/calculus use triples: {Precondition} Code {Postcondition}. There are axiomatic rules: \frac{premise}{consequence}
+
+** Termination
+*Partial Correctness* is proven under the assumption that the code /terminates/. Therefore termination has to be proven to prove *total correctness*. This is especially critical when dealing with recursion (abort after finite steps and reach the recursion base) and loops (loop condition has to evaluate to false after finite steps and the loop body also has to terminate in each iteration).
+
+To prove termination of a loop a *termination function* \tau (Tau) has to be specified:
+$$ \tau : V \rightarrow \mathbb{N} $$
+
+The termination function has to have the following characteristics:
+- its values are natural numbers (including 0)
+- each iteration resp. execution of the loop body *reduces* its value (strictly monotonically decreasing)
+- the loop condition is /false/ when \tau = 0
+- \tau is the upper boundary for the loop iterations that are left
+
+If a termination function is known a *termination rule* can be used:
+[[img-url:/images/termination-rule.png ]]
+
+So *if* a termination function is /strictly monotonically decreasing/ *and* the value 0 leads to the end of the loop *and* the loop body terminates, *then* the loop *terminates*
+
+So this has to be shown:
+1. strictly monotonically decrease of \tau
+2. the implication that the loop condition B is not met at the lowest \tau
+3. the termination of the body P
+
+Example of a termination function for a loop that calculates the square of a nonnegative integer:
+#+BEGIN_SRC C
+  /* { Input: 0 <= a} */
+  int y = 0;
+  int x = 0;
+
+  while (y != a) {
+    x = x + 2*y + 1;
+    y = y + 1;
+   }
+
+  /* { Output: x = a^2} */
+#+END_SRC
+Pick the termination function \tau = a - y
+1. \tau is decremented in each iteration, since 'y' is incremented and 'a' is constant
+2. if \tau = 0 then y = a therefore the loop condition y != a evaluates to /false/
+3. the loop body does not contain recursions, gotos or other loops, termination is therefore trivial
+
+\rightarrow The loop terminates!
+
+To prove the termination of recursions the same procedure as with loops can be applied. A termination function \tau is created that gets smaller with increasing recursion depth. The following has to apply:
+1. the values are natural numbers (incl 0)
+2. the value of \tau decreases with each method call (recursion)
+3. discontinuation is forced at \tau = 0 (or earlier)
+ 
+#+BEGIN_SRC C
+  /* Fibonacci Example */
+  int fib(int n) {
+    if (n < 3) return 1;
+    else return (fib(n-1) + fib(n-2));
+  }
+#+END_SRC
+
+
+However proving termination is not always possible (eg golbachs conjecture for expressing integers as sum of primes)

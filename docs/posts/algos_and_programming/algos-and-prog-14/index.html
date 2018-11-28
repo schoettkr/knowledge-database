@@ -95,13 +95,13 @@ Pseudocode generally defines a set">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org193541e" class="outline-2">
-<h2 id="org193541e">Design and Correctness of Algorithms</h2>
-<div class="outline-text-2" id="text-org193541e">
+        <div id="outline-container-org6e8cbea" class="outline-2">
+<h2 id="org6e8cbea">Design and Correctness of Algorithms</h2>
+<div class="outline-text-2" id="text-org6e8cbea">
 </div>
-<div id="outline-container-org035cf35" class="outline-3">
-<h3 id="org035cf35">Pseudocode</h3>
-<div class="outline-text-3" id="text-org035cf35">
+<div id="outline-container-org53555a0" class="outline-3">
+<h3 id="org53555a0">Pseudocode</h3>
+<div class="outline-text-3" id="text-org53555a0">
 <p>
 As we've learnt in the last lecture <i>pseudocode</i> is one of the most popular semiformal specification languages.
 </p>
@@ -129,9 +129,9 @@ The slides note at this point that in the future we'll often look at algorithms 
 </div>
 </div>
 
-<div id="outline-container-org6a583f8" class="outline-3">
-<h3 id="org6a583f8">Correctness</h3>
-<div class="outline-text-3" id="text-org6a583f8">
+<div id="outline-container-org9ee54eb" class="outline-3">
+<h3 id="org9ee54eb">Correctness</h3>
+<div class="outline-text-3" id="text-org9ee54eb">
 <p>
 When you find an approach for a problem / an algorithm, the <i>correctness</i> has to be validated.
 </p>
@@ -187,9 +187,9 @@ To proof the correctness it can be performed on a more <i>abstract level</i> ins
 </div>
 </div>
 
-<div id="outline-container-org050c734" class="outline-3">
-<h3 id="org050c734">Proofs</h3>
-<div class="outline-text-3" id="text-org050c734">
+<div id="outline-container-org35c579b" class="outline-3">
+<h3 id="org35c579b">Proofs</h3>
+<div class="outline-text-3" id="text-org35c579b">
 <p>
 Slides: Informale Definition = Ein Beweis ist eine Herleitung einer Aussage aus bereits bewiesenen Aussagen und/oder Grundannahmen (Axiomen)
 </p>
@@ -236,9 +236,9 @@ We know a few different (but still combinable) methods for proofs:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6d2bb1e" class="outline-3">
-<h3 id="org6d2bb1e">Proofs of Algorithms</h3>
-<div class="outline-text-3" id="text-org6d2bb1e">
+<div id="outline-container-orgb6ea655" class="outline-3">
+<h3 id="orgb6ea655">Proofs of Algorithms</h3>
+<div class="outline-text-3" id="text-orgb6ea655">
 <p>
 To prove an algorithm you have to ask two questions. 1) What is there to be proven (Specification)? 2.) What is already known?
 </p>
@@ -264,9 +264,150 @@ A distinction is made between 2 kinds of "correctness":
 <p>
 So, <i>if</i> a partial correct algorithm terminates he yields a correct result and a total correct algorithm yields the correct result after a finite amount of time. 
 </p>
+</div>
+<div id="outline-container-orgbcd9ec5" class="outline-4">
+<h4 id="orgbcd9ec5">Proving Sort Algorithms</h4>
+<div class="outline-text-4" id="text-orgbcd9ec5">
+<p>
+We already got to know a sorting algorithm in one of the first lectures (bubble sort). The correctness of a solution to the problem of sorting can be expressed independently from the algorithm: Input = sequence of elements (e<sub>1</sub>, e<sub>2</sub>, …, e<sub>n</sub>) → Output = permutation (e'<sub>1</sub>, e'<sub>2</sub>, …, e'<sub>n</sub>) of (e<sub>1</sub>, e<sub>2</sub>, …, e<sub>n</sub>) so that e'<sub>1</sub> ≤ e'<sub>2</sub> ≤ … ≤ e'<sub>n</sub></p>
 
 <p>
-In the next lecture/post we look a sorting algorithms and how/what kind of correctness we can prove there :P
+The bubble sort algorithm would look like this in pseudocode:
+</p>
+
+<p style="background:lightgrey;">
+<b>Require:</b> e<sub>1</sub>, …, e<sub>n</sub><br><b>Ensure:</b> ∀ i ∈ {1, n-1}, e<sub>i</sub> ≤ e<sub>i+1</sub><br></p>
+<p style="background:lightgrey;">
+<b>repeat</b><br>
+  <i>changed</i> ← false<br>
+  <b>for</b> <i>i</i> ← 1, …, <i>n</i>-1 <b>do</b><br>
+   <b>if</b> e<sub>i</sub> &gt; e<sub>i+1</sub><b>then</b><br>
+    SWAP(e<sub>i</sub>, e<sub>i+1</sub>)<br>
+    <i>changed</i> ← true<br>
+   <b>end if</b><br>
+  <b>end for</b><br><b>until</b> <i>changed</i> = false<br>
+ 
+Proving the <i>partial correctness</i> is simple: If this algorithm terminates <i>changed</i> has to be <i>false</i> which implicates that for no i ∈ {1, …, n-1} this e<sub>i</sub> &gt; e<sub>i+1</sub> can be true which in reverse means that ∀ i ∈ {1, …, n-1}, e<sub>i</sub> ≤ e<sub>i+1</sub></p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Insertion_sort"><i>Insertion Sort</i></a> is an alternative algorithm to solve the sorting problem. This is the corresponding pseudocode:
+</p>
+
+<p style="background:lightgrey;">
+<b>Require:</b> e<sub>1</sub>, …, e<sub>n</sub><br><b>Ensure:</b> ∀ i ∈ {1, n-1}, e<sub>i</sub> ≤ e<sub>i+1</sub><br></p>
+<p style="background:lightgrey;">
+<b>for</b> j ← 2, …, n <b>do</b><br>
+  <i>key</i> ← e<sub>j</sub><br>
+  <i>i</i> ← j-1<br>
+  <b>while</b> (<i>i</i> &gt; 0) ∧ (e<sub>i</sub> &gt; key) <b>do</b><br>
+   e<sub>i+1</sub> ← e<sub>i</sub>           ; move all elements that are greater than <i>key</i> right<br>
+   i ← i-1<br>
+  <b>end while</b><br>
+  e<sub>i</sub>+1 ← key          ; fill the gap with <i>key</i><br><b>end for</b>
+</p>
+
+<p>
+Take a look at slides 47 - 50 (chapter 7) for details on how to prove the correctness of insertion sort with lemmas.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org77d2b4b" class="outline-3">
+<h3 id="org77d2b4b">Soundness (Korrektheitskalküle)</h3>
+<div class="outline-text-3" id="text-org77d2b4b">
+<p>
+Proofs like the one we saw for bubble sort are <i>ad hoc</i>. There are/is a special logic/calculus (Kalküle → formales System zum Ziehen logischer Schlüsse) in regards to the correctness of programs, for example the <b>FLoyd-Hoare logic</b> (Hoare-Kalkül) or the <b>wp-Kalkül</b> (Edsger Dijkstra).
+</p>
+
+<p>
+These logics/calculus use triples: {Precondition} Code {Postcondition}. There are axiomatic rules: \frac{premise}{consequence}
+</p>
+</div>
+</div>
+
+<div id="outline-container-org89042db" class="outline-3">
+<h3 id="org89042db">Termination</h3>
+<div class="outline-text-3" id="text-org89042db">
+<p>
+<b>Partial Correctness</b> is proven under the assumption that the code <i>terminates</i>. Therefore termination has to be proven to prove <b>total correctness</b>. This is especially critical when dealing with recursion (abort after finite steps and reach the recursion base) and loops (loop condition has to evaluate to false after finite steps and the loop body also has to terminate in each iteration).
+</p>
+
+<p>
+To prove termination of a loop a <b>termination function</b> τ (Tau) has to be specified:
+\[ \tau : V \rightarrow \mathbb{N} \]
+</p>
+
+<p>
+The termination function has to have the following characteristics:
+</p>
+<ul class="org-ul">
+<li>its values are natural numbers (including 0)</li>
+<li>each iteration resp. execution of the loop body <b>reduces</b> its value (strictly monotonically decreasing)</li>
+<li>the loop condition is <i>false</i> when τ = 0</li>
+<li>τ is the upper boundary for the loop iterations that are left</li>
+</ul>
+<p>
+If a termination function is known a <b>termination rule</b> can be used:
+<img src="../../../images/termination-rule.png" alt="nil"></p>
+
+<p>
+So <b>if</b> a termination function is <i>strictly monotonically decreasing</i> <b>and</b> the value 0 leads to the end of the loop <b>and</b> the loop body terminates, <b>then</b> the loop <b>terminates</b>
+</p>
+
+<p>
+So this has to be shown:
+</p>
+<ol class="org-ol">
+<li>strictly monotonically decrease of τ</li>
+<li>the implication that the loop condition B is not met at the lowest τ</li>
+<li>the termination of the body P</li>
+</ol>
+<p>
+Example of a termination function for a loop that calculates the square of a nonnegative integer:
+</p>
+<div class="highlight"><pre><span></span><span class="cm">/* { Input: 0 &lt;= a} */</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="cm">/* { Output: x = a^2} */</span>
+</pre></div>
+<p>
+Pick the termination function τ = a - y
+</p>
+<ol class="org-ol">
+<li>τ is decremented in each iteration, since 'y' is incremented and 'a' is constant</li>
+<li>if τ = 0 then y = a therefore the loop condition y != a evaluates to <i>false</i>
+</li>
+<li>the loop body does not contain recursions, gotos or other loops, termination is therefore trivial</li>
+</ol>
+<p>
+→ The loop terminates!
+</p>
+
+<p>
+To prove the termination of recursions the same procedure as with loops can be applied. A termination function τ is created that gets smaller with increasing recursion depth. The following has to apply:
+</p>
+<ol class="org-ol">
+<li>the values are natural numbers (incl 0)</li>
+<li>the value of τ decreases with each method call (recursion)</li>
+<li>discontinuation is forced at τ = 0 (or earlier)</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="cm">/* Fibonacci Example */</span>
+<span class="kt">int</span> <span class="nf">fib</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>
+However proving termination is not always possible (eg golbachs conjecture for expressing integers as sum of primes)
 </p>
 </div>
 </div>
