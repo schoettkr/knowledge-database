@@ -95,9 +95,9 @@ As you've hopefully already noticed there ar">
 This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
 </p>
 
-<div id="outline-container-org7ccbb17" class="outline-2">
-<h2 id="org7ccbb17">Complexity</h2>
-<div class="outline-text-2" id="text-org7ccbb17">
+<div id="outline-container-orgd96ab9c" class="outline-2">
+<h2 id="orgd96ab9c">Complexity</h2>
+<div class="outline-text-2" id="text-orgd96ab9c">
 <p>
 As you've hopefully already noticed there are algorithms that differ in regards to <i>efficiency</i>. <b>Algorithmic efficiency</b> refers to the number of <b>computational resources</b> (<i>computation time</i> and <i>memory space</i>) used by the algorithm.
 </p>
@@ -107,9 +107,9 @@ For maximum efficiency we wish to minimize resource usage. However, different re
 </p>
 </div>
 
-<div id="outline-container-orgd1a70eb" class="outline-3">
-<h3 id="orgd1a70eb">RAM Model</h3>
-<div class="outline-text-3" id="text-orgd1a70eb">
+<div id="outline-container-orgfe55b46" class="outline-3">
+<h3 id="orgfe55b46">RAM Model</h3>
+<div class="outline-text-3" id="text-orgfe55b46">
 <p>
 It is impractical to measure the computation time with a stopwatch or operating system functions because then there'd be a lot of other factors involved such as compiler, hardware and operating system.
 </p>
@@ -238,7 +238,7 @@ Instructions that are executed in a loop are counted repeatedly and since the ex
 
 <ul class="org-ul">
 <li>
-<a id="org6fee8c1"></a>Run-time Analysis<br><div class="outline-text-5" id="text-org6fee8c1">
+<a id="orgea74082"></a>Run-time Analysis<br><div class="outline-text-5" id="text-orgea74082">
 <p>
 Even for constant \(n\) is T<sub>A</sub> not always the same:
 </p>
@@ -277,12 +277,237 @@ Note: I skipped the slides on "big A notation" here because I fail to see the re
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfa81238" class="outline-2">
-<h2 id="orgfa81238">Big O Notation</h2>
-<div class="outline-text-2" id="text-orgfa81238">
+<div id="outline-container-orge232fb0" class="outline-2">
+<h2 id="orge232fb0">Big O Notation</h2>
+<div class="outline-text-2" id="text-orge232fb0">
 <p>
-F16
+Often times the <b>growth rate</b> of algorithms/function is of interest. The <b>big-O notation</b> is commonly used to describe how a function grows. A common goal is to find algorithms/functions that are still efficient for large problem instances (inputs) and if that is the case we usually say that they scale good. Two functions eg \(f(n)\) and \(g(n)\) have the same growth rate when the ratio for a sufficient amount of \(n\) is limited by the same constant upper and lower boundaries (slides: Zwei Funktionen f(n) und g(n) haben das gleiche Wachstumsverhalten, falls für genügend große n das Verhältnis der beiden nach oben und unten durch Konstanten beschränkt ist), which means that \(c &lt; \frac{f(n)}{g(n)} and \frac{g(n)}{f(n)}\) needs to be true.
+For example:
 </p>
+<ul class="org-ul">
+<li>\(f_1(n)=n^2\) and \(f_2(n)=5*n^2-7*n\) have the <b>same grow</b> because for all \(n &gt; 2\) the following applies: \(\frac{1}{5} &lt; \frac{(5n^2-7n)}{n^2} &lt; 5\) and \(\frac{1}{5} &lt; \frac{n^2}{(5n^2-7n)} &lt; 5\)</li>
+<li>\(f_1(n)=n^2\) and \(f_2(n)=n^3\) do <b>not have the same grow</b> because for all sufficient large \(n\) (hinreichend groß) the following applies \(\frac{n^3}{n^2} = n &gt; c\)</li>
+</ul>
+<p>
+The big O notation (big O refers to the greek letter omikron) is also called <b>Landau Notation</b>.
+</p>
+
+<p>
+Big O Notation can also be used to state which function dominates the growth. For two monotone function f(n) and g(n) the function f(n) dominates the function g(n) if \(g(n) \in \mathcal{O}(f(n))\). The notation \(dom(f(n),g(n))\) yields the dominating function. For example
+</p>
+<ul class="org-ul">
+<li>dom(n<sup>3</sup>, n<sup>2</sup>) = n<sup>3</sup>
+</li>
+<li>dom(2<sup>n</sup>, n<sup>k</sup>) = 2<sup>n</sup> (for constant k &gt; 1)</li>
+</ul>
+<p>
+There are also some computation rules (Rechenregeln) when it comes to big O:
+\[
+\mathcal{O}(f(n)) + \mathcal{O}(g(n)) = \mathcal{O}(f(n) + g(n))\\
+\mathcal{O}(f(n) + g(n)) = \mathcal{O}(dom(f(n), g(n)))\\
+\mathcal{O}(f(n)) * \mathcal{O}(g(n)) = \mathcal{O}(f(n) * g(n))
+\]
+</p>
+
+<p>
+These are some common types/classes of functions in regards to big O:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+<col class="org-left">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left">Notation</th>
+<th scope="col" class="org-left">Term</th>
+<th scope="col" class="org-left">Typical Algorithms/Operations</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">O(1)</td>
+<td class="org-left">constant</td>
+<td class="org-left">addition, comparisons, recursive call</td>
+</tr>
+<tr>
+<td class="org-left">O(log n)</td>
+<td class="org-left">logarithmic</td>
+<td class="org-left">search in a sorted sequence</td>
+</tr>
+<tr>
+<td class="org-left">O(n)</td>
+<td class="org-left">linear</td>
+<td class="org-left">modifying each element of a set</td>
+</tr>
+<tr>
+<td class="org-left">O(n * log n)</td>
+<td class="org-left"> </td>
+<td class="org-left">good sorting algorithm</td>
+</tr>
+<tr>
+<td class="org-left">O(n * log n)</td>
+<td class="org-left"> </td>
+<td class="org-left">good sorting algorithms</td>
+</tr>
+<tr>
+<td class="org-left">O(n * log<sup>2</sup> n)</td>
+<td class="org-left"> </td>
+<td class="org-left">good sorting algorithms</td>
+</tr>
+<tr>
+<td class="org-left">…</td>
+<td class="org-left">….</td>
+<td class="org-left">…</td>
+</tr>
+<tr>
+<td class="org-left">O(n<sup>2</sup>)</td>
+<td class="org-left">quadratic</td>
+<td class="org-left">primitive sorting algorithms</td>
+</tr>
+<tr>
+<td class="org-left">O(n<sup>k</sup>), k &gt;= 2</td>
+<td class="org-left">polynomial</td>
+<td class="org-left">primitive sorting algorithms</td>
+</tr>
+<tr>
+<td class="org-left">…</td>
+<td class="org-left">…</td>
+<td class="org-left">…</td>
+</tr>
+<tr>
+<td class="org-left">O(2<sup>n</sup>)</td>
+<td class="org-left"> </td>
+<td class="org-left">trying combinations</td>
+</tr>
+<tr>
+<td class="org-left">O(k<sup>n</sup>), k &gt; 1</td>
+<td class="org-left">exponential</td>
+<td class="org-left"> </td>
+</tr>
+</tbody>
+</table>
+<p>
+The O(n)-notation depends on the size of the input, that is the storage space in bits or words. 
+</p>
+
+<p>
+In addition to the most common big O notation there are several related notations to describe other kinds of bounds on asymptotic growth rates:
+</p>
+<ul class="org-ul">
+<li>big Omega notation \(\Omega(f(n)) = {g(n) \exists c &gt; 0, \exists n_0 &gt;0, \forall n &gt; n_0, g(n) \geq c * f(n)}\) → lower boundary / "mindestens"</li>
+<li>big Theta notation \(\Theta(f(n)) = \mathcal{O}(f(n)) \cap \Omega(f(n))\) → exactly / "genau"</li>
+<li>little o notation \(o(f(n)) = {g(n) | \forall c &gt; 0, \exists n_0 &gt; 0, \forall n &gt; n_0, g(n) \leq c*f(n)}\) → at max / "weniger"</li>
+<li>little omega notation \(o(f(n)) = {g(n) | \forall c &gt; 0, \exists n_0 &gt; 0, \forall n &gt; n_0, g(n) \geq c*f(n)}\) →  "mehr"</li>
+</ul>
+<p>
+What followed in the slides are some example computation times for different complexities and algorithms.
+</p>
+
+<p>
+Take for example the algorithm to search the minimum in a sequence:
+</p>
+<div class="highlight"><pre><span></span><span class="nl">require</span><span class="p">:</span> <span class="n">sequence</span> <span class="n">a_1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">a_n</span><span class="p">;</span>
+<span class="nl">ensure</span><span class="p">:</span> <span class="n">p</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">a_1</span><span class="p">,...,</span> <span class="n">a_n</span><span class="p">);</span>
+
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="n">a_1</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">n</span><span class="p">}</span> <span class="k">do</span>
+  <span class="k">if</span> <span class="n">a_i</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="n">then</span>
+    <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">a_i</span>
+  <span class="n">end</span> <span class="k">if</span>
+<span class="n">end</span> <span class="k">for</span>
+</pre></div>
+
+<p>
+In the above example the complexities are \(\mathcal{O}(n)\), Ω (n) and Θ (n).
+</p>
+
+<p>
+Take a look at the lecture slides (chapter 8) from slide 26 to see some more examples.
+</p>
+</div>
+
+<div id="outline-container-org1c4b604" class="outline-4">
+<h4 id="org1c4b604">Better Sorting</h4>
+<div class="outline-text-4" id="text-org1c4b604">
+<p>
+The sorting algorithms we saw so far (bubble sort and insertion sort) have a complexity in \(\mathcal{O}(n^2)\). Quicksort and Mergesort are generally better sorting algorithms. Let's look at quicksort:
+</p>
+<div class="highlight"><pre><span></span><span class="nl">require</span><span class="p">:</span> <span class="n">array</span> <span class="o">=</span> <span class="p">{</span><span class="n">e_1</span><span class="p">,</span> <span class="n">e_2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">e_n</span><span class="p">};</span>
+<span class="nl">ensure</span><span class="p">:</span> <span class="k">for</span> <span class="n">all</span> <span class="n">i</span> <span class="n">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="n">e_i</span> <span class="o">&lt;=</span> <span class="n">e_</span><span class="p">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="c1">// sorted sequence condition </span>
+
+<span class="n">procedure</span> <span class="n">QSORT</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+  <span class="k">if</span> <span class="o">|</span><span class="n">array</span><span class="o">|</span> <span class="o">&lt;=</span> <span class="n">then</span> 
+    <span class="k">return</span> <span class="n">array</span>
+  <span class="n">end</span> <span class="k">if</span>
+
+  <span class="n">select</span> <span class="n">and</span> <span class="n">remove</span> <span class="n">a</span> <span class="n">pivot</span> <span class="n">value</span> <span class="s">"pivot"</span> <span class="n">from</span> <span class="n">array</span>
+
+  <span class="n">less</span> <span class="o">&lt;-</span> <span class="p">[]</span>
+  <span class="n">greater</span> <span class="o">&lt;-</span> <span class="p">[]</span>
+
+  <span class="k">for</span> <span class="n">e</span> <span class="n">in</span> <span class="n">array</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="o">&lt;=</span> <span class="s">"pivot"</span> <span class="n">then</span>
+      <span class="n">append</span> <span class="n">e</span> <span class="n">to</span> <span class="n">less</span>
+    <span class="k">else</span> 
+      <span class="n">append</span> <span class="n">e</span> <span class="n">to</span> <span class="n">greater</span>
+    <span class="n">end</span> <span class="k">if</span>
+  <span class="n">end</span> <span class="k">for</span>
+
+  <span class="k">return</span> <span class="n">concatenate</span><span class="p">(</span><span class="n">QSORT</span><span class="p">(</span><span class="n">less</span><span class="p">),</span> <span class="n">pivot</span><span class="p">,</span> <span class="n">QSORT</span><span class="p">(</span><span class="n">greater</span><span class="p">))</span>
+<span class="n">end</span> <span class="n">procedure</span>
+</pre></div>
+
+<p>
+Because of the built-in list type a quicksort implementation in Python is pretty easy:
+</p>
+<div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">qsort</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">list</span> <span class="o">==</span> <span class="p">[]:</span>
+	<span class="k">return</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+	<span class="n">pivot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="n">less</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">greater</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">list</span> <span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+	    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">pivot</span> <span class="p">:</span> <span class="n">less</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	    <span class="k">else</span> <span class="p">:</span> <span class="n">greater</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">qsort</span><span class="p">(</span><span class="n">less</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">pivot</span><span class="p">]</span> <span class="o">+</span> <span class="n">qsort</span><span class="p">(</span><span class="n">greater</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">qsort</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+</pre></div>
+
+<pre class="example">
+[2, 7, 8, 9, 54]
+
+</pre>
+
+<p>
+The depth of the recursion in quick sort is not set in stone. How does the worse case look? The pivot element is always the smallest or largest element in the list so the recursion depth is n - 1 (why?). On each recursion call \(i = |array| - 1\) elements are handled  which results in a recursion depth of n - recursion depth. 
+In the worst case the complexity would be Θ(n<sup>2</sup>) so it wouldn't <b>always</b> be better than eg bubble sort! In such situation it makes sense to look at the average case (see slide 35 for that).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgde57488" class="outline-4">
+<h4 id="orgde57488">Space Complexity (Storage/Memory)</h4>
+<div class="outline-text-4" id="text-orgde57488">
+<p>
+The required memory space is another critical resource in addition to the computation time. To measure this the same complexity measures are used. Let's look at the required storage space complexity for quicksort:
+</p>
+<ul class="org-ul">
+<li>new arrays are created on each recursion</li>
+<li>the required storage space is \(n\) in every recursion depth</li>
+<li>the maximum recursion depth is \(n-1\)</li>
+</ul>
+<p>
+→ storage complexity of quicksort is \(\mathcal{O}(n^2)\).
+</p>
+
+<p>
+However a storage complexity of \(\mathcal{O}(n)\) is achievable via a smart quicksort implementation by using <i>in place</i> mutations. 
+</p>
+</div>
 </div>
 </div>
         
