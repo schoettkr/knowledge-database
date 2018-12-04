@@ -21,6 +21,4 @@ To be honest, while scimming through this lecture chapter I found it to be prett
 - domain (Definitionsmenge/Definitionsbereich) and codomain (Zielmenge/Wertebereich)
 - return values
 
-What I'll cover here though are reference parameters and reference return values because the slides look interesting/funny and I want to understand them. I think this was also covered in some A&P posts but maybe there's something special in the regard to C++ or who knows what else :) So we'll look at that now:
-
-F48 
+# What I'll cover here though are reference parameters and reference return values because the slides look interesting/funny and I want to understand them. I think this was also covered in some A&P posts but maybe there's something special in the regard to C++ or who knows what else :) So we'll look at that now:
