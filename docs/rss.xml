@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 08:59:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 21:04:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 &lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
 &lt;/p&gt;
 
@@ -140,7 +140,929 @@ So far we've seen the usage of the namespace &lt;code&gt;std&lt;/code&gt; which 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</guid><pubDate>Thu, 29 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</guid><pubDate>Thu, 29 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+In this lecture we continued the Introduction to SQL that we began in the last session.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org82f4e96" class="outline-2"&gt;
+&lt;h2 id="org82f4e96"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org82f4e96"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgb11ee30" class="outline-3"&gt;
+&lt;h3 id="orgb11ee30"&gt;Simple Queries (One Table)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb11ee30"&gt;
+&lt;p&gt;
+All queries to a database in SQL are realized via the &lt;code&gt;select&lt;/code&gt; statement.
+This is the general construction:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;select&lt;/code&gt; &lt;code&gt;attribute|expression&lt;/code&gt; → which attributes should the result table contain?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;from&lt;/code&gt; &lt;code&gt;list of tables&lt;/code&gt; → which tables are required for the query?&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;where&lt;/code&gt;  &lt;code&gt;condition&lt;/code&gt; ] → which conditions should the result tuples fulfill?&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;group by&lt;/code&gt;  &lt;code&gt;list of attributes&lt;/code&gt; ] → summarize/condense identical attribute values&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;having&lt;/code&gt;  &lt;code&gt;condition&lt;/code&gt; ] → condition in regards to grouped tables&lt;/li&gt;
+&lt;li&gt;[ &lt;code&gt;order by&lt;/code&gt;  &lt;code&gt;sort&lt;/code&gt; ] → specification of sorting for the resulting table&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The &lt;code&gt;where&lt;/code&gt; clause is used to refine the result set of tuples from a &lt;code&gt;select&lt;/code&gt; statement. The (basic) predicates (Basisprädikate) to &lt;code&gt;where&lt;/code&gt; can be versatile, for example
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;comparison between the value of one expression and another&lt;/li&gt;
+&lt;li&gt;specify range/boundaries for a certain value&lt;/li&gt;
+&lt;li&gt;is the value included in a value set&lt;/li&gt;
+&lt;li&gt;is there a certain pattern in a string&lt;/li&gt;
+&lt;li&gt;is the value of an attribute equal to the null value&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Expressions are based on constant values and/or attribute values and can be connected via arithmetic operators (+,-,*,/,%). The predicates (Basisprädikate) can be connected via logical operators (&lt;code&gt;not&lt;/code&gt;, &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+There are also comparison operators for the fundamental datatypes which allow a value comparison (for numbers), a lexicographic comparison (for strings) and a time/date based comparison (for dates and times). The usual operators for these are =, &amp;lt;, &amp;gt; ≤, ≥, &amp;lt;&amp;gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now lets look at some simple queries (selection σ &amp;amp; projection π). We have the following table /Lecture/s
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;6123&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+To find the name/title of the lectures held by a teacher with the personal number of 6897 we perform this query
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;persNr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6897&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+which yields
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Usually queries consist of at least these blocks we've just seen: &lt;code&gt;select&lt;/code&gt;, &lt;code&gt;from&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and that's why they're often refered to as SFW-block (select-from-where).
+&lt;/p&gt;
+
+&lt;p&gt;
+Now lets perform a query and formulate a string predicate to find out the number of the lecture 'Data Structures':
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="nb"&gt;number&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Data Structures'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Which gives 
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number {PK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+As you can see string constants have to be wrapped in single quotes (in contrast to numeric values). Among other reasons this is done to distinguish the values from attribute names.
+&lt;/p&gt;
+
+&lt;p&gt;
+Let's match a string pattern to find all lectures that are about databases:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="k"&gt;like&lt;/span&gt; &lt;span class="s1"&gt;'%Database%'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;6123&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+To find the name/title of the lectures held by a teacher with the personal number of 6897 we perform this query
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;persNr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6897&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+which yields
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Usually queries consist of at least these blocks we've just seen: &lt;code&gt;select&lt;/code&gt;, &lt;code&gt;from&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and that's why they're often refered to as SFW-block (select-from-where).
+&lt;/p&gt;
+
+&lt;p&gt;
+Now lets perform a query and formulate a string predicate to find out the number of the lecture 'Data Structures':
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="nb"&gt;number&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Data Structures'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Which gives 
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number {PK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+As you can see string constants have to be wrapped in single quotes (in contrast to numeric values). Among other reasons this is done to distinguish the values from attribute names.
+&lt;/p&gt;
+
+&lt;p&gt;
+Let's match a string pattern to find all lectures that are about databases:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="k"&gt;like&lt;/span&gt; &lt;span class="s1"&gt;'%Database%'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Result:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;6123&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+In this query we used &lt;b&gt;wildcard characters&lt;/b&gt; (placeholder symbols) to match a certain pattern. The wildcard character for an arbitrary, single character is &lt;code&gt;_&lt;/code&gt; and for an arbitrary string it is &lt;code&gt;%&lt;/code&gt;. Beware that the keyword &lt;code&gt;like&lt;/code&gt; is required to do a pattern match (else it is just literal string match).
+&lt;/p&gt;
+
+&lt;p&gt;
+So let's look at queries where we want to select tuples based on wheather or not an attribute value is contained in a set. We therefore modified our original /Lecture/s table:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;credits&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+To select all lectures with 3, 5 or 10 credits
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;credits&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+A set of constants can be specified by putting them into parentheses as you can see above. To test weather a value is contained in a set we use the &lt;code&gt;in&lt;/code&gt; resp. &lt;code&gt;not in&lt;/code&gt; operator. The previous query could have been formulated via logical connection like this as well
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;credits&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;credits&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;credits&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+which is more cumbersome in this case.
+&lt;/p&gt;
+
+&lt;p&gt;
+The last simple query we'll look at uses ranges/boundaries to find all tuples with at least 3 and at max 10 credits.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;credits&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; 
+&lt;span class="c1"&gt;-- alternatively: where credits &amp;gt;= 3 and credits &amp;lt;= 10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+which yields the following result relation:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;credits&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3175f27" class="outline-3"&gt;
+&lt;h3 id="org3175f27"&gt;Complex Queries (Multiple Tables)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3175f27"&gt;
+&lt;p&gt;
+Onto some more complex queries where we query against multiple tables (cartesian product). Suppose we have the following table &lt;i&gt;Lecture&lt;/i&gt;
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+and &lt;i&gt;Hears&lt;/i&gt;
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;matrNr&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-right"&gt;134534&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-right"&gt;123456&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-right"&gt;234876&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-right"&gt;134534&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+and want to find out the numbers and titles of the lectures that the student with matricle number 134534 attends.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;134534&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+This yields
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+As we can see in the query above we specify all the tables that are needed to resolve the query as comma seperated list after the &lt;code&gt;from&lt;/code&gt; keyword. Then the cartesian product of the tables is formed internally, that's why we have to do &lt;code&gt;where Lecture.number = Hears.number&lt;/code&gt; when selecting the tempoarily resulting rows.
+&lt;/p&gt;
+
+&lt;p&gt;
+Because the temporary resulting relation holds the attribute &lt;i&gt;number&lt;/i&gt; two times (once from &lt;i&gt;Lecture&lt;/i&gt; and once from &lt;i&gt;Hears&lt;/i&gt;) we have to qualify the attribute we want to &lt;code&gt;select&lt;/code&gt; by prepending the attribute name with the table name (&lt;code&gt;select Hears.number&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+It is also possible to provide an alias to tables in the &lt;code&gt;from&lt;/code&gt; clause ala
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;134534&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+to improve readability and shorten long table names.
+&lt;/p&gt;
+
+&lt;p&gt;
+When targeting the same table two or more times in one query it is &lt;b&gt;required&lt;/b&gt; to provide those aliases to distinguish between the tables:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;matrNr&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;credits&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123456&lt;/td&gt;
+&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;134534&lt;/td&gt;
+&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
+&lt;td class="org-right"&gt;33&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;145698&lt;/td&gt;
+&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
+&lt;td class="org-right"&gt;42&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+We want to find the name and credits of the students that have more credits than "Cleopatra":
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credits&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt; &lt;span class="k"&gt;C&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="k"&gt;C&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Cleopatra'&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credits&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;C&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;credits&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+↓
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;credits&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
+&lt;td class="org-right"&gt;45&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Back to the previous example where we wantet to find out the numbers and titles of the lectures that the student with matricle number 134534 attends, because this is a use case for theta joins (\(⋈_{\theta}\) - join one &lt;i&gt;some&lt;/i&gt; condition):
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt;   &lt;span class="n"&gt;Lecture&lt;/span&gt; &lt;span class="k"&gt;join&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;
+       &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;number&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt;  &lt;span class="n"&gt;matrNr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;134534&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+To perform a theta join the &lt;code&gt;from&lt;/code&gt; clause is exteneded with the keyword &lt;code&gt;join&lt;/code&gt; between the involved tables, followed by the keyword &lt;code&gt;on&lt;/code&gt; after which the join condition is specified (because we compare with &lt;code&gt;=&lt;/code&gt; in the theta join it is an equijoin btw).
+&lt;/p&gt;
+
+&lt;p&gt;
+However the most appropiate join in this use case is the &lt;i&gt;natural join&lt;/i&gt; ⊗ because we want to join on attributes that have the same name in both tables (and are foreign resp. primary keys). To do so in SQL we formulate this query:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="nb"&gt;number&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Lectures&lt;/span&gt; &lt;span class="k"&gt;natural&lt;/span&gt; &lt;span class="k"&gt;join&lt;/span&gt; &lt;span class="n"&gt;Hears&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;134534&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+which yields the same old result relation (but with less query syntax):
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+As you see the natural join in SQL is express by replacing the comma between the involved tables in the &lt;code&gt;from&lt;/code&gt; clause with the keyword &lt;code&gt;natural join&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcc24ab0" class="outline-3"&gt;
+&lt;h3 id="orgcc24ab0"&gt;Aggregation and Grouping&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcc24ab0"&gt;
+&lt;p&gt;
+Often times it is of interest to perform some kind of calculations on the tuples of a table, which means to involve all values of an attribute. Functions that do this are called &lt;i&gt;aggregate functions&lt;/i&gt; and here are some common ones:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;min(A)&lt;/code&gt; → yields smallest value present in attribute A&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;max(A)&lt;/code&gt; → yields largest value present in attribute A&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;avg(A)&lt;/code&gt; → yields average of all values present in attribute A&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sum(A)&lt;/code&gt; → yields sum of all values present in attribute A&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;count(A)&lt;/code&gt; → yields amount/count of values present in attribute A&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;count(distinct A)&lt;/code&gt; → yields amount/count of unique values present in attribute A&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;count(*)&lt;/code&gt; → yields amount/count of tuples in the table&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Suppose we have the following table &lt;i&gt;Personal&lt;/i&gt; to see aggregate functions in action
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/personal-table.png" alt="nil"&gt;
+To find out which is the highest and lowest salary(gehalt) in the table we formulate the following query
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gehalt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+       &lt;span class="k"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gehalt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;maximum&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Personal&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+yielding 
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;minimum&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;maximum&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2084&lt;/td&gt;
+&lt;td class="org-right"&gt;5249&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+Since the result of an aggregate function usually operates on &lt;i&gt;multiple&lt;/i&gt; tuples of a relation, the result can only be displayed with results of other aggregate functions rather than other &lt;i&gt;single&lt;/i&gt; attributes (think about it this way, which single attribute would make sense in the row of the result relation we just saw? none).
+&lt;/p&gt;
+
+&lt;p&gt;
+It is also possible to &lt;b&gt;group&lt;/b&gt; values. Tuple that have the same value for an attribute (or set of attributes) are then &lt;b&gt;grouped&lt;/b&gt; by those same attribute values. Aggregate functions then operate &lt;b&gt;isolated&lt;/b&gt; on those formed groups, which means grouping only makes sense when aggregations are performed subsequently. The schema of the resulting table can only hold the grouped attributes and the result of the attribute functions.
+&lt;/p&gt;
+
+&lt;p&gt;
+This slide gives a good visualization 
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/grouping-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+To &lt;i&gt;filter groups&lt;/i&gt; we can use the &lt;code&gt;having&lt;/code&gt; keyword which acts like a &lt;code&gt;where&lt;/code&gt; clause but for groups and follows the &lt;code&gt;group by&lt;/code&gt; statement.
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/grouping-2.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org97e44ab" class="outline-3"&gt;
+&lt;h3 id="org97e44ab"&gt;Connecting SFW Statements&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org97e44ab"&gt;
+&lt;p&gt;
+It is possible to connect whole &lt;code&gt;select&lt;/code&gt; statements with each other in SQL. This functionality corresponds to the operations set &lt;i&gt;union&lt;/i&gt; and set &lt;i&gt;difference&lt;/i&gt; we know from relational algebra. Likewise the data types of the attributes from the tables that should be combined need to be of the same data type (and semantic) in SQL as well.
+&lt;/p&gt;
+
+&lt;p&gt;
+The operators to perform this set operations
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;union&lt;/code&gt; corresponds to the join/union operation ∪ from relational algebra and also removes duplicates&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;except&lt;/code&gt;, &lt;code&gt;minus&lt;/code&gt; corresponds to the set difference - from relational algebra&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;intersect&lt;/code&gt; corresponds to the intersection ∩ from relational algebra (Schnittmenge)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Example of combining/connecting SFW statements:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/sfw-connection.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb9a999d" class="outline-3"&gt;
+&lt;h3 id="orgb9a999d"&gt;Subqueries&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb9a999d"&gt;
+&lt;p&gt;
+It is possible to execute further &lt;code&gt;select&lt;/code&gt; statements &lt;i&gt;inside&lt;/i&gt; a &lt;code&gt;select&lt;/code&gt; statements. There are two possible approaches/semantics (Semantiken) to do that, the &lt;b&gt;value semantic&lt;/b&gt; (slides: Wertsemantik) and the &lt;b&gt;set semantic&lt;/b&gt; (slides: Mengensemantik?!). I'll use the german terms &lt;i&gt;Wertsemantik&lt;/i&gt; and &lt;i&gt;Mengensemantik&lt;/i&gt; because it is not clear to me what the proper english terms would be :o. Subqueries can be nested as desired as long as the semantic is correct (recursion).
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf7ff1b5" class="outline-4"&gt;
+&lt;h4 id="orgf7ff1b5"&gt;Wertsemantik&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf7ff1b5"&gt;
+&lt;p&gt;
+The subquery returns a &lt;b&gt;single value&lt;/b&gt; (doesnt matter if string, number or date). Subqueries that follow Wertsemantik can be used at every place/position where single values may have been used.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/wertsemantik-1.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/wertsemantik-2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+↑ then the surrounding/wrapping query is executed which finds the two tuples with a number of "234" in the &lt;i&gt;Hears&lt;/i&gt; table which is then counted and returns the result table 
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;anzahl&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Here are some equivalent queries to the one we examined in the pictures above
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- 1&lt;/span&gt;
+&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="k"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;anzahl&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Hört&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Lehrveranstaltung&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;Hört&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nummer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Lehrveranstaltung&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nummer&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;titel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Datenbanken in der Praxis'&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- 2&lt;/span&gt;
+&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="k"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;anzahl&lt;/span&gt;
+&lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Hört&lt;/span&gt; &lt;span class="k"&gt;natural&lt;/span&gt; &lt;span class="k"&gt;join&lt;/span&gt; &lt;span class="n"&gt;Lehrveranstaltung&lt;/span&gt;
+&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;titel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Datenbanken in der Praxis'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org573401e" class="outline-4"&gt;
+&lt;h4 id="org573401e"&gt;Mengensemantik&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org573401e"&gt;
+&lt;p&gt;
+The subquery returns a Wertemenge (set of values). To then evaluate the returned result set special language features/constructs are needed.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/mengensemantik-1.png" alt="nil"&gt;
+Notice that when the subquery generates a set of values like in the picture above, the &lt;code&gt;=&lt;/code&gt; operator at the &lt;code&gt;where&lt;/code&gt; statement is replaced by the &lt;code&gt;in&lt;/code&gt; set operator because we're dealing with multiple values. This is the procedure of the query above:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/mengensemantik-2.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/mengensemantik-3.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/mengensemantik-4.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;
+The subqueries we saw so far were &lt;b&gt;non-correlating&lt;/b&gt;. They worked locally and had only to be evaluated once because their result stayed constant because of the local nature.
+&lt;/p&gt;
+
+&lt;p&gt;
+But suppose we want to access attribute values of surrounding/wrapping queries. 
+This is where &lt;b&gt;correlating subqueries&lt;/b&gt; come into play. It is possible to access wrapping/surrounding tables from the inside of subqueries (the circumstances may require qualification via the table name). The correlation is created as soon as such reference exists. A correlating subquery always refers to the currently viewed tuple of the parent query and therefore has to be computed for &lt;b&gt;every&lt;/b&gt; tuple of the result set (slides: Eine korrelierte Unteranfrage bezieht sich immer auf das aktuell betrachtete Tupel der übergeordneten Anfrage und muss deshalb für jedes Tupel von deren Ergebnismenge neu berechnet werden).
+&lt;/p&gt;
+
+&lt;p&gt;
+Example:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/correlating-subqueries-1.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/correlating-subqueries-2.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8d84616" class="outline-3"&gt;
+&lt;h3 id="org8d84616"&gt;Set Operations (Mengenoperatoren)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8d84616"&gt;
+&lt;p&gt;
+We already know the specification of constant sets and how to test if an attribute value is contained in such set via &lt;code&gt;where .. in&lt;/code&gt; eg &lt;code&gt;where attribute in ('Chemnitz', 'Leipzig', 'Dresden')&lt;/code&gt;. There are more set operators of which we will introduce some now since they're also helpful in regards to subqueries and can be used to model the quantifiers from relational calculus:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;exists SET&lt;/code&gt;  becomes &lt;code&gt;true&lt;/code&gt; when &lt;code&gt;SET&lt;/code&gt; includes at least one element&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;COMPARISON-OPERATOR all SET&lt;/code&gt; becomes &lt;code&gt;true&lt;/code&gt; when the comparison operator yields &lt;code&gt;true&lt;/code&gt; for each element in &lt;code&gt;SET&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;COMPARISON-OPERATOR any SET&lt;/code&gt; becomes &lt;code&gt;true&lt;/code&gt; when the comparison operator yields &lt;code&gt;true&lt;/code&gt; for any element in &lt;code&gt;SET&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Examples:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-operators-1.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-operators-2.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/set-operators-3.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</guid><pubDate>Tue, 27 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
 &lt;/p&gt;
 
@@ -2647,470 +3569,4 @@ Some interesting notes and observations about the ternary operator can be found 
 The next lecture topic was the switch-case. I already covered that in &lt;a href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/#org48e22fb"&gt;this CS01 post&lt;/a&gt; and the rules from C++ apply to C aswell (other way round technically :D). Remember that "switch case" works with constant values as its cases and is used to "jump" to a specific statement from where execution will be continued until you &lt;code&gt;break&lt;/code&gt; or &lt;code&gt;return&lt;/code&gt;! so following cases would be executed as well (avoid this and rather group cases together. It is also important to know that cases inside a switch are like "goto" labels and share scope, thats why often times people wrap the cases code inside "{}" to create case specific code and dont "skip" initialization of variables).
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</guid><pubDate>Sun, 11 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org3412ab9" class="outline-2"&gt;
-&lt;h2 id="org3412ab9"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3412ab9"&gt;
-&lt;p&gt;
-How does the compiler know whether a program is "correct" (in the sense of compilable) or not?
-We basically distinguish between &lt;b&gt;grammar&lt;/b&gt; and &lt;b&gt;semantics&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Grammar&lt;/b&gt; (like we know it from school) consists of  &lt;i&gt;morphology&lt;/i&gt; (Formenlehre v Wörtern) and syntax (Sätze). In the realm of programming morphology practically doesn't matter therefore &lt;i&gt;grammar&lt;/i&gt; and &lt;i&gt;syntax&lt;/i&gt; are mostly used interchangeably.
-&lt;/p&gt;
-
-&lt;p&gt;
-The &lt;b&gt;semantics&lt;/b&gt; (&lt;i&gt;meaning of a sentence&lt;/i&gt;) do not matter to the compiler.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgc7b3af8" class="outline-2"&gt;
-&lt;h2 id="orgc7b3af8"&gt;Syntax&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc7b3af8"&gt;
-&lt;p&gt;
-The &lt;b&gt;syntax&lt;/b&gt; of a language is a &lt;i&gt;set of rules&lt;/i&gt; after which &lt;i&gt;expressions&lt;/i&gt; are built. This is true for natural languages like English and for formal languages likes C or Python, as well as mathematical logic or description languages etc.
-&lt;/p&gt;
-
-&lt;p&gt;
-Expressions in the above definition might be phrases, formulas are program/code statements.
-&lt;/p&gt;
-
-&lt;p&gt;
-Often times the better you understand the semantics the harder it gets to recognize the syntax (for example in my motherlanguage I don't think about the SPO-rule for subject-predicate-object at all).
-&lt;/p&gt;
-
-&lt;p&gt;
-Every formal language consists of &lt;b&gt;symbols/tokens&lt;/b&gt;. A symbol is the &lt;b&gt;smallest&lt;/b&gt; observable unit in a language (kleinste Einheit der Betrachtung innerhalb der Sprache). Symbols can be single tokens, combinations of such or whole words.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;i&gt;Every finite, non-empty set \(\sum\) of symbols is called &lt;b&gt;alphabet&lt;/b&gt;.&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-With the elements in \(\sum\) we can build &lt;b&gt;expression&lt;/b&gt;. The "empty expression" is represented as \(\epsilon\)  (epsilon).
-&lt;/p&gt;
-
-&lt;p&gt;
-The set \(\sum = {0,1,2,3,4,5,6,7,8,9}\) for example is sufficient to build all natural numbers in the decimal system.
-&lt;/p&gt;
-
-&lt;p&gt;
-/The set of all strings(combinations) (Zeichenketten) the symbols from \(\sum\) can build is called &lt;b&gt;Kleene star&lt;/b&gt; \(\sum *\) of \(\sum\) (Kleenesche Hülle).
-&lt;/p&gt;
-
-&lt;p&gt;
-For example:
-\[ \sum = \{a,b\} \Rightarrow \sum * = \{\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, ...\} \]
-&lt;/p&gt;
-
-&lt;p&gt;
-The set of all strings without the empty string is represented as \(sum +\) Kleene Plus.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;i&gt;Each subset \(L \subseteq \sum*\) is also a &lt;b&gt;formal language&lt;/b&gt;&lt;/i&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-In the following context we focus on formal languages and "languages" then refers to such.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5262b4a" class="outline-2"&gt;
-&lt;h2 id="org5262b4a"&gt;Formal languages and generative/formal grammar&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5262b4a"&gt;
-&lt;p&gt;
-How can the syntax of a language be described? Which expressions/strings in a language are valid and which aren't? An enumeration of valid expressions is usually unpractical because the quantity of expressions is often times enormously big or infinite. 
-&lt;/p&gt;
-
-&lt;p&gt;
-A solution to this is to &lt;i&gt;describe&lt;/i&gt; how valid expressions can/may be &lt;b&gt;generated&lt;/b&gt;. These "rules" are called &lt;b&gt;generative/formal grammar&lt;/b&gt;. From wikipedia: "In formal language theory, a grammar (when the context is not given, often called a formal grammar for clarity) is a set of production rules for strings in a formal language. The rules describe how to form strings from the language's alphabet that are valid according to the language's syntax. A grammar does not describe the meaning of the strings or what can be done with them in whatever context—only their form."
-&lt;/p&gt;
-
-&lt;p&gt;
-For generative grammar of a language \(L\) a second alphabet \(V\) of variables is used in addition to the alphabet \(\sum\).
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;elements of \(\sum\) are called &lt;b&gt;terminal symbols&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;elementary symbols of a language&lt;/li&gt;
-&lt;li&gt;cannot be replaced/reproduced via production rules&lt;/li&gt;
-&lt;li&gt;eg: "for", "if"&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;elements of \(V\) are called &lt;b&gt;nonterminal symbols&lt;/b&gt; (in some literature it is N instead of V)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;are reproducable/replacable via production rules&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-When speaking about those elements in an abstract way usually lower case letters (a,b,c..) are used for elements of \(\sum\) and uppercase letters for elements of \(V\).
-&lt;/p&gt;
-
-&lt;p&gt;
-A grammar is defined by production rules (or just 'productions') that specify which symbols may replace which other symbols; these rules may be used to generate strings, or to parse them. Each such rule has a head, or left-hand side, which consists of the string that may be replaced, and a body, or right-hand side, which consists of a string that may replace it. Rules are often written in the form head → body; e.g., the rule a → b specifies that a can be replaced by b.
-&lt;/p&gt;
-
-&lt;p&gt;
-To generate an expression we begin with a &lt;b&gt;start symbol&lt;/b&gt; \(S \in V\).
-&lt;/p&gt;
-
-&lt;p&gt;
-Then depending on the nature of the rules \(P\) we distinguish between different kind of grammars (a regular grammar is a left or a right regular grammar):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;a left regular grammar  is a formal grammar (V, Σ, P, S), such that all rules in P obey the forms:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;A → a - where A is a non-terminal in V and a is a terminal in Σ&lt;/li&gt;
-&lt;li&gt;A → Ba - where A and B are in V and a is in Σ&lt;/li&gt;
-&lt;li&gt;A → ε - where A is in N and ε is the empty string.&lt;/li&gt;
-&lt;li&gt;so only &lt;b&gt;one nonterminal symbol&lt;/b&gt; on the &lt;i&gt;left side&lt;/i&gt; and on the &lt;i&gt;right side&lt;/i&gt; &lt;b&gt;one terminal symbol&lt;/b&gt; that &lt;i&gt;may be&lt;/i&gt; &lt;b&gt;preceeded&lt;/b&gt; by &lt;i&gt;one nonterminal symbol max&lt;/i&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;a &lt;b&gt;right regular grammar&lt;/b&gt; is a formal grammar (V, Σ, P, S) such that all the production rules in P are of one of the following forms:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;B → a - where B is a non-terminal in V and a is a terminal in Σ&lt;/li&gt;
-&lt;li&gt;B → aC - where B and C are non-terminals in V and a is in Σ&lt;/li&gt;
-&lt;li&gt;B → ε - where B is in V and ε denotes the empty string, i.e. the string of length 0.&lt;/li&gt;
-&lt;li&gt;so only &lt;b&gt;one nonterminal symbol&lt;/b&gt; on the &lt;i&gt;left side&lt;/i&gt; and on the &lt;i&gt;right side&lt;/i&gt; &lt;b&gt;one terminal symbol&lt;/b&gt; that &lt;i&gt;may be&lt;/i&gt; &lt;b&gt;followed&lt;/b&gt; by &lt;i&gt;one nonterminal symbol max&lt;/i&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Types of grammars:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;regular grammar&lt;/b&gt; (reguläre Grammatik) → either &lt;i&gt;all&lt;/i&gt; rules of P are of left regular grammar nature &lt;i&gt;or&lt;/i&gt; right regular grammar nature (not both/mixed)&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;context-free grammar&lt;/b&gt; (kontextfreie Grammatik) → a context-free grammar is a grammar in which the left-hand side of each production rule consists of &lt;i&gt;only a single nonterminal symbol&lt;/i&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;context-sensitive grammar&lt;/b&gt; (kontextbehaftet/sensitive Grammatik) → a context-sensitive grammar is a formal grammar in which the left-hand sides and right-hand sides of any production rules may be surrounded by a context of &lt;b&gt;the same&lt;/b&gt; terminal and nonterminal symbols &lt;code&gt;αAβ → αγβ&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;unrestricted grammar&lt;/b&gt; (allgemeine Grammatik)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-After the american linguist Noam Chomsky those grammars build the so called &lt;b&gt;Chomsky-Hierarchy&lt;/b&gt; in which they're also called as:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;Type-0 grammars&lt;/b&gt; → &lt;i&gt;unrestricted grammars&lt;/i&gt; (allgemeine Grammatiken)&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;Type-1 grammars&lt;/b&gt; → &lt;i&gt;context-sensitive grammars&lt;/i&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;Type-2 grammars&lt;/b&gt; → &lt;i&gt;context-free grammars&lt;/i&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;Type-3 grammars&lt;/b&gt; → &lt;i&gt;regular grammars&lt;/i&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Each n-1 grammar can "do everything and more" that a grammar of type n can do (a type 1 grammar can do everything a type 2 grammar can and so on; Grammatiken niedrigeren Typs sind erzeugungsmächtiger als die höherer Typen)
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org69566a8" class="outline-2"&gt;
-&lt;h2 id="org69566a8"&gt;Syntax Diagrams&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org69566a8"&gt;
-&lt;p&gt;
-How may we describe the rules of grammars? For the following we limit us to (maximal) contrext free grammars. To describe grammar rules there exist two main approaches:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;syntax diagrams&lt;/li&gt;
-&lt;li&gt;(extended) Backus-Naur form&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p style="color:red;"&gt;
-I was told that these were asked in last years exam
-&lt;/p&gt;
-
-&lt;p&gt;
-Syntax diagrams consist of of:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;boxes with round corners → terminal symbols (lowercase, see above)&lt;/li&gt;
-&lt;li&gt;boxes with straight corners → nonterminal symbols (uppercase, see above)&lt;/li&gt;
-&lt;li&gt;connections via lines and arrows&lt;/li&gt;
-&lt;li&gt;each walkable way (in arrow direction) is valid a expression (Jeder (in Pfeilrichtung) begehbare Weg ist ein valider Ausdruck)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Components:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-intro.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-An example of a (simplified) function declaration in C in a syntax diagram:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-func-decl.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Example of a syntax diagram for a while loop in python:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/syntax-diagram-python.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org94ed424" class="outline-2"&gt;
-&lt;h2 id="org94ed424"&gt;Backus-Naur Form&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org94ed424"&gt;
-&lt;p&gt;
-While syntax diagrams are easy to read, they're quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).
-&lt;/p&gt;
-
-&lt;p&gt;
-BNF uses meta symbols:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;::=&lt;/code&gt; definition symbol&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;|&lt;/code&gt; alternative symbol&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt; nonterminal brackets which convert any sequence of letters, digits and spaces into a nonterminal symbol&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-All symbols which are neither meta symbols nor nonterminalsymbols are terminal symbols.
-&lt;/p&gt;
-
-&lt;p&gt;
-BNF is directly translatable into context-free grammar, but needs (for example for loops) syntactic helper variables.
-&lt;/p&gt;
-
-&lt;p&gt;
-That's why there's also the Extended Backus-Naur form (EBNF) which is like BNF plus:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;[ ... ]&lt;/code&gt; → description of &lt;b&gt;optional parts&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{ ... }&lt;/code&gt; → description of &lt;b&gt;repetitions&lt;/b&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-There are also some syntactic differences:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;arbitrary paren placement (Klammerung)&lt;/li&gt;
-&lt;li&gt;definition symbol is &lt;code&gt;=&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;terminal symbols are wrapped in &lt;code&gt;""&lt;/code&gt; or &lt;code&gt;''&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;nonterminal symbols arent specially marked
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;there also might be whitespaces in nonterminal symbol identifiers, the sequence is then separated via commas eg &lt;code&gt;signed integer = sign, integer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;expressions end with semicolons &lt;code&gt;;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;specific repetitions via &lt;code&gt;4 * (...)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;comments via &lt;code&gt;(* This is a comment*)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-A (E)BNF defintion or a syntax diagram is &lt;b&gt;complete&lt;/b&gt; (vollständig) if a rule exist on the left side for every nonterminal symbol on the right hand rule side.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org7d07cca" class="outline-2"&gt;
-&lt;h2 id="org7d07cca"&gt;Regular Grammar in Action&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7d07cca"&gt;
-&lt;p&gt;
-Now we'll introduce &lt;b&gt;regular expressions&lt;/b&gt; which are a compact notation for regular grammars.
-&lt;/p&gt;
-
-&lt;p&gt;
-String searching or pattern matching in (certain) files is such a common task that "tools" using regular expression exist to help with it (for example grep, sed, awk, perl, Python, C#.. provide ways to pattern match with regular expressions).
-&lt;/p&gt;
-
-&lt;p&gt;
-Since the 1980s, different syntaxes for writing regular expressions exist, one being the POSIX standard and another, widely used, being the Perl syntax.
-&lt;/p&gt;
-
-&lt;p&gt;
-Because there is only a limited amount of symbols/characters/tokens (Zeichen) available regular expressions differentiate between regular("normal") (terminal)symbols and meta characters, with a special meaning. Common but not all meta characters are:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;^&lt;/code&gt; matches the starting position within the string&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;.&lt;/code&gt; dot wildcard matches any single character (newlines sometimes excluded tho)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[ ]&lt;/code&gt; a bracket expression matches a single character that is contained within the brackets eg &lt;code&gt;[abc]&lt;/code&gt; matches "a", "b", or "c"
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;[^ ]&lt;/code&gt; matches a single character that is &lt;i&gt;not&lt;/i&gt; contained within the brackets&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
-= &lt;code&gt;$&lt;/code&gt; matches the ending position of the string or the position just before a string-ending newline (in line-based tools, it matches the ending position of any line)
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;*&lt;/code&gt; matches the preceding element &lt;i&gt;zero or more&lt;/i&gt; times&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;+&lt;/code&gt; matches the preceding element &lt;i&gt;one or more&lt;/i&gt; times&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{n,m}&lt;/code&gt; matches the preceding element at least &lt;code&gt;n&lt;/code&gt; and not more than &lt;code&gt;m&lt;/code&gt; times (eg &lt;code&gt;a{1,3}&lt;/code&gt; matches only &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;aa&lt;/code&gt; and &lt;code&gt;aaa&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\&lt;/code&gt; escapes the previous meta character&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-There are also character classes which are the most basic regex concept after a literal match. It makes one small sequence of characters match a larget set of characters (eg in ASCII [a-z] for lowercase letters). Some examples of POSIX character classes:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;[:alpha:]&lt;/code&gt; for alphabetic characters (A-Z, a-z)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[:digit:]&lt;/code&gt; for digits (0-9)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[:alnum:]&lt;/code&gt; for alphanumeric characters (A-Z,a-z,0-9)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[:blank:]&lt;/code&gt; for space and tab&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[:print:]&lt;/code&gt; visible characters and the space character (printable characters)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Example usage of grep which finds all defintions of &lt;code&gt;time_t&lt;/code&gt; in header files (option -E stands for extended-regexp):
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;grep −E &lt;span class="s2"&gt;"typedef ([_[:alpha:]][_[:alnum:]]*[[:blank:]]+)+time_t;"&lt;/span&gt; *.h &lt;span class="c1"&gt;# (copied from slides doesnt work for me :D)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgc58be84" class="outline-2"&gt;
-&lt;h2 id="orgc58be84"&gt;Compiler&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc58be84"&gt;
-&lt;p&gt;
-A modern compiler uses multiple formal grammars for different purposes:
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orgb26bd0f"&gt;&lt;/a&gt;Lexical Analysis&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgb26bd0f"&gt;
-&lt;p&gt;
-Lexical Analysis is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning). 
-&lt;/p&gt;
-
-&lt;p&gt;
-Lexical analysis is the first phase of a compiler. It takes the modified source code from language preprocessors that are written in the form of sentences. The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace (in C, not in python because they belong to the syntax) or comments in the source code.
-&lt;/p&gt;
-
-&lt;p&gt;
-If the lexical analyzer finds a token invalid, it generates an error. The lexical analyzer works closely with the syntax analyzer. It reads character streams from the source code, checks for legal tokens, and passes the data to the syntax analyzer when it demands.
-&lt;/p&gt;
-
-&lt;p&gt;
-This is often done via a lexical specification that is defined using regular expressions.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org837dc09"&gt;&lt;/a&gt;Syntax Analysis&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org837dc09"&gt;
-&lt;p&gt;
-Syntax analysis or parsing is the second phase of a compiler. We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses &lt;i&gt;context-free grammar&lt;/i&gt; (CFG), which is recognized by push-down automata.
-&lt;/p&gt;
-
-&lt;p&gt;
-CFG, on the other hand, is a superset of Regular Grammar. This implies that every Regular Grammar is also context-free, but there exists some problems, which are beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages (take a look at &lt;a href="https://www.tutorialspoint.com/compiler_design/compiler_design_syntax_analysis.htm"&gt;this&lt;/a&gt; resource which is pretty good and also has some more explanations for terminal symbols etc). 
-&lt;/p&gt;
-
-&lt;p&gt;
-A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a parse tree.
-&lt;/p&gt;
-
-&lt;p&gt;
-This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.
-&lt;/p&gt;
-
-&lt;p&gt;
-Parsers are expected to parse the whole code even if some errors exist in the program. 
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Limitations of syntax analyzers&lt;/b&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;it cannot determine if a token is valid&lt;/li&gt;
-&lt;li&gt;it cannot determine if a token is declared before it is being used&lt;/li&gt;
-&lt;li&gt;it cannot determine if a token is initialized before it is being used&lt;/li&gt;
-&lt;li&gt;it cannot determine if an operation performed on a token type is valid or not&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-These tasks are accomplished by the &lt;i&gt;semantic analyzer&lt;/i&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org8e4d771"&gt;&lt;/a&gt;Semantic Analyzer&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org8e4d771"&gt;
-&lt;p&gt;
-A parser constructs parse trees as seen in the section about the parser / syntax analyzer above.
-&lt;/p&gt;
-
-&lt;p&gt;
-The plain parse-tree constructed in that phase is generally of no use for a compiler, as it does not carry any information of how to evaluate the tree. The productions of context-free grammar, which makes the rules of the language, do not accommodate how to interpret them.
-&lt;/p&gt;
-
-&lt;p&gt;
-Semantics of a language provide meaning to its constructs, like tokens and syntax structure. Semantics help interpret symbols, their types, and their relations with each other. Semantic analysis judges whether the syntax structure constructed in the source program derives any meaning or not.
-&lt;/p&gt;
-
-&lt;p&gt;
-For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"value"&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The code above should not issue an error in lexical and syntax analysis phase, as it is lexically and structurally correct, but it should generate a semantic error as the type of the assignment differs. These rules are set by the grammar of the language and evaluated in semantic analysis. The following tasks should be performed in semantic analysis:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Scope resolution&lt;/li&gt;
-&lt;li&gt;Type checking&lt;/li&gt;
-&lt;li&gt;Array-bound checking&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-From the lecture slides: "usually context-sensitive language is used to perform semantic analysis"
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-
-&lt;div id="outline-container-org7d80d47" class="outline-2"&gt;
-&lt;h2 id="org7d80d47"&gt;Excourse: General Difference between Expressions and Statements&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7d80d47"&gt;
-&lt;p&gt;
-A statement is like an instruction that the runtime performs. Programs consist of statements. Without statements, there is nothing to do. 
-&lt;/p&gt;
-
-&lt;p&gt;
-An expression is a piece of code that can be 'evaluated', meaning it can be reduced to a value. 
-&lt;/p&gt;
-
-&lt;p&gt;
-The two concepts are not related, or even similar. They may coincide with the same piece of code, but they do very different things. 
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;x = 1&lt;/code&gt; is not a statement. &lt;code&gt;'x = 1'&lt;/code&gt; is an &lt;i&gt;expression&lt;/i&gt; that evaluates to 1, with the side effect of assigning the value 1 to x. 
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;x = 1;&lt;/code&gt; is a &lt;i&gt;statement&lt;/i&gt; (note the semi-colon at the end) that performs this assignment. 
-&lt;/p&gt;
-
-&lt;p&gt;
-In many languages (Java, C, JavaScript), it's easy to distinguish statements. Statements usually end with a semi-colon. Statements can't be evaluated, they just do something. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Expressions are harder to distinguish: The following statement consists of 9 expressions: &lt;code&gt;f[x] = 2*x+1;&lt;/code&gt;
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;code&gt;f&lt;/code&gt; variable&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;x&lt;/code&gt; variable&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;f[x]&lt;/code&gt; binary postfix operation&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;2&lt;/code&gt; literal&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;2*x&lt;/code&gt; binary operation&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;1&lt;/code&gt; literal&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;2*x+1&lt;/code&gt; binary operation&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;f[x] = 2*x+1&lt;/code&gt; assignment operation&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;p&gt;
-In some languages there is no distinction between expressions and staments. In Lisp for example all code and data are written as expressions. When an expression is evaluated, it produces a value.
-&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;
-Sources: &lt;a href="https://www.tutorialspoint.com"&gt;https://www.tutorialspoint.com&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</guid><pubDate>Sun, 11 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>

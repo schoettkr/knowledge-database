@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Database Essentials - Lecture 06 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Database Essentials - Lecture 06">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/">
+<meta property="og:description" content="In this lecture we continued the Introduction to SQL that we began in the last session.
+
+
+
+Introduction to SQL
+
+
+
+Simple Queries (One Table)
+
+
+All queries to a database in SQL are realized via the sel">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-11-28T00:00:00+01:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Database Essentials - Lecture 06
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-11-28T00:00:00+01:00">2018/11/28</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+In this lecture we continued the Introduction to SQL that we began in the last session.
+</p>
+
+<div id="outline-container-org82f4e96" class="outline-2">
+<h2 id="org82f4e96">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-org82f4e96">
+</div>
+<div id="outline-container-orgb11ee30" class="outline-3">
+<h3 id="orgb11ee30">Simple Queries (One Table)</h3>
+<div class="outline-text-3" id="text-orgb11ee30">
+<p>
+All queries to a database in SQL are realized via the <code>select</code> statement.
+This is the general construction:
+</p>
+<ul class="org-ul">
+<li>
+<code>select</code> <code>attribute|expression</code> → which attributes should the result table contain?</li>
+<li>
+<code>from</code> <code>list of tables</code> → which tables are required for the query?</li>
+<li>[ <code>where</code>  <code>condition</code> ] → which conditions should the result tuples fulfill?</li>
+<li>[ <code>group by</code>  <code>list of attributes</code> ] → summarize/condense identical attribute values</li>
+<li>[ <code>having</code>  <code>condition</code> ] → condition in regards to grouped tables</li>
+<li>[ <code>order by</code>  <code>sort</code> ] → specification of sorting for the resulting table</li>
+</ul>
+<p>
+The <code>where</code> clause is used to refine the result set of tuples from a <code>select</code> statement. The (basic) predicates (Basisprädikate) to <code>where</code> can be versatile, for example
+</p>
+<ul class="org-ul">
+<li>comparison between the value of one expression and another</li>
+<li>specify range/boundaries for a certain value</li>
+<li>is the value included in a value set</li>
+<li>is there a certain pattern in a string</li>
+<li>is the value of an attribute equal to the null value</li>
+</ul>
+<p>
+Expressions are based on constant values and/or attribute values and can be connected via arithmetic operators (+,-,*,/,%). The predicates (Basisprädikate) can be connected via logical operators (<code>not</code>, <code>and</code>, <code>or</code>).
+</p>
+
+<p>
+There are also comparison operators for the fundamental datatypes which allow a value comparison (for numbers), a lexicographic comparison (for strings) and a time/date based comparison (for dates and times). The usual operators for these are =, &lt;, &gt; ≤, ≥, &lt;&gt;.
+</p>
+
+<p>
+Now lets look at some simple queries (selection σ &amp; projection π). We have the following table /Lecture/s
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">persNr{FK}</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+<td class="org-right">6123</td>
+</tr>
+<tr>
+<td class="org-right">456</td>
+<td class="org-left">Exercise Data Structures</td>
+<td class="org-right">6897</td>
+</tr>
+</tbody>
+</table>
+<p>
+To find the name/title of the lectures held by a teacher with the personal number of 6897 we perform this query
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">title</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">persNr</span> <span class="o">=</span> <span class="mi">6897</span>
+</pre></div>
+<p>
+which yields
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-left"></colgroup>
+<thead><tr>
+<th scope="col" class="org-left">title</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">Data Structures</td>
+</tr>
+<tr>
+<td class="org-left">Databases in Praxis</td>
+</tr>
+<tr>
+<td class="org-left">Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+<p>
+Usually queries consist of at least these blocks we've just seen: <code>select</code>, <code>from</code>, <code>where</code> and that's why they're often refered to as SFW-block (select-from-where).
+</p>
+
+<p>
+Now lets perform a query and formulate a string predicate to find out the number of the lecture 'Data Structures':
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="nb">number</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">'Data Structures'</span>
+</pre></div>
+<p>
+Which gives 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-right"></colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number {PK}</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-right">123</td>
+</tr></tbody>
+</table>
+<p>
+As you can see string constants have to be wrapped in single quotes (in contrast to numeric values). Among other reasons this is done to distinguish the values from attribute names.
+</p>
+
+<p>
+Let's match a string pattern to find all lectures that are about databases:
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">title</span> <span class="k">like</span> <span class="s1">'%Database%'</span>
+</pre></div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">persNr{FK}</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+<td class="org-right">6123</td>
+</tr>
+<tr>
+<td class="org-right">456</td>
+<td class="org-left">Exercise Data Structures</td>
+<td class="org-right">6897</td>
+</tr>
+</tbody>
+</table>
+<p>
+To find the name/title of the lectures held by a teacher with the personal number of 6897 we perform this query
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">title</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">persNr</span> <span class="o">=</span> <span class="mi">6897</span>
+</pre></div>
+<p>
+which yields
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-left"></colgroup>
+<thead><tr>
+<th scope="col" class="org-left">title</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">Data Structures</td>
+</tr>
+<tr>
+<td class="org-left">Databases in Praxis</td>
+</tr>
+<tr>
+<td class="org-left">Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+<p>
+Usually queries consist of at least these blocks we've just seen: <code>select</code>, <code>from</code>, <code>where</code> and that's why they're often refered to as SFW-block (select-from-where).
+</p>
+
+<p>
+Now lets perform a query and formulate a string predicate to find out the number of the lecture 'Data Structures':
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="nb">number</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">'Data Structures'</span>
+</pre></div>
+<p>
+Which gives 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-right"></colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number {PK}</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-right">123</td>
+</tr></tbody>
+</table>
+<p>
+As you can see string constants have to be wrapped in single quotes (in contrast to numeric values). Among other reasons this is done to distinguish the values from attribute names.
+</p>
+
+<p>
+Let's match a string pattern to find all lectures that are about databases:
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">title</span> <span class="k">like</span> <span class="s1">'%Database%'</span>
+</pre></div>
+<p>
+Result:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">persNr{FK}</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+<td class="org-right">6123</td>
+</tr>
+</tbody>
+</table>
+<p>
+In this query we used <b>wildcard characters</b> (placeholder symbols) to match a certain pattern. The wildcard character for an arbitrary, single character is <code>_</code> and for an arbitrary string it is <code>%</code>. Beware that the keyword <code>like</code> is required to do a pattern match (else it is just literal string match).
+</p>
+
+<p>
+So let's look at queries where we want to select tuples based on wheather or not an attribute value is contained in a set. We therefore modified our original /Lecture/s table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">credits</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+<td class="org-right">6</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+<td class="org-right">3</td>
+</tr>
+<tr>
+<td class="org-right">456</td>
+<td class="org-left">Exercise Data Structures</td>
+<td class="org-right">2</td>
+</tr>
+</tbody>
+</table>
+<p>
+To select all lectures with 3, 5 or 10 credits
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">credits</span> <span class="k">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+<p>
+A set of constants can be specified by putting them into parentheses as you can see above. To test weather a value is contained in a set we use the <code>in</code> resp. <code>not in</code> operator. The previous query could have been formulated via logical connection like this as well
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">credits</span><span class="o">=</span><span class="mi">3</span> <span class="k">or</span> <span class="n">credits</span><span class="o">=</span><span class="mi">5</span> <span class="k">or</span> <span class="n">credits</span><span class="o">=</span><span class="mi">10</span>
+</pre></div>
+<p>
+which is more cumbersome in this case.
+</p>
+
+<p>
+The last simple query we'll look at uses ranges/boundaries to find all tuples with at least 3 and at max 10 credits.
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">Lecture</span>
+<span class="k">where</span> <span class="n">credits</span> <span class="k">between</span> <span class="mi">3</span> <span class="k">and</span> <span class="mi">10</span> 
+<span class="c1">-- alternatively: where credits &gt;= 3 and credits &lt;= 10</span>
+</pre></div>
+<p>
+which yields the following result relation:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">credits</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+<td class="org-right">6</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+<td class="org-right">5</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org3175f27" class="outline-3">
+<h3 id="org3175f27">Complex Queries (Multiple Tables)</h3>
+<div class="outline-text-3" id="text-org3175f27">
+<p>
+Onto some more complex queries where we query against multiple tables (cartesian product). Suppose we have the following table <i>Lecture</i>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+</tr>
+</tbody>
+</table>
+<p>
+and <i>Hears</i>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number</th>
+<th scope="col" class="org-right">matrNr</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-right">134534</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-right">123456</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-right">234876</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-right">134534</td>
+</tr>
+</tbody>
+</table>
+<p>
+and want to find out the numbers and titles of the lectures that the student with matricle number 134534 attends.
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">Hears</span><span class="p">.</span><span class="nb">number</span><span class="p">,</span> <span class="n">title</span>
+<span class="k">from</span> <span class="n">Lecture</span><span class="p">,</span> <span class="n">Hears</span>
+<span class="k">where</span> <span class="n">Lecture</span><span class="p">.</span><span class="nb">number</span> <span class="o">=</span> <span class="n">Hears</span><span class="p">.</span><span class="nb">number</span> <span class="k">and</span> <span class="n">matrNr</span> <span class="o">=</span> <span class="mi">134534</span>
+</pre></div>
+<p>
+This yields
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number</th>
+<th scope="col" class="org-left">title</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+</tr>
+</tbody>
+</table>
+<p>
+As we can see in the query above we specify all the tables that are needed to resolve the query as comma seperated list after the <code>from</code> keyword. Then the cartesian product of the tables is formed internally, that's why we have to do <code>where Lecture.number = Hears.number</code> when selecting the tempoarily resulting rows.
+</p>
+
+<p>
+Because the temporary resulting relation holds the attribute <i>number</i> two times (once from <i>Lecture</i> and once from <i>Hears</i>) we have to qualify the attribute we want to <code>select</code> by prepending the attribute name with the table name (<code>select Hears.number</code>).
+</p>
+
+<p>
+It is also possible to provide an alias to tables in the <code>from</code> clause ala
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">H</span><span class="p">.</span><span class="nb">number</span><span class="p">,</span> <span class="n">title</span>
+<span class="k">from</span> <span class="n">Lecture</span> <span class="n">L</span><span class="p">,</span> <span class="n">Hears</span> <span class="n">H</span>
+<span class="k">where</span> <span class="n">L</span><span class="p">.</span><span class="nb">number</span> <span class="o">=</span> <span class="n">H</span><span class="p">.</span><span class="nb">number</span> <span class="k">and</span> <span class="n">matrNr</span> <span class="o">=</span> <span class="mi">134534</span>
+</pre></div>
+<p>
+to improve readability and shorten long table names.
+</p>
+
+<p>
+When targeting the same table two or more times in one query it is <b>required</b> to provide those aliases to distinguish between the tables:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">matrNr</th>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-right">credits</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123456</td>
+<td class="org-left">Archimedes</td>
+<td class="org-right">45</td>
+</tr>
+<tr>
+<td class="org-right">134534</td>
+<td class="org-left">Sophokles</td>
+<td class="org-right">33</td>
+</tr>
+<tr>
+<td class="org-right">145698</td>
+<td class="org-left">Cleopatra</td>
+<td class="org-right">42</td>
+</tr>
+</tbody>
+</table>
+<p>
+We want to find the name and credits of the students that have more credits than "Cleopatra":
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">S</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">S</span><span class="p">.</span><span class="n">credits</span>
+<span class="k">from</span> <span class="n">Student</span> <span class="n">S</span><span class="p">,</span> <span class="n">Student</span> <span class="k">C</span>
+<span class="k">where</span> <span class="k">C</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Cleopatra'</span> <span class="k">and</span> <span class="n">S</span><span class="p">.</span><span class="n">credits</span> <span class="o">&gt;</span> <span class="k">C</span><span class="p">.</span><span class="n">credits</span>
+</pre></div>
+<p>
+↓
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-right">credits</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-left">Archimedes</td>
+<td class="org-right">45</td>
+</tr></tbody>
+</table>
+<p>
+Back to the previous example where we wantet to find out the numbers and titles of the lectures that the student with matricle number 134534 attends, because this is a use case for theta joins (\(⋈_{\theta}\) - join one <i>some</i> condition):
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">Hears</span><span class="p">.</span><span class="nb">number</span><span class="p">,</span> <span class="n">title</span>
+<span class="k">from</span>   <span class="n">Lecture</span> <span class="k">join</span> <span class="n">Hears</span>
+       <span class="k">on</span> <span class="n">Lecture</span><span class="p">.</span><span class="nb">number</span> <span class="o">=</span> <span class="n">Hears</span><span class="p">.</span><span class="nb">number</span>
+<span class="k">where</span>  <span class="n">matrNr</span> <span class="o">=</span> <span class="mi">134534</span>
+</pre></div>
+<p>
+To perform a theta join the <code>from</code> clause is exteneded with the keyword <code>join</code> between the involved tables, followed by the keyword <code>on</code> after which the join condition is specified (because we compare with <code>=</code> in the theta join it is an equijoin btw).
+</p>
+
+<p>
+However the most appropiate join in this use case is the <i>natural join</i> ⊗ because we want to join on attributes that have the same name in both tables (and are foreign resp. primary keys). To do so in SQL we formulate this query:
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="nb">number</span><span class="p">,</span> <span class="n">title</span>
+<span class="k">from</span> <span class="n">Lectures</span> <span class="k">natural</span> <span class="k">join</span> <span class="n">Hears</span>
+<span class="k">where</span> <span class="n">matrNr</span> <span class="o">=</span> <span class="mi">134534</span>
+</pre></div>
+<p>
+which yields the same old result relation (but with less query syntax):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number</th>
+<th scope="col" class="org-left">title</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+</tr>
+</tbody>
+</table>
+<p>
+As you see the natural join in SQL is express by replacing the comma between the involved tables in the <code>from</code> clause with the keyword <code>natural join</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcc24ab0" class="outline-3">
+<h3 id="orgcc24ab0">Aggregation and Grouping</h3>
+<div class="outline-text-3" id="text-orgcc24ab0">
+<p>
+Often times it is of interest to perform some kind of calculations on the tuples of a table, which means to involve all values of an attribute. Functions that do this are called <i>aggregate functions</i> and here are some common ones:
+</p>
+<ul class="org-ul">
+<li>
+<code>min(A)</code> → yields smallest value present in attribute A</li>
+<li>
+<code>max(A)</code> → yields largest value present in attribute A</li>
+<li>
+<code>avg(A)</code> → yields average of all values present in attribute A</li>
+<li>
+<code>sum(A)</code> → yields sum of all values present in attribute A</li>
+<li>
+<code>count(A)</code> → yields amount/count of values present in attribute A</li>
+<li>
+<code>count(distinct A)</code> → yields amount/count of unique values present in attribute A</li>
+<li>
+<code>count(*)</code> → yields amount/count of tuples in the table</li>
+</ul>
+<p>
+Suppose we have the following table <i>Personal</i> to see aggregate functions in action
+<img src="../../../images/personal-table.png" alt="nil">
+To find out which is the highest and lowest salary(gehalt) in the table we formulate the following query
+</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">min</span><span class="p">(</span><span class="n">gehalt</span><span class="p">)</span> <span class="k">as</span> <span class="n">minimum</span><span class="p">,</span>
+       <span class="k">max</span><span class="p">(</span><span class="n">gehalt</span><span class="p">)</span> <span class="k">as</span> <span class="n">maximum</span>
+<span class="k">from</span> <span class="n">Personal</span>
+</pre></div>
+<p>
+yielding 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">minimum</th>
+<th scope="col" class="org-right">maximum</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-right">2084</td>
+<td class="org-right">5249</td>
+</tr></tbody>
+</table>
+<p>
+Since the result of an aggregate function usually operates on <i>multiple</i> tuples of a relation, the result can only be displayed with results of other aggregate functions rather than other <i>single</i> attributes (think about it this way, which single attribute would make sense in the row of the result relation we just saw? none).
+</p>
+
+<p>
+It is also possible to <b>group</b> values. Tuple that have the same value for an attribute (or set of attributes) are then <b>grouped</b> by those same attribute values. Aggregate functions then operate <b>isolated</b> on those formed groups, which means grouping only makes sense when aggregations are performed subsequently. The schema of the resulting table can only hold the grouped attributes and the result of the attribute functions.
+</p>
+
+<p>
+This slide gives a good visualization 
+<img src="../../../images/grouping-1.png" alt="nil"></p>
+
+<p>
+To <i>filter groups</i> we can use the <code>having</code> keyword which acts like a <code>where</code> clause but for groups and follows the <code>group by</code> statement.
+<img src="../../../images/grouping-2.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org97e44ab" class="outline-3">
+<h3 id="org97e44ab">Connecting SFW Statements</h3>
+<div class="outline-text-3" id="text-org97e44ab">
+<p>
+It is possible to connect whole <code>select</code> statements with each other in SQL. This functionality corresponds to the operations set <i>union</i> and set <i>difference</i> we know from relational algebra. Likewise the data types of the attributes from the tables that should be combined need to be of the same data type (and semantic) in SQL as well.
+</p>
+
+<p>
+The operators to perform this set operations
+</p>
+<ul class="org-ul">
+<li>
+<code>union</code> corresponds to the join/union operation ∪ from relational algebra and also removes duplicates</li>
+<li>
+<code>except</code>, <code>minus</code> corresponds to the set difference - from relational algebra</li>
+<li>
+<code>intersect</code> corresponds to the intersection ∩ from relational algebra (Schnittmenge)</li>
+</ul>
+<p>
+Example of combining/connecting SFW statements:
+<img src="../../../images/sfw-connection.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-orgb9a999d" class="outline-3">
+<h3 id="orgb9a999d">Subqueries</h3>
+<div class="outline-text-3" id="text-orgb9a999d">
+<p>
+It is possible to execute further <code>select</code> statements <i>inside</i> a <code>select</code> statements. There are two possible approaches/semantics (Semantiken) to do that, the <b>value semantic</b> (slides: Wertsemantik) and the <b>set semantic</b> (slides: Mengensemantik?!). I'll use the german terms <i>Wertsemantik</i> and <i>Mengensemantik</i> because it is not clear to me what the proper english terms would be :o. Subqueries can be nested as desired as long as the semantic is correct (recursion).
+</p>
+</div>
+
+<div id="outline-container-orgf7ff1b5" class="outline-4">
+<h4 id="orgf7ff1b5">Wertsemantik</h4>
+<div class="outline-text-4" id="text-orgf7ff1b5">
+<p>
+The subquery returns a <b>single value</b> (doesnt matter if string, number or date). Subqueries that follow Wertsemantik can be used at every place/position where single values may have been used.
+</p>
+
+<p>
+Example:
+</p>
+
+<p>
+<img src="../../../images/wertsemantik-1.png" alt="nil"><img src="../../../images/wertsemantik-2.png" alt="nil"></p>
+
+<p>
+↑ then the surrounding/wrapping query is executed which finds the two tuples with a number of "234" in the <i>Hears</i> table which is then counted and returns the result table 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="org-right"></colgroup>
+<thead><tr>
+<th scope="col" class="org-right">anzahl</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-right">2</td>
+</tr></tbody>
+</table>
+<p>
+Here are some equivalent queries to the one we examined in the pictures above
+</p>
+<div class="highlight"><pre><span></span><span class="c1">-- 1</span>
+<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">anzahl</span>
+<span class="k">from</span> <span class="n">Hört</span><span class="p">,</span> <span class="n">Lehrveranstaltung</span>
+<span class="k">where</span> <span class="n">Hört</span><span class="p">.</span><span class="n">nummer</span> <span class="o">=</span> <span class="n">Lehrveranstaltung</span><span class="p">.</span><span class="n">nummer</span> <span class="k">and</span> <span class="n">titel</span> <span class="o">=</span> <span class="s1">'Datenbanken in der Praxis'</span>
+
+<span class="c1">-- 2</span>
+<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">anzahl</span>
+<span class="k">from</span> <span class="n">Hört</span> <span class="k">natural</span> <span class="k">join</span> <span class="n">Lehrveranstaltung</span>
+<span class="k">where</span> <span class="n">titel</span> <span class="o">=</span> <span class="s1">'Datenbanken in der Praxis'</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org573401e" class="outline-4">
+<h4 id="org573401e">Mengensemantik</h4>
+<div class="outline-text-4" id="text-org573401e">
+<p>
+The subquery returns a Wertemenge (set of values). To then evaluate the returned result set special language features/constructs are needed.
+</p>
+
+<p>
+Example:
+</p>
+
+<p>
+<img src="../../../images/mengensemantik-1.png" alt="nil">
+Notice that when the subquery generates a set of values like in the picture above, the <code>=</code> operator at the <code>where</code> statement is replaced by the <code>in</code> set operator because we're dealing with multiple values. This is the procedure of the query above:
+</p>
+
+<p>
+<img src="../../../images/mengensemantik-2.png" alt="nil"><img src="../../../images/mengensemantik-3.png" alt="nil"><img src="../../../images/mengensemantik-4.png" alt="nil"></p>
+
+<hr>
+<p>
+The subqueries we saw so far were <b>non-correlating</b>. They worked locally and had only to be evaluated once because their result stayed constant because of the local nature.
+</p>
+
+<p>
+But suppose we want to access attribute values of surrounding/wrapping queries. 
+This is where <b>correlating subqueries</b> come into play. It is possible to access wrapping/surrounding tables from the inside of subqueries (the circumstances may require qualification via the table name). The correlation is created as soon as such reference exists. A correlating subquery always refers to the currently viewed tuple of the parent query and therefore has to be computed for <b>every</b> tuple of the result set (slides: Eine korrelierte Unteranfrage bezieht sich immer auf das aktuell betrachtete Tupel der übergeordneten Anfrage und muss deshalb für jedes Tupel von deren Ergebnismenge neu berechnet werden).
+</p>
+
+<p>
+Example:
+</p>
+
+<p>
+<img src="../../../images/correlating-subqueries-1.png" alt="nil"><img src="../../../images/correlating-subqueries-2.png" alt="nil"></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8d84616" class="outline-3">
+<h3 id="org8d84616">Set Operations (Mengenoperatoren)</h3>
+<div class="outline-text-3" id="text-org8d84616">
+<p>
+We already know the specification of constant sets and how to test if an attribute value is contained in such set via <code>where .. in</code> eg <code>where attribute in ('Chemnitz', 'Leipzig', 'Dresden')</code>. There are more set operators of which we will introduce some now since they're also helpful in regards to subqueries and can be used to model the quantifiers from relational calculus:
+</p>
+<ul class="org-ul">
+<li>
+<code>exists SET</code>  becomes <code>true</code> when <code>SET</code> includes at least one element</li>
+<li>
+<code>COMPARISON-OPERATOR all SET</code> becomes <code>true</code> when the comparison operator yields <code>true</code> for each element in <code>SET</code>
+</li>
+<li>
+<code>COMPARISON-OPERATOR any SET</code> becomes <code>true</code> when the comparison operator yields <code>true</code> for any element in <code>SET</code>
+</li>
+</ul>
+<p>
+Examples:
+<img src="../../../images/set-operators-1.png" alt="nil"><img src="../../../images/set-operators-2.png" alt="nil"><img src="../../../images/set-operators-3.png" alt="nil"></p>
+</div>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

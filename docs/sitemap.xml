@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-12-04T08:59:00Z</lastmod>
+  <lastmod>2018-12-04T21:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
@@ -51,7 +51,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-3.html</loc>
-  <lastmod>2018-12-04T08:59:00Z</lastmod>
+  <lastmod>2018-12-04T21:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -236,6 +236,10 @@
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-05/</loc>
   <lastmod>2018-11-27T08:28:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</loc>
+  <lastmod>2018-12-04T21:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-01/</loc>
