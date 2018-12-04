@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 08:30:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 08:59:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;div id="outline-container-org7d771de" class="outline-2"&gt;
+&lt;h2 id="org7d771de"&gt;Program Structure&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7d771de"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org55141c0" class="outline-3"&gt;
+&lt;h3 id="org55141c0"&gt;Constants&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org55141c0"&gt;
+&lt;p&gt;
+Similar to variable declaration it is possible to declare &lt;i&gt;constants&lt;/i&gt;. This is achieved by prepending the keyword "const" before the type eg &lt;code&gt;const float PI = 3.14&lt;/code&gt;. You might also encounter something like &lt;code&gt;#define PI 3.14&lt;/code&gt; which is an old way of declaring constants via a preprocessor directive and not encouraged anymore.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is a recommended outline of the program structure:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Include Directives (System)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Include Directives (Private/Local)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Constant Declarations&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Type- and Class Declarations&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Variable Declarations&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Functions&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+But this is not set in stone and isn't mandatory to follow.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org472af39" class="outline-3"&gt;
+&lt;h3 id="org472af39"&gt;Scope&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org472af39"&gt;
+&lt;p&gt;
+Variables that are declared
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;outside of any functions are visible/present/accessible until the end of the source code&lt;/li&gt;
+&lt;li&gt;inside of functions (or as function parameters) are visible/present/accessible until the end of that function&lt;/li&gt;
+&lt;li&gt;inside of blocks (&lt;code&gt;{...}&lt;/code&gt;) are visible/present/accessible until the end of that block&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// outside of any function&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// inside of f1&lt;/span&gt;
+  &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The two &lt;code&gt;x&lt;/code&gt;'s in the code above have their own, different places in memory.
+&lt;/p&gt;
+
+&lt;p&gt;
+Beware that while it is possible to declare the same name in different scopes is possible, it is not really recommended.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgac15c67" class="outline-3"&gt;
+&lt;h3 id="orgac15c67"&gt;Type Compability&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgac15c67"&gt;
+&lt;p&gt;
+It is possible to convert types. This should happen when there is a good reason for it and you know what you're doing (eg that the semantic makes sense and the types are compatible). To do so you write the type you want to convert to and wrap the variable you want to convert in parentheses, so it looks like a function call &lt;code&gt;x = int(y);&lt;/code&gt;. The old form &lt;code&gt;x = (int)y;&lt;/code&gt; should not be used anymore.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6aa1928" class="outline-3"&gt;
+&lt;h3 id="org6aa1928"&gt;Namespaces&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6aa1928"&gt;
+&lt;p&gt;
+Namespaces allow us to group named entities that otherwise would have global scope into narrower scopes, giving them namespace scope. This allows organizing the elements of programs into different logical scopes referred to by names. Namespace is a feature added in C++ and not present in C. A namespace is a declarative region that provides a scope to the identifiers (names of the types, function, variables etc) inside it. Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope. 
+&lt;/p&gt;
+
+&lt;p&gt;
+A namespace definition begins with the keyword namespace followed by the namespace name as follows:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;myNamespace&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// code declarations where &lt;/span&gt;
+	     &lt;span class="c1"&gt;// x and y are declared in &lt;/span&gt;
+	     &lt;span class="c1"&gt;// myNamespace's scope&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+So far we've seen the usage of the namespace &lt;code&gt;std&lt;/code&gt; which groups the C++ standard libraries. There are three different ways of using this namespace:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// 1. Use whole namespace&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// generic usage of std, everything from std is now known/accesible dircetly&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Rest of Code &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; END"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 2. Access specific names via qualified names&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Rest of Code &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; END"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// fully qualified name "namespaceName::name"&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 3. Declare specific parts&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// specifc import of what is needed&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Rest of Code &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; END"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</guid><pubDate>Thu, 29 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
 &lt;/p&gt;
 
@@ -2972,221 +3113,4 @@ In some languages there is no distinction between expressions and staments. In L
 Sources: &lt;a href="https://www.tutorialspoint.com"&gt;https://www.tutorialspoint.com&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-A type alias is a different name by which a type can be identified. In C++, any valid type can be aliased so that it can be referred to with a different identifier.
-It is possible to do type definitions via the following syntax &lt;code&gt;typedef TYP typename;&lt;/code&gt;, eg &lt;code&gt;typedef unsigned short ushort;&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;div id="outline-container-org94ab293" class="outline-2"&gt;
-&lt;h2 id="org94ab293"&gt;Enumerated Type&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org94ab293"&gt;
-&lt;p&gt;
-Enumerated types are types that are defined with a set of custom identifiers, known as enumerators, as possible values. Objects of these enumerated types can take any of these enumerators as value.
-&lt;/p&gt;
-
-&lt;p&gt;
-Their syntax is:
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;type_name&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;value1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="n"&gt;value2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="n"&gt;value3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="p"&gt;.&lt;/span&gt;
-  &lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;object_names&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-This creates the type &lt;code&gt;type_name&lt;/code&gt;, which can take any of &lt;code&gt;value1&lt;/code&gt;, &lt;code&gt;value2&lt;/code&gt;, &lt;code&gt;value3&lt;/code&gt;, … as value. Objects (variables) of this type can directly be instantiated as &lt;code&gt;object_names&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Notice that this declaration includes no other type, neither fundamental nor compound, in its definition. To say it another way, somehow, this creates a whole new data type from scratch without basing it on any other existing type. The possible values that variables of this new type &lt;code&gt;color_t&lt;/code&gt; may take are the enumerators listed within braces. For example, once the &lt;code&gt;colors_t&lt;/code&gt; enumerated type is declared, the following expressions will be valid:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;colors_t&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;red&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;testColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;yourFavColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="n"&gt;colors_t&lt;/span&gt; &lt;span class="n"&gt;myFavColor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;myFavColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;testColor&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// green is equivalent to 1&lt;/span&gt;
-    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"'testColor is "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;myFavColor&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;yourFavColor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Hey we have the same favorite colors :D"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-'testColor is 1
-Hey we have the same favorite colors :D
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-Values of enumerated types declared with &lt;code&gt;enum&lt;/code&gt; are implicitly convertible to an integer type, and vice versa. In fact, the elements of such an enum are always assigned an integer numerical equivalent internally, to which they can be implicitly converted to or from. If it is not specified otherwise, the integer value equivalent to the first possible value is &lt;code&gt;0&lt;/code&gt;, the equivalent to the second is &lt;code&gt;1&lt;/code&gt;, to the third is &lt;code&gt;2&lt;/code&gt;, and so on… Therefore, in the data type &lt;code&gt;colors_t&lt;/code&gt; defined above, &lt;code&gt;red&lt;/code&gt; would be equivalent to &lt;code&gt;0&lt;/code&gt;, &lt;code&gt;green&lt;/code&gt; would be equivalent to &lt;code&gt;1&lt;/code&gt;, blue to &lt;code&gt;2&lt;/code&gt;, and so on…
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb3b4ad8" class="outline-2"&gt;
-&lt;h2 id="orgb3b4ad8"&gt;Arrays&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb3b4ad8"&gt;
-&lt;p&gt;
-An array is a series of elements of the same type placed in contiguous memory locations that can be individually referenced by adding an index to a unique identifier.
-&lt;/p&gt;
-
-&lt;p&gt;
-That means that, for example, five values of type int can be declared as an array without having to declare 5 different variables (each with its own identifier). Instead, using an array, the five int values are stored in contiguous memory locations, and all five can be accessed using the same identifier, with the proper index.
-&lt;/p&gt;
-
-&lt;p&gt;
-A typical declaration for an array in C++ is &lt;code&gt;type name [elements num];&lt;/code&gt; where &lt;code&gt;type&lt;/code&gt; is a valid type (such as int, float…), &lt;code&gt;name&lt;/code&gt; is a valid identifier and the &lt;code&gt;elements num&lt;/code&gt; (which is always enclosed in square brackets &lt;code&gt;[]&lt;/code&gt;), specifies the length of the array in terms of the number of elements.
-&lt;/p&gt;
-
-&lt;p&gt;
-Therefore, the &lt;code&gt;foo&lt;/code&gt; array, with five elements of type &lt;code&gt;int&lt;/code&gt;, can be declared as: &lt;code&gt;int foo [5];&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-NOTE: The number of elements within square brackets &lt;code&gt;[]&lt;/code&gt;, representing the number of elements in the array, must be a &lt;i&gt;constant expression&lt;/i&gt;, since arrays are blocks of static memory whose size must be determined at compile time, before the program runs.
-&lt;/p&gt;
-
-&lt;p&gt;
-Elements in an array can be explicitly initialized to specific values when it is declared, by enclosing those initial values in braces &lt;code&gt;{}&lt;/code&gt;. For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12071&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The number of values between braces &lt;code&gt;{}&lt;/code&gt; shall not be greater than the number of elements in the array. For example, in the example above, &lt;code&gt;foo&lt;/code&gt; was declared having 5 elements (as specified by the number enclosed in square brackets, []), and the braces {} contained exactly 5 values, one for each element. If declared with less, the remaining elements are set to their default values (which for fundamental types, means they are filled with zeroes). For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;bar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Results in bar consisting of &lt;code&gt;10, 20, 30, 0, 0&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-The initializer can even have no values, just the braces &lt;code&gt;int baz[5] = { };&lt;/code&gt;.
-This creates an array of five int values, each initialized with a value of zero:
-&lt;/p&gt;
-
-&lt;p&gt;
-When omitting the initialization completely by default, regular arrays of &lt;i&gt;local scope&lt;/i&gt; (for example, those declared within a function) are left uninitialized. This means that none of its elements are set to any particular value; their contents are undetermined at the point the array is declared.
-&lt;/p&gt;
-
-&lt;p&gt;
-Static arrays, and those declared directly in a namespace (outside any function), are always initialized. If no explicit initializer is specified, all the elements are default-initialized (with zeroes, for fundamental types)
-&lt;/p&gt;
-
-&lt;p&gt;
-When an initialization of values is provided for an array, C++ allows the possibility of leaving the square brackets empty &lt;code&gt;[]&lt;/code&gt;. In this case, the compiler will assume automatically a size for the array that matches the number of values included between the braces &lt;code&gt;{}&lt;/code&gt;:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12071&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-To access array values one uses the bracket notation:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12071&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; 16&lt;/span&gt;
-&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; 12071&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Char arrays are somewhat a special case. There are multiple equivalent ways to define char arrays:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="sc"&gt;'H'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'e'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'l'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;'\0'&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 6 because of delimiting 0&lt;/span&gt;
-&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;greeting&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Functions to work with such strings in C++ are provided via the header file &lt;code&gt;&amp;lt;cstring&amp;gt;&lt;/code&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;find out length via &lt;code&gt;int strlen(char *s)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;comparison via &lt;code&gt;int strcmp(char *s1, char *s2)&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;returns 0 for "equal" strings (equal string content)&lt;/li&gt;
-&lt;li&gt;returns &amp;lt; 0 when &lt;code&gt;s1&lt;/code&gt; is &amp;lt; than &lt;code&gt;s2&lt;/code&gt; eg s1 holds "a" which in ascii is smaller than "b" so &lt;code&gt;strcmp&lt;/code&gt; would return &lt;code&gt;-1&lt;/code&gt; because that is the difference&lt;/li&gt;
-&lt;li&gt;returns &amp;gt; 0 when &lt;code&gt;s1&lt;/code&gt; is &amp;gt; than &lt;code&gt;s2&lt;/code&gt; eg &lt;code&gt;s1&lt;/code&gt; holds "c" and &lt;code&gt;s2&lt;/code&gt; holds "a" then &lt;code&gt;strcmp&lt;/code&gt; returns &lt;code&gt;2&lt;/code&gt; because that is the ascii distance&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;copy strings with &lt;code&gt;char * strcpy(char *destination, char *source)&lt;/code&gt; and &lt;code&gt;char * strcat(char *destination, char *source)&lt;/code&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;strcpy()&lt;/code&gt; copies a string from source to destination. The function takes two string variables as arguments: the destination, and the source, then returns the updated destination variable.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;strcat()&lt;/code&gt; concatenates two strings. It appends a copy of the source string to the end of the destination string, and then returns the destination string.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org283cc6e" class="outline-2"&gt;
-&lt;h2 id="org283cc6e"&gt;Struct&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org283cc6e"&gt;
-&lt;p&gt;
-A struct is a type consisting of a sequence of members whose storage is allocated in an ordered sequence (as opposed to union, which is a type consisting of a sequence of members whose storage overlaps). There are many instances in programming where we need more than one variable in order to represent an object. For example, to represent yourself, you might want to store your name, your birthday, your height, your weight, or any other number of characteristics about yourself.
-&lt;/p&gt;
-
-&lt;p&gt;
-Fortunately, C++ allows us to create our own user-defined aggregate data types. An &lt;i&gt;aggregate data type&lt;/i&gt; is a data type that groups multiple individual variables together. One of the simplest aggregate data types is the struct. A &lt;b&gt;struct&lt;/b&gt; (short for structure) allows us to group variables of mixed data types together into a single unit.
-&lt;/p&gt;
-
-&lt;p&gt;
-Because structs are user-defined, we first have to tell the compiler what our struct looks like before we can begin using it. To do this, we declare our struct using the &lt;code&gt;struct&lt;/code&gt; keyword. Here is an example of a struct declaration:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Employee&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;wage&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-This tells the compiler that we are defining a struct named Employee. The Employee struct contains 3 variables inside of it: a short named &lt;code&gt;id&lt;/code&gt;, an int named &lt;code&gt;age&lt;/code&gt;, and a double named &lt;code&gt;wage&lt;/code&gt;. These variables that are part of the struct are called members (or fields). Keep in mind that Employee is just a declaration – even though we are telling the compiler that the struct will have member variables, no memory is allocated at this time. By convention, struct names start with a capital letter to distinguish them from variable names.
-&lt;/p&gt;
-
-&lt;p&gt;
-In order to use the Employee struct, we simply declare a variable of type Employee &lt;code&gt;Employee john;&lt;/code&gt; . This defines a variable of type &lt;code&gt;Employee&lt;/code&gt; named &lt;code&gt;john&lt;/code&gt;. As with normal variables, defining a struct variable allocates memory for that variable.
-&lt;/p&gt;
-
-&lt;p&gt;
-When we define a variable such as &lt;code&gt;Employee john&lt;/code&gt;, &lt;code&gt;john&lt;/code&gt; refers to the entire struct (which contains the member variables). In order to access the individual members, we use the member selection operator &lt;code&gt;.&lt;/code&gt; (which is a period). Here is an example of using the member selection operator to initialize each member variable:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Employee&lt;/span&gt; &lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// create an Employee struct for John&lt;/span&gt;
-&lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// assign a value to member id within struct john&lt;/span&gt;
-&lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// assign a value to member age within struct john&lt;/span&gt;
-&lt;span class="n"&gt;john&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;24.15&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// assign a value to member wage within struct john&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-As with normal variables, struct member variables are not initialized, and will typically contain junk. We must initialize them manually.
-&lt;/p&gt;
-
-&lt;p&gt;
-Initializing structs by assigning values member by member is a little cumbersome, so C++ supports a faster way to initialize structs using an initializer list. This allows you to initialize some or all the members of a struct at declaration time.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Employee&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;wage&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="n"&gt;Employee&lt;/span&gt; &lt;span class="n"&gt;john&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;60000.0&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// john.id = 1, john.age = 32, john.wage = 60000.0&lt;/span&gt;
-&lt;span class="n"&gt;Employee&lt;/span&gt; &lt;span class="n"&gt;frank&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;28&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// frank.id = 2, frank.age = 28, frank.wage = 0.0 (default initialization)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-If the initializer list does not contain an initializer for some elements, those elements are initialized to a default value (that generally corresponds to the zero state for that type). In the above example, we see that frank.wage gets default initialized to 0.0 because we did not specify an explicit initialization value for it.
-&lt;/p&gt;
-
-&lt;hr&gt;
-&lt;p&gt;
-Source(s): &lt;a href="https://www.learncpp.com/cpp-tutorial/47-structs/"&gt;https://www.learncpp.com/cpp-tutorial/47-structs/&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-05/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-10/</guid><pubDate>Thu, 08 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>

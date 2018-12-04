@@ -1,0 +1,91 @@
+#+BEGIN_COMMENT
+.. title: Computer Science I - Lecture 08
+.. slug: cs-I-08
+.. date: 2018-11-30
+.. tags: 
+.. category: university cs01
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+*Disclaimer:* /I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms & Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&P a classmate hands me the covered slides)/
+
+* Program Structure
+** Constants
+Similar to variable declaration it is possible to declare /constants/. This is achieved by prepending the keyword "const" before the type eg ~const float PI = 3.14~. You might also encounter something like ~#define PI 3.14~ which is an old way of declaring constants via a preprocessor directive and not encouraged anymore.
+
+This is a recommended outline of the program structure:
+| Include Directives (System)        |
+| Include Directives (Private/Local) |
+| Constant Declarations              |
+| Type- and Class Declarations       |
+| Variable Declarations              |
+| Functions                          |
+
+But this is not set in stone and isn't mandatory to follow.
+
+** Scope
+Variables that are declared
+- outside of any functions are visible/present/accessible until the end of the source code
+- inside of functions (or as function parameters) are visible/present/accessible until the end of that function
+- inside of blocks (={...}=) are visible/present/accessible until the end of that block
+  
+#+BEGIN_SRC C++ exports: both results: output print
+  #include <iostream>
+  using namespace std;
+
+  int x;  // outside of any function
+
+  void f1() {
+    int x; // inside of f1
+    x = 7;
+    cout << x << endl;
+  }
+
+  int main() {
+    x = 5;
+    f1();
+    cout << x;
+  }
+#+END_SRC
+
+#+RESULTS:
+| 7 |
+| 5 |
+
+The two =x='s in the code above have their own, different places in memory.
+
+Beware that while it is possible to declare the same name in different scopes is possible, it is not really recommended.
+
+** Type Compability
+It is possible to convert types. This should happen when there is a good reason for it and you know what you're doing (eg that the semantic makes sense and the types are compatible). To do so you write the type you want to convert to and wrap the variable you want to convert in parentheses, so it looks like a function call ~x = int(y);~. The old form ~x = (int)y;~ should not be used anymore.
+
+** Namespaces
+Namespaces allow us to group named entities that otherwise would have global scope into narrower scopes, giving them namespace scope. This allows organizing the elements of programs into different logical scopes referred to by names. Namespace is a feature added in C++ and not present in C. A namespace is a declarative region that provides a scope to the identifiers (names of the types, function, variables etc) inside it. Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope. 
+
+A namespace definition begins with the keyword namespace followed by the namespace name as follows:
+#+BEGIN_SRC C++
+namespace myNamespace 
+{
+   int x, y; // code declarations where 
+             // x and y are declared in 
+             // myNamespace's scope
+}
+#+END_SRC
+
+So far we've seen the usage of the namespace =std= which groups the C++ standard libraries. There are three different ways of using this namespace:
+#+BEGIN_SRC C++
+// 1. Use whole namespace
+using namespace std; // generic usage of std, everything from std is now known/accesible dircetly
+cout << "Rest of Code \n END" << endl;
+
+// 2. Access specific names via qualified names
+std::cout << "Rest of Code \n END" << std::endl; // fully qualified name "namespaceName::name"
+
+// 3. Declare specific parts
+using std::cout; // specifc import of what is needed
+using std::endl;
+cout << "Rest of Code \n END" << endl;
+#+END_SRC

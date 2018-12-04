@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 08:30:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 08:59:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;div id="outline-container-org7d771de" class="outline-2"&gt;
+&lt;h2 id="org7d771de"&gt;Program Structure&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7d771de"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org55141c0" class="outline-3"&gt;
+&lt;h3 id="org55141c0"&gt;Constants&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org55141c0"&gt;
+&lt;p&gt;
+Similar to variable declaration it is possible to declare &lt;i&gt;constants&lt;/i&gt;. This is achieved by prepending the keyword "const" before the type eg &lt;code&gt;const float PI = 3.14&lt;/code&gt;. You might also encounter something like &lt;code&gt;#define PI 3.14&lt;/code&gt; which is an old way of declaring constants via a preprocessor directive and not encouraged anymore.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is a recommended outline of the program structure:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Include Directives (System)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Include Directives (Private/Local)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Constant Declarations&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Type- and Class Declarations&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Variable Declarations&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;Functions&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+But this is not set in stone and isn't mandatory to follow.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org472af39" class="outline-3"&gt;
+&lt;h3 id="org472af39"&gt;Scope&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org472af39"&gt;
+&lt;p&gt;
+Variables that are declared
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;outside of any functions are visible/present/accessible until the end of the source code&lt;/li&gt;
+&lt;li&gt;inside of functions (or as function parameters) are visible/present/accessible until the end of that function&lt;/li&gt;
+&lt;li&gt;inside of blocks (&lt;code&gt;{...}&lt;/code&gt;) are visible/present/accessible until the end of that block&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// outside of any function&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// inside of f1&lt;/span&gt;
+  &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The two &lt;code&gt;x&lt;/code&gt;'s in the code above have their own, different places in memory.
+&lt;/p&gt;
+
+&lt;p&gt;
+Beware that while it is possible to declare the same name in different scopes is possible, it is not really recommended.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgac15c67" class="outline-3"&gt;
+&lt;h3 id="orgac15c67"&gt;Type Compability&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgac15c67"&gt;
+&lt;p&gt;
+It is possible to convert types. This should happen when there is a good reason for it and you know what you're doing (eg that the semantic makes sense and the types are compatible). To do so you write the type you want to convert to and wrap the variable you want to convert in parentheses, so it looks like a function call &lt;code&gt;x = int(y);&lt;/code&gt;. The old form &lt;code&gt;x = (int)y;&lt;/code&gt; should not be used anymore.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6aa1928" class="outline-3"&gt;
+&lt;h3 id="org6aa1928"&gt;Namespaces&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6aa1928"&gt;
+&lt;p&gt;
+Namespaces allow us to group named entities that otherwise would have global scope into narrower scopes, giving them namespace scope. This allows organizing the elements of programs into different logical scopes referred to by names. Namespace is a feature added in C++ and not present in C. A namespace is a declarative region that provides a scope to the identifiers (names of the types, function, variables etc) inside it. Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope. 
+&lt;/p&gt;
+
+&lt;p&gt;
+A namespace definition begins with the keyword namespace followed by the namespace name as follows:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;myNamespace&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// code declarations where &lt;/span&gt;
+	     &lt;span class="c1"&gt;// x and y are declared in &lt;/span&gt;
+	     &lt;span class="c1"&gt;// myNamespace's scope&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+So far we've seen the usage of the namespace &lt;code&gt;std&lt;/code&gt; which groups the C++ standard libraries. There are three different ways of using this namespace:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// 1. Use whole namespace&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// generic usage of std, everything from std is now known/accesible dircetly&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Rest of Code &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; END"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 2. Access specific names via qualified names&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Rest of Code &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; END"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// fully qualified name "namespaceName::name"&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 3. Declare specific parts&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// specifc import of what is needed&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Rest of Code &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; END"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</guid><pubDate>Thu, 29 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 &lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
 &lt;/p&gt;
 
