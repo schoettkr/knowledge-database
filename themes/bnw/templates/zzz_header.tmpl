@@ -6,6 +6,7 @@
     <header id="header" class="navbar">
         <div class="container">
             ${html_site_title()}
+            ${html_page_search()}
             ${html_navigation_links()}
         </div>
     </header>
@@ -48,6 +49,19 @@
         </div>
     </div>
     %endif
+</%def>
+
+
+<%def name="html_page_search()">
+<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" name="q" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-primary">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  <input type="hidden" name="sitesearch" value="${abs_link('/')}">
+  </form>
 </%def>
 
 <%def name="html_navigation_links()">

@@ -1149,6 +1149,9 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 #
 # This search form works for any site and looks good in the "site" theme where
 # it appears on the navigation bar:
+
+
+# LS: Look/put in the theme template!
 #
 # SEARCH_FORM = """
 # <!-- DuckDuckGo custom search -->
@@ -1179,6 +1182,20 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # </form>
 # <!-- End of custom search -->
 # """ % SITE_URL
+
+# Local Search
+# SEARCH_FORM = """
+# <form class="navbar-form navbar-left" action="/search/" role="search">
+#     <div class="form-group">
+#         <input type="text" class="form-control" id="tipue_search_input" name="q" placeholder="Search" autocomplete="off">
+#     </div>
+#     <button type="submit" class="btn btn-default">Submit</button>
+# </form>
+# """
+
+# EXTRA_HEAD_DATA = """
+# <link rel="stylesheet" type="text/css" href="/assets/css/tipuesearch.css">
+# """
 
 # Use content distribution networks for jQuery, twitter-bootstrap css and js,
 # and html5shiv (for older versions of Internet Explorer)
@@ -1339,7 +1356,8 @@ WARN_ABOUT_TAG_METADATA = False
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {
+}
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be
