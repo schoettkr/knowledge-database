@@ -1,5 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 21:04:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Thu, 06 Dec 2018 10:08:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
+&lt;h2 id="orged82e2d"&gt;Recursion and Backtracking&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orged82e2d"&gt;
+&lt;p&gt;
+Recursion was already covered in previous lectures so you can find additional informations in those blog posts. Now we want to discuss one difference between &lt;i&gt;loops&lt;/i&gt; and &lt;i&gt;recursion&lt;/i&gt; and therefore we turn our attention to the datastructure &lt;b&gt;stack&lt;/b&gt; which is used in many CPU's.
+The stack is a container for holding data and there are two operations associated with it:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;push&lt;/b&gt; → &lt;code&gt;push(D, S)&lt;/code&gt; adds a data element &lt;code&gt;D&lt;/code&gt; on top of the stack &lt;code&gt;S&lt;/code&gt; (and 'overlays' the other elements in S)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;usually returns the modified stack &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;pop&lt;/b&gt; → &lt;code&gt;pop(S)&lt;/code&gt; the topmost and only visible element in &lt;code&gt;S&lt;/code&gt; get's removed from the top of the stack and allows access to next element below it
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;usually returns the removed element &lt;code&gt;D&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+A simple hardware implementation is achieved via a &lt;i&gt;stack pointer&lt;/i&gt; that always points to the top of the stack (the topmost element). &lt;a href="http://cryptroix.com/2016/10/16/journey-to-the-stack/"&gt;Here's&lt;/a&gt; an in depth explanation and a shorter post can be found &lt;a href="https://learn1.open.ac.uk/mod/oublog/viewpost.php?post=162710"&gt;here&lt;/a&gt;. 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/call-stack.png" alt="nil"&gt;
+Cite from the second link:
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+When a call is made one method of passing arguments to a function is to push the data onto the stack along with the address of the program statement execution must return to when the function has completed its work. This stack is referred to as the &lt;b&gt;call stack&lt;/b&gt; or sometimes the machine stack. A specific CPU register, the &lt;b&gt;stack pointer (SP)&lt;/b&gt;, may be provided to manage it. In this case a call function instruction says: push the return onto the stack and jump to the function address, making that part of the pushing automatic.
+&lt;/p&gt;
+
+&lt;p&gt;
+In the majority of cases the call stack grows downwards in memory giving local variables a positive offset from the SP. The SP points to the last element put on the stack not the next free space so it is decremented down before data is pushed on. It is usual to discuss the depth of function calls meaning the number of calls made before a return starts the climb back up to calls higher in the calling hierarchy. An upside down stack fits well with this view: 
+&lt;/p&gt;
+
+&lt;p&gt;
+When called the first action function code takes is to push the old value of another CPU register, the &lt;b&gt;frame pointer (FP)&lt;/b&gt;, onto the stack. The current value of the SP is then stored in the FP allowing modification of the SP to make space on the stack for any additional local variables the function has. 
+&lt;/p&gt;
+
+&lt;p&gt;
+On a return from a function the value of the SP is restored from the FP and the FP gets its old value back, popped off the stack. Lastly, a return instruction in the machine code tells the CPU to send execution back to the instruction address stored on the stack by the call and currently referenced by the SP. Thus the FP and the SP work together to walk up and down the stack. 
+&lt;/p&gt;
+
+&lt;p&gt;
+The blocks of memory on the call stack for each individual function call are &lt;b&gt;stack frames&lt;/b&gt;.  Function local variables that cannot be held in registers because they are too big to fit or because those registers may be used by the callee when that function calls another function are put on the stack. Large return items can be passed back on the stack but more usually the return or a reference to it is passed in a CPU register. Thus the availability of this storage space makes nested function calls possible.
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org05f5507" class="outline-4"&gt;
+&lt;h4 id="org05f5507"&gt;Recursion vs Iteration&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org05f5507"&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Recursion&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Iteration&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;recursive calls of a subroutine(Unterprogramm)&lt;/td&gt;
+&lt;td class="org-left"&gt;execution of a set of instructions of an iteration step&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;parameters of the subroutine are modified and tested for a break condition&lt;/td&gt;
+&lt;td class="org-left"&gt;iterations usually limited via counter variable or a set&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;processed elements are stored implicitly on the stack (subroutine params)&lt;/td&gt;
+&lt;td class="org-left"&gt;processed elements elements have to be stored explicitly&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;access to elements is limited to current component in the active subroutine&lt;/td&gt;
+&lt;td class="org-left"&gt;access to elements is arbitrary&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;corresponds to the function model&lt;/td&gt;
+&lt;td class="org-left"&gt;corresponds to the state model&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd8f762a" class="outline-3"&gt;
+&lt;h3 id="orgd8f762a"&gt;Design of Recursive Algorithms&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd8f762a"&gt;
+&lt;p&gt;
+There are at least two cases which have to be handled in every recursive algorithm
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;exit/break from the recursion&lt;/li&gt;
+&lt;li&gt;recursive call&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+In general there are two approache to craft recursive algorithms:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;abstraction&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;drafting of a specific solution to a specific problem instances → draft more solutions and make use of the ones already existing → recognize similarities → encapsulate/summarize those to a universal solution (&lt;b&gt;abstraction&lt;/b&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;leap of faith&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assumption that the function/procedure is already working and use that for a smaller subproblem&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org53e9706" class="outline-4"&gt;
+&lt;h4 id="org53e9706"&gt;Fibonacci Numbers&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org53e9706"&gt;
+&lt;p&gt;
+We already got to know the Fibonacci Numbers previously:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Computes the n-th fibonacci number&lt;/span&gt;
+&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+&lt;b&gt;Regularity&lt;/b&gt; (Regelmäßigkeit):&lt;br&gt;
+We can recognize that the next element in the fibonacci sequence is the sum of the previous both fibonacci numbers. So \(a_{n+2} = a_n  + a_{n+1}\). 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Defaults&lt;/b&gt; (Standardfolge):&lt;br&gt;
+We set a&lt;sub&gt;0&lt;/sub&gt; = 0 and a&lt;sub&gt;1&lt;/sub&gt; = 1 and get the following sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, …
+&lt;/p&gt;
+
+&lt;p&gt;
+However the fibonacci sequence is an example where recursion should not be used since the call stack will get pretty large and it is totally solvable with iterations.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Computes the n-th fibonacci number&lt;/span&gt;
+&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;long&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;fnum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+  &lt;span class="n"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fnum&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The complexity of this solution with a loop is \(\Theta(n)\), while the complexity of the solution with recursion was \(\Theta(c^n)\) with c &amp;gt; 1.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org496eb95" class="outline-4"&gt;
+&lt;h4 id="org496eb95"&gt;Towers of Hanoi&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org496eb95"&gt;
+&lt;p&gt;
+Now we'll turn our attention to a problem which can be well represented with recursion to demonstrate the principle of solutions. The &lt;i&gt;tower of hanoi&lt;/i&gt; is a mathematical game/puzzle consisting of three rods and a number of differently sized disk on one rod which can slide onto any rod under the following rules:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;only one disk can be moved at a time&lt;/li&gt;
+&lt;li&gt;each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or an empty rod&lt;/li&gt;
+&lt;li&gt;no larger disk may be placed on top of a smaller disk&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+This is the pseudo code to solve the towers of hanoi:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;require&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tower&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;place&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nl"&gt;ensure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tower&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;place&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt; &lt;span class="n"&gt;obey&lt;/span&gt; &lt;span class="n"&gt;rules&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;procedure&lt;/span&gt; &lt;span class="n"&gt;MOVE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;TOWER&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;goal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt;
+  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+  &lt;span class="n"&gt;MOVE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;TOWER&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aux_place&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// auxiliary place/Hilfsplatz&lt;/span&gt;
+  &lt;span class="n"&gt;move&lt;/span&gt; &lt;span class="n"&gt;last_ring&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;goal&lt;/span&gt;
+  &lt;span class="n"&gt;MOVE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;TOWER&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;goal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="n"&gt;procedure&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;Move part of the tower with height n-1 from the start rod to the auxiliary rod (via the goal rod)&lt;/li&gt;
+&lt;li&gt;Move the last/bottom disk from the start rod to the goal rod&lt;/li&gt;
+&lt;li&gt;Move part of the tower with height n-1 from the auxiliary rod to the goal road (via the start rod)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+→ The minimal number of moves required to solve a Tower of Hanoi puzzle is 2&lt;sup&gt;n&lt;/sup&gt; - 1, where n is the number of disks.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge8dbbac" class="outline-3"&gt;
+&lt;h3 id="orge8dbbac"&gt;Backtracking&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge8dbbac"&gt;
+&lt;p&gt;
+To illustrate an use case for &lt;i&gt;backtracking&lt;/i&gt; we'll turn our attention to the &lt;i&gt;Eight Queens Puzzle&lt;/i&gt; (Damenproblem), which is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n queens problem of placing n non-attacking queens on an n×n chessboard, for which solutions exist for all natural numbers n with the exception of n=2 and n=3.
+&lt;/p&gt;
+
+&lt;p&gt;
+A general algorithmic approach to get a solution could look like this:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;Put a queen in the the first row and first column&lt;/li&gt;
+&lt;li&gt;Put another quuen in the next row and in the first column&lt;/li&gt;
+&lt;li&gt;Move the the second queen right until she's in an allowed position (not possible to be attacked)&lt;/li&gt;
+&lt;li&gt;Repeat from Step 2 until:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;all 8 Queens are placed → Solution&lt;/li&gt;
+&lt;li&gt;no valid field can be found in the row for a queen → if this is the case then the &lt;i&gt;previous&lt;/i&gt; queen is treated as invalid as well so that that one is moved right as well (when there is no valid position for the previous queen, then the queen previous to the previous one will be moved in search for a new valid place further to the right and so on…)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+This approach where a partial solution is discarded to continue with a previous partial solution is called &lt;b&gt;backtracking&lt;/b&gt;. 
+&lt;/p&gt;
+
+&lt;p&gt;
+From wikipedia: 
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+Backtracking is a general algorithm for finding all (or some) solutions to some computational problems, notably constraint satisfaction problems, that incrementally builds candidates to the solutions, and abandons a candidate ("backtracks") as soon as it determines that the candidate cannot possibly be completed to a valid solution.
+&lt;/p&gt;
+
+&lt;p&gt;
+The classic textbook example of the use of backtracking is the eight queens puzzle, that asks for all arrangements of eight chess queens on a standard chessboard so that no queen attacks any other. In the common backtracking approach, the partial candidates are arrangements of k queens in the first k rows of the board, all in different rows and columns. Any partial solution that contains two mutually attacking queens can be abandoned.
+&lt;/p&gt;
+
+&lt;p&gt;
+Backtracking can be applied only for problems which admit the concept of a "partial candidate solution" and a relatively quick test of whether it can possibly be completed to a valid solution. It is useless, for example, for locating a given value in an unordered table. When it is applicable, however, backtracking is often much faster than brute force enumeration of all complete candidates, since it can eliminate a large number of candidates with a single test.
+&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;
+If the backtracking has to be done until before the first queen then there is no solution. Backtracking is often used together with recursion but is however an indepent principle.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/backtracking.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/backtracking-2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The above solution is not the only one. If there's a need for more (or all) solutions, they have to be saved and then backtracking needs to be triggered.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Look at chapter 9 slides 31f. for a pseudo code and C implementation of the 8x8 queens problem&lt;/b&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</guid><pubDate>Sun, 02 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 &lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
 &lt;/p&gt;
 
@@ -3398,175 +3672,4 @@ The above statement will take the 4th element from the 3rd row of the array whic
 
 &lt;p&gt;
 Okay that's it already, so not much new stuff in this lecture ^_^
-&lt;/p&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 11</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org35c18e5" class="outline-2"&gt;
-&lt;h2 id="org35c18e5"&gt;Logic and Abstract Machines (Automaten)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org35c18e5"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgc02a1f6" class="outline-3"&gt;
-&lt;h3 id="orgc02a1f6"&gt;Boolean Algebra&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc02a1f6"&gt;
-&lt;p&gt;
-Boolean algebra is the branch of algebra in which the values of the variables are the truth values true and false, usually denoted 1 and 0 respectively.
-&lt;b&gt;Propositional logic&lt;/b&gt; (Aussagenlogik) is a branch of logic which deals with propositions (which can be true or false) and argument flow. Compound propositions are formed by connecting propositions by logical connectives. The propositions without logical connectives are called atomic propositions. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Principles:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;principle of bivalence&lt;/b&gt; (Zweiwertigkeit) → every proposition (Aussage) is either true (truthy) or false (falsy)&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;principle/law of excluded third/middle&lt;/b&gt; → for any proposition, either that proposition is true or its negation is true - no third possibility is given&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;principle/law of noncontradiction&lt;/b&gt; → no proposition can be true and false at the same time&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;principle of extensionality&lt;/b&gt; → the truth value of a composite proposition (Aussageverknüpfung) only depends on the truth value of its components&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-F 3./4.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgbcbba1b" class="outline-4"&gt;
-&lt;h4 id="orgbcbba1b"&gt;Logical Composition&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgbcbba1b"&gt;
-&lt;p&gt;
-The following logical compositions (Verknüpfungsfunktionen) will be inserted as pictures from the lecture slides because it is pretty time-consuming to port it over.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/logical-comp-1.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/logical-comp-2.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-A set of logical compositions that is able to express all other compositions is called &lt;b&gt;logically/functionally complete&lt;/b&gt; (logisch vollständig)
-&lt;/p&gt;
-
-&lt;p&gt;
-More laws and rules from lecture slides:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/bool-law-1.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/bool-law-2.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3cb7059" class="outline-4"&gt;
-&lt;h4 id="org3cb7059"&gt;Normal Form&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3cb7059"&gt;
-&lt;p&gt;
-Normal forms can help with unifying boolean expressions/propositions which can get unclearly fast (unübersichtlich):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;disjunctive normal form&lt;/b&gt; → is a standardization (or normalization) of a logical formula which is a disjunction of conjunctive clauses; it can also be described as an &lt;b&gt;OR&lt;/b&gt; of &lt;b&gt;ANDs&lt;/b&gt; or a sum of products
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;slides: Eine boolsche Funktion ist in disjunktiver Normalform (DNF), wenn sie eine Disjunktion (Oder) von Konjunktionsstermen (Und) ist, wobei die Konjunktionsterme nur (ggf. negierten) Funktionsparameter enthält&lt;/li&gt;
-&lt;li&gt;\(y = \vee_i (\wedge_j [\neg] x_{i,j}) \)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;conjunctive normal form&lt;/b&gt; → is a conjunction of one or more clauses, where a clause is a disjunction of literals; otherwise put, it is an &lt;b&gt;AND&lt;/b&gt; of &lt;b&gt;ORs&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;slides: Eine boolsche Funktion ist in konjunktiver Normalform (KNF), wenn sie eine Konjunktion (Und) von Disjunktionstermen (Oder) ist, wobei die Disjunktionsterme nur (ggf. negierten) Funktionsparameter enthält&lt;/li&gt;
-&lt;li&gt;\(y = \wedge_i (\vee_j  [\neg] x_{i,j}) \)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-There are different ways to create normal forms eg conversions via boolean algebra or by using truth tables:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/normalform.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-At this point the Karnaugh-Veitch Diagram for optimization purposes was mentioned which I'm skipping here. Take a look at slide 13 if you want (I don't lol).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgc3eee68" class="outline-2"&gt;
-&lt;h2 id="orgc3eee68"&gt;Logic in C&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc3eee68"&gt;
-&lt;p&gt;
-C uses logical (boolean) propositions/expressions and knows an according type. However since that type is so close to integer, it was not made explicitly available before C99. Since C99 however there is &lt;code&gt;_Bool&lt;/code&gt;. Via including &lt;code&gt;stdbool.h&lt;/code&gt; the type &lt;code&gt;bool&lt;/code&gt; is available which is a synonym for &lt;code&gt;_Bool&lt;/code&gt; and can hold the values &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.
-But remember that everywhere were a boolean type is required there can always be an integer. If so &lt;code&gt;0&lt;/code&gt; is always interpreted as &lt;code&gt;false&lt;/code&gt; and &lt;i&gt;every other&lt;/i&gt; value as &lt;code&gt;true&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-The logic/boolean operators &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; in C do so called &lt;b&gt;short-circuit evaluation&lt;/b&gt; from left to right which means the second argument is executed or evaluated only if the first argument does not suffice to determine the value of the expression: when the first argument of the &lt;b&gt;AND&lt;/b&gt; function evaluates to &lt;code&gt;false&lt;/code&gt;, the overall value must be &lt;code&gt;false&lt;/code&gt;; and when the first argument of the &lt;b&gt;OR&lt;/b&gt; function evaluates to &lt;code&gt;true&lt;/code&gt;, the overall value must be &lt;code&gt;true&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Short-circuit operators are, in effect, control structures rather than simple arithmetic operators, as they are not strict. In imperative language terms (notably C and C++), where side effects are important, short-circuit operators introduce a sequence point – they completely evaluate the first argument, including any side effects, before (optionally) processing the second argument (es ist eine gängige Programmiertechnik, links im Kurzschlussoperator eine Bedingung abzusichern, die rechts zu einem Laufzeitfehler führen würde)
-&lt;/p&gt;
-
-&lt;p&gt;
-Bad code example from the lecture slides follows, BRACE YOURSELF:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* shortcut .c -- partial evaluation */&lt;/span&gt;
-&lt;span class="cp"&gt;# include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;arraysize&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-
-    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%d. value : %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Some imho more practical pseudo examples could look like this:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;firedMissles&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CanFireMissiles&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;FireMissiles&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-
-&lt;span class="cm"&gt;/* or */&lt;/span&gt;
-
-&lt;span class="n"&gt;isFileReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;getFileReady&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-C also provides a &lt;i&gt;conditional operator&lt;/i&gt;. If any operator is used on three operands or variable is also known as &lt;i&gt;Ternary Operator&lt;/i&gt;. It can be represented with &lt;code&gt;"? : "&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-The ternary operator is used to execute code based on the result of a binary condition.
-&lt;/p&gt;
-
-&lt;p&gt;
-It takes in a binary condition as input, which makes it similar to an 'if-else' control flow block. It also, however, returns a value, behaving similar to a function (functional model).
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;binaryCondition&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;valueReturnedIfTrue&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;valueReturnedIfFalse&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The ternary cannot be used to execute code. It must be either returned in a function, or set equal to a variable with the same data type as the returned values:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;findMaximum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="c1"&gt;//if a &amp;gt; b, it returns a, if not it returns b&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;a&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Some interesting notes and observations about the ternary operator can be found &lt;a href="https://www.geeksforgeeks.org/cc-ternary-operator-some-interesting-observations/"&gt;here&lt;/a&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-The next lecture topic was the switch-case. I already covered that in &lt;a href="https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-04/#org48e22fb"&gt;this CS01 post&lt;/a&gt; and the rules from C++ apply to C aswell (other way round technically :D). Remember that "switch case" works with constant values as its cases and is used to "jump" to a specific statement from where execution will be continued until you &lt;code&gt;break&lt;/code&gt; or &lt;code&gt;return&lt;/code&gt;! so following cases would be executed as well (avoid this and rather group cases together. It is also important to know that cases inside a switch are like "goto" labels and share scope, thats why often times people wrap the cases code inside "{}" to create case specific code and dont "skip" initialization of variables).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-11/</guid><pubDate>Sun, 11 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/p&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>

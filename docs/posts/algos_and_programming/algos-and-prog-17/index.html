@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Algos &amp; Programming - Lecture 17 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Algos &amp; Programming - Lecture 17">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/">
+<meta property="og:description" content="Recursion and Backtracking
+
+
+Recursion was already covered in previous lectures so you can find additional informations in those blog posts. Now we want to discuss one difference between loops and rec">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-03T00:00:00+01:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Algos &amp; Programming - Lecture 17
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-12-03T00:00:00+01:00">2018/12/03</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-orged82e2d" class="outline-2">
+<h2 id="orged82e2d">Recursion and Backtracking</h2>
+<div class="outline-text-2" id="text-orged82e2d">
+<p>
+Recursion was already covered in previous lectures so you can find additional informations in those blog posts. Now we want to discuss one difference between <i>loops</i> and <i>recursion</i> and therefore we turn our attention to the datastructure <b>stack</b> which is used in many CPU's.
+The stack is a container for holding data and there are two operations associated with it:
+</p>
+<ul class="org-ul">
+<li>
+<b>push</b> → <code>push(D, S)</code> adds a data element <code>D</code> on top of the stack <code>S</code> (and 'overlays' the other elements in S)
+<ul class="org-ul">
+<li>usually returns the modified stack <code>S</code>
+</li>
+</ul>
+</li>
+<li>
+<b>pop</b> → <code>pop(S)</code> the topmost and only visible element in <code>S</code> get's removed from the top of the stack and allows access to next element below it
+<ul class="org-ul">
+<li>usually returns the removed element <code>D</code>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+A simple hardware implementation is achieved via a <i>stack pointer</i> that always points to the top of the stack (the topmost element). <a href="http://cryptroix.com/2016/10/16/journey-to-the-stack/">Here's</a> an in depth explanation and a shorter post can be found <a href="https://learn1.open.ac.uk/mod/oublog/viewpost.php?post=162710">here</a>. 
+</p>
+
+<p>
+<img src="../../../images/call-stack.png" alt="nil">
+Cite from the second link:
+</p>
+<blockquote>
+<p>
+When a call is made one method of passing arguments to a function is to push the data onto the stack along with the address of the program statement execution must return to when the function has completed its work. This stack is referred to as the <b>call stack</b> or sometimes the machine stack. A specific CPU register, the <b>stack pointer (SP)</b>, may be provided to manage it. In this case a call function instruction says: push the return onto the stack and jump to the function address, making that part of the pushing automatic.
+</p>
+
+<p>
+In the majority of cases the call stack grows downwards in memory giving local variables a positive offset from the SP. The SP points to the last element put on the stack not the next free space so it is decremented down before data is pushed on. It is usual to discuss the depth of function calls meaning the number of calls made before a return starts the climb back up to calls higher in the calling hierarchy. An upside down stack fits well with this view: 
+</p>
+
+<p>
+When called the first action function code takes is to push the old value of another CPU register, the <b>frame pointer (FP)</b>, onto the stack. The current value of the SP is then stored in the FP allowing modification of the SP to make space on the stack for any additional local variables the function has. 
+</p>
+
+<p>
+On a return from a function the value of the SP is restored from the FP and the FP gets its old value back, popped off the stack. Lastly, a return instruction in the machine code tells the CPU to send execution back to the instruction address stored on the stack by the call and currently referenced by the SP. Thus the FP and the SP work together to walk up and down the stack. 
+</p>
+
+<p>
+The blocks of memory on the call stack for each individual function call are <b>stack frames</b>.  Function local variables that cannot be held in registers because they are too big to fit or because those registers may be used by the callee when that function calls another function are put on the stack. Large return items can be passed back on the stack but more usually the return or a reference to it is passed in a CPU register. Thus the availability of this storage space makes nested function calls possible.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-org05f5507" class="outline-4">
+<h4 id="org05f5507">Recursion vs Iteration</h4>
+<div class="outline-text-4" id="text-org05f5507">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left">Recursion</th>
+<th scope="col" class="org-left">Iteration</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">recursive calls of a subroutine(Unterprogramm)</td>
+<td class="org-left">execution of a set of instructions of an iteration step</td>
+</tr>
+<tr>
+<td class="org-left">parameters of the subroutine are modified and tested for a break condition</td>
+<td class="org-left">iterations usually limited via counter variable or a set</td>
+</tr>
+<tr>
+<td class="org-left">processed elements are stored implicitly on the stack (subroutine params)</td>
+<td class="org-left">processed elements elements have to be stored explicitly</td>
+</tr>
+<tr>
+<td class="org-left">access to elements is limited to current component in the active subroutine</td>
+<td class="org-left">access to elements is arbitrary</td>
+</tr>
+<tr>
+<td class="org-left">corresponds to the function model</td>
+<td class="org-left">corresponds to the state model</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgd8f762a" class="outline-3">
+<h3 id="orgd8f762a">Design of Recursive Algorithms</h3>
+<div class="outline-text-3" id="text-orgd8f762a">
+<p>
+There are at least two cases which have to be handled in every recursive algorithm
+</p>
+<ul class="org-ul">
+<li>exit/break from the recursion</li>
+<li>recursive call</li>
+</ul>
+<p>
+In general there are two approache to craft recursive algorithms:
+</p>
+<ul class="org-ul">
+<li>
+<b>abstraction</b>
+<ul class="org-ul">
+<li>drafting of a specific solution to a specific problem instances → draft more solutions and make use of the ones already existing → recognize similarities → encapsulate/summarize those to a universal solution (<b>abstraction</b>)</li>
+</ul>
+</li>
+<li>
+<b>leap of faith</b>
+<ul class="org-ul">
+<li>assumption that the function/procedure is already working and use that for a smaller subproblem</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-org53e9706" class="outline-4">
+<h4 id="org53e9706">Fibonacci Numbers</h4>
+<div class="outline-text-4" id="text-org53e9706">
+<p>
+We already got to know the Fibonacci Numbers previously:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// Computes the n-th fibonacci number</span>
+<span class="kt">long</span> <span class="nf">fib</span><span class="p">(</span><span class="kt">long</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+<b>Regularity</b> (Regelmäßigkeit):<br>
+We can recognize that the next element in the fibonacci sequence is the sum of the previous both fibonacci numbers. So \(a_{n+2} = a_n  + a_{n+1}\). 
+</p>
+
+<p>
+<b>Defaults</b> (Standardfolge):<br>
+We set a<sub>0</sub> = 0 and a<sub>1</sub> = 1 and get the following sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, …
+</p>
+
+<p>
+However the fibonacci sequence is an example where recursion should not be used since the call stack will get pretty large and it is totally solvable with iterations.
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// Computes the n-th fibonacci number</span>
+<span class="kt">long</span> <span class="nf">fib</span><span class="p">(</span><span class="kt">long</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">long</span><span class="o">*</span> <span class="n">fnum</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">));</span>
+  <span class="kt">long</span> <span class="n">res</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="n">fnum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">fnum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fnum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fnum</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fnum</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="n">res</span> <span class="o">=</span> <span class="n">fnum</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">fnum</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+The complexity of this solution with a loop is \(\Theta(n)\), while the complexity of the solution with recursion was \(\Theta(c^n)\) with c &gt; 1.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org496eb95" class="outline-4">
+<h4 id="org496eb95">Towers of Hanoi</h4>
+<div class="outline-text-4" id="text-org496eb95">
+<p>
+Now we'll turn our attention to a problem which can be well represented with recursion to demonstrate the principle of solutions. The <i>tower of hanoi</i> is a mathematical game/puzzle consisting of three rods and a number of differently sized disk on one rod which can slide onto any rod under the following rules:
+</p>
+<ul class="org-ul">
+<li>only one disk can be moved at a time</li>
+<li>each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or an empty rod</li>
+<li>no larger disk may be placed on top of a smaller disk</li>
+</ul>
+<p>
+This is the pseudo code to solve the towers of hanoi:
+</p>
+<div class="highlight"><pre><span></span><span class="nl">require</span><span class="p">:</span> <span class="n">tower</span> <span class="n">with</span> <span class="n">height</span> <span class="n">n</span> <span class="n">at</span> <span class="n">place</span> <span class="n">A</span><span class="p">;</span>
+<span class="nl">ensure</span><span class="p">:</span> <span class="n">tower</span> <span class="n">at</span> <span class="n">place</span> <span class="n">C</span> <span class="o">^</span> <span class="n">obey</span> <span class="n">rules</span><span class="p">;</span>
+
+<span class="n">procedure</span> <span class="n">MOVE</span><span class="o">-</span><span class="n">TOWER</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">goal</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">height</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
+    <span class="k">return</span>
+  <span class="n">end</span> <span class="k">if</span>
+  <span class="n">MOVE</span><span class="o">-</span><span class="n">TOWER</span><span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">aux_place</span><span class="p">)</span> <span class="c1">// auxiliary place/Hilfsplatz</span>
+  <span class="n">move</span> <span class="n">last_ring</span> <span class="n">to</span> <span class="n">goal</span>
+  <span class="n">MOVE</span><span class="o">-</span><span class="n">TOWER</span><span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">goal</span><span class="p">)</span>
+<span class="n">end</span> <span class="n">procedure</span>
+</pre></div>
+<ol class="org-ol">
+<li>Move part of the tower with height n-1 from the start rod to the auxiliary rod (via the goal rod)</li>
+<li>Move the last/bottom disk from the start rod to the goal rod</li>
+<li>Move part of the tower with height n-1 from the auxiliary rod to the goal road (via the start rod)</li>
+</ol>
+<p>
+→ The minimal number of moves required to solve a Tower of Hanoi puzzle is 2<sup>n</sup> - 1, where n is the number of disks.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge8dbbac" class="outline-3">
+<h3 id="orge8dbbac">Backtracking</h3>
+<div class="outline-text-3" id="text-orge8dbbac">
+<p>
+To illustrate an use case for <i>backtracking</i> we'll turn our attention to the <i>Eight Queens Puzzle</i> (Damenproblem), which is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n queens problem of placing n non-attacking queens on an n×n chessboard, for which solutions exist for all natural numbers n with the exception of n=2 and n=3.
+</p>
+
+<p>
+A general algorithmic approach to get a solution could look like this:
+</p>
+<ol class="org-ol">
+<li>Put a queen in the the first row and first column</li>
+<li>Put another quuen in the next row and in the first column</li>
+<li>Move the the second queen right until she's in an allowed position (not possible to be attacked)</li>
+<li>Repeat from Step 2 until:
+<ul class="org-ul">
+<li>all 8 Queens are placed → Solution</li>
+<li>no valid field can be found in the row for a queen → if this is the case then the <i>previous</i> queen is treated as invalid as well so that that one is moved right as well (when there is no valid position for the previous queen, then the queen previous to the previous one will be moved in search for a new valid place further to the right and so on…)</li>
+</ul>
+</li>
+</ol>
+<p>
+This approach where a partial solution is discarded to continue with a previous partial solution is called <b>backtracking</b>. 
+</p>
+
+<p>
+From wikipedia: 
+</p>
+<blockquote>
+<p>
+Backtracking is a general algorithm for finding all (or some) solutions to some computational problems, notably constraint satisfaction problems, that incrementally builds candidates to the solutions, and abandons a candidate ("backtracks") as soon as it determines that the candidate cannot possibly be completed to a valid solution.
+</p>
+
+<p>
+The classic textbook example of the use of backtracking is the eight queens puzzle, that asks for all arrangements of eight chess queens on a standard chessboard so that no queen attacks any other. In the common backtracking approach, the partial candidates are arrangements of k queens in the first k rows of the board, all in different rows and columns. Any partial solution that contains two mutually attacking queens can be abandoned.
+</p>
+
+<p>
+Backtracking can be applied only for problems which admit the concept of a "partial candidate solution" and a relatively quick test of whether it can possibly be completed to a valid solution. It is useless, for example, for locating a given value in an unordered table. When it is applicable, however, backtracking is often much faster than brute force enumeration of all complete candidates, since it can eliminate a large number of candidates with a single test.
+</p>
+</blockquote>
+
+<p>
+If the backtracking has to be done until before the first queen then there is no solution. Backtracking is often used together with recursion but is however an indepent principle.
+</p>
+
+<p>
+<img src="../../../images/backtracking.png" alt="nil"><img src="../../../images/backtracking-2.png" alt="nil"></p>
+
+<p>
+The above solution is not the only one. If there's a need for more (or all) solutions, they have to be saved and then backtracking needs to be triggered.
+</p>
+
+<p>
+<b>Look at chapter 9 slides 31f. for a pseudo code and C implementation of the 8x8 queens problem</b>
+</p>
+</div>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>
