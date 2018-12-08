@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Dec 2018 08:59:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about university cs01)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Dec 2018 10:09:14 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Computer Science I - Lecture 09</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-09/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+This post will be rather short (the CS posts usually are shorter anyway) because I already covered some of the stuff in the last post by accident because I wasn't able to attend the lecture and overestimated our progress.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org0f8b679" class="outline-2"&gt;
+&lt;h2 id="org0f8b679"&gt;Development Cycle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0f8b679"&gt;
+&lt;p&gt;
+Typically you don't hear the task/problem and start writing code immediately. Because usually real world problems are not trivial. Here's an outline of how things should/may go:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Specification&lt;/b&gt; (input = task/problem; resolve conflicts &amp;amp; misunderstandings; output = functional requirements) → &lt;b&gt;Design&lt;/b&gt; (Entwurf; input = functional requirements; output = design) → &lt;b&gt;Implementation&lt;/b&gt; (input = design output = source code) → &lt;b&gt;Compilation&lt;/b&gt; (input = source code; possibly throw errors; output = executable)
+&lt;/p&gt;
+
+&lt;p&gt;
+All the above steps stand in correlation to each other meaning the arrows could go in both directions because you often have to go back to a previous step before continuing.
+&lt;/p&gt;
+
+&lt;p&gt;
+The rest of the lecture was about how we can &lt;b&gt;specify&lt;/b&gt; and &lt;b&gt;design&lt;/b&gt;. It covered pseudocode, structograms, PAP and so on… I cba to repeat this stuff here. If you want to take a look feel free to do so in the slides from page 60 till 64.
+&lt;/p&gt;
+
+&lt;p&gt;
+Next week we'll probably cover the next step  of &lt;b&gt;"Implementation"&lt;/b&gt; which may or may not be more interesting as the others at this high level view..
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-09/</guid><pubDate>Thu, 06 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 08</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-08/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 &lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
 &lt;/p&gt;
 
