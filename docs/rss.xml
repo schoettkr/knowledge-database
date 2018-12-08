@@ -1,5 +1,467 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Thu, 06 Dec 2018 11:07:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Dec 2018 09:40:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 18</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-18/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgeb4d687" class="outline-2"&gt;
+&lt;h2 id="orgeb4d687"&gt;Text Search&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeb4d687"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org289df66" class="outline-3"&gt;
+&lt;h3 id="org289df66"&gt;Files&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org289df66"&gt;
+&lt;p&gt;
+Bigger volumes of data are usually not entered interactively but rather stored in &lt;b&gt;files&lt;/b&gt;. That's why we take a look at files first: A file is a set of data that logically belongs together and is treated as a unit. Files are usually acessed by a &lt;i&gt;file name&lt;/i&gt; that is known to the operating system and get stored on persistant data volumes (eg harddrives).
+&lt;/p&gt;
+
+&lt;p&gt;
+Files can be organized differently. In the sense of the UNIX philosophy a file is a single set of bytes with an arbitrary size. Such data set resp sequence of bit is also called &lt;b&gt;bitstream&lt;/b&gt; resp. &lt;b&gt;bytestream&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The input/ouput of the C standard library is adapted to this concept so that there is no differentitation required between input from an input device or a file. To be more precise, the C standard library knows two types of file operations:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;low level file operations&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;files and file/data streams are identified via a &lt;b&gt;handle&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;specific to the particular operating system&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;high level file operations&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;files and file/data streams are identified via a &lt;b&gt;file pointer&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;independant of the operating system&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+For now we'll look at &lt;b&gt;high level file operations&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Files have to be &lt;b&gt;opened&lt;/b&gt;. When opening a file the management/administration information is created (Verwaltungsinformationen). There's a function in the standard library to open files &lt;code&gt;FILE* fopen(char* name, char* mode)&lt;/code&gt; which returns a pointer to the file management structure (Dateiverwaltungsstruktur) or NULL:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* ... */&lt;/span&gt;
+
+&lt;span class="kt"&gt;FILE&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"myFile.dat"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"r"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+A file that is no longer needed should be closed and the management resources shoudl eb released. That is done via &lt;code&gt;int fclose(FILE* stream)&lt;/code&gt; which returns &lt;code&gt;0&lt;/code&gt; when the file was closed successfully.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's a list of the possible file access modes which are passed to &lt;code&gt;fopen&lt;/code&gt;:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;"r"&lt;/code&gt; → &lt;b&gt;read&lt;/b&gt;: open file for input operations (reading from the file); the file must exist&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"w"&lt;/code&gt; → &lt;b&gt;write&lt;/b&gt;: create an empty file for output operations (writing to a file); if a file with the same name already exists, its contents are discarded and the file is treated as a new empty file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"a"&lt;/code&gt; → &lt;b&gt;append&lt;/b&gt;: open file for output at the end of a file; output operations always write data at the end of the file, thus expanding it; repositioning operations (fseek, fsetpos, rewind) are ignored; the file is created if it does not exist&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"r+"&lt;/code&gt; → &lt;b&gt;read/update&lt;/b&gt;: open a file for update (both for input and output); the file must exist&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"w+"&lt;/code&gt; → &lt;b&gt;write/update&lt;/b&gt;: create an empty file and open it for update (both for input and output); if a file with the same name already exists its contents are discarded and the file is treated as a new empty file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"a+"&lt;/code&gt; → &lt;b&gt;append/update&lt;/b&gt;: open a file for update (both for input and output) with all output operations writing data at the end of the file; repositioning operations (fseek, fsetpos, rewind) affects the next input operations, but output operations move the position back to the end of file; the file is created if it does not exist&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+With the &lt;i&gt;mode specifiers&lt;/i&gt; above files are opened as &lt;i&gt;text files&lt;/i&gt;. In order to open a file as a &lt;i&gt;binary file&lt;/i&gt; a &lt;code&gt;"b"&lt;/code&gt; character has to be included in the mode string.  This additional "b" character can either be appended at the end of the string (thus making the following compound modes: "rb", "wb", "ab", "r+b", "w+b", "a+b") or be inserted between the letter and the plus sign for the mixed modes ("rb+", "wb+", "ab+").
+&lt;/p&gt;
+
+&lt;p&gt;
+For data input and output, C provides a collection of library functions. These functions enable the transfer of data between the C program and standard input/output devices. C always treats all input-output data, regardless of where they originate or where they go, as a stream of characters. 
+The operating system makes the input and output devices available to a C program as if these devices were files. So, essentially, when a C program reads data from the keyboard, it is in effect reading from the file associated with the keyboard device. When a C program sends output data to the console, it is in effect writing to the file associated with the console device.
+&lt;/p&gt;
+
+&lt;p&gt;
+A stream of characters or text stream, is a sequence of characters divided into lines. Each line consists of various characters followed by a newline character (\n). All input-output functions in C conform to this model.
+&lt;/p&gt;
+
+&lt;p&gt;
+In order to be able to use the above mentioned input-output functions in your C program, you must begin each C program with a pre-processor directive to include these standard library functions.
+&lt;/p&gt;
+
+&lt;p&gt;
+This can be done via &lt;code&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+These are the most common/essential input-output functions:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Input&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Output&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;formatted&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;int fscanf(FILE*, char*, ...)&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;int fprintf(FILE*, char*, ...)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;characters&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;int fgetc(FILE*)&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;int fputc(int, FILE*)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;strings&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;char* fgets(char*, int, FILE*)&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;int fputs(char*, FILE*)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;binary&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;size_t fread(void*, size_t, size_t, FILE*)&lt;/code&gt;&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;code&gt;size_t fwrite(void*, size_t, size_t, FILE*)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;td class="org-left"&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org77ad400"&gt;&lt;/a&gt;Formatted data input &amp;amp; output&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org77ad400"&gt;
+&lt;p&gt;
+&lt;code&gt;fscanf&lt;/code&gt; and &lt;code&gt;fprintf&lt;/code&gt; work like &lt;code&gt;scanf&lt;/code&gt; and &lt;code&gt;printf&lt;/code&gt; but take a file pointer as an additional first parameter. To use &lt;code&gt;fscanf&lt;/code&gt; the file has (at least) to be opened in read mode ("r", "r+", "w+", "a+"). To use &lt;code&gt;fprintf&lt;/code&gt; the file has (at least) to be opened in write mode ("w", "a", "r+", "w+", "a+"). 
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;FILE&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"out.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"w"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;fprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Hello world! The answer is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;fclose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org07c317f"&gt;&lt;/a&gt;Characterwise data input &amp;amp; output&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org07c317f"&gt;
+&lt;p&gt;
+The function &lt;code&gt;int fgetc(FILE* stream)&lt;/code&gt; returns the next character of a file &lt;code&gt;stream&lt;/code&gt; as an integer. When there's no character left, the constant &lt;code&gt;EOF&lt;/code&gt; (defined in &lt;code&gt;stdio.h&lt;/code&gt;) is returned (same thing when an error occurs). 
+&lt;/p&gt;
+
+&lt;p&gt;
+The function &lt;code&gt;int fputc(int c, FILE* stream)&lt;/code&gt; writes the integer coded character &lt;code&gt;c&lt;/code&gt; into the file &lt;code&gt;stream&lt;/code&gt; and returns the number of written characters (= 1). In case of an error it returns &lt;code&gt;EOF&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org318e40c"&gt;&lt;/a&gt;String data input &amp;amp; output&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org318e40c"&gt;
+&lt;p&gt;
+The function &lt;code&gt;char* fgets(char restrict * str, int n, FILE* restrict stream)&lt;/code&gt; reads maximally &lt;code&gt;n-1&lt;/code&gt; characters from the file &lt;code&gt;stream&lt;/code&gt; into a character string that is pointed to by &lt;code&gt;str&lt;/code&gt;. The reading proccess ends with the end of the line/file or when an error occurs. When no error occurs &lt;code&gt;\0&lt;/code&gt; is appended to &lt;code&gt;str&lt;/code&gt; and the return value points to &lt;code&gt;str&lt;/code&gt; (and to &lt;code&gt;NULL&lt;/code&gt; if there was an error). Beware that it is the duty of the programmer to guarantee that &lt;code&gt;str&lt;/code&gt; points to an character array which has a size of at least &lt;code&gt;n&lt;/code&gt; characters.
+&lt;/p&gt;
+
+&lt;p&gt;
+The function &lt;code&gt;int fputs(char* str, FILE* stream)&lt;/code&gt; writes the (zero-terminated) string &lt;code&gt;str&lt;/code&gt; into the file &lt;code&gt;stream&lt;/code&gt;. It returns a non-negative integer on success and &lt;code&gt;EOF&lt;/code&gt; in case of an error (old C versions used to return &lt;code&gt;0&lt;/code&gt; on success)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org8d872f6"&gt;&lt;/a&gt;Binary data input &amp;amp; output&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org8d872f6"&gt;
+&lt;p&gt;
+The function &lt;code&gt;size_t fread(void* ptr, size_t size, size_t nitems, FILE* stream)&lt;/code&gt; reads &lt;code&gt;nitems&lt;/code&gt; of size &lt;code&gt;size&lt;/code&gt; from the file &lt;code&gt;stream&lt;/code&gt; and stores them at the address specified by &lt;code&gt;ptr&lt;/code&gt;. It then returns the count of successfully read items/elements (not bytes!). 
+&lt;/p&gt;
+
+&lt;p&gt;
+The function &lt;code&gt;size_t fwrite(void* ptr, size_t size, size_t nitems, FILE* stream)&lt;/code&gt; writes &lt;code&gt;nitems&lt;/code&gt; from the address &lt;code&gt;ptr&lt;/code&gt; of size &lt;code&gt;size&lt;/code&gt; in the file &lt;code&gt;stream&lt;/code&gt; and also returns the count of successfully written elements/items (not bytes).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+
+&lt;li&gt;&lt;a id="org31cb6ba"&gt;&lt;/a&gt;Standard Data Streams&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org31cb6ba"&gt;
+&lt;p&gt;
+The standard input-output devices or the associated files or text streams, are referred to as:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;stdin&lt;/b&gt; - standard input file, normally connected to the keyboard&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;stdout&lt;/b&gt; - standard output file, normally connected to the screen/console&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;stderr&lt;/b&gt; - standard error display device file, normally connected to the screen/console&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;code&gt;stdin&lt;/code&gt;, &lt;code&gt;stdout&lt;/code&gt;, &lt;code&gt;stderr&lt;/code&gt; don't need to be opened like other files/streams (and cannot be opened):
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;fprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"This is usage data.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;fprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"This is status data.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div id="outline-container-org2dcd619" class="outline-4"&gt;
+&lt;h4 id="org2dcd619"&gt;Manipulating the File Position Pointer&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2dcd619"&gt;
+&lt;p&gt;
+See: &lt;a href="https://stackoverflow.com/questions/39687795/what-is-file-position-pointer"&gt;https://stackoverflow.com/questions/39687795/what-is-file-position-pointer&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Usually files are treated as data stream, which are accessed &lt;b&gt;sequentally&lt;/b&gt;. In case of "real files" it is possible to deviate from this sequential access. The following functions may be used to do so:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;void rewind(FILE* stream)&lt;/code&gt; → move the read or write position in the file &lt;code&gt;stream&lt;/code&gt; back to the beginning of the file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void fseek(FILE* stream, long offset, int whence)&lt;/code&gt; → moves the read or write position in the file &lt;code&gt;stream&lt;/code&gt; to a position which is &lt;code&gt;offset&lt;/code&gt; bytes shifted from &lt;code&gt;whence&lt;/code&gt; (von wo/woher)
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;whence&lt;/code&gt; shall be one of the following constants which are defined in &lt;code&gt;stdio.h&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;SEEK_SET&lt;/code&gt; = offset relative to the beginning of the file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SEEK_CUR&lt;/code&gt; = offset relative to the current position in the file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SEEK_END&lt;/code&gt; = offset relative to the end of the file&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;long ftell(FILE* stream)&lt;/code&gt; → may be used to get the current position in the file relative to the beginning of the file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Slides 17-19 provide code examples for reading/writing a file.
+&lt;/p&gt;
+
+&lt;p&gt;
+A few other interesting functions in regards to files are:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int feof(FILE* stream)&lt;/code&gt; returns a value ≠ 0 when at the end of the file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int ferror(FILE* stream)&lt;/code&gt; returns a value ≠ 0 when an file error has occured before&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int flush(FILE* stream)&lt;/code&gt; forces a physical write (emptying the cache)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int remove(char* name)&lt;/code&gt; deletes the file with a name of &lt;code&gt;name&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org521016c" class="outline-4"&gt;
+&lt;h4 id="org521016c"&gt;Files in Python&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org521016c"&gt;
+&lt;p&gt;
+F21
+A file is a data type in Python. A data variable is created via &lt;code&gt;f = open(filename[, mode[, bufsize]])&lt;/code&gt; .
+The possible modes are a superset of the modes we know from C and with &lt;code&gt;bufsize&lt;/code&gt; the cache size for the file can be set.
+This is the Python 3 &lt;a href="https://docs.python.org/3/library/functions.html#open"&gt;documentation&lt;/a&gt; for &lt;code&gt;open&lt;/code&gt; (which looks kinda different than the slides).
+&lt;/p&gt;
+
+&lt;p&gt;
+Here are a few common file operations in Python (&lt;code&gt;file&lt;/code&gt; be a data variable):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;S = file.read()&lt;/code&gt; reads the whole file into a single string&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;S = file.read(N)&lt;/code&gt; reads &lt;code&gt;N&lt;/code&gt; bytes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;S = file.readline()&lt;/code&gt; reads the next line (until new line char)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;L = file.readlines()&lt;/code&gt; reads the whole file as a list of line strings&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;file.write(S)&lt;/code&gt; writes the string &lt;code&gt;S&lt;/code&gt; into the file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;file.writeLines(L)&lt;/code&gt; writes all strings in a list &lt;code&gt;L&lt;/code&gt; into the file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;file.close()&lt;/code&gt; closes the file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Using iterations it is easy to work with a whole file in Python:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"foo.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"r"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;' '&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+And Python provides more modules for file manipulations
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;module &lt;code&gt;os&lt;/code&gt; for low level&lt;/li&gt;
+&lt;li&gt;module &lt;code&gt;shelve&lt;/code&gt; and &lt;code&gt;pickle&lt;/code&gt; for high level storage of complex objects&lt;/li&gt;
+&lt;li&gt;module &lt;code&gt;dbm&lt;/code&gt; and &lt;code&gt;anydbm&lt;/code&gt; for database interfaces&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgd886a42" class="outline-3"&gt;
+&lt;h3 id="orgd886a42"&gt;Simple Search&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd886a42"&gt;
+&lt;p&gt;
+Now with our newly acquired knowledge about files we can start looking into text search.
+&lt;/p&gt;
+
+&lt;p&gt;
+Our program should take the following parameters:
+&lt;code&gt;./search &amp;lt;searchText&amp;gt; &amp;lt;fileName&amp;gt;&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+And if the search text is found in the file, then the "surrounding" in which it was found should be returned, while the search text is wrapped in brackets to accentuate, eg
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./search &lt;span class="s2"&gt;"example"&lt;/span&gt; lorem.txt
+
+ullamcoprer subsciptit nisl ut aliqup &lt;span class="o"&gt;[&lt;/span&gt;example&lt;span class="o"&gt;]&lt;/span&gt; ea commodano
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+One of the first problems we encounter is that we don't know the size/length of neither a line nor the whole file. Here a few solution approaches:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Approach 1: define a line buffer that is "sufficiently large" for all cases → not safe and not a good approach in general&lt;/li&gt;
+&lt;li&gt;Approach 2: don't always read in whole lines → complicates the search if the search text is between two read-in blocks&lt;/li&gt;
+&lt;li&gt;Approach 3: determine the file size, dynamically reserve space and read in the whole file → requires a lot of memory storage&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+We go with approach 3 since it also offers speed advantages.
+&lt;/p&gt;
+
+&lt;p&gt;
+So let's determine the file size first - how do we do that?
+The unix C function &lt;code&gt;int stat(char* name, struct stat* buf)&lt;/code&gt; which writes informations about the file &lt;code&gt;name&lt;/code&gt; into &lt;code&gt;buf&lt;/code&gt; is not compatible so we don't use it and instead rely on using a combination of functions from the standard library:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="nf"&gt;filesize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;FILE&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;fseek&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0L&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SEEK_END&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// offset the file position pointer by 0 bytes relative to the eof&lt;/span&gt;
+  &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ftell&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// get the current position relative to the beginning of the file&lt;/span&gt;
+  &lt;span class="n"&gt;rewind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// move the file position pointer back to the beginning of the file&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+By the way &lt;code&gt;size_t&lt;/code&gt; is an OS dependant unsigned integer type that can store the maximum &lt;i&gt;size&lt;/i&gt; of a theoretically possible object of any type (including array) and which is commonly used for array indexing and loop counting (Programs that use other types, such as &lt;code&gt;unsigned int&lt;/code&gt;, for array indexing may fail on, e.g. 64-bit systems when the index exceeds &lt;code&gt;UINT_MAX&lt;/code&gt; or if it relies on 32-bit modular arithmetic.).
+&lt;/p&gt;
+
+&lt;p&gt;
+And this will be our main function which uses our &lt;code&gt;filesize&lt;/code&gt; function amongst other things:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;FILE&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// wrong number of params&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s"&gt;"r"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// open file&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// cant open file&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;filesize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="cm"&gt;/* allocate size+1 (for terminating 0) memory for our file buffer */&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// out of memory&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="cm"&gt;/* read one element of size 'size' into our text buffer (the whole file) */&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// can't read file&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sc"&gt;'\0'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// set the terminating 0;&lt;/span&gt;
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// yet to implement!&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;found&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;presentResult&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="c1"&gt;// dito!&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+This main function does the necessary preparations for the actual search. Besides the search function we also need a function for the presentation/output. We want to output 20 characters before and after the search string:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;presentResult&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// pos is the start of match position, str is the file buffer and pattern our search text&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;patlen&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prelen&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// output beginning&lt;/span&gt;
+
+  &lt;span class="n"&gt;prelen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// beginning of match&lt;/span&gt;
+  &lt;span class="n"&gt;patternLength&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// yet to implement!&lt;/span&gt;
+
+  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;patternLength&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%.*s[%s]%.20s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prelen&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+As seen in the code listing above we also need a function to determine the length of a string. There's an function for that in the standard library but we'll use our own:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="sc"&gt;'\0'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Now we can finally turn our attention to the actual search algorithm. The idea is that we want to test for each position in the text &lt;code&gt;str&lt;/code&gt;, if the searchstring &lt;code&gt;p&lt;/code&gt; begins there. If that is the case, then we want to test the next character and so on..
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's the pseudocode:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// str is file/text buffer and p is search string&lt;/span&gt;
+&lt;span class="nl"&gt;Require&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nl"&gt;Ensure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;returns&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt; &lt;span class="n"&gt;appearance&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;
+
+&lt;span class="n"&gt;procedure&lt;/span&gt; &lt;span class="n"&gt;SIMPLE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;SEARCH&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="c1"&gt;// found 1st occ of search string&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;
+      &lt;span class="n"&gt;endif&lt;/span&gt;
+      &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;
+    &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;"not found"&lt;/span&gt;
+&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="n"&gt;procedure&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;
+The actual C implemenation is where we'll continue in the next lecture (19), have a nice day (◕‿‿◕)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-18/</guid><pubDate>Thu, 06 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
 &lt;h2 id="orged82e2d"&gt;Recursion and Backtracking&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orged82e2d"&gt;
 &lt;p&gt;
@@ -3615,61 +4077,4 @@ Finite state machines are closely related to regular grammars because to every r
 However a FSM is not sufficient for context free languages.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 06</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).
-&lt;/p&gt;
-
-&lt;p&gt;
-I'll list what we did in this lecture so you can look at those parts in the last blog post (or elsewhere :D ):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;array initialization (+ with loops)&lt;/li&gt;
-&lt;li&gt;string functions&lt;/li&gt;
-&lt;li&gt;mutlidimensional arrays&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Because I didn't really get into multidimensional arrays in the last post and because I don't think the slides are particulary useful on that topic I'll write a bit about them here.
-&lt;/p&gt;
-
-&lt;p&gt;
-The simplest form of multidimensional array is the two-dimensional array. A two-dimensional array is, in essence, a list of one-dimensional arrays. To declare a two-dimensional integer array of size &lt;code&gt;[x][y]&lt;/code&gt;, you would write something like &lt;code&gt;int arrayName[x][y];&lt;/code&gt;.
-A two-dimensional array can be considered as a table which will have &lt;code&gt;x&lt;/code&gt; number of rows and &lt;code&gt;y&lt;/code&gt; number of columns. A two-dimensional array &lt;code&gt;a&lt;/code&gt;, which contains three rows and four columns can be shown as follows:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/2D-arr.jpg" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Thus, every element in the array &lt;code&gt;a&lt;/code&gt; is identified by an element name of the form &lt;code&gt;a[i][j]&lt;/code&gt;, where &lt;code&gt;a&lt;/code&gt; is the name of the array, and &lt;code&gt;i&lt;/code&gt; and &lt;code&gt;j&lt;/code&gt; are the subscripts that uniquely identify each element in &lt;code&gt;a&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Multidimensional arrays may be initialized by specifying bracketed values for each row. Following is an array with 3 rows and each row has 4 columns.
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// 3 rows which hold 4 elements each -&amp;gt; 3 * 4 elements = 12&lt;/span&gt;
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-	       &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;// initialize first row indexed by 0&lt;/span&gt;
-	       &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;// initialize second row indexed by 1&lt;/span&gt;
-	       &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;// initialize third row indexed by 2&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The nested braces, which indicate the intended row, are optional. The following initialization is equivalent to the previous example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-An element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// -&amp;gt; 11&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The above statement will take the 4th element from the 3rd row of the array which is the last one (11). So you first access the row and then the column. Remember that this is zero indexed :D !
-&lt;/p&gt;
-
-&lt;p&gt;
-Okay that's it already, so not much new stuff in this lecture ^_^
-&lt;/p&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-06/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-12/</guid><pubDate>Thu, 15 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
