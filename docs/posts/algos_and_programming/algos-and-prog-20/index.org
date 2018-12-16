@@ -1,0 +1,44 @@
+#+BEGIN_COMMENT
+.. title: Algos & Programming - Lecture 20
+.. slug: algos-and-prog-20
+.. date: 2018-12-14
+.. tags: university, A&P 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
+
+I might refer to the slides more often in the next two posts that regard this "game" because it would get pretty messy else and just copy & pasting code is not a good use of time, so I might skip that at some points and tell you to look at the slides directly.
+
+* Intro
+The game we're building is TicTacToe (TTT), where there's one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
+These lead to the following high level pseudo algorithm:
+#+BEGIN_SRC c
+Input who will start -> turn {player, computer}
+
+repeat
+  if turn == computer then
+    calculate move
+    turn <- player
+  else
+    input move
+    turn <- computer
+  end if
+  display move
+until (somebody won) or (draw)
+#+END_SRC
+
+Modern programs usually offer a GUI (graphical user interface) but we'll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
+On the terminal the game could be visualized like this:
+#+BEGIN_SRC sh
+x | o | x
+--+---+--
+x | o | 
+--+---+--
+o |   | x
+#+END_SRC
+Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.

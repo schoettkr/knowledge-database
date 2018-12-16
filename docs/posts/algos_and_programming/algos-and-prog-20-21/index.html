@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Algos &amp; Programming - Lecture 20 &amp; 21 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Algos &amp; Programming - Lecture 20 &amp; 21">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/">
+<meta property="og:description" content='In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-14T00:00:00+01:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" name="q" class="form-control" placeholder="Search">
+</div>
+  <button type="submit" class="btn btn-primary">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  <input type="hidden" name="sitesearch" value="https://schoettkr.github.io/knowledge-database/">
+</form>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Algos &amp; Programming - Lecture 20 &amp; 21
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-12-14T00:00:00+01:00">2018/12/14</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
+</p>
+
+<p>
+I might refer to the slides more often in the next two posts that regard this "game" because it would get pretty messy else and just copy &amp; pasting code is not a good use of time, so I might skip that at some points and tell you to look at the slides directly.
+</p>
+
+<p>
+This chapter also spans two lectures so lecture 20 and 21 will be pooled into this single blog post.
+</p>
+
+<div id="outline-container-org941d1d2" class="outline-2">
+<h2 id="org941d1d2">Intro</h2>
+<div class="outline-text-2" id="text-org941d1d2">
+<p>
+The game we're building is TicTacToe (TTT), where there's one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
+These lead to the following high level pseudo algorithm:
+</p>
+<div class="highlight"><pre><span></span><span class="n">Input</span> <span class="n">who</span> <span class="n">will</span> <span class="n">start</span> <span class="o">-&gt;</span> <span class="n">turn</span> <span class="p">{</span><span class="n">player</span><span class="p">,</span> <span class="n">computer</span><span class="p">}</span>
+
+<span class="n">repeat</span>
+  <span class="k">if</span> <span class="n">turn</span> <span class="o">==</span> <span class="n">computer</span> <span class="n">then</span>
+    <span class="n">calculate</span> <span class="n">move</span>
+    <span class="n">turn</span> <span class="o">&lt;-</span> <span class="n">player</span>
+  <span class="k">else</span>
+    <span class="n">input</span> <span class="n">move</span>
+    <span class="n">turn</span> <span class="o">&lt;-</span> <span class="n">computer</span>
+  <span class="n">end</span> <span class="k">if</span>
+  <span class="n">display</span> <span class="n">move</span>
+<span class="n">until</span> <span class="p">(</span><span class="n">somebody</span> <span class="n">won</span><span class="p">)</span> <span class="n">or</span> <span class="p">(</span><span class="n">draw</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Modern programs usually offer a GUI (graphical user interface) but we'll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
+On the terminal the game could be visualized like this:
+</p>
+<div class="highlight"><pre><span></span>x <span class="p">|</span> o <span class="p">|</span> x
+--+---+--
+x <span class="p">|</span> o <span class="p">|</span> 
+--+---+--
+o <span class="p">|</span>   <span class="p">|</span> x
+</pre></div>
+<p>
+Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.
+</p>
+
+<p>
+To do so we <b>modularize</b> our project into three modules:
+</p>
+<ul class="org-ul">
+<li>"ttt<sub>main.c</sub>" → superstructure that combines the others and provides the <code>main</code> method</li>
+<li>"ttt<sub>io.c</sub>" → responsible for input and output</li>
+<li>"ttt<sub>strategie.c</sub>" → responsible for calculating the move of the computer</li>
+</ul>
+<p>
+To share common types and interface we also want a shared header file "ttt.h".
+</p>
+
+<p>
+This is how the file structure looks
+</p>
+
+<p>
+<img src="../../../images/file-structure.png" alt="nil"></p>
+</div>
+
+<div id="outline-container-orgd33e678" class="outline-3">
+<h3 id="orgd33e678">Excourse: Make</h3>
+<div class="outline-text-3" id="text-orgd33e678">
+<p>
+When a project consists of multiple modules, each of them has to be translated to an object file seperately (eg via <code>gcc -c &lt;file.c&gt;</code>) and then all object files have to be linked (with the libraries).
+</p>
+
+<p>
+Doing this by hand is cumbersome.
+</p>
+
+<p>
+What to do? Well you could write a script to automate the job, but do we really want to compile and translate <i>every</i> file even if we only change one of lets say 10 files? Hint: No we don't :D and that's why scripts (batch jobs) are not so well suited (beware that it is still possible to do that and some programmers actually prefer that which is totally fine).
+</p>
+
+<p>
+Another solution to this are <b>build systems</b> also called <b>build automation tools</b>. Build automation is the process of automating the creation of a software build and the associated processes including: compiling computer source code into binary code, packaging binary code, and running automated tests (source: wikipedia).
+</p>
+
+<p>
+We'll focus on one of the most common build tools which is <b>make</b>.
+</p>
+
+<p>
+Wikipedia: Make is a build automation tool that automatically builds executable programs and libraries from source code by reading files called Makefiles which specify how to derive the target program. Though integrated development environments and language-specific compiler features can also be used to manage a build process, Make remains widely used, especially in Unix and Unix-like operating systems.
+</p>
+
+<p>
+Besides building programs, Make can be used to manage any project where some files must be updated automatically from others whenever the others change. There are now a number of dependency-tracking build utilities, but Make is one of the most widespread, primarily due to its inclusion in Unix.
+</p>
+
+<p>
+As stated above <code>make</code> interprets what is written in a so called "Makefile". A Makefile contains five kinds of things: <i>explicit rules</i>, <i>implicit rules</i>, <i>variable definitions</i>, <i>directives</i>, and <i>comments</i>.
+</p>
+<ul class="org-ul">
+<li>
+<i>explicit rule</i> → says when and how to remake one or more files, called the rule's targets; it lists the other files that the targets depend on, called the prerequisites of the target, and may also give a recipe to use to create or update the targets</li>
+<li>
+<i>implicit rule</i> → says when and how to remake a class of files based on their names; it describes how a target may depend on a file with a name similar to the target and gives a recipe to create or update such a target</li>
+<li>
+<i>variable definition</i> → is a line that specifies a text string value for a variable that can be substituted into the text later</li>
+<li>
+<i>directive</i> → is an instruction for make to do something special while reading the makefile such as reading another makefile</li>
+<li>
+<i>comment</i> → a comment is designated by '#' and ignores the rest of the line</li>
+</ul>
+<p>
+To define variables in a makefile the following syntax is used:
+</p>
+<div class="highlight"><pre><span></span><span class="c1"># &lt;name&gt; = &lt;value&gt; or &lt;name&gt; := &lt;value&gt;</span>
+<span class="nv">objects</span> <span class="o">=</span> program.o foo.o utils.o <span class="c1"># variable that holds names of object files</span>
+<span class="c1"># or</span>
+objects :<span class="o">=</span> program.o foo.o utils.o
+<span class="c1"># acess via $(objects) or ${objects}</span>
+</pre></div>
+<p>
+Slides: The variant/flavour without colons (":") allows for recursion in the name resolution.
+</p>
+
+<p>
+To read more about variables and the differences in the flavours you can go <a href="https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_6.html">here</a>.
+</p>
+
+<p>
+To define functions in a makefile the following syntax is used:
+</p>
+<div class="highlight"><pre><span></span><span class="c1"># $(&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..) or ${&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..} </span>
+comma:<span class="o">=</span> ,
+empty:<span class="o">=</span>
+space:<span class="o">=</span> <span class="k">$(</span>empty<span class="k">)</span> <span class="k">$(</span>empty<span class="k">)</span>
+foo:<span class="o">=</span> a b c
+bar:<span class="o">=</span> <span class="k">$(</span>subst <span class="k">$(</span>space<span class="k">)</span>,<span class="k">$(</span>comma<span class="k">)</span>,<span class="k">$(</span>foo<span class="k">))</span> <span class="c1"># bar is now 'a,b,c'</span>
+</pre></div>
+<p>
+Here the <code>subst</code> function, which is built-in with alot of others, replaces each space with a comma, through the value of foo, and substitutes the result. <a href="https://www.gnu.org/software/make/manual/html_node/Functions.html">Here</a> you can read more about functions in makefiles.
+</p>
+
+<p>
+Here's another example from the slides:
+</p>
+<div class="highlight"><pre><span></span><span class="nv">SOURCEFILES</span> <span class="o">=</span> <span class="k">$(</span>wildcard ttt_*.c<span class="k">)</span>
+<span class="nv">OBJECTFILES</span> <span class="o">=</span> <span class="si">${</span><span class="nv">subst</span><span class="p"> .c,.o,</span><span class="k">$(</span>SOURCEFILES<span class="k">)</span><span class="si">}</span>
+</pre></div>
+<p>
+It is pretty common to use functions for text manipulation purposes.
+</p>
+
+<p>
+Here're some more example functions (more can be found in the documentation):
+</p>
+<div class="highlight"><pre><span></span><span class="k">$(</span>subst &lt;from&gt;,&lt;to&gt;, &lt;text&gt;<span class="k">)</span> <span class="c1"># replaces all &lt;from&gt; with &lt;to&gt; in &lt;text&gt;</span>
+<span class="k">$(</span>addprefix &lt;prefix&gt;,&lt;list&gt;<span class="k">)</span> / <span class="k">$(</span>addsuffix &lt;suffix&gt;,&lt;list&gt;<span class="k">)</span> <span class="c1"># adds the pre or suffix to every word in &lt;list&gt;</span>
+<span class="k">$(</span>join &lt;list1&gt;,&lt;list2&gt;<span class="k">)</span> <span class="c1"># joins the two lists by word into one list</span>
+<span class="k">$(</span>foreach &lt;var&gt;,&lt;list&gt;,&lt;text&gt;<span class="k">)</span> <span class="c1"># creates for each value in &lt;list&gt; a new instance of &lt;text&gt; in which every occurence of &lt;var&gt; is replaced by the list value</span>
+<span class="k">$(</span>shell &lt;command&gt;<span class="k">)</span> <span class="c1"># executes the &lt;command&gt; in a shell</span>
+</pre></div>
+
+<p>
+The rules in a makefile have the following form:
+</p>
+<div class="highlight"><pre><span></span>target: dependencies
+    system command<span class="o">(</span>s<span class="o">)</span>
+</pre></div>
+
+<p>
+A <b>target</b> is usually the name of a file that is generated by a program (eg executable or object files), but a target can also be the name of an action to carry out, such as "clean".
+</p>
+
+<p>
+A <b>dependency</b> (also called <i>prerequisite</i>) is a file that is used as input to create the target, which often depends on several files. Rules that specify a <i>recipe</i> for the target don't <i>need</i> to have prerequisites (eg delete command that is associated with target "clean" does not have any prerequisites).
+</p>
+
+<p>
+The <b>system command(s)</b> (also called <b>recipe</b>) is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. Note the use of meaningful indentation in specifying commands; also note that the indentation must consist of a single &lt;tab&gt; character.
+</p>
+
+<p>
+Rules that operate on <i>classes</i> of files (eg via wildcard) are called "implicit" rules in constrast to explicit rules. <code>%</code> serve as wildcards.
+</p>
+
+<p>
+Example rules:
+</p>
+<div class="highlight"><pre><span></span>main.o: main.c defs.h
+    cc -c main.c
+
+clean:
+     rm edit main.o kbd.o command.o display.o
+</pre></div>
+
+<p>
+And here're some automatic special variables than can be used in rules:
+</p>
+<ul class="org-ul">
+<li>
+<code>$@</code> = the file name of the target of the rule</li>
+<li>
+<code>$&lt;</code> = the name of the first prerequisite (if the target got its recipe from an implicit rule, this will be the first prerequisite added by the implicit rule)</li>
+<li>
+<code>$?</code> = the names of all the prerequisites that are newer than the target, with spaces between them</li>
+<li>
+<code>$^</code> = the names of all the prerequisites, with spaces between them</li>
+<li>
+<code>${@D}</code> = the directory part of the file name of the target, with the trailing slash removed</li>
+<li>
+<code>${&lt;D}</code> = the directory part of the first prerequisite</li>
+<li>
+<code>${@F}</code> = the file-within-directory part of the file name of the target</li>
+<li>
+<code>${&lt;F}</code> = the file-within-directory part of the first prerequisite</li>
+</ul>
+<p>
+To execute <code>make</code> run <code>make &lt;target&gt;</code> which starts all activities that are accordingly to the Makefile required to update <code>&lt;target&gt;</code>. If a file is (already) updated is decided based on the timestamp of the file. If the <code>&lt;target&gt;</code> is ommitted when executing make, the first rule in the Makefile will be used. 
+</p>
+
+<p>
+Example Makefiles:
+</p>
+<div class="highlight"><pre><span></span>a: b
+
+c: e f
+
+b: c d
+</pre></div>
+<p>
+So in this case when you run <code>make a</code>:
+</p>
+<ul class="org-ul">
+<li>
+<code>f</code>, <code>e</code>, and <code>d</code> are required to existing</li>
+<li>then first <code>c</code> is generated/updated out of <code>e</code> and <code>f</code>
+</li>
+<li>then <code>b</code> is generated/updated out of <code>c</code> and <code>d</code>
+</li>
+<li>da es für „a“ Ausführungsteil gibt, ist hier die Abarbeitung beendet</li>
+</ul>
+<p>
+For our TicTacToe Project the Makefile could look like this:
+</p>
+<div class="highlight"><pre><span></span><span class="nv">PROG</span> <span class="o">=</span> ttt <span class="c1"># program name</span>
+<span class="nv">CC</span> <span class="o">=</span> cc <span class="c1"># compiler</span>
+<span class="nv">CFLAGS</span> <span class="o">=</span> -std<span class="o">=</span>c99 -pedantic -Wall -Wextra <span class="c1"># compiler flags</span>
+<span class="nv">LDFLAGS</span> <span class="o">=</span> <span class="c1"># linker flags (ld is the gnu linker)</span>
+
+<span class="nv">HEADER</span> <span class="o">=</span> <span class="k">$(</span>wildcard ttt*.h<span class="k">)</span>
+<span class="nv">SOURCEFILES</span> <span class="o">=</span> <span class="k">$(</span>wildcard ttt_*.c<span class="k">)</span>
+<span class="nv">OBJECTFILES</span> <span class="o">=</span> <span class="k">$(</span>subst .c, .o, <span class="k">$(</span>SOURCEFILES<span class="k">))</span>
+
+<span class="k">$(</span>PROG<span class="k">)</span>: <span class="k">$(</span>OBJECTFILES<span class="k">)</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> <span class="k">$(</span>OBJECTFILES<span class="k">)</span> -o <span class="k">$(</span>PROG<span class="k">)</span>
+
+%.o: %c
+    <span class="k">$(</span>CC<span class="k">)</span> -c <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt;
+
+.PHONY: clean
+clean:
+    rm -f <span class="k">$(</span>PROG<span class="k">)</span> *.o
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgef4881d" class="outline-3">
+<h3 id="orgef4881d">The Main Loop</h3>
+<div class="outline-text-3" id="text-orgef4881d">
+<p>
+Going back to our initial draft of our high level pseudo code algorithm we might want some modifications that account for:
+</p>
+<ul class="org-ul">
+<li>recognition weather win or draw
+<ul class="org-ul">
+<li>probably closely related to the strategy part of our program so should be done there</li>
+</ul>
+</li>
+<li>cancellation of the game
+<ul class="org-ul">
+<li>has to be dealt with in the main loop</li>
+</ul>
+</li>
+<li>multiple games in a row
+<ul class="org-ul">
+<li>also belongs in the main loop</li>
+</ul>
+</li>
+</ul>
+<p>
+Here's the second version:
+</p>
+<div class="highlight"><pre><span></span><span class="n">repeat</span>
+  <span class="n">Input</span> <span class="n">who</span> <span class="n">will</span> <span class="n">start</span> <span class="o">-&gt;</span> <span class="n">turn</span> <span class="p">{</span><span class="n">player</span><span class="p">,</span> <span class="n">computer</span><span class="p">}</span>
+
+  <span class="n">repeat</span>
+    <span class="k">if</span> <span class="n">turn</span> <span class="o">==</span> <span class="n">computer</span> <span class="n">then</span>
+      <span class="n">calculate</span> <span class="n">move</span>
+      <span class="n">turn</span> <span class="o">&lt;-</span> <span class="n">player</span>
+    <span class="k">else</span> <span class="c1">// turn = player</span>
+      <span class="n">input</span> <span class="n">move</span> <span class="c1">// abort is special move</span>
+      <span class="n">turn</span> <span class="o">&lt;-</span> <span class="n">computer</span>
+    <span class="n">end</span> <span class="k">if</span>
+    <span class="n">display</span> <span class="n">move</span>
+  <span class="n">until</span> <span class="p">(</span><span class="n">somebody</span> <span class="n">won</span><span class="p">)</span> <span class="n">or</span> <span class="p">(</span><span class="n">draw</span><span class="p">)</span> <span class="n">or</span> <span class="p">(</span><span class="n">abort</span><span class="p">)</span>
+  <span class="n">Input</span> <span class="k">if</span> <span class="n">another</span> <span class="n">game</span><span class="o">?</span>
+<span class="n">until</span> <span class="n">not</span> <span class="n">another</span> <span class="n">game</span>
+</pre></div>
+
+<p>
+This is how the main loop in "ttt<sub>main.c</sub>" could look like in C:
+</p>
+<div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span> <span class="c1">// main loop</span>
+  <span class="kt">int</span> <span class="n">player</span> <span class="o">=</span>  <span class="n">ttt_x_or_o</span><span class="p">();</span> <span class="c1">// select symbol (x or o)</span>
+  <span class="kt">bool</span> <span class="n">computer_turn</span> <span class="o">=</span> <span class="p">(</span><span class="n">player</span> <span class="o">==</span> <span class="sc">'o'</span><span class="p">);</span> <span class="c1">// x starts if player is o then the computer starts</span>
+  <span class="n">ttt_init_board</span><span class="p">(</span><span class="n">board</span><span class="p">);</span> <span class="c1">// erase board</span>
+  <span class="kt">int</span> <span class="n">move</span><span class="p">,</span> <span class="n">assessment</span><span class="p">;</span>
+
+  <span class="k">do</span> <span class="p">{</span> <span class="c1">// main loop for a game instance</span>
+    <span class="n">ttt_update_display</span><span class="p">(</span><span class="n">board</span><span class="p">);</span> <span class="c1">// display board</span>
+    <span class="n">move</span> <span class="o">=</span> <span class="n">computer_turn</span> <span class="o">?</span> <span class="c1">// computer's move?</span>
+      <span class="n">ttt_calculate_move</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">ttt_opponent</span><span class="p">(</span><span class="n">player</span><span class="p">))</span> <span class="o">:</span> <span class="n">ttt_input_move</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">TTT_ABORT</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// continue?</span>
+      <span class="n">board</span><span class="p">[</span><span class="n">move</span><span class="p">]</span> <span class="o">=</span> <span class="n">computer_turn</span> <span class="o">?</span> <span class="n">ttt_opponent</span><span class="p">(</span><span class="n">player</span><span class="p">)</span> <span class="o">:</span> <span class="n">player</span><span class="p">;</span> <span class="c1">// apply move</span>
+    <span class="p">}</span>
+
+    <span class="n">computer_turn</span> <span class="o">=</span> <span class="o">!</span><span class="n">computer_turn</span><span class="p">;</span> <span class="c1">// change the turn</span>
+    <span class="n">assessment</span> <span class="o">=</span> <span class="n">ttt_won_or_draw</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">player</span><span class="p">);</span> <span class="c1">// game over?</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">assessment</span> <span class="o">!=</span> <span class="n">TTT_UNDECIDED</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// game finished</span>
+      <span class="n">ttt_update_display</span><span class="p">(</span><span class="n">board</span><span class="p">);</span> <span class="c1">// display final board</span>
+      <span class="n">ttt_output_result</span><span class="p">(</span><span class="n">assessment</span><span class="p">);</span> <span class="c1">// print result</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">((</span><span class="n">move</span> <span class="o">!=</span> <span class="n">TTT_ABORT</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">assessment</span> <span class="o">==</span> <span class="n">TTT_UNDECIDED</span><span class="p">));</span>
+ <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">ttt_another_game</span><span class="p">()</span> <span class="o">==</span> <span class="nb">true</span><span class="p">);</span>
+</pre></div>
+<p>
+As you can see we use function that are not defined yet. Some of those shall be implemented in other modules. A somewhat common ("best") practice is to prefix global names with the name of the project (and optionally the module) to reduce the likelihood of name conflicts. In this case we use <code>ttt_</code> as a prefix.
+</p>
+
+<p>
+Now we've got to ask ourselves how we want to represent the data in C. It first seems natural to use a multidimensional array <code>int board[3][3]</code> to represent the game board. <b>But</b>
+</p>
+<ul class="org-ul">
+<li>this would always require two indices → and therefore 2 loops</li>
+<li>it is likely that we want to pass the board to functions → <b>array decay</b> even unclearer when dealing with nested arrays (see lecture 08 for array decay)</li>
+</ul>
+<p>
+For those reasons we use a "normal" array with 9 fields <code>int board[9]</code> (resp <code>typedef int ttt_board_t[NUMBER_OF_FIELDS])</code>.
+</p>
+
+<p>
+Let's put declarations of types and constants in the shared header file <code>ttt.h</code>
+</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/* general constants */</span>
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span><span class="n">TTT_ABORT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUMBER_OF_FIELDS</span> <span class="o">=</span> <span class="mi">9</span><span class="p">}</span> <span class="n">ttt_constant_t</span><span class="p">;</span>
+
+<span class="cm">/* game outcomes */</span>
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span><span class="n">TTT_PLAYER_WINS</span><span class="p">,</span> <span class="n">TTT_COMPUTER_WINS</span><span class="p">,</span> <span class="n">TTT_DRAW</span><span class="p">,</span> <span class="n">TTT_UNDECIDED</span><span class="p">}</span> <span class="n">ttt_result_t</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">ttt_board_t</span><span class="p">[</span><span class="n">NUMBER_OF_FIELDS</span><span class="p">];</span>
+</pre></div>
+<p>
+The prototypes (interfaces/declarations) of the (to be written) C functions that will be called from other modules will also be added there.
+</p>
+
+<p>
+Two of the functions that we used in the main loop also go into the main file "ttt<sub>main.c</sub>":
+</p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">ttt_init_board</span><span class="p">(</span><span class="n">ttt_board_t</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* emtpies every field */</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_OF_FIELDS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">' '</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="nf">ttt_opponent</span><span class="p">(</span><span class="kt">char</span> <span class="n">symbol</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="sc">'x'</span><span class="o">:</span> <span class="k">return</span> <span class="sc">'o'</span><span class="p">;</span>
+    <span class="k">case</span> <span class="sc">'o'</span><span class="o">:</span> <span class="k">return</span> <span class="sc">'x'</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="sc">' '</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div id="outline-container-org5f2513a" class="outline-3">
+<h3 id="org5f2513a">Input &amp; Output</h3>
+<div class="outline-text-3" id="text-org5f2513a">
+<p>
+Since we use a text based interface our user interface is not so complicated and does not require as much of an effort (real user interfaces usually require a lot of work). But we still want to be lazy :D
+</p>
+
+<p>
+For example let's look at options to clear the screen:
+</p>
+<ul class="org-ul">
+<li>scroll down → window size has to be known (N)</li>
+<li>unix command <code>clear</code> → really slow and not portable (N)</li>
+<li>ANSI/VT100 escape sequence (control command) → also not 100% portable</li>
+<li>best solution: usage of portable libraries for example ncurses (or pdcurses for windows)</li>
+</ul>
+<p>
+To keep it simple we use the solution with the ANSI escape codes:
+</p>
+<div class="highlight"><pre><span></span><span class="cm">/* Use VT100 ESC code to clean terminal */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">ttt_clean_terminal</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"%c[2J"</span><span class="p">,</span> <span class="mi">27</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Now to determine whether or not another game should be started we use <code>getchar()</code>, which returns the integer value (!) of the entered character.
+</p>
+<div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">ttt_another_game</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Do you want to play another game [y/n] -&gt; "</span><span class="p">);</span>
+  <span class="n">input</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">getchar</span><span class="p">();</span> <span class="c1">// see notes below..</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">input</span> <span class="o">==</span> <span class="sc">'Y'</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="sc">'y'</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+Slides: Es gibt allerdings ein Problem und zwar, dass das Terminal gibt eine Eingabe erst weiter, wenn &lt;RETURN&gt; gedrückt wurde. Das Zeichen "⏎" ist Teil des Eingabestroms. Lösung: Die Funktion wird zweimal aufgerufen und das zweite Ergebnis verworfen.
+</p>
+
+<p>
+I actually fail to see what is meant by the "problem" described above and how the second call to <code>getchar()</code> should help with that… I tested the code with and without it and got identical behaviour, but this is what stands in the slides.
+</p>
+
+
+<p>
+Now let's implement the function for inputting a move:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">ttt_input_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Please enter the number of the field you want to occupy (0 for abort)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+  <span class="n">ttt_display_board</span><span class="p">(</span><span class="n">numberfield</span><span class="p">);</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Your move -&gt;"</span><span class="p">);</span>
+
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">do</span> <span class="p">{</span>
+      <span class="n">input</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span> <span class="n">getchar</span><span class="p">();</span> <span class="c1">// xD defuq :D</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">((</span><span class="n">input</span> <span class="o">&lt;</span> <span class="sc">'0'</span><span class="p">)</span> <span class="o">||</span> <span class="n">input</span> <span class="o">&gt;</span> <span class="sc">'9'</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="sc">'0'</span><span class="p">)</span> <span class="k">return</span> <span class="n">TTT_ABORT</span><span class="p">;</span>
+
+    <span class="n">input</span> <span class="o">=</span> <span class="n">input</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1">// character to integer array index</span>
+      <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">input</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">' '</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">input</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+To output/print the board we use a bit of ACII art :D
+</p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">ttt_display_board</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// not for first row</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">   -+-+-"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">   "</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// not for first column</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"|"</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="n">printf</span><span class="p">(</span><span class="s">"%c"</span><span class="p">,</span> <span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org40a5890" class="outline-3">
+<h3 id="org40a5890">Strategy &amp; Logic</h3>
+<div class="outline-text-3" id="text-org40a5890">
+<p>
+F28
+</p>
+
+<hr>
+<p>
+Sources: Wikipedia was heavily used for this post
+</p>
+</div>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="knowledge-database",
+            disqus_url="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/",
+        disqus_title="Algos & Programming - Lecture 20 & 21",
+        disqus_identifier="cache/posts/algos_and_programming/20-lecture.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

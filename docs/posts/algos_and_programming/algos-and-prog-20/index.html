@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Algos &amp; Programming - Lecture 20 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Algos &amp; Programming - Lecture 20">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20/">
+<meta property="og:description" content='In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-14T00:00:00+01:00">
+<meta property="article:tag" content="A&amp;P">
+<meta property="article:tag" content="university">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" name="q" class="form-control" placeholder="Search">
+</div>
+  <button type="submit" class="btn btn-primary">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  <input type="hidden" name="sitesearch" value="https://schoettkr.github.io/knowledge-database/">
+</form>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Algos &amp; Programming - Lecture 20
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-12-14T00:00:00+01:00">2018/12/14</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/ap/" rel="tag">A&amp;P</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
+</p>
+
+<p>
+I might refer to the slides more often in the next two posts that regard this "game" because it would get pretty messy else and just copy &amp; pasting code is not a good use of time, so I might skip that at some points and tell you to look at the slides directly.
+</p>
+
+<div id="outline-container-org489b637" class="outline-2">
+<h2 id="org489b637">Intro</h2>
+<div class="outline-text-2" id="text-org489b637">
+<p>
+The game we're building is TicTacToe (TTT), where there's one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
+These lead to the following high level pseudo algorithm:
+</p>
+<div class="highlight"><pre><span></span><span class="n">Input</span> <span class="n">who</span> <span class="n">will</span> <span class="n">start</span> <span class="o">-&gt;</span> <span class="n">turn</span> <span class="p">{</span><span class="n">player</span><span class="p">,</span> <span class="n">computer</span><span class="p">}</span>
+
+<span class="n">repeat</span>
+  <span class="k">if</span> <span class="n">turn</span> <span class="o">==</span> <span class="n">computer</span> <span class="n">then</span>
+    <span class="n">calculate</span> <span class="n">move</span>
+    <span class="n">turn</span> <span class="o">&lt;-</span> <span class="n">player</span>
+  <span class="k">else</span>
+    <span class="n">input</span> <span class="n">move</span>
+    <span class="n">turn</span> <span class="o">&lt;-</span> <span class="n">computer</span>
+  <span class="n">end</span> <span class="k">if</span>
+  <span class="n">display</span> <span class="n">move</span>
+<span class="n">until</span> <span class="p">(</span><span class="n">somebody</span> <span class="n">won</span><span class="p">)</span> <span class="n">or</span> <span class="p">(</span><span class="n">draw</span><span class="p">)</span>
+</pre></div>
+
+<p>
+Modern programs usually offer a GUI (graphical user interface) but we'll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
+On the terminal the game could be visualized like this:
+</p>
+<div class="highlight"><pre><span></span>x <span class="p">|</span> o <span class="p">|</span> x
+--+---+--
+x <span class="p">|</span> o <span class="p">|</span> 
+--+---+--
+o <span class="p">|</span>   <span class="p">|</span> x
+</pre></div>
+<p>
+Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.
+</p>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="knowledge-database",
+            disqus_url="https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20/",
+        disqus_title="Algos & Programming - Lecture 20",
+        disqus_identifier="cache/posts/algos_and_programming/20-lecture.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,5 +1,500 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Tue, 11 Dec 2018 22:27:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 19</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-19/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 16 Dec 2018 15:27:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
+&lt;/p&gt;
+
+&lt;p&gt;
+I might refer to the slides more often in the next two posts that regard this "game" because it would get pretty messy else and just copy &amp;amp; pasting code is not a good use of time, so I might skip that at some points and tell you to look at the slides directly.
+&lt;/p&gt;
+
+&lt;p&gt;
+This chapter also spans two lectures so lecture 20 and 21 will be pooled into this single blog post.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org941d1d2" class="outline-2"&gt;
+&lt;h2 id="org941d1d2"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org941d1d2"&gt;
+&lt;p&gt;
+The game we're building is TicTacToe (TTT), where there's one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
+These lead to the following high level pseudo algorithm:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Input&lt;/span&gt; &lt;span class="n"&gt;who&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;player&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;repeat&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
+    &lt;span class="n"&gt;calculate&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;
+    &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;player&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;
+    &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt;
+  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+  &lt;span class="n"&gt;display&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;
+&lt;span class="n"&gt;until&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;somebody&lt;/span&gt; &lt;span class="n"&gt;won&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Modern programs usually offer a GUI (graphical user interface) but we'll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
+On the terminal the game could be visualized like this:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x &lt;span class="p"&gt;|&lt;/span&gt; o &lt;span class="p"&gt;|&lt;/span&gt; x
+--+---+--
+x &lt;span class="p"&gt;|&lt;/span&gt; o &lt;span class="p"&gt;|&lt;/span&gt; 
+--+---+--
+o &lt;span class="p"&gt;|&lt;/span&gt;   &lt;span class="p"&gt;|&lt;/span&gt; x
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.
+&lt;/p&gt;
+
+&lt;p&gt;
+To do so we &lt;b&gt;modularize&lt;/b&gt; our project into three modules:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;"ttt&lt;sub&gt;main.c&lt;/sub&gt;" → superstructure that combines the others and provides the &lt;code&gt;main&lt;/code&gt; method&lt;/li&gt;
+&lt;li&gt;"ttt&lt;sub&gt;io.c&lt;/sub&gt;" → responsible for input and output&lt;/li&gt;
+&lt;li&gt;"ttt&lt;sub&gt;strategie.c&lt;/sub&gt;" → responsible for calculating the move of the computer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+To share common types and interface we also want a shared header file "ttt.h".
+&lt;/p&gt;
+
+&lt;p&gt;
+This is how the file structure looks
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/file-structure.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd33e678" class="outline-3"&gt;
+&lt;h3 id="orgd33e678"&gt;Excourse: Make&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd33e678"&gt;
+&lt;p&gt;
+When a project consists of multiple modules, each of them has to be translated to an object file seperately (eg via &lt;code&gt;gcc -c &amp;lt;file.c&amp;gt;&lt;/code&gt;) and then all object files have to be linked (with the libraries).
+&lt;/p&gt;
+
+&lt;p&gt;
+Doing this by hand is cumbersome.
+&lt;/p&gt;
+
+&lt;p&gt;
+What to do? Well you could write a script to automate the job, but do we really want to compile and translate &lt;i&gt;every&lt;/i&gt; file even if we only change one of lets say 10 files? Hint: No we don't :D and that's why scripts (batch jobs) are not so well suited (beware that it is still possible to do that and some programmers actually prefer that which is totally fine).
+&lt;/p&gt;
+
+&lt;p&gt;
+Another solution to this are &lt;b&gt;build systems&lt;/b&gt; also called &lt;b&gt;build automation tools&lt;/b&gt;. Build automation is the process of automating the creation of a software build and the associated processes including: compiling computer source code into binary code, packaging binary code, and running automated tests (source: wikipedia).
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll focus on one of the most common build tools which is &lt;b&gt;make&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Wikipedia: Make is a build automation tool that automatically builds executable programs and libraries from source code by reading files called Makefiles which specify how to derive the target program. Though integrated development environments and language-specific compiler features can also be used to manage a build process, Make remains widely used, especially in Unix and Unix-like operating systems.
+&lt;/p&gt;
+
+&lt;p&gt;
+Besides building programs, Make can be used to manage any project where some files must be updated automatically from others whenever the others change. There are now a number of dependency-tracking build utilities, but Make is one of the most widespread, primarily due to its inclusion in Unix.
+&lt;/p&gt;
+
+&lt;p&gt;
+As stated above &lt;code&gt;make&lt;/code&gt; interprets what is written in a so called "Makefile". A Makefile contains five kinds of things: &lt;i&gt;explicit rules&lt;/i&gt;, &lt;i&gt;implicit rules&lt;/i&gt;, &lt;i&gt;variable definitions&lt;/i&gt;, &lt;i&gt;directives&lt;/i&gt;, and &lt;i&gt;comments&lt;/i&gt;.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;i&gt;explicit rule&lt;/i&gt; → says when and how to remake one or more files, called the rule's targets; it lists the other files that the targets depend on, called the prerequisites of the target, and may also give a recipe to use to create or update the targets&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;implicit rule&lt;/i&gt; → says when and how to remake a class of files based on their names; it describes how a target may depend on a file with a name similar to the target and gives a recipe to create or update such a target&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;variable definition&lt;/i&gt; → is a line that specifies a text string value for a variable that can be substituted into the text later&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;directive&lt;/i&gt; → is an instruction for make to do something special while reading the makefile such as reading another makefile&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;comment&lt;/i&gt; → a comment is designated by '#' and ignores the rest of the line&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+To define variables in a makefile the following syntax is used:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# &amp;lt;name&amp;gt; = &amp;lt;value&amp;gt; or &amp;lt;name&amp;gt; := &amp;lt;value&amp;gt;&lt;/span&gt;
+&lt;span class="nv"&gt;objects&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; program.o foo.o utils.o &lt;span class="c1"&gt;# variable that holds names of object files&lt;/span&gt;
+&lt;span class="c1"&gt;# or&lt;/span&gt;
+objects :&lt;span class="o"&gt;=&lt;/span&gt; program.o foo.o utils.o
+&lt;span class="c1"&gt;# acess via $(objects) or ${objects}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Slides: The variant/flavour without colons (":") allows for recursion in the name resolution.
+&lt;/p&gt;
+
+&lt;p&gt;
+To read more about variables and the differences in the flavours you can go &lt;a href="https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_6.html"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+To define functions in a makefile the following syntax is used:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# $(&amp;lt;functionname&amp;gt; &amp;lt;arg1&amp;gt;, &amp;lt;arg2&amp;gt;, ..) or ${&amp;lt;functionname&amp;gt; &amp;lt;arg1&amp;gt;, &amp;lt;arg2&amp;gt;, ..} &lt;/span&gt;
+comma:&lt;span class="o"&gt;=&lt;/span&gt; ,
+empty:&lt;span class="o"&gt;=&lt;/span&gt;
+space:&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;empty&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;empty&lt;span class="k"&gt;)&lt;/span&gt;
+foo:&lt;span class="o"&gt;=&lt;/span&gt; a b c
+bar:&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;subst &lt;span class="k"&gt;$(&lt;/span&gt;space&lt;span class="k"&gt;)&lt;/span&gt;,&lt;span class="k"&gt;$(&lt;/span&gt;comma&lt;span class="k"&gt;)&lt;/span&gt;,&lt;span class="k"&gt;$(&lt;/span&gt;foo&lt;span class="k"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# bar is now 'a,b,c'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Here the &lt;code&gt;subst&lt;/code&gt; function, which is built-in with alot of others, replaces each space with a comma, through the value of foo, and substitutes the result. &lt;a href="https://www.gnu.org/software/make/manual/html_node/Functions.html"&gt;Here&lt;/a&gt; you can read more about functions in makefiles.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's another example from the slides:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;SOURCEFILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;wildcard ttt_*.c&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;OBJECTFILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;subst&lt;/span&gt;&lt;span class="p"&gt; .c,.o,&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;SOURCEFILES&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+It is pretty common to use functions for text manipulation purposes.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here're some more example functions (more can be found in the documentation):
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;subst &amp;lt;from&amp;gt;,&amp;lt;to&amp;gt;, &amp;lt;text&amp;gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# replaces all &amp;lt;from&amp;gt; with &amp;lt;to&amp;gt; in &amp;lt;text&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;$(&lt;/span&gt;addprefix &amp;lt;prefix&amp;gt;,&amp;lt;list&amp;gt;&lt;span class="k"&gt;)&lt;/span&gt; / &lt;span class="k"&gt;$(&lt;/span&gt;addsuffix &amp;lt;suffix&amp;gt;,&amp;lt;list&amp;gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# adds the pre or suffix to every word in &amp;lt;list&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;$(&lt;/span&gt;join &amp;lt;list1&amp;gt;,&amp;lt;list2&amp;gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# joins the two lists by word into one list&lt;/span&gt;
+&lt;span class="k"&gt;$(&lt;/span&gt;foreach &amp;lt;var&amp;gt;,&amp;lt;list&amp;gt;,&amp;lt;text&amp;gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# creates for each value in &amp;lt;list&amp;gt; a new instance of &amp;lt;text&amp;gt; in which every occurence of &amp;lt;var&amp;gt; is replaced by the list value&lt;/span&gt;
+&lt;span class="k"&gt;$(&lt;/span&gt;shell &amp;lt;command&amp;gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# executes the &amp;lt;command&amp;gt; in a shell&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The rules in a makefile have the following form:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;target: dependencies
+    system command&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+A &lt;b&gt;target&lt;/b&gt; is usually the name of a file that is generated by a program (eg executable or object files), but a target can also be the name of an action to carry out, such as "clean".
+&lt;/p&gt;
+
+&lt;p&gt;
+A &lt;b&gt;dependency&lt;/b&gt; (also called &lt;i&gt;prerequisite&lt;/i&gt;) is a file that is used as input to create the target, which often depends on several files. Rules that specify a &lt;i&gt;recipe&lt;/i&gt; for the target don't &lt;i&gt;need&lt;/i&gt; to have prerequisites (eg delete command that is associated with target "clean" does not have any prerequisites).
+&lt;/p&gt;
+
+&lt;p&gt;
+The &lt;b&gt;system command(s)&lt;/b&gt; (also called &lt;b&gt;recipe&lt;/b&gt;) is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. Note the use of meaningful indentation in specifying commands; also note that the indentation must consist of a single &amp;lt;tab&amp;gt; character.
+&lt;/p&gt;
+
+&lt;p&gt;
+Rules that operate on &lt;i&gt;classes&lt;/i&gt; of files (eg via wildcard) are called "implicit" rules in constrast to explicit rules. &lt;code&gt;%&lt;/code&gt; serve as wildcards.
+&lt;/p&gt;
+
+&lt;p&gt;
+Example rules:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;main.o: main.c defs.h
+    cc -c main.c
+
+clean:
+     rm edit main.o kbd.o command.o display.o
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+And here're some automatic special variables than can be used in rules:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;$@&lt;/code&gt; = the file name of the target of the rule&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&amp;lt;&lt;/code&gt; = the name of the first prerequisite (if the target got its recipe from an implicit rule, this will be the first prerequisite added by the implicit rule)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$?&lt;/code&gt; = the names of all the prerequisites that are newer than the target, with spaces between them&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$^&lt;/code&gt; = the names of all the prerequisites, with spaces between them&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;${@D}&lt;/code&gt; = the directory part of the file name of the target, with the trailing slash removed&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;${&amp;lt;D}&lt;/code&gt; = the directory part of the first prerequisite&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;${@F}&lt;/code&gt; = the file-within-directory part of the file name of the target&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;${&amp;lt;F}&lt;/code&gt; = the file-within-directory part of the first prerequisite&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;
+To execute &lt;code&gt;make&lt;/code&gt; run &lt;code&gt;make &amp;lt;target&amp;gt;&lt;/code&gt; which starts all activities that are accordingly to the Makefile required to update &lt;code&gt;&amp;lt;target&amp;gt;&lt;/code&gt;. If a file is (already) updated is decided based on the timestamp of the file. If the &lt;code&gt;&amp;lt;target&amp;gt;&lt;/code&gt; is ommitted when executing make, the first rule in the Makefile will be used. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Example Makefiles:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;a: b
+
+c: e f
+
+b: c d
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+So in this case when you run &lt;code&gt;make a&lt;/code&gt;:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;f&lt;/code&gt;, &lt;code&gt;e&lt;/code&gt;, and &lt;code&gt;d&lt;/code&gt; are required to existing&lt;/li&gt;
+&lt;li&gt;then first &lt;code&gt;c&lt;/code&gt; is generated/updated out of &lt;code&gt;e&lt;/code&gt; and &lt;code&gt;f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;then &lt;code&gt;b&lt;/code&gt; is generated/updated out of &lt;code&gt;c&lt;/code&gt; and &lt;code&gt;d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;da es für „a“ Ausführungsteil gibt, ist hier die Abarbeitung beendet&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+For our TicTacToe Project the Makefile could look like this:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;PROG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ttt &lt;span class="c1"&gt;# program name&lt;/span&gt;
+&lt;span class="nv"&gt;CC&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; cc &lt;span class="c1"&gt;# compiler&lt;/span&gt;
+&lt;span class="nv"&gt;CFLAGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; -std&lt;span class="o"&gt;=&lt;/span&gt;c99 -pedantic -Wall -Wextra &lt;span class="c1"&gt;# compiler flags&lt;/span&gt;
+&lt;span class="nv"&gt;LDFLAGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="c1"&gt;# linker flags (ld is the gnu linker)&lt;/span&gt;
+
+&lt;span class="nv"&gt;HEADER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;wildcard ttt*.h&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;SOURCEFILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;wildcard ttt_*.c&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;OBJECTFILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;subst .c, .o, &lt;span class="k"&gt;$(&lt;/span&gt;SOURCEFILES&lt;span class="k"&gt;))&lt;/span&gt;
+
+&lt;span class="k"&gt;$(&lt;/span&gt;PROG&lt;span class="k"&gt;)&lt;/span&gt;: &lt;span class="k"&gt;$(&lt;/span&gt;OBJECTFILES&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;LDFLAGS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OBJECTFILES&lt;span class="k"&gt;)&lt;/span&gt; -o &lt;span class="k"&gt;$(&lt;/span&gt;PROG&lt;span class="k"&gt;)&lt;/span&gt;
+
+%.o: %c
+    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; -c &lt;span class="k"&gt;$(&lt;/span&gt;CFLAGS&lt;span class="k"&gt;)&lt;/span&gt; $&amp;lt;
+
+.PHONY: clean
+clean:
+    rm -f &lt;span class="k"&gt;$(&lt;/span&gt;PROG&lt;span class="k"&gt;)&lt;/span&gt; *.o
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgef4881d" class="outline-3"&gt;
+&lt;h3 id="orgef4881d"&gt;The Main Loop&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgef4881d"&gt;
+&lt;p&gt;
+Going back to our initial draft of our high level pseudo code algorithm we might want some modifications that account for:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;recognition weather win or draw
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;probably closely related to the strategy part of our program so should be done there&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;cancellation of the game
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;has to be dealt with in the main loop&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;multiple games in a row
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;also belongs in the main loop&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Here's the second version:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;repeat&lt;/span&gt;
+  &lt;span class="n"&gt;Input&lt;/span&gt; &lt;span class="n"&gt;who&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;player&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="n"&gt;repeat&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
+      &lt;span class="n"&gt;calculate&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;
+      &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;player&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="c1"&gt;// turn = player&lt;/span&gt;
+      &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt; &lt;span class="c1"&gt;// abort is special move&lt;/span&gt;
+      &lt;span class="n"&gt;turn&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;computer&lt;/span&gt;
+    &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+    &lt;span class="n"&gt;display&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;
+  &lt;span class="n"&gt;until&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;somebody&lt;/span&gt; &lt;span class="n"&gt;won&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;Input&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;another&lt;/span&gt; &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
+&lt;span class="n"&gt;until&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;another&lt;/span&gt; &lt;span class="n"&gt;game&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+This is how the main loop in "ttt&lt;sub&gt;main.c&lt;/sub&gt;" could look like in C:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// main loop&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;player&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;ttt_x_or_o&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// select symbol (x or o)&lt;/span&gt;
+  &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;computer_turn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;player&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// x starts if player is o then the computer starts&lt;/span&gt;
+  &lt;span class="n"&gt;ttt_init_board&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// erase board&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;assessment&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// main loop for a game instance&lt;/span&gt;
+    &lt;span class="n"&gt;ttt_update_display&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// display board&lt;/span&gt;
+    &lt;span class="n"&gt;move&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;computer_turn&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="c1"&gt;// computer's move?&lt;/span&gt;
+      &lt;span class="n"&gt;ttt_calculate_move&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ttt_opponent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;player&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ttt_input_move&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;TTT_ABORT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// continue?&lt;/span&gt;
+      &lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;computer_turn&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;ttt_opponent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;player&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;player&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// apply move&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;computer_turn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;computer_turn&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// change the turn&lt;/span&gt;
+    &lt;span class="n"&gt;assessment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ttt_won_or_draw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;player&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// game over?&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;assessment&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;TTT_UNDECIDED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// game finished&lt;/span&gt;
+      &lt;span class="n"&gt;ttt_update_display&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// display final board&lt;/span&gt;
+      &lt;span class="n"&gt;ttt_output_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;assessment&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// print result&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;TTT_ABORT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;assessment&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;TTT_UNDECIDED&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ttt_another_game&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+As you can see we use function that are not defined yet. Some of those shall be implemented in other modules. A somewhat common ("best") practice is to prefix global names with the name of the project (and optionally the module) to reduce the likelihood of name conflicts. In this case we use &lt;code&gt;ttt_&lt;/code&gt; as a prefix.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now we've got to ask ourselves how we want to represent the data in C. It first seems natural to use a multidimensional array &lt;code&gt;int board[3][3]&lt;/code&gt; to represent the game board. &lt;b&gt;But&lt;/b&gt;
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;this would always require two indices → and therefore 2 loops&lt;/li&gt;
+&lt;li&gt;it is likely that we want to pass the board to functions → &lt;b&gt;array decay&lt;/b&gt; even unclearer when dealing with nested arrays (see lecture 08 for array decay)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+For those reasons we use a "normal" array with 9 fields &lt;code&gt;int board[9]&lt;/code&gt; (resp &lt;code&gt;typedef int ttt_board_t[NUMBER_OF_FIELDS])&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Let's put declarations of types and constants in the shared header file &lt;code&gt;ttt.h&lt;/code&gt;
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdbool.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* general constants */&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;TTT_ABORT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;NUMBER_OF_FIELDS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;ttt_constant_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* game outcomes */&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;enum&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;TTT_PLAYER_WINS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TTT_COMPUTER_WINS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TTT_DRAW&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TTT_UNDECIDED&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;ttt_result_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ttt_board_t&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;NUMBER_OF_FIELDS&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The prototypes (interfaces/declarations) of the (to be written) C functions that will be called from other modules will also be added there.
+&lt;/p&gt;
+
+&lt;p&gt;
+Two of the functions that we used in the main loop also go into the main file "ttt&lt;sub&gt;main.c&lt;/sub&gt;":
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;ttt_init_board&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ttt_board_t&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="cm"&gt;/* emtpies every field */&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;NUMBER_OF_FIELDS&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sc"&gt;' '&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="nf"&gt;ttt_opponent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;symbol&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;symbol&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'x'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="sc"&gt;'o'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sc"&gt;'x'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sc"&gt;' '&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5f2513a" class="outline-3"&gt;
+&lt;h3 id="org5f2513a"&gt;Input &amp;amp; Output&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5f2513a"&gt;
+&lt;p&gt;
+Since we use a text based interface our user interface is not so complicated and does not require as much of an effort (real user interfaces usually require a lot of work). But we still want to be lazy :D
+&lt;/p&gt;
+
+&lt;p&gt;
+For example let's look at options to clear the screen:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;scroll down → window size has to be known (N)&lt;/li&gt;
+&lt;li&gt;unix command &lt;code&gt;clear&lt;/code&gt; → really slow and not portable (N)&lt;/li&gt;
+&lt;li&gt;ANSI/VT100 escape sequence (control command) → also not 100% portable&lt;/li&gt;
+&lt;li&gt;best solution: usage of portable libraries for example ncurses (or pdcurses for windows)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+To keep it simple we use the solution with the ANSI escape codes:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* Use VT100 ESC code to clean terminal */&lt;/span&gt;
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;ttt_clean_terminal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%c[2J"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Now to determine whether or not another game should be started we use &lt;code&gt;getchar()&lt;/code&gt;, which returns the integer value (!) of the entered character.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;ttt_another_game&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Do you want to play another game [y/n] -&amp;gt; "&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// see notes below..&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;'Y'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;'y'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Slides: Es gibt allerdings ein Problem und zwar, dass das Terminal gibt eine Eingabe erst weiter, wenn &amp;lt;RETURN&amp;gt; gedrückt wurde. Das Zeichen "⏎" ist Teil des Eingabestroms. Lösung: Die Funktion wird zweimal aufgerufen und das zweite Ergebnis verworfen.
+&lt;/p&gt;
+
+&lt;p&gt;
+I actually fail to see what is meant by the "problem" described above and how the second call to &lt;code&gt;getchar()&lt;/code&gt; should help with that… I tested the code with and without it and got identical behaviour, but this is what stands in the slides.
+&lt;/p&gt;
+
+
+&lt;p&gt;
+Now let's implement the function for inputting a move:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;ttt_input_move&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;ttt_board_t&lt;/span&gt; &lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Please enter the number of the field you want to occupy (0 for abort)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;ttt_display_board&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;numberfield&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Your move -&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// xD defuq :D&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="sc"&gt;'0'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="sc"&gt;'9'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;'0'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;TTT_ABORT&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="c1"&gt;// character to integer array index&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="sc"&gt;' '&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+To output/print the board we use a bit of ACII art :D
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;ttt_display_board&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;ttt_board_t&lt;/span&gt; &lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// not for first row&lt;/span&gt;
+      &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;   -+-+-"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;   "&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// not for first column&lt;/span&gt;
+	&lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"|"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+
+      &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%c"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;board&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org40a5890" class="outline-3"&gt;
+&lt;h3 id="org40a5890"&gt;Strategy &amp;amp; Logic&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org40a5890"&gt;
+&lt;p&gt;
+F28
+&lt;/p&gt;
+
+&lt;hr&gt;
+&lt;p&gt;
+Sources: Wikipedia was heavily used for this post
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</guid><pubDate>Thu, 13 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 19</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-19/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This lecture directly builds on lecture 18 so make sure to be in the picture about what we did there.
 &lt;/p&gt;
 &lt;div id="outline-container-orgf863f0a" class="outline-2"&gt;
@@ -3205,878 +3700,4 @@ To be honest, while scimming through this lecture chapter I found it to be prett
 &lt;li&gt;return values&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 05</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-05/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgbec6786" class="outline-2"&gt;
-&lt;h2 id="orgbec6786"&gt;Relational Calculus (Relationenkalkül)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbec6786"&gt;
-&lt;p&gt;
-The expressions in &lt;i&gt;relational algebra&lt;/i&gt; form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate relation results. This way describes they way of &lt;i&gt;how&lt;/i&gt; you come to the relation result.
-&lt;/p&gt;
-
-&lt;p&gt;
-There is an alternative however to describe a query result without specifying the derivation (Herleitungsvorschrift), which is called &lt;b&gt;relational calculus&lt;/b&gt;. In relational calculus only the requirements of the desired resulting tuples are specified/described but not the way they are retrieved. This way describes &lt;i&gt;what&lt;/i&gt; is contained in the result relation.
-&lt;/p&gt;
-
-&lt;p&gt;
-A calculus (Kalkül) is a method, that is determined by a set of rules, to deal with certain mathematical problems in a systematic manner and solve them automatically (slides: ist eine durch ein System von Regeln festgelegte Methode, mit deren Hilfe bestimmte mathematische Probleme systematisch behandelt und automatisch gelöst werden können) 
-&lt;/p&gt;
-
-&lt;p&gt;
-The basis for relational calculus is predicate/quantifier logic  of the first degree (Prädikatenlogik erster Ordnung) and the result of a query is a set of tuples. In relational calculus calculus expressions (Kalkülausdrücke) are used, in particular the &lt;b&gt;tuple calculus&lt;/b&gt; and the &lt;b&gt;domain calculus&lt;/b&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgaeab930" class="outline-3"&gt;
-&lt;h3 id="orgaeab930"&gt;Tuple Calculus&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgaeab930"&gt;
-&lt;p&gt;
-The query notation for tuple calculus is {t | P(t)} where t is a tuple variable and P is a predicate over t. The result of such query is a set of all tuples for which the evaluation of the predicate P(t) yields &lt;i&gt;true&lt;/i&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Take the following example relation "Student":
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;major&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123456&lt;/td&gt;
-&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
-&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;134534&lt;/td&gt;
-&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
-&lt;td class="org-left"&gt;Philosophy&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;145698&lt;/td&gt;
-&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
-&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-Query: {s | s ∈ Student ∧ s.major='Computer Science'}
-&lt;/p&gt;
-
-&lt;p&gt;
-Result: 
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;major&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123456&lt;/td&gt;
-&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
-&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;145698&lt;/td&gt;
-&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
-&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orgd35aced"&gt;&lt;/a&gt;Tuple Calculus - Atoms and Formulas&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgd35aced"&gt;
-&lt;p&gt;
-For the construction of formula we define sets of atomic formulas.
-&lt;b&gt;Atoms&lt;/b&gt; in tuple calculus:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;t&lt;sub&gt;i&lt;/sub&gt; ∈ R&lt;sub&gt;j&lt;/sub&gt; → the relation R&lt;sub&gt;j&lt;/sub&gt; is assigned as the codomain(Wertebereich) to the tuple variable t&lt;sub&gt;i&lt;/sub&gt;&lt;/li&gt;
-&lt;li&gt;t&lt;sub&gt;i.A&lt;/sub&gt; Θ t&lt;sub&gt;j.B&lt;/sub&gt; → comparison operation between two attributes A and B which are attributes of the relations that were assigned as codomains to t&lt;sub&gt;i&lt;/sub&gt; and t&lt;sub&gt;j&lt;/sub&gt;&lt;/li&gt;
-&lt;li&gt;t&lt;sub&gt;i.A&lt;/sub&gt; Θ c → comparison operation between attribute A and constant C&lt;/li&gt;
-&lt;li&gt;c Θ t&lt;sub&gt;i.A&lt;/sub&gt; → comparison operation between constant c and attribute A&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-The comparison operation denoted by Θ encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are &amp;lt;, &amp;gt;, ≤, ≥, =, ≠ and =, ≠ for boolean values.
-&lt;/p&gt;
-
-&lt;p&gt;
-Every atom is a &lt;i&gt;formula&lt;/i&gt;. When F&lt;sub&gt;1&lt;/sub&gt; and F&lt;sub&gt;2&lt;/sub&gt; are formulas then the following constructs are formulas as well:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;F&lt;sub&gt;1&lt;/sub&gt; ∧ F&lt;sub&gt;2&lt;/sub&gt; = Conjunction&lt;/li&gt;
-&lt;li&gt;F&lt;sub&gt;1&lt;/sub&gt; ∨ F&lt;sub&gt;2&lt;/sub&gt; = Disjunction&lt;/li&gt;
-&lt;li&gt;¬ F&lt;sub&gt;1&lt;/sub&gt;  = Negation&lt;/li&gt;
-&lt;li&gt;(F&lt;sub&gt;1&lt;/sub&gt;) = wrapping (Klammerung)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-When F is a formula and t is a tuple variable in F then the following constructs are formulas:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;(∃ t)(F) = existential quantifier (Existenzquantifizierung)&lt;/li&gt;
-&lt;li&gt;(∀ t)(F) = universal quantifier (Universalquantifizierung)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="orgfb47392"&gt;&lt;/a&gt;Tuple Calculus - Free and Bounded Tuple Variables&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgfb47392"&gt;
-&lt;p&gt;
-A tuple variable in an atom (respective in a formula consisting of one atom) is &lt;b&gt;free&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-A tuple variable in a formula that is composed via negation, conjunction or disconjuction of other partial formulas is &lt;b&gt;free&lt;/b&gt; or &lt;b&gt;bound&lt;/b&gt; depending on its state in the other partial formulas. In this case a tuple variable can be free and bound at the same time.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Free&lt;/b&gt; tuple variables t of a formula F get &lt;b&gt;bound&lt;/b&gt; to the respective quantifier F' when they are embedded in one of the following formulas F':
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;F' = (∃ t)(F)&lt;/li&gt;
-&lt;li&gt;F' = (∀ t)(F)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Examples:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;F&lt;sub&gt;1&lt;/sub&gt;: s.name = 'Cleopatra'&lt;/li&gt;
-&lt;li&gt;F&lt;sub&gt;2&lt;/sub&gt;: (∃ t)(s.matrNr = t.matrNr)&lt;/li&gt;
-&lt;li&gt;F&lt;sub&gt;3&lt;/sub&gt;: (∀ s)(s.name = 'Cleopatra')&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org60984c5"&gt;&lt;/a&gt;Tuple Calculus - Computing Formulas (Substitution)&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org60984c5"&gt;
-&lt;p&gt;
-Given that F(s) is a formula with the tuple variable s ∈ R and a tuple t ∈ R. Then the following happens in each atom of F(S) with a &lt;i&gt;free&lt;/i&gt; s:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;s ∈ R is replaced with true&lt;/li&gt;
-&lt;li&gt;s.A Θ u.B is replaced with t.A Θ u.B (A and B are atrtibutes, u is another tuple variable u ≠ s)&lt;/li&gt;
-&lt;li&gt;s.A Θ c is replaced with the concrete boolean value of the operation t.A Θ c&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-These steps are repeated for further tuple variables if necessary until F(s) only holds (possibly logically connected) boolean constants (true/false) and atoms with bound variables.
-&lt;/p&gt;
-
-&lt;p&gt;
-Example:
-Given tuple variable s and t from a schema R(a,b) and the formula ∀ t(t ∈ R ∧ t.a = s.a ∧ t.b &amp;lt; s.b) the substitution happens/looks like this:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the tuple s = (8, 12) → ∀ t(t ∈ R ∧ t.a = 8 ∧ t.b &amp;lt; 12)&lt;/li&gt;
-&lt;li&gt;then the tuple t = (8, 9) → ∀ t(true ∧ 8 = 8 ∧ 9 &amp;lt; 12) → ∀ t(true ∧ true ∧ true) → ∀ t(true)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="orga48ad2d"&gt;&lt;/a&gt;Tuple Calculus - Computing Formulas for bound Tuple Variables&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orga48ad2d"&gt;
-&lt;p&gt;
-Given a tuple variable s ∈ R:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;the formula (∃ t)(F) evaluates to &lt;i&gt;true&lt;/i&gt; if F becomes true for at least one substitution of s and the formula evaluates to false otherwise
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;this means that at least one tuple can be associated with the free tuple variable s for which F becomes true&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;the formular (∀ t)(F) evaluates to &lt;i&gt;true&lt;/i&gt; if F becomes true for &lt;i&gt;all&lt;/i&gt; substitutions of s
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;this means that F is true/fulfilled for all tuples that can be assigned to the free tuple variable s&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;Final Formula Computation&lt;/b&gt; = formulas now only hold logically connected boolean values which can be evaluated accordingly.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="orgd659ffd"&gt;&lt;/a&gt;Tuple Calculus - Expressions and Queries&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgd659ffd"&gt;
-&lt;p&gt;
-In general an expression/query of the tuple calculus is of the following form: {t&lt;sub&gt;1.A&lt;/sub&gt;&lt;sub&gt;1&lt;/sub&gt;, t&lt;sub&gt;2.A&lt;/sub&gt;&lt;sub&gt;2&lt;/sub&gt;, …, t&lt;sub&gt;n.A&lt;/sub&gt;&lt;sub&gt;n&lt;/sub&gt; | F(t&lt;sub&gt;1&lt;/sub&gt;, …, t&lt;sub&gt;m&lt;/sub&gt;)}
-&lt;/p&gt;
-
-&lt;p&gt;
-t&lt;sub&gt;i&lt;/sub&gt; are tuple variables (which in general encompass all tuples of the so called univesere, that's why they are usually assigned to a relation) and A&lt;sub&gt;i&lt;/sub&gt; are attributes of the relation that is assigned to the tuple variable t&lt;sub&gt;i&lt;/sub&gt;, while F(t&lt;sub&gt;1&lt;/sub&gt;, …, t&lt;sub&gt;m&lt;/sub&gt;) is the formula of the tuple calculus.
-&lt;/p&gt;
-
-&lt;p&gt;
-Taking our previous student relation:
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;major&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123456&lt;/td&gt;
-&lt;td class="org-left"&gt;Archimedes&lt;/td&gt;
-&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;134534&lt;/td&gt;
-&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
-&lt;td class="org-left"&gt;Philosophy&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;145698&lt;/td&gt;
-&lt;td class="org-left"&gt;Cleopatra&lt;/td&gt;
-&lt;td class="org-left"&gt;Computer Science&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-Query: {s.matrNr, s.name | s ∈ Student ∧ s.major='Philosophy'} yields
-&lt;/p&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;matrNr{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;134534&lt;/td&gt;
-&lt;td class="org-left"&gt;Sophokles&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;
-Now onto another example. Given the relations teacher
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;persNr{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;3467&lt;/td&gt;
-&lt;td class="org-left"&gt;Ares&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;43467&lt;/td&gt;
-&lt;td class="org-left"&gt;Hera&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;
-and lectures
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123&lt;/td&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;234&lt;/td&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;345&lt;/td&gt;
-&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
-&lt;td class="org-right"&gt;43467&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;456&lt;/td&gt;
-&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-we want to know the names of the teachers that hold at least one lecture:
-{t.name | t ∈ Teacher ∧ (∃ l)(l ∈ lectures ∧ t.persNr = l.persNr)} which leads to this resulting relation
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Hera&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;
-To query the lecture titles of lectures given by Zeus we'd use the following:
-{t.title | t ∈ Lectures ∧ (∃ l)(l ∈ teacher ∧ t.persNr = l.persNr ∧ l.name='Zeus') } to get
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;
-For the next example queries I embed the slides because it is more clearer and not so much overhead.
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/tuple-calc-ex1.png" alt="nil"&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/tuple-calc-ex2.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-One problem with queries of tuple calculus is that they can sometimes produce an infinite result relation, eg { s | ≠(s ∈ Student) }.
-&lt;/p&gt;
-
-&lt;p&gt;
-The domain of a formula contains all constant values of a formula and all possible attribute values of all tuples in the referenced relations.
-&lt;/p&gt;
-
-&lt;p&gt;
-A &lt;b&gt;safe query&lt;/b&gt; is a query where the result of the query stems from the domain of the formula → we only use safe queries (all queries we've seen so far are safe).
-&lt;/p&gt;
-
-&lt;p&gt;
-Also see &lt;a href="https://en.wikipedia.org/wiki/Tuple_relational_calculus"&gt;https://en.wikipedia.org/wiki/Tuple_relational_calculus&lt;/a&gt; for more
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org065eceb" class="outline-3"&gt;
-&lt;h3 id="org065eceb"&gt;Domain Calculus&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org065eceb"&gt;
-&lt;p&gt;
-The domain relational calculus is also a calculus that serves as a declarative database query language for the relational data model. In DRC queries have this form {d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;n&lt;/sub&gt; | F(d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;m&lt;/sub&gt;)} with m ≥ n where d&lt;sub&gt;i&lt;/sub&gt; are domain variables which describe the values of attribute domains and F(d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;m&lt;/sub&gt;) is the formula. The formula consists, like in the relational calculus (tuple?), of either a an atom, a logical connection of formulas or a formula with a domain variable which is existential quantified or universal quantified.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org3529dfd"&gt;&lt;/a&gt;Domain Calculus - Atoms and Comparison&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org3529dfd"&gt;
-&lt;p&gt;
-Given the relation R of degree n where every d&lt;sub&gt;i&lt;/sub&gt; is a domain variable, the atom \(R(d_1, d_2, ..., d_n)\) expresses that the codomain (Werteliste) &amp;lt;d&lt;sub&gt;1&lt;/sub&gt;, d&lt;sub&gt;2&lt;/sub&gt;, …, d&lt;sub&gt;n&lt;/sub&gt;&amp;gt; has to be a tuple of the relation R.
-&lt;/p&gt;
-
-&lt;p&gt;
-Comparisons
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;d&lt;sub&gt;i&lt;/sub&gt; θ d&lt;sub&gt;j&lt;/sub&gt; → comparison operation between two domain variables d&lt;sub&gt;i&lt;/sub&gt; and d&lt;sub&gt;j&lt;/sub&gt;&lt;/li&gt;
-&lt;li&gt;d&lt;sub&gt;i&lt;/sub&gt; θ c → comparison operation between domain variable d&lt;sub&gt;i&lt;/sub&gt; and constant c&lt;/li&gt;
-&lt;li&gt;c θ d&lt;sub&gt;i&lt;/sub&gt; → comparison operation between constant c and domain variable d&lt;sub&gt;i&lt;/sub&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-The comparison operation denoted by Θ encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are &amp;lt;, &amp;gt;, ≤, ≥, =, ≠ and =, ≠ for boolean values (required that the elements of the domain can be compared pairwise).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org8e57725"&gt;&lt;/a&gt;Domain Calculus - Example Queries&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org8e57725"&gt;
-&lt;p&gt;
-Given the relations teacher
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;persNr{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;43467&lt;/td&gt;
-&lt;td class="org-left"&gt;Ares&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;43424&lt;/td&gt;
-&lt;td class="org-left"&gt;Hera&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;
-and lectures
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123&lt;/td&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;234&lt;/td&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;345&lt;/td&gt;
-&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
-&lt;td class="org-right"&gt;43467&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;456&lt;/td&gt;
-&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-&lt;b&gt;1.)&lt;/b&gt; List the lecture titles that are held by teacher with persNr 6897?
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;The query {b | (∃ a) (∃ c) (Lecture(a,b,c) ∧ c=6897)} yields:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-&lt;p&gt;
-&lt;b&gt;2.)&lt;/b&gt; What are the numbers and titles of lectures held by Zeus?
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;The query {a, b | (∃ c) (∃ d) (∃ e) (Lecture(a,b,c) ∧ teacher(d,e) ∧ c=d ∧ e='Zeus')} yields:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123&lt;/td&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;234&lt;/td&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;456&lt;/td&gt;
-&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-&lt;p&gt;
-&lt;b&gt;3.)&lt;/b&gt; What's the title of lectures hold by teacher with persNr6987 with at least 5 Credits?
-&lt;/p&gt;
-
-&lt;p&gt;
-We now have an additional column in our lecture relation:
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;credits&lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-right"&gt;123&lt;/td&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;234&lt;/td&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;345&lt;/td&gt;
-&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
-&lt;td class="org-right"&gt;5&lt;/td&gt;
-&lt;td class="org-right"&gt;43467&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-right"&gt;456&lt;/td&gt;
-&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
-&lt;td class="org-right"&gt;2&lt;/td&gt;
-&lt;td class="org-right"&gt;6897&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-Alternatively a query can be formulated with a direct specification of constant attribute values: {b | (Lecture(a, b, &lt;i&gt;5&lt;/i&gt;, &lt;i&gt;6897&lt;/i&gt;))} which yields
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;
-(slides: alle Variablen, die nicht „links“ auftreten, sind hierbei automatisch existenzquantifiziert)
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org00f3352" class="outline-2"&gt;
-&lt;h2 id="org00f3352"&gt;Relational Languages&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org00f3352"&gt;
-&lt;p&gt;
-The following query languages possess the same expresiveness (Ausdrucksmächtigkeit):
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;relational algebra&lt;/li&gt;
-&lt;li&gt;tuple calculus (limited to safe queries)&lt;/li&gt;
-&lt;li&gt;domain calculus (limited to safe queries)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Queries can be converted between those languages at any time.
-&lt;/p&gt;
-
-&lt;p&gt;
-In praxis the &lt;b&gt;relational calculus&lt;/b&gt; is the foundation for "real" query languages of relational DBMS:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;tuple calculus is the foundation of SQL (Structured Query Language)&lt;/li&gt;
-&lt;li&gt;domain calculus is the foundation of QBE (Query By Example)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;b&gt;Relational algebgra&lt;/b&gt; is the foundation for the realisation of queries in the query languages. The sequence of operations describes the path to the result of a query (which can be optimized in some circumstances).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org805185e" class="outline-2"&gt;
-&lt;h2 id="org805185e"&gt;Introduction to SQL&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org805185e"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orge8aa45d" class="outline-4"&gt;
-&lt;h4 id="orge8aa45d"&gt;History&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge8aa45d"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;1970: Codd presents the relational model&lt;/li&gt;
-&lt;li&gt;1974: development of the relational query language SEQUEL (Structured English Query Language)&lt;/li&gt;
-&lt;li&gt;1976: further development (Weiterentwicklung) of SEQUEL served as a foundation of the DBMS prototype "System R" by IBM, which was later renamed to SQL (Structured Query Language)&lt;/li&gt;
-&lt;li&gt;in the early 80s: a lot of DBMS emerge by different commercial providers → standardization is needed&lt;/li&gt;
-&lt;li&gt;1987: first SQL Standard&lt;/li&gt;
-&lt;li&gt;1992: big expansion of the standard → SQL 2 (SQL-92)&lt;/li&gt;
-&lt;li&gt;since then continuous evolution: SQL-99 → SQL:2003 → SQL:2006 → SQL:2008 → SQL:2011&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org655834a" class="outline-4"&gt;
-&lt;h4 id="org655834a"&gt;Introduction to SQL - Components&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org655834a"&gt;
-&lt;p&gt;
-There two high level components of SQL:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Data Definition Language (DDL)&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;defines the database structure&lt;/li&gt;
-&lt;li&gt;manages the access rights to the data&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-and 
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Data Manipulation Language (DML)&lt;/b&gt;
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;used to formulate queries for the data sets&lt;/li&gt;
-&lt;li&gt;create, read, update, delete of data&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-For now we'll focus on the Data Manipulation Language.
-&lt;/p&gt;
-
-&lt;p&gt;
-SQL does not operate on relations, but rather their physical representation form which are &lt;b&gt;tables&lt;/b&gt;. In tables duplicate entries are possible which we may have to exclude. In contrast to relations there is one more advantage to table which is that they can be sorted.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0310734" class="outline-4"&gt;
-&lt;h4 id="org0310734"&gt;Introduction to SQL - Queries&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org0310734"&gt;
-&lt;p&gt;
-All queries to a database in SQL are realized via the &lt;code&gt;select&lt;/code&gt; statement.
-This is the general construction:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;code&gt;select&lt;/code&gt; &lt;code&gt;attribute|expression&lt;/code&gt; → which attributes should the result table contain?&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;from&lt;/code&gt; &lt;code&gt;list of tables&lt;/code&gt; → which tables are required for the query?&lt;/li&gt;
-&lt;li&gt;[ &lt;code&gt;where&lt;/code&gt;  &lt;code&gt;condition&lt;/code&gt; ] → which conditions should the result tuples fulfill?&lt;/li&gt;
-&lt;li&gt;[ &lt;code&gt;group by&lt;/code&gt;  &lt;code&gt;list of attributes&lt;/code&gt; ] → summarize/condense identical attribute values&lt;/li&gt;
-&lt;li&gt;[ &lt;code&gt;having&lt;/code&gt;  &lt;code&gt;condition&lt;/code&gt; ] → condition in regards to grouped tables&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-[ &lt;code&gt;order by&lt;/code&gt;  &lt;code&gt;sort&lt;/code&gt; ] → specification of sorting for the resulting table
-&lt;/p&gt;
-
-&lt;p&gt;
-Now let's look at some simple example queries (mostly π projection and \roh rename at one point):
-&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-I insert the slides here because they are visually more appealing/clear :D
-&lt;/p&gt;
-
-&lt;p&gt;
-Three simple queries:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-1.png" alt="nil"&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-2.png" alt="nil"&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-3.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Sorting:
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-4.png" alt="nil"&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-5.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Simple query with &lt;i&gt;distinct&lt;/i&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/simple-sql-6.png" alt="nil"&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-05/</guid><pubDate>Tue, 20 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
