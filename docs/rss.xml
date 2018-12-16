@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 16 Dec 2018 15:27:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 16 Dec 2018 17:05:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
 &lt;/p&gt;
 
@@ -494,7 +494,97 @@ Sources: Wikipedia was heavily used for this post
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</guid><pubDate>Thu, 13 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 19</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-19/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</guid><pubDate>Thu, 13 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 10</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-10/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orge8b152f" class="outline-2"&gt;
+&lt;h2 id="orge8b152f"&gt;Development Cycle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge8b152f"&gt;
+&lt;p&gt;
+We're still in the realm of the development cycle (see post to last week's lecture) and continue with the next step which is "Implementation".
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge163e66" class="outline-3"&gt;
+&lt;h3 id="orge163e66"&gt;Implementation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge163e66"&gt;
+&lt;p&gt;
+Implementation is the step where the draft from the other steps is brought into a format that can be processed by the machine/computer. There's a concrete technical basis that has to be considered:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;detailed language specification ("detaillierter Sprachumfang")&lt;/li&gt;
+&lt;li&gt;implementation specifications ((co)domains, etc.)&lt;/li&gt;
+&lt;li&gt;operating system&lt;/li&gt;
+&lt;li&gt;usable standard software (eg libraries for arithmetic, graphics, string &amp;amp; list manipulation and data management)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org87a3922" class="outline-3"&gt;
+&lt;h3 id="org87a3922"&gt;Translation &amp;amp; Integration&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org87a3922"&gt;
+&lt;p&gt;
+Here're some possible procedures when translating source code from programming languages:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/translation-1.png" alt="nil"&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/translation-2.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org5893461" class="outline-3"&gt;
+&lt;h3 id="org5893461"&gt;(Software) Quality Assurance&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5893461"&gt;
+&lt;p&gt;
+Another crucial step in the development cycle is &lt;b&gt;Quality Assurance&lt;/b&gt; (QA). It is good to prove the correctness of the program. To do so (or come close to that) testcases with predefined test data should run. The expected results should be known beforehand and then be compared with the actual results to prove correctness.
+&lt;/p&gt;
+
+&lt;p&gt;
+There are different levels of proving correctness:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;the program is (syntactically) translated without errors (and no crashes when ran)&lt;/li&gt;
+&lt;li&gt;existence of certain test data that is handled correctly by the program&lt;/li&gt;
+&lt;li&gt;typical test data is correctly handled&lt;/li&gt;
+&lt;li&gt;uncommon and conciously chosen critical or odd test data (eg extreme values) are handled correctly&lt;/li&gt;
+&lt;li&gt;all possible input values are handled correctly&lt;/li&gt;
+&lt;li&gt;additionally: meaningful response to typical cases of incorrect data&lt;/li&gt;
+&lt;li&gt;additionally: meaningful response to all possible cases&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+In practice point 4./6. are goals that should be targeted to realize.
+&lt;/p&gt;
+
+&lt;p&gt;
+Quality assurance has to happen in &lt;i&gt;all&lt;/i&gt; development design phases:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;specification → coordination with users&lt;/li&gt;
+&lt;li&gt;design → review by experts&lt;/li&gt;
+&lt;li&gt;implementation → source code reviews by other developers and/or mathematical proofs&lt;/li&gt;
+&lt;li&gt;program → correctness proof by executing the program and tests (see above)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org670fcb9" class="outline-2"&gt;
+&lt;h2 id="org670fcb9"&gt;Algorithms and Data Structures&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org670fcb9"&gt;
+&lt;p&gt;
+This is the last big/major chapter in the script.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgb9052b3" class="outline-3"&gt;
+&lt;h3 id="orgb9052b3"&gt;Recursive Functions&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb9052b3"&gt;
+&lt;p&gt;
+The pages in the script cover the fibonacci sequence and the towers of hanoi which we already looked at in lectures from "Algorithms &amp;amp; Programming". So you can read the related blog posts to that and/or look at the CS01 slides from page 71 to 77. I won't repeat that stuff again here :P
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-10/</guid><pubDate>Thu, 13 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 19</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-19/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This lecture directly builds on lecture 18 so make sure to be in the picture about what we did there.
 &lt;/p&gt;
 &lt;div id="outline-container-orgf863f0a" class="outline-2"&gt;
@@ -3679,25 +3769,4 @@ However proving termination is not always possible (eg golbachs conjecture for e
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</guid><pubDate>Fri, 23 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Computer Science I - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-&lt;b&gt;Disclaimer:&lt;/b&gt; &lt;i&gt;I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms &amp;amp; Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&amp;amp;P a classmate hands me the covered slides)&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-Okay so I'll continute based on where we left off last time, which leads us to the next chapter in the slides:
-&lt;/p&gt;
-
-&lt;div id="outline-container-orgff2f2d4" class="outline-2"&gt;
-&lt;h2 id="orgff2f2d4"&gt;Functions&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgff2f2d4"&gt;
-&lt;p&gt;
-To be honest, while scimming through this lecture chapter I found it to be pretty basic. It is imho not worth it to cover here because there is nothing new in comparison to what we already covered in the A&amp;amp;P lectures, so look there if you want to refresh your memory on:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;why we use functions&lt;/li&gt;
-&lt;li&gt;how to use functions&lt;/li&gt;
-&lt;li&gt;domain (Definitionsmenge/Definitionsbereich) and codomain (Zielmenge/Wertebereich)&lt;/li&gt;
-&lt;li&gt;return values&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-07/</guid><pubDate>Thu, 22 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-14/</guid><pubDate>Fri, 23 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
