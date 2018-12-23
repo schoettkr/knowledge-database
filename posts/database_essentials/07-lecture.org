@@ -1,0 +1,87 @@
+#+BEGIN_COMMENT
+.. title: Database Essentials - Lecture 07
+.. slug: db-essentials-07
+.. date: 2018-12-05
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+This lecture is the third part of the Introduction to SQL that we began in lecture 5.
+
+* Introduction to SQL
+What we'll cover here:
+- Data Manipulation
+  - create, update, delete data
+- Data Definition
+  - data integrity rules / constraints
+- Relational Views (Relationale Sichten)
+
+** Data Manipulation
+*** Create Data
+With the command =insert= tuples can be added to tables. There are different syntactical variants.
+- *insert a complete data set*
+  - =insert into <tablename> values (<value list for attributes in accordance to schema>)=
+  - eg to add to the faculty table
+  - =insert into Faculty values ('Computer Science', 'Street of Nations 62, 09107 Chemnitz', 14568)=
+  | name             | adress                                | persNr |
+  |------------------+---------------------------------------+--------|
+  | Computer Science | Street of Nations 62, 09107 Chemnitz' |  14568 |
+  - note that values for all attributes have been provided and that they were in correct order
+- *insert an incomplete data set*
+  - =insert into <tablename> (<attribute list>) values (<value list for attributes in attribute list>)=
+  - eg to add the math faculty without knowledge of the address
+  - =insert into Faculty (name, persNr) values ('Mathematics', 91876)=
+  | name             | adress                                | persNr |
+  |------------------+---------------------------------------+--------|
+  | Computer Science | Street of Nations 62, 09107 Chemnitz' |  14568 |
+  | Mathematics      | /null/                                |  91876 |
+  - note that only the values for the attributes provided in the attribute list are added and that the other attributes are filled with /null/ (resp null values)
+- *insert a query result*
+  - =insert into <tablename> <select statement>=
+  - results of a select statements can be inserted into a table when the domains of attributes are compatible
+  - for example [[img-url:/images/add-tuple.png ]]
+
+*** Delete Data
+With the command =delete= tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is =delete from <tablename> where <condition>=
+
+For example
+#+BEGIN_SRC sql
+delete from Personal where alter >= 67
+#+END_SRC
+has the following result in this table
+[[img-url:/images/delete-tuple.png ]]
+
+*** Update/Change Data
+With the command =update= attributtes of all tuples in a table can be changed in the same way. The syntax is =update <tablename> set <attribute1> = <expression1>, <attribute2> = <expression2>, ...=
+
+For example
+#+BEGIN_SRC sql
+update Personal set gehalt = gehalt/2
+#+END_SRC
+has the following result in this table
+[[img-url:/images/update-attributes-1.png ]]
+
+It is also possible to provide conditions to =update=. Then the syntax stays the same but gets an =where= statement added onto it: =update <tablename> set <attribute1> = <expression1>, <attribute2> = <expression2>, ... where <condition>=
+
+For example to merge department 3 into department 2
+#+BEGIN_SRC sql
+update Personal set Abteilung = 2 where Abteilung = 3
+#+END_SRC
+has the following result in this table
+[[img-url:/images/update-attributes-2.png ]]
+
+*** Procedure of Changes
+Basically there are two steps when changing data:
+1. creation of a temporary relation with the candidates that are due to be changed
+2. execution of the change operation
+   - =insert= \rightarrow insertion of the temporary table in the target table
+   - =update= \rightarrow change of the attributes initially in the temporary table (based on comparisons with the values in the original table) and then adoption into the target/original table
+   - =delete= \rightarrow mark the tuples that shall be deleted an deletion in one step
+     
+Why this effort you may ask? Well conditions may include subqueries which would else operate on data/tables that are already modified (partially)!
+
+** Data Definition

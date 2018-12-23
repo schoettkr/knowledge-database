@@ -369,7 +369,412 @@ To output/print the board we use a bit of ACII art :D
 #+END_SRC
 
 ** Strategy & Logic
-F28
+Now we turn our attention to the strategy and logic behind the Computer's move. Let's start with a high level strategy that can be finetuned later on:
+#+BEGIN_SRC C
+// Computer's Move Version 1
+if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if can I win next time? then
+            prepare win
+        else
+            whatever
+        end if
+    end if
+end if
+#+END_SRC
+To choose the winning move we have to know which combinations are considered a win. There are exactly 8 different winning combinations
+
+[[img-url:/images/winning-combinations.png ]]
+
+Such combination is from now on called /triple/. A win with a triple is possible when two fields of a triple are occupied with the own symbol/mark and the third field is free/unoccupied. Therefore there are \(8*3=24\) combinations for *"can I win?"*.
+
+We could hardcode this:
+#+BEGIN_SRC C
+  // winning_move (not final version)
+  int winning_move(const ttt_board_t f, char s) {
+
+    /* triplet (0,1,2) */
+    if ((f[0] == s) && (f[1] == s) && (f[2] == ' ')) return 2;
+    if ((f[1] == s) && (f[2] == s) && (f[0] == ' ')) return 0;
+    if ((f[0] == s) && (f[2] == s) && (f[1] == ' ')) return 1;
+
+    /* ...
+       and so on
+       ...
+    ,*/
+
+    /* triplet (2,4,6) */
+    if ((f[2] == s) && (f[4] == s) && (f[6] == ' ')) return 6;
+    if ((f[4] == s) && (f[6] == s) && (f[2] == ' ')) return 2;
+    if ((f[2] == s) && (f[6] == s) && (f[4] == ' ')) return 4;
+
+    return -1;
+  }
+#+END_SRC
+Although this function is correct. It is rather convoluted, unneccessarily big and therefore error prone. Another idea is to use data and indirections:
+#+BEGIN_SRC C
+  // winning_move (not final version)
+  enum { NUMBER_TRIPLES = 8, NONE = -1}; // Number of winning triples, and code when no win possible
+  typedef int ttt_triple_t[3];
+
+  const ttt_triple_t triples[NUMBER_TRIPLES] =
+    {
+     {0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}
+    };
+
+  int winning_move(const ttt_board_t f, char s) {
+
+    for (int i = 0; i < NUMBER_TRIPLES; ++i) {
+      for (int j = 0; j < 3; ++j) {
+        /* always get the two other indices to check all possible combs in a triple
+           j = 0 -> idx2=1, idx3=2
+           j = 1 -> idx2=2, idx3=0
+           j = 2 -> idx2=0, idx3=1
+         ,*/
+        int idx2 = (j+1) % 3;
+        int idx3 = (j+2) % 3;
+
+        // check the fields specified in triples eg 3,4,5 in the game board f
+        if ((f[triples[i][j]] == ' ') &&
+            (f[triples[i][idx2]] == s) &&
+            (f[triples[i][idx3]] == s)) {
+          return triples[i];
+        }
+      }
+    }
+
+    return NONE;
+  }
+#+END_SRC
+
+To determine whether or not the opponent can win (/can opponent win?/) we can use the same function:
+#+BEGIN_SRC C
+  // can opponent win (not final version)
+  int block_opponent_winning_move(const ttt_board_t f, char s) {
+    return winning_move(f, ttt_opponent(s));
+  }
+#+END_SRC
+
+Looking at this, a structure becomes apparent: Multiple functions that evaluate the positions similar to =winning_move()= are needed. So let's formulate a more generic function to evaluate the board situation/positions.
+
+There are a few things that could be of interest in regards to the situation on the board:
+- a triple has won \rightarrow end the game
+- a triple can lead to a win \rightarrow =winning_move()=
+- a triple is "mine" (triple is blocked/marked by me) \rightarrow can force an opponent to a certain move
+- a triple is useless (because blocked by both)
+- a triple is empty
+  
+How can we assess different "evaluations" of situations via code when we calculate them via the same schema? Idea: Usage of prime numbers.
+
+Own symbol counts 2. Opponent symbol counts 5 and an empty field counts 0. Then the fields/counts of a triple are added:
+- own win \rightarrow \sum = 6
+- opponent win \rightarrow \sum = 15
+- own win possible \rightarrow \sum = 4
+- opponent win possible \rightarrow \sum = 10
+- "my" triple \rightarrow \sum = 2
+- "opponent's" triple \rightarrow \sum = 5
+- empty triple \rightarrow \sum = 0
+- useless triple \rightarrow \sum = 7 or \sum = 9 or \sum = 12
+
+The advantage of this approach is that each triple only needs to be evaluated once. The disadvantage is that we then have to search /in/ the triple for the empty field afterwards, but we are willing to take this consequence because we only execute once.
+#+BEGIN_SRC C
+  enum { NUMBER_TRIPLES = 8, I_KEY = 2, OPP_KEY = 5 };
+
+
+  typedef int ttt_triple_t[3];
+
+  const ttt_triple_t triples[NUMBER_TRIPLES] =
+    {
+     {0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}
+    };
+
+
+  // Evaluate a triple in accordance to the marked fields and keys
+  int ttt_evaluate(const ttt_board_t field, int tnr, int my_symbol) { // tnr = index of tuple we want to evaluate
+    int val = 0;
+    int opp_symbol = ttt_opponent(my_symbol);
+
+    for (int i = 0; i < 3; ++i) {
+      if (field[triples[tnr][i]] == my_symbol) {
+        val += I_KEY;
+      } else if (field[triples[tnr][i] == opp_symbol]) {
+        val += OPP_KEY;
+      }
+    }
+
+    return val;
+  }
+#+END_SRC
+
+Now the strategy of the computer under the use of =ttt_evaluate= would look like this:
+#+BEGIN_SRC C
+  static int winning_move(const ttt_board_t board,
+                          const ttt_tripleval_t eval,
+                          int who) {
+    for (int i = 0; i < NUMBER_TRIPLES, i++) {
+      if (eval[i] == who) { // find winning triple 
+        for (int j = 0; j < 3; j++) {
+          if (board[triples[i][j]] == ' ') { // find the empty place
+            return triples[i][j];
+          }
+        }
+      }
+    }
+    return NONE;
+  }
+
+  int ttt_calculate_move(const ttt_board_t board, char symbol) {
+    ttt_tripleval_t eval;
+
+    for (int i = 0; i < NUMBER_TRIPLES; ++i) {
+      eval[i] = ttt_evaluate(field, i, symbol);
+    }
+
+    int move = winning_move(board, eval, I_CANWIN);
+
+    if (move != NONE) {
+      return move;
+    }
+
+    move = winning_move(board, eval, OPP_CANWIN);
+
+    if (move != NONE) {
+      return move;
+    }
+
+    // slides: yet to implement
+
+    return NONE;
+  }
+#+END_SRC
+
+If we think back to our high level strategy:
+#+BEGIN_SRC C
+if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if can I win next time? then
+            prepare win
+        else
+            whatever
+        end if
+    end if
+end if
+#+END_SRC
+How can we /prepare a win/ for the next draw (Zug)?
+
+To prepare a win we should prepare two triples that can be won (fork). For example in this picture where the computer is X and the player (O) can only block 1 winning triple
+
+[[img-url:/images/fork.png ]]
+
+The "common" field (in both winning tuples, the X in the bottom left)  shall be called "pivot field".
+
+To find a pivot field two conditions need to be fulfilled:
+- there have to be two triples that are solely owned by the computer (count/score = 2)
+- those two triples need to share an empty field
+  
+Procedure:
+- inspect all 8 win tuples and determine whether or not they are evaluated with 2
+- every field that occurs in one of these tuples *and is empty* gets a point (+=1)
+- a field that then has more than 1 point is a pivot field
+  
+#+BEGIN_SRC C
+  int forking_move(const ttt_playground_t field, const ttt_tripleval_t eval) {
+    int i, j = 0;
+    int singles[NUMBER_OF_FIELDS] = {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}; // used to count the "points"
+
+    for (i = 0; i < NUMBER_TRIPLES; ++i) {
+      if (eval[i] == I_KEY) {
+        for (j = 0; j < 3; j++) {
+          if (field[triples[i][j]] == ' ') {
+            ++singles[triples[i][j]];
+          }
+        }
+      }
+    }
+
+    // iterate over singles and find one with >1 points which is therefore pivot field
+    for (i = 0; i < NUMBER_OF_FIELDS; ++i) {
+      if (singles[i] >= 2) {
+        return i;
+      }
+    }
+
+    return NONE;
+  }
+#+END_SRC
+
+** Offense
+Suppose that our strategic calculations up till now don't yield a move. In that case we should execute a logic that blocks possible wins (via pivot fields) from our opponent. Let's adapt our high level algorithm accordingly:
+#+BEGIN_SRC C
+if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if (can I fork?) then
+            choose pivot element
+        else
+            if (can opponent fork?) then
+                block opponent's pivot element
+            else 
+                whatever
+            end if
+        end if
+    end if
+end if
+#+END_SRC
+The problem with that is however that the opponent could get into possession of two pivot elements. So as an alternative approach we choose to go the offensive route, trying to get into a situation where we're forcing our opponent to block a win of ourselves. /But/ there's an important detail. We have to avoid that we "gift" our opponent a fork/pivot field by forcing him to block our win! See below:
+
+[[img-url:/images/opponent-fork.png ]]
+
+So we have to adapt the strategy once again:
+#+BEGIN_SRC C
+if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if (can I fork?) then
+            choose pivot element
+        else
+            if (can I force without opponent's fork?) then
+                choose forcing move
+            else 
+                move to best available place
+            end if
+        end if
+    end if
+end if
+#+END_SRC
+To find our offensive move/draw we first inspect where we *cannot* go. The fields remaining from that analysis are pivot fields of our opponent. Then we search for triples where we own *exactly one* field (and where there's *no* opponent field) and score those fields with a score of 2. If there's an pivot element from our opponent in one of those triples choose that as the target for our next move, else just choose an empty field. Here's the C implementation:
+#+BEGIN_SRC C
+  int forcing_move (const ttt_board_t board, const ttt_tripleval_t eval) {
+    int opp_singles[NUMBER_OF_FIELDS];
+    for (int i = 0; i < NUMBER_TRIPLES; ++i) {
+      if (eval[i] == OPP_KEY) {
+        for(int j = 0; j < 3; j++) {
+          if (board[triples[i][j]] == ' ') {
+            ++opp_singles[triples[i][j]];
+          }
+        }
+      }
+    }
+
+    for (int i = 0; i < NUMBER_TRIPLES; ++i) {
+
+      if (eval[i] == I_KEY) {
+
+        if ((opp_singles[triples[i][0]] <= 1) &&
+            (opp_singles[triples[i][1]] <= 1) &&
+            ( opp_singles[triples[i][2]] <= 1)) {
+
+          for (j = 0; j < 3; j++) {
+            if (board[triples[i][j]] == ' ') {
+              return triples[i][j];
+            }
+          }
+
+        }
+
+        for (j =0; j < 3; j++) {
+          if( opp_singles[triples[i][j]] > 1) {
+            return triples[i][j];
+          }
+        }
+      }
+    }
+    return NONE ;
+  }
+#+END_SRC
+
+In the case where we still don't have a field for the next draw, we /move to best available place/ in accordance to our algorithm. Fields still have different value though (middle \rightarrow corners \rightarrow edges):
+#+BEGIN_SRC C
+  int best_remaining_move(const ttt_board_t board) {
+    const int best[] = {4, 0, 2, 6, 8, 1, 3, 5, 7}; // fields sorted by decreasing value
+
+    for (int i = 0; i < NUMBER_OF_FIELDS; ++i) {
+      if (board[best[i]] == ' ') // if available
+        return best[i];
+    }
+
+    return NONE; // should never happen
+  }
+#+END_SRC
+
+By combining all these functions that we defined, we are now able to calculate the move:
+#+BEGIN_SRC C
+  int ttt_calculate_move (const ttt_board_t field, char symbol) {
+    ttt_tripleval_t eval;
+
+    for (int i = 0; i < NUMBER_TRIPLES; ++i) {
+      eval[i] = evaluate(field, i, symbol);
+    }
+
+    int move = winning_move(field, eval, I_CANWIN);
+    if (move != NONE) return move;
+
+    move = winning_move(field, eval, OPP_CANWIN);
+    if (move != NONE) return move;
+
+    move = forking_move(field, eval);
+    if (move != NONE) return move;
+
+    move = forcing_move(field, eval);
+    if (move != NONE) return move;
+
+    return best_remaining_move(field);
+  }
+#+END_SRC
+
+Since all the functionality is combined in =ttt_calculate_move= we only have to make this function available to the outside, and declare all the other, internal functions as static. 
+
+The last function we will also globally need is =ttt_win_or_draw= to determine the end of a game:
+#+BEGIN_SRC C
+  ttt_result_t ttt_won_or_draw ( const ttt_board_t board , char symbol) {
+    bool undecided = false;
+
+    for(int i = 0; i < NUMBER_TRIPLES; i++) {
+
+      int state = evaluate(board, i, 'x');
+
+      switch (state) {
+      case I_WIN:
+        if (symbol == 'x') return TTT_PLAYER_WINS;
+        else return TTT_COMPUTER_WINS;
+      case OPP_WIN:
+        if (symbol == 'o') return TTT_PLAYER_WINS ;
+        else return TTT_COMPUTER_WINS;
+      case DRAW_I: /* falltrough */
+      case DRAW_OPP: /* fall trough */
+        break;
+      case DRAW: /* fall trough */
+      default:
+        undecided = true;
+      }
+    }
+
+    if (undecided) {
+      return TTT_UNDECIDED; 
+    } else {
+      return TTT_DRAW; 
+    }
+
+  }
+#+END_SRC
+
+Aaaaaand that's it  ◕ ‿‿ ◕ 
+
+The whole tic tac toe code is in the appendix of the official script. And remember that this is just /one of many/ ways on how to implement tic tac toe :)
 
 ------ 
 Sources: Wikipedia was heavily used for this post

@@ -107,9 +107,9 @@ I might refer to the slides more often in the next two posts that regard this "g
 This chapter also spans two lectures so lecture 20 and 21 will be pooled into this single blog post.
 </p>
 
-<div id="outline-container-org941d1d2" class="outline-2">
-<h2 id="org941d1d2">Intro</h2>
-<div class="outline-text-2" id="text-org941d1d2">
+<div id="outline-container-orge2fe02e" class="outline-2">
+<h2 id="orge2fe02e">Intro</h2>
+<div class="outline-text-2" id="text-orge2fe02e">
 <p>
 The game we're building is TicTacToe (TTT), where there's one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
 These lead to the following high level pseudo algorithm:
@@ -162,9 +162,9 @@ This is how the file structure looks
 <img src="../../../images/file-structure.png" alt="nil"></p>
 </div>
 
-<div id="outline-container-orgd33e678" class="outline-3">
-<h3 id="orgd33e678">Excourse: Make</h3>
-<div class="outline-text-3" id="text-orgd33e678">
+<div id="outline-container-orgf80e255" class="outline-3">
+<h3 id="orgf80e255">Excourse: Make</h3>
+<div class="outline-text-3" id="text-orgf80e255">
 <p>
 When a project consists of multiple modules, each of them has to be translated to an object file seperately (eg via <code>gcc -c &lt;file.c&gt;</code>) and then all object files have to be linked (with the libraries).
 </p>
@@ -363,9 +363,9 @@ clean:
 </div>
 </div>
 
-<div id="outline-container-orgef4881d" class="outline-3">
-<h3 id="orgef4881d">The Main Loop</h3>
-<div class="outline-text-3" id="text-orgef4881d">
+<div id="outline-container-org5151c22" class="outline-3">
+<h3 id="org5151c22">The Main Loop</h3>
+<div class="outline-text-3" id="text-org5151c22">
 <p>
 Going back to our initial draft of our high level pseudo code algorithm we might want some modifications that account for:
 </p>
@@ -488,9 +488,9 @@ Two of the functions that we used in the main loop also go into the main file "t
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org5f2513a" class="outline-3">
-<h3 id="org5f2513a">Input &amp; Output</h3>
-<div class="outline-text-3" id="text-org5f2513a">
+<div id="outline-container-orgbb1ebf0" class="outline-3">
+<h3 id="orgbb1ebf0">Input &amp; Output</h3>
+<div class="outline-text-3" id="text-orgbb1ebf0">
 <p>
 Since we use a text based interface our user interface is not so complicated and does not require as much of an effort (real user interfaces usually require a lot of work). But we still want to be lazy :D
 </p>
@@ -587,11 +587,468 @@ To output/print the board we use a bit of ACII art :D
 </div>
 </div>
 
-<div id="outline-container-org40a5890" class="outline-3">
-<h3 id="org40a5890">Strategy &amp; Logic</h3>
-<div class="outline-text-3" id="text-org40a5890">
+<div id="outline-container-org3363785" class="outline-3">
+<h3 id="org3363785">Strategy &amp; Logic</h3>
+<div class="outline-text-3" id="text-org3363785">
 <p>
-F28
+Now we turn our attention to the strategy and logic behind the Computer's move. Let's start with a high level strategy that can be finetuned later on:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// Computer's Move Version 1</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+    <span class="n">choose</span> <span class="n">winning</span> <span class="n">move</span>
+<span class="k">else</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">opponent</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+	<span class="n">block</span> <span class="n">winning</span> <span class="n">move</span>
+    <span class="k">else</span>
+	<span class="k">if</span> <span class="n">can</span> <span class="n">I</span> <span class="n">win</span> <span class="n">next</span> <span class="n">time</span><span class="o">?</span> <span class="n">then</span>
+	    <span class="n">prepare</span> <span class="n">win</span>
+	<span class="k">else</span>
+	    <span class="n">whatever</span>
+	<span class="n">end</span> <span class="k">if</span>
+    <span class="n">end</span> <span class="k">if</span>
+<span class="n">end</span> <span class="k">if</span>
+</pre></div>
+<p>
+To choose the winning move we have to know which combinations are considered a win. There are exactly 8 different winning combinations
+</p>
+
+<p>
+<img src="../../../images/winning-combinations.png" alt="nil"></p>
+
+<p>
+Such combination is from now on called <i>triple</i>. A win with a triple is possible when two fields of a triple are occupied with the own symbol/mark and the third field is free/unoccupied. Therefore there are \(8*3=24\) combinations for <b>"can I win?"</b>.
+</p>
+
+<p>
+We could hardcode this:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// winning_move (not final version)</span>
+<span class="kt">int</span> <span class="nf">winning_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">f</span><span class="p">,</span> <span class="kt">char</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="cm">/* triplet (0,1,2) */</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">))</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">))</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="cm">/* ...</span>
+<span class="cm">     and so on</span>
+<span class="cm">     ...</span>
+<span class="cm">  */</span>
+
+  <span class="cm">/* triplet (2,4,6) */</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">))</span> <span class="k">return</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">))</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">))</span> <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>
+Although this function is correct. It is rather convoluted, unneccessarily big and therefore error prone. Another idea is to use data and indirections:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// winning_move (not final version)</span>
+<span class="k">enum</span> <span class="p">{</span> <span class="n">NUMBER_TRIPLES</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">NONE</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// Number of winning triples, and code when no win possible</span>
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">ttt_triple_t</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="k">const</span> <span class="n">ttt_triple_t</span> <span class="n">triples</span><span class="p">[</span><span class="n">NUMBER_TRIPLES</span><span class="p">]</span> <span class="o">=</span>
+  <span class="p">{</span>
+   <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">}</span>
+  <span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">winning_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">f</span><span class="p">,</span> <span class="kt">char</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="cm">/* always get the two other indices to check all possible combs in a triple</span>
+<span class="cm">	 j = 0 -&gt; idx2=1, idx3=2</span>
+<span class="cm">	 j = 1 -&gt; idx2=2, idx3=0</span>
+<span class="cm">	 j = 2 -&gt; idx2=0, idx3=1</span>
+<span class="cm">       */</span>
+      <span class="kt">int</span> <span class="n">idx2</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">idx3</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">;</span>
+
+      <span class="c1">// check the fields specified in triples eg 3,4,5 in the game board f</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">f</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+	  <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">idx2</span><span class="p">]]</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+	  <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">idx3</span><span class="p">]]</span> <span class="o">==</span> <span class="n">s</span><span class="p">))</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+To determine whether or not the opponent can win (<i>can opponent win?</i>) we can use the same function:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// can opponent win (not final version)</span>
+<span class="kt">int</span> <span class="nf">block_opponent_winning_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">f</span><span class="p">,</span> <span class="kt">char</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">winning_move</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">ttt_opponent</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Looking at this, a structure becomes apparent: Multiple functions that evaluate the positions similar to <code>winning_move()</code> are needed. So let's formulate a more generic function to evaluate the board situation/positions.
+</p>
+
+<p>
+There are a few things that could be of interest in regards to the situation on the board:
+</p>
+<ul class="org-ul">
+<li>a triple has won → end the game</li>
+<li>a triple can lead to a win → <code>winning_move()</code>
+</li>
+<li>a triple is "mine" (triple is blocked/marked by me) → can force an opponent to a certain move</li>
+<li>a triple is useless (because blocked by both)</li>
+<li>a triple is empty</li>
+</ul>
+<p>
+How can we assess different "evaluations" of situations via code when we calculate them via the same schema? Idea: Usage of prime numbers.
+</p>
+
+<p>
+Own symbol counts 2. Opponent symbol counts 5 and an empty field counts 0. Then the fields/counts of a triple are added:
+</p>
+<ul class="org-ul">
+<li>own win → ∑ = 6</li>
+<li>opponent win → ∑ = 15</li>
+<li>own win possible → ∑ = 4</li>
+<li>opponent win possible → ∑ = 10</li>
+<li>"my" triple → ∑ = 2</li>
+<li>"opponent's" triple → ∑ = 5</li>
+<li>empty triple → ∑ = 0</li>
+<li>useless triple → ∑ = 7 or ∑ = 9 or ∑ = 12</li>
+</ul>
+<p>
+The advantage of this approach is that each triple only needs to be evaluated once. The disadvantage is that we then have to search <i>in</i> the triple for the empty field afterwards, but we are willing to take this consequence because we only execute once.
+</p>
+<div class="highlight"><pre><span></span><span class="k">enum</span> <span class="p">{</span> <span class="n">NUMBER_TRIPLES</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">I_KEY</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">OPP_KEY</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">};</span>
+
+
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">ttt_triple_t</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="k">const</span> <span class="n">ttt_triple_t</span> <span class="n">triples</span><span class="p">[</span><span class="n">NUMBER_TRIPLES</span><span class="p">]</span> <span class="o">=</span>
+  <span class="p">{</span>
+   <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">}</span>
+  <span class="p">};</span>
+
+
+<span class="c1">// Evaluate a triple in accordance to the marked fields and keys</span>
+<span class="kt">int</span> <span class="nf">ttt_evaluate</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">field</span><span class="p">,</span> <span class="kt">int</span> <span class="n">tnr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">my_symbol</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// tnr = index of tuple we want to evaluate</span>
+  <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">opp_symbol</span> <span class="o">=</span> <span class="n">ttt_opponent</span><span class="p">(</span><span class="n">my_symbol</span><span class="p">);</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">tnr</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="n">my_symbol</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">val</span> <span class="o">+=</span> <span class="n">I_KEY</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">tnr</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">opp_symbol</span><span class="p">])</span> <span class="p">{</span>
+      <span class="n">val</span> <span class="o">+=</span> <span class="n">OPP_KEY</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">val</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Now the strategy of the computer under the use of <code>ttt_evaluate</code> would look like this:
+</p>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">winning_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span><span class="p">,</span>
+			<span class="k">const</span> <span class="n">ttt_tripleval_t</span> <span class="n">eval</span><span class="p">,</span>
+			<span class="kt">int</span> <span class="n">who</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">,</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">eval</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">who</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// find winning triple </span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// find the empty place</span>
+	  <span class="k">return</span> <span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+	<span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">ttt_calculate_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span><span class="p">,</span> <span class="kt">char</span> <span class="n">symbol</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">ttt_tripleval_t</span> <span class="n">eval</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">eval</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ttt_evaluate</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">symbol</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">move</span> <span class="o">=</span> <span class="n">winning_move</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">eval</span><span class="p">,</span> <span class="n">I_CANWIN</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">NONE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">move</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">move</span> <span class="o">=</span> <span class="n">winning_move</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">eval</span><span class="p">,</span> <span class="n">OPP_CANWIN</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">NONE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">move</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// slides: yet to implement</span>
+
+  <span class="k">return</span> <span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+If we think back to our high level strategy:
+</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+    <span class="n">choose</span> <span class="n">winning</span> <span class="n">move</span>
+<span class="k">else</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">opponent</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+	<span class="n">block</span> <span class="n">winning</span> <span class="n">move</span>
+    <span class="k">else</span>
+	<span class="k">if</span> <span class="n">can</span> <span class="n">I</span> <span class="n">win</span> <span class="n">next</span> <span class="n">time</span><span class="o">?</span> <span class="n">then</span>
+	    <span class="n">prepare</span> <span class="n">win</span>
+	<span class="k">else</span>
+	    <span class="n">whatever</span>
+	<span class="n">end</span> <span class="k">if</span>
+    <span class="n">end</span> <span class="k">if</span>
+<span class="n">end</span> <span class="k">if</span>
+</pre></div>
+<p>
+How can we <i>prepare a win</i> for the next draw (Zug)?
+</p>
+
+<p>
+To prepare a win we should prepare two triples that can be won (fork). For example in this picture where the computer is X and the player (O) can only block 1 winning triple
+</p>
+
+<p>
+<img src="../../../images/fork.png" alt="nil"></p>
+
+<p>
+The "common" field (in both winning tuples, the X in the bottom left)  shall be called "pivot field".
+</p>
+
+<p>
+To find a pivot field two conditions need to be fulfilled:
+</p>
+<ul class="org-ul">
+<li>there have to be two triples that are solely owned by the computer (count/score = 2)</li>
+<li>those two triples need to share an empty field</li>
+</ul>
+<p>
+Procedure:
+</p>
+<ul class="org-ul">
+<li>inspect all 8 win tuples and determine whether or not they are evaluated with 2</li>
+<li>every field that occurs in one of these tuples <b>and is empty</b> gets a point (+=1)</li>
+<li>a field that then has more than 1 point is a pivot field</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">forking_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_playground_t</span> <span class="n">field</span><span class="p">,</span> <span class="k">const</span> <span class="n">ttt_tripleval_t</span> <span class="n">eval</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">singles</span><span class="p">[</span><span class="n">NUMBER_OF_FIELDS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span><span class="p">};</span> <span class="c1">// used to count the "points"</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">eval</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">I_KEY</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="o">++</span><span class="n">singles</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]];</span>
+	<span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// iterate over singles and find one with &gt;1 points which is therefore pivot field</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_OF_FIELDS</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">singles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org37f852b" class="outline-3">
+<h3 id="org37f852b">Offense</h3>
+<div class="outline-text-3" id="text-org37f852b">
+<p>
+Suppose that our strategic calculations up till now don't yield a move. In that case we should execute a logic that blocks possible wins (via pivot fields) from our opponent. Let's adapt our high level algorithm accordingly:
+</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+    <span class="n">choose</span> <span class="n">winning</span> <span class="n">move</span>
+<span class="k">else</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">opponent</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+	<span class="n">block</span> <span class="n">winning</span> <span class="n">move</span>
+    <span class="k">else</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">fork</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+	    <span class="n">choose</span> <span class="n">pivot</span> <span class="n">element</span>
+	<span class="k">else</span>
+	    <span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">opponent</span> <span class="n">fork</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+		<span class="n">block</span> <span class="n">opponent</span><span class="err">'</span><span class="n">s</span> <span class="n">pivot</span> <span class="n">element</span>
+	    <span class="k">else</span> 
+		<span class="n">whatever</span>
+	    <span class="n">end</span> <span class="k">if</span>
+	<span class="n">end</span> <span class="k">if</span>
+    <span class="n">end</span> <span class="k">if</span>
+<span class="n">end</span> <span class="k">if</span>
+</pre></div>
+<p>
+The problem with that is however that the opponent could get into possession of two pivot elements. So as an alternative approach we choose to go the offensive route, trying to get into a situation where we're forcing our opponent to block a win of ourselves. <i>But</i> there's an important detail. We have to avoid that we "gift" our opponent a fork/pivot field by forcing him to block our win! See below:
+</p>
+
+<p>
+<img src="../../../images/opponent-fork.png" alt="nil"></p>
+
+<p>
+So we have to adapt the strategy once again:
+</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+    <span class="n">choose</span> <span class="n">winning</span> <span class="n">move</span>
+<span class="k">else</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">opponent</span> <span class="n">win</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+	<span class="n">block</span> <span class="n">winning</span> <span class="n">move</span>
+    <span class="k">else</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">fork</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+	    <span class="n">choose</span> <span class="n">pivot</span> <span class="n">element</span>
+	<span class="k">else</span>
+	    <span class="k">if</span> <span class="p">(</span><span class="n">can</span> <span class="n">I</span> <span class="n">force</span> <span class="n">without</span> <span class="n">opponent</span><span class="err">'</span><span class="n">s</span> <span class="n">fork</span><span class="o">?</span><span class="p">)</span> <span class="n">then</span>
+		<span class="n">choose</span> <span class="n">forcing</span> <span class="n">move</span>
+	    <span class="k">else</span> 
+		<span class="n">move</span> <span class="n">to</span> <span class="n">best</span> <span class="n">available</span> <span class="n">place</span>
+	    <span class="n">end</span> <span class="k">if</span>
+	<span class="n">end</span> <span class="k">if</span>
+    <span class="n">end</span> <span class="k">if</span>
+<span class="n">end</span> <span class="k">if</span>
+</pre></div>
+<p>
+To find our offensive move/draw we first inspect where we <b>cannot</b> go. The fields remaining from that analysis are pivot fields of our opponent. Then we search for triples where we own <b>exactly one</b> field (and where there's <b>no</b> opponent field) and score those fields with a score of 2. If there's an pivot element from our opponent in one of those triples choose that as the target for our next move, else just choose an empty field. Here's the C implementation:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">forcing_move</span> <span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span><span class="p">,</span> <span class="k">const</span> <span class="n">ttt_tripleval_t</span> <span class="n">eval</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">opp_singles</span><span class="p">[</span><span class="n">NUMBER_OF_FIELDS</span><span class="p">];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">eval</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">OPP_KEY</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="o">++</span><span class="n">opp_singles</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]];</span>
+	<span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">eval</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">I_KEY</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="k">if</span> <span class="p">((</span><span class="n">opp_singles</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+	  <span class="p">(</span><span class="n">opp_singles</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+	  <span class="p">(</span> <span class="n">opp_singles</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">)</span> <span class="p">{</span>
+	    <span class="k">return</span> <span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+	  <span class="p">}</span>
+	<span class="p">}</span>
+
+      <span class="p">}</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span> <span class="n">opp_singles</span><span class="p">[</span><span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="k">return</span> <span class="n">triples</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+	<span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">NONE</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+In the case where we still don't have a field for the next draw, we <i>move to best available place</i> in accordance to our algorithm. Fields still have different value though (middle → corners → edges):
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">best_remaining_move</span><span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">best</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">};</span> <span class="c1">// fields sorted by decreasing value</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_OF_FIELDS</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">best</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">' '</span><span class="p">)</span> <span class="c1">// if available</span>
+      <span class="k">return</span> <span class="n">best</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">NONE</span><span class="p">;</span> <span class="c1">// should never happen</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+By combining all these functions that we defined, we are now able to calculate the move:
+</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">ttt_calculate_move</span> <span class="p">(</span><span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">field</span><span class="p">,</span> <span class="kt">char</span> <span class="n">symbol</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">ttt_tripleval_t</span> <span class="n">eval</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">eval</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">symbol</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">move</span> <span class="o">=</span> <span class="n">winning_move</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">eval</span><span class="p">,</span> <span class="n">I_CANWIN</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">NONE</span><span class="p">)</span> <span class="k">return</span> <span class="n">move</span><span class="p">;</span>
+
+  <span class="n">move</span> <span class="o">=</span> <span class="n">winning_move</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">eval</span><span class="p">,</span> <span class="n">OPP_CANWIN</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">NONE</span><span class="p">)</span> <span class="k">return</span> <span class="n">move</span><span class="p">;</span>
+
+  <span class="n">move</span> <span class="o">=</span> <span class="n">forking_move</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">eval</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">NONE</span><span class="p">)</span> <span class="k">return</span> <span class="n">move</span><span class="p">;</span>
+
+  <span class="n">move</span> <span class="o">=</span> <span class="n">forcing_move</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">eval</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">move</span> <span class="o">!=</span> <span class="n">NONE</span><span class="p">)</span> <span class="k">return</span> <span class="n">move</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">best_remaining_move</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Since all the functionality is combined in <code>ttt_calculate_move</code> we only have to make this function available to the outside, and declare all the other, internal functions as static. 
+</p>
+
+<p>
+The last function we will also globally need is <code>ttt_win_or_draw</code> to determine the end of a game:
+</p>
+<div class="highlight"><pre><span></span><span class="n">ttt_result_t</span> <span class="nf">ttt_won_or_draw</span> <span class="p">(</span> <span class="k">const</span> <span class="n">ttt_board_t</span> <span class="n">board</span> <span class="p">,</span> <span class="kt">char</span> <span class="n">symbol</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">undecided</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUMBER_TRIPLES</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kt">int</span> <span class="n">state</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sc">'x'</span><span class="p">);</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">I_WIN</span><span class="p">:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">symbol</span> <span class="o">==</span> <span class="sc">'x'</span><span class="p">)</span> <span class="k">return</span> <span class="n">TTT_PLAYER_WINS</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">return</span> <span class="n">TTT_COMPUTER_WINS</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">OPP_WIN</span><span class="p">:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">symbol</span> <span class="o">==</span> <span class="sc">'o'</span><span class="p">)</span> <span class="k">return</span> <span class="n">TTT_PLAYER_WINS</span> <span class="p">;</span>
+      <span class="k">else</span> <span class="k">return</span> <span class="n">TTT_COMPUTER_WINS</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">DRAW_I</span><span class="p">:</span> <span class="cm">/* falltrough */</span>
+    <span class="k">case</span> <span class="nl">DRAW_OPP</span><span class="p">:</span> <span class="cm">/* fall trough */</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">DRAW</span><span class="p">:</span> <span class="cm">/* fall trough */</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="n">undecided</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">undecided</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">TTT_UNDECIDED</span><span class="p">;</span> 
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">TTT_DRAW</span><span class="p">;</span> 
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Aaaaaand that's it  ◕ ‿‿ ◕ 
+</p>
+
+<p>
+The whole tic tac toe code is in the appendix of the official script. And remember that this is just <i>one of many</i> ways on how to implement tic tac toe :)
 </p>
 
 <hr>

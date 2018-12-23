@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Database Essentials - Lecture 07 | Knowledge Database</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="schoettkr">
+<meta property="og:site_name" content="Knowledge Database">
+<meta property="og:title" content="Database Essentials - Lecture 07">
+<meta property="og:url" content="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/">
+<meta property="og:description" content="This lecture is the third part of the Introduction to SQL that we began in lecture 5.
+
+
+
+Introduction to SQL
+
+
+What we'll cover here:
+
+
+Data Manipulation
+
+create, update, delete data
+
+Data Definition
+">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-05T00:00:00+01:00">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://schoettkr.github.io/knowledge-database/" title="Knowledge Database" rel="home">
+                Knowledge Database
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" name="q" class="form-control" placeholder="Search">
+</div>
+  <button type="submit" class="btn btn-primary">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  <input type="hidden" name="sitesearch" value="https://schoettkr.github.io/knowledge-database/">
+</form>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+                <li><a href="../../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Database Essentials - Lecture 07
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-12-05T00:00:00+01:00">2018/12/05</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <p>
+This lecture is the third part of the Introduction to SQL that we began in lecture 5.
+</p>
+
+<div id="outline-container-orgb3e6783" class="outline-2">
+<h2 id="orgb3e6783">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-orgb3e6783">
+<p>
+What we'll cover here:
+</p>
+<ul class="org-ul">
+<li>Data Manipulation
+<ul class="org-ul">
+<li>create, update, delete data</li>
+</ul>
+</li>
+<li>Data Definition
+<ul class="org-ul">
+<li>data integrity rules / constraints</li>
+</ul>
+</li>
+<li>Relational Views (Relationale Sichten)</li>
+</ul>
+</div>
+
+<div id="outline-container-org737b034" class="outline-3">
+<h3 id="org737b034">Data Manipulation</h3>
+<div class="outline-text-3" id="text-org737b034">
+</div>
+<div id="outline-container-orge5b92df" class="outline-4">
+<h4 id="orge5b92df">Create Data</h4>
+<div class="outline-text-4" id="text-orge5b92df">
+<p>
+With the command <code>insert</code> tuples can be added to tables. There are different syntactical variants.
+</p>
+<ul class="org-ul">
+<li>
+<p>
+<b>insert a complete data set</b>
+</p>
+<ul class="org-ul">
+<li><code>insert into &lt;tablename&gt; values (&lt;value list for attributes in accordance to schema&gt;)</code></li>
+<li>eg to add to the faculty table</li>
+<li><code>insert into Faculty values ('Computer Science', 'Street of Nations 62, 09107 Chemnitz', 14568)</code></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">adress</th>
+<th scope="col" class="org-right">persNr</th>
+</tr></thead>
+<tbody><tr>
+<td class="org-left">Computer Science</td>
+<td class="org-left">Street of Nations 62, 09107 Chemnitz'</td>
+<td class="org-right">14568</td>
+</tr></tbody>
+</table>
+<ul class="org-ul">
+<li>note that values for all attributes have been provided and that they were in correct order</li>
+</ul>
+</li>
+<li>
+<p>
+<b>insert an incomplete data set</b>
+</p>
+<ul class="org-ul">
+<li><code>insert into &lt;tablename&gt; (&lt;attribute list&gt;) values (&lt;value list for attributes in attribute list&gt;)</code></li>
+<li>eg to add the math faculty without knowledge of the address</li>
+<li><code>insert into Faculty (name, persNr) values ('Mathematics', 91876)</code></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">adress</th>
+<th scope="col" class="org-right">persNr</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">Computer Science</td>
+<td class="org-left">Street of Nations 62, 09107 Chemnitz'</td>
+<td class="org-right">14568</td>
+</tr>
+<tr>
+<td class="org-left">Mathematics</td>
+<td class="org-left"><i>null</i></td>
+<td class="org-right">91876</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>note that only the values for the attributes provided in the attribute list are added and that the other attributes are filled with <i>null</i> (resp null values)</li>
+</ul>
+</li>
+<li>
+<b>insert a query result</b>
+<ul class="org-ul">
+<li><code>insert into &lt;tablename&gt; &lt;select statement&gt;</code></li>
+<li>results of a select statements can be inserted into a table when the domains of attributes are compatible</li>
+<li>for example <img src="../../../images/add-tuple.png" alt="nil">
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2e4e6b9" class="outline-4">
+<h4 id="org2e4e6b9">Delete Data</h4>
+<div class="outline-text-4" id="text-org2e4e6b9">
+<p>
+With the command <code>delete</code> tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is <code>delete from &lt;tablename&gt; where &lt;condition&gt;</code>
+</p>
+
+<p>
+For example
+</p>
+<div class="highlight"><pre><span></span><span class="k">delete</span> <span class="k">from</span> <span class="n">Personal</span> <span class="k">where</span> <span class="k">alter</span> <span class="o">&gt;=</span> <span class="mi">67</span>
+</pre></div>
+<p>
+has the following result in this table
+<img src="../../../images/delete-tuple.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-orgfd6ae16" class="outline-4">
+<h4 id="orgfd6ae16">Update/Change Data</h4>
+<div class="outline-text-4" id="text-orgfd6ae16">
+<p>
+With the command <code>update</code> attributtes of all tuples in a table can be changed in the same way. The syntax is <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ...</code>
+</p>
+
+<p>
+For example
+</p>
+<div class="highlight"><pre><span></span><span class="k">update</span> <span class="n">Personal</span> <span class="k">set</span> <span class="n">gehalt</span> <span class="o">=</span> <span class="n">gehalt</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+<p>
+has the following result in this table
+<img src="../../../images/update-attributes-1.png" alt="nil"></p>
+
+<p>
+It is also possible to provide conditions to <code>update</code>. Then the syntax stays the same but gets an <code>where</code> statement added onto it: <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ... where &lt;condition&gt;</code>
+</p>
+
+<p>
+For example to merge department 3 into department 2
+</p>
+<div class="highlight"><pre><span></span><span class="k">update</span> <span class="n">Personal</span> <span class="k">set</span> <span class="n">Abteilung</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">where</span> <span class="n">Abteilung</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+<p>
+has the following result in this table
+<img src="../../../images/update-attributes-2.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org7043404" class="outline-4">
+<h4 id="org7043404">Procedure of Changes</h4>
+<div class="outline-text-4" id="text-org7043404">
+<p>
+Basically there are two steps when changing data:
+</p>
+<ol class="org-ol">
+<li>creation of a temporary relation with the candidates that are due to be changed</li>
+<li>execution of the change operation
+<ul class="org-ul">
+<li>
+<code>insert</code> → insertion of the temporary table in the target table</li>
+<li>
+<code>update</code> → change of the attributes initially in the temporary table (based on comparisons with the values in the original table) and then adoption into the target/original table</li>
+<li>
+<code>delete</code> → mark the tuples that shall be deleted an deletion in one step</li>
+</ul>
+</li>
+</ol>
+<p>
+Why this effort you may ask? Well conditions may include subqueries which would else operate on data/tables that are already modified (partially)!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0ad114" class="outline-3">
+<h3 id="orge0ad114">Data Definition</h3>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="knowledge-database",
+            disqus_url="https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/",
+        disqus_title="Database Essentials - Lecture 07",
+        disqus_identifier="cache/posts/database_essentials/07-lecture.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

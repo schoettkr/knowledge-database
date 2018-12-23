@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/</loc>
-  <lastmod>2018-12-06T11:22:00Z</lastmod>
+  <lastmod>2018-12-16T17:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/2018/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-12-16T17:05:00Z</lastmod>
+  <lastmod>2018-12-16T17:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
@@ -51,7 +51,11 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-3.html</loc>
-  <lastmod>2018-12-16T17:05:00Z</lastmod>
+  <lastmod>2018-12-16T17:19:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/index-4.html</loc>
+  <lastmod>2018-12-16T17:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -268,6 +272,10 @@
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</loc>
   <lastmod>2018-12-04T21:04:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</loc>
+  <lastmod>2018-12-16T17:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/distributed_systems/distributed-systems-01/</loc>
