@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Sun, 23 Dec 2018 23:23:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Fri, 28 Dec 2018 19:22:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
 &lt;/p&gt;
 
@@ -2150,9 +2150,9 @@ Next week we'll probably cover the next step  of &lt;b&gt;"Implementation"&lt;/b
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 &lt;/p&gt;
 
-&lt;div id="outline-container-orgb3e6783" class="outline-2"&gt;
-&lt;h2 id="orgb3e6783"&gt;Introduction to SQL&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb3e6783"&gt;
+&lt;div id="outline-container-org0d50d88" class="outline-2"&gt;
+&lt;h2 id="org0d50d88"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0d50d88"&gt;
 &lt;p&gt;
 What we'll cover here:
 &lt;/p&gt;
@@ -2169,13 +2169,13 @@ What we'll cover here:
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org737b034" class="outline-3"&gt;
-&lt;h3 id="org737b034"&gt;Data Manipulation&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org737b034"&gt;
+&lt;div id="outline-container-orgce70027" class="outline-3"&gt;
+&lt;h3 id="orgce70027"&gt;Data Manipulation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgce70027"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orge5b92df" class="outline-4"&gt;
-&lt;h4 id="orge5b92df"&gt;Create Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge5b92df"&gt;
+&lt;div id="outline-container-org2f69a65" class="outline-4"&gt;
+&lt;h4 id="org2f69a65"&gt;Create Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2f69a65"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. There are different syntactical variants.
 &lt;/p&gt;
@@ -2268,9 +2268,9 @@ With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2e4e6b9" class="outline-4"&gt;
-&lt;h4 id="org2e4e6b9"&gt;Delete Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org2e4e6b9"&gt;
+&lt;div id="outline-container-org44cabd0" class="outline-4"&gt;
+&lt;h4 id="org44cabd0"&gt;Delete Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org44cabd0"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;delete&lt;/code&gt; tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is &lt;code&gt;delete from &amp;lt;tablename&amp;gt; where &amp;lt;condition&amp;gt;&lt;/code&gt;
 &lt;/p&gt;
@@ -2287,9 +2287,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfd6ae16" class="outline-4"&gt;
-&lt;h4 id="orgfd6ae16"&gt;Update/Change Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgfd6ae16"&gt;
+&lt;div id="outline-container-org26e6cb2" class="outline-4"&gt;
+&lt;h4 id="org26e6cb2"&gt;Update/Change Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org26e6cb2"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;update&lt;/code&gt; attributtes of all tuples in a table can be changed in the same way. The syntax is &lt;code&gt;update &amp;lt;tablename&amp;gt; set &amp;lt;attribute1&amp;gt; = &amp;lt;expression1&amp;gt;, &amp;lt;attribute2&amp;gt; = &amp;lt;expression2&amp;gt;, ...&lt;/code&gt;
 &lt;/p&gt;
@@ -2320,9 +2320,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7043404" class="outline-4"&gt;
-&lt;h4 id="org7043404"&gt;Procedure of Changes&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7043404"&gt;
+&lt;div id="outline-container-orgfa686b8" class="outline-4"&gt;
+&lt;h4 id="orgfa686b8"&gt;Procedure of Changes&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgfa686b8"&gt;
 &lt;p&gt;
 Basically there are two steps when changing data:
 &lt;/p&gt;
@@ -2343,8 +2343,123 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge0ad114" class="outline-3"&gt;
-&lt;h3 id="orge0ad114"&gt;Data Definition&lt;/h3&gt;
+&lt;div id="outline-container-org2460174" class="outline-3"&gt;
+&lt;h3 id="org2460174"&gt;Data Definition&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2460174"&gt;
+&lt;p&gt;
+We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org494f972" class="outline-4"&gt;
+&lt;h4 id="org494f972"&gt;Table Management&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org494f972"&gt;
+&lt;p&gt;
+To create a new table use the command &lt;code&gt;create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )&lt;/code&gt;. To alter the schema of a table after its creation use &lt;code&gt;alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to add an attribute, &lt;code&gt;alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to modify an attribute and &lt;code&gt;alter table {TABLENAME} drop column {ATTRIBUTE_NAME}&lt;/code&gt; to delete an attribute. If you want to delete a whole table issue the command &lt;code&gt;drop table {TABLENAME}&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now to define an attribute you need to provide a data type for that specific attribute.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here are the data types SQL supports by default with some examples:
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="orgc78b12b"&gt;&lt;/a&gt;Boolean&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgc78b12b"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;when null values are allowed then &lt;code&gt;unknown&lt;/code&gt; is also supported as the null value&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;boolean values can be compared and are assignable
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;they compare as &lt;code&gt;true &amp;gt; false&lt;/code&gt; and in every comparison where the null value or &lt;code&gt;unknown&lt;/code&gt; is an operand (is involved) the result will be &lt;code&gt;unknown&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgdc05bb0"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgdc05bb0"&gt;
+&lt;p&gt;
+The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;character ({AMOUNT})&lt;/code&gt; or &lt;code&gt;char ({AMOUNT}&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;in this case the character string &lt;i&gt;always&lt;/i&gt; has the &lt;i&gt;exact&lt;/i&gt; length of {AMOUNT}&lt;/li&gt;
+&lt;li&gt;when strings are assigned that are shorter than {AMOUNT} the string is padded by whitespaces on the right hand side&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;character varying ({AMOUNT})&lt;/code&gt; or &lt;code&gt;varchar ({AMOUNT}&lt;/code&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;in this case the character string has a &lt;i&gt;maximum&lt;/i&gt; length of {AMOUNT}&lt;/li&gt;
+&lt;li&gt;shorter strings therefore need less space (internally)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgd423f6a"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgd423f6a"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;are used for &lt;i&gt;exact&lt;/i&gt; representations of numbers&lt;/li&gt;
+&lt;li&gt;the precision of a number is specified by providing the the amount of digits to be hold
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;and for decimal numbers the amount of decimal places can be specified as well&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;numeric [{PRECISION}[, {DECIMAL_PLACES}]]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;without specification the amount of decimal places is always 0 and the precision depends on the specific precision&lt;/li&gt;
+&lt;li&gt;there are also some predefined variants without decimal places eg &lt;code&gt;integer&lt;/code&gt;, &lt;code&gt;smallint&lt;/code&gt;, &lt;code&gt;bigint&lt;/code&gt; the concrete specification of those depends on the implementation as well&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;numeric(7,2)&lt;/code&gt; represents all numbers from -99999.99 to 99999.99 with two decimal places&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgd3074ff"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgd3074ff"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;are used for &lt;i&gt;approximate&lt;/i&gt; representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;float [{PRECISION}]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;{PRECISION} specifies the "size" of the significand&lt;/li&gt;
+&lt;li&gt;there are also some predefined float types for example &lt;code&gt;real&lt;/code&gt; and &lt;code&gt;double precision&lt;/code&gt; of which the precision is also dependant on the specific implementation&lt;/li&gt;
+&lt;li&gt;example float literals: &lt;code&gt;10E3&lt;/code&gt; or &lt;code&gt;-3.1E-6&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org0f5ff17"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org0f5ff17"&gt;
+&lt;p&gt;
+There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;date&lt;/code&gt; represents a calendric date value and offers the components &lt;code&gt;year&lt;/code&gt;, &lt;code&gt;month&lt;/code&gt; and &lt;code&gt;day&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;time&lt;/code&gt; represents time values and offers the components &lt;code&gt;hour&lt;/code&gt;, &lt;code&gt;minute&lt;/code&gt; and &lt;code&gt;second&lt;/code&gt; (precision is preset in seconds)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;timestamp&lt;/code&gt; represents time and date values at the same time (precision is preset to microseconds)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Date and time values can optionally be parameterized to set the precision explicitly and handle time zones.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org99d1b78"&gt;&lt;/a&gt;Interval&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org99d1b78"&gt;
+&lt;p&gt;
+The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;slides: Wird als zusammenhängender Teilbereich zwischen Start- und Endeinheit &lt;code&gt;(year, month, day, hour, minute, second)&lt;/code&gt; definiert&lt;/li&gt;
+&lt;li&gt;slides example: &lt;code&gt;interval year to month&lt;/code&gt; covers all intervals between 0 years, 0 month and 99 years, 11 months; &lt;code&gt;interval hour to second(2)&lt;/code&gt; covers all intervals between 0 hours, 0 minutes, 0 seconds and 99 hours, 59 minutes, 59.99 seconds (the parameter &lt;code&gt;2&lt;/code&gt; specifies the precision of the seconds component)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</guid><pubDate>Tue, 04 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
 &lt;h2 id="orged82e2d"&gt;Recursion and Backtracking&lt;/h2&gt;

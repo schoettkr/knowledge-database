@@ -106,9 +106,9 @@ Data Definition
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 </p>
 
-<div id="outline-container-orgb3e6783" class="outline-2">
-<h2 id="orgb3e6783">Introduction to SQL</h2>
-<div class="outline-text-2" id="text-orgb3e6783">
+<div id="outline-container-org0d50d88" class="outline-2">
+<h2 id="org0d50d88">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-org0d50d88">
 <p>
 What we'll cover here:
 </p>
@@ -127,13 +127,13 @@ What we'll cover here:
 </ul>
 </div>
 
-<div id="outline-container-org737b034" class="outline-3">
-<h3 id="org737b034">Data Manipulation</h3>
-<div class="outline-text-3" id="text-org737b034">
+<div id="outline-container-orgce70027" class="outline-3">
+<h3 id="orgce70027">Data Manipulation</h3>
+<div class="outline-text-3" id="text-orgce70027">
 </div>
-<div id="outline-container-orge5b92df" class="outline-4">
-<h4 id="orge5b92df">Create Data</h4>
-<div class="outline-text-4" id="text-orge5b92df">
+<div id="outline-container-org2f69a65" class="outline-4">
+<h4 id="org2f69a65">Create Data</h4>
+<div class="outline-text-4" id="text-org2f69a65">
 <p>
 With the command <code>insert</code> tuples can be added to tables. There are different syntactical variants.
 </p>
@@ -218,9 +218,9 @@ With the command <code>insert</code> tuples can be added to tables. There are di
 </div>
 </div>
 
-<div id="outline-container-org2e4e6b9" class="outline-4">
-<h4 id="org2e4e6b9">Delete Data</h4>
-<div class="outline-text-4" id="text-org2e4e6b9">
+<div id="outline-container-org44cabd0" class="outline-4">
+<h4 id="org44cabd0">Delete Data</h4>
+<div class="outline-text-4" id="text-org44cabd0">
 <p>
 With the command <code>delete</code> tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is <code>delete from &lt;tablename&gt; where &lt;condition&gt;</code>
 </p>
@@ -236,9 +236,9 @@ has the following result in this table
 </div>
 </div>
 
-<div id="outline-container-orgfd6ae16" class="outline-4">
-<h4 id="orgfd6ae16">Update/Change Data</h4>
-<div class="outline-text-4" id="text-orgfd6ae16">
+<div id="outline-container-org26e6cb2" class="outline-4">
+<h4 id="org26e6cb2">Update/Change Data</h4>
+<div class="outline-text-4" id="text-org26e6cb2">
 <p>
 With the command <code>update</code> attributtes of all tuples in a table can be changed in the same way. The syntax is <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ...</code>
 </p>
@@ -267,9 +267,9 @@ has the following result in this table
 </div>
 </div>
 
-<div id="outline-container-org7043404" class="outline-4">
-<h4 id="org7043404">Procedure of Changes</h4>
-<div class="outline-text-4" id="text-org7043404">
+<div id="outline-container-orgfa686b8" class="outline-4">
+<h4 id="orgfa686b8">Procedure of Changes</h4>
+<div class="outline-text-4" id="text-orgfa686b8">
 <p>
 Basically there are two steps when changing data:
 </p>
@@ -293,8 +293,136 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 </div>
 </div>
 
-<div id="outline-container-orge0ad114" class="outline-3">
-<h3 id="orge0ad114">Data Definition</h3>
+<div id="outline-container-org2460174" class="outline-3">
+<h3 id="org2460174">Data Definition</h3>
+<div class="outline-text-3" id="text-org2460174">
+<p>
+We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
+</p>
+</div>
+<div id="outline-container-org494f972" class="outline-4">
+<h4 id="org494f972">Table Management</h4>
+<div class="outline-text-4" id="text-org494f972">
+<p>
+To create a new table use the command <code>create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )</code>. To alter the schema of a table after its creation use <code>alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})</code> to add an attribute, <code>alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})</code> to modify an attribute and <code>alter table {TABLENAME} drop column {ATTRIBUTE_NAME}</code> to delete an attribute. If you want to delete a whole table issue the command <code>drop table {TABLENAME}</code>.
+</p>
+
+<p>
+Now to define an attribute you need to provide a data type for that specific attribute.
+</p>
+
+<p>
+Here are the data types SQL supports by default with some examples:
+</p>
+</div>
+
+<ul class="org-ul">
+<li>
+<a id="orgc78b12b"></a>Boolean<br><div class="outline-text-6" id="text-orgc78b12b">
+<ul class="org-ul">
+<li>either <code>true</code> or <code>false</code>
+<ul class="org-ul">
+<li>when null values are allowed then <code>unknown</code> is also supported as the null value</li>
+</ul>
+</li>
+<li>boolean values can be compared and are assignable
+<ul class="org-ul">
+<li>they compare as <code>true &gt; false</code> and in every comparison where the null value or <code>unknown</code> is an operand (is involved) the result will be <code>unknown</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+
+<li>
+<a id="orgdc05bb0"></a>Strings/Characters<br><div class="outline-text-6" id="text-orgdc05bb0">
+<p>
+The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
+</p>
+<ul class="org-ul">
+<li>
+<code>character ({AMOUNT})</code> or <code>char ({AMOUNT}</code>
+<ul class="org-ul">
+<li>in this case the character string <i>always</i> has the <i>exact</i> length of {AMOUNT}</li>
+<li>when strings are assigned that are shorter than {AMOUNT} the string is padded by whitespaces on the right hand side</li>
+</ul>
+</li>
+<li>
+<code>character varying ({AMOUNT})</code> or <code>varchar ({AMOUNT}</code>
+<ul class="org-ul">
+<li>in this case the character string has a <i>maximum</i> length of {AMOUNT}</li>
+<li>shorter strings therefore need less space (internally)</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+
+<li>
+<a id="orgd423f6a"></a>Numericals (exact)<br><div class="outline-text-6" id="text-orgd423f6a">
+<ul class="org-ul">
+<li>are used for <i>exact</i> representations of numbers</li>
+<li>the precision of a number is specified by providing the the amount of digits to be hold
+<ul class="org-ul">
+<li>and for decimal numbers the amount of decimal places can be specified as well</li>
+</ul>
+</li>
+<li><code>numeric [{PRECISION}[, {DECIMAL_PLACES}]]</code></li>
+<li>without specification the amount of decimal places is always 0 and the precision depends on the specific precision</li>
+<li>there are also some predefined variants without decimal places eg <code>integer</code>, <code>smallint</code>, <code>bigint</code> the concrete specification of those depends on the implementation as well</li>
+<li>
+<code>numeric(7,2)</code> represents all numbers from -99999.99 to 99999.99 with two decimal places</li>
+</ul>
+</div>
+</li>
+
+<li>
+<a id="orgd3074ff"></a>Numericals (approximal)<br><div class="outline-text-6" id="text-orgd3074ff">
+<ul class="org-ul">
+<li>are used for <i>approximate</i> representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent</li>
+<li><code>float [{PRECISION}]</code></li>
+<li>{PRECISION} specifies the "size" of the significand</li>
+<li>there are also some predefined float types for example <code>real</code> and <code>double precision</code> of which the precision is also dependant on the specific implementation</li>
+<li>example float literals: <code>10E3</code> or <code>-3.1E-6</code>
+</li>
+</ul>
+</div>
+</li>
+
+<li>
+<a id="org0f5ff17"></a>Date and Time<br><div class="outline-text-6" id="text-org0f5ff17">
+<p>
+There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
+</p>
+<ul class="org-ul">
+<li>
+<code>date</code> represents a calendric date value and offers the components <code>year</code>, <code>month</code> and <code>day</code>
+</li>
+<li>
+<code>time</code> represents time values and offers the components <code>hour</code>, <code>minute</code> and <code>second</code> (precision is preset in seconds)</li>
+<li>
+<code>timestamp</code> represents time and date values at the same time (precision is preset to microseconds)</li>
+</ul>
+<p>
+Date and time values can optionally be parameterized to set the precision explicitly and handle time zones.
+</p>
+</div>
+</li>
+
+<li>
+<a id="org99d1b78"></a>Interval<br><div class="outline-text-6" id="text-org99d1b78">
+<p>
+The data type <code>interval</code> describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
+</p>
+<ul class="org-ul">
+<li>slides: Wird als zusammenhängender Teilbereich zwischen Start- und Endeinheit <code>(year, month, day, hour, minute, second)</code> definiert</li>
+<li>slides example: <code>interval year to month</code> covers all intervals between 0 years, 0 month and 99 years, 11 months; <code>interval hour to second(2)</code> covers all intervals between 0 hours, 0 minutes, 0 seconds and 99 hours, 59 minutes, 59.99 seconds (the parameter <code>2</code> specifies the precision of the seconds component)</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
             

@@ -85,3 +85,54 @@ Basically there are two steps when changing data:
 Why this effort you may ask? Well conditions may include subqueries which would else operate on data/tables that are already modified (partially)!
 
 ** Data Definition
+We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
+*** Table Management
+To create a new table use the command =create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )=. To alter the schema of a table after its creation use =alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})= to add an attribute, =alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})= to modify an attribute and =alter table {TABLENAME} drop column {ATTRIBUTE_NAME}= to delete an attribute. If you want to delete a whole table issue the command =drop table {TABLENAME}=.
+
+Now to define an attribute you need to provide a data type for that specific attribute.
+
+Here are the data types SQL supports by default with some examples:
+
+***** Boolean
+- either =true= or =false=
+  - when null values are allowed then =unknown= is also supported as the null value
+- boolean values can be compared and are assignable
+  - they compare as =true > false= and in every comparison where the null value or =unknown= is an operand (is involved) the result will be =unknown=
+    
+***** Strings/Characters
+The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
+- =character ({AMOUNT})= or =char ({AMOUNT}=
+  - in this case the character string /always/ has the /exact/ length of {AMOUNT}
+  - when strings are assigned that are shorter than {AMOUNT} the string is padded by whitespaces on the right hand side
+- =character varying ({AMOUNT})= or =varchar ({AMOUNT}=
+  - in this case the character string has a /maximum/ length of {AMOUNT}
+  - shorter strings therefore need less space (internally)
+    
+***** Numericals (exact)
+- are used for /exact/ representations of numbers
+- the precision of a number is specified by providing the the amount of digits to be hold
+  - and for decimal numbers the amount of decimal places can be specified as well 
+- =numeric [{PRECISION}[, {DECIMAL_PLACES}]]=
+- without specification the amount of decimal places is always 0 and the precision depends on the specific precision 
+- there are also some predefined variants without decimal places eg =integer=, =smallint=, =bigint= the concrete specification of those depends on the implementation as well
+- =numeric(7,2)= represents all numbers from -99999.99 to 99999.99 with two decimal places
+
+***** Numericals (approximal)
+- are used for /approximate/ representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent
+- =float [{PRECISION}]=
+- {PRECISION} specifies the "size" of the significand
+- there are also some predefined float types for example =real= and =double precision= of which the precision is also dependant on the specific implementation
+- example float literals: =10E3= or =-3.1E-6=
+
+***** Date and Time
+There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
+- =date= represents a calendric date value and offers the components =year=, =month= and =day=
+- =time= represents time values and offers the components =hour=, =minute= and =second= (precision is preset in seconds)  
+- =timestamp= represents time and date values at the same time (precision is preset to microseconds)
+  
+Date and time values can optionally be parameterized to set the precision explicitly and handle time zones.
+
+***** Interval
+The data type =interval= describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
+- slides: Wird als zusammenhängender Teilbereich zwischen Start- und Endeinheit =(year, month, day, hour, minute, second)= definiert
+- slides example: =interval year to month= covers all intervals between 0 years, 0 month and 99 years, 11 months; =interval hour to second(2)= covers all intervals between 0 hours, 0 minutes, 0 seconds and 99 hours, 59 minutes, 59.99 seconds (the parameter =2= specifies the precision of the seconds component)
