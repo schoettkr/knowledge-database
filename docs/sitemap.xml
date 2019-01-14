@@ -7,15 +7,19 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/</loc>
-  <lastmod>2018-12-16T17:19:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/2018/</loc>
   <lastmod>2018-10-31T16:40:00Z</lastmod>
  </url>
  <url>
+  <loc>https://schoettkr.github.io/knowledge-database/2019/</loc>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://schoettkr.github.io/knowledge-database/archive.html</loc>
-  <lastmod>2018-12-16T17:19:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
@@ -43,19 +47,19 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-1.html</loc>
-  <lastmod>2018-12-06T11:33:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-2.html</loc>
-  <lastmod>2018-12-06T11:33:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-3.html</loc>
-  <lastmod>2018-12-16T17:19:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/index-4.html</loc>
-  <lastmod>2018-12-16T17:19:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/</loc>
@@ -67,7 +71,7 @@
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/listings/hello.py.html</loc>
-  <lastmod>2018-12-06T11:33:00Z</lastmod>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/pages/about-nikola/</loc>
@@ -208,6 +212,10 @@
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20/</loc>
   <lastmod>2018-12-16T09:53:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</loc>
+  <lastmod>2019-01-14T12:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-01/</loc>

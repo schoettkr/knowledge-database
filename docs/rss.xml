@@ -1,5 +1,445 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Fri, 28 Dec 2018 19:22:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 14 Jan 2019 15:48:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 22 &amp; 23</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+This chapter spans two lectures so lecture 22 and 23 will be pooled into this single blog post.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org163eb2b" class="outline-2"&gt;
+&lt;h2 id="org163eb2b"&gt;Linker and Libraries&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org163eb2b"&gt;
+&lt;p&gt;
+In the last chapter where we built a game we split functionality into different modules which had their own source file. The linker was responsible for assembling the single modules together. We now want to take a more detailed look into the linker.
+&lt;/p&gt;
+
+&lt;p&gt;
+The following image shows where the linker is involved:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/linker-overview.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Now let's look at the following code of a generic swap function:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt;  &lt;span class="cpf"&gt;&amp;lt;stddef.h&amp;gt; // for size_t&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;bytecopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;malloc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;bytecopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;bytecopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;bytecopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The code above can be used with different types as the following program demonstrates.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Hello"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"World"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"1st string: %s, 2nd string: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;str1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;str2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str1&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"1st string: %s, 2nd string: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"1st integer: %d, 2nd integer: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"1st integer: %d, 2nd integer: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Now to get one program file out of our two source code files (swap.c and smain.c) both need to be compiled/translated and then linked together:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cc -std&lt;span class="o"&gt;=&lt;/span&gt;c99 -Wall euclid.c swap.c smain.c -o sm
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/linking-process.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+and then execute the program file
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./sm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre class="example"&gt;
+1st string: Hello, 2nd string: World
+1st string: World, 2nd string: Hello
+1st integer: 42, 2nd integer: 23
+1st integer: 23, 2nd integer: 42
+
+&lt;/pre&gt;
+
+&lt;p&gt;
+So let's repeat why we use/need a linker:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;modularity&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;programs can be created as a collection of smaller source files instead of in one giant monolithic file&lt;/li&gt;
+&lt;li&gt;enables creation and distribution of commonly used functions/functionality in libraries (eg standard library, math library etc)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;efficiency&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;time: not all of the source code has to be compiled each time&lt;/li&gt;
+&lt;li&gt;space: libraries can act as a collection of different functions, but the "finished" program only contains the functions that it needs/uses&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;
+And what does the linker really do?
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;&lt;b&gt;Resolution (Auflösung) of symbols&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;programs define and reference &lt;b&gt;symbols&lt;/b&gt;, i.e. names of variables and functions:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;int swap() { ... }&lt;/code&gt; defines symbol &lt;code&gt;swap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;swap(&amp;amp;a, &amp;amp;b, sizeof(a))&lt;/code&gt; references symbols &lt;code&gt;swap&lt;/code&gt;, &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int a;&lt;/code&gt; defines symbol &lt;code&gt;a&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;symbol definitions are stored in a &lt;b&gt;symbol table&lt;/b&gt; by the compiler
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the symbol table is an array of a special data structure (struct) which stores the name, type, size and location for every symbol&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;the linker connects (verknuepft) every symbol reference with exactly one symbol definition&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Relocation (Verschiebung)&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;assembles separate code- and data sections into common sections (gemeinsame Abschnitte)&lt;/li&gt;
+&lt;li&gt;moves symbols from their relative position in the object file (.o) to their final storage location in the executable file&lt;/li&gt;
+&lt;li&gt;corrects all references to these symbols, so that all the references point to the new/updated/correct location&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgef0f6d3" class="outline-3"&gt;
+&lt;h3 id="orgef0f6d3"&gt;Linker Symbols&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgef0f6d3"&gt;
+&lt;p&gt;
+There are three types of linker symbols:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;global symbols&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;symbols that are defined in the module and are usable/referencable by other modules (eg non-static C functions or non-static global variables)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;external symbols&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;global symbols that are referenced in a module, but defined in another module&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;local symbols&lt;/b&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;symbols that are defined in a module and only used/referenced in that module (eg functions and global variables that have the attribute &lt;code&gt;static&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Also &lt;i&gt;local variables&lt;/i&gt; do not create linker symbols (not even local symbols)!
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/linker-symbols.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Symbol tables can be inspected with programs like &lt;code&gt;readelf&lt;/code&gt;, &lt;code&gt;objdump&lt;/code&gt; or &lt;code&gt;nm&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7bf9d9e" class="outline-3"&gt;
+&lt;h3 id="org7bf9d9e"&gt;Executable and Linkable Format (ELF)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7bf9d9e"&gt;
+&lt;p&gt;
+There are different data formats for object files, for example a.out, COFF, MATCH-O and PE. We'll take a look at ELF which stands for Executable and Linkable Format and was originally developed by AT&amp;amp;T for System V and is nowadays used in many operating systems (i.a. Linux, BSD) for different kinds of binary data:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;movable object files (.o)&lt;/li&gt;
+&lt;li&gt;executable program files&lt;/li&gt;
+&lt;li&gt;separated object files (.so)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The Executable and Linkable Format consists of the following sections:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;b&gt;ELF Header&lt;/b&gt;: specifies word size, byte alignment, file type, platform etc.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Segment-Header Table&lt;/b&gt;: specifies the page size, sections, segment size and is required for executable files&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.text section&lt;/b&gt;: (machine) code&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.rodata section&lt;/b&gt;: read only data (jump tables,..)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.data section&lt;/b&gt;: initialized global variables&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.bbs section&lt;/b&gt;: uninitialized global variables
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;initialized with 0 in storage&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.symtab section&lt;/b&gt;: symbol table&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.rel.text section&lt;/b&gt;: relocation information for code
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;addresses of instructions that have to be modified when there's relocation&lt;/li&gt;
+&lt;li&gt;instructions for relocating&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.rel.data section&lt;/b&gt;: relocation information for variables&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;.debug section&lt;/b&gt;: information for symbolic debugging (&lt;code&gt;cc -g&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Section header table&lt;/b&gt;: specifies offset and size of each section&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/ELF.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's an example of how relocation of movable object code to executable code might look:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/relocation.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org07fc6e4" class="outline-3"&gt;
+&lt;h3 id="org07fc6e4"&gt;Problem of global variables&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org07fc6e4"&gt;
+&lt;p&gt;
+In the process of linking only symbols are handled, there is &lt;b&gt;no&lt;/b&gt; type checking performed. Given this code in 2 files:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Global 1&lt;/span&gt;
+  &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;printab1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"1: a=%d, b=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setab1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Global 2&lt;/span&gt;
+  &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+  &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;printab2&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"2: a=%0.0f, b=%d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setab1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;42.0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The combined usage of the above code does have its problems though!
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Global&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;printab1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;printab2&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setab1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setab2&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;setab1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;printab1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;setab2&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;printab2&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="n"&gt;printab1&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cc -Wall -Wextra -c -o global1.o global1.c
+cc -Wall -Wextra -c -o global2.o global2.c
+cc -Wall -Wextra -c -o global.o global.c
+
+cc global1.o global2.o global.o -o global
+
+./global
+
+&lt;span class="m"&gt;1&lt;/span&gt;: &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;, &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;
+&lt;span class="m"&gt;2&lt;/span&gt;: &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;, &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;: &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;, &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;  &lt;span class="c1"&gt;# ups a=0?&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+So if possible avoid using global variables. If not, try to use &lt;code&gt;static&lt;/code&gt;, initialize global variables on definition and use &lt;code&gt;extern&lt;/code&gt; for external variables.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1b85595" class="outline-3"&gt;
+&lt;h3 id="org1b85595"&gt;Libraries&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1b85595"&gt;
+&lt;p&gt;
+How can we package useful code that's commonly used? With the tools we know until now, there are 2 options:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;all functions go into a large source file and therefore in a large object file file as well
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;programmers then link this large object file into their programs&lt;/li&gt;
+&lt;li&gt;this however is time and space inefficient&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;every function goes into its own source file
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;programmers then link object files that they've explicitly chosen into their programs&lt;/li&gt;
+&lt;li&gt;while this is more efficient than option 1 it is very cumbersome for the programmer&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The solution is to use &lt;i&gt;archives&lt;/i&gt; also known as (static) &lt;i&gt;libraries&lt;/i&gt;. An archive is a single file that holds a collection of multiple object files along side with an index.
+&lt;/p&gt;
+
+&lt;p&gt;
+The linker is extended in such way that he searches for unresolved references in one or more archives. When the linker finds an archive, he copies the appropriate object file and links it to the program. 
+&lt;/p&gt;
+
+&lt;p&gt;
+There's a tool for creating and managing archives which is called &lt;code&gt;ar&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/archiver.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The archiver allows incremental updates where a changed source file gets compiled and then replaced in the archive.
+&lt;/p&gt;
+
+&lt;p&gt;
+Every system has a set of libraries. The C standard requires at least two libraries:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;libc.a&lt;/code&gt; or &lt;code&gt;libgcc.a&lt;/code&gt;: standard library, in- and output, memory management,…&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libm.a&lt;/code&gt;: floating point math&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The standard library (and start up code) is (as long as the option &lt;code&gt;-nodefaultlibs&lt;/code&gt; and &lt;code&gt;-nostartfiles&lt;/code&gt; is not activated) automatically linked by default.
+&lt;/p&gt;
+
+&lt;p&gt;
+The linker can use any desired archives. The options are to provide
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;-L{path}&lt;/code&gt; the linker searches in {path} for libraries (this option can be given multiple times)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l{name}&lt;/code&gt; the linker searches the archive file &lt;code&gt;lib{name}.a&lt;/code&gt; when resolving symbols&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The following command instructs the linker to include the floating point number math library (&lt;code&gt;libm.a&lt;/code&gt;): &lt;code&gt;cc -o myprog mycode.c -lm&lt;/code&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="orgea7466a"&gt;&lt;/a&gt;Dynamic Libraries&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgea7466a"&gt;
+&lt;p&gt;
+However there are some disadvantages to static libraries:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;multiplication (Vervielfachung) of the code in the storage (Massenspeicher) (the standard library for example is used by almost every program)&lt;/li&gt;
+&lt;li&gt;multiplication of code in memory&lt;/li&gt;
+&lt;li&gt;small fixes in the library code requires explicitly linking every program again&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The solution to this problem are &lt;i&gt;dynamic libraries&lt;/i&gt; (&lt;i&gt;shared libraries&lt;/i&gt;):
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;object files are loaded and linked on load/run time&lt;/li&gt;
+&lt;li&gt;shared code is loaded into memory/storage only once and then used/shared&lt;/li&gt;
+&lt;li&gt;slides: Standard in modernen Systemen u.a für C-Standardbibliothek (Linux: &lt;code&gt;libc.so&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+This is how a dynamic library can be created:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gcc -c -Wall -Werror -fpic swap.c
+gcc -shared -o libsw.so swap.o
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+The options have the following meaning:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;-fpic&lt;/code&gt;: creation of &lt;i&gt;position independant code&lt;/i&gt; → keine "Umrechnung" beim Laden/Linken nötig&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-shared&lt;/code&gt;: creates an independant library&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+And this is how the library is included:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gcc smain2.c -o sm -L. -lsw
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Attention! A dynamically linked program cannot "just be executed":
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./sm
+./sm: error &lt;span class="k"&gt;while&lt;/span&gt; loading shared libraries: libsw.so: cannot open shared object file: No such file or directory
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+→ The loader searches for dynamic libraries in predefined directories which are i.a. defined in the system variable &lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt;:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$LD_LIBRARY_PATH&lt;/span&gt;:. &lt;span class="c1"&gt;# add current directory to env var&lt;/span&gt;
+ ./sm
+1st string: Hello, 2nd string: World
+1st string: World, 2nd string: Hello
+1st integer: &lt;span class="m"&gt;42&lt;/span&gt;, 2nd integer: &lt;span class="m"&gt;23&lt;/span&gt;
+1st integer: &lt;span class="m"&gt;23&lt;/span&gt;, 2nd integer: &lt;span class="m"&gt;42&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org42285c9" class="outline-3"&gt;
+&lt;h3 id="org42285c9"&gt;Usage of Libraries&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org42285c9"&gt;
+&lt;p&gt;
+You should always know or be aware of the effect of functions from foreign libraries. Some libraries are just a collection of related functions (eg &lt;code&gt;libmath&lt;/code&gt;). Others are a complete &lt;i&gt;framework&lt;/i&gt; where the functions can only be used together in a meaningful way (eg many GUI frameworks like GTK+ or Qt).
+&lt;/p&gt;
+
+&lt;p&gt;
+In the appendix of the lecture script is an example application that uses the &lt;code&gt;ncurses&lt;/code&gt; and &lt;code&gt;math&lt;/code&gt; library to create an "calculator". &lt;code&gt;ncurses&lt;/code&gt; (advancement of &lt;code&gt;curses&lt;/code&gt;) utilizes the capabilities of the ANSI terminal and exists for most operating systems. It offers (depending on the version) between 800 to 1000 functions.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</guid><pubDate>Sun, 06 Jan 2019 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 20 &amp; 21</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-20-21/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
 &lt;/p&gt;
 
@@ -2150,9 +2590,9 @@ Next week we'll probably cover the next step  of &lt;b&gt;"Implementation"&lt;/b
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 &lt;/p&gt;
 
-&lt;div id="outline-container-org0d50d88" class="outline-2"&gt;
-&lt;h2 id="org0d50d88"&gt;Introduction to SQL&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0d50d88"&gt;
+&lt;div id="outline-container-orgc08de16" class="outline-2"&gt;
+&lt;h2 id="orgc08de16"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc08de16"&gt;
 &lt;p&gt;
 What we'll cover here:
 &lt;/p&gt;
@@ -2169,13 +2609,13 @@ What we'll cover here:
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgce70027" class="outline-3"&gt;
-&lt;h3 id="orgce70027"&gt;Data Manipulation&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgce70027"&gt;
+&lt;div id="outline-container-orgc6f40a0" class="outline-3"&gt;
+&lt;h3 id="orgc6f40a0"&gt;Data Manipulation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc6f40a0"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2f69a65" class="outline-4"&gt;
-&lt;h4 id="org2f69a65"&gt;Create Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org2f69a65"&gt;
+&lt;div id="outline-container-org44434ad" class="outline-4"&gt;
+&lt;h4 id="org44434ad"&gt;Create Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org44434ad"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. There are different syntactical variants.
 &lt;/p&gt;
@@ -2268,9 +2708,9 @@ With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org44cabd0" class="outline-4"&gt;
-&lt;h4 id="org44cabd0"&gt;Delete Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org44cabd0"&gt;
+&lt;div id="outline-container-orgce8a0f4" class="outline-4"&gt;
+&lt;h4 id="orgce8a0f4"&gt;Delete Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgce8a0f4"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;delete&lt;/code&gt; tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is &lt;code&gt;delete from &amp;lt;tablename&amp;gt; where &amp;lt;condition&amp;gt;&lt;/code&gt;
 &lt;/p&gt;
@@ -2287,9 +2727,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org26e6cb2" class="outline-4"&gt;
-&lt;h4 id="org26e6cb2"&gt;Update/Change Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org26e6cb2"&gt;
+&lt;div id="outline-container-org449cc0d" class="outline-4"&gt;
+&lt;h4 id="org449cc0d"&gt;Update/Change Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org449cc0d"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;update&lt;/code&gt; attributtes of all tuples in a table can be changed in the same way. The syntax is &lt;code&gt;update &amp;lt;tablename&amp;gt; set &amp;lt;attribute1&amp;gt; = &amp;lt;expression1&amp;gt;, &amp;lt;attribute2&amp;gt; = &amp;lt;expression2&amp;gt;, ...&lt;/code&gt;
 &lt;/p&gt;
@@ -2320,9 +2760,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfa686b8" class="outline-4"&gt;
-&lt;h4 id="orgfa686b8"&gt;Procedure of Changes&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgfa686b8"&gt;
+&lt;div id="outline-container-orga85254b" class="outline-4"&gt;
+&lt;h4 id="orga85254b"&gt;Procedure of Changes&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga85254b"&gt;
 &lt;p&gt;
 Basically there are two steps when changing data:
 &lt;/p&gt;
@@ -2343,16 +2783,16 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2460174" class="outline-3"&gt;
-&lt;h3 id="org2460174"&gt;Data Definition&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2460174"&gt;
+&lt;div id="outline-container-orgd80f12d" class="outline-3"&gt;
+&lt;h3 id="orgd80f12d"&gt;Data Definition&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd80f12d"&gt;
 &lt;p&gt;
 We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org494f972" class="outline-4"&gt;
-&lt;h4 id="org494f972"&gt;Table Management&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org494f972"&gt;
+&lt;div id="outline-container-org99efdb5" class="outline-4"&gt;
+&lt;h4 id="org99efdb5"&gt;Table Management&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org99efdb5"&gt;
 &lt;p&gt;
 To create a new table use the command &lt;code&gt;create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )&lt;/code&gt;. To alter the schema of a table after its creation use &lt;code&gt;alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to add an attribute, &lt;code&gt;alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to modify an attribute and &lt;code&gt;alter table {TABLENAME} drop column {ATTRIBUTE_NAME}&lt;/code&gt; to delete an attribute. If you want to delete a whole table issue the command &lt;code&gt;drop table {TABLENAME}&lt;/code&gt;.
 &lt;/p&gt;
@@ -2367,8 +2807,8 @@ Here are the data types SQL supports by default with some examples:
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orgc78b12b"&gt;&lt;/a&gt;Boolean&lt;br&gt;
-&lt;div class="outline-text-6" id="text-orgc78b12b"&gt;
+&lt;li&gt;&lt;a id="org93ba95c"&gt;&lt;/a&gt;Boolean&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org93ba95c"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;
 &lt;ul class="org-ul"&gt;
@@ -2382,8 +2822,8 @@ Here are the data types SQL supports by default with some examples:
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgdc05bb0"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
-&lt;div class="outline-text-6" id="text-orgdc05bb0"&gt;
+&lt;li&gt;&lt;a id="orgdaae0ef"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgdaae0ef"&gt;
 &lt;p&gt;
 The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
 &lt;/p&gt;
@@ -2402,8 +2842,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgd423f6a"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
-&lt;div class="outline-text-6" id="text-orgd423f6a"&gt;
+&lt;li&gt;&lt;a id="org0987f91"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org0987f91"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;are used for &lt;i&gt;exact&lt;/i&gt; representations of numbers&lt;/li&gt;
 &lt;li&gt;the precision of a number is specified by providing the the amount of digits to be hold
@@ -2418,8 +2858,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgd3074ff"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
-&lt;div class="outline-text-6" id="text-orgd3074ff"&gt;
+&lt;li&gt;&lt;a id="org3ee4c20"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org3ee4c20"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;are used for &lt;i&gt;approximate&lt;/i&gt; representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;float [{PRECISION}]&lt;/code&gt;&lt;/li&gt;
@@ -2430,8 +2870,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org0f5ff17"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org0f5ff17"&gt;
+&lt;li&gt;&lt;a id="org2c7591c"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org2c7591c"&gt;
 &lt;p&gt;
 There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
 &lt;/p&gt;
@@ -2447,8 +2887,8 @@ Date and time values can optionally be parameterized to set the precision explic
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org99d1b78"&gt;&lt;/a&gt;Interval&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org99d1b78"&gt;
+&lt;li&gt;&lt;a id="org1f10b84"&gt;&lt;/a&gt;Interval&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org1f10b84"&gt;
 &lt;p&gt;
 The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
 &lt;/p&gt;
@@ -2459,6 +2899,327 @@ The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. S
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcec7cbb" class="outline-3"&gt;
+&lt;h3 id="orgcec7cbb"&gt;Integrity Constraints/Rules/Conditions&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcec7cbb"&gt;
+&lt;p&gt;
+Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. To achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules results in lower error rates, and time saved troubleshooting and tracing erroneous data and the errors it causes to algorithms.
+&lt;/p&gt;
+
+&lt;p&gt;
+Data integrity also includes rules defining the relations a piece of data can have, to other pieces of data, such as a Customer record being allowed to link to purchased Products, but not to unrelated data such as Corporate Assets. Data integrity often includes checks and correction for invalid data, based on a fixed schema or a predefined set of rules. An example being textual data entered where a date-time value is required. Rules for data derivation are also applicable, specifying how a data value is derived based on algorithm, contributors and conditions. It also specifies the conditions on how the data value could be re-derived.
+&lt;/p&gt;
+
+&lt;p&gt;
+Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let's look at some possible constraints in SQL.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org8975c7c" class="outline-4"&gt;
+&lt;h4 id="org8975c7c"&gt;Required/obligatory Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8975c7c"&gt;
+&lt;p&gt;
+Via the keyword &lt;code&gt;not null&lt;/code&gt; it can be specified in the attribute definition when the values for an attribute are not allowed to be empty/null. The DBMS then refuses insert or change operations which include a null value for that attribute. Example:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;matrNr&lt;/span&gt;     &lt;span class="nb"&gt;integer&lt;/span&gt;     &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;name&lt;/span&gt;       &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;major&lt;/span&gt;      &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="k"&gt;null&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orga682f4c" class="outline-4"&gt;
+&lt;h4 id="orga682f4c"&gt;Domain Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga682f4c"&gt;
+&lt;p&gt;
+Just the specification of a data type (eg &lt;code&gt;integer&lt;/code&gt; or &lt;code&gt;varchar&lt;/code&gt;) is often times not sufficient as a criteria for the allowed values. That's why there's the possibility to perform further validation via &lt;code&gt;check ({CONDITION})&lt;/code&gt;. Similarily whole new &lt;i&gt;attribute domains&lt;/i&gt; (then usable as attribute type) can be defined via restriction of existing data types via &lt;code&gt;create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]&lt;/code&gt;, eg:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;domain&lt;/span&gt; &lt;span class="n"&gt;genderType&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'m'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'f'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+Here's a more involved example. Suppose that there's a company with 3 departments where the employees are paid at least 1000$ and at max 10000$. Here's how the table creation could look like when considering those attribute constraints:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;Staff&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;name&lt;/span&gt;         &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="k"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;gender&lt;/span&gt;       &lt;span class="n"&gt;genderType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;department&lt;/span&gt;   &lt;span class="nb"&gt;integer&lt;/span&gt;  &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;department&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="n"&gt;salary&lt;/span&gt;       &lt;span class="nb"&gt;integer&lt;/span&gt;  &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;salary&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+In short: A domain defines the possible values of an attribute. Domain Integrity rules govern these values.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org25daf15" class="outline-4"&gt;
+&lt;h4 id="org25daf15"&gt;Entity Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org25daf15"&gt;
+&lt;p&gt;
+Entity Integrity ensures that there are no duplicate records within the table and that the field that identifies each record within the table is unique and never null.
+The existence of the Primary Key is the core of the entity integrity. If you define a primary key for each entity, they follow the entity integrity rule.
+Entity integrity specifies that the Primary Keys on every instance of an entity must be kept, must be unique and must have values other than NULL.
+Although most relational databases do not specifically dictate that a table needs to have a Primary Key, it is good practice to design a Primary Key for each table in the relational model. This mandates no NULL content, so that every row in a table must have a value that denotes the row as a unique element of the entity.
+&lt;/p&gt;
+
+&lt;p&gt;
+Entity Integrity is the mechanism the system provides to maintain primary keys. The primary key serves as a unique identifier for rows in the table. Entity Integrity ensures two properties for primary keys:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;The primary key for a row is unique; it does not match the primary key of any other row in the table.&lt;/li&gt;
+&lt;li&gt;The primary key is not null, no component of the primary key may be set to null.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+The uniqueness property ensures that the primary key of each row uniquely identifies it - there are no duplicates. The second property ensures that the primary key has meaning, has a value - no component of the key is missing.
+&lt;/p&gt;
+
+&lt;p&gt;
+The system enforces Entity Integrity by not allowing operations (INSERT, UPDATE) to produce an invalid primary key. Any operation that creates a duplicate primary key or one containing nulls is rejected.
+&lt;/p&gt;
+
+&lt;p&gt;
+In SQL the entity integrity via primary keys is specified via &lt;code&gt;primary key ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])&lt;/code&gt;. Alternative &lt;i&gt;key&lt;/i&gt; (not primary) attributes can be specified via &lt;code&gt;unique ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])&lt;/code&gt;. Here's an example where a primary key is utilized:
+&lt;/p&gt;
+
+&lt;p&gt;
+There's a university where:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the lecture numbers are three digits&lt;/li&gt;
+&lt;li&gt;the matricle numbers are six digits&lt;/li&gt;
+&lt;li&gt;the grades are in the range of 1.0 to 5.0&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+This is how we'd create a table for the exams:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;Exam&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+ &lt;span class="n"&gt;lectureNr&lt;/span&gt; &lt;span class="nb"&gt;integer&lt;/span&gt; &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;nummer&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;999&lt;/span&gt; &lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="n"&gt;matrNr&lt;/span&gt;    &lt;span class="nb"&gt;integer&lt;/span&gt; &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;nummer&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;999999&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="n"&gt;note&lt;/span&gt;      &lt;span class="nb"&gt;numeric&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+ &lt;span class="k"&gt;primary&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lectureNr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1d89aa6" class="outline-4"&gt;
+&lt;h4 id="org1d89aa6"&gt;Referential Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1d89aa6"&gt;
+&lt;p&gt;
+Wiki: Referential integrity is a property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.
+&lt;/p&gt;
+
+&lt;p&gt;
+For referential integrity to hold in a relational database, any column in a base table that is declared a foreign key can only contain either null values or values from a parent table's primary key or a candidate key. In other words, when a foreign key value is used it must reference a valid, existing primary key in the parent table. For instance, deleting a record that contains a value referred to by a foreign key in another table would break referential integrity. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Techopedia: Referential integrity (RI) is a relational database concept, which states that table relationships must always be consistent. In other words, any foreign key field must agree with the primary key that is referenced by the foreign key. Thus, any primary key field changes must be applied to all foreign keys, or not at all. The same restriction also applies to foreign keys in that any updates (but not necessarily deletions) must be propagated to the primary parent key.
+&lt;/p&gt;
+
+&lt;p&gt;
+Back to the lecture slides :D . Up until now we're not able to guarantee that referenced tuples of a relation really exist. Look at the following example:
+We have a table of lectures
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;number{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;title&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{FK}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;123&lt;/td&gt;
+&lt;td class="org-left"&gt;Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;234&lt;/td&gt;
+&lt;td class="org-left"&gt;Databases in Praxis&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;345&lt;/td&gt;
+&lt;td class="org-left"&gt;Database Essentials&lt;/td&gt;
+&lt;td class="org-right"&gt;6123&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;456&lt;/td&gt;
+&lt;td class="org-left"&gt;Exercise Data Structures&lt;/td&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+where the &lt;b&gt;persNr&lt;/b&gt; is a foreign key. The related table where &lt;b&gt;persNr&lt;/b&gt; is the primary key is the table of teachers:
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;persNr{PK}&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;name&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;6123&lt;/td&gt;
+&lt;td class="org-left"&gt;Ares&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;6897&lt;/td&gt;
+&lt;td class="org-left"&gt;Zeus&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;43424&lt;/td&gt;
+&lt;td class="org-left"&gt;Hera&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+Up until now the referential integrity is fulfilled. &lt;i&gt;But&lt;/i&gt; if we were to execute the following operation &lt;code&gt;insert into Lectures values (500, 'Mathematics', 7111)&lt;/code&gt; we'd violate that principle because there's no tuple in Teachers where the primary key &lt;b&gt;persNr&lt;/b&gt; is &lt;code&gt;7111&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now to a more formal defintion of referential integrity.
+Suppose we have two relations R and S. The attribute(set) K is the primary key of R and the attribute(set) FK is the foreign key from R in S. To guarantee referential integrity the following condition has always to be true: \(\pi_{FK}(S) \subseteq \pi_{K}(R)\) which means that if two relations R and S are in a key/foreign-key relationship with eath other, then every attribute value of the foreign key has to exist (set is subset or equal to) as an attribute value in the primary key attribute.
+&lt;/p&gt;
+
+&lt;p&gt;
+In the example given above (before the insert command) this would look like:
+\(\pi_{Lecture.persNr}(Lecture) \subseteq \pi_{Teacher.persNr}(Teacher)\) → {6897, 6123} \subseteq {6897, 6123, 43424} so the condition for referential integrity is fullfilled &amp;amp;check; . &lt;i&gt;After&lt;/i&gt; the insert command the condition would &lt;b&gt;not&lt;/b&gt; be fulfilled → {6897, 6123, 7111} \nsubseteq {6897, 6123, 43424}.
+&lt;/p&gt;
+
+&lt;p&gt;
+Analogously we need to fulfill some conditions when modifying data to ensure referential integrity:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;inserting/changing a tuple s in S
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;for the inserted/changed value &lt;b&gt;fk&lt;/b&gt; of the foreign key &lt;b&gt;FK&lt;/b&gt; of s the following must be true: 
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;→ fk ∈ π&lt;sub&gt;K&lt;/sub&gt;(R)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;deleting a tuple r ∈ R or changing the value k of the primary key attribute K of r the following must be true for the &lt;b&gt;original&lt;/b&gt; attribute value k of the key K:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;→ σ{FK=k}(S) = ∅ → meaning that in S no tuple is referencing the value of the key k as a foreign key (in attribute FK)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Let's learn how to ensure RI with SQL.
+&lt;/p&gt;
+
+&lt;p&gt;
+When defining our schema we mark the foreign keys with the key word &lt;code&gt;foreign key&lt;/code&gt; in the same way we mark primary keys. After doing so a &lt;code&gt;references&lt;/code&gt; clause is added which specifies the table in which the just marked foreign key is present as a primary key. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Values of foreign key attributes that are marked via &lt;code&gt;foreign key&lt;/code&gt; can be null, unless they're explicitly marked as &lt;code&gt;not null&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+The result of this procedure is that now to change or insert a tuple, the foreign key references in that tuple need to exist. Also the deletion of tuples which are referenced elsewhere is not possible anymore.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's the SQL code to create a table Exams that references the Lectures(number, title, persNr) and Students(matrNr, name, credits) tables:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;Exam&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;lectureNr&lt;/span&gt; &lt;span class="nb"&gt;integer&lt;/span&gt;      &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lectureNr&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="n"&gt;matrNr&lt;/span&gt;    &lt;span class="nb"&gt;integer&lt;/span&gt;      &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matrNr&lt;/span&gt; &lt;span class="k"&gt;between&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;999999&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="n"&gt;grade&lt;/span&gt;     &lt;span class="nb"&gt;numeric&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;check&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grade&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+					  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+					  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;
+					  &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+  &lt;span class="k"&gt;primary&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lectureNr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="k"&gt;foreign&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lectureNr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;references&lt;/span&gt; &lt;span class="n"&gt;Lecture&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="k"&gt;foreign&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matrNr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="k"&gt;references&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Besides prohibiting changes that violate RI it is also possible to &lt;b&gt;propagate changes&lt;/b&gt; via &lt;b&gt;automatical cascadings&lt;/b&gt; of changing operations.
+&lt;/p&gt;
+
+&lt;p&gt;
+This means that a modification of a primary key value triggers the same change of all associated foreign key values. To have this behaviour &lt;code&gt;on update cascade&lt;/code&gt; is added to the &lt;code&gt;references&lt;/code&gt; clause (eg &lt;code&gt;foreign key (matrNr) references Student on update cascade&lt;/code&gt;)). The picture below shows this behaviour:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/cascade-on-update.png" alt="nil"&gt;
+&lt;/p&gt;
+
+
+&lt;p&gt;
+It is also possible to cascade deletions. Beware this can be dangerous, because while the referential integrity is guaranteed you may delete data by accident. Adding &lt;code&gt;on delete cascade&lt;/code&gt; to the &lt;code&gt;references&lt;/code&gt; clause causes the deletion of all tuples that have k as a foreign key when a tuple with a primary key of k is deleted. The picture below shows this behaviour:
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/cascade-on-delete.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Furthermore it is possible to automatically set the values foreign key attributes that are changed to &lt;code&gt;null&lt;/code&gt; to guarantee integrity.
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;when a primary key value is changed, all corresponding foreign key values are set to &lt;code&gt;null&lt;/code&gt; ; to achieve this specify &lt;code&gt;on update set null&lt;/code&gt; in the &lt;code&gt;references&lt;/code&gt; clause&lt;/li&gt;
+&lt;li&gt;when a tuple is deleted that has a primary key which servers as a foreign key somewhere else then the foreign key values at those places can be set to &lt;code&gt;null&lt;/code&gt; by specifying &lt;code&gt;on delete set null&lt;/code&gt; in the &lt;code&gt;references&lt;/code&gt; clause&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/cascade-set-null.png" alt="nil"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2969fc1" class="outline-4"&gt;
+&lt;h4 id="org2969fc1"&gt;Cardinality and Participation&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2969fc1"&gt;
+&lt;p&gt;
+Modelling cardinality and participation is principally possible with SQL. &lt;code&gt;1:1&lt;/code&gt; relationships can be expressed via foreign key integration that is marked with &lt;code&gt;unique&lt;/code&gt; to indicate the obligatory and unique relationship. Obligatory &lt;code&gt;1:N&lt;/code&gt; relationships can also be expressed with foreign keys. To do so the foreign key on the &lt;code&gt;N&lt;/code&gt; side has to be marked with &lt;code&gt;not null&lt;/code&gt;. However not all restrictions that can be modeled are directly convertable in SQL. Foreign keys of an &lt;i&gt;optional&lt;/i&gt; participation can for example not be marked as &lt;code&gt;unique&lt;/code&gt; and hold &lt;code&gt;null&lt;/code&gt; (null because optional) at the same time. 
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org9cf7e60" class="outline-4"&gt;
+&lt;h4 id="org9cf7e60"&gt;Other Constraints (Sonstiges)&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9cf7e60"&gt;
+&lt;p&gt;
+There are also &lt;i&gt;assertions&lt;/i&gt; to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: &lt;code&gt;create assertion {AssertionName} check ({condition})&lt;/code&gt;. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgef6f3b4" class="outline-3"&gt;
+&lt;h3 id="orgef6f3b4"&gt;Relational Views&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgef6f3b4"&gt;
+&lt;p&gt;
+F 43
+&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</guid><pubDate>Tue, 04 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
@@ -3798,441 +4559,4 @@ Examples:
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</guid><pubDate>Tue, 27 Nov 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 15 &amp; 16</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
-This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
-&lt;/p&gt;
-
-&lt;div id="outline-container-orgd96ab9c" class="outline-2"&gt;
-&lt;h2 id="orgd96ab9c"&gt;Complexity&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd96ab9c"&gt;
-&lt;p&gt;
-As you've hopefully already noticed there are algorithms that differ in regards to &lt;i&gt;efficiency&lt;/i&gt;. &lt;b&gt;Algorithmic efficiency&lt;/b&gt; refers to the number of &lt;b&gt;computational resources&lt;/b&gt; (&lt;i&gt;computation time&lt;/i&gt; and &lt;i&gt;memory space&lt;/i&gt;) used by the algorithm.
-&lt;/p&gt;
-
-&lt;p&gt;
-For maximum efficiency we wish to minimize resource usage. However, different resources such as time and space complexity cannot be compared directly, so which of two algorithms is considered to be more efficient often depends on which measure of efficiency is considered most important.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgfe55b46" class="outline-3"&gt;
-&lt;h3 id="orgfe55b46"&gt;RAM Model&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgfe55b46"&gt;
-&lt;p&gt;
-It is impractical to measure the computation time with a stopwatch or operating system functions because then there'd be a lot of other factors involved such as compiler, hardware and operating system.
-&lt;/p&gt;
-
-&lt;p&gt;
-But to measure the quality of &lt;i&gt;algorithms&lt;/i&gt; (not their implementation) we don't even need a time because we use &lt;i&gt;abstract computer models&lt;/i&gt;. For example the &lt;b&gt;Random Access Machine&lt;/b&gt; (RAM model) which is used for computational complexity analysis.
-&lt;/p&gt;
-
-&lt;p&gt;
-RAM Components:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;b&gt;program&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;numbered, finite series of instructions&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;storage&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;enumerable (infinite) amount of storage locations(registers) (slides: abzählbar (unendlich) viele Speicherstellen (Register))&lt;/li&gt;
-&lt;li&gt;arbitrarily accessible&lt;/li&gt;
-&lt;li&gt;every register can store an arbitrary integer&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;in-/output&lt;/b&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;continuous sequences (bänder, ribbons)&lt;/li&gt;
-&lt;li&gt;either input (read) or output (write) in the given situation&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;central processing unit
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;instruction counter that holds the number of the instruction that is to be executed&lt;/li&gt;
-&lt;li&gt;accumulator = target register of computations, address 0&lt;/li&gt;
-&lt;li&gt;arithmetic logic unit = enginge / functional unit for execution of operations&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-&lt;img src="https://schoettkr.github.io/knowledge-database/images/random-access-machine.png" alt="nil"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-The "common/usual" instructions are available in a RAM:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;basic arithmetic operations: + - * / mod&lt;/li&gt;
-&lt;li&gt;comparisons: &amp;gt; &amp;lt; = ≥ ≤&lt;/li&gt;
-&lt;li&gt;branching/conditions: if&lt;/li&gt;
-&lt;li&gt;jumps : GOTO (loops are branches with jumps btw)&lt;/li&gt;
-&lt;li&gt;loading/storing: LOAD, STORE&lt;/li&gt;
-&lt;li&gt;in-/output: READ, WRITE&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Operands:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;registers (can be chosen arbitrarily), also indirectly&lt;/li&gt;
-&lt;li&gt;accumulator (implicit)&lt;/li&gt;
-&lt;li&gt;input sequence and output sequence (not arbitrarily ~ nicht wahlfrei)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-For the RAM there are two models of measuring the time cost:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;uniform cost measure: every instruction has a time cost of 1 time unit (eg Takt/clock signal or millisecond ..)
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;since every instruction has the same length/duration the instrucion &lt;b&gt;executions&lt;/b&gt; are determining the cost&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;logarithmic time cost measure: the length of the numbers that have to be processed determine the time
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;length l(x) of x ∈ G:  l(0) = 1, l(x) = (log&lt;sub&gt;2&lt;/sub&gt; |x|) + 1&lt;/li&gt;
-&lt;li&gt;the logarithmic time costs of an instruction are equal to the sum of the length of the numbers that have to be processed&lt;/li&gt;
-&lt;li&gt;the logarithmic time cost measure should be usend when the size/length of the numbers is of critical significance&lt;/li&gt;
-&lt;li&gt;in addition to the instruction executions the size of the operands is of importance in regards to the cost&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-Instructions that are executed in a loop are counted repeatedly and since the execution of instructions (and loop iterations) often depends on the input size n we measure the amount of instructions that are executed with T&lt;sub&gt;A&lt;/sub&gt;(n), for example:
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;Algorithm&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;T&lt;sub&gt;A&lt;/sub&gt;(n)&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;optimal for&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;A&lt;sub&gt;1&lt;/sub&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;1000 * n&lt;/td&gt;
-&lt;td class="org-left"&gt;n ≥ 101&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;A&lt;sub&gt;2&lt;/sub&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;200*n*log n&lt;/td&gt;
-&lt;td class="org-left"&gt;never&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;A&lt;sub&gt;3&lt;/sub&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;10 * n&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;10 ≤ n ≤ 100&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;A&lt;sub&gt;4&lt;/sub&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;2&lt;sup&gt;n&lt;/sup&gt;&lt;/td&gt;
-&lt;td class="org-left"&gt;1 ≤ n ≤ 9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orgea74082"&gt;&lt;/a&gt;Run-time Analysis&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgea74082"&gt;
-&lt;p&gt;
-Even for constant \(n\) is T&lt;sub&gt;A&lt;/sub&gt; not always the same:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;worst case analysis
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;for every n define the runtime as T(n) = max(t(Input)), ∀ |Input| = n&lt;/li&gt;
-&lt;li&gt;guaranteed boundaries for every input&lt;/li&gt;
-&lt;li&gt;used as standard&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;average case analysis
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;for every n define the runtime as T(n) = \(\bar{t}\)(Input) ∀ |Input| = n&lt;/li&gt;
-&lt;li&gt;depends on the definition of average → distribution of inputs&lt;/li&gt;
-&lt;li&gt;rarely used (hard to determine the average)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;best case analysis
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;for every n define the runtime as T(n) = min(t(Input)), ∀ |Input| = n&lt;/li&gt;
-&lt;li&gt;looks for minimal runtime&lt;/li&gt;
-&lt;li&gt;shows design mistakes (Entwurfsfehler)&lt;/li&gt;
-&lt;li&gt;has no real significance (easy to cheat)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-In general the analysis of T&lt;sub&gt;A&lt;/sub&gt; is rather hard that's why &lt;i&gt;order of magnitudes&lt;/i&gt; (Größenordnungen) are used more commonly. We know such from real life eg: v&lt;sub&gt;Laufen&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Rad&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Auto&lt;/sub&gt; &amp;lt; v&lt;sub&gt;Flugzeug&lt;/sub&gt; 
-&lt;/p&gt;
-
-&lt;p&gt;
-Note: I skipped the slides on "big A notation" here because I fail to see the relevance of it and cant find anything about in the internet (slides 14-15, chapter 8).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orge232fb0" class="outline-2"&gt;
-&lt;h2 id="orge232fb0"&gt;Big O Notation&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge232fb0"&gt;
-&lt;p&gt;
-Often times the &lt;b&gt;growth rate&lt;/b&gt; of algorithms/function is of interest. The &lt;b&gt;big-O notation&lt;/b&gt; is commonly used to describe how a function grows. A common goal is to find algorithms/functions that are still efficient for large problem instances (inputs) and if that is the case we usually say that they scale good. Two functions eg \(f(n)\) and \(g(n)\) have the same growth rate when the ratio for a sufficient amount of \(n\) is limited by the same constant upper and lower boundaries (slides: Zwei Funktionen f(n) und g(n) haben das gleiche Wachstumsverhalten, falls für genügend große n das Verhältnis der beiden nach oben und unten durch Konstanten beschränkt ist), which means that \(c &amp;lt; \frac{f(n)}{g(n)} and \frac{g(n)}{f(n)}\) needs to be true.
-For example:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;\(f_1(n)=n^2\) and \(f_2(n)=5*n^2-7*n\) have the &lt;b&gt;same grow&lt;/b&gt; because for all \(n &amp;gt; 2\) the following applies: \(\frac{1}{5} &amp;lt; \frac{(5n^2-7n)}{n^2} &amp;lt; 5\) and \(\frac{1}{5} &amp;lt; \frac{n^2}{(5n^2-7n)} &amp;lt; 5\)&lt;/li&gt;
-&lt;li&gt;\(f_1(n)=n^2\) and \(f_2(n)=n^3\) do &lt;b&gt;not have the same grow&lt;/b&gt; because for all sufficient large \(n\) (hinreichend groß) the following applies \(\frac{n^3}{n^2} = n &amp;gt; c\)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-The big O notation (big O refers to the greek letter omikron) is also called &lt;b&gt;Landau Notation&lt;/b&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Big O Notation can also be used to state which function dominates the growth. For two monotone function f(n) and g(n) the function f(n) dominates the function g(n) if \(g(n) \in \mathcal{O}(f(n))\). The notation \(dom(f(n),g(n))\) yields the dominating function. For example
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;dom(n&lt;sup&gt;3&lt;/sup&gt;, n&lt;sup&gt;2&lt;/sup&gt;) = n&lt;sup&gt;3&lt;/sup&gt;&lt;/li&gt;
-&lt;li&gt;dom(2&lt;sup&gt;n&lt;/sup&gt;, n&lt;sup&gt;k&lt;/sup&gt;) = 2&lt;sup&gt;n&lt;/sup&gt; (for constant k &amp;gt; 1)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-There are also some computation rules (Rechenregeln) when it comes to big O:
-\[
-\mathcal{O}(f(n)) + \mathcal{O}(g(n)) = \mathcal{O}(f(n) + g(n))\\
-\mathcal{O}(f(n) + g(n)) = \mathcal{O}(dom(f(n), g(n)))\\
-\mathcal{O}(f(n)) * \mathcal{O}(g(n)) = \mathcal{O}(f(n) * g(n))
-\]
-&lt;/p&gt;
-
-&lt;p&gt;
-These are some common types/classes of functions in regards to big O:
-&lt;/p&gt;
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-left"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt;Notation&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;Term&lt;/th&gt;
-&lt;th scope="col" class="org-left"&gt;Typical Algorithms/Operations&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(1)&lt;/td&gt;
-&lt;td class="org-left"&gt;constant&lt;/td&gt;
-&lt;td class="org-left"&gt;addition, comparisons, recursive call&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(log n)&lt;/td&gt;
-&lt;td class="org-left"&gt;logarithmic&lt;/td&gt;
-&lt;td class="org-left"&gt;search in a sorted sequence&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(n)&lt;/td&gt;
-&lt;td class="org-left"&gt;linear&lt;/td&gt;
-&lt;td class="org-left"&gt;modifying each element of a set&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(n * log n)&lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;td class="org-left"&gt;good sorting algorithm&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(n * log n)&lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;td class="org-left"&gt;good sorting algorithms&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(n * log&lt;sup&gt;2&lt;/sup&gt; n)&lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;td class="org-left"&gt;good sorting algorithms&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;…&lt;/td&gt;
-&lt;td class="org-left"&gt;….&lt;/td&gt;
-&lt;td class="org-left"&gt;…&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/td&gt;
-&lt;td class="org-left"&gt;quadratic&lt;/td&gt;
-&lt;td class="org-left"&gt;primitive sorting algorithms&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(n&lt;sup&gt;k&lt;/sup&gt;), k &amp;gt;= 2&lt;/td&gt;
-&lt;td class="org-left"&gt;polynomial&lt;/td&gt;
-&lt;td class="org-left"&gt;primitive sorting algorithms&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;…&lt;/td&gt;
-&lt;td class="org-left"&gt;…&lt;/td&gt;
-&lt;td class="org-left"&gt;…&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(2&lt;sup&gt;n&lt;/sup&gt;)&lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;td class="org-left"&gt;trying combinations&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;O(k&lt;sup&gt;n&lt;/sup&gt;), k &amp;gt; 1&lt;/td&gt;
-&lt;td class="org-left"&gt;exponential&lt;/td&gt;
-&lt;td class="org-left"&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-The O(n)-notation depends on the size of the input, that is the storage space in bits or words. 
-&lt;/p&gt;
-
-&lt;p&gt;
-In addition to the most common big O notation there are several related notations to describe other kinds of bounds on asymptotic growth rates:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;big Omega notation \(\Omega(f(n)) = {g(n) \exists c &amp;gt; 0, \exists n_0 &amp;gt;0, \forall n &amp;gt; n_0, g(n) \geq c * f(n)}\) → lower boundary / "mindestens"&lt;/li&gt;
-&lt;li&gt;big Theta notation \(\Theta(f(n)) = \mathcal{O}(f(n)) \cap \Omega(f(n))\) → exactly / "genau"&lt;/li&gt;
-&lt;li&gt;little o notation \(o(f(n)) = {g(n) | \forall c &amp;gt; 0, \exists n_0 &amp;gt; 0, \forall n &amp;gt; n_0, g(n) \leq c*f(n)}\) → at max / "weniger"&lt;/li&gt;
-&lt;li&gt;little omega notation \(o(f(n)) = {g(n) | \forall c &amp;gt; 0, \exists n_0 &amp;gt; 0, \forall n &amp;gt; n_0, g(n) \geq c*f(n)}\) →  "mehr"&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-What followed in the slides are some example computation times for different complexities and algorithms.
-&lt;/p&gt;
-
-&lt;p&gt;
-Take for example the algorithm to search the minimum in a sequence:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;require&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sequence&lt;/span&gt; &lt;span class="n"&gt;a_1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...,&lt;/span&gt; &lt;span class="n"&gt;a_n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nl"&gt;ensure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a_1&lt;/span&gt;&lt;span class="p"&gt;,...,&lt;/span&gt; &lt;span class="n"&gt;a_n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-
-&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;a_1&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;a_i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-    &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;a_i&lt;/span&gt;
-  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
-&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-In the above example the complexities are \(\mathcal{O}(n)\), Ω (n) and Θ (n).
-&lt;/p&gt;
-
-&lt;p&gt;
-Take a look at the lecture slides (chapter 8) from slide 26 to see some more examples.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org1c4b604" class="outline-4"&gt;
-&lt;h4 id="org1c4b604"&gt;Better Sorting&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org1c4b604"&gt;
-&lt;p&gt;
-The sorting algorithms we saw so far (bubble sort and insertion sort) have a complexity in \(\mathcal{O}(n^2)\). Quicksort and Mergesort are generally better sorting algorithms. Let's look at quicksort:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;require&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;e_1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;...,&lt;/span&gt; &lt;span class="n"&gt;e_n&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nl"&gt;ensure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;e_i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;e_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="c1"&gt;// sorted sequence condition &lt;/span&gt;
-
-&lt;span class="n"&gt;procedure&lt;/span&gt; &lt;span class="n"&gt;QSORT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; 
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;
-  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
-
-  &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;remove&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;pivot&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="s"&gt;"pivot"&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;
-
-  &lt;span class="n"&gt;less&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-  &lt;span class="n"&gt;greater&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-
-  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="s"&gt;"pivot"&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
-      &lt;span class="n"&gt;append&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;less&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; 
-      &lt;span class="n"&gt;append&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;greater&lt;/span&gt;
-    &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
-  &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;
-
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;concatenate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QSORT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;less&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;pivot&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;QSORT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;greater&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="n"&gt;procedure&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Because of the built-in list type a quicksort implementation in Python is pretty easy:
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;qsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="p"&gt;[]:&lt;/span&gt;
-	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-	&lt;span class="n"&gt;pivot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-	&lt;span class="n"&gt;less&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-	&lt;span class="n"&gt;greater&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-	&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]:&lt;/span&gt;
-	    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pivot&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;less&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;greater&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;qsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;less&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;pivot&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;qsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;greater&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre class="example"&gt;
-[2, 7, 8, 9, 54]
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-The depth of the recursion in quick sort is not set in stone. How does the worse case look? The pivot element is always the smallest or largest element in the list so the recursion depth is n - 1 (why?). On each recursion call \(i = |array| - 1\) elements are handled  which results in a recursion depth of n - recursion depth. 
-In the worst case the complexity would be Θ(n&lt;sup&gt;2&lt;/sup&gt;) so it wouldn't &lt;b&gt;always&lt;/b&gt; be better than eg bubble sort! In such situation it makes sense to look at the average case (see slide 35 for that).
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgde57488" class="outline-4"&gt;
-&lt;h4 id="orgde57488"&gt;Space Complexity (Storage/Memory)&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgde57488"&gt;
-&lt;p&gt;
-The required memory space is another critical resource in addition to the computation time. To measure this the same complexity measures are used. Let's look at the required storage space complexity for quicksort:
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;new arrays are created on each recursion&lt;/li&gt;
-&lt;li&gt;the required storage space is \(n\) in every recursion depth&lt;/li&gt;
-&lt;li&gt;the maximum recursion depth is \(n-1\)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-→ storage complexity of quicksort is \(\mathcal{O}(n^2)\).
-&lt;/p&gt;
-
-&lt;p&gt;
-However a storage complexity of \(\mathcal{O}(n)\) is achievable via a smart quicksort implementation by using &lt;i&gt;in place&lt;/i&gt; mutations. 
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>A&amp;P</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-15-16/</guid><pubDate>Sun, 25 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</guid><pubDate>Tue, 27 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>

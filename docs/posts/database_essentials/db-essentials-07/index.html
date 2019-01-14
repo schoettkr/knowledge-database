@@ -106,9 +106,9 @@ Data Definition
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 </p>
 
-<div id="outline-container-org0d50d88" class="outline-2">
-<h2 id="org0d50d88">Introduction to SQL</h2>
-<div class="outline-text-2" id="text-org0d50d88">
+<div id="outline-container-orgc08de16" class="outline-2">
+<h2 id="orgc08de16">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-orgc08de16">
 <p>
 What we'll cover here:
 </p>
@@ -127,13 +127,13 @@ What we'll cover here:
 </ul>
 </div>
 
-<div id="outline-container-orgce70027" class="outline-3">
-<h3 id="orgce70027">Data Manipulation</h3>
-<div class="outline-text-3" id="text-orgce70027">
+<div id="outline-container-orgc6f40a0" class="outline-3">
+<h3 id="orgc6f40a0">Data Manipulation</h3>
+<div class="outline-text-3" id="text-orgc6f40a0">
 </div>
-<div id="outline-container-org2f69a65" class="outline-4">
-<h4 id="org2f69a65">Create Data</h4>
-<div class="outline-text-4" id="text-org2f69a65">
+<div id="outline-container-org44434ad" class="outline-4">
+<h4 id="org44434ad">Create Data</h4>
+<div class="outline-text-4" id="text-org44434ad">
 <p>
 With the command <code>insert</code> tuples can be added to tables. There are different syntactical variants.
 </p>
@@ -218,9 +218,9 @@ With the command <code>insert</code> tuples can be added to tables. There are di
 </div>
 </div>
 
-<div id="outline-container-org44cabd0" class="outline-4">
-<h4 id="org44cabd0">Delete Data</h4>
-<div class="outline-text-4" id="text-org44cabd0">
+<div id="outline-container-orgce8a0f4" class="outline-4">
+<h4 id="orgce8a0f4">Delete Data</h4>
+<div class="outline-text-4" id="text-orgce8a0f4">
 <p>
 With the command <code>delete</code> tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is <code>delete from &lt;tablename&gt; where &lt;condition&gt;</code>
 </p>
@@ -236,9 +236,9 @@ has the following result in this table
 </div>
 </div>
 
-<div id="outline-container-org26e6cb2" class="outline-4">
-<h4 id="org26e6cb2">Update/Change Data</h4>
-<div class="outline-text-4" id="text-org26e6cb2">
+<div id="outline-container-org449cc0d" class="outline-4">
+<h4 id="org449cc0d">Update/Change Data</h4>
+<div class="outline-text-4" id="text-org449cc0d">
 <p>
 With the command <code>update</code> attributtes of all tuples in a table can be changed in the same way. The syntax is <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ...</code>
 </p>
@@ -267,9 +267,9 @@ has the following result in this table
 </div>
 </div>
 
-<div id="outline-container-orgfa686b8" class="outline-4">
-<h4 id="orgfa686b8">Procedure of Changes</h4>
-<div class="outline-text-4" id="text-orgfa686b8">
+<div id="outline-container-orga85254b" class="outline-4">
+<h4 id="orga85254b">Procedure of Changes</h4>
+<div class="outline-text-4" id="text-orga85254b">
 <p>
 Basically there are two steps when changing data:
 </p>
@@ -293,16 +293,16 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 </div>
 </div>
 
-<div id="outline-container-org2460174" class="outline-3">
-<h3 id="org2460174">Data Definition</h3>
-<div class="outline-text-3" id="text-org2460174">
+<div id="outline-container-orgd80f12d" class="outline-3">
+<h3 id="orgd80f12d">Data Definition</h3>
+<div class="outline-text-3" id="text-orgd80f12d">
 <p>
 We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
 </p>
 </div>
-<div id="outline-container-org494f972" class="outline-4">
-<h4 id="org494f972">Table Management</h4>
-<div class="outline-text-4" id="text-org494f972">
+<div id="outline-container-org99efdb5" class="outline-4">
+<h4 id="org99efdb5">Table Management</h4>
+<div class="outline-text-4" id="text-org99efdb5">
 <p>
 To create a new table use the command <code>create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )</code>. To alter the schema of a table after its creation use <code>alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})</code> to add an attribute, <code>alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})</code> to modify an attribute and <code>alter table {TABLENAME} drop column {ATTRIBUTE_NAME}</code> to delete an attribute. If you want to delete a whole table issue the command <code>drop table {TABLENAME}</code>.
 </p>
@@ -318,7 +318,7 @@ Here are the data types SQL supports by default with some examples:
 
 <ul class="org-ul">
 <li>
-<a id="orgc78b12b"></a>Boolean<br><div class="outline-text-6" id="text-orgc78b12b">
+<a id="org93ba95c"></a>Boolean<br><div class="outline-text-6" id="text-org93ba95c">
 <ul class="org-ul">
 <li>either <code>true</code> or <code>false</code>
 <ul class="org-ul">
@@ -336,7 +336,7 @@ Here are the data types SQL supports by default with some examples:
 </li>
 
 <li>
-<a id="orgdc05bb0"></a>Strings/Characters<br><div class="outline-text-6" id="text-orgdc05bb0">
+<a id="orgdaae0ef"></a>Strings/Characters<br><div class="outline-text-6" id="text-orgdaae0ef">
 <p>
 The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
 </p>
@@ -360,7 +360,7 @@ The number of allowed characters (max length) is usually defined as well when sp
 </li>
 
 <li>
-<a id="orgd423f6a"></a>Numericals (exact)<br><div class="outline-text-6" id="text-orgd423f6a">
+<a id="org0987f91"></a>Numericals (exact)<br><div class="outline-text-6" id="text-org0987f91">
 <ul class="org-ul">
 <li>are used for <i>exact</i> representations of numbers</li>
 <li>the precision of a number is specified by providing the the amount of digits to be hold
@@ -378,7 +378,7 @@ The number of allowed characters (max length) is usually defined as well when sp
 </li>
 
 <li>
-<a id="orgd3074ff"></a>Numericals (approximal)<br><div class="outline-text-6" id="text-orgd3074ff">
+<a id="org3ee4c20"></a>Numericals (approximal)<br><div class="outline-text-6" id="text-org3ee4c20">
 <ul class="org-ul">
 <li>are used for <i>approximate</i> representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent</li>
 <li><code>float [{PRECISION}]</code></li>
@@ -391,7 +391,7 @@ The number of allowed characters (max length) is usually defined as well when sp
 </li>
 
 <li>
-<a id="org0f5ff17"></a>Date and Time<br><div class="outline-text-6" id="text-org0f5ff17">
+<a id="org2c7591c"></a>Date and Time<br><div class="outline-text-6" id="text-org2c7591c">
 <p>
 There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
 </p>
@@ -411,7 +411,7 @@ Date and time values can optionally be parameterized to set the precision explic
 </li>
 
 <li>
-<a id="org99d1b78"></a>Interval<br><div class="outline-text-6" id="text-org99d1b78">
+<a id="org1f10b84"></a>Interval<br><div class="outline-text-6" id="text-org1f10b84">
 <p>
 The data type <code>interval</code> describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
 </p>
@@ -422,6 +422,307 @@ The data type <code>interval</code> describes a time period/range. Such range/pe
 </div>
 </li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-orgcec7cbb" class="outline-3">
+<h3 id="orgcec7cbb">Integrity Constraints/Rules/Conditions</h3>
+<div class="outline-text-3" id="text-orgcec7cbb">
+<p>
+Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. To achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules results in lower error rates, and time saved troubleshooting and tracing erroneous data and the errors it causes to algorithms.
+</p>
+
+<p>
+Data integrity also includes rules defining the relations a piece of data can have, to other pieces of data, such as a Customer record being allowed to link to purchased Products, but not to unrelated data such as Corporate Assets. Data integrity often includes checks and correction for invalid data, based on a fixed schema or a predefined set of rules. An example being textual data entered where a date-time value is required. Rules for data derivation are also applicable, specifying how a data value is derived based on algorithm, contributors and conditions. It also specifies the conditions on how the data value could be re-derived.
+</p>
+
+<p>
+Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let's look at some possible constraints in SQL.
+</p>
+</div>
+<div id="outline-container-org8975c7c" class="outline-4">
+<h4 id="org8975c7c">Required/obligatory Data</h4>
+<div class="outline-text-4" id="text-org8975c7c">
+<p>
+Via the keyword <code>not null</code> it can be specified in the attribute definition when the values for an attribute are not allowed to be empty/null. The DBMS then refuses insert or change operations which include a null value for that attribute. Example:
+</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">table</span> <span class="n">Student</span> <span class="p">(</span>
+  <span class="n">matrNr</span>     <span class="nb">integer</span>     <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+  <span class="n">name</span>       <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+  <span class="n">major</span>      <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div id="outline-container-orga682f4c" class="outline-4">
+<h4 id="orga682f4c">Domain Integrity</h4>
+<div class="outline-text-4" id="text-orga682f4c">
+<p>
+Just the specification of a data type (eg <code>integer</code> or <code>varchar</code>) is often times not sufficient as a criteria for the allowed values. That's why there's the possibility to perform further validation via <code>check ({CONDITION})</code>. Similarily whole new <i>attribute domains</i> (then usable as attribute type) can be defined via restriction of existing data types via <code>create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]</code>, eg:
+</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">domain</span> <span class="n">genderType</span> <span class="k">as</span> <span class="nb">char</span> <span class="k">check</span> <span class="p">(</span><span class="n">value</span> <span class="k">in</span> <span class="p">(</span><span class="s1">'m'</span><span class="p">,</span> <span class="s1">'f'</span><span class="p">))</span>
+</pre></div>
+<p>
+Here's a more involved example. Suppose that there's a company with 3 departments where the employees are paid at least 1000$ and at max 10000$. Here's how the table creation could look like when considering those attribute constraints:
+</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">table</span> <span class="n">Staff</span> <span class="p">(</span>
+  <span class="n">name</span>         <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+  <span class="n">gender</span>       <span class="n">genderType</span><span class="p">,</span>
+  <span class="n">department</span>   <span class="nb">integer</span>  <span class="k">check</span> <span class="p">(</span><span class="n">department</span> <span class="k">between</span> <span class="mi">1</span> <span class="k">and</span> <span class="mi">3</span><span class="p">),</span>
+  <span class="n">salary</span>       <span class="nb">integer</span>  <span class="k">check</span> <span class="p">(</span><span class="n">salary</span> <span class="k">between</span> <span class="mi">1000</span> <span class="k">and</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+
+<p>
+In short: A domain defines the possible values of an attribute. Domain Integrity rules govern these values.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25daf15" class="outline-4">
+<h4 id="org25daf15">Entity Integrity</h4>
+<div class="outline-text-4" id="text-org25daf15">
+<p>
+Entity Integrity ensures that there are no duplicate records within the table and that the field that identifies each record within the table is unique and never null.
+The existence of the Primary Key is the core of the entity integrity. If you define a primary key for each entity, they follow the entity integrity rule.
+Entity integrity specifies that the Primary Keys on every instance of an entity must be kept, must be unique and must have values other than NULL.
+Although most relational databases do not specifically dictate that a table needs to have a Primary Key, it is good practice to design a Primary Key for each table in the relational model. This mandates no NULL content, so that every row in a table must have a value that denotes the row as a unique element of the entity.
+</p>
+
+<p>
+Entity Integrity is the mechanism the system provides to maintain primary keys. The primary key serves as a unique identifier for rows in the table. Entity Integrity ensures two properties for primary keys:
+</p>
+<ul class="org-ul">
+<li>The primary key for a row is unique; it does not match the primary key of any other row in the table.</li>
+<li>The primary key is not null, no component of the primary key may be set to null.</li>
+</ul>
+<p>
+The uniqueness property ensures that the primary key of each row uniquely identifies it - there are no duplicates. The second property ensures that the primary key has meaning, has a value - no component of the key is missing.
+</p>
+
+<p>
+The system enforces Entity Integrity by not allowing operations (INSERT, UPDATE) to produce an invalid primary key. Any operation that creates a duplicate primary key or one containing nulls is rejected.
+</p>
+
+<p>
+In SQL the entity integrity via primary keys is specified via <code>primary key ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])</code>. Alternative <i>key</i> (not primary) attributes can be specified via <code>unique ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])</code>. Here's an example where a primary key is utilized:
+</p>
+
+<p>
+There's a university where:
+</p>
+<ul class="org-ul">
+<li>the lecture numbers are three digits</li>
+<li>the matricle numbers are six digits</li>
+<li>the grades are in the range of 1.0 to 5.0</li>
+</ul>
+<p>
+This is how we'd create a table for the exams:
+</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">table</span> <span class="n">Exam</span> <span class="p">(</span>
+ <span class="n">lectureNr</span> <span class="nb">integer</span> <span class="k">check</span> <span class="p">(</span> <span class="n">nummer</span> <span class="k">between</span> <span class="mi">100</span> <span class="k">and</span> <span class="mi">999</span> <span class="p">),</span>
+ <span class="n">matrNr</span>    <span class="nb">integer</span> <span class="k">check</span> <span class="p">(</span> <span class="n">nummer</span> <span class="k">between</span> <span class="mi">100000</span> <span class="k">and</span> <span class="mi">999999</span><span class="p">),</span>
+ <span class="n">note</span>      <span class="nb">numeric</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">check</span> <span class="p">(</span> <span class="n">note</span> <span class="k">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">.</span><span class="mi">0</span><span class="p">)),</span>
+ <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="n">lectureNr</span><span class="p">,</span> <span class="n">matrNr</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org1d89aa6" class="outline-4">
+<h4 id="org1d89aa6">Referential Integrity</h4>
+<div class="outline-text-4" id="text-org1d89aa6">
+<p>
+Wiki: Referential integrity is a property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.
+</p>
+
+<p>
+For referential integrity to hold in a relational database, any column in a base table that is declared a foreign key can only contain either null values or values from a parent table's primary key or a candidate key. In other words, when a foreign key value is used it must reference a valid, existing primary key in the parent table. For instance, deleting a record that contains a value referred to by a foreign key in another table would break referential integrity. 
+</p>
+
+<p>
+Techopedia: Referential integrity (RI) is a relational database concept, which states that table relationships must always be consistent. In other words, any foreign key field must agree with the primary key that is referenced by the foreign key. Thus, any primary key field changes must be applied to all foreign keys, or not at all. The same restriction also applies to foreign keys in that any updates (but not necessarily deletions) must be propagated to the primary parent key.
+</p>
+
+<p>
+Back to the lecture slides :D . Up until now we're not able to guarantee that referenced tuples of a relation really exist. Look at the following example:
+We have a table of lectures
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">number{PK}</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">persNr{FK}</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Data Structures</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">234</td>
+<td class="org-left">Databases in Praxis</td>
+<td class="org-right">6897</td>
+</tr>
+<tr>
+<td class="org-right">345</td>
+<td class="org-left">Database Essentials</td>
+<td class="org-right">6123</td>
+</tr>
+<tr>
+<td class="org-right">456</td>
+<td class="org-left">Exercise Data Structures</td>
+<td class="org-right">6897</td>
+</tr>
+</tbody>
+</table>
+<p>
+where the <b>persNr</b> is a foreign key. The related table where <b>persNr</b> is the primary key is the table of teachers:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-right">
+<col class="org-left">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-right">persNr{PK}</th>
+<th scope="col" class="org-left">name</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-right">6123</td>
+<td class="org-left">Ares</td>
+</tr>
+<tr>
+<td class="org-right">6897</td>
+<td class="org-left">Zeus</td>
+</tr>
+<tr>
+<td class="org-right">43424</td>
+<td class="org-left">Hera</td>
+</tr>
+</tbody>
+</table>
+<p>
+Up until now the referential integrity is fulfilled. <i>But</i> if we were to execute the following operation <code>insert into Lectures values (500, 'Mathematics', 7111)</code> we'd violate that principle because there's no tuple in Teachers where the primary key <b>persNr</b> is <code>7111</code>.
+</p>
+
+<p>
+Now to a more formal defintion of referential integrity.
+Suppose we have two relations R and S. The attribute(set) K is the primary key of R and the attribute(set) FK is the foreign key from R in S. To guarantee referential integrity the following condition has always to be true: \(\pi_{FK}(S) \subseteq \pi_{K}(R)\) which means that if two relations R and S are in a key/foreign-key relationship with eath other, then every attribute value of the foreign key has to exist (set is subset or equal to) as an attribute value in the primary key attribute.
+</p>
+
+<p>
+In the example given above (before the insert command) this would look like:
+\(\pi_{Lecture.persNr}(Lecture) \subseteq \pi_{Teacher.persNr}(Teacher)\) → {6897, 6123} \subseteq {6897, 6123, 43424} so the condition for referential integrity is fullfilled &amp;check; . <i>After</i> the insert command the condition would <b>not</b> be fulfilled → {6897, 6123, 7111} \nsubseteq {6897, 6123, 43424}.
+</p>
+
+<p>
+Analogously we need to fulfill some conditions when modifying data to ensure referential integrity:
+</p>
+<ul class="org-ul">
+<li>inserting/changing a tuple s in S
+<ul class="org-ul">
+<li>for the inserted/changed value <b>fk</b> of the foreign key <b>FK</b> of s the following must be true: 
+<ul class="org-ul">
+<li>→ fk ∈ π<sub>K</sub>(R)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>deleting a tuple r ∈ R or changing the value k of the primary key attribute K of r the following must be true for the <b>original</b> attribute value k of the key K:
+<ul class="org-ul">
+<li>→ σ{FK=k}(S) = ∅ → meaning that in S no tuple is referencing the value of the key k as a foreign key (in attribute FK)</li>
+</ul>
+</li>
+</ul>
+<p>
+Let's learn how to ensure RI with SQL.
+</p>
+
+<p>
+When defining our schema we mark the foreign keys with the key word <code>foreign key</code> in the same way we mark primary keys. After doing so a <code>references</code> clause is added which specifies the table in which the just marked foreign key is present as a primary key. 
+</p>
+
+<p>
+Values of foreign key attributes that are marked via <code>foreign key</code> can be null, unless they're explicitly marked as <code>not null</code>.
+</p>
+
+<p>
+The result of this procedure is that now to change or insert a tuple, the foreign key references in that tuple need to exist. Also the deletion of tuples which are referenced elsewhere is not possible anymore.
+</p>
+
+<p>
+Here's the SQL code to create a table Exams that references the Lectures(number, title, persNr) and Students(matrNr, name, credits) tables:
+</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">table</span> <span class="n">Exam</span>
+<span class="p">(</span>
+  <span class="n">lectureNr</span> <span class="nb">integer</span>      <span class="k">check</span> <span class="p">(</span><span class="n">lectureNr</span> <span class="k">between</span> <span class="mi">100</span> <span class="k">and</span> <span class="mi">999</span><span class="p">),</span>
+  <span class="n">matrNr</span>    <span class="nb">integer</span>      <span class="k">check</span> <span class="p">(</span><span class="n">matrNr</span> <span class="k">between</span> <span class="mi">100000</span> <span class="k">and</span> <span class="mi">999999</span><span class="p">),</span>
+  <span class="n">grade</span>     <span class="nb">numeric</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">check</span> <span class="p">(</span><span class="n">grade</span> <span class="k">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">7</span><span class="p">,</span>
+					  <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">7</span><span class="p">,</span>
+					  <span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">7</span>
+					  <span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">.</span><span class="mi">0</span><span class="p">)),</span>
+  <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="n">lectureNr</span><span class="p">,</span> <span class="n">matrNr</span><span class="p">),</span>
+  <span class="k">foreign</span> <span class="k">key</span> <span class="p">(</span><span class="n">lectureNr</span><span class="p">)</span> <span class="k">references</span> <span class="n">Lecture</span><span class="p">,</span>
+  <span class="k">foreign</span> <span class="k">key</span> <span class="p">(</span><span class="n">matrNr</span><span class="p">)</span>    <span class="k">references</span> <span class="n">Student</span>
+<span class="p">);</span>
+</pre></div>
+
+<p>
+Besides prohibiting changes that violate RI it is also possible to <b>propagate changes</b> via <b>automatical cascadings</b> of changing operations.
+</p>
+
+<p>
+This means that a modification of a primary key value triggers the same change of all associated foreign key values. To have this behaviour <code>on update cascade</code> is added to the <code>references</code> clause (eg <code>foreign key (matrNr) references Student on update cascade</code>)). The picture below shows this behaviour:
+<img src="../../../images/cascade-on-update.png" alt="nil"></p>
+
+
+<p>
+It is also possible to cascade deletions. Beware this can be dangerous, because while the referential integrity is guaranteed you may delete data by accident. Adding <code>on delete cascade</code> to the <code>references</code> clause causes the deletion of all tuples that have k as a foreign key when a tuple with a primary key of k is deleted. The picture below shows this behaviour:
+<img src="../../../images/cascade-on-delete.png" alt="nil"></p>
+
+<p>
+Furthermore it is possible to automatically set the values foreign key attributes that are changed to <code>null</code> to guarantee integrity.
+</p>
+<ul class="org-ul">
+<li>when a primary key value is changed, all corresponding foreign key values are set to <code>null</code> ; to achieve this specify <code>on update set null</code> in the <code>references</code> clause</li>
+<li>when a tuple is deleted that has a primary key which servers as a foreign key somewhere else then the foreign key values at those places can be set to <code>null</code> by specifying <code>on delete set null</code> in the <code>references</code> clause</li>
+</ul>
+<p>
+<img src="../../../images/cascade-set-null.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org2969fc1" class="outline-4">
+<h4 id="org2969fc1">Cardinality and Participation</h4>
+<div class="outline-text-4" id="text-org2969fc1">
+<p>
+Modelling cardinality and participation is principally possible with SQL. <code>1:1</code> relationships can be expressed via foreign key integration that is marked with <code>unique</code> to indicate the obligatory and unique relationship. Obligatory <code>1:N</code> relationships can also be expressed with foreign keys. To do so the foreign key on the <code>N</code> side has to be marked with <code>not null</code>. However not all restrictions that can be modeled are directly convertable in SQL. Foreign keys of an <i>optional</i> participation can for example not be marked as <code>unique</code> and hold <code>null</code> (null because optional) at the same time. 
+</p>
+</div>
+</div>
+<div id="outline-container-org9cf7e60" class="outline-4">
+<h4 id="org9cf7e60">Other Constraints (Sonstiges)</h4>
+<div class="outline-text-4" id="text-org9cf7e60">
+<p>
+There are also <i>assertions</i> to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: <code>create assertion {AssertionName} check ({condition})</code>. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgef6f3b4" class="outline-3">
+<h3 id="orgef6f3b4">Relational Views</h3>
+<div class="outline-text-3" id="text-orgef6f3b4">
+<p>
+F 43
+</p>
 </div>
 </div>
 </div>
@@ -467,7 +768,7 @@ The data type <code>interval</code> describes a time period/range. Such range/pe
                 </div>
             </div>
                 <div class="copyright">
-                    Contents © 2018         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    Contents © 2019         <a href="mailto:schoettkr@gmail.com">schoettkr</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
                     
                 </div>
            
