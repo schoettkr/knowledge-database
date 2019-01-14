@@ -280,4 +280,64 @@ Modelling cardinality and participation is principally possible with SQL. =1:1= 
 *** Other Constraints (Sonstiges)
 There are also /assertions/ to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: =create assertion {AssertionName} check ({condition})=. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.
 ** Relational Views
-F 43
+Bring the three level architecture from the first lecture to your mind.
+We got to know the external view as an individual user view of a part (Ausschnitt) of the conceptual view. There's a construct that supports this design principle (Darstellungsprinzip) in the relational model.
+
+A view in the relational model (relational view) is a *virtual relation* which is the result of applying relational operators to one or more base relations. A base relation (in contrast to a view) is relation which directly has tuples.
+
+There're different kinds of views:
+- horizontal: view contains subset of tuples from the base relation
+- vertical: view contains subset of attributes from the base relation
+- joined: view is based on more than one base relation
+- combined: arbitrary combination of horizontal, vertical and/or joined views
+- aggregated/grouped: view is result of aggregate functions on p.r.n(pro re nata, ggf) grouped tuple sets
+  
+Via =create view NAME as (SELECT-STATEMENT)= views are created and via =drop view NAME= views are deleted in SQL.
+
+Here's an example use case for views. The advisors of the different majors should only be able to access the data of "their" students (major).
+#+BEGIN_SRC sql
+  create view MathStudents as (
+      select matrNr, name
+      from Student
+      where major = 'Math'
+  );
+
+  create view PhilosophyStudents as (
+      select matrNr, name
+      from Student
+      where major = 'Philosophy'
+  );
+#+END_SRC
+In the following images are two more examples
+
+[[img-url:/images/view-1.png ]]
+
+[[img-url:/images/view-2.png ]]
+
+Updating views is possible when the view:
+- does not contain aggregate functions nor instructions like =having=, =distinct= or =group by=
+- only contains distinct column names and a key of the base table in the =select= projection list
+- contains only one table which is naturally modifiable
+
+*But* even if a view is theoretically changable it is not guaranteed that SQL or the DBMS allow the modification!
+
+**** Advantages of Views
+- data independence
+  - presentation of a consistent and coherent database structure even when there are structural changes of the underlieing tables
+- powerful safety/security mechanism
+  - arbitrary database contents (tables, attributes, data sets) can be shielded from users; access can also be provided individually
+- complexity reduction
+  - complex operations can be simplified by storing there interim results (Zwischenergebnisse) into views which then can be queried via less complex queries
+- flexible presentation
+  - the same data can be presented in individual ways according to needs and rights of the diffrent users
+  - this also simplifies the user interaction with the database because it is possible to only display parts that affect them
+**** Disadvantages of Views
+- update capabilities
+  - tuples can only be updated/inserted/deleted under certain conditions
+- fixed structure
+  - the structure of a view is determined when it is defined
+  - when for example new attributes are added to a base table then these are not in the view until it is deleted and recreated
+- performance
+  - there's an overhead because a view has to be calculated/derived at each access
+    - this can matter especially for large computations (eg aggregate functions) or multiplle involved base tables
+  - this may be corrected via so called /materialized views/ of which the results are stored (zwischengespeichert) but here the actuality (Aktualität) of the data has to be ensured as well

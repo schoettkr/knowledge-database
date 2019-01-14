@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 14 Jan 2019 15:48:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 22 &amp; 23</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 14 Jan 2019 21:14:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 22 &amp; 23</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This chapter spans two lectures so lecture 22 and 23 will be pooled into this single blog post.
 &lt;/p&gt;
 
@@ -2590,9 +2590,9 @@ Next week we'll probably cover the next step  of &lt;b&gt;"Implementation"&lt;/b
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 &lt;/p&gt;
 
-&lt;div id="outline-container-orgc08de16" class="outline-2"&gt;
-&lt;h2 id="orgc08de16"&gt;Introduction to SQL&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc08de16"&gt;
+&lt;div id="outline-container-org6405b97" class="outline-2"&gt;
+&lt;h2 id="org6405b97"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6405b97"&gt;
 &lt;p&gt;
 What we'll cover here:
 &lt;/p&gt;
@@ -2609,13 +2609,13 @@ What we'll cover here:
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc6f40a0" class="outline-3"&gt;
-&lt;h3 id="orgc6f40a0"&gt;Data Manipulation&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc6f40a0"&gt;
+&lt;div id="outline-container-org794e559" class="outline-3"&gt;
+&lt;h3 id="org794e559"&gt;Data Manipulation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org794e559"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org44434ad" class="outline-4"&gt;
-&lt;h4 id="org44434ad"&gt;Create Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org44434ad"&gt;
+&lt;div id="outline-container-org67ec0e2" class="outline-4"&gt;
+&lt;h4 id="org67ec0e2"&gt;Create Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org67ec0e2"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. There are different syntactical variants.
 &lt;/p&gt;
@@ -2708,9 +2708,9 @@ With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgce8a0f4" class="outline-4"&gt;
-&lt;h4 id="orgce8a0f4"&gt;Delete Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgce8a0f4"&gt;
+&lt;div id="outline-container-org7818290" class="outline-4"&gt;
+&lt;h4 id="org7818290"&gt;Delete Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7818290"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;delete&lt;/code&gt; tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is &lt;code&gt;delete from &amp;lt;tablename&amp;gt; where &amp;lt;condition&amp;gt;&lt;/code&gt;
 &lt;/p&gt;
@@ -2727,9 +2727,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org449cc0d" class="outline-4"&gt;
-&lt;h4 id="org449cc0d"&gt;Update/Change Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org449cc0d"&gt;
+&lt;div id="outline-container-orgb81af6c" class="outline-4"&gt;
+&lt;h4 id="orgb81af6c"&gt;Update/Change Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb81af6c"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;update&lt;/code&gt; attributtes of all tuples in a table can be changed in the same way. The syntax is &lt;code&gt;update &amp;lt;tablename&amp;gt; set &amp;lt;attribute1&amp;gt; = &amp;lt;expression1&amp;gt;, &amp;lt;attribute2&amp;gt; = &amp;lt;expression2&amp;gt;, ...&lt;/code&gt;
 &lt;/p&gt;
@@ -2760,9 +2760,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga85254b" class="outline-4"&gt;
-&lt;h4 id="orga85254b"&gt;Procedure of Changes&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga85254b"&gt;
+&lt;div id="outline-container-org8778c3a" class="outline-4"&gt;
+&lt;h4 id="org8778c3a"&gt;Procedure of Changes&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8778c3a"&gt;
 &lt;p&gt;
 Basically there are two steps when changing data:
 &lt;/p&gt;
@@ -2783,16 +2783,16 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd80f12d" class="outline-3"&gt;
-&lt;h3 id="orgd80f12d"&gt;Data Definition&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd80f12d"&gt;
+&lt;div id="outline-container-orgdfde6af" class="outline-3"&gt;
+&lt;h3 id="orgdfde6af"&gt;Data Definition&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdfde6af"&gt;
 &lt;p&gt;
 We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org99efdb5" class="outline-4"&gt;
-&lt;h4 id="org99efdb5"&gt;Table Management&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org99efdb5"&gt;
+&lt;div id="outline-container-orga5c0cb0" class="outline-4"&gt;
+&lt;h4 id="orga5c0cb0"&gt;Table Management&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga5c0cb0"&gt;
 &lt;p&gt;
 To create a new table use the command &lt;code&gt;create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )&lt;/code&gt;. To alter the schema of a table after its creation use &lt;code&gt;alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to add an attribute, &lt;code&gt;alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to modify an attribute and &lt;code&gt;alter table {TABLENAME} drop column {ATTRIBUTE_NAME}&lt;/code&gt; to delete an attribute. If you want to delete a whole table issue the command &lt;code&gt;drop table {TABLENAME}&lt;/code&gt;.
 &lt;/p&gt;
@@ -2807,8 +2807,8 @@ Here are the data types SQL supports by default with some examples:
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org93ba95c"&gt;&lt;/a&gt;Boolean&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org93ba95c"&gt;
+&lt;li&gt;&lt;a id="org999bf28"&gt;&lt;/a&gt;Boolean&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org999bf28"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;
 &lt;ul class="org-ul"&gt;
@@ -2822,8 +2822,8 @@ Here are the data types SQL supports by default with some examples:
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgdaae0ef"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
-&lt;div class="outline-text-6" id="text-orgdaae0ef"&gt;
+&lt;li&gt;&lt;a id="org1676eb4"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org1676eb4"&gt;
 &lt;p&gt;
 The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
 &lt;/p&gt;
@@ -2842,8 +2842,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org0987f91"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org0987f91"&gt;
+&lt;li&gt;&lt;a id="org1f62e4b"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org1f62e4b"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;are used for &lt;i&gt;exact&lt;/i&gt; representations of numbers&lt;/li&gt;
 &lt;li&gt;the precision of a number is specified by providing the the amount of digits to be hold
@@ -2858,8 +2858,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org3ee4c20"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org3ee4c20"&gt;
+&lt;li&gt;&lt;a id="org643f9f7"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org643f9f7"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;are used for &lt;i&gt;approximate&lt;/i&gt; representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;float [{PRECISION}]&lt;/code&gt;&lt;/li&gt;
@@ -2870,8 +2870,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org2c7591c"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org2c7591c"&gt;
+&lt;li&gt;&lt;a id="org1de3e70"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org1de3e70"&gt;
 &lt;p&gt;
 There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
 &lt;/p&gt;
@@ -2887,8 +2887,8 @@ Date and time values can optionally be parameterized to set the precision explic
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org1f10b84"&gt;&lt;/a&gt;Interval&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org1f10b84"&gt;
+&lt;li&gt;&lt;a id="orgf0e8bd3"&gt;&lt;/a&gt;Interval&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgf0e8bd3"&gt;
 &lt;p&gt;
 The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
 &lt;/p&gt;
@@ -2902,9 +2902,9 @@ The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. S
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcec7cbb" class="outline-3"&gt;
-&lt;h3 id="orgcec7cbb"&gt;Integrity Constraints/Rules/Conditions&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcec7cbb"&gt;
+&lt;div id="outline-container-orgcdcb4bc" class="outline-3"&gt;
+&lt;h3 id="orgcdcb4bc"&gt;Integrity Constraints/Rules/Conditions&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcdcb4bc"&gt;
 &lt;p&gt;
 Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. To achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules results in lower error rates, and time saved troubleshooting and tracing erroneous data and the errors it causes to algorithms.
 &lt;/p&gt;
@@ -2917,9 +2917,9 @@ Data integrity also includes rules defining the relations a piece of data can ha
 Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let's look at some possible constraints in SQL.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org8975c7c" class="outline-4"&gt;
-&lt;h4 id="org8975c7c"&gt;Required/obligatory Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8975c7c"&gt;
+&lt;div id="outline-container-org4c24cf1" class="outline-4"&gt;
+&lt;h4 id="org4c24cf1"&gt;Required/obligatory Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4c24cf1"&gt;
 &lt;p&gt;
 Via the keyword &lt;code&gt;not null&lt;/code&gt; it can be specified in the attribute definition when the values for an attribute are not allowed to be empty/null. The DBMS then refuses insert or change operations which include a null value for that attribute. Example:
 &lt;/p&gt;
@@ -2931,9 +2931,9 @@ Via the keyword &lt;code&gt;not null&lt;/code&gt; it can be specified in the att
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga682f4c" class="outline-4"&gt;
-&lt;h4 id="orga682f4c"&gt;Domain Integrity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga682f4c"&gt;
+&lt;div id="outline-container-org2d437f7" class="outline-4"&gt;
+&lt;h4 id="org2d437f7"&gt;Domain Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2d437f7"&gt;
 &lt;p&gt;
 Just the specification of a data type (eg &lt;code&gt;integer&lt;/code&gt; or &lt;code&gt;varchar&lt;/code&gt;) is often times not sufficient as a criteria for the allowed values. That's why there's the possibility to perform further validation via &lt;code&gt;check ({CONDITION})&lt;/code&gt;. Similarily whole new &lt;i&gt;attribute domains&lt;/i&gt; (then usable as attribute type) can be defined via restriction of existing data types via &lt;code&gt;create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]&lt;/code&gt;, eg:
 &lt;/p&gt;
@@ -2956,9 +2956,9 @@ In short: A domain defines the possible values of an attribute. Domain Integrity
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org25daf15" class="outline-4"&gt;
-&lt;h4 id="org25daf15"&gt;Entity Integrity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org25daf15"&gt;
+&lt;div id="outline-container-orgc5a34d1" class="outline-4"&gt;
+&lt;h4 id="orgc5a34d1"&gt;Entity Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc5a34d1"&gt;
 &lt;p&gt;
 Entity Integrity ensures that there are no duplicate records within the table and that the field that identifies each record within the table is unique and never null.
 The existence of the Primary Key is the core of the entity integrity. If you define a primary key for each entity, they follow the entity integrity rule.
@@ -3008,9 +3008,9 @@ This is how we'd create a table for the exams:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1d89aa6" class="outline-4"&gt;
-&lt;h4 id="org1d89aa6"&gt;Referential Integrity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org1d89aa6"&gt;
+&lt;div id="outline-container-org0ace805" class="outline-4"&gt;
+&lt;h4 id="org0ace805"&gt;Referential Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0ace805"&gt;
 &lt;p&gt;
 Wiki: Referential integrity is a property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.
 &lt;/p&gt;
@@ -3197,30 +3197,139 @@ Furthermore it is possible to automatically set the values foreign key attribute
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2969fc1" class="outline-4"&gt;
-&lt;h4 id="org2969fc1"&gt;Cardinality and Participation&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org2969fc1"&gt;
+&lt;div id="outline-container-org4717ace" class="outline-4"&gt;
+&lt;h4 id="org4717ace"&gt;Cardinality and Participation&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4717ace"&gt;
 &lt;p&gt;
 Modelling cardinality and participation is principally possible with SQL. &lt;code&gt;1:1&lt;/code&gt; relationships can be expressed via foreign key integration that is marked with &lt;code&gt;unique&lt;/code&gt; to indicate the obligatory and unique relationship. Obligatory &lt;code&gt;1:N&lt;/code&gt; relationships can also be expressed with foreign keys. To do so the foreign key on the &lt;code&gt;N&lt;/code&gt; side has to be marked with &lt;code&gt;not null&lt;/code&gt;. However not all restrictions that can be modeled are directly convertable in SQL. Foreign keys of an &lt;i&gt;optional&lt;/i&gt; participation can for example not be marked as &lt;code&gt;unique&lt;/code&gt; and hold &lt;code&gt;null&lt;/code&gt; (null because optional) at the same time. 
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org9cf7e60" class="outline-4"&gt;
-&lt;h4 id="org9cf7e60"&gt;Other Constraints (Sonstiges)&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org9cf7e60"&gt;
+&lt;div id="outline-container-orgfe2ec61" class="outline-4"&gt;
+&lt;h4 id="orgfe2ec61"&gt;Other Constraints (Sonstiges)&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgfe2ec61"&gt;
 &lt;p&gt;
 There are also &lt;i&gt;assertions&lt;/i&gt; to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: &lt;code&gt;create assertion {AssertionName} check ({condition})&lt;/code&gt;. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgef6f3b4" class="outline-3"&gt;
-&lt;h3 id="orgef6f3b4"&gt;Relational Views&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgef6f3b4"&gt;
+&lt;div id="outline-container-orgf98c457" class="outline-3"&gt;
+&lt;h3 id="orgf98c457"&gt;Relational Views&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf98c457"&gt;
 &lt;p&gt;
-F 43
+Bring the three level architecture from the first lecture to your mind.
+We got to know the external view as an individual user view of a part (Ausschnitt) of the conceptual view. There's a construct that supports this design principle (Darstellungsprinzip) in the relational model.
+&lt;/p&gt;
+
+&lt;p&gt;
+A view in the relational model (relational view) is a &lt;b&gt;virtual relation&lt;/b&gt; which is the result of applying relational operators to one or more base relations. A base relation (in contrast to a view) is relation which directly has tuples.
+&lt;/p&gt;
+
+&lt;p&gt;
+There're different kinds of views:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;horizontal: view contains subset of tuples from the base relation&lt;/li&gt;
+&lt;li&gt;vertical: view contains subset of attributes from the base relation&lt;/li&gt;
+&lt;li&gt;joined: view is based on more than one base relation&lt;/li&gt;
+&lt;li&gt;combined: arbitrary combination of horizontal, vertical and/or joined views&lt;/li&gt;
+&lt;li&gt;aggregated/grouped: view is result of aggregate functions on p.r.n(pro re nata, ggf) grouped tuple sets&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Via &lt;code&gt;create view NAME as (SELECT-STATEMENT)&lt;/code&gt; views are created and via &lt;code&gt;drop view NAME&lt;/code&gt; views are deleted in SQL.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's an example use case for views. The advisors of the different majors should only be able to access the data of "their" students (major).
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;view&lt;/span&gt; &lt;span class="n"&gt;MathStudents&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+    &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt;
+    &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;major&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Math'&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;view&lt;/span&gt; &lt;span class="n"&gt;PhilosophyStudents&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;matrNr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+    &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt;
+    &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;major&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Philosophy'&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+In the following images are two more examples
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/view-1.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="https://schoettkr.github.io/knowledge-database/images/view-2.png" alt="nil"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Updating views is possible when the view:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;does not contain aggregate functions nor instructions like &lt;code&gt;having&lt;/code&gt;, &lt;code&gt;distinct&lt;/code&gt; or &lt;code&gt;group by&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;only contains distinct column names and a key of the base table in the &lt;code&gt;select&lt;/code&gt; projection list&lt;/li&gt;
+&lt;li&gt;contains only one table which is naturally modifiable&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;b&gt;But&lt;/b&gt; even if a view is theoretically changable it is not guaranteed that SQL or the DBMS allow the modification!
 &lt;/p&gt;
 &lt;/div&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org0eed4f4"&gt;&lt;/a&gt;Advantages of Views&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org0eed4f4"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;data independence
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;presentation of a consistent and coherent database structure even when there are structural changes of the underlieing tables&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;powerful safety/security mechanism
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;arbitrary database contents (tables, attributes, data sets) can be shielded from users; access can also be provided individually&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;complexity reduction
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;complex operations can be simplified by storing there interim results (Zwischenergebnisse) into views which then can be queried via less complex queries&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;flexible presentation
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the same data can be presented in individual ways according to needs and rights of the diffrent users&lt;/li&gt;
+&lt;li&gt;this also simplifies the user interaction with the database because it is possible to only display parts that affect them&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a id="org267e7e8"&gt;&lt;/a&gt;Disadvantages of Views&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org267e7e8"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;update capabilities
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;tuples can only be updated/inserted/deleted under certain conditions&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;fixed structure
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;the structure of a view is determined when it is defined&lt;/li&gt;
+&lt;li&gt;when for example new attributes are added to a base table then these are not in the view until it is deleted and recreated&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;performance
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;there's an overhead because a view has to be calculated/derived at each access
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;this can matter especially for large computations (eg aggregate functions) or multiplle involved base tables&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;this may be corrected via so called &lt;i&gt;materialized views&lt;/i&gt; of which the results are stored (zwischengespeichert) but here the actuality (Aktualität) of the data has to be ensured as well&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</guid><pubDate>Tue, 04 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
 &lt;h2 id="orged82e2d"&gt;Recursion and Backtracking&lt;/h2&gt;

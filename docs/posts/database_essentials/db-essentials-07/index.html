@@ -106,9 +106,9 @@ Data Definition
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 </p>
 
-<div id="outline-container-orgc08de16" class="outline-2">
-<h2 id="orgc08de16">Introduction to SQL</h2>
-<div class="outline-text-2" id="text-orgc08de16">
+<div id="outline-container-org6405b97" class="outline-2">
+<h2 id="org6405b97">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-org6405b97">
 <p>
 What we'll cover here:
 </p>
@@ -127,13 +127,13 @@ What we'll cover here:
 </ul>
 </div>
 
-<div id="outline-container-orgc6f40a0" class="outline-3">
-<h3 id="orgc6f40a0">Data Manipulation</h3>
-<div class="outline-text-3" id="text-orgc6f40a0">
+<div id="outline-container-org794e559" class="outline-3">
+<h3 id="org794e559">Data Manipulation</h3>
+<div class="outline-text-3" id="text-org794e559">
 </div>
-<div id="outline-container-org44434ad" class="outline-4">
-<h4 id="org44434ad">Create Data</h4>
-<div class="outline-text-4" id="text-org44434ad">
+<div id="outline-container-org67ec0e2" class="outline-4">
+<h4 id="org67ec0e2">Create Data</h4>
+<div class="outline-text-4" id="text-org67ec0e2">
 <p>
 With the command <code>insert</code> tuples can be added to tables. There are different syntactical variants.
 </p>
@@ -218,9 +218,9 @@ With the command <code>insert</code> tuples can be added to tables. There are di
 </div>
 </div>
 
-<div id="outline-container-orgce8a0f4" class="outline-4">
-<h4 id="orgce8a0f4">Delete Data</h4>
-<div class="outline-text-4" id="text-orgce8a0f4">
+<div id="outline-container-org7818290" class="outline-4">
+<h4 id="org7818290">Delete Data</h4>
+<div class="outline-text-4" id="text-org7818290">
 <p>
 With the command <code>delete</code> tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is <code>delete from &lt;tablename&gt; where &lt;condition&gt;</code>
 </p>
@@ -236,9 +236,9 @@ has the following result in this table
 </div>
 </div>
 
-<div id="outline-container-org449cc0d" class="outline-4">
-<h4 id="org449cc0d">Update/Change Data</h4>
-<div class="outline-text-4" id="text-org449cc0d">
+<div id="outline-container-orgb81af6c" class="outline-4">
+<h4 id="orgb81af6c">Update/Change Data</h4>
+<div class="outline-text-4" id="text-orgb81af6c">
 <p>
 With the command <code>update</code> attributtes of all tuples in a table can be changed in the same way. The syntax is <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ...</code>
 </p>
@@ -267,9 +267,9 @@ has the following result in this table
 </div>
 </div>
 
-<div id="outline-container-orga85254b" class="outline-4">
-<h4 id="orga85254b">Procedure of Changes</h4>
-<div class="outline-text-4" id="text-orga85254b">
+<div id="outline-container-org8778c3a" class="outline-4">
+<h4 id="org8778c3a">Procedure of Changes</h4>
+<div class="outline-text-4" id="text-org8778c3a">
 <p>
 Basically there are two steps when changing data:
 </p>
@@ -293,16 +293,16 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 </div>
 </div>
 
-<div id="outline-container-orgd80f12d" class="outline-3">
-<h3 id="orgd80f12d">Data Definition</h3>
-<div class="outline-text-3" id="text-orgd80f12d">
+<div id="outline-container-orgdfde6af" class="outline-3">
+<h3 id="orgdfde6af">Data Definition</h3>
+<div class="outline-text-3" id="text-orgdfde6af">
 <p>
 We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
 </p>
 </div>
-<div id="outline-container-org99efdb5" class="outline-4">
-<h4 id="org99efdb5">Table Management</h4>
-<div class="outline-text-4" id="text-org99efdb5">
+<div id="outline-container-orga5c0cb0" class="outline-4">
+<h4 id="orga5c0cb0">Table Management</h4>
+<div class="outline-text-4" id="text-orga5c0cb0">
 <p>
 To create a new table use the command <code>create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )</code>. To alter the schema of a table after its creation use <code>alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})</code> to add an attribute, <code>alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})</code> to modify an attribute and <code>alter table {TABLENAME} drop column {ATTRIBUTE_NAME}</code> to delete an attribute. If you want to delete a whole table issue the command <code>drop table {TABLENAME}</code>.
 </p>
@@ -318,7 +318,7 @@ Here are the data types SQL supports by default with some examples:
 
 <ul class="org-ul">
 <li>
-<a id="org93ba95c"></a>Boolean<br><div class="outline-text-6" id="text-org93ba95c">
+<a id="org999bf28"></a>Boolean<br><div class="outline-text-6" id="text-org999bf28">
 <ul class="org-ul">
 <li>either <code>true</code> or <code>false</code>
 <ul class="org-ul">
@@ -336,7 +336,7 @@ Here are the data types SQL supports by default with some examples:
 </li>
 
 <li>
-<a id="orgdaae0ef"></a>Strings/Characters<br><div class="outline-text-6" id="text-orgdaae0ef">
+<a id="org1676eb4"></a>Strings/Characters<br><div class="outline-text-6" id="text-org1676eb4">
 <p>
 The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
 </p>
@@ -360,7 +360,7 @@ The number of allowed characters (max length) is usually defined as well when sp
 </li>
 
 <li>
-<a id="org0987f91"></a>Numericals (exact)<br><div class="outline-text-6" id="text-org0987f91">
+<a id="org1f62e4b"></a>Numericals (exact)<br><div class="outline-text-6" id="text-org1f62e4b">
 <ul class="org-ul">
 <li>are used for <i>exact</i> representations of numbers</li>
 <li>the precision of a number is specified by providing the the amount of digits to be hold
@@ -378,7 +378,7 @@ The number of allowed characters (max length) is usually defined as well when sp
 </li>
 
 <li>
-<a id="org3ee4c20"></a>Numericals (approximal)<br><div class="outline-text-6" id="text-org3ee4c20">
+<a id="org643f9f7"></a>Numericals (approximal)<br><div class="outline-text-6" id="text-org643f9f7">
 <ul class="org-ul">
 <li>are used for <i>approximate</i> representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent</li>
 <li><code>float [{PRECISION}]</code></li>
@@ -391,7 +391,7 @@ The number of allowed characters (max length) is usually defined as well when sp
 </li>
 
 <li>
-<a id="org2c7591c"></a>Date and Time<br><div class="outline-text-6" id="text-org2c7591c">
+<a id="org1de3e70"></a>Date and Time<br><div class="outline-text-6" id="text-org1de3e70">
 <p>
 There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
 </p>
@@ -411,7 +411,7 @@ Date and time values can optionally be parameterized to set the precision explic
 </li>
 
 <li>
-<a id="org1f10b84"></a>Interval<br><div class="outline-text-6" id="text-org1f10b84">
+<a id="orgf0e8bd3"></a>Interval<br><div class="outline-text-6" id="text-orgf0e8bd3">
 <p>
 The data type <code>interval</code> describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
 </p>
@@ -425,9 +425,9 @@ The data type <code>interval</code> describes a time period/range. Such range/pe
 </div>
 </div>
 
-<div id="outline-container-orgcec7cbb" class="outline-3">
-<h3 id="orgcec7cbb">Integrity Constraints/Rules/Conditions</h3>
-<div class="outline-text-3" id="text-orgcec7cbb">
+<div id="outline-container-orgcdcb4bc" class="outline-3">
+<h3 id="orgcdcb4bc">Integrity Constraints/Rules/Conditions</h3>
+<div class="outline-text-3" id="text-orgcdcb4bc">
 <p>
 Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. To achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules results in lower error rates, and time saved troubleshooting and tracing erroneous data and the errors it causes to algorithms.
 </p>
@@ -440,9 +440,9 @@ Data integrity also includes rules defining the relations a piece of data can ha
 Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let's look at some possible constraints in SQL.
 </p>
 </div>
-<div id="outline-container-org8975c7c" class="outline-4">
-<h4 id="org8975c7c">Required/obligatory Data</h4>
-<div class="outline-text-4" id="text-org8975c7c">
+<div id="outline-container-org4c24cf1" class="outline-4">
+<h4 id="org4c24cf1">Required/obligatory Data</h4>
+<div class="outline-text-4" id="text-org4c24cf1">
 <p>
 Via the keyword <code>not null</code> it can be specified in the attribute definition when the values for an attribute are not allowed to be empty/null. The DBMS then refuses insert or change operations which include a null value for that attribute. Example:
 </p>
@@ -454,9 +454,9 @@ Via the keyword <code>not null</code> it can be specified in the attribute defin
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orga682f4c" class="outline-4">
-<h4 id="orga682f4c">Domain Integrity</h4>
-<div class="outline-text-4" id="text-orga682f4c">
+<div id="outline-container-org2d437f7" class="outline-4">
+<h4 id="org2d437f7">Domain Integrity</h4>
+<div class="outline-text-4" id="text-org2d437f7">
 <p>
 Just the specification of a data type (eg <code>integer</code> or <code>varchar</code>) is often times not sufficient as a criteria for the allowed values. That's why there's the possibility to perform further validation via <code>check ({CONDITION})</code>. Similarily whole new <i>attribute domains</i> (then usable as attribute type) can be defined via restriction of existing data types via <code>create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]</code>, eg:
 </p>
@@ -479,9 +479,9 @@ In short: A domain defines the possible values of an attribute. Domain Integrity
 </div>
 </div>
 
-<div id="outline-container-org25daf15" class="outline-4">
-<h4 id="org25daf15">Entity Integrity</h4>
-<div class="outline-text-4" id="text-org25daf15">
+<div id="outline-container-orgc5a34d1" class="outline-4">
+<h4 id="orgc5a34d1">Entity Integrity</h4>
+<div class="outline-text-4" id="text-orgc5a34d1">
 <p>
 Entity Integrity ensures that there are no duplicate records within the table and that the field that identifies each record within the table is unique and never null.
 The existence of the Primary Key is the core of the entity integrity. If you define a primary key for each entity, they follow the entity integrity rule.
@@ -529,9 +529,9 @@ This is how we'd create a table for the exams:
 </div>
 </div>
 
-<div id="outline-container-org1d89aa6" class="outline-4">
-<h4 id="org1d89aa6">Referential Integrity</h4>
-<div class="outline-text-4" id="text-org1d89aa6">
+<div id="outline-container-org0ace805" class="outline-4">
+<h4 id="org0ace805">Referential Integrity</h4>
+<div class="outline-text-4" id="text-org0ace805">
 <p>
 Wiki: Referential integrity is a property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.
 </p>
@@ -700,30 +700,144 @@ Furthermore it is possible to automatically set the values foreign key attribute
 </div>
 </div>
 
-<div id="outline-container-org2969fc1" class="outline-4">
-<h4 id="org2969fc1">Cardinality and Participation</h4>
-<div class="outline-text-4" id="text-org2969fc1">
+<div id="outline-container-org4717ace" class="outline-4">
+<h4 id="org4717ace">Cardinality and Participation</h4>
+<div class="outline-text-4" id="text-org4717ace">
 <p>
 Modelling cardinality and participation is principally possible with SQL. <code>1:1</code> relationships can be expressed via foreign key integration that is marked with <code>unique</code> to indicate the obligatory and unique relationship. Obligatory <code>1:N</code> relationships can also be expressed with foreign keys. To do so the foreign key on the <code>N</code> side has to be marked with <code>not null</code>. However not all restrictions that can be modeled are directly convertable in SQL. Foreign keys of an <i>optional</i> participation can for example not be marked as <code>unique</code> and hold <code>null</code> (null because optional) at the same time. 
 </p>
 </div>
 </div>
-<div id="outline-container-org9cf7e60" class="outline-4">
-<h4 id="org9cf7e60">Other Constraints (Sonstiges)</h4>
-<div class="outline-text-4" id="text-org9cf7e60">
+<div id="outline-container-orgfe2ec61" class="outline-4">
+<h4 id="orgfe2ec61">Other Constraints (Sonstiges)</h4>
+<div class="outline-text-4" id="text-orgfe2ec61">
 <p>
 There are also <i>assertions</i> to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: <code>create assertion {AssertionName} check ({condition})</code>. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgef6f3b4" class="outline-3">
-<h3 id="orgef6f3b4">Relational Views</h3>
-<div class="outline-text-3" id="text-orgef6f3b4">
+<div id="outline-container-orgf98c457" class="outline-3">
+<h3 id="orgf98c457">Relational Views</h3>
+<div class="outline-text-3" id="text-orgf98c457">
 <p>
-F 43
+Bring the three level architecture from the first lecture to your mind.
+We got to know the external view as an individual user view of a part (Ausschnitt) of the conceptual view. There's a construct that supports this design principle (Darstellungsprinzip) in the relational model.
+</p>
+
+<p>
+A view in the relational model (relational view) is a <b>virtual relation</b> which is the result of applying relational operators to one or more base relations. A base relation (in contrast to a view) is relation which directly has tuples.
+</p>
+
+<p>
+There're different kinds of views:
+</p>
+<ul class="org-ul">
+<li>horizontal: view contains subset of tuples from the base relation</li>
+<li>vertical: view contains subset of attributes from the base relation</li>
+<li>joined: view is based on more than one base relation</li>
+<li>combined: arbitrary combination of horizontal, vertical and/or joined views</li>
+<li>aggregated/grouped: view is result of aggregate functions on p.r.n(pro re nata, ggf) grouped tuple sets</li>
+</ul>
+<p>
+Via <code>create view NAME as (SELECT-STATEMENT)</code> views are created and via <code>drop view NAME</code> views are deleted in SQL.
+</p>
+
+<p>
+Here's an example use case for views. The advisors of the different majors should only be able to access the data of "their" students (major).
+</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">view</span> <span class="n">MathStudents</span> <span class="k">as</span> <span class="p">(</span>
+    <span class="k">select</span> <span class="n">matrNr</span><span class="p">,</span> <span class="n">name</span>
+    <span class="k">from</span> <span class="n">Student</span>
+    <span class="k">where</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">'Math'</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">view</span> <span class="n">PhilosophyStudents</span> <span class="k">as</span> <span class="p">(</span>
+    <span class="k">select</span> <span class="n">matrNr</span><span class="p">,</span> <span class="n">name</span>
+    <span class="k">from</span> <span class="n">Student</span>
+    <span class="k">where</span> <span class="n">major</span> <span class="o">=</span> <span class="s1">'Philosophy'</span>
+<span class="p">);</span>
+</pre></div>
+<p>
+In the following images are two more examples
+</p>
+
+<p>
+<img src="../../../images/view-1.png" alt="nil"></p>
+
+<p>
+<img src="../../../images/view-2.png" alt="nil"></p>
+
+<p>
+Updating views is possible when the view:
+</p>
+<ul class="org-ul">
+<li>does not contain aggregate functions nor instructions like <code>having</code>, <code>distinct</code> or <code>group by</code>
+</li>
+<li>only contains distinct column names and a key of the base table in the <code>select</code> projection list</li>
+<li>contains only one table which is naturally modifiable</li>
+</ul>
+<p>
+<b>But</b> even if a view is theoretically changable it is not guaranteed that SQL or the DBMS allow the modification!
 </p>
 </div>
+
+<ul class="org-ul">
+<li>
+<a id="org0eed4f4"></a>Advantages of Views<br><div class="outline-text-5" id="text-org0eed4f4">
+<ul class="org-ul">
+<li>data independence
+<ul class="org-ul">
+<li>presentation of a consistent and coherent database structure even when there are structural changes of the underlieing tables</li>
+</ul>
+</li>
+<li>powerful safety/security mechanism
+<ul class="org-ul">
+<li>arbitrary database contents (tables, attributes, data sets) can be shielded from users; access can also be provided individually</li>
+</ul>
+</li>
+<li>complexity reduction
+<ul class="org-ul">
+<li>complex operations can be simplified by storing there interim results (Zwischenergebnisse) into views which then can be queried via less complex queries</li>
+</ul>
+</li>
+<li>flexible presentation
+<ul class="org-ul">
+<li>the same data can be presented in individual ways according to needs and rights of the diffrent users</li>
+<li>this also simplifies the user interaction with the database because it is possible to only display parts that affect them</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<a id="org267e7e8"></a>Disadvantages of Views<br><div class="outline-text-5" id="text-org267e7e8">
+<ul class="org-ul">
+<li>update capabilities
+<ul class="org-ul">
+<li>tuples can only be updated/inserted/deleted under certain conditions</li>
+</ul>
+</li>
+<li>fixed structure
+<ul class="org-ul">
+<li>the structure of a view is determined when it is defined</li>
+<li>when for example new attributes are added to a base table then these are not in the view until it is deleted and recreated</li>
+</ul>
+</li>
+<li>performance
+<ul class="org-ul">
+<li>there's an overhead because a view has to be calculated/derived at each access
+<ul class="org-ul">
+<li>this can matter especially for large computations (eg aggregate functions) or multiplle involved base tables</li>
+</ul>
+</li>
+<li>this may be corrected via so called <i>materialized views</i> of which the results are stored (zwischengespeichert) but here the actuality (Aktualität) of the data has to be ensured as well</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
             
