@@ -2,7 +2,7 @@
 .. title: Database Essentials - Lecture 03
 .. slug: db-essentials-03
 .. date: 2018-10-24
-.. tags: 
+.. tags: database, university
 .. category: 
 .. link: 
 .. description: 

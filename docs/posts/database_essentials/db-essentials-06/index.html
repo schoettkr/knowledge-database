@@ -25,6 +25,8 @@ Simple Queries (One Table)
 All queries to a database in SQL are realized via the sel">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-11-28T00:00:00+01:00">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -90,6 +92,12 @@ All queries to a database in SQL are realized via the sel">
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/database/" rel="tag">database</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -102,13 +110,13 @@ All queries to a database in SQL are realized via the sel">
 In this lecture we continued the Introduction to SQL that we began in the last session.
 </p>
 
-<div id="outline-container-org82f4e96" class="outline-2">
-<h2 id="org82f4e96">Introduction to SQL</h2>
-<div class="outline-text-2" id="text-org82f4e96">
+<div id="outline-container-orgff295de" class="outline-2">
+<h2 id="orgff295de">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-orgff295de">
 </div>
-<div id="outline-container-orgb11ee30" class="outline-3">
-<h3 id="orgb11ee30">Simple Queries (One Table)</h3>
-<div class="outline-text-3" id="text-orgb11ee30">
+<div id="outline-container-org9629e6f" class="outline-3">
+<h3 id="org9629e6f">Simple Queries (One Table)</h3>
+<div class="outline-text-3" id="text-org9629e6f">
 <p>
 All queries to a database in SQL are realized via the <code>select</code> statement.
 This is the general construction:
@@ -464,9 +472,9 @@ which yields the following result relation:
 </div>
 </div>
 
-<div id="outline-container-org3175f27" class="outline-3">
-<h3 id="org3175f27">Complex Queries (Multiple Tables)</h3>
-<div class="outline-text-3" id="text-org3175f27">
+<div id="outline-container-orgb9a6fd8" class="outline-3">
+<h3 id="orgb9a6fd8">Complex Queries (Multiple Tables)</h3>
+<div class="outline-text-3" id="text-orgb9a6fd8">
 <p>
 Onto some more complex queries where we query against multiple tables (cartesian product). Suppose we have the following table <i>Lecture</i>
 </p>
@@ -678,9 +686,9 @@ As you see the natural join in SQL is express by replacing the comma between the
 </div>
 </div>
 
-<div id="outline-container-orgcc24ab0" class="outline-3">
-<h3 id="orgcc24ab0">Aggregation and Grouping</h3>
-<div class="outline-text-3" id="text-orgcc24ab0">
+<div id="outline-container-org57f0871" class="outline-3">
+<h3 id="org57f0871">Aggregation and Grouping</h3>
+<div class="outline-text-3" id="text-org57f0871">
 <p>
 Often times it is of interest to perform some kind of calculations on the tuples of a table, which means to involve all values of an attribute. Functions that do this are called <i>aggregate functions</i> and here are some common ones:
 </p>
@@ -744,9 +752,9 @@ To <i>filter groups</i> we can use the <code>having</code> keyword which acts li
 </div>
 </div>
 
-<div id="outline-container-org97e44ab" class="outline-3">
-<h3 id="org97e44ab">Connecting SFW Statements</h3>
-<div class="outline-text-3" id="text-org97e44ab">
+<div id="outline-container-org21fcac5" class="outline-3">
+<h3 id="org21fcac5">Connecting SFW Statements</h3>
+<div class="outline-text-3" id="text-org21fcac5">
 <p>
 It is possible to connect whole <code>select</code> statements with each other in SQL. This functionality corresponds to the operations set <i>union</i> and set <i>difference</i> we know from relational algebra. Likewise the data types of the attributes from the tables that should be combined need to be of the same data type (and semantic) in SQL as well.
 </p>
@@ -768,17 +776,17 @@ Example of combining/connecting SFW statements:
 </div>
 </div>
 
-<div id="outline-container-orgb9a999d" class="outline-3">
-<h3 id="orgb9a999d">Subqueries</h3>
-<div class="outline-text-3" id="text-orgb9a999d">
+<div id="outline-container-org308998f" class="outline-3">
+<h3 id="org308998f">Subqueries</h3>
+<div class="outline-text-3" id="text-org308998f">
 <p>
 It is possible to execute further <code>select</code> statements <i>inside</i> a <code>select</code> statements. There are two possible approaches/semantics (Semantiken) to do that, the <b>value semantic</b> (slides: Wertsemantik) and the <b>set semantic</b> (slides: Mengensemantik?!). I'll use the german terms <i>Wertsemantik</i> and <i>Mengensemantik</i> because it is not clear to me what the proper english terms would be :o. Subqueries can be nested as desired as long as the semantic is correct (recursion).
 </p>
 </div>
 
-<div id="outline-container-orgf7ff1b5" class="outline-4">
-<h4 id="orgf7ff1b5">Wertsemantik</h4>
-<div class="outline-text-4" id="text-orgf7ff1b5">
+<div id="outline-container-org865a140" class="outline-4">
+<h4 id="org865a140">Wertsemantik</h4>
+<div class="outline-text-4" id="text-org865a140">
 <p>
 The subquery returns a <b>single value</b> (doesnt matter if string, number or date). Subqueries that follow Wertsemantik can be used at every place/position where single values may have been used.
 </p>
@@ -818,9 +826,9 @@ Here are some equivalent queries to the one we examined in the pictures above
 </div>
 </div>
 
-<div id="outline-container-org573401e" class="outline-4">
-<h4 id="org573401e">Mengensemantik</h4>
-<div class="outline-text-4" id="text-org573401e">
+<div id="outline-container-orge04a6cb" class="outline-4">
+<h4 id="orge04a6cb">Mengensemantik</h4>
+<div class="outline-text-4" id="text-orge04a6cb">
 <p>
 The subquery returns a Wertemenge (set of values). To then evaluate the returned result set special language features/constructs are needed.
 </p>
@@ -857,9 +865,9 @@ Example:
 </div>
 </div>
 
-<div id="outline-container-org8d84616" class="outline-3">
-<h3 id="org8d84616">Set Operations (Mengenoperatoren)</h3>
-<div class="outline-text-3" id="text-org8d84616">
+<div id="outline-container-orgb4b38a9" class="outline-3">
+<h3 id="orgb4b38a9">Set Operations (Mengenoperatoren)</h3>
+<div class="outline-text-3" id="text-orgb4b38a9">
 <p>
 We already know the specification of constant sets and how to test if an attribute value is contained in such set via <code>where .. in</code> eg <code>where attribute in ('Chemnitz', 'Leipzig', 'Dresden')</code>. There are more set operators of which we will introduce some now since they're also helpful in regards to subqueries and can be used to model the quantifiers from relational calculus:
 </p>

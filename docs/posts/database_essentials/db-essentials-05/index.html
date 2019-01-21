@@ -17,6 +17,8 @@
 The expressions in relational algebra form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate rel">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-11-21T00:00:00+01:00">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="university">
 </head>
 <body>
     
@@ -82,6 +84,12 @@ The expressions in relational algebra form a procedural way of describing the wa
 
 	  </div>
 	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../../categories/database/" rel="tag">database</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../../categories/university/" rel="tag">university</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -90,9 +98,9 @@ The expressions in relational algebra form a procedural way of describing the wa
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgbec6786" class="outline-2">
-<h2 id="orgbec6786">Relational Calculus (Relationenkalkül)</h2>
-<div class="outline-text-2" id="text-orgbec6786">
+        <div id="outline-container-org65e4dd0" class="outline-2">
+<h2 id="org65e4dd0">Relational Calculus (Relationenkalkül)</h2>
+<div class="outline-text-2" id="text-org65e4dd0">
 <p>
 The expressions in <i>relational algebra</i> form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate relation results. This way describes they way of <i>how</i> you come to the relation result.
 </p>
@@ -110,9 +118,9 @@ The basis for relational calculus is predicate/quantifier logic  of the first de
 </p>
 </div>
 
-<div id="outline-container-orgaeab930" class="outline-3">
-<h3 id="orgaeab930">Tuple Calculus</h3>
-<div class="outline-text-3" id="text-orgaeab930">
+<div id="outline-container-orgb52943f" class="outline-3">
+<h3 id="orgb52943f">Tuple Calculus</h3>
+<div class="outline-text-3" id="text-orgb52943f">
 <p>
 The query notation for tuple calculus is {t | P(t)} where t is a tuple variable and P is a predicate over t. The result of such query is a set of all tuples for which the evaluation of the predicate P(t) yields <i>true</i>.
 </p>
@@ -184,7 +192,7 @@ Result:
 
 <ul class="org-ul">
 <li>
-<a id="orgd35aced"></a>Tuple Calculus - Atoms and Formulas<br><div class="outline-text-5" id="text-orgd35aced">
+<a id="org8662ab3"></a>Tuple Calculus - Atoms and Formulas<br><div class="outline-text-5" id="text-org8662ab3">
 <p>
 For the construction of formula we define sets of atomic formulas.
 <b>Atoms</b> in tuple calculus:
@@ -221,7 +229,7 @@ When F is a formula and t is a tuple variable in F then the following constructs
 </li>
 
 <li>
-<a id="orgfb47392"></a>Tuple Calculus - Free and Bounded Tuple Variables<br><div class="outline-text-5" id="text-orgfb47392">
+<a id="org281b112"></a>Tuple Calculus - Free and Bounded Tuple Variables<br><div class="outline-text-5" id="text-org281b112">
 <p>
 A tuple variable in an atom (respective in a formula consisting of one atom) is <b>free</b>.
 </p>
@@ -249,7 +257,7 @@ Examples:
 </li>
 
 <li>
-<a id="org60984c5"></a>Tuple Calculus - Computing Formulas (Substitution)<br><div class="outline-text-5" id="text-org60984c5">
+<a id="org7154054"></a>Tuple Calculus - Computing Formulas (Substitution)<br><div class="outline-text-5" id="text-org7154054">
 <p>
 Given that F(s) is a formula with the tuple variable s ∈ R and a tuple t ∈ R. Then the following happens in each atom of F(S) with a <i>free</i> s:
 </p>
@@ -274,7 +282,7 @@ Given tuple variable s and t from a schema R(a,b) and the formula ∀ t(t ∈ R 
 </li>
 
 <li>
-<a id="orga48ad2d"></a>Tuple Calculus - Computing Formulas for bound Tuple Variables<br><div class="outline-text-5" id="text-orga48ad2d">
+<a id="org4e443e1"></a>Tuple Calculus - Computing Formulas for bound Tuple Variables<br><div class="outline-text-5" id="text-org4e443e1">
 <p>
 Given a tuple variable s ∈ R:
 </p>
@@ -297,7 +305,7 @@ Given a tuple variable s ∈ R:
 </li>
 
 <li>
-<a id="orgd659ffd"></a>Tuple Calculus - Expressions and Queries<br><div class="outline-text-5" id="text-orgd659ffd">
+<a id="org31d1e6c"></a>Tuple Calculus - Expressions and Queries<br><div class="outline-text-5" id="text-org31d1e6c">
 <p>
 In general an expression/query of the tuple calculus is of the following form: {t<sub>1.A</sub><sub>1</sub>, t<sub>2.A</sub><sub>2</sub>, …, t<sub>n.A</sub><sub>n</sub> | F(t<sub>1</sub>, …, t<sub>m</sub>)}
 </p>
@@ -485,16 +493,16 @@ Also see <a href="https://en.wikipedia.org/wiki/Tuple_relational_calculus">https
 </li>
 </ul>
 </div>
-<div id="outline-container-org065eceb" class="outline-3">
-<h3 id="org065eceb">Domain Calculus</h3>
-<div class="outline-text-3" id="text-org065eceb">
+<div id="outline-container-orga3de7b9" class="outline-3">
+<h3 id="orga3de7b9">Domain Calculus</h3>
+<div class="outline-text-3" id="text-orga3de7b9">
 <p>
 The domain relational calculus is also a calculus that serves as a declarative database query language for the relational data model. In DRC queries have this form {d<sub>1</sub>, d<sub>2</sub>, …, d<sub>n</sub> | F(d<sub>1</sub>, d<sub>2</sub>, …, d<sub>m</sub>)} with m ≥ n where d<sub>i</sub> are domain variables which describe the values of attribute domains and F(d<sub>1</sub>, d<sub>2</sub>, …, d<sub>m</sub>) is the formula. The formula consists, like in the relational calculus (tuple?), of either a an atom, a logical connection of formulas or a formula with a domain variable which is existential quantified or universal quantified.
 </p>
 </div>
 <ul class="org-ul">
 <li>
-<a id="org3529dfd"></a>Domain Calculus - Atoms and Comparison<br><div class="outline-text-5" id="text-org3529dfd">
+<a id="orgc13261f"></a>Domain Calculus - Atoms and Comparison<br><div class="outline-text-5" id="text-orgc13261f">
 <p>
 Given the relation R of degree n where every d<sub>i</sub> is a domain variable, the atom \(R(d_1, d_2, ..., d_n)\) expresses that the codomain (Werteliste) &lt;d<sub>1</sub>, d<sub>2</sub>, …, d<sub>n</sub>&gt; has to be a tuple of the relation R.
 </p>
@@ -516,7 +524,7 @@ The comparison operation denoted by Θ encompasses the usual comparison operator
 </li>
 
 <li>
-<a id="org8e57725"></a>Domain Calculus - Example Queries<br><div class="outline-text-5" id="text-org8e57725">
+<a id="org4db64cc"></a>Domain Calculus - Example Queries<br><div class="outline-text-5" id="text-org4db64cc">
 <p>
 Given the relations teacher
 </p>
@@ -707,9 +715,9 @@ Alternatively a query can be formulated with a direct specification of constant 
 </div>
 </div>
 
-<div id="outline-container-org00f3352" class="outline-2">
-<h2 id="org00f3352">Relational Languages</h2>
-<div class="outline-text-2" id="text-org00f3352">
+<div id="outline-container-org5d1b13a" class="outline-2">
+<h2 id="org5d1b13a">Relational Languages</h2>
+<div class="outline-text-2" id="text-org5d1b13a">
 <p>
 The following query languages possess the same expresiveness (Ausdrucksmächtigkeit):
 </p>
@@ -735,13 +743,13 @@ In praxis the <b>relational calculus</b> is the foundation for "real" query lang
 </div>
 </div>
 
-<div id="outline-container-org805185e" class="outline-2">
-<h2 id="org805185e">Introduction to SQL</h2>
-<div class="outline-text-2" id="text-org805185e">
+<div id="outline-container-org2d083b1" class="outline-2">
+<h2 id="org2d083b1">Introduction to SQL</h2>
+<div class="outline-text-2" id="text-org2d083b1">
 </div>
-<div id="outline-container-orge8aa45d" class="outline-4">
-<h4 id="orge8aa45d">History</h4>
-<div class="outline-text-4" id="text-orge8aa45d">
+<div id="outline-container-orgf8ae268" class="outline-4">
+<h4 id="orgf8ae268">History</h4>
+<div class="outline-text-4" id="text-orgf8ae268">
 <ul class="org-ul">
 <li>1970: Codd presents the relational model</li>
 <li>1974: development of the relational query language SEQUEL (Structured English Query Language)</li>
@@ -754,9 +762,9 @@ In praxis the <b>relational calculus</b> is the foundation for "real" query lang
 </div>
 </div>
 
-<div id="outline-container-org655834a" class="outline-4">
-<h4 id="org655834a">Introduction to SQL - Components</h4>
-<div class="outline-text-4" id="text-org655834a">
+<div id="outline-container-org5bcc76c" class="outline-4">
+<h4 id="org5bcc76c">Introduction to SQL - Components</h4>
+<div class="outline-text-4" id="text-org5bcc76c">
 <p>
 There two high level components of SQL:
 </p>
@@ -789,9 +797,9 @@ SQL does not operate on relations, but rather their physical representation form
 </div>
 </div>
 
-<div id="outline-container-org0310734" class="outline-4">
-<h4 id="org0310734">Introduction to SQL - Queries</h4>
-<div class="outline-text-4" id="text-org0310734">
+<div id="outline-container-org317858d" class="outline-4">
+<h4 id="org317858d">Introduction to SQL - Queries</h4>
+<div class="outline-text-4" id="text-org317858d">
 <p>
 All queries to a database in SQL are realized via the <code>select</code> statement.
 This is the general construction:

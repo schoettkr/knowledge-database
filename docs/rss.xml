@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 14 Jan 2019 21:14:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 22 &amp; 23</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database</title><link>https://schoettkr.github.io/knowledge-database/</link><description>This is my personal knowledge database / blog.</description><atom:link href="https://schoettkr.github.io/knowledge-database/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 21 Jan 2019 15:10:27 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Algos &amp; Programming - Lecture 22 &amp; 23</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-22-23/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This chapter spans two lectures so lecture 22 and 23 will be pooled into this single blog post.
 &lt;/p&gt;
 
@@ -2590,9 +2590,9 @@ Next week we'll probably cover the next step  of &lt;b&gt;"Implementation"&lt;/b
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 &lt;/p&gt;
 
-&lt;div id="outline-container-org6405b97" class="outline-2"&gt;
-&lt;h2 id="org6405b97"&gt;Introduction to SQL&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6405b97"&gt;
+&lt;div id="outline-container-orgfe997ce" class="outline-2"&gt;
+&lt;h2 id="orgfe997ce"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfe997ce"&gt;
 &lt;p&gt;
 What we'll cover here:
 &lt;/p&gt;
@@ -2609,13 +2609,13 @@ What we'll cover here:
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org794e559" class="outline-3"&gt;
-&lt;h3 id="org794e559"&gt;Data Manipulation&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org794e559"&gt;
+&lt;div id="outline-container-orgb59887f" class="outline-3"&gt;
+&lt;h3 id="orgb59887f"&gt;Data Manipulation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb59887f"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org67ec0e2" class="outline-4"&gt;
-&lt;h4 id="org67ec0e2"&gt;Create Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org67ec0e2"&gt;
+&lt;div id="outline-container-org263257a" class="outline-4"&gt;
+&lt;h4 id="org263257a"&gt;Create Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org263257a"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. There are different syntactical variants.
 &lt;/p&gt;
@@ -2708,9 +2708,9 @@ With the command &lt;code&gt;insert&lt;/code&gt; tuples can be added to tables. 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7818290" class="outline-4"&gt;
-&lt;h4 id="org7818290"&gt;Delete Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7818290"&gt;
+&lt;div id="outline-container-org267f898" class="outline-4"&gt;
+&lt;h4 id="org267f898"&gt;Delete Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org267f898"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;delete&lt;/code&gt; tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is &lt;code&gt;delete from &amp;lt;tablename&amp;gt; where &amp;lt;condition&amp;gt;&lt;/code&gt;
 &lt;/p&gt;
@@ -2727,9 +2727,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb81af6c" class="outline-4"&gt;
-&lt;h4 id="orgb81af6c"&gt;Update/Change Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgb81af6c"&gt;
+&lt;div id="outline-container-orgc8953c1" class="outline-4"&gt;
+&lt;h4 id="orgc8953c1"&gt;Update/Change Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc8953c1"&gt;
 &lt;p&gt;
 With the command &lt;code&gt;update&lt;/code&gt; attributtes of all tuples in a table can be changed in the same way. The syntax is &lt;code&gt;update &amp;lt;tablename&amp;gt; set &amp;lt;attribute1&amp;gt; = &amp;lt;expression1&amp;gt;, &amp;lt;attribute2&amp;gt; = &amp;lt;expression2&amp;gt;, ...&lt;/code&gt;
 &lt;/p&gt;
@@ -2760,9 +2760,9 @@ has the following result in this table
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8778c3a" class="outline-4"&gt;
-&lt;h4 id="org8778c3a"&gt;Procedure of Changes&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8778c3a"&gt;
+&lt;div id="outline-container-org1f5500e" class="outline-4"&gt;
+&lt;h4 id="org1f5500e"&gt;Procedure of Changes&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1f5500e"&gt;
 &lt;p&gt;
 Basically there are two steps when changing data:
 &lt;/p&gt;
@@ -2783,16 +2783,16 @@ Why this effort you may ask? Well conditions may include subqueries which would 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdfde6af" class="outline-3"&gt;
-&lt;h3 id="orgdfde6af"&gt;Data Definition&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdfde6af"&gt;
+&lt;div id="outline-container-org3db5edd" class="outline-3"&gt;
+&lt;h3 id="org3db5edd"&gt;Data Definition&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3db5edd"&gt;
 &lt;p&gt;
 We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga5c0cb0" class="outline-4"&gt;
-&lt;h4 id="orga5c0cb0"&gt;Table Management&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga5c0cb0"&gt;
+&lt;div id="outline-container-org6b6e561" class="outline-4"&gt;
+&lt;h4 id="org6b6e561"&gt;Table Management&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6b6e561"&gt;
 &lt;p&gt;
 To create a new table use the command &lt;code&gt;create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )&lt;/code&gt;. To alter the schema of a table after its creation use &lt;code&gt;alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to add an attribute, &lt;code&gt;alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})&lt;/code&gt; to modify an attribute and &lt;code&gt;alter table {TABLENAME} drop column {ATTRIBUTE_NAME}&lt;/code&gt; to delete an attribute. If you want to delete a whole table issue the command &lt;code&gt;drop table {TABLENAME}&lt;/code&gt;.
 &lt;/p&gt;
@@ -2807,8 +2807,8 @@ Here are the data types SQL supports by default with some examples:
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org999bf28"&gt;&lt;/a&gt;Boolean&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org999bf28"&gt;
+&lt;li&gt;&lt;a id="org1195b6b"&gt;&lt;/a&gt;Boolean&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org1195b6b"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;
 &lt;ul class="org-ul"&gt;
@@ -2822,8 +2822,8 @@ Here are the data types SQL supports by default with some examples:
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org1676eb4"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org1676eb4"&gt;
+&lt;li&gt;&lt;a id="org98b872b"&gt;&lt;/a&gt;Strings/Characters&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org98b872b"&gt;
 &lt;p&gt;
 The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
 &lt;/p&gt;
@@ -2842,8 +2842,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org1f62e4b"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org1f62e4b"&gt;
+&lt;li&gt;&lt;a id="org9aa28be"&gt;&lt;/a&gt;Numericals (exact)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org9aa28be"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;are used for &lt;i&gt;exact&lt;/i&gt; representations of numbers&lt;/li&gt;
 &lt;li&gt;the precision of a number is specified by providing the the amount of digits to be hold
@@ -2858,8 +2858,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org643f9f7"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org643f9f7"&gt;
+&lt;li&gt;&lt;a id="org42e5d7a"&gt;&lt;/a&gt;Numericals (approximal)&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org42e5d7a"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;are used for &lt;i&gt;approximate&lt;/i&gt; representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;float [{PRECISION}]&lt;/code&gt;&lt;/li&gt;
@@ -2870,8 +2870,8 @@ The number of allowed characters (max length) is usually defined as well when sp
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org1de3e70"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
-&lt;div class="outline-text-6" id="text-org1de3e70"&gt;
+&lt;li&gt;&lt;a id="orgdf16cba"&gt;&lt;/a&gt;Date and Time&lt;br&gt;
+&lt;div class="outline-text-6" id="text-orgdf16cba"&gt;
 &lt;p&gt;
 There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
 &lt;/p&gt;
@@ -2887,8 +2887,8 @@ Date and time values can optionally be parameterized to set the precision explic
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgf0e8bd3"&gt;&lt;/a&gt;Interval&lt;br&gt;
-&lt;div class="outline-text-6" id="text-orgf0e8bd3"&gt;
+&lt;li&gt;&lt;a id="org13a47f0"&gt;&lt;/a&gt;Interval&lt;br&gt;
+&lt;div class="outline-text-6" id="text-org13a47f0"&gt;
 &lt;p&gt;
 The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
 &lt;/p&gt;
@@ -2902,9 +2902,9 @@ The data type &lt;code&gt;interval&lt;/code&gt; describes a time period/range. S
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcdcb4bc" class="outline-3"&gt;
-&lt;h3 id="orgcdcb4bc"&gt;Integrity Constraints/Rules/Conditions&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcdcb4bc"&gt;
+&lt;div id="outline-container-orga580cf0" class="outline-3"&gt;
+&lt;h3 id="orga580cf0"&gt;Integrity Constraints/Rules/Conditions&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga580cf0"&gt;
 &lt;p&gt;
 Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. To achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules results in lower error rates, and time saved troubleshooting and tracing erroneous data and the errors it causes to algorithms.
 &lt;/p&gt;
@@ -2917,9 +2917,9 @@ Data integrity also includes rules defining the relations a piece of data can ha
 Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let's look at some possible constraints in SQL.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org4c24cf1" class="outline-4"&gt;
-&lt;h4 id="org4c24cf1"&gt;Required/obligatory Data&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4c24cf1"&gt;
+&lt;div id="outline-container-orgceb3452" class="outline-4"&gt;
+&lt;h4 id="orgceb3452"&gt;Required/obligatory Data&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgceb3452"&gt;
 &lt;p&gt;
 Via the keyword &lt;code&gt;not null&lt;/code&gt; it can be specified in the attribute definition when the values for an attribute are not allowed to be empty/null. The DBMS then refuses insert or change operations which include a null value for that attribute. Example:
 &lt;/p&gt;
@@ -2931,9 +2931,9 @@ Via the keyword &lt;code&gt;not null&lt;/code&gt; it can be specified in the att
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2d437f7" class="outline-4"&gt;
-&lt;h4 id="org2d437f7"&gt;Domain Integrity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org2d437f7"&gt;
+&lt;div id="outline-container-orgaf58d0b" class="outline-4"&gt;
+&lt;h4 id="orgaf58d0b"&gt;Domain Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgaf58d0b"&gt;
 &lt;p&gt;
 Just the specification of a data type (eg &lt;code&gt;integer&lt;/code&gt; or &lt;code&gt;varchar&lt;/code&gt;) is often times not sufficient as a criteria for the allowed values. That's why there's the possibility to perform further validation via &lt;code&gt;check ({CONDITION})&lt;/code&gt;. Similarily whole new &lt;i&gt;attribute domains&lt;/i&gt; (then usable as attribute type) can be defined via restriction of existing data types via &lt;code&gt;create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]&lt;/code&gt;, eg:
 &lt;/p&gt;
@@ -2956,9 +2956,9 @@ In short: A domain defines the possible values of an attribute. Domain Integrity
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc5a34d1" class="outline-4"&gt;
-&lt;h4 id="orgc5a34d1"&gt;Entity Integrity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc5a34d1"&gt;
+&lt;div id="outline-container-org014de6f" class="outline-4"&gt;
+&lt;h4 id="org014de6f"&gt;Entity Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org014de6f"&gt;
 &lt;p&gt;
 Entity Integrity ensures that there are no duplicate records within the table and that the field that identifies each record within the table is unique and never null.
 The existence of the Primary Key is the core of the entity integrity. If you define a primary key for each entity, they follow the entity integrity rule.
@@ -3008,9 +3008,9 @@ This is how we'd create a table for the exams:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0ace805" class="outline-4"&gt;
-&lt;h4 id="org0ace805"&gt;Referential Integrity&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org0ace805"&gt;
+&lt;div id="outline-container-org3c67b16" class="outline-4"&gt;
+&lt;h4 id="org3c67b16"&gt;Referential Integrity&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3c67b16"&gt;
 &lt;p&gt;
 Wiki: Referential integrity is a property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.
 &lt;/p&gt;
@@ -3197,26 +3197,26 @@ Furthermore it is possible to automatically set the values foreign key attribute
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4717ace" class="outline-4"&gt;
-&lt;h4 id="org4717ace"&gt;Cardinality and Participation&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4717ace"&gt;
+&lt;div id="outline-container-org80fcca7" class="outline-4"&gt;
+&lt;h4 id="org80fcca7"&gt;Cardinality and Participation&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org80fcca7"&gt;
 &lt;p&gt;
 Modelling cardinality and participation is principally possible with SQL. &lt;code&gt;1:1&lt;/code&gt; relationships can be expressed via foreign key integration that is marked with &lt;code&gt;unique&lt;/code&gt; to indicate the obligatory and unique relationship. Obligatory &lt;code&gt;1:N&lt;/code&gt; relationships can also be expressed with foreign keys. To do so the foreign key on the &lt;code&gt;N&lt;/code&gt; side has to be marked with &lt;code&gt;not null&lt;/code&gt;. However not all restrictions that can be modeled are directly convertable in SQL. Foreign keys of an &lt;i&gt;optional&lt;/i&gt; participation can for example not be marked as &lt;code&gt;unique&lt;/code&gt; and hold &lt;code&gt;null&lt;/code&gt; (null because optional) at the same time. 
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgfe2ec61" class="outline-4"&gt;
-&lt;h4 id="orgfe2ec61"&gt;Other Constraints (Sonstiges)&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgfe2ec61"&gt;
+&lt;div id="outline-container-orgb0dedef" class="outline-4"&gt;
+&lt;h4 id="orgb0dedef"&gt;Other Constraints (Sonstiges)&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb0dedef"&gt;
 &lt;p&gt;
 There are also &lt;i&gt;assertions&lt;/i&gt; to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: &lt;code&gt;create assertion {AssertionName} check ({condition})&lt;/code&gt;. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf98c457" class="outline-3"&gt;
-&lt;h3 id="orgf98c457"&gt;Relational Views&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf98c457"&gt;
+&lt;div id="outline-container-org2f9f5ba" class="outline-3"&gt;
+&lt;h3 id="org2f9f5ba"&gt;Relational Views&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2f9f5ba"&gt;
 &lt;p&gt;
 Bring the three level architecture from the first lecture to your mind.
 We got to know the external view as an individual user view of a part (Ausschnitt) of the conceptual view. There's a construct that supports this design principle (Darstellungsprinzip) in the relational model.
@@ -3283,8 +3283,8 @@ Updating views is possible when the view:
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org0eed4f4"&gt;&lt;/a&gt;Advantages of Views&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org0eed4f4"&gt;
+&lt;li&gt;&lt;a id="org96ecc3a"&gt;&lt;/a&gt;Advantages of Views&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org96ecc3a"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;data independence
 &lt;ul class="org-ul"&gt;
@@ -3306,8 +3306,8 @@ Updating views is possible when the view:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a id="org267e7e8"&gt;&lt;/a&gt;Disadvantages of Views&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org267e7e8"&gt;
+&lt;li&gt;&lt;a id="orgb300c9a"&gt;&lt;/a&gt;Disadvantages of Views&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgb300c9a"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;update capabilities
 &lt;ul class="org-ul"&gt;
@@ -3331,7 +3331,7 @@ Updating views is possible when the view:
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</guid><pubDate>Tue, 04 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
+&lt;/div&gt;</description><category>database</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</guid><pubDate>Tue, 04 Dec 2018 23:00:00 GMT</pubDate></item><item><title>Algos &amp; Programming - Lecture 17</title><link>https://schoettkr.github.io/knowledge-database/posts/algos_and_programming/algos-and-prog-17/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orged82e2d" class="outline-2"&gt;
 &lt;h2 id="orged82e2d"&gt;Recursion and Backtracking&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orged82e2d"&gt;
 &lt;p&gt;
@@ -3750,13 +3750,13 @@ So far we've seen the usage of the namespace &lt;code&gt;std&lt;/code&gt; which 
 In this lecture we continued the Introduction to SQL that we began in the last session.
 &lt;/p&gt;
 
-&lt;div id="outline-container-org82f4e96" class="outline-2"&gt;
-&lt;h2 id="org82f4e96"&gt;Introduction to SQL&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org82f4e96"&gt;
+&lt;div id="outline-container-orgff295de" class="outline-2"&gt;
+&lt;h2 id="orgff295de"&gt;Introduction to SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgff295de"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgb11ee30" class="outline-3"&gt;
-&lt;h3 id="orgb11ee30"&gt;Simple Queries (One Table)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb11ee30"&gt;
+&lt;div id="outline-container-org9629e6f" class="outline-3"&gt;
+&lt;h3 id="org9629e6f"&gt;Simple Queries (One Table)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9629e6f"&gt;
 &lt;p&gt;
 All queries to a database in SQL are realized via the &lt;code&gt;select&lt;/code&gt; statement.
 This is the general construction:
@@ -4192,9 +4192,9 @@ which yields the following result relation:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3175f27" class="outline-3"&gt;
-&lt;h3 id="org3175f27"&gt;Complex Queries (Multiple Tables)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3175f27"&gt;
+&lt;div id="outline-container-orgb9a6fd8" class="outline-3"&gt;
+&lt;h3 id="orgb9a6fd8"&gt;Complex Queries (Multiple Tables)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb9a6fd8"&gt;
 &lt;p&gt;
 Onto some more complex queries where we query against multiple tables (cartesian product). Suppose we have the following table &lt;i&gt;Lecture&lt;/i&gt;
 &lt;/p&gt;
@@ -4450,9 +4450,9 @@ As you see the natural join in SQL is express by replacing the comma between the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcc24ab0" class="outline-3"&gt;
-&lt;h3 id="orgcc24ab0"&gt;Aggregation and Grouping&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcc24ab0"&gt;
+&lt;div id="outline-container-org57f0871" class="outline-3"&gt;
+&lt;h3 id="org57f0871"&gt;Aggregation and Grouping&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org57f0871"&gt;
 &lt;p&gt;
 Often times it is of interest to perform some kind of calculations on the tuples of a table, which means to involve all values of an attribute. Functions that do this are called &lt;i&gt;aggregate functions&lt;/i&gt; and here are some common ones:
 &lt;/p&gt;
@@ -4519,9 +4519,9 @@ To &lt;i&gt;filter groups&lt;/i&gt; we can use the &lt;code&gt;having&lt;/code&g
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org97e44ab" class="outline-3"&gt;
-&lt;h3 id="org97e44ab"&gt;Connecting SFW Statements&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org97e44ab"&gt;
+&lt;div id="outline-container-org21fcac5" class="outline-3"&gt;
+&lt;h3 id="org21fcac5"&gt;Connecting SFW Statements&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org21fcac5"&gt;
 &lt;p&gt;
 It is possible to connect whole &lt;code&gt;select&lt;/code&gt; statements with each other in SQL. This functionality corresponds to the operations set &lt;i&gt;union&lt;/i&gt; and set &lt;i&gt;difference&lt;/i&gt; we know from relational algebra. Likewise the data types of the attributes from the tables that should be combined need to be of the same data type (and semantic) in SQL as well.
 &lt;/p&gt;
@@ -4542,17 +4542,17 @@ Example of combining/connecting SFW statements:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb9a999d" class="outline-3"&gt;
-&lt;h3 id="orgb9a999d"&gt;Subqueries&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb9a999d"&gt;
+&lt;div id="outline-container-org308998f" class="outline-3"&gt;
+&lt;h3 id="org308998f"&gt;Subqueries&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org308998f"&gt;
 &lt;p&gt;
 It is possible to execute further &lt;code&gt;select&lt;/code&gt; statements &lt;i&gt;inside&lt;/i&gt; a &lt;code&gt;select&lt;/code&gt; statements. There are two possible approaches/semantics (Semantiken) to do that, the &lt;b&gt;value semantic&lt;/b&gt; (slides: Wertsemantik) and the &lt;b&gt;set semantic&lt;/b&gt; (slides: Mengensemantik?!). I'll use the german terms &lt;i&gt;Wertsemantik&lt;/i&gt; and &lt;i&gt;Mengensemantik&lt;/i&gt; because it is not clear to me what the proper english terms would be :o. Subqueries can be nested as desired as long as the semantic is correct (recursion).
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf7ff1b5" class="outline-4"&gt;
-&lt;h4 id="orgf7ff1b5"&gt;Wertsemantik&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf7ff1b5"&gt;
+&lt;div id="outline-container-org865a140" class="outline-4"&gt;
+&lt;h4 id="org865a140"&gt;Wertsemantik&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org865a140"&gt;
 &lt;p&gt;
 The subquery returns a &lt;b&gt;single value&lt;/b&gt; (doesnt matter if string, number or date). Subqueries that follow Wertsemantik can be used at every place/position where single values may have been used.
 &lt;/p&gt;
@@ -4603,9 +4603,9 @@ Here are some equivalent queries to the one we examined in the pictures above
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org573401e" class="outline-4"&gt;
-&lt;h4 id="org573401e"&gt;Mengensemantik&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org573401e"&gt;
+&lt;div id="outline-container-orge04a6cb" class="outline-4"&gt;
+&lt;h4 id="orge04a6cb"&gt;Mengensemantik&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge04a6cb"&gt;
 &lt;p&gt;
 The subquery returns a Wertemenge (set of values). To then evaluate the returned result set special language features/constructs are needed.
 &lt;/p&gt;
@@ -4648,9 +4648,9 @@ Example:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8d84616" class="outline-3"&gt;
-&lt;h3 id="org8d84616"&gt;Set Operations (Mengenoperatoren)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org8d84616"&gt;
+&lt;div id="outline-container-orgb4b38a9" class="outline-3"&gt;
+&lt;h3 id="orgb4b38a9"&gt;Set Operations (Mengenoperatoren)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb4b38a9"&gt;
 &lt;p&gt;
 We already know the specification of constant sets and how to test if an attribute value is contained in such set via &lt;code&gt;where .. in&lt;/code&gt; eg &lt;code&gt;where attribute in ('Chemnitz', 'Leipzig', 'Dresden')&lt;/code&gt;. There are more set operators of which we will introduce some now since they're also helpful in regards to subqueries and can be used to model the quantifiers from relational calculus:
 &lt;/p&gt;
@@ -4668,4 +4668,4 @@ Examples:
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</guid><pubDate>Tue, 27 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>database</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-06/</guid><pubDate>Tue, 27 Nov 2018 23:00:00 GMT</pubDate></item></channel></rss>
