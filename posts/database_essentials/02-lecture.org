@@ -176,7 +176,7 @@ Be careful, the existence of a lot of relationship attributes may be a sign that
 - ranges of possible values are denoted via square brackets after the attribute, eg [1..*] for an arbitrary amount
 - the designation of /derived attributes/ is done via a leading slash "/"
 - the first attribute(s) designate the primary key of an entity type
-  - those attributes should also be tagged with a trailing "{PKK}" in case of multiple attributes that yield the primary key or respectively "{PK}" if its only one attribute that acts as a primary key
+  - those attributes should also be tagged with a trailing "{PPK}" in case of multiple attributes that yield the primary key or respectively "{PK}" if its only one attribute that acts as a primary key
 - alternative keys are tagged with a trailing "{AK}"
   
 **** Weak and Strong Entity Types
