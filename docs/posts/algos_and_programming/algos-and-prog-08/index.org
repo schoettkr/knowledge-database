@@ -380,7 +380,7 @@ If the value of =argc= is greater than one, the strings pointed to by =argv[1]= 
 
 [[img-url:/images/argv-argc.png]]
 
-As already mentioned the declaration =char *argv[]= stands for an *array of pointers to =char='s*
+As already mentioned the declaration =char *argv[]= stands for an *array of pointers that hold memory addresses of =char= arrays*
 Calling for example the code from the picture above this is how the corresponding memory layout would look like:
 [[img-url:/images/argv-memory-layout.png]]
 

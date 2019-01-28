@@ -101,9 +101,9 @@ composite data types (Verbunddatentypen, struct and">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgf22ea76" class="outline-2">
-<h2 id="orgf22ea76">Complex Types</h2>
-<div class="outline-text-2" id="text-orgf22ea76">
+        <div id="outline-container-org37b77b1" class="outline-2">
+<h2 id="org37b77b1">Complex Types</h2>
+<div class="outline-text-2" id="text-org37b77b1">
 <p>
 In C there are so called <b>derived types</b>. We already know one kind of a derived type, that is <i>pointers</i>. There are more types though:
 </p>
@@ -117,10 +117,10 @@ Derived types are sometimes also called <i>complex types</i>.
 </p>
 </div>
 
-<div id="outline-container-org343ae46" class="outline-3">
-<h3 id="org343ae46">Composite data type <code>struct</code>
+<div id="outline-container-orge88856f" class="outline-3">
+<h3 id="orge88856f">Composite data type <code>struct</code>
 </h3>
-<div class="outline-text-3" id="text-org343ae46">
+<div class="outline-text-3" id="text-orge88856f">
 <p>
 The <code>struct</code> type can be used to deal with variables (elements/members) of different types in combination.
 A declaration of a struct type consists of the keyword <code>struct</code>, a <b>name</b> (tag) and a list of declarations of elements wrapped in a block of curly braces.
@@ -252,10 +252,10 @@ Neat! (It is not possible to direclty initialize a variable with <code>typedef</
 </p>
 </div>
 </div>
-<div id="outline-container-org5158ea7" class="outline-3">
-<h3 id="org5158ea7">Composite data type <code>union</code>
+<div id="outline-container-orga72d3f1" class="outline-3">
+<h3 id="orga72d3f1">Composite data type <code>union</code>
 </h3>
-<div class="outline-text-3" id="text-org5158ea7">
+<div class="outline-text-3" id="text-orga72d3f1">
 <p>
 A union is a special data type available in C that allows to store different data types in the same memory location. You can define a union with many members, but only one member can contain a value at any given time. Unions provide an efficient way of using the same memory location for multiple-purpose.
 </p>
@@ -278,10 +278,10 @@ To access a member of a union the <b>member access operator</b> <code>.</code> i
 </p>
 </div>
 </div>
-<div id="outline-container-orga68558a" class="outline-3">
-<h3 id="orga68558a">Enumeration data type <code>enum</code>
+<div id="outline-container-org24f9cc1" class="outline-3">
+<h3 id="org24f9cc1">Enumeration data type <code>enum</code>
 </h3>
-<div class="outline-text-3" id="text-orga68558a">
+<div class="outline-text-3" id="text-org24f9cc1">
 <p>
 With the help of enumeration data types it is possible to define types with discrete, named values. The corresponding keyword in C is <code>enum</code>.
 We can use this keyword to declare and initialize a sequence of integer constants eg <code>enum colors {RED, YELLOW, GREEN, BLUE};</code>
@@ -318,9 +318,9 @@ Since enums are basically treated like ints, they only offer restricted type saf
 </p>
 </div>
 </div>
-<div id="outline-container-orgd6f4856" class="outline-3">
-<h3 id="orgd6f4856">Array data type</h3>
-<div class="outline-text-3" id="text-orgd6f4856">
+<div id="outline-container-orgf197f76" class="outline-3">
+<h3 id="orgf197f76">Array data type</h3>
+<div class="outline-text-3" id="text-orgf197f76">
 <p>
 C provides the derived array type do deal with collection of values with the same type. The declaration of an array doesn't require a keyword, since it is done via the <i>index operator</i> <code>[]</code> in which the amount of elements has to be written in and which needs to go after the variable name <code>int xa[10]</code> (array of 10 ints).
 </p>
@@ -511,9 +511,9 @@ A problem that occurs here is that there is no way to find out how big/large the
 </div>
 </div>
 
-<div id="outline-container-org97ebf84" class="outline-2">
-<h2 id="org97ebf84">Memory Layout</h2>
-<div class="outline-text-2" id="text-org97ebf84">
+<div id="outline-container-org3e1b1b1" class="outline-2">
+<h2 id="org3e1b1b1">Memory Layout</h2>
+<div class="outline-text-2" id="text-org3e1b1b1">
 <p>
 Why is it that we can treat arrays as pointers? It is because array values are stored in contiguous memory locations. The array <code>int x[6] = {1, 2, 3, 4, 5, 6};</code> is for example stored like this in memory:
 <img src="../../../images/array-in-memory.png" alt="nil"></p>
@@ -573,9 +573,9 @@ Look at the following code which is really interesting and makes a lot of things
 </div>
 </div>
 
-<div id="outline-container-orgdd810cc" class="outline-2">
-<h2 id="orgdd810cc">Char Arrays</h2>
-<div class="outline-text-2" id="text-orgdd810cc">
+<div id="outline-container-orga24956d" class="outline-2">
+<h2 id="orga24956d">Char Arrays</h2>
+<div class="outline-text-2" id="text-orga24956d">
 <p>
 As we already know C does not provide strings by default. That's why <code>char</code> arrays are "abused" as such. There is a special way to intialize char arrays in C:
 </p>
@@ -627,10 +627,10 @@ I faked this output result for illustrating purposes because most modern compile
 </p>
 </div>
 </div>
-<div id="outline-container-orga704855" class="outline-2">
-<h2 id="orga704855">Parameters of <code>main()</code>
+<div id="outline-container-org726f99a" class="outline-2">
+<h2 id="org726f99a">Parameters of <code>main()</code>
 </h2>
-<div class="outline-text-2" id="text-orga704855">
+<div class="outline-text-2" id="text-org726f99a">
 <p>
 The signature of C's  <code>main()</code> function is mentioned by C11 as the following:
 </p>
@@ -667,16 +667,16 @@ If the value of <code>argc</code> is greater than one, the strings pointed to by
 <img src="../../../images/argv-argc.png" alt="nil"></p>
 
 <p>
-As already mentioned the declaration <code>char *argv[]</code> stands for an <b>array of pointers to <code>char</code>'s</b>
+As already mentioned the declaration <code>char *argv[]</code> stands for an <b>array of pointers that hold memory addresses of <code>char</code> arrays</b>
 Calling for example the code from the picture above this is how the corresponding memory layout would look like:
 <img src="../../../images/argv-memory-layout.png" alt="nil"></p>
 </div>
 </div>
 
 
-<div id="outline-container-org3b6c440" class="outline-2">
-<h2 id="org3b6c440">Revision: Storage Classes and Storage Types/Attributes</h2>
-<div class="outline-text-2" id="text-org3b6c440">
+<div id="outline-container-org286d200" class="outline-2">
+<h2 id="org286d200">Revision: Storage Classes and Storage Types/Attributes</h2>
+<div class="outline-text-2" id="text-org286d200">
 <p>
 → see "Named Variables" in Lecture 06
 </p>
