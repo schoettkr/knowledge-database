@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about database)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/database.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 21 Jan 2019 15:10:27 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Database Essentials - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Database (Posts about database)</title><link>https://schoettkr.github.io/knowledge-database/</link><description></description><atom:link href="https://schoettkr.github.io/knowledge-database/categories/database.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:schoettkr@gmail.com"&gt;schoettkr&lt;/a&gt; </copyright><lastBuildDate>Mon, 28 Jan 2019 13:12:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Database Essentials - Lecture 07</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-07/</link><dc:creator>schoettkr</dc:creator><description>&lt;p&gt;
 This lecture is the third part of the Introduction to SQL that we began in lecture 5.
 &lt;/p&gt;
 
@@ -3976,9 +3976,9 @@ Since the expressiveness (Ausdruckskraft) of the relational model (logical desig
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>database</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/</guid><pubDate>Tue, 23 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-orgf8ee22d" class="outline-2"&gt;
-&lt;h2 id="orgf8ee22d"&gt;Information Systems&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf8ee22d"&gt;
+&lt;/div&gt;</description><category>database</category><category>university</category><guid>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-03/</guid><pubDate>Tue, 23 Oct 2018 22:00:00 GMT</pubDate></item><item><title>Database Essentials - Lecture 02</title><link>https://schoettkr.github.io/knowledge-database/posts/database_essentials/db-essentials-02/</link><dc:creator>schoettkr</dc:creator><description>&lt;div id="outline-container-org8d91862" class="outline-2"&gt;
+&lt;h2 id="org8d91862"&gt;Information Systems&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8d91862"&gt;
 &lt;p&gt;
 The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Application Software, Hardware, Developers and Users.
 &lt;/p&gt;
@@ -3989,20 +3989,20 @@ Databases historically developed out of the needs of operational information sys
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org78ff07e" class="outline-2"&gt;
-&lt;h2 id="org78ff07e"&gt;DBS Development Lifecycle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org78ff07e"&gt;
+&lt;div id="outline-container-org6d08c35" class="outline-2"&gt;
+&lt;h2 id="org6d08c35"&gt;DBS Development Lifecycle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6d08c35"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;consists of &lt;b&gt;planning&lt;/b&gt; and &lt;b&gt;realisation&lt;/b&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgb36e926" class="outline-3"&gt;
-&lt;h3 id="orgb36e926"&gt;Planning&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb36e926"&gt;
+&lt;div id="outline-container-org82d3d3e" class="outline-3"&gt;
+&lt;h3 id="org82d3d3e"&gt;Planning&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org82d3d3e"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5a1be19" class="outline-4"&gt;
-&lt;h4 id="org5a1be19"&gt;Goal Description and System Defintion&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5a1be19"&gt;
+&lt;div id="outline-container-org2da4f63" class="outline-4"&gt;
+&lt;h4 id="org2da4f63"&gt;Goal Description and System Defintion&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2da4f63"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;What is the purpose of the DBS?&lt;/li&gt;
 &lt;li&gt;Which goals should be accomplished by using the DBS?&lt;/li&gt;
@@ -4017,9 +4017,9 @@ Databases historically developed out of the needs of operational information sys
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgc22fd73" class="outline-4"&gt;
-&lt;h4 id="orgc22fd73"&gt;Requirement Specification&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc22fd73"&gt;
+&lt;div id="outline-container-org1e8bc66" class="outline-4"&gt;
+&lt;h4 id="org1e8bc66"&gt;Requirement Specification&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1e8bc66"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;in this process data that should be managed by the DBS  is gathered/collected and analyzed&lt;/li&gt;
 &lt;li&gt;the specific data and its usage is described for each user view → adequate description (not too much or too less)&lt;/li&gt;
@@ -4030,15 +4030,15 @@ Databases historically developed out of the needs of operational information sys
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org913cdf6"&gt;&lt;/a&gt;Central integration&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org913cdf6"&gt;
+&lt;li&gt;&lt;a id="orga224544"&gt;&lt;/a&gt;Central integration&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orga224544"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;each user views requirements are combined in an aggregate of requirements for the DBS&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a id="org259166b"&gt;&lt;/a&gt;View integration&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org259166b"&gt;
+&lt;li&gt;&lt;a id="org5432f6a"&gt;&lt;/a&gt;View integration&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org5432f6a"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;the requirements for each user view stay seperated for the time being&lt;/li&gt;
 &lt;li&gt;in the next stept a data model is designed for each user view&lt;/li&gt;
@@ -4048,13 +4048,13 @@ Databases historically developed out of the needs of operational information sys
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org9595d40" class="outline-4"&gt;
-&lt;h4 id="org9595d40"&gt;Application Design and DB Design*&lt;/h4&gt;
+&lt;div id="outline-container-orgad1abcb" class="outline-4"&gt;
+&lt;h4 id="orgad1abcb"&gt;Application Design and DB Design*&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org53ef5d2" class="outline-3"&gt;
-&lt;h3 id="org53ef5d2"&gt;Realisation&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org53ef5d2"&gt;
+&lt;div id="outline-container-org718529f" class="outline-3"&gt;
+&lt;h3 id="org718529f"&gt;Realisation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org718529f"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;implementation of DB and application&lt;/li&gt;
 &lt;li&gt;data conversion of existing systems if needed&lt;/li&gt;
@@ -4064,13 +4064,13 @@ Databases historically developed out of the needs of operational information sys
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2012fa7" class="outline-3"&gt;
-&lt;h3 id="org2012fa7"&gt;∗Database Design&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2012fa7"&gt;
+&lt;div id="outline-container-org53d804b" class="outline-3"&gt;
+&lt;h3 id="org53d804b"&gt;∗Database Design&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org53d804b"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org6ab7cdf" class="outline-4"&gt;
-&lt;h4 id="org6ab7cdf"&gt;Data model&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org6ab7cdf"&gt;
+&lt;div id="outline-container-org1321709" class="outline-4"&gt;
+&lt;h4 id="org1321709"&gt;Data model&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1321709"&gt;
 &lt;p&gt;
 A data model is a collection of concepts to describe data objects and their relationships. A data model usually consists of three components:
 &lt;/p&gt;
@@ -4124,9 +4124,9 @@ There are multiple criteria for a optimal data model, the following list is base
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org42c2544" class="outline-4"&gt;
-&lt;h4 id="org42c2544"&gt;Three phases of database design&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org42c2544"&gt;
+&lt;div id="outline-container-org8435054" class="outline-4"&gt;
+&lt;h4 id="org8435054"&gt;Three phases of database design&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8435054"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;&lt;b&gt;Conceptual Design&lt;/b&gt; (This lecture)
 &lt;ul class="org-ul"&gt;
@@ -4148,9 +4148,9 @@ There are multiple criteria for a optimal data model, the following list is base
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org92e2164" class="outline-2"&gt;
-&lt;h2 id="org92e2164"&gt;1. Conceptual DB-Design&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org92e2164"&gt;
+&lt;div id="outline-container-org5a7f3c2" class="outline-2"&gt;
+&lt;h2 id="org5a7f3c2"&gt;1. Conceptual DB-Design&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5a7f3c2"&gt;
 &lt;p&gt;
 The &lt;b&gt;Entity-Relationship-Model&lt;/b&gt; (ERM) is the most used data model for the conceptual DB design process. ER-Modelling is a top-down procedure that primarily tries to capture the data objects (entities) and their relationships, which are then described more precisely and detailed in the progression of the modelling process.
 &lt;/p&gt;
@@ -4160,13 +4160,13 @@ There are different ways to display/visualize the concepts on an ER model, of wh
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgce2d7a3" class="outline-3"&gt;
-&lt;h3 id="orgce2d7a3"&gt;ER-Model (Entity Relationship Model)&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgce2d7a3"&gt;
+&lt;div id="outline-container-org7ad6e8f" class="outline-3"&gt;
+&lt;h3 id="org7ad6e8f"&gt;ER-Model (Entity Relationship Model)&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7ad6e8f"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orge43fccc" class="outline-4"&gt;
-&lt;h4 id="orge43fccc"&gt;Entities&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge43fccc"&gt;
+&lt;div id="outline-container-org9b72720" class="outline-4"&gt;
+&lt;h4 id="org9b72720"&gt;Entities&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9b72720"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;entity type&lt;/b&gt;
 &lt;ul class="org-ul"&gt;
@@ -4184,9 +4184,9 @@ There are different ways to display/visualize the concepts on an ER model, of wh
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5851e18" class="outline-4"&gt;
-&lt;h4 id="org5851e18"&gt;Relationships&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5851e18"&gt;
+&lt;div id="outline-container-orgab541bd" class="outline-4"&gt;
+&lt;h4 id="orgab541bd"&gt;Relationships&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgab541bd"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;relationship&lt;/b&gt;
 &lt;ul class="org-ul"&gt;
@@ -4261,9 +4261,9 @@ Example of a quarternary relationship:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf899de4" class="outline-4"&gt;
-&lt;h4 id="orgf899de4"&gt;Attributes&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf899de4"&gt;
+&lt;div id="outline-container-org0cbd560" class="outline-4"&gt;
+&lt;h4 id="org0cbd560"&gt;Attributes&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0cbd560"&gt;
 &lt;p&gt;
 An &lt;b&gt;attribute&lt;/b&gt; denotes a propterty/characteristic/trait (Eigenschaft)  of an entity type.
 The &lt;b&gt;atrtibute domain&lt;/b&gt; is the set of values in an &lt;i&gt;attribute&lt;/i&gt; for example for the attribute "married" the attribute domain would consist of "yes" and "no" (another example could be age (1-99) or rooms in a hotel (1-200)).
@@ -4284,8 +4284,8 @@ Be careful, the existence of a lot of relationship attributes may be a sign that
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orgd3ee136"&gt;&lt;/a&gt;Attribute Types&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgd3ee136"&gt;
+&lt;li&gt;&lt;a id="orgf7a586b"&gt;&lt;/a&gt;Attribute Types&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgf7a586b"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;simple/atomic(atomar)&lt;/b&gt;
 &lt;ul class="org-ul"&gt;
@@ -4311,8 +4311,8 @@ Be careful, the existence of a lot of relationship attributes may be a sign that
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org9b3fb35"&gt;&lt;/a&gt;Schlüsselattribute (key attributes)&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org9b3fb35"&gt;
+&lt;li&gt;&lt;a id="org4e86836"&gt;&lt;/a&gt;Schlüsselattribute (key attributes)&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org4e86836"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;candidate key&lt;/b&gt;
 &lt;ul class="org-ul"&gt;
@@ -4331,23 +4331,23 @@ Be careful, the existence of a lot of relationship attributes may be a sign that
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgd06de02"&gt;&lt;/a&gt;Visualizing Attribute Types and Designating Key Attributes&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgd06de02"&gt;
+&lt;li&gt;&lt;a id="org8f1e998"&gt;&lt;/a&gt;Visualizing Attribute Types and Designating Key Attributes&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org8f1e998"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;the components of compound attributes are indented&lt;/li&gt;
 &lt;li&gt;ranges of possible values are denoted via square brackets after the attribute, eg [1..*] for an arbitrary amount&lt;/li&gt;
 &lt;li&gt;the designation of &lt;i&gt;derived attributes&lt;/i&gt; is done via a leading slash "/"&lt;/li&gt;
 &lt;li&gt;the first attribute(s) designate the primary key of an entity type
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;those attributes should also be tagged with a trailing "{PKK}" in case of multiple attributes that yield the primary key or respectively "{PK}" if its only one attribute that acts as a primary key&lt;/li&gt;
+&lt;li&gt;those attributes should also be tagged with a trailing "{PPK}" in case of multiple attributes that yield the primary key or respectively "{PK}" if its only one attribute that acts as a primary key&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;alternative keys are tagged with a trailing "{AK}"&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org4c46cbd"&gt;&lt;/a&gt;Weak and Strong Entity Types&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org4c46cbd"&gt;
+&lt;li&gt;&lt;a id="org205dc18"&gt;&lt;/a&gt;Weak and Strong Entity Types&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org205dc18"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;weak entity type&lt;/b&gt;
 &lt;ul class="org-ul"&gt;
@@ -4364,9 +4364,9 @@ Be careful, the existence of a lot of relationship attributes may be a sign that
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgea71a0c" class="outline-4"&gt;
-&lt;h4 id="orgea71a0c"&gt;Cardinality&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgea71a0c"&gt;
+&lt;div id="outline-container-org9c42ed0" class="outline-4"&gt;
+&lt;h4 id="org9c42ed0"&gt;Cardinality&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9c42ed0"&gt;
 &lt;p&gt;
 The &lt;b&gt;cardinality&lt;/b&gt; describes the maximum amount of relationships, in which an entity of a specific relationship type (steht so in Folien, müsste dies nicht entity type statt relationship type sein?) may be a part of.
 &lt;/p&gt;
@@ -4389,13 +4389,13 @@ Note that to determine the cardinality and participation always both sides/direc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org61cfe71" class="outline-4"&gt;
-&lt;h4 id="org61cfe71"&gt;Cardinality of Binary Relationships&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org61cfe71"&gt;
+&lt;div id="outline-container-org2dd04cb" class="outline-4"&gt;
+&lt;h4 id="org2dd04cb"&gt;Cardinality of Binary Relationships&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2dd04cb"&gt;
 &lt;/div&gt;
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org59000a0"&gt;&lt;/a&gt;1:1 Relationship&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org59000a0"&gt;
+&lt;li&gt;&lt;a id="org3eb3d72"&gt;&lt;/a&gt;1:1 Relationship&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org3eb3d72"&gt;
 &lt;p&gt;
 Each entity out of entity set E&lt;sub&gt;1&lt;/sub&gt; may only be in relation to maximally one entity out of entity set E&lt;sub&gt;2&lt;/sub&gt;. Each entity out of entity set E&lt;sub&gt;2&lt;/sub&gt; may as well only be in relation with one entity from entity set E&lt;sub&gt;1&lt;/sub&gt; at most.
 &lt;/p&gt;
@@ -4412,8 +4412,8 @@ So if I want to change/add/create the min-max ranges for example for the profess
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org3c9b497"&gt;&lt;/a&gt;1:N Relationship&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org3c9b497"&gt;
+&lt;li&gt;&lt;a id="orgb7e0558"&gt;&lt;/a&gt;1:N Relationship&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgb7e0558"&gt;
 &lt;p&gt;
 Each entity out of entity set E&lt;sub&gt;1&lt;/sub&gt; may be in a relationship with an arbitrary amount of entities out of entity set E&lt;sub&gt;2&lt;/sub&gt;. Each entity out of entity set E&lt;sub&gt;2&lt;/sub&gt; may only be in a relationship with one entity from entity set E&lt;sub&gt;1&lt;/sub&gt; at most.
 &lt;/p&gt;
@@ -4443,8 +4443,8 @@ This is read as one person died in either none (person is alive) and at max one 
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org8e1cd06"&gt;&lt;/a&gt;N:M Relationship&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org8e1cd06"&gt;
+&lt;li&gt;&lt;a id="org2f10eed"&gt;&lt;/a&gt;N:M Relationship&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org2f10eed"&gt;
 &lt;p&gt;
 Each entity out of entity set E&lt;sub&gt;1&lt;/sub&gt; may be in a relationship with an arbitrary amount of entities out of entity set E&lt;sub&gt;2&lt;/sub&gt;. Each entity out of entity set E&lt;sub&gt;2&lt;/sub&gt; may also be in a relationship with an arbitrary amount of entities from entity set E&lt;sub&gt;1&lt;/sub&gt;.
 &lt;/p&gt;
@@ -4458,17 +4458,17 @@ For example a student listens to multiple lectures and lectures are heard by mul
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org41453f2" class="outline-4"&gt;
-&lt;h4 id="org41453f2"&gt;Cardinality Analysis&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org41453f2"&gt;
+&lt;div id="outline-container-org53a0e91" class="outline-4"&gt;
+&lt;h4 id="org53a0e91"&gt;Cardinality Analysis&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org53a0e91"&gt;
 &lt;p&gt;
 When modelling segments of the real world one should consider weather the relationships between entity types are of static or dynamic nature and wether the relationships exist on the instance (Instanzebene) or type level (Typebene). Depending on that the cardinality of equal (gleichartigen) relationships between entity types may vary.
 &lt;/p&gt;
 &lt;/div&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orge12bd6b"&gt;&lt;/a&gt;Static&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orge12bd6b"&gt;
+&lt;li&gt;&lt;a id="orgf3cef09"&gt;&lt;/a&gt;Static&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgf3cef09"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;modelling of the current state&lt;/li&gt;
 &lt;li&gt;eg over the course of one semester one teacher holds one (or multiple) lectures (1:N relationship)&lt;/li&gt;
@@ -4479,8 +4479,8 @@ When modelling segments of the real world one should consider weather the relati
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="orgd6018ec"&gt;&lt;/a&gt;Dynamic&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgd6018ec"&gt;
+&lt;li&gt;&lt;a id="org60eaa13"&gt;&lt;/a&gt;Dynamic&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org60eaa13"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;modelling of the process (Modellierung des Verlaufs)&lt;/li&gt;
 &lt;li&gt;eg over the course of multiple semesters it is possible that multiple/different teachers hold the lecture (N:M relationship)&lt;/li&gt;
@@ -4491,8 +4491,8 @@ When modelling segments of the real world one should consider weather the relati
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org7b9fdbe"&gt;&lt;/a&gt;Instance (level)&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org7b9fdbe"&gt;
+&lt;li&gt;&lt;a id="org389ad15"&gt;&lt;/a&gt;Instance (level)&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org389ad15"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;an entity of a entity type represents a concrete und uniquely identifiable object&lt;/li&gt;
 &lt;li&gt;eg a customer buys products which are identifiable via their serial number
@@ -4507,8 +4507,8 @@ When modelling segments of the real world one should consider weather the relati
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org057e8cd"&gt;&lt;/a&gt;Type (level)&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org057e8cd"&gt;
+&lt;li&gt;&lt;a id="org6a0a5ba"&gt;&lt;/a&gt;Type (level)&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org6a0a5ba"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;an entity of a entity type represents a a type resp. a category of objects&lt;/li&gt;
 &lt;li&gt;eg a customer buys products which are only sold as a category of objects for instance a box of matches
@@ -4524,9 +4524,9 @@ When modelling segments of the real world one should consider weather the relati
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge635b1b" class="outline-4"&gt;
-&lt;h4 id="orge635b1b"&gt;Relationships with a Degree &amp;gt; 2 (Mehrstellige Beziehungen)&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge635b1b"&gt;
+&lt;div id="outline-container-org8c906eb" class="outline-4"&gt;
+&lt;h4 id="org8c906eb"&gt;Relationships with a Degree &amp;gt; 2 (Mehrstellige Beziehungen)&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8c906eb"&gt;
 &lt;p&gt;
 To represent relationships where the degree of the cardinality is higher than 2 more letters may be required, eg N:M:P relationship. Take for example the interpretation of ternary relationships:
 &lt;/p&gt;
@@ -4550,9 +4550,9 @@ For example:
 
 
 
-&lt;div id="outline-container-orga5820c1" class="outline-4"&gt;
-&lt;h4 id="orga5820c1"&gt;Example of ER Modelling Process&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga5820c1"&gt;
+&lt;div id="outline-container-org6a90d8e" class="outline-4"&gt;
+&lt;h4 id="org6a90d8e"&gt;Example of ER Modelling Process&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6a90d8e"&gt;
 &lt;p&gt;
 Task: We want to model a simplified version of a semester and the following points should be expressed:
 &lt;/p&gt;
@@ -4580,9 +4580,9 @@ Note that because of too much overhead visualizing this manually I'll just inser
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org96710ca" class="outline-3"&gt;
-&lt;h3 id="org96710ca"&gt;Summary of the Conceptual Database Design Process&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org96710ca"&gt;
+&lt;div id="outline-container-org424d10e" class="outline-3"&gt;
+&lt;h3 id="org424d10e"&gt;Summary of the Conceptual Database Design Process&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org424d10e"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;identification of entity types&lt;/li&gt;
 &lt;li&gt;identification of relationship types&lt;/li&gt;
@@ -4596,9 +4596,9 @@ Note that because of too much overhead visualizing this manually I'll just inser
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org507d3dc" class="outline-2"&gt;
-&lt;h2 id="org507d3dc"&gt;2. Logical DB-Design&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org507d3dc"&gt;
+&lt;div id="outline-container-orgd976b07" class="outline-2"&gt;
+&lt;h2 id="orgd976b07"&gt;2. Logical DB-Design&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd976b07"&gt;
 &lt;p&gt;
 → We will begin to examine the logical database design process in the next lecture (lecture 03).
 &lt;/p&gt;

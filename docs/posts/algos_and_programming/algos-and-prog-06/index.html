@@ -101,9 +101,9 @@ Up until now our C programs followed the function model (stateless). Storing dat
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org28bcc5a" class="outline-2">
-<h2 id="org28bcc5a">Storage and memory</h2>
-<div class="outline-text-2" id="text-org28bcc5a">
+        <div id="outline-container-org9ac7c58" class="outline-2">
+<h2 id="org9ac7c58">Storage and memory</h2>
+<div class="outline-text-2" id="text-org9ac7c58">
 <p>
 Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:
 </p>
@@ -128,16 +128,16 @@ The terms "named" and "anonymous" are taken from the lecture script, I don't lik
 </p>
 </div>
 
-<div id="outline-container-orgee5753f" class="outline-3">
-<h3 id="orgee5753f">Variables</h3>
-<div class="outline-text-3" id="text-orgee5753f">
+<div id="outline-container-orge2f03c8" class="outline-3">
+<h3 id="orge2f03c8">Variables</h3>
+<div class="outline-text-3" id="text-orge2f03c8">
 <p>
 Should the value of a place in memory be modified (purpose of the state model), you speak of (named or anonymous) <i>variables</i>. Should the value in memory stay unchanged, then it is a <i>constant</i>.
 </p>
 </div>
-<div id="outline-container-org0b77064" class="outline-4">
-<h4 id="org0b77064">Named variables</h4>
-<div class="outline-text-4" id="text-org0b77064">
+<div id="outline-container-org50abb56" class="outline-4">
+<h4 id="org50abb56">Named variables</h4>
+<div class="outline-text-4" id="text-org50abb56">
 <p>
 Named variables in C have to be declared (analogus to functions). The declarations has to contain the type of the variable as well as the name. It is possible to declare multiple variables of the same type together ala <code>int x, y ,z;</code>.
 </p>
@@ -180,7 +180,7 @@ Type qualifiers are declared via the keywords <code>const</code>, <code>volatile
 </p>
 
 <p>
-Variables declared outside of any function are <i>global variables</i>, while variables declared in blocks (<code>{..}</code>) are <i>local variables</i>. Only with the exception of variables with a storage class of <code>extern</code>, variables are also <i>defined</i> when they are <i>declared</i> that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything.
+Variables declared outside of any function are <i>global variables</i>, while variables declared in blocks (<code>{..}</code>) are <i>local variables</i>. Only with the exception of variables with a storage class of <code>extern</code>, variables are also <i>defined</i> when they are <i>declared</i> that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything. So the declaration announces the name and the type and definition creates creates the variable thus the memory is allocated and usually this happens at the same time except for when the keyword <code>extern</code> is used. (On this from quora: Declaration of a variable specifies its name and datatype. Declaration does not create a variable; it only refers to a variable name and what type of data the variable will hold, so memory is not allocated at the time of declaration. <code>extern int i; /* Declaration */</code> Definition creates the variable, so memory is allocated at the time of definition. Declarations also serve as definitions, except when the declaration contains the extern specifier but no initializer.)
 </p>
 
 <p>
@@ -194,7 +194,7 @@ A variable can be assigned a value via <code>0</code>, this can also be done whe
 
 <ul class="org-ul">
 <li>
-<a id="org34ce971"></a>Addresses<br><div class="outline-text-5" id="text-org34ce971">
+<a id="orge040cfb"></a>Addresses<br><div class="outline-text-5" id="text-orge040cfb">
 <p>
 Every variable has an address (place in memory where it is stored) that can be retrieved with the <code>&amp;</code> "address of" operator
 </p>
@@ -225,9 +225,9 @@ Actually the identifier of a variable (eg <code>testVar</code>) is just a synony
 </li>
 
 <li>
-<a id="orgcbb85d2"></a>Pointer<br><div class="outline-text-5" id="text-orgcbb85d2">
+<a id="orga42ed0c"></a>Pointer<br><div class="outline-text-5" id="text-orga42ed0c">
 <p>
-Variables can also hold addresses themselves! The prefix <code>*</code> infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another <b>specific</b> type. For instance:
+Variables can also hold addresses themselves! The prefix <code>*</code> infront of the identifier of a variable indicates a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another <b>specific</b> type. For instance:
 </p>
 <ul class="org-ul">
 <li>
@@ -303,9 +303,9 @@ y=42 (at 0x7ffeeff30f1c)
 </li>
 </ul>
 </div>
-<div id="outline-container-orgf8a29f4" class="outline-4">
-<h4 id="orgf8a29f4">Anonymous variables</h4>
-<div class="outline-text-4" id="text-orgf8a29f4">
+<div id="outline-container-orga5aab5d" class="outline-4">
+<h4 id="orga5aab5d">Anonymous variables</h4>
+<div class="outline-text-4" id="text-orga5aab5d">
 <p>
 Anonymous variables in C don't have a name but get memory allocated nevertheless. They are created at <i>run time</i> with functions from the C standard library. Anonymous variables are <b>not declared</b>.
 </p>
@@ -382,9 +382,9 @@ Helping advice to avoid the above errors:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1ed2e62" class="outline-4">
-<h4 id="org1ed2e62">Parameters</h4>
-<div class="outline-text-4" id="text-org1ed2e62">
+<div id="outline-container-orgfd8bb59" class="outline-4">
+<h4 id="orgfd8bb59">Parameters</h4>
+<div class="outline-text-4" id="text-orgfd8bb59">
 <p>
 Parameters are the third way memory is allocated to store values. We covered this in the next lecture (lecture 07). (¬‿¬)
 </p>

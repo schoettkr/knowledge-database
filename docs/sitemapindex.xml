@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/categories/ap.xml</loc>
-  <lastmod>2019-01-14T15:48:00Z</lastmod>
+  <lastmod>2019-01-28T13:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/categories/cat_university-cs01.xml</loc>
@@ -19,11 +19,11 @@
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/categories/database.xml</loc>
-  <lastmod>2019-01-21T15:10:00Z</lastmod>
+  <lastmod>2019-01-28T13:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/categories/university.xml</loc>
-  <lastmod>2019-01-21T15:10:00Z</lastmod>
+  <lastmod>2019-01-28T13:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/galleries/demo/rss.xml</loc>
@@ -35,10 +35,10 @@
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/rss.xml</loc>
-  <lastmod>2019-01-21T15:10:00Z</lastmod>
+  <lastmod>2019-01-28T13:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://schoettkr.github.io/knowledge-database/sitemap.xml</loc>
-  <lastmod>2019-01-21T15:10:00Z</lastmod>
+  <lastmod>2019-01-28T13:12:00Z</lastmod>
  </sitemap>
 </sitemapindex>

@@ -47,7 +47,7 @@ When declaring a variable it is possible to also provide a /storage class/ and/o
 
 Type qualifiers are declared via the keywords =const=, =volatile= or =restrict= and give hints to the compiler about the usage of the variables (see "Storage Classes and Storage Types/Attributes" in Lecture 08).
 
-Variables declared outside of any function are /global variables/, while variables declared in blocks (={..}=) are /local variables/. Only with the exception of variables with a storage class of =extern=, variables are also /defined/ when they are /declared/ that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything.
+Variables declared outside of any function are /global variables/, while variables declared in blocks (={..}=) are /local variables/. Only with the exception of variables with a storage class of =extern=, variables are also /defined/ when they are /declared/ that means that memory for the varibale is automatically allocated in memory (dont mix this with initializing and/or assigning) without the programmer having to do anything. So the declaration announces the name and the type and definition creates creates the variable thus the memory is allocated and usually this happens at the same time except for when the keyword =extern= is used. (On this from quora: Declaration of a variable specifies its name and datatype. Declaration does not create a variable; it only refers to a variable name and what type of data the variable will hold, so memory is not allocated at the time of declaration. =extern int i; /* Declaration */= Definition creates the variable, so memory is allocated at the time of definition. Declarations also serve as definitions, except when the declaration contains the extern specifier but no initializer.)
 
 When the variable has a storage class of =extern= it is *only declared* but not defined and therefore has to be /globally defined/ (in a different module).
 
@@ -76,7 +76,7 @@ Actually the identifier of a variable (eg =testVar=) is just a synonym of the ad
 [[img-url:/images/identifier-memory.png]]
 
 **** Pointer
-Variables can also hold addresses themselves! The prefix =*= infront of the identifier of a variable makes it a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another *specific* type. For instance:
+Variables can also hold addresses themselves! The prefix =*= infront of the identifier of a variable indicates a pointer variable. It is essential for the compiler of what this address is built, therefore a pointer is always pointing to another *specific* type. For instance:
 - =int *p= \rightarrow pointer that is pointing to an integer type
 - =float *p= \rightarrow pointer that is pointing to a float type
 - =unsigned int *p= \rightarrow pointer that is pointing to an unsigned integer type
