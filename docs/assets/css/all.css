@@ -37,7 +37,6 @@ header {
   z-index: 10;
   top: 0;
   width: 100%;
-  font-family: 'McLaren', cursive;
   min-height: 50px;
   box-shadow: inset 0px -4px 7px -4px #304860;
 }
@@ -139,6 +138,47 @@ header .brand .navbar-toggle .icon-bar + .icon-bar {
 .header-padding {
   padding-top: 60px;
   background-color: #304860;
+}
+
+header .search-form {
+  width: 250px;
+  height: 40px;
+  border-radius: 40px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translate(0%, 2%);
+  background: #fff;
+  transition: all 0.3s ease;
+
+}
+header .search-form:focus {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+  }
+header .search-input {
+  position: absolute;
+  top: 10px;
+  left: 38px;
+  font-size: 14px;
+  background: none;
+  color: #5a6674;
+  width: 195px;
+  height: 20px;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+.search-button {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none!important;
+  cursor: pointer;
+  color: #5a6674;
 }
 /* post-entry */
 .post-entry {
@@ -299,7 +339,6 @@ footer .copyright a:hover {
 .meta-header .container,
 .post-header .container {
   text-align: center;
-  font-family: 'Love Ya Like A Sister', cursive;
 }
 .tagline .post-meta,
 .meta-header .post-meta,

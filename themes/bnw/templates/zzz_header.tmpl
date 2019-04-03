@@ -42,7 +42,8 @@
 </%def>
 
 <%def name="html_site_tagline()">
-    %if show_blog_title and blog_description:
+    ## %if show_blog_title and blog_description:
+    %if false:
     <div class="tagline">
         <div class="container">
         ${blog_description}
@@ -53,15 +54,15 @@
 
 
 <%def name="html_page_search()">
-<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
-  <div class="form-group">
-    <input type="text" name="q" class="form-control" placeholder="Search">
-  </div>
-  <button type="submit" class="btn btn-primary">
-    <span class="glyphicon glyphicon-search"></span>
-  </button>
+<div>
+<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right search-form" role="search">
+    <input type="text" name="q" class="form-control search-input" placeholder="Search">
+    <button type="submit" class="search-button">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </button>
   <input type="hidden" name="sitesearch" value="${abs_link('/')}">
   </form>
+</div>
 </%def>
 
 <%def name="html_navigation_links()">

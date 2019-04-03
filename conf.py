@@ -25,7 +25,7 @@ SITE_URL = "https://schoettkr.github.io/knowledge-database/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://example.com/"
 BLOG_EMAIL = "schoettkr@gmail.com"
-BLOG_DESCRIPTION = "This is my personal knowledge database / blog."  # (translatable)
+# BLOG_DESCRIPTION = "This is my personal knowledge database / blog."  # (translatable)
 
 # Nikola is multilingual!
 #
