@@ -3,3 +3,5 @@ languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "m10c"
 publishDir = "docs"
+[permalinks]
+  uni-posts = "/:year/:month/:title/"
