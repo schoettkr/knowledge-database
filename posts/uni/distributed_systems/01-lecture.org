@@ -18,11 +18,11 @@
 
 Example of a layered approach:
 
-[[img-url:/images/layered-approach.png]]
+[[/knowledge-database/images/layered-approach.png]]
 A distributed system is a /loosely coupled set of of components/ which run on different computers' /host systems/ and coordinate by means of /message exchange/ over a /communication medium/ to reach a common goal. A host system is an autonomous runtime environment, which provides a component with the necessary execution and communication resources operated by that host system. Examples of host systems are operating systems, databases, a web server or middleware.
 
 Example: Interaction of host systems
-[[img-url:/images/host-system-interaction.png]]
+[[/knowledge-database/images/host-system-interaction.png]]
 
 * Challenges
 Implementation of distributed systems faces numerours challenges:

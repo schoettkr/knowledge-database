@@ -33,7 +33,7 @@ The Client/Server Model is a traditional approach, which is made use of in many 
 
 Examples of Client/Server Models would be TCP/IP, Sockets and Web Servers (plus many more!).
 
-[[img-url:/images/client-server-model.png]]
+[[/knowledge-database/images/client-server-model.png]]
 
 There are special types of the C/S Model for example:
 - *object-oriented model*
@@ -48,7 +48,7 @@ There are special types of the C/S Model for example:
     
 ** N-Tier Architecture
 #+ATTR_HTML: :style float:right; height: 500px; width: 100px;
-[[img-url:/images/n-tier-architecture.png]]
+[[/knowledge-database/images/n-tier-architecture.png]]
 
 N-tier architecture (or multitier architecture) is a client-server architecture in which, presentation, application processing and data management functions are physically separated. 
 
@@ -61,7 +61,7 @@ Examples of n-tier architecture are:
   
 ** N-Tier Architecture: Cluster
 #+ATTR_HTML: :style float:right; height: 500px; width: 100px;
-[[img-url:/images/n-tier-architecture.png]]
+[[/knowledge-database/images/n-tier-architecture.png]]
 
 A /cluster/ is a set of computers/servers, which are connected to each other over a fast network and can be seen as a single unit from the outside. This (often) entails the need/option for:
 - load distribution
@@ -80,7 +80,7 @@ SOA is process-oriented with services as a base concept and enable cross-platfor
 - *choreography* = combination of services for business process \rightarrow focus: description of message exchange procedure
 
 #+ATTR_HTML: :style text-align:center;
-[[img-url:/images/soa.png]]
+[[/knowledge-database/images/soa.png]]
 
 ** Grid Computing
 Grid computing is an approach to aggregation and shared use of heterogenous networked resources, such as computers, databases and scientific tools. The motivation behind grid computing lies (among other things) in the use of available but underutilized computers/resources.
@@ -158,14 +158,14 @@ There are different message exchange models which follow the sender-reciever par
 $$\fbox{SEND msg TO R} \rightarrow msg \rightarrow \fbox{RECV msg FROM R}$$
 **** Queue Communication Model
 #+ATTR_HTML: :style text-align:center;
-[[img-url:/images/queue-communication.png]]
+[[/knowledge-database/images/queue-communication.png]]
 **** Port-oriented Communication Model
 #+ATTR_HTML: :style text-align:center;
-[[img-url:/images/port-communication.png]]
+[[/knowledge-database/images/port-communication.png]]
 **** Request/Response Model
 The request/response model is the standard idea of distributed computing. The focus lies on behavior of programming languages. Note that in contrast to message exchange models (kind of contradiction because this is listed as a message exchange model in the script as seen above?!), the request/response model is inherently synchronous. Each operation determines a communication relationship.
 #+ATTR_HTML: :style text-align:center;
-[[img-url:/images/request-response-model.png]]
+[[/knowledge-database/images/request-response-model.png]]
 **** Pull/Push Model
 *Pull-Medium*: use of the endpoint originates from the user
 - eg: Request/Response approaches like HTTP
