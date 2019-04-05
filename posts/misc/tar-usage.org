@@ -1,13 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Usage of tar
-.. slug: tar-usage
-.. date: 2018-10-27
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-#+END_COMMENT
+#+TITLE: Usage of tar
+#+DATE: 2018-10-27
+#+HUGO_BASE_DIR: ../../
+#+HUGO_SECTION: misc
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Usage of tar
 GNU's =tar= is an archiving utility to store files into an archive and manipulate such archives.

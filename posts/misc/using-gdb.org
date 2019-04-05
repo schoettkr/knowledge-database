@@ -1,13 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Debugging with gdb
-.. slug: debugging-with-gdb
-.. date: 2018-10-27
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-#+END_COMMENT
+#+TITLE: Debugging with gdb
+#+DATE: 2018-10-27
+#+HUGO_BASE_DIR: ../../
+#+HUGO_SECTION: misc
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * How to debug a c program with gdb
 *** Step 1. Compile the C program with debugging option
