@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Database Essentials - Lecture 05
-.. slug: db-essentials-05
-.. date: 2018-11-21
-.. tags: database, university
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Database Essentials - Lecture 05
+#+DATE: 2018-11-21
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/db
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Relational Calculus (Relationenkalkül)
 The expressions in /relational algebra/ form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate relation results. This way describes they way of /how/ you come to the relation result.

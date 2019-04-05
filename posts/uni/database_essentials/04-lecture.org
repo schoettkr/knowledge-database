@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Database Essentials - Lecture 04
-.. slug: db-essentials-04
-.. date: 2018-11-07
-.. tags: database, university
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Database Essentials - Lecture 04
+#+DATE: 2018-11-07
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/db
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 Well, to be honest I would have expected that we cover the physical design phase of our database design cycle in this lecture. Turns out we didn't. Did we? I don't know :D ! It seems that lecturers tend to provide some course outline which they then don't (explicitly) follow how you would expect it.
 

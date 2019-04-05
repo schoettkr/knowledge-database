@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Database Essentials - Lecture 01
-.. slug: db-essentials-01
-.. date: 2018-10-10 13:28:51 UTC+02:00
-.. tags: database, university
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Database Essentials - Lecture 01
+#+DATE: 2018-10-10 13:28:51 UTC+02:00
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/db
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 * Organization
 The "Database Essentials" course does not use the centralized eLearning platform as most other courses do. The lecture slides and exercise materials are instead uploaded here: [[https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/][https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/]].
 

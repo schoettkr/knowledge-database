@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Database Essentials - Lecture 02
-.. slug: db-essentials-02
-.. date: 2018-10-17
-.. tags: database, university
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Database Essentials - Lecture 02
+#+DATE: 2018-10-17
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/db
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Information Systems
 The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Application Software, Hardware, Developers and Users.

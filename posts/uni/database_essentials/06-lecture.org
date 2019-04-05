@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Database Essentials - Lecture 06
-.. slug: db-essentials-06
-.. date: 2018-11-28
-.. tags: database, university
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Database Essentials - Lecture 06
+#+DATE: 2018-11-28
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/db
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 In this lecture we continued the Introduction to SQL that we began in the last session.
 
