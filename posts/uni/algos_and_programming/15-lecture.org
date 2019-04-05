@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 15 & 16
-.. slug: algos-and-prog-15-16
-.. date: 2018-11-26
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 15 & 16
+#+DATE: 2018-11-26
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.
 

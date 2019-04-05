@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 10
-.. slug: algos-and-prog-10
-.. date: 2018-11-09
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 10
+#+DATE: 2018-11-09
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Introduction
 How does the compiler know whether a program is "correct" (in the sense of compilable) or not?

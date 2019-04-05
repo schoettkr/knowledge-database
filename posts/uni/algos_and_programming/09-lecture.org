@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 09
-.. slug: algos-and-prog-09
-.. date: 2018-11-05
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 09
+#+DATE: 2018-11-05
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Complex Types in Python
 There are built-in types in Python which offer similar functionality to the complex types in C and more.

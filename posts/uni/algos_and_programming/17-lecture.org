@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 17
-.. slug: algos-and-prog-17
-.. date: 2018-12-03
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 17
+#+DATE: 2018-12-03
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Recursion and Backtracking
 Recursion was already covered in previous lectures so you can find additional informations in those blog posts. Now we want to discuss one difference between /loops/ and /recursion/ and therefore we turn our attention to the datastructure *stack* which is used in many CPU's.

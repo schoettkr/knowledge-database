@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 02
-.. slug: algos-and-prog-02
-.. date: 2018-10-12 14:57:04 UTC+02:00
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 02
+#+DATE: 2018-10-12 14:57:04 UTC+02:00
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * "Algorithm" - History & Definition
 The term "algorithm" goes back to a persian scholar who wrote a book with the latinized title of '*Algoritmi* de numero indorum'. One generic defintion of the term algorithm is that an algorithm is an instruction consisting of an finite amount of well-defined and effective steps (to achieve a certain goal).

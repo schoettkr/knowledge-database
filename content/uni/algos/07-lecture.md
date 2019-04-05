@@ -1,0 +1,199 @@
++++
+title = "Algos & Programming - Lecture 07"
+author = ["eo shiru"]
+date = 2018-10-30
+lastmod = 2019-04-06T00:17:19+02:00
+draft = false
++++
+
+## Storage and memory {#storage-and-memory}
+
+
+### Parameters {#parameters}
+
+Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables &rarr; **parameters**.
+
+Parameters are variables that are automatically created and initialized when a function is called.
+
+-   **lifecycle** &rarr; retention time (Verweilzeit) of the program in that function _instance_ (the surrounding function)
+-   **visibility** &rarr; whole function body as long as it's not shadowed
+
+Parameters are declared and defined whith the function definition. They cannot have /storage classes/(auto, static, extern, register), but may have /storage types/(const, volatile, restrict).
+
+The term parameter (sometimes called formal parameter) is used to refer to the variable as found in the function definition which is used in the function body, while argument (sometimes called actual parameter) refers to the actual input supplied at function call.
+
+In general there are two ways of assocating an argument with a parameter. C for example uses **positional parameters** _only_ which means arguments have to be provided in the order specified by the function definition.
+
+Python in contrast provides the option to use positional arguments as well as **named parameters**.
+A function call using named parameters differs from a regular function call in that the values are passed by associating each one with a parameter name, instead of providing an ordered list of values.
+
+In languages with no named parameters, the order of parameters in a function call is necessarily fixed, since it is the only way that the language can identify which value is intended to be used for which purpose.
+
+With named parameters, it is usually possible to provide the values in any arbitrary order, since the name attached to each value identifies its purpose. This reduces the connascence between parts of the program. A few languages use named parameters but still require the parameters to be provided in a specific order.
+
+Example usage of **ordered/positional parameters**:
+
+```python
+testFun("Title", 20, 50, 100, 50, true);
+```
+
+Example usage of **named parameters**:
+
+```python
+testFun(title="Title",
+        xPosition=20,
+        yPosition=50,
+        width=100,
+        height=50,
+        drawingNow=true)
+```
+
+Besides the different ways to associate parameters and arguments, there are different ways in which arguments are _passed_ to the function!
+
+-   **call by value**: the actual parameter (argument) is evaluated and the formal parameter recieves that value (the function recieves a copy of the value)
+-   **call by name**: the formal parameter is replaced by the name of the actual parameter
+-   **call by reference**: the formal parameter becomes a "proxy object" (Stellvertreterobjekt) for the argument so that all changes are immediately effective outside of the function as well
+-   **call by copy/return**: the argument is evaluated and the formal parameter gets this value at the begin of the function; when the function execution finishes the value of the formal parameter is assigned to the actual parameter (copy in - copy out, call by value - return)
+
+In C the only way of passing parameters is **by value** and it does not know the concept of procedures and reference parameters.
+
+To be still able to manipulate values outside of the executing function one may pass _pointers_. Changes outside of the function scope can then be realised via dereferencing those pointers. The effect of this is basically the same as it would be when calling by reference and is an often used practice in C.
+
+A manipulation of values outside of a functions local variables (including parameters) is called _side effect_ (input & output is also a side effect).
+
+Example of manipulating a value outside of a functions local scope via pointer and therefore simulating reference parameters:
+
+```C
+/* sideeffect .c -- simulated reference parameter */
+#include <stdio.h>
+
+void sideeffect(int *);
+
+int main ()
+{
+  int x =42;
+  printf("x=%d\n", x);
+  sideeffect(&x);
+  printf ("x=%d\n", x);
+  return 0;
+}
+
+void sideeffect (int *p)
+{
+  *p =23;
+}
+```
+
+| x=42 |
+|------|
+| x=23 |
+
+Another use case of reference parameters is value input. The function `scanf()` from the standard library provides this functionality. Similar to `printf()` the parameters begin with a format string, followed by a sequence of pointers to the variables where the input should be stored in. `scanf` returns the count of successfully read variables.
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  int x, y;
+  printf ("Give the point as \"(x,y )\": ");
+  if(scanf("(%d ,%d)", &x, &y) == 2){
+    printf("You provided : (%d, %d).\n", x, y);
+  }
+  return 0;
+}
+```
+
+
+### Excursus: Variables and References in Python {#excursus-variables-and-references-in-python}
+
+Parameter passing in Python is somewhat special. It is not one of the most known methods like "pass-by-value" or "pass-by-reference", in fact parameter passing in Python is **"pass-by-object-reference"** of which is often said "Object references are passed by value".
+
+What is actually happening when you make a variable assignment? This is an important question in Python, because the answer differs somewhat from what you’d find in many other programming languages.
+
+Python is a highly object-oriented language. In fact, virtually every item of data in a Python program is an object of a specific type or class.
+
+When presented with the statement `print(300)`, the interpreter does the following:
+
+-   Creates an integer object
+-   Gives it the value 300
+-   Displays it to the console
+
+A Python variable is a symbolic name that is a reference or pointer to an object. Once an object is assigned to a variable, you can refer to the object by that name. But the data itself is still contained within the object.
+
+For example the assignment `n = 9000` creates an integer object with the value `300` and assigns the variable `n` to point to that object:
+\\[n \longrightarrow \fbox{9000}\\]
+
+Now consider the following statement `m = n`. What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, `m`, which points to the same object that `n` points to.
+\\[n \longrightarrow \fbox{9000} \longleftarrow m\\]
+
+Next suppose you do this `m = 400`. Now Python creates a new integer object with the value `400` and `m` becomes a reference to it:
+\\[n \longrightarrow \fbox{9000} \\ \fbox{400} \longleftarrow m\\]
+
+Lastly, suppose this statement is executed next `n = "foo"` . Now Python creates a string object with the value `"foo"` and makes `n` reference that.
+
+\\[n \longrightarrow \fbox{"foo"} \\ \fbox{9000} \\ \fbox{400} \longleftarrow m\\]
+
+There is no longer any reference to the integer object `9000`. It is orphaned, and there is no way to access it.
+
+An object’s life begins when it is created, at which time at least one reference to it is created. During an object’s lifetime, additional references to it may be created, as you saw above, and references to it may be deleted as well. An object stays alive, as it were, so long as there is at least one reference to it.
+
+When the number of references to an object drops to zero, it is no longer accessible. At that point, its lifetime is over. Python will eventually notice that it is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.
+
+
+#### Object Identity {#object-identity}
+
+In Python, every object that is created is given a number that uniquely identifies it. It is guaranteed that no two objects will have the same identifier during any period in which their lifetimes overlap. Once an object’s reference count drops to zero and it is garbage collected, as happened to the `9000` object above, then its identifying number becomes available and may be used again.
+
+The built-in Python function `id()` returns an object’s integer identifier. Using the `id()` function, you can verify that two variables indeed point to the same object:
+
+```python
+n = 768
+m = n
+print(id(n) == id(m))
+```
+
+```text
+True
+```
+
+After the assignment `m = n`, `m` and `n` both point to the same object, confirmed by the fact that `id(m)` and `id(n)` return the same number.
+
+Now take a look at the following code:
+
+```python
+a = 23
+print("a=", a, ", id(a)=", id(a))
+
+b = 42
+print("b=", b, ", id(b)=", id(b))
+
+a = a+19
+print("a=", a, ", id(a)=", id(a))
+
+print(id(a) == id(b))
+```
+
+```text
+a= 23 , id(a)= 140445988624288
+b= 42 , id(b)= 140445988624896
+a= 42 , id(a)= 140445988624896
+True
+```
+
+When dealing with _immutable objects_ (eg integers, bool, string) a variable assignment like `a = a+19` **does not** modify the _object_, instead
+
+-   a **new object** is created and referenced
+-   or if such object (eg obj with value `42`) already exists it is referenced
+
+Complex objects (eg list, dict, set) are _mutable_. When operating on them, they are changed directly without the creation of new objects so the reference stays the same.
+
+In the code example above an object holding the integer `42` already existed and was referenced by `b` and thats why assigning `42` to `a` changes the reference to point to the same object, which is verified by comparing the object ids with `id()`.
+
+So parameter passing in Python passes **object references**.
+
+In case of _immutable objects_ modifications inside the called function leads to creation and then referencing of other objects. Outside of the function the same ol' object is referenced, which was not modified so this has the same effect as "pass-by-value".
+
+In case of _mutable objects_ no new references and objects would be created when modifications occur so variables outside of the function that refer to the same object reference the same object to which the modifications are applied. This has the same effect as "pass-by-reference".
+
+Sources of the python excursus: <https://realpython.com/python-variables/> and <https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/>

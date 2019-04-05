@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 13
-.. slug: algos-and-prog-13
-.. date: 2018-11-19
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 13
+#+DATE: 2018-11-19
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Design and Correctness of Algorithms
 The first slides of this lecture chapter is just some meta information about the right mindset to create algorithms, which I find to be trivial, that's why I don't repeat that here (slides 1-5).

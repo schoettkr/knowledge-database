@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 06
-.. slug: algos-and-prog-06
-.. date: 2018-10-26
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 06
+#+DATE: 2018-10-26
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Storage and memory
 Up until now our C programs followed the function model (stateless). Storing data is however required to realise the state model. To store data there are basically two options:

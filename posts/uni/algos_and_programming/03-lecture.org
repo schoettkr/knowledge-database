@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 03
-.. slug: algos-and-prog-03
-.. date: 2018-10-15 14:57:04 UTC+02:00
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 03
+#+DATE: 2018-10-15 14:57:04 UTC+02:00
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 [[https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout_de.pdf][Script (1-28)]]
 

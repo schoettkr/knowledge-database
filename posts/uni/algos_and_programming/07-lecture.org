@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 07
-.. slug: algos-and-prog-07
-.. date: 2018-10-30
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 07
+#+DATE: 2018-10-30
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 * Storage and memory
 ** Parameters
 Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables \rightarrow *parameters*.

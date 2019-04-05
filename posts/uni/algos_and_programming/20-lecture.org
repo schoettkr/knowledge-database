@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 20 & 21
-.. slug: algos-and-prog-20-21
-.. date: 2018-12-14
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 20 & 21
+#+DATE: 2018-12-14
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a "game". Because the emphasis is on the development cycle, there will also be preliminary and "wrong" solutions.
 

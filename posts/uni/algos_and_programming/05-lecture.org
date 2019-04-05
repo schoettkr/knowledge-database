@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 05
-.. slug: algos-and-prog-05
-.. date: 2018-10-22
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 05
+#+DATE: 2018-10-22
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Type and signature
 Similar to functions in math functions in C (or programming for that matter) have a domain (Defintionsbereich/Definitionsmenge) and a codomain (Wertebereich/Zielmenge). Additionally to the name a function declaration (respective definiton) contains the domain and codomain:

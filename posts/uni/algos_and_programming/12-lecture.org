@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Algos & Programming - Lecture 12
-.. slug: algos-and-prog-12
-.. date: 2018-11-16
-.. tags: university, A&P 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Algos & Programming - Lecture 12
+#+DATE: 2018-11-16
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/algos
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Bit Operators
 In this lecture we started by covering bit operators. I've also written about those [[https://schoettkr.github.io/knowledge-database/posts/computer_science_I/cs-I-03/][here]]. To keep it short (look at the link for more detailed explainations):

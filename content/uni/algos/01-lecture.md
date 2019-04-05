@@ -1,21 +1,20 @@
-#+TITLE: Algos & Programming - Lecture 01
-#+DATE: 2018-10-08 15:24:13 UTC+02:00
-#+HUGO_BASE_DIR: ../../../
-#+HUGO_SECTION: uni/algos
-#+HUGO_DRAFT: false
-#+HUGO_AUTO_SET_LASTMOD: true
-
-
++++
+title = "Algos & Programming - Lecture 01"
+author = ["eo shiru"]
+date = 2018-10-08T15:24:00+02:00
+lastmod = 2019-04-06T00:17:12+02:00
+draft = false
++++
 
 Today was the first lecture of "Algorithms and Programming", which is part of the module "Algorithms and Datastructures". As it is with most lectures in the first week, we mainly talked about organizational stuff. That's probably not interesting at all for anyone besides myself so you might aswell skip this.
 
 Links:
 
-- Course Website: [[http://www.mytuc.org/smzl][mytuc.org/smzl]]
-- Opal Page: [[http://www.mytuc.org/lyph][mytuc.org/lyph]]
-- Complete script: [[http://osg.informatik.tu-chemnitz.de/lehre/aup/aup-script.pdf][AuP-Skript]]
-- Rated excercise submission: [[https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/18109005842/CourseNode/94518022301219][Opal Link]]
-  
+-   Course Website: [mytuc.org/smzl](http://www.mytuc.org/smzl)
+-   Opal Page: [mytuc.org/lyph](http://www.mytuc.org/lyph)
+-   Complete script: [AuP-Skript](http://osg.informatik.tu-chemnitz.de/lehre/aup/aup-script.pdf)
+-   Rated excercise submission: [Opal Link](https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/18109005842/CourseNode/94518022301219)
+
 There's accompanied programming on tuesdays and a Q & A session on wednesdays.
 
 Besides the script, there will be slides to each lecture that are uploaded on the course website.
@@ -23,7 +22,7 @@ There will be optional training excercises as well as rated exercises. Success i
 
 However I'll still do the rated exercises, as well as the training exercises (when they're useful) to practice more.
 
-The first one of these is an essay (lol) about a (personal) pioneer in the field of computer science. I've picked David Heinemeier Hansson (short /dhh/). I don't include the essay here because it needs to be in German anyway :P.
+The first one of these is an essay (lol) about a (personal) pioneer in the field of computer science. I've picked David Heinemeier Hansson (short _dhh_). I don't include the essay here because it needs to be in German anyway :P.
 
 Todays small exercises were:
 
@@ -38,8 +37,8 @@ c) Describe the required steps to find an optimal solution for these tasks for a
 
 Find a connected and closed (start=end) way in the following pentagon structure so that every dot is visited one time only (not all green lines need to be used):
 
-[[/knowledge-database/images/pentagon.png]]
+{{< figure src="/knowledge-database/images/pentagon.png" >}}
 
-My solution: 
+My solution:
 
-[[/knowledge-database/images/pentagon-solution.png]]
+{{< figure src="/knowledge-database/images/pentagon-solution.png" >}}
