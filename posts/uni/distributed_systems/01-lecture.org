@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Design of Distributed Systems - Lecture 01
-.. slug: distributed-systems-01
-.. date: 2018-10-09
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Design of Distributed Systems - Lecture 01
+#+DATE: 2018-10-09
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/ds
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * Definitions of Distributed Systems
 - Andrew S. Tanenbaum and Maarten van Steen:

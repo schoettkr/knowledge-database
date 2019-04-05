@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Design of Distributed Systems - Lecture 02
-.. slug: distributed-systems-02
-.. date: 2018-10-23
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Design of Distributed Systems - Lecture 02
+#+DATE: 2018-10-23
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/ds
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 * System Architectures
 Architecture is the fundamental *organizsation* of a *system* embodied in its *components*, their *relationships* to each other and to the *environment* and the principles guiding its design and evolution (Source: IEEE 1471 \leftarrow seems to be superseded by ISO/IEEE 42010).
