@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 05 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 05</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 22, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          9 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="type-and-signature">Type and signature</h2>
+
+<p>Similar to functions in math functions in C (or programming for that matter) have a domain (Defintionsbereich/Definitionsmenge) and a codomain (Wertebereich/Zielmenge). Additionally to the name a function declaration (respective definiton) contains the domain and codomain:</p>
+
+<pre><code class="language-C">int euclid(int, int);
+</code></pre>
+
+<p>The type of the return value of euclid is <code>int</code> and defines the codomain, which in this case is a set of integers. The domain is specified via the parameter types in this case <code>int</code> and <code>int</code> so also sets of integers. Mathematically expressed the code would look like this <code>euclid: int x int ⟶ int</code> (an element out of the integer set emerges out of the domain <code>int x int</code>).</p>
+
+<p>Technically <code>int x int ⟶ int</code> is the type of the function &ldquo;euclid&rdquo;. Practically however it became established to view the codomain as &ldquo;type&rdquo; of the function. Following this you&rsquo;d say &ldquo;euclid&rdquo; has the type <code>int</code>, however <em>return type</em> would be the more accurate term.</p>
+
+<p>The type together with the name of a functions builds the functions <em>signature</em>. A declaration therefore introduces function signature to the compiler.</p>
+
+<p>Many operators look the same e.g <code>+</code> but do different things depending on the context, which is the particular type. Typing helps the compiler to find the right procedure. Although there are other programming languages that do not require type declarations and infer types automatically for instance Javascript. This is called <em>type inference</em>.</p>
+
+<h2 id="basic-types--primitive-data-types">Basic types (primitive data types)</h2>
+
+<p>C provides few basic types. Yet it is possible to &ldquo;build&rdquo; more types. Since the sets are described by the C types are not infinite they are subsets of for example the natural numbers.
+C99 knows the following basic types:</p>
+
+<ul>
+<li>subsets of integers</li>
+<li>subsets of rational numbers</li>
+<li>boolean values</li>
+<li>subset of complex numbers</li>
+<li>empty set</li>
+<li>memory addresses (which are derived types!)</li>
+</ul>
+
+<p>More on <a href="https://en.wikipedia.org/wiki/C%5Fdata%5Ftypes">C data types</a>.</p>
+
+<h3 id="integers-and-chars">Integers &amp; Chars</h3>
+
+<p>C offers the following keywords in regards to integers</p>
+
+<ul>
+<li>type specifiers: <code>int</code>, <code>char</code></li>
+<li>modifiers: <code>short</code> (not for <code>char</code>!), <code>long</code> (not for <code>char</code>!), <code>unsigned</code>, <code>signed</code></li>
+</ul>
+
+<p>When the type <code>int</code> is modified it may be omitted as a keyword.</p>
+
+<p>But why do different types exist for integers? Well differently sized values need different amounts of storage space. A computer stores values in bits (<strong>bi</strong> nary dig <strong>its</strong>). In \(n\) bits it is possible to store \(2^n\) different values. Typically the smallest addressable unit is a <strong>byte</strong> (= 8 bit). Values are therefore stored in one or more bytes.</p>
+
+<p>Choosing the the &ldquo;right&rdquo; type is hence always a compromise between the amount of different values and the size in storage (+ access speed).</p>
+
+<p>All types which name contains <code>unsigned</code> are &ldquo;vorzeichenlos&rdquo;, those which contain <code>signed</code> are &ldquo;vorzeichenbehaftet&rdquo;. In case of just <code>int</code> without a sign modifier the type is always signed. In case of <code>char</code> this is up to the compiler. For most types there are no concrete sets defined, however some ranges are guaranteed:</p>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Range</th>
+<th>Format specifier</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>char</code></td>
+<td>Smallest addressable unit of the machine that can contain basic character set. It is an integer type. Actual type can be either signed or unsigned.</td>
+<td>%c</td>
+</tr>
+
+<tr>
+<td><code>signed char</code></td>
+<td>Of the same size as <code>char</code>, but guaranteed to be signed. Capable of containing at least the [−127, +127] range</td>
+<td>%c (or %hhi for numerical output)</td>
+</tr>
+
+<tr>
+<td><code>unsigned char</code></td>
+<td>Of the same size as <code>char</code>, but guaranteed to be unsigned. Contains at least the [0, 255] range</td>
+<td>%c (or %hhu for numerical output)</td>
+</tr>
+
+<tr>
+<td><code>short</code> <code>short int</code> <code>signed short</code> <code>signed short int</code></td>
+<td>Short signed integer type. Capable of containing at least the [−32,767, +32,767] range* thus at least 16 bits in size</td>
+<td>%hi</td>
+</tr>
+
+<tr>
+<td><code>unsigned short</code> <code>unsigned short int</code></td>
+<td>Short unsigned integer type. Contains at least the [0, 65,535] range;</td>
+<td>%hu</td>
+</tr>
+
+<tr>
+<td><code>int</code> <code>signed</code> <code>signed int</code></td>
+<td>Basic signed integer type. Capable of containing at least the [−32,767, +32,767] range thus, it is at least 16 bits in size.</td>
+<td>%i or %d</td>
+</tr>
+
+<tr>
+<td><code>unsigned</code> <code>unsigned int</code></td>
+<td>Basic unsigned integer type. Contains at least the [0, 65,535] range</td>
+<td>%u</td>
+</tr>
+
+<tr>
+<td><code>long</code> <code>long int</code> <code>signed long</code> <code>signed long int</code></td>
+<td>Long signed integer type. Capable of containing at least the [−2,147,483,647, +2,147,483,647] range;[3][4] thus, it is at least 32 bits in size</td>
+<td>%li</td>
+</tr>
+
+<tr>
+<td><code>unsigned long</code> <code>unsigned long int</code></td>
+<td>Long unsigned integer type. Capable of containing at least the [0, 4,294,967,295] range</td>
+<td>%lu</td>
+</tr>
+
+<tr>
+<td><code>long long</code> <code>long long int</code> <code>signed long long</code> <code>signed long long int</code></td>
+<td>Long long signed integer type. Capable of containing at least the [−9,223,372,036,854,775,807, +9,223,372,036,854,775,807] range thus, it is at least 64 bits in size, specified since C99</td>
+<td>%lli%</td>
+</tr>
+
+<tr>
+<td><code>unsigned long long</code> <code>unsigned long long int</code></td>
+<td>Long long unsigned integer type. Contains at least the [0, +18,446,744,073,709,551,615] range, specified since C99</td>
+<td>%llu%</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>&lowast;The negative value is −32767 (not −32768) due to the one&rsquo;s-complement and sign-magnitude representations allowed by the standard, though the two&rsquo;s-complement representation is much more common</p>
+
+<p>Since C99 there is a header file called <code>stdint.h</code> which defines integers with a fixed bit size like/if(?) they&rsquo;re present on the current platform/system. For example:</p>
+
+<ul>
+<li><code>int8_t</code> and <code>uint8_t</code> for signed and unsigned integers with <em>exactly</em> 8 bit and therefore a cardinality of \(256\)</li>
+<li><code>int16_t</code> and <code>uint16_t</code> for signed and unsigned integers with <em>exactly</em> 16 bit and therefore a cardinality of \(65536\)</li>
+<li><code>int32_t</code> and <code>uint32_t</code> for signed and unsigned integers with <em>exactly</em> 32 bit and therefore a cardinality of \(4294967296\)</li>
+<li><code>int64_t</code> and <code>uint64_t</code> for signed and unsigned integers with <em>exactly</em> 64 bit and therefore a cardinality of \(18446744073709551616\)</li>
+</ul>
+
+<p>PS. Cardinality means the number of (distinct) elements in a set</p>
+
+<p>C90 doesn&rsquo;t specify how a value &ldquo;looks&rdquo; in memory/storage meaning how it is exactly represented in bits. Nevertheless most platforms use a binary positional notation with two&rsquo;s complement for the representation of negative integers:</p>
+
+<ul>
+<li>unsigned: value \( = \sum_{i=1}^{n} b_i * 2^{i-1} \)</li>
+<li>signed: value  \( = \begin{cases} \sum_{i=1}^{n-1} b_i * 2^{i-1}, \text{wenn } b_n = 0 \ (- \sum_{i=1}^{n-1} (1- b_i ) * 2^{i-1}) - 1, \text{wenn } b_n = 1  \end{cases}\)</li>
+</ul>
+
+<p>Now a bit onto &ldquo;char&rdquo;s. Why is the name of an integer type <code>char</code>?</p>
+
+<p>Originally this type was meant to represent values in the range of <strong>ASCII-Codes</strong> (7 bit) respective <strong>ANSI-Codes</strong> (8 bit) &rarr; <em>character</em>. C doesn&rsquo;t provide an explicit type for characters. The usage through <code>char</code> is solely achieved through the interpretation of the integer when outputting.</p>
+
+<p>Depending on the platform the same <code>char</code> value can represent different characters. That&rsquo;s why today the usage of <code>wchar_t</code> is encouraged because it eases internalization and standardization (importable from <code>wchar.h</code>).</p>
+
+<p>However in this lecture we will continue with ASCII/ANSI codes for now.</p>
+
+<pre><code class="language-C">/* char .c -- interpretation of char type */
+#include &lt;stdio.h&gt;
+
+char addchar ( char c1 , char c2 )
+{
+return c1 + c2 ;
+}
+
+int main ()
+ {
+ printf (&quot; Result is %c with the code %d\n&quot;,
+ addchar ('a' ,1) , addchar ('a' ,1));
+ return 0;
+ }
+</code></pre>
+
+<pre><code class="language-text">Result is b with the code 98
+</code></pre>
+
+<h3 id="rational-numbers">Rational numbers</h3>
+
+<p>Because of internal representation C can only represent rational numbers \(\mathbb{Q}\) and not generic reals \(\mathbb{R}\) (allgemeine reelle Zahlen). These numbers are commonly called <em>floating points numbers</em>. C provides the following types to represent floating point numbers:
+<code>float</code>, <code>double</code> and <code>long double</code>. Besides a limited codomain floats in C have a limited precision. Again there are no fixed sizes provided, but minimum ranges are guaranteed:</p>
+
+<ul>
+<li><code>float</code> has a codomain of at least \(\pm 10^{\pm 37}\) and a precision of at least 6 decimal places (Nachkommastelle)</li>
+<li><code>double</code> at least the codomain of <code>float</code> and a precision of at least 10 decimal places</li>
+<li><code>long double</code> at least as &ldquo;good&rdquo; as <code>double</code></li>
+</ul>
+
+<p>In practice almost all compilers follow the IEEE-754 standard that defines the binary representations of floats.</p>
+
+<h3 id="void">Void</h3>
+
+<p>C knows the base type <code>void</code>. <code>void</code> is basically an &ldquo;anti-type&rdquo; because it is used when no type is wanted (&rarr; empty set; leere Menge). Is helpful when parameters and/or return value are not needed.</p>
+
+<p>If the return value of a function is <code>void</code> the <code>return</code> statement in the function can be omitted. Is the parameter list of a function empty (<code>void</code> is its sole element) than it can be omitted as well.</p>
+
+<h2 id="type-conversion">Type conversion</h2>
+
+<p>The types in <code>a + b</code> could be different for instance <code>unsigned char</code> and <code>signed int</code>. In those cases the types are automatically (implicit) converted. Generally all the data types of the variables are upgraded to the data type of the variable with largest data type.</p>
+
+<p>However besides the implicit automatic conversion, type conversion may be triggered manually and therefore explicitly by writing the type in parens before the variable/expression. Using a type like this, it acts as a <em>cast operator</em> and is type casting the value. Doing this type conversion to lower data types is possible as well.</p>
+
+<pre><code class="language-C">/* cast .c -- type cast */
+int printf ( const char * ,...);
+long ladd (long , long );
+
+int main ()
+{
+printf (&quot; Ergebnis : %d\n&quot;, (int)ladd(23 ,42)); // &quot;(int)&quot; type cast to int to get rid of warning and implicit conversion because of &quot;%d&quot; formatter
+return 0;
+}
+
+ long ladd ( long x , long y )
+ {
+ return x + y ;
+ }
+</code></pre>
+
+<p>A type declaration like in C is not needed in all languages. In python for example the types are dynamic, that means they&rsquo;re determined at runtime. Python in contrast to C also offers strings and numbers with arbitrary size and precision (and more!).</p>
+
+<h2 id="literals">Literals</h2>
+
+<p>A &ldquo;direct value&rdquo; of a specific type is called <em>literal</em>. Literals of specific types require a special notation, to prevent an unneccessary type conversion:</p>
+
+<ul>
+<li><code>int</code> literals can be written in decimal, octal and hexadecimal and if needed with a sign:
+
+<ul>
+<li>decimal: only digits <code>0-9</code> however not leading with a <code>0</code> &rarr; e.g <code>42</code></li>
+<li>octal: prefix of <code>0</code> and then only digits <code>0-7</code> &rarr; e.g <code>052</code></li>
+<li>hexadecimal: prefix of <code>0x</code> and then only digits <code>0-9</code> and letters <code>A-F</code> &rarr; e.g <code>0x2a</code></li>
+</ul></li>
+<li><code>unsigned int</code> like int but with the suffix &ldquo;u&rdquo;/&ldquo;U&rdquo; &rarr; e.g <code>123U</code></li>
+<li><code>long/unsigned long</code> like int/unsigned int but with the suffix &ldquo;l&rdquo;/&ldquo;L&rdquo; &rarr; e.g <code>123L</code> respective <code>123UL</code></li>
+<li><code>long long/unsigned long long</code> like int/unsigned int but with the suffix &ldquo;ll&rdquo;/&ldquo;LL&rdquo; &rarr; e.g <code>123LL</code> respective <code>123ULL</code></li>
+<li><code>double</code> as a decimal with decimal place(s), decimal point, and/or &ldquo;e&rdquo;/&ldquo;E&rdquo; with following exponent&rarr; e.g <code>1.23e10</code>, <code>.23</code> or <code>1e10</code></li>
+<li><code>float</code> like double but with the suffix &ldquo;f&rdquo;/&ldquo;F&rdquo; &rarr; e.g <code>1.23e10f</code>, <code>.23f</code> or <code>1e10f</code></li>
+<li><code>long double</code> like double but with the suffix &ldquo;l&rdquo;/&ldquo;L&rdquo; &rarr; e.g <code>1.23e10L</code>, <code>.23l</code> or <code>1e10l</code></li>
+<li><code>char</code> literals have to be written in single quotes &rarr; e.g <code>'*'</code></li>
+<li><code>wchar_t</code> literals are written like <code>char</code> with the prefix <code>L</code> &rarr; e.g <code>L'a'</code>. There also escape sequences to display sequences or characters that are difficult to represent else. <a href="https://en.wikipedia.org/wiki/Escape%5Fsequences%5Fin%5FC#Table%5Fof%5Fescape%5Fsequences">Here&rsquo;s a list</a>.</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

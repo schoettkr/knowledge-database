@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Computer Science I - Lecture 06 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Computer Science I - Lecture 06</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 16, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).</p>
+
+<p>I&rsquo;ll list what we did in this lecture so you can look at those parts in the last blog post (or elsewhere :D ):</p>
+
+<ul>
+<li>array initialization (+ with loops)</li>
+<li>string functions</li>
+<li>mutlidimensional arrays</li>
+</ul>
+
+<p>Because I didn&rsquo;t really get into multidimensional arrays in the last post and because I don&rsquo;t think the slides are particulary useful on that topic I&rsquo;ll write a bit about them here.</p>
+
+<p>The simplest form of multidimensional array is the two-dimensional array. A two-dimensional array is, in essence, a list of one-dimensional arrays. To declare a two-dimensional integer array of size <code>[x][y]</code>, you would write something like <code>int arrayName[x][y];</code>.
+A two-dimensional array can be considered as a table which will have <code>x</code> number of rows and <code>y</code> number of columns. A two-dimensional array <code>a</code>, which contains three rows and four columns can be shown as follows:</p>
+
+<p></knowledge-database/images/2D-arr.jpg ></p>
+
+<p>Thus, every element in the array <code>a</code> is identified by an element name of the form <code>a[i][j]</code>, where <code>a</code> is the name of the array, and <code>i</code> and <code>j</code> are the subscripts that uniquely identify each element in <code>a</code>.</p>
+
+<p>Multidimensional arrays may be initialized by specifying bracketed values for each row. Following is an array with 3 rows and each row has 4 columns.</p>
+
+<pre><code class="language-C">// 3 rows which hold 4 elements each -&gt; 3 * 4 elements = 12
+int a[3][4] = {
+               {0, 1, 2, 3}, // initialize first row indexed by 0
+               {4, 5, 6, 7}, // initialize second row indexed by 1
+               {8, 9, 10, 11}, // initialize third row indexed by 2
+}
+</code></pre>
+
+<p>The nested braces, which indicate the intended row, are optional. The following initialization is equivalent to the previous example:</p>
+
+<pre><code class="language-C">int a[3][4] = {0,1,2,3,4,5,6,7,8,9,10,11};
+</code></pre>
+
+<p>An element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example:</p>
+
+<pre><code class="language-C">int val = a[2][3]; // -&gt; 11
+</code></pre>
+
+<p>The above statement will take the 4th element from the 3rd row of the array which is the last one (11). So you first access the row and then the column. Remember that this is zero indexed :D !</p>
+
+<p>Okay that&rsquo;s it already, so not much new stuff in this lecture ^_^</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

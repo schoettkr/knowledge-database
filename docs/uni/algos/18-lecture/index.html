@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 18 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 18</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Dec 7, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          12 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="text-search">Text Search</h2>
+
+<h3 id="files">Files</h3>
+
+<p>Bigger volumes of data are usually not entered interactively but rather stored in <strong>files</strong>. That&rsquo;s why we take a look at files first: A file is a set of data that logically belongs together and is treated as a unit. Files are usually acessed by a <em>file name</em> that is known to the operating system and get stored on persistant data volumes (eg harddrives).</p>
+
+<p>Files can be organized differently. In the sense of the UNIX philosophy a file is a single set of bytes with an arbitrary size. Such data set resp sequence of bit is also called <strong>bitstream</strong> resp. <strong>bytestream</strong>.</p>
+
+<p>The input/ouput of the C standard library is adapted to this concept so that there is no differentitation required between input from an input device or a file. To be more precise, the C standard library knows two types of file operations:</p>
+
+<ul>
+<li><strong>low level file operations</strong>
+
+<ul>
+<li>files and file/data streams are identified via a <strong>handle</strong></li>
+<li>specific to the particular operating system</li>
+</ul></li>
+<li><strong>high level file operations</strong>
+
+<ul>
+<li>files and file/data streams are identified via a <strong>file pointer</strong></li>
+<li>independant of the operating system</li>
+</ul></li>
+</ul>
+
+<p>For now we&rsquo;ll look at <strong>high level file operations</strong>.</p>
+
+<p>Files have to be <strong>opened</strong>. When opening a file the management/administration information is created (Verwaltungsinformationen). There&rsquo;s a function in the standard library to open files <code>FILE* fopen(char* name, char* mode)</code> which returns a pointer to the file management structure (Dateiverwaltungsstruktur) or NULL:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+/* ... */
+
+FILE *fp;
+
+fp = fopen(&quot;myFile.dat&quot;, &quot;r&quot;);
+</code></pre>
+
+<p>A file that is no longer needed should be closed and the management resources shoudl eb released. That is done via <code>int fclose(FILE* stream)</code> which returns <code>0</code> when the file was closed successfully.</p>
+
+<p>Here&rsquo;s a list of the possible file access modes which are passed to <code>fopen</code>:</p>
+
+<ul>
+<li><code>&quot;r&quot;</code> &rarr; <strong>read</strong>: open file for input operations (reading from the file); the file must exist</li>
+<li><code>&quot;w&quot;</code> &rarr; <strong>write</strong>: create an empty file for output operations (writing to a file); if a file with the same name already exists, its contents are discarded and the file is treated as a new empty file</li>
+<li><code>&quot;a&quot;</code> &rarr; <strong>append</strong>: open file for output at the end of a file; output operations always write data at the end of the file, thus expanding it; repositioning operations (fseek, fsetpos, rewind) are ignored; the file is created if it does not exist</li>
+<li><code>&quot;r+&quot;</code> &rarr; <strong>read/update</strong>: open a file for update (both for input and output); the file must exist</li>
+<li><code>&quot;w+&quot;</code> &rarr; <strong>write/update</strong>: create an empty file and open it for update (both for input and output); if a file with the same name already exists its contents are discarded and the file is treated as a new empty file</li>
+<li><code>&quot;a+&quot;</code> &rarr; <strong>append/update</strong>: open a file for update (both for input and output) with all output operations writing data at the end of the file; repositioning operations (fseek, fsetpos, rewind) affects the next input operations, but output operations move the position back to the end of file; the file is created if it does not exist</li>
+</ul>
+
+<p>With the <em>mode specifiers</em> above files are opened as <em>text files</em>. In order to open a file as a <em>binary file</em> a <code>&quot;b&quot;</code> character has to be included in the mode string.  This additional &ldquo;b&rdquo; character can either be appended at the end of the string (thus making the following compound modes: &ldquo;rb&rdquo;, &ldquo;wb&rdquo;, &ldquo;ab&rdquo;, &ldquo;r+b&rdquo;, &ldquo;w+b&rdquo;, &ldquo;a+b&rdquo;) or be inserted between the letter and the plus sign for the mixed modes (&ldquo;rb+&rdquo;, &ldquo;wb+&rdquo;, &ldquo;ab+&rdquo;).</p>
+
+<p>For data input and output, C provides a collection of library functions. These functions enable the transfer of data between the C program and standard input/output devices. C always treats all input-output data, regardless of where they originate or where they go, as a stream of characters.
+The operating system makes the input and output devices available to a C program as if these devices were files. So, essentially, when a C program reads data from the keyboard, it is in effect reading from the file associated with the keyboard device. When a C program sends output data to the console, it is in effect writing to the file associated with the console device.</p>
+
+<p>A stream of characters or text stream, is a sequence of characters divided into lines. Each line consists of various characters followed by a newline character (\n). All input-output functions in C conform to this model.</p>
+
+<p>In order to be able to use the above mentioned input-output functions in your C program, you must begin each C program with a pre-processor directive to include these standard library functions.</p>
+
+<p>This can be done via <code>#include &lt;stdio.h&gt;</code>.</p>
+
+<p>These are the most common/essential input-output functions:</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>formatted</td>
+<td><code>int fscanf(FILE*, char*, ...)</code></td>
+<td><code>int fprintf(FILE*, char*, ...)</code></td>
+</tr>
+
+<tr>
+<td>characters</td>
+<td><code>int fgetc(FILE*)</code></td>
+<td><code>int fputc(int, FILE*)</code></td>
+</tr>
+
+<tr>
+<td>strings</td>
+<td><code>char* fgets(char*, int, FILE*)</code></td>
+<td><code>int fputs(char*, FILE*)</code></td>
+</tr>
+
+<tr>
+<td>binary</td>
+<td><code>size_t fread(void*, size_t, size_t, FILE*)</code></td>
+<td><code>size_t fwrite(void*, size_t, size_t, FILE*)</code></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p>Formatted data input &amp; output</p>
+
+<p><code>fscanf</code> and <code>fprintf</code> work like <code>scanf</code> and <code>printf</code> but take a file pointer as an additional first parameter. To use <code>fscanf</code> the file has (at least) to be opened in read mode (&ldquo;r&rdquo;, &ldquo;r+&rdquo;, &ldquo;w+&rdquo;, &ldquo;a+&rdquo;). To use <code>fprintf</code> the file has (at least) to be opened in write mode (&ldquo;w&rdquo;, &ldquo;a&rdquo;, &ldquo;r+&rdquo;, &ldquo;w+&rdquo;, &ldquo;a+&rdquo;).</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main ()
+{
+  FILE* file;
+  int n = 42;
+  file = fopen(&quot;out.txt&quot;, &quot;w&quot;);
+  fprintf(file, &quot;Hello world! The answer is %d\n&quot;, n);
+  fclose(file);
+  return 0;
+}
+</code></pre></li>
+
+<li><p>Characterwise data input &amp; output</p>
+
+<p>The function <code>int fgetc(FILE* stream)</code> returns the next character of a file <code>stream</code> as an integer. When there&rsquo;s no character left, the constant <code>EOF</code> (defined in <code>stdio.h</code>) is returned (same thing when an error occurs).</p>
+
+<p>The function <code>int fputc(int c, FILE* stream)</code> writes the integer coded character <code>c</code> into the file <code>stream</code> and returns the number of written characters (= 1). In case of an error it returns <code>EOF</code>.</p></li>
+
+<li><p>String data input &amp; output</p>
+
+<p>The function <code>char* fgets(char restrict * str, int n, FILE* restrict stream)</code> reads maximally <code>n-1</code> characters from the file <code>stream</code> into a character string that is pointed to by <code>str</code>. The reading proccess ends with the end of the line/file or when an error occurs. When no error occurs <code>\0</code> is appended to <code>str</code> and the return value points to <code>str</code> (and to <code>NULL</code> if there was an error). Beware that it is the duty of the programmer to guarantee that <code>str</code> points to an character array which has a size of at least <code>n</code> characters.</p>
+
+<p>The function <code>int fputs(char* str, FILE* stream)</code> writes the (zero-terminated) string <code>str</code> into the file <code>stream</code>. It returns a non-negative integer on success and <code>EOF</code> in case of an error (old C versions used to return <code>0</code> on success)</p></li>
+
+<li><p>Binary data input &amp; output</p>
+
+<p>The function <code>size_t fread(void* ptr, size_t size, size_t nitems, FILE* stream)</code> reads <code>nitems</code> of size <code>size</code> from the file <code>stream</code> and stores them at the address specified by <code>ptr</code>. It then returns the count of successfully read items/elements (not bytes!).</p>
+
+<p>The function <code>size_t fwrite(void* ptr, size_t size, size_t nitems, FILE* stream)</code> writes <code>nitems</code> from the address <code>ptr</code> of size <code>size</code> in the file <code>stream</code> and also returns the count of successfully written elements/items (not bytes).</p></li>
+
+<li><p>Standard Data Streams</p>
+
+<p>The standard input-output devices or the associated files or text streams, are referred to as:</p>
+
+<ul>
+<li><strong>stdin</strong> - standard input file, normally connected to the keyboard</li>
+<li><strong>stdout</strong> - standard output file, normally connected to the screen/console</li>
+<li><strong>stderr</strong> - standard error display device file, normally connected to the screen/console</li>
+</ul>
+
+<p><code>stdin</code>, <code>stdout</code>, <code>stderr</code> don&rsquo;t need to be opened like other files/streams (and cannot be opened):</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main() {
+  fprintf(stdout, &quot;This is usage data.\n&quot;);
+  fprintf(stderr, &quot;This is status data.\n&quot;);
+  return 0;
+}
+</code></pre></li>
+</ul>
+
+<h4 id="manipulating-the-file-position-pointer">Manipulating the File Position Pointer</h4>
+
+<p>See: <a href="https://stackoverflow.com/questions/39687795/what-is-file-position-pointer">https://stackoverflow.com/questions/39687795/what-is-file-position-pointer</a></p>
+
+<p>Usually files are treated as data stream, which are accessed <strong>sequentally</strong>. In case of &ldquo;real files&rdquo; it is possible to deviate from this sequential access. The following functions may be used to do so:</p>
+
+<ul>
+<li><code>void rewind(FILE* stream)</code> &rarr; move the read or write position in the file <code>stream</code> back to the beginning of the file</li>
+<li><code>void fseek(FILE* stream, long offset, int whence)</code> &rarr; moves the read or write position in the file <code>stream</code> to a position which is <code>offset</code> bytes shifted from <code>whence</code> (von wo/woher)
+
+<ul>
+<li><code>whence</code> shall be one of the following constants which are defined in <code>stdio.h</code>
+
+<ul>
+<li><code>SEEK_SET</code> = offset relative to the beginning of the file</li>
+<li><code>SEEK_CUR</code> = offset relative to the current position in the file</li>
+<li><code>SEEK_END</code> = offset relative to the end of the file</li>
+</ul></li>
+</ul></li>
+<li><code>long ftell(FILE* stream)</code> &rarr; may be used to get the current position in the file relative to the beginning of the file</li>
+</ul>
+
+<p>Slides 17-19 provide code examples for reading/writing a file.</p>
+
+<p>A few other interesting functions in regards to files are:</p>
+
+<ul>
+<li><code>int feof(FILE* stream)</code> returns a value &ne; 0 when at the end of the file</li>
+<li><code>int ferror(FILE* stream)</code> returns a value &ne; 0 when an file error has occured before</li>
+<li><code>int flush(FILE* stream)</code> forces a physical write (emptying the cache)</li>
+<li><code>int remove(char* name)</code> deletes the file with a name of <code>name</code></li>
+</ul>
+
+<h4 id="files-in-python">Files in Python</h4>
+
+<p>F21
+A file is a data type in Python. A data variable is created via <code>f = open(filename[, mode[, bufsize]])</code> .
+The possible modes are a superset of the modes we know from C and with <code>bufsize</code> the cache size for the file can be set.
+This is the Python 3 <a href="https://docs.python.org/3/library/functions.html#open">documentation</a> for <code>open</code> (which looks kinda different than the slides).</p>
+
+<p>Here are a few common file operations in Python (<code>file</code> be a data variable):</p>
+
+<ul>
+<li><code>S = file.read()</code> reads the whole file into a single string</li>
+<li><code>S = file.read(N)</code> reads <code>N</code> bytes</li>
+<li><code>S = file.readline()</code> reads the next line (until new line char)</li>
+<li><code>L = file.readlines()</code> reads the whole file as a list of line strings</li>
+<li><code>file.write(S)</code> writes the string <code>S</code> into the file</li>
+<li><code>file.writeLines(L)</code> writes all strings in a list <code>L</code> into the file</li>
+<li><code>file.close()</code> closes the file</li>
+</ul>
+
+<p>Using iterations it is easy to work with a whole file in Python:</p>
+
+<pre><code class="language-python">f = open(&quot;foo.txt&quot;, &quot;r&quot;)
+for line in f:
+    print(line, end = ' ')
+</code></pre>
+
+<p>And Python provides more modules for file manipulations</p>
+
+<ul>
+<li>module <code>os</code> for low level</li>
+<li>module <code>shelve</code> and <code>pickle</code> for high level storage of complex objects</li>
+<li>module <code>dbm</code> and <code>anydbm</code> for database interfaces</li>
+</ul>
+
+<h3 id="simple-search">Simple Search</h3>
+
+<p>Now with our newly acquired knowledge about files we can start looking into text search.</p>
+
+<p>Our program should take the following parameters:
+<code>./search &lt;searchText&gt; &lt;fileName&gt;</code></p>
+
+<p>And if the search text is found in the file, then the &ldquo;surrounding&rdquo; in which it was found should be returned, while the search text is wrapped in brackets to accentuate, eg</p>
+
+<pre><code class="language-sh">./search &quot;example&quot; lorem.txt
+
+ullamcoprer subsciptit nisl ut aliqup [example] ea commodano
+</code></pre>
+
+<p>One of the first problems we encounter is that we don&rsquo;t know the size/length of neither a line nor the whole file. Here a few solution approaches:</p>
+
+<ul>
+<li>Approach 1: define a line buffer that is &ldquo;sufficiently large&rdquo; for all cases &rarr; not safe and not a good approach in general</li>
+<li>Approach 2: don&rsquo;t always read in whole lines &rarr; complicates the search if the search text is between two read-in blocks</li>
+<li>Approach 3: determine the file size, dynamically reserve space and read in the whole file &rarr; requires a lot of memory storage</li>
+</ul>
+
+<p>We go with approach 3 since it also offers speed advantages.</p>
+
+<p>So let&rsquo;s determine the file size first - how do we do that?
+The unix C function <code>int stat(char* name, struct stat* buf)</code> which writes informations about the file <code>name</code> into <code>buf</code> is not compatible so we don&rsquo;t use it and instead rely on using a combination of functions from the standard library:</p>
+
+<pre><code class="language-C">size_t filesize(FILE* file) {
+  size_t ret;
+  fseek(file, 0L, SEEK_END); // offset the file position pointer by 0 bytes relative to the eof
+  ret = ftell(file); // get the current position relative to the beginning of the file
+  rewind(file); // move the file position pointer back to the beginning of the file
+  return ret;
+}
+</code></pre>
+
+<p>By the way <code>size_t</code> is an OS dependant unsigned integer type that can store the maximum <em>size</em> of a theoretically possible object of any type (including array) and which is commonly used for array indexing and loop counting (Programs that use other types, such as <code>unsigned int</code>, for array indexing may fail on, e.g. 64-bit systems when the index exceeds <code>UINT_MAX</code> or if it relies on 32-bit modular arithmetic.).</p>
+
+<p>And this will be our main function which uses our <code>filesize</code> function amongst other things:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+  FILE* file;
+  char* text;
+
+  if (argc != 3) return -2; // wrong number of params
+
+  if (file = fopen(argv[2], &quot;r&quot;) == NULL) { // open file
+    return -3; // cant open file
+  }
+
+  size_t size = filesize(file);
+
+  /* allocate size+1 (for terminating 0) memory for our file buffer */
+  if ((text = malloc(size+1)) == NULL) {
+    return -4; // out of memory
+  }
+
+  /* read one element of size 'size' into our text buffer (the whole file) */
+  if (fread(text, size, 1, file) != 1) {
+    return -5; // can't read file
+  }
+
+  text[size] = '\0'; // set the terminating 0;
+
+  int found = search(argv[1], text, size); // yet to implement!
+  if (found != -1) {
+    presentResult(found, text, argv[1]); // dito!
+  }
+
+  free(text);
+
+  return found;
+}
+</code></pre>
+
+<p>This main function does the necessary preparations for the actual search. Besides the search function we also need a function for the presentation/output. We want to output 20 characters before and after the search string:</p>
+
+<pre><code class="language-C">void presentResult(int pos, const char* str, const char* pattern) { // pos is the start of match position, str is the file buffer and pattern our search text
+  int start, end, patlen, prelen;
+
+  start = pos &gt; 20 ? pos - 20 : 0; // output beginning
+
+  prelen = pos &gt; 20 ? 20 : pos; // beginning of match
+  patternLength = length(pattern); // yet to implement!
+
+  end = pos + patternLength;
+
+  printf(&quot;%.*s[%s]%.20s\n&quot;, prelen, &amp;str[start], pattern, &amp;str[end]);
+}
+</code></pre>
+
+<p>As seen in the code listing above we also need a function to determine the length of a string. There&rsquo;s an function for that in the standard library but we&rsquo;ll use our own:</p>
+
+<pre><code class="language-C">int length(const char* str) {
+  int len = 0;
+  if (str == NULL) return 0;
+
+  while (str[len] != '\0') {
+    ++len;
+  }
+
+  return len;
+}
+</code></pre>
+
+<p>Now we can finally turn our attention to the actual search algorithm. The idea is that we want to test for each position in the text <code>str</code>, if the searchstring <code>p</code> begins there. If that is the case, then we want to test the next character and so on..</p>
+
+<p>Here&rsquo;s the pseudocode:</p>
+
+<pre><code class="language-C">// str is file/text buffer and p is search string
+Require: str and p is text, length(str) &gt; length(p)
+Ensure: returns index of first appearance of p in str
+
+procedure SIMPLE-SEARCH(str, p)
+  pos = 1
+  while pos &lt; length(str) - length(p) do
+    j = 1
+    while ((j &lt;= length(p)) and (str[pos+j-1]) = p[j]) do
+      if j = length(p) then // found 1st occ of search string
+        return pos
+      endif
+      j = j+1
+    end while
+    pos = pos + 1
+  end while
+  return &quot;not found&quot;
+end procedure
+</code></pre>
+
+<p>The actual C implemenation is where we&rsquo;ll continue in the next lecture (19), have a nice day (◕‿‿◕)</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

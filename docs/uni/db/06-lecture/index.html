@@ -1,0 +1,763 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Database Essentials - Lecture 06 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Database Essentials - Lecture 06</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 28, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          11 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>In this lecture we continued the Introduction to SQL that we began in the last session.</p>
+
+<h2 id="introduction-to-sql">Introduction to SQL</h2>
+
+<h3 id="simple-queries--one-table">Simple Queries (One Table)</h3>
+
+<p>All queries to a database in SQL are realized via the <code>select</code> statement.
+This is the general construction:</p>
+
+<ul>
+<li><code>select</code> <code>attribute|expression</code> &rarr; which attributes should the result table contain?</li>
+<li><code>from</code> <code>list of tables</code> &rarr; which tables are required for the query?</li>
+<li>[ <code>where</code>  <code>condition</code> ] &rarr; which conditions should the result tuples fulfill?</li>
+<li>[ <code>group by</code>  <code>list of attributes</code> ] &rarr; summarize/condense identical attribute values</li>
+<li>[ <code>having</code>  <code>condition</code> ] &rarr; condition in regards to grouped tables</li>
+<li>[ <code>order by</code>  <code>sort</code> ] &rarr; specification of sorting for the resulting table</li>
+</ul>
+
+<p>The <code>where</code> clause is used to refine the result set of tuples from a <code>select</code> statement. The (basic) predicates (Basisprädikate) to <code>where</code> can be versatile, for example</p>
+
+<ul>
+<li>comparison between the value of one expression and another</li>
+<li>specify range/boundaries for a certain value</li>
+<li>is the value included in a value set</li>
+<li>is there a certain pattern in a string</li>
+<li>is the value of an attribute equal to the null value</li>
+</ul>
+
+<p>Expressions are based on constant values and/or attribute values and can be connected via arithmetic operators (+,-,*,/,%). The predicates (Basisprädikate) can be connected via logical operators (<code>not</code>, <code>and</code>, <code>or</code>).</p>
+
+<p>There are also comparison operators for the fundamental datatypes which allow a value comparison (for numbers), a lexicographic comparison (for strings) and a time/date based comparison (for dates and times). The usual operators for these are =, &lt;, &gt; &le;, &ge;, &lt;&gt;.</p>
+
+<p>Now lets look at some simple queries (selection &sigma; &amp; projection &pi;). We have the following table /Lecture/s</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>persNr{FK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>6123</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+<td>6897</td>
+</tr>
+</tbody>
+</table>
+
+<p>To find the name/title of the lectures held by a teacher with the personal number of 6897 we perform this query</p>
+
+<pre><code class="language-sql">select title
+from Lecture
+where persNr = 6897
+</code></pre>
+
+<p>which yields</p>
+
+<table>
+<thead>
+<tr>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>Databases in Praxis</td>
+</tr>
+
+<tr>
+<td>Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+
+<p>Usually queries consist of at least these blocks we&rsquo;ve just seen: <code>select</code>, <code>from</code>, <code>where</code> and that&rsquo;s why they&rsquo;re often refered to as SFW-block (select-from-where).</p>
+
+<p>Now lets perform a query and formulate a string predicate to find out the number of the lecture &lsquo;Data Structures&rsquo;:</p>
+
+<pre><code class="language-sql">select number
+from Lecture
+where title = 'Data Structures'
+</code></pre>
+
+<p>Which gives</p>
+
+<table>
+<thead>
+<tr>
+<th>number {PK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+</tr>
+</tbody>
+</table>
+
+<p>As you can see string constants have to be wrapped in single quotes (in contrast to numeric values). Among other reasons this is done to distinguish the values from attribute names.</p>
+
+<p>Let&rsquo;s match a string pattern to find all lectures that are about databases:</p>
+
+<pre><code class="language-sql">select *
+from Lecture
+where title like '%Database%'
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>persNr{FK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>6123</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+<td>6897</td>
+</tr>
+</tbody>
+</table>
+
+<p>To find the name/title of the lectures held by a teacher with the personal number of 6897 we perform this query</p>
+
+<pre><code class="language-sql">select title
+from Lecture
+where persNr = 6897
+</code></pre>
+
+<p>which yields</p>
+
+<table>
+<thead>
+<tr>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>Databases in Praxis</td>
+</tr>
+
+<tr>
+<td>Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+
+<p>Usually queries consist of at least these blocks we&rsquo;ve just seen: <code>select</code>, <code>from</code>, <code>where</code> and that&rsquo;s why they&rsquo;re often refered to as SFW-block (select-from-where).</p>
+
+<p>Now lets perform a query and formulate a string predicate to find out the number of the lecture &lsquo;Data Structures&rsquo;:</p>
+
+<pre><code class="language-sql">select number
+from Lecture
+where title = 'Data Structures'
+</code></pre>
+
+<p>Which gives</p>
+
+<table>
+<thead>
+<tr>
+<th>number {PK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+</tr>
+</tbody>
+</table>
+
+<p>As you can see string constants have to be wrapped in single quotes (in contrast to numeric values). Among other reasons this is done to distinguish the values from attribute names.</p>
+
+<p>Let&rsquo;s match a string pattern to find all lectures that are about databases:</p>
+
+<pre><code class="language-sql">select *
+from Lecture
+where title like '%Database%'
+</code></pre>
+
+<p>Result:</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>persNr{FK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>6123</td>
+</tr>
+</tbody>
+</table>
+
+<p>In this query we used <strong>wildcard characters</strong> (placeholder symbols) to match a certain pattern. The wildcard character for an arbitrary, single character is <code>_</code> and for an arbitrary string it is <code>%</code>. Beware that the keyword <code>like</code> is required to do a pattern match (else it is just literal string match).</p>
+
+<p>So let&rsquo;s look at queries where we want to select tuples based on wheather or not an attribute value is contained in a set. We therefore modified our original /Lecture/s table:</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>credits</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>To select all lectures with 3, 5 or 10 credits</p>
+
+<pre><code class="language-sql">select *
+from Lecture
+where credits in (3, 5, 10)
+</code></pre>
+
+<p>A set of constants can be specified by putting them into parentheses as you can see above. To test weather a value is contained in a set we use the <code>in</code> resp. <code>not in</code> operator. The previous query could have been formulated via logical connection like this as well</p>
+
+<pre><code class="language-sql">select *
+from Lecture
+where credits=3 or credits=5 or credits=10
+</code></pre>
+
+<p>which is more cumbersome in this case.</p>
+
+<p>The last simple query we&rsquo;ll look at uses ranges/boundaries to find all tuples with at least 3 and at max 10 credits.</p>
+
+<pre><code class="language-sql">select *
+from Lecture
+where credits between 3 and 10
+-- alternatively: where credits &gt;= 3 and credits &lt;= 10
+</code></pre>
+
+<p>which yields the following result relation:</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>credits</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="complex-queries--multiple-tables">Complex Queries (Multiple Tables)</h3>
+
+<p>Onto some more complex queries where we query against multiple tables (cartesian product). Suppose we have the following table <em>Lecture</em></p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+</tr>
+</tbody>
+</table>
+
+<p>and <em>Hears</em></p>
+
+<table>
+<thead>
+<tr>
+<th>number</th>
+<th>matrNr</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>134534</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>123456</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>234876</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>134534</td>
+</tr>
+</tbody>
+</table>
+
+<p>and want to find out the numbers and titles of the lectures that the student with matricle number 134534 attends.</p>
+
+<pre><code class="language-sql">select Hears.number, title
+from Lecture, Hears
+where Lecture.number = Hears.number and matrNr = 134534
+</code></pre>
+
+<p>This yields</p>
+
+<table>
+<thead>
+<tr>
+<th>number</th>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+</tr>
+</tbody>
+</table>
+
+<p>As we can see in the query above we specify all the tables that are needed to resolve the query as comma seperated list after the <code>from</code> keyword. Then the cartesian product of the tables is formed internally, that&rsquo;s why we have to do <code>where Lecture.number = Hears.number</code> when selecting the tempoarily resulting rows.</p>
+
+<p>Because the temporary resulting relation holds the attribute <em>number</em> two times (once from <em>Lecture</em> and once from <em>Hears</em>) we have to qualify the attribute we want to <code>select</code> by prepending the attribute name with the table name (<code>select Hears.number</code>).</p>
+
+<p>It is also possible to provide an alias to tables in the <code>from</code> clause ala</p>
+
+<pre><code class="language-sql">select H.number, title
+from Lecture L, Hears H
+where L.number = H.number and matrNr = 134534
+</code></pre>
+
+<p>to improve readability and shorten long table names.</p>
+
+<p>When targeting the same table two or more times in one query it is <strong>required</strong> to provide those aliases to distinguish between the tables:</p>
+
+<table>
+<thead>
+<tr>
+<th>matrNr</th>
+<th>name</th>
+<th>credits</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123456</td>
+<td>Archimedes</td>
+<td>45</td>
+</tr>
+
+<tr>
+<td>134534</td>
+<td>Sophokles</td>
+<td>33</td>
+</tr>
+
+<tr>
+<td>145698</td>
+<td>Cleopatra</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
+
+<p>We want to find the name and credits of the students that have more credits than &ldquo;Cleopatra&rdquo;:</p>
+
+<pre><code class="language-sql">select S.name, S.credits
+from Student S, Student C
+where C.name = 'Cleopatra' and S.credits &gt; C.credits
+</code></pre>
+
+<p>&darr;</p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>credits</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Archimedes</td>
+<td>45</td>
+</tr>
+</tbody>
+</table>
+
+<p>Back to the previous example where we wantet to find out the numbers and titles of the lectures that the student with matricle number 134534 attends, because this is a use case for theta joins (\(⋈_{\theta}\) - join one <em>some</em> condition):</p>
+
+<pre><code class="language-sql">select Hears.number, title
+from   Lecture join Hears
+       on Lecture.number = Hears.number
+where  matrNr = 134534
+</code></pre>
+
+<p>To perform a theta join the <code>from</code> clause is exteneded with the keyword <code>join</code> between the involved tables, followed by the keyword <code>on</code> after which the join condition is specified (because we compare with <code>=</code> in the theta join it is an equijoin btw).</p>
+
+<p>However the most appropiate join in this use case is the <em>natural join</em> &otimes; because we want to join on attributes that have the same name in both tables (and are foreign resp. primary keys). To do so in SQL we formulate this query:</p>
+
+<pre><code class="language-sql">select number, title
+from Lectures natural join Hears
+where matrNr = 134534
+</code></pre>
+
+<p>which yields the same old result relation (but with less query syntax):</p>
+
+<table>
+<thead>
+<tr>
+<th>number</th>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+</tr>
+</tbody>
+</table>
+
+<p>As you see the natural join in SQL is express by replacing the comma between the involved tables in the <code>from</code> clause with the keyword <code>natural join</code>.</p>
+
+<h3 id="aggregation-and-grouping">Aggregation and Grouping</h3>
+
+<p>Often times it is of interest to perform some kind of calculations on the tuples of a table, which means to involve all values of an attribute. Functions that do this are called <em>aggregate functions</em> and here are some common ones:</p>
+
+<ul>
+<li><code>min(A)</code> &rarr; yields smallest value present in attribute A</li>
+<li><code>max(A)</code> &rarr; yields largest value present in attribute A</li>
+<li><code>avg(A)</code> &rarr; yields average of all values present in attribute A</li>
+<li><code>sum(A)</code> &rarr; yields sum of all values present in attribute A</li>
+<li><code>count(A)</code> &rarr; yields amount/count of values present in attribute A</li>
+<li><code>count(distinct A)</code> &rarr; yields amount/count of unique values present in attribute A</li>
+<li><code>count(*)</code> &rarr; yields amount/count of tuples in the table</li>
+</ul>
+
+<p>Suppose we have the following table <em>Personal</em> to see aggregate functions in action
+</knowledge-database/images/personal-table.png >
+To find out which is the highest and lowest salary(gehalt) in the table we formulate the following query</p>
+
+<pre><code class="language-sql">select min(gehalt) as minimum,
+       max(gehalt) as maximum
+from Personal
+</code></pre>
+
+<p>yielding</p>
+
+<table>
+<thead>
+<tr>
+<th>minimum</th>
+<th>maximum</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2084</td>
+<td>5249</td>
+</tr>
+</tbody>
+</table>
+
+<p>Since the result of an aggregate function usually operates on <em>multiple</em> tuples of a relation, the result can only be displayed with results of other aggregate functions rather than other <em>single</em> attributes (think about it this way, which single attribute would make sense in the row of the result relation we just saw? none).</p>
+
+<p>It is also possible to <strong>group</strong> values. Tuple that have the same value for an attribute (or set of attributes) are then <strong>grouped</strong> by those same attribute values. Aggregate functions then operate <strong>isolated</strong> on those formed groups, which means grouping only makes sense when aggregations are performed subsequently. The schema of the resulting table can only hold the grouped attributes and the result of the attribute functions.</p>
+
+<p>This slide gives a good visualization
+</knowledge-database/images/grouping-1.png ></p>
+
+<p>To <em>filter groups</em> we can use the <code>having</code> keyword which acts like a <code>where</code> clause but for groups and follows the <code>group by</code> statement.
+</knowledge-database/images/grouping-2.png ></p>
+
+<h3 id="connecting-sfw-statements">Connecting SFW Statements</h3>
+
+<p>It is possible to connect whole <code>select</code> statements with each other in SQL. This functionality corresponds to the operations set <em>union</em> and set <em>difference</em> we know from relational algebra. Likewise the data types of the attributes from the tables that should be combined need to be of the same data type (and semantic) in SQL as well.</p>
+
+<p>The operators to perform this set operations</p>
+
+<ul>
+<li><code>union</code> corresponds to the join/union operation &cup; from relational algebra and also removes duplicates</li>
+<li><code>except</code>, <code>minus</code> corresponds to the set difference - from relational algebra</li>
+<li><code>intersect</code> corresponds to the intersection &cap; from relational algebra (Schnittmenge)</li>
+</ul>
+
+<p>Example of combining/connecting SFW statements:
+</knowledge-database/images/sfw-connection.png ></p>
+
+<h3 id="subqueries">Subqueries</h3>
+
+<p>It is possible to execute further <code>select</code> statements <em>inside</em> a <code>select</code> statements. There are two possible approaches/semantics (Semantiken) to do that, the <strong>value semantic</strong> (slides: Wertsemantik) and the <strong>set semantic</strong> (slides: Mengensemantik?!). I&rsquo;ll use the german terms <em>Wertsemantik</em> and <em>Mengensemantik</em> because it is not clear to me what the proper english terms would be :o. Subqueries can be nested as desired as long as the semantic is correct (recursion).</p>
+
+<h4 id="wertsemantik">Wertsemantik</h4>
+
+<p>The subquery returns a <strong>single value</strong> (doesnt matter if string, number or date). Subqueries that follow Wertsemantik can be used at every place/position where single values may have been used.</p>
+
+<p>Example:</p>
+
+<p></knowledge-database/images/wertsemantik-1.png >
+</knowledge-database/images/wertsemantik-2.png ></p>
+
+<p>&uarr; then the surrounding/wrapping query is executed which finds the two tuples with a number of &ldquo;234&rdquo; in the <em>Hears</em> table which is then counted and returns the result table</p>
+
+<table>
+<thead>
+<tr>
+<th>anzahl</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here are some equivalent queries to the one we examined in the pictures above</p>
+
+<pre><code class="language-sql">-- 1
+select count(*) as anzahl
+from Hört, Lehrveranstaltung
+where Hört.nummer = Lehrveranstaltung.nummer and titel = 'Datenbanken in der Praxis'
+
+-- 2
+select count(*) as anzahl
+from Hört natural join Lehrveranstaltung
+where titel = 'Datenbanken in der Praxis'
+</code></pre>
+
+<h4 id="mengensemantik">Mengensemantik</h4>
+
+<p>The subquery returns a Wertemenge (set of values). To then evaluate the returned result set special language features/constructs are needed.</p>
+
+<p>Example:</p>
+
+<p></knowledge-database/images/mengensemantik-1.png >
+Notice that when the subquery generates a set of values like in the picture above, the <code>=</code> operator at the <code>where</code> statement is replaced by the <code>in</code> set operator because we&rsquo;re dealing with multiple values. This is the procedure of the query above:</p>
+
+<p></knowledge-database/images/mengensemantik-2.png >
+</knowledge-database/images/mengensemantik-3.png >
+</knowledge-database/images/mengensemantik-4.png ></p>
+
+<hr />
+
+<p>The subqueries we saw so far were <strong>non-correlating</strong>. They worked locally and had only to be evaluated once because their result stayed constant because of the local nature.</p>
+
+<p>But suppose we want to access attribute values of surrounding/wrapping queries.
+This is where <strong>correlating subqueries</strong> come into play. It is possible to access wrapping/surrounding tables from the inside of subqueries (the circumstances may require qualification via the table name). The correlation is created as soon as such reference exists. A correlating subquery always refers to the currently viewed tuple of the parent query and therefore has to be computed for <strong>every</strong> tuple of the result set (slides: Eine korrelierte Unteranfrage bezieht sich immer auf das aktuell betrachtete Tupel der übergeordneten Anfrage und muss deshalb für jedes Tupel von deren Ergebnismenge neu berechnet werden).</p>
+
+<p>Example:</p>
+
+<p></knowledge-database/images/correlating-subqueries-1.png >
+</knowledge-database/images/correlating-subqueries-2.png ></p>
+
+<h3 id="set-operations--mengenoperatoren">Set Operations (Mengenoperatoren)</h3>
+
+<p>We already know the specification of constant sets and how to test if an attribute value is contained in such set via <code>where .. in</code> eg <code>where attribute in ('Chemnitz', 'Leipzig', 'Dresden')</code>. There are more set operators of which we will introduce some now since they&rsquo;re also helpful in regards to subqueries and can be used to model the quantifiers from relational calculus:</p>
+
+<ul>
+<li><code>exists SET</code>  becomes <code>true</code> when <code>SET</code> includes at least one element</li>
+<li><code>COMPARISON-OPERATOR all SET</code> becomes <code>true</code> when the comparison operator yields <code>true</code> for each element in <code>SET</code></li>
+<li><code>COMPARISON-OPERATOR any SET</code> becomes <code>true</code> when the comparison operator yields <code>true</code> for any element in <code>SET</code></li>
+</ul>
+
+<p>Examples:
+</knowledge-database/images/set-operators-1.png >
+</knowledge-database/images/set-operators-2.png >
+</knowledge-database/images/set-operators-3.png ></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

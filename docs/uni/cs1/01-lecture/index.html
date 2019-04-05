@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Computer Science I - Lecture 01 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Computer Science I - Lecture 01</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 12, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="organization">Organization</h2>
+
+<ul>
+<li>Course Page: <a href="https://www.tu-chemnitz.de/informatik/friz/Grundl-Inf/">tu-chemnitz.de/fritz/course</a></li>
+<li>Script: <a href="https://www.tu-chemnitz.de/informatik/friz/Grundl-Inf/Scriptum-Druck/">tu-chemnitz.de/fritz/script</a></li>
+<li>Lecture: Friday 07:30AM - 09:00AM</li>
+<li>Excercise/Field work: Friday 09:30AM-10:00AM</li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>An algorithm is an ordered sequence of instructions, that can deliver a certain result with a finite amount of steps.</p>
+
+<p>The <em>binary system</em> is a numeral system that represents numbers with 0 and 1. It therefore is base-2 while our common day to day decimal numeral system is base-10, consisting of the 10 digits: 0,1,2,3,4,5,6,8,9. A computer uses the binary numeral system because distinguishing for example between 10 digits is not practical. With the binary system it is much easier because there are just 2 options. This goes back to a circuit either having voltage or not.</p>
+
+<p>There are several methods to convert base-10 to base-2 and vica versa, so I&rsquo;ll just show two here.</p>
+
+<p>Method 1: Binary digit (0 or 1) times 2^n where n = place (zero-indexed):</p>
+
+<ul>
+<li>1001 = 1 * 2^3 + 0 * 2^2 + 0 * 2^1 + 1 * 2^0 = 9</li>
+<li>111 = 1 * 2^2 + 1 * 2^1 + 1 * 2^0 = 7</li>
+</ul>
+
+<p>Method 2: Divide the number by 2 (split it in half) and ignore the remainder, write down the results from right to left and then write an 1 below each odd number and a 0 below each even number:</p>
+
+<ul>
+<li>Example with 9:</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th><strong>9</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>Example with 43:</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>10</th>
+<th>21</th>
+<th><strong>43</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>Amongst other common numeral systems are the hexadecimal(16) system (0-9, A-F) and the octal(8) system (0-7).</p>
+
+<p>The basic rule to convert into a number system is: value * base<sup>place</sup> for each cyper/digit.</p>
+
+<p>As C++ is the main programming language in this course a short intro follows:</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+  float temp1, temp2, diff;
+  cin &gt;&gt; temp1; // console input
+  cin &gt;&gt; temp2;
+  diff = temp1 - temp2;
+
+  cout &lt;&lt; diff; // console output
+  return 0;
+}
+</code></pre>
+
+<p><code>cout</code> (object of type <code>ostream</code>) and <code>cin</code> (object of type <code>istream</code>) overload the bitshift operators <code>&lt;&lt;</code> and <code>&gt;&gt;</code>. <code>istream</code> and <code>ostream</code> are, amongst other things, pooled in <code>iostream</code>.</p>
+
+<h2 id="training-excercises">Training excercises</h2>
+
+<p>1.) What is a numeral system and which exist? Which one is used in computers?</p>
+
+<p>&rarr; From wikipedia: A numeral system (or system of numeration) is a writing system for expressing numbers; that is, a mathematical notation for representing numbers of a given set, using digits or other symbols in a consistent manner. The same sequence of symbols may represent different numbers in different numeral systems. For example, &ldquo;11&rdquo; represents the number three in the binary numeral system (used in computers) and the number eleven in the decimal numeral system (used in common life)</p>
+
+<p>2.) Convert the following numbers to decimal: 1011, 101010, 1FF, A7</p>
+
+<ul>
+<li>1011 =  1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 1 * 2^0 = 8 + 0 + 2 + 1 = 11</li>
+<li>101010 = 1 * 2^5 + 0 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 0 * 2^0 = 32 + 8 + 2 = 42</li>
+<li>1FF = 1 * 15 + 16 * 15 + 256 * 1 = 511</li>
+<li>A7 = 1 * 7 + 16 * 10 = 167</li>
+</ul>
+
+<p>3.) Convert the following numbers to binary: 42, 324, BC5, 7D</p>
+
+<ul>
+<li>42 = 1 2 5 10 21 42 = 101010</li>
+<li>324 = 1 2 5 10 20 40 81 162 324 = 101000100</li>
+<li>BC5 = B = 1011; C = 1100; 5 = 0101 &rarr; = 101111000101</li>
+<li>7D = 7 = 111; D = 1101 &rarr; 1111101</li>
+</ul>
+
+<p>4.) Convert the following numbers to hexadecimal: 100011, 11011, 255, 256</p>
+
+<ul>
+<li>10011 = 0001 = 1; 0011 = 3 = 13</li>
+<li>11011 = 0001 = 1; 1011 = 11(=B) = 1B</li>
+<li>255 = FF</li>
+<li>256 = 100</li>
+</ul>
+
+<p>5.) Add the following binary numbers: 11101 + 1110 and 101001 + 11001</p>
+
+<p>Align the numbers horizontically and add them together in binary, when adding e.g 1+1 = 2 convert the 2 to binary &rarr; 10 and write down the 0 and take the 1 with you to the next column:</p>
+
+<p>a.)</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td>+</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>=</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>b.)</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td>+</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>=</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>6.) Which range of natural numbers can be represented with 8 bits? What happens if you 1 to the maximum representable number without increasing the available bits?</p>
+
+<ul>
+<li>natural numbers = integers &gt;= 0 &rarr; N = {0, 1, 2, 3, &hellip;}</li>
+<li>8 bits (usually = 1 byte) may represent natural numbers from 0 to 255 (1&rsquo;s in all 8 bit places = 1+2+4+8+16+32+64+128=255)</li>
+<li>increasing the number by 1 to 256 without increasing the bits would lead to the following representation: 00000000</li>
+</ul>
+
+<p>7.) What would be an option to represent negative numbers (reffering to excercise 6)?</p>
+
+<ul>
+<li>The largest bit could represent the sign (e.g 0 = positive and 1 = negative) &rarr; signed magnitude representation. Then numbers from -127 to +127 could be represented with 8 bits (1 2 4 8 16 32 64 sign)</li>
+<li>Another and most common method is to build the two&rsquo;s complement meaning build the one&rsquo;s complement and add 1 to the result. To build the one&rsquo;s complement you invert all bits (0 to 1 and 1 to 0), C has the bitwise ~ NOT operator for this action. E.g you have: 01001 which is 9 then you invert it to 10110 and add 1 = 10111.</li>
+</ul>
+
+<p>Alternatively (in my opinion less error prone) you could go from right to left and invert every bit AFTER the first 1. Lets say you represent 2 with 5 bits:
+00010 &rarr; 11110</p>
+
+<p>Or for 9: ~01001 = 10111</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

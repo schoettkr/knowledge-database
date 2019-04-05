@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 13 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 13</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 19, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="design-and-correctness-of-algorithms">Design and Correctness of Algorithms</h2>
+
+<p>The first slides of this lecture chapter is just some meta information about the right mindset to create algorithms, which I find to be trivial, that&rsquo;s why I don&rsquo;t repeat that here (slides 1-5).</p>
+
+<p>We usually create a model for a problem (Modellierung) to abstract and reduce it. Especially mathematical concepts are suited as modeling approaches (Modellierungsansätze):</p>
+
+<ul>
+<li>sets, multisets</li>
+<li>permutations</li>
+<li>trees/hierarchies</li>
+<li>graphs</li>
+<li>points (geometry)</li>
+<li>polygons</li>
+<li>strings</li>
+</ul>
+
+<h3 id="excourse-graphs">Excourse: Graphs</h3>
+
+<p>Graphs are often used for modelling. A graph is a ordered pair \((V,E)\), where \(V\) is a set of nodes/vertices (Knoten) \(V = {v_1, v_2, v_3,.., v_n}\) and \(E\) is a set of edges (Kanten/Linien) \(E = {e_1, e_2, .., e_m}\). Depending on the type of graph, \(E\) is:</p>
+
+<ul>
+<li>in <strong>undirected*/*simple</strong> (ungerichtete) graphs <strong>without multiple edges</strong> \(E\) is a <strong>2-element subset</strong> of \(V\)</li>
+<li>in <strong>directed</strong> (gerichteten) graphs <strong>without multiple edges</strong> \(E\) is a <strong>subset</strong> of all pairs/2-tuples (i,j) which result from the cartesian product of \(V * V\)</li>
+<li>in <strong>undirected</strong> graphs with &ldquo;zusammengefassten&rdquo; <strong>multiple edges</strong> (=Multigraph) \(E\) is a <strong>multiset</strong> (Menge die Duplikate erlaubt) &ldquo;über die Menge \(W\)&rdquo; of all <strong>2-element subsets</strong> of \(V\) (?weighted graph?)</li>
+<li>in <strong>directed</strong> graphs with &ldquo;zusammengefassten&rdquo; <strong>multiple edges</strong> (=Multigraph) \(E\) is a <strong>multiset</strong>  &ldquo;über dem kartesischen Produkt \(V * V\)&rdquo; (?weighted graph?)</li>
+<li>in <strong>hypergraphs</strong> \(E\) is a subset of the power set of \(V\)</li>
+<li>wiki: in gerichteten Graphen mit eigenständigen Mehrfachkanten eine beliebige Menge, deren Elemente mit Hilfe von zwei Funktionen {\displaystyle \mathrm {src} ,\mathrm {tgt} : E&rarr; V} {\mathrm  {src}},{\mathrm  {tgt}}: E&rarr; V die den Elementen einen Quell- bzw. Zielknoten zuordnen, als Kanten angesehen werden (so ein Graph ist dasselbe wie ein Funktor {\displaystyle G: {\mathcal {G}}&rarr; \mathbf {Set} } G: {\mathcal  G}&rarr; {\mathbf  {Set}}, wobei {\displaystyle {\mathcal {G}}} {\mathcal  G} die recht überschaubare Kategorie {\displaystyle {\mathcal {G}}=\{V{\stackrel {\mathrm {src} }{\longleftarrow }}E{\stackrel {\mathrm {tgt} }{\longrightarrow }}V\}} {\mathcal  G}=\{V{\stackrel  {{\mathrm  {src}}}\longleftarrow }E{\stackrel  {{\mathrm  {tgt}}}\longrightarrow }V\} mit zwei Objekten und zwei ausgezeichneten Pfeilen ist)</li>
+</ul>
+
+<p>Slides: Kanten können Werte (Gewichte) zugewiesen werden, w : E → R. In diesem Fall spricht man von einem gewichteten Graph.</p>
+
+<ul>
+<li><em>gerichteter</em> Graph hat Pfeile an Kanten die die Richtung angeben</li>
+<li><em>gewichteter</em> Graph hat Werte an Kanten stehen</li>
+</ul>
+
+<p>Two blog posts on graphs:</p>
+
+<ul>
+<li><a href="https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8">https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8</a></li>
+<li><a href="https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38">https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38</a></li>
+</ul>
+
+<p>The model of the graph is seperate of any concrete data structures. C for example does not have a built-in data type for graphs so you might need to implement one yourself. Furthermore just because a problem was modeled with a specific approach/model does not mean that a respective data structure is always needed to implement the approach.</p>
+
+<p>However if you find yourself in the need of such data structure there are a multitude of approaches to implement it such. Here are two:</p>
+
+<ul>
+<li>via <strong>adjacency matrix</strong>:
+
+<ul>
+<li>a square matrix to represent a finite graph</li>
+<li>the elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph</li>
+<li>in 2d array each element <code>a_{i,j}</code> holds information weather or not an edge connects the vertices <code>v_i</code> and <code>v_j</code> or which weight the edge has:</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-C">enum {nodes = 5};
+
+bool a[nodes][nodes];
+
+a[0][1] = true; // -&gt; edge between verticle 0 and verticle 1 exists
+</code></pre>
+
+<ul>
+<li>via <strong>structs and pointers</strong>:
+
+<ul>
+<li>vertices can be modelled as structs and edges as pointers inside of those:</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-C">enum {maxDegree = 6};
+
+struct node;
+
+typedef struct node {
+  int id;
+  struct node *in[maxDegree];
+  struct node *out[maxDegree];
+} node_t;
+</code></pre>
+
+<p>Since graph theory is a relatively old field of mathematics there are a lot of theorems, laws and standard algorithms for solving certain problems.</p>
+
+<div style="color:red;">
+  <div></div>
+
+<p>TODO check those code examples</p>
+
+<p></div></p>
+
+<h3 id="specification">Specification</h3>
+
+<div style="color:red;">
+  <div></div>
+
+<p>TODO check those code examples</p>
+
+<p></div></p>
+
+<p>An algorithm has to be described somehow. One variant to do so would be in a concrete programming language. The problem with that is that different programming languages know different concepts and no programming language knows all concepts. C for example does not know data types and operations for mathematical sets by itself. Set operations in C could therefore look a bit unclear and obfuscate (verschleiern) the underlying algorithm which is the real point of interest.</p>
+
+<p>A solution to this is writing algorithms in a <em>specification</em> (Spezifikationsprachen) of which there are many (natural languages are too inprecise btw) when the algorithm itself is the point of interest.</p>
+
+<p>There are <strong>formal</strong> and <strong>semiformal</strong> specification languages. The former are automatically processable for example theorem proofs, however these are often hard to read. The latter serve the purpose of communicating about algorithms.</p>
+
+<p>We&rsquo;ll use the probably most popular semiformal specification language for imperative algorithms which is <strong>pseudocode</strong>.</p>
+
+<p>And this (pseudocode) is where we will continue in the next lecture. Cya :)</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

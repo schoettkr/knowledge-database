@@ -1,0 +1,564 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 19 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 19</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Dec 10, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          14 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>This lecture directly builds on lecture 18 so make sure to be in the picture about what we did there.</p>
+
+<h2 id="text-search">Text Search</h2>
+
+<p>In lecture 18 we ended with the pseudocode implementation of our search algorithm and now we want to implement it in C. As a refresher here&rsquo;s the pseudocode once again:</p>
+
+<pre><code class="language-C">// str is file/text buffer and p is search string
+Require: str and p is text, length(str) &gt; length(p)
+Ensure: returns index of first appearance of p in str
+
+procedure SIMPLE-SEARCH(str, p)
+  pos = 1
+  while pos &lt; length(str) - length(p) do
+    j = 1
+    while ((j &lt;= length(p)) and (str[pos+j-1]) = p[j]) do
+      if j = length(p) then // found 1st occ of search string
+        return pos
+      endif
+      j = j+1
+    end while
+    pos = pos + 1
+  end while
+  return &quot;not found&quot;
+end procedure
+</code></pre>
+
+<p>As you can see in the line <code>if j = length(p) then ...</code>  we also need a function that determines the length of a string. There&rsquo;s one in the standard library but we&rsquo;ll write our own (same as for the <code>presentResult</code> function in lecture 18!):</p>
+
+<pre><code class="language-C">int length(const char* str) {
+  int len = 0;
+  if (str == NULL) return 0;
+
+  while (str[len] != '\0') {
+    ++len;
+  }
+
+  return len;
+}
+</code></pre>
+
+<p>Now the algorithm in C looks pretty similar to the pseudocode however we have to account for the fact that indices begin at 0 and also do some condition checking:</p>
+
+<pre><code class="language-C">int search (const char* p, const char* str, size_t tlen) {
+  size_t plen = length(p);
+
+  if (plen &gt; tlen) return -1; // abort if search string is longer than text
+
+  for (size_t pos = 0; pos &lt; tlen; ++pos) { // iterate over chars in text
+    size_t j = 0;
+    while ((j &lt; plen) &amp;&amp; (str[pos+j] == p[j])) { // increment j as long as chars in the search string and text match
+      if (j == plen - 1) { // when j is equal to plen - 1 all characters matched
+        return pos; //found the string (1st occurence)
+      }
+
+      ++j;
+    }
+  }
+}
+</code></pre>
+
+<p>Let&rsquo;s examine the above implementation/algorithm:</p>
+
+<ul>
+<li>we have two nested loops
+
+<ul>
+<li>the outer loop runs through all \(n\) elements in our text <code>str</code></li>
+<li>the inner loop runs through \(m\) elements in the search string <code>p</code></li>
+<li>our upper boundary is therefore \(\mathcal{O} (m*n)\)</li>
+<li>the lower boundary is \(\mathcal{O} (m)\) (text begins with searchstring)</li>
+</ul></li>
+</ul>
+
+<p>Let&rsquo;s look at more efficient approaches!</p>
+
+<h4 id="boyer-moore-algorithm">Boyer-Moore Algorithm</h4>
+
+<p>Wikipedia: The Boyer–Moore string-search algorithm is an efficient string-searching algorithm that is the standard benchmark for practical string-search literature. It was developed by Robert S. Boyer and J Strother Moore in 1977.</p>
+
+<p>The algorithm preprocesses the string being searched for (the pattern), but not the string being searched in (the text). It is thus well-suited for applications in which the pattern is much shorter than the text or where it persists across multiple searches.</p>
+
+<p>The Boyer-Moore algorithm uses information gathered during the preprocess step to skip sections of the text, resulting in a lower constant factor than many other string search algorithms. In general, the algorithm runs faster as the pattern length increases.</p>
+
+<p>The key features of the algorithm are to <strong>match on the tail of the pattern</strong> rather than the head, and to <em>skip along the text in jumps of multiple characters</em> rather than searching every single character in the text.</p>
+
+<p>The key insight in this algorithm is that if the end of the pattern is compared to the text, then jumps along the text can be made rather than checking every character of the text. The reason that this works is that in lining up the pattern against the text, the last character of the pattern is compared to the character in the text. If the characters do not match, there is no need to continue searching backwards along the text. If the character in the text <em>does not match</em> <strong>any</strong> <em>of the characters in the pattern</em>, then the next character in the text to check is located <code>n</code> characters farther along the text, where <code>n</code> is the length of the pattern.</p>
+
+<p>If the character in the text <strong>is</strong> in the pattern, then a <strong>partial shift</strong> of the pattern along the text is done <em>to line up along the matching character</em> and the process is repeated. Jumping along the text to make comparisons rather than checking every character in the text decreases the number of comparisons that have to be made, which is the key to the efficiency of the algorithm.</p>
+
+<p>A shift is calculated by applying two rules: the bad character rule and the good suffix rule. The actual shifting offset is the maximum of the shifts calculated by these rules.</p>
+
+<ul>
+<li><p>They Bad Character Rule (T=Text, P=Pattern)</p>
+
+<p>The bad-character rule considers the character in <code>T</code> at which the comparison process failed (assuming such a failure occurred). The next occurrence of that character to the left in <code>P</code> is found, and a shift which brings that occurrence in line with the mismatched occurrence in <code>T</code> is proposed. If the mismatched character does not occur to the left in <code>P</code>, a shift is proposed that moves the entirety of <code>P</code> past the point of mismatch</p>
+
+<p>For the Good Suffix Rule you should study the wikipedia section <a href="https://en.wikipedia.org/wiki/Boyer%25E2%2580%2593Moore%5Fstring-search%5Falgorithm#The%5FGood%5FSuffix%5FRule">here</a> as well as the slides :D On slide <sup>35</sup>&frasl;<sub>36</sub> (chapter 10) there is the code for a disttable and the adapted C search code.</p></li>
+</ul>
+
+<h4 id="wildcards">Wildcards</h4>
+
+<p>Let&rsquo;s extend the problem to also allow for wildcards in our search string:</p>
+
+<ul>
+<li><code>?</code> match exactly <strong>one</strong> character</li>
+<li><code>!</code> match <strong>one or no</strong> character</li>
+<li><code>*</code> match arbitrary characters (0,1,2,&hellip;,)</li>
+</ul>
+
+<p>For this idea we&rsquo;ll use state machines. The search string defines a regular grammar and the state machine gets into an <em>accept</em> state when a matching (according to the grammmar) character/expression (Ausdruck) is found in the text.</p>
+
+<p>Since every search string can be different the state machine has to generated at run time! It exists of other generic state machines (generische Teilautomaten). From the starting the state the state machine goes into one of the end states:</p>
+
+<ul>
+<li>(part) <strong>success</strong> <code>s</code> when a character is found &rarr; accept</li>
+<li><strong>failure</strong> <code>f</code> when nothing was found</li>
+</ul>
+
+<p>This is how such statement machine would look like for an input of <code>&quot;A&quot;</code> <strong>without</strong> wildcards:</p>
+
+<p></knowledge-database/images/state-machine-a.png ></p>
+
+<p>Now we want to formulate a state machine for the input <code>A?C</code> (including wildcards):</p>
+
+<p></knowledge-database/images/state-machine-2.png ></p>
+
+<p>Here&rsquo;s the state machine for matchin <code>A!C</code>:</p>
+
+<p></knowledge-database/images/state-machine-3.png ></p>
+
+<p>And finally the state machine for matching <code>A*C</code>:</p>
+
+<p></knowledge-database/images/state-machine-4.png ></p>
+
+<p>Question/Problem: What happens when there&rsquo;s no normal character after a <code>!</code> or <code>*</code> in our search string (-&gt; instead other wildcards)</p>
+
+<p>Some observations:</p>
+
+<ul>
+<li>a search sequence of <code>!</code>&rsquo;s is not critical</li>
+<li>if the search pattern starts with <code>*</code> or a <code>!</code>, that wildcard can be skipped</li>
+<li>if the <code>*</code> or <code>!</code> is followed by the end of the text, that wildcard can be skipped</li>
+<li>if a <code>!</code> or <code>*</code> is followed by a <code>?</code> then the characters can be swapped (so können beide Zeichen getauscht werden)</li>
+<li>if a <code>!</code> is followed by a <code>*</code>, the <code>!</code> can be ignored</li>
+<li>if a <code>*</code> is followed by <code>!</code> or another <code>*</code> then the second wildcard can be ignored</li>
+</ul>
+
+<p>With the observations 2-6 transformation rules can be formulated as an algorithm.</p>
+
+<p>Here is the pseudocode:</p>
+
+<pre><code class="language-C">Require: str, possibly with wildcards
+Ensure: returns sanitized str
+
+repeat
+  while str[first] = '*' || str[first] = '!' do
+    remove first char from str;
+  end while
+  while str[last] = '*' || str[last] = '!' do
+    remove last char from str;
+  end while
+
+  changed = true
+
+  for all substr in str, length(substr) 2 do
+    if substr = '!?' then
+      replace substr in str with '?!'
+    else if sub = '*?' then
+      replace substr in str with '?*'
+    else if sub = '!*' || sub = '*!' || sub = '**' then
+      replace substr in str with '*'
+    else
+      changed = false;
+    end if
+  end for
+until (changed = false)
+</code></pre>
+
+<p>Since string manipulation is easier in Python we&rsquo;ll take a look at the implemenation of the transformation rules in Python first:</p>
+
+<pre><code class="language-python">def sanitize (str ):
+    changed = True
+    while (changed == True): # repeat as often as needed
+        changed = False
+
+    while (str[0] == '*') or (str[0] == '!'): # delete leading * or !
+        str = str[1:]
+
+    while (str[-1] == '*') or (str[-1] == '!'): # delete tailing * or !
+        str = str[:-1]
+
+    for i in range (0, len(str)-2):
+        if (str[i:i+2]== '*?') or (str[i:i+2] == '!?'):
+            changed = True
+            str = str[0:i] + '?' + str[i] + str[i+2:] # *? -&gt; ?* and !? -&gt; ?!
+        if ((str[i:i+2]== '!*') or (str[i:i+2] == '*!') or (str[i:i+2] == '**')):
+            changed = True
+            str = str[0:i] + '*' + str[i+2:] # !* or *! or ** -&gt; *
+  return str
+</code></pre>
+
+<p>The C implemenation is a bit longer but achieves the same. You can take look at it on page <sup>47</sup>&frasl;<sub>48</sub> (chapter 10).</p>
+
+<h4 id="data-structures">Data Structures</h4>
+
+<p>The state machine we constructed has to be generated at run time. A suitable data structure to represent this would be a <strong>graph</strong> since state machines are graphs (they consist of vertices and edges). The vertices in a graph are the states in the state machine and the edges are the transitions.</p>
+
+<p>An adjacency matrix is unsuited since vertices and edges need to hold additional information so we use =struct=s with pointers (see Chapter 7, Slide 13).</p>
+
+<p>What do we need to describe a transition?</p>
+
+<p>&rarr; a start and end state<br />
+&rarr; a condition</p>
+
+<p>Because we will associate the edges with their origin/start state we only need the target (Wir werden die Ausgangskanten den entsprechenden Zuständen zuordnen, deshalb brauchen wir nur das Ziel).</p>
+
+<p>Also there just 5 conditions in our state machine:</p>
+
+<ul>
+<li>the character is found</li>
+<li>the character is not found</li>
+<li>the end of text is reached</li>
+<li>the end of text is not reached</li>
+<li>neither the character nor the end of text was found</li>
+</ul>
+
+<p>Accordingly we can define a data structure and constants:</p>
+
+<pre><code class="language-C">typedef enum {
+              MatchChar,
+              MatchNotChar,
+              MatchEOT,
+              MatchNotEOT,
+              MatchNotCharNotEOT,
+              NoEdge // mark edges that are not existing in our state machine
+} match_t;
+
+typedef struct {
+  match_t condition;
+  int next;
+} edge_t;
+</code></pre>
+
+<p>We describe states with:</p>
+
+<ul>
+<li>designating wheather it is an end state (either <code>s</code> or <code>f</code>) or another state</li>
+<li>the character that refers to the state</li>
+<li>the transitions from that state</li>
+</ul>
+
+<p>And because there can only be 3 transitions at max to other states we allow ourselves to possibly waste a bit of memory by allocating an array for exactly 3 edges.</p>
+
+<pre><code class="language-C">typedef enum {
+              StateDefault,
+              StateSuccess,
+              StateFail
+} statetype_t;
+
+typedef struct {
+  statetype_t type;
+  char ch;
+  edge_t edge[3];
+} state_t
+</code></pre>
+
+<p>Because we only at run-time how large our state machine needs to be (ie how many states it has) we create an anonymous array (that holds the states -&gt; pointer) and store the index of the start state as well:</p>
+
+<pre><code class="language-C">typedef struct {
+  state_t* state;
+  int initial;
+} automata_t;
+</code></pre>
+
+<p>Now the state machine can be created from the search pattern at runtime. For that we also need a success state, a fail state and a state for every non <code>*</code> character in the search string. For that we allocate memory:</p>
+
+<pre><code class="language-C">automata_t init_automata(const char* p) {
+  int snr, len; // snr = statenumber (?)
+  len = snr = length(p);
+
+  for (int i = len - 1; i &gt;= 0; --i) {
+    if (p[i] == '*') --snr; // decrease for each '*'
+  }
+
+  automata_t a;
+  a.state = calloc(snr+2, sizeof(state_t));
+
+  /* add the elments / states to the state array
+   the success and fail state are always the same therefore we create constant for the indices */
+  enum { S_FAIL = 0, S_SUCC = 1};
+
+  // Fail
+  a.state[S_FAIL].type = StateFail;
+  a.state[S_FAIL].edge[0].condition = NoEdge;
+  a.state[S_FAIL].edge[1].condition = NoEdge;
+  a.state[S_FAIL].edge[2].condition = NoEdge;
+
+  // Success
+  a.state[S_SUCC].type = StateSuccess;
+  a.state[S_SUCC].edge[0].condition = NoEdge;
+  a.state[S_SUCC].edge[1].condition = NoEdge;
+  a.state[S_SUCC].edge[2].condition = NoEdge;
+
+  snr = 1;
+
+  for (int pos = len - 1; pos &gt;= 0; --pos) {
+    switch (p[pos]) {
+      ...
+    }
+  }
+}
+</code></pre>
+
+<p>Let&rsquo;s cover the case of normal characters first. We&rsquo;d have two edges. One has the character from the search string as a condition, the other has the negation of such as the condition:</p>
+
+<pre><code class="language-C">// continuing the switch in the code listing above
+switch (p[pos]) {
+ default:
+   ++snr;
+   a.state[snr].ch = p[pos];
+   a.state[snr].type = StateDefault;
+
+   a.state[snr].edge[0].condition = MatchChar;
+   a.state[snr].edge[0].next = snr-1;
+
+   a.state[snr].edge[1].condition = MatchNotChar;
+   a.state[snr].edge[1].next = S_FAIL;
+
+   a.state[snr].edge[2].condition = NoEdge; // later conditions marked as NoEdge wont be evaluated/executed
+   break;
+</code></pre>
+
+<p>This is what the above case represents
+</knowledge-database/images/state-machine-default-case.png ></p>
+
+<p>Onto the case for the <code>'?'</code> wildcard character which is similar to the state for a normal character, with the difference that the condition is <em>End-of-Text</em> (and its negation) because the &lsquo;?&rsquo; allows <strong>one</strong> arbitrary character:
+</knowledge-database/images/state-machine-question-mark.png ></p>
+
+<pre><code class="language-C">case '?':
+  ++snr;
+  a.state[snr].type = StateDefault;
+
+  a.state[snr].edge[0].condition = MatchNotEOT;
+  a.state[snr].edge[0].next = snr-1;
+
+  a.state[snr].edge[1].condition = MatchEOT;
+  a.state[snr].edge[1].next = S_FAIL;
+
+  a.state[snr].edge[2].condition = NoEdge; // no third edge therefore not needed/used
+
+  break;
+</code></pre>
+
+<p>Now the case for the <code>'!'</code> wildcard character. The state for <code>'!'</code> needs 3 edges</p>
+
+<ul>
+<li>one edge to the state after the next state (folgezustand des folgezustands) with the condition that the character of the next state is found (represents the optionality)</li>
+<li>one edge to the next state when neither the character of the next state nor EOT is matched (represents arbitrary char)</li>
+<li>one edge for EOT that goes to fail state</li>
+</ul>
+
+<pre><code class="language-C">case '!':
+  ++snr;
+
+  a.state[snr].type = StateDefault;
+  a.state[snr].ch = a.state[snr-1].ch; // get character from next state
+
+  a.state[snr].edge[0].condition = MatchChar;
+  a.state[snr].edge[0].next = a.state[snr-1].edge[0].next;
+
+  a.state[snr].edge[1].condition = MatchEOT;
+  a.state[snr].edge[1].next = S_FAIL;
+
+
+  a.state[snr].edge[2].condition = MatchNotCharNotEOT;
+  a.state[snr].edge[2].next = snr-1;
+
+  break;
+
+</code></pre>
+
+<p>In contrast to the previous cases, the <code>'*'</code> character <strong>does not</strong> create a new state. Instead the state of the next character is <strong>modified</strong></p>
+
+<ul>
+<li>the condition of the edge to &lsquo;fail&rsquo; is mititgated (abgeschwächt) to EOT</li>
+<li>a loop to itself is added, when neither the original character nor EOT are matched</li>
+</ul>
+
+<pre><code class="language-C">case '*':
+  // no ++snr
+  a.state[snr].edge[1].condition = MatchEOT;
+  a.state[snr].edge[2].condition = MatchNotCharNotEOT;
+  a.state[snr].edge[2].next = snr;
+  break;
+}
+</code></pre>
+
+<p>Finally we also need to determine the initial state of our state machine. Since we operated on the search pattern from the tail, the initial state is the state that was generated last.</p>
+
+<pre><code class="language-C">  switch { // switch from above
+  ...
+  }
+
+  a. initial = snr;
+  return a;
+} // close init_automata function
+</code></pre>
+
+<p>Now the state machine is constructed and can be used</p>
+
+<ul>
+<li><p>Executing the State Machine</p>
+
+<p>Since now we have the function to initialize the state machine, it can be executed when the search is performed. Because of the wildcards the length of the match is not known beforehand, the search needs to return two values (start and end):</p>
+
+<pre><code class="language-C">typedef struct {
+  int start;
+  int end;
+} searchresult_t;
+
+searchresult_t search (automata_t, const char*, size_t);
+</code></pre>
+
+<p>When executing the search what basically needs to happen is that it is checked if a condition is true and then a switch to the next state needs to happen. If the state machine gets into the &lsquo;fail&rsquo; or &lsquo;success&rsquo; state the execution ends.</p>
+
+<pre><code class="language-C">searchresult_t search ( automata_t a , const char * text , size_t tlen ) {
+  searchresult_t res ;
+  for (size_t pos = 0; pos &lt; tlen; ++pos) {
+    int snr = a.initial;
+    size_t j = pos;
+    while (a.state[snr].type == StateDefault) {
+      for(int i = 0; i &lt; 3; i++) {
+        if (((a.state[snr].edge[i].condition == MatchChar) &amp;&amp;
+             (text[j] == a.state[snr].ch)) ||
+            ((a.state[snr].edge[i].condition == MatchNotChar) &amp;&amp;
+             (text[j] != a.state[snr].ch)) ||
+            ((a.state[snr].edge[i].condition == MatchEOT) &amp;&amp;
+             (text[j]== '\0')) ||
+            ((a.state[snr].edge[i].condition == MatchNotEOT) &amp;&amp;
+             (text[j] != '\0')) ||
+            ((a.state[snr].edge[i].condition == MatchNotCharNotEOT) &amp;&amp;
+             (text[j] != '\0') &amp;&amp;
+             (text[j] != a.state[snr].ch)))
+          {
+            snr = a.state[snr].edge[i].next;
+            ++j; /* next character */
+            break;
+          }
+      } /* end for iteration over edges */
+    }
+
+    if (a.state[snr].type == StateSuccess) {
+      res.start = pos;
+      res.end = j;
+      return res ;
+    }
+  } /* end for iteration over text */
+  res.start = -1;
+  res.end = -1;
+  return res;
+}
+</code></pre>
+
+<p>Because of the new return value of the search function, the presentResult function (from last lecture) also needs to be adapted:</p>
+
+<pre><code class="language-C">void presentResult(searchresult_t res, const char* str) {
+  int start, prelen;
+
+  start = res.start &gt; 20 ? res.start - 20 : 0; // output beginning
+
+  prelen = res.start &gt; 20 ? 20 : res.start; // beginning of match
+
+  printf(&quot;%.*s[%.*s]%.20s\n&quot;, prelen, &amp;str[start], res.end-res.start, &amp;str[res.start], &amp;str[res.end]);
+}
+</code></pre>
+
+<p>Finally we can use our algorithm in the following main function:</p>
+
+<pre><code class="language-C">int main (int argc, char* argv []) {
+  FILE* file;
+  char* text;
+  char* pattern;
+  automata_t automata;
+  searchresult_t found;
+  size_t size;
+
+  /* ... error checks and file / memory !
+     handling as in simple search ... */
+
+  text[size]= '\0';
+
+  pattern = sanitize(argv[1]);
+
+  automata = init_automata(pattern);
+
+  found = search(automata, text, size);
+
+  if (found.start != -1)
+    presentResult(found, text);
+
+  free(text);
+  free(automata.state);
+
+  return found.start;
+}
+</code></pre>
+
+<p>Final Reflections:
+Like the simple search, this algorithm has a complexity of \(\mathcal{O}(m*n)\) where <code>n</code> is the size of the text and <code>m</code> the max (expanded) size of the search pattern. In the worst case, when <code>*</code> occurs in the search pattern, the expanded length/size is the length of the text that is searched the complexity can get to \(\mathcal{O}(n^2)\). That&rsquo;s why in praxis there&rsquo;s usually an agreement upon that searches are performed line by line and that line endings are not matched (or that there&rsquo;s a max expansion length).
+Also beware that wildcard search algorithm are often not realized via this algorithm that we looked and instead with recursive functions.</p></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Database Essentials - Lecture 01 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Database Essentials - Lecture 01</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 10, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          7 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="organization">Organization</h2>
+
+<p>The &ldquo;Database Essentials&rdquo; course does not use the centralized eLearning platform as most other courses do. The lecture slides and exercise materials are instead uploaded here: <a href="https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/">https://www.tu-chemnitz.de/informatik/DVS/lehre/DBG/</a>.</p>
+
+<p>To get the credit points in this course one has first to do succeed in the prerequisites before he&rsquo;s allowed to participate in the written exam at the end of the semester. The prerequisites consist of homework and more details regarding those will follow when the first task is due.</p>
+
+<h2 id="why-do-we-need-databases">Why do we need databases?</h2>
+
+<p>The starting point is that most applications require data in some form. Data then again has to be organized somehow. How may data be organized? Well for example in a plain file.</p>
+
+<p>Advantages of a plain file:</p>
+
+<ul>
+<li>easy and fast to create</li>
+<li>can be opened with many programs</li>
+<li>can be shared easily e.g via email or usb</li>
+</ul>
+
+<p>Seems good right? Wrong. Take the following example:</p>
+
+<p>Assume we have two institutions that belong to one organization. The administrations office (AO) and the personnel department (PD).</p>
+
+<p>AO requires the following data:</p>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>7432420</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name</td>
+<td>Doe, John</td>
+</tr>
+
+<tr>
+<td>Street</td>
+<td>Milkyway 42</td>
+</tr>
+
+<tr>
+<td>City</td>
+<td>Metropolis</td>
+</tr>
+
+<tr>
+<td>SSN</td>
+<td>f01e37d2-e54b</td>
+</tr>
+</tbody>
+</table>
+
+<p>PD requires the following data:</p>
+
+<table>
+<thead>
+<tr>
+<th>Identifier</th>
+<th>7432420</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Surname</td>
+<td>Doe</td>
+</tr>
+
+<tr>
+<td>Forename</td>
+<td>John</td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td>Milkyway 42, Metropolis</td>
+</tr>
+
+<tr>
+<td>IBAN</td>
+<td>TR2000584U51D8302O7L9Q0823</td>
+</tr>
+
+<tr>
+<td>BIC</td>
+<td>PWCUSNC1553</td>
+</tr>
+</tbody>
+</table>
+
+<p>Now let&rsquo;s shine a light on the disadvantages of having the above data stored seperately in plain files.</p>
+
+<p>Redundancy:</p>
+
+<ul>
+<li>the colored entries are stored doubly across our two files (I still have to figure out how to highlight text in my blogging pipeline sorry :D, but you can see that most information is duplicated e.g the ID or name)</li>
+</ul>
+
+<p>One consequence of redundancy is that if the data needs to be changed, the changes have to be done in multiple places, which is cumbersome. And if the changes are not applied correctly inconsistencies will occur!</p>
+
+<p>Reduced Cohesiveness:</p>
+
+<ul>
+<li>it is not clear if data is logically connected (or the same)</li>
+<li>is &ldquo;ID&rdquo; for example always the same as &ldquo;Identifier&rdquo;? We don&rsquo;t know!</li>
+<li>how is the data connected? Surname + Forename = Name?</li>
+</ul>
+
+<p>Operate on/with the data:</p>
+
+<ul>
+<li>it is hard to retrieve statistical information about the data because it is unclear where and how it is stored</li>
+<li>bad performance of requests/queries because the data has first to be searched for in all the files</li>
+</ul>
+
+<p>Big data:</p>
+
+<ul>
+<li>the data may be too large to be stored on a single filesystem (e.g telecommunication data) &rarr; how do I find relevant information fast in those data pools?</li>
+</ul>
+
+<p>Concurrency:</p>
+
+<ul>
+<li>Person A opens the file from a network drive, loads the content into memory and starts editing it. Meanwhile Person B does the same. Person A finishes and saves back to the file on the network drive and after that Person B saves as well.</li>
+<li>Because Person B did not have the changes from Person A when he started modifying the data, he overwrites those changes when he saves. This is called a <strong>lost update</strong>.</li>
+</ul>
+
+<p>Privacy:</p>
+
+<ul>
+<li>not every user is allowed to have full access to the data &rarr; management of individual read and write permissions required</li>
+<li>privacy arrangements depend on the surrounding OS &rarr; generally there&rsquo;s no option to restrict access to specific information within a file</li>
+</ul>
+
+<p>Dependencies:</p>
+
+<ul>
+<li>structure of the data is determined by the application program and not by the data itself (e.g convert between Word &amp; Open Office)</li>
+<li>data is bound to the software</li>
+</ul>
+
+<p>Data loss:</p>
+
+<ul>
+<li>plain files usually only offer periodic backups &rarr; data losses that occur while editing a file or between saves are not backuped</li>
+</ul>
+
+<p>Capacity &amp; Performance:</p>
+
+<ul>
+<li>most filesystems don&rsquo;t offer suited concepts for editing large data pools in a consistent and performant manner</li>
+</ul>
+
+<h3 id="problem-solution">Problem solution</h3>
+
+<p>A great deal of the above issues lay in the <em>direct access</em> (via the filesystem) to a <em>inconsistent</em> or <em>badly structured</em> data pool in a <em>sequential manner</em>.</p>
+
+<p>Steps to a solution:</p>
+
+<ul>
+<li>structure the data</li>
+<li>make direkt access to saved data possible (no sequential run-through)</li>
+<li>provide an abstract layer between the data and the access that coordinates the access, optimizes performance and guarantees integrity (indirect access)</li>
+</ul>
+
+<p>This is where databases come into play. The abstract layer between the access and the data is called <em>database management system</em> (DBMS). The DBMS holds the structural and operational components to organize the da. Via the DBMS the creation, access, managment and deletion of/to data is realised.</p>
+
+<p>The <em>database</em> (DB) is the datapool that is managed by the DBMS. The entity that the DBMS and the DB build together is called <em>database system</em> (DBS).
+However it is pretty common to refer to this DBS as &ldquo;database&rdquo;.</p>
+
+<p>It is common that different applications interact with the DBMS to access data from the database. The DBMS ensures that each application/accessor has an individual view and access to the data defined by its authentication and access rights.</p>
+
+<h3 id="different-views-on-a-dbs">Different Views on a DBS</h3>
+
+<p><strong>External view (DB User)</strong> :
+Because the task of a DBS is to manage and organize the data for different external applications each external application has its own view of the modeled data.</p>
+
+<p><strong>Conceptual view (DB Designer/Developer)</strong> : This is the essential view of the database. It gives a complete overview of the logical structure of all objects and their relationships that are modelled in the data model.</p>
+
+<p><strong>Internal view (DB-Admin)</strong> :
+This is the view of the DBMS on &ldquo;its&rdquo; database. Besides the internal data structures, the location, arrangement, encryption and access optimizations can be found here.</p>
+
+<p>As seen above data objects can be described from three different layers of abstraction. The layers build the Three-level architecture (<a href="https://en.wikipedia.org/wiki/ANSI-SPARC%5FArchitecture">ANSI-SPARC</a>) of the database system. This separation makes sense because of multiple reasons</p>
+
+<ul>
+<li>DB Users shall not be concerned with the database internals and should just care about the usage of the data, which has to be individual adapted to their use case and priviliges.</li>
+<li>DB Admins shall be able to change the hardware as well as the internal structure of the data without affecting external applications / DB Users.</li>
+</ul>
+
+<h3 id="three-level-architecture">Three-level architecture</h3>
+
+<p>The formal description of the database is called the <em>database schema</em>. The database schema consists of formal descriptions of the components of the three-level architecture.</p>
+
+<p>Usually there is:</p>
+
+<ul>
+<li>one or more external schemas</li>
+<li>one conceptual schema</li>
+<li>one internal schema</li>
+<li>rules for transforming between the external and the conceptual schema</li>
+<li>rules for transforming between the conceptual and the internal schema</li>
+</ul>
+
+<h4 id="external-schemas">External Schemas</h4>
+
+<ul>
+<li>external schemas describe the aspects of the conceptual objects, their relations and constraints that are important for the correct data usage in their application</li>
+<li>the access to the database is usually restricted in some way(s)</li>
+<li>data from the conceptual view can be represented differently to the external view (e.g additional constraints)</li>
+<li>this functionality is given by the transformation rules that enable the transformation between objects from the conceptual schema to the external schema and vica versa</li>
+</ul>
+
+<h4 id="conceptual-schema">Conceptual Schema</h4>
+
+<ul>
+<li>contains all information and properties of objects and their relations that play a role in the data management</li>
+<li>defines aspects of correct data managment (e.g constraints)</li>
+<li>is a central reference point for all applications that use the database (external view)</li>
+<li>changes rather infrequently, e.g only when the business model changes as well</li>
+<li>represents an uniform point of documentation</li>
+<li>controlls the data usage/access from an central point</li>
+</ul>
+
+<h4 id="internal-schema">Internal Schema</h4>
+
+<ul>
+<li>describes how and where data is stored, e.g physical location</li>
+<li>allows creation of additional indices for (for example frequently used) attributes &rarr; physical data organization</li>
+<li>defines transformation rules and describes the transformation between objects from the internal view to the conceptual view and vica versa</li>
+</ul>
+
+<p>Three-level architecture: <img src="/knowledge-database/images/three-level-architecture.png" alt="" /></p>
+
+<h3 id="data-independence">Data independence</h3>
+
+<p>Each higher level of the data architecture has to be immune to changes of the next lower level of the architecture.</p>
+
+<p><strong>Logical data independence</strong> = the external schemas don&rsquo;t need to be changed when the conceptual schema is modified</p>
+
+<p><strong>Physical data independence</strong> = the conceptual schema doesn&rsquo;t need to be changed when the internal schema is changed</p>
+
+<p>A prerequisite for this is that the changes can be represented via the transformation rules.</p>
+
+<h3 id="advantages-of-databases">Advantages of databases</h3>
+
+<ul>
+<li>data independence</li>
+<li>reduced redundancy because differenct applications may access the same data</li>
+<li>consistency because of the centralized storage and organization</li>
+<li>integrity (correct values) because of improved control mechanisms</li>
+<li>statistic measures are easier to do because the data is modelled in one data model, which allows flexible connections &rarr; queries are more efficient because data is easier to find</li>
+<li>multiple usage and concurrent access is managed by the DBMS to prevent e.g lost updates</li>
+<li>security improvements because data access can be controlled easier</li>
+<li>standards compliance (naming conventions, documentation, access)</li>
+<li>scalability and reduced costs because usually only the hardware has to be upgraded if the requirements change and not the technology of the data consuming applications</li>
+<li>increased productivity because the tools given by a DBMS are usually much more powerful than those of a file system</li>
+<li>improved backup capabilities</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,617 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 08 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 08</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 2, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          14 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="complex-types">Complex Types</h2>
+
+<p>In C there are so called <strong>derived types</strong>. We already know one kind of a derived type, that is <em>pointers</em>. There are more types though:</p>
+
+<ul>
+<li>composite data types (Verbunddatentypen, <strong>struct</strong> and <strong>union</strong>)</li>
+<li>enumerated data types (Aufzählungstypen, <strong>enum</strong>)</li>
+<li>array data types (Felddatentypen, <strong>arrays</strong>)</li>
+</ul>
+
+<p>Derived types are sometimes also called <em>complex types</em>.</p>
+
+<h3 id="composite-data-type-struct">Composite data type <code>struct</code></h3>
+
+<p>The <code>struct</code> type can be used to deal with variables (elements/members) of different types in combination.
+A declaration of a struct type consists of the keyword <code>struct</code>, a <strong>name</strong> (tag) and a list of declarations of elements wrapped in a block of curly braces.</p>
+
+<pre><code class="language-C">struct point {
+  int x;
+  int y;
+}
+</code></pre>
+
+<p>This declaration introduces the type and now variables of this type may be declared and defined in the usual way:</p>
+
+<pre><code class="language-C">struct point pt;
+</code></pre>
+
+<p>Type and varibale declaration may also be done in one step:</p>
+
+<pre><code class="language-C">struct point {
+  int x;
+  int y;
+} pt, pt2;
+pt.x = 45;
+pt.y = 43;
+pt2.x = 100;
+pt2.y = 99;
+</code></pre>
+
+<p>It is also possible to omit the name/tag (in this case &ldquo;point&rdquo;) to create an anonymous type:</p>
+
+<pre><code class="language-C">struct {
+  int x;
+  int y;
+} pt;
+</code></pre>
+
+<p>However when omitting the tag it is not possible to create another type of the <strong>same</strong> type. Even another type that seem structurally equal won&rsquo;t be treated the same and behave as a different type. So remember that anonymous types are not compatible (Question: What happens if I declare multiple anonymous type variables at the same anonymous type declaration? Are those compatible?).</p>
+
+<p>To access an element of a <code>struct</code> the <code>.</code> operator is used.</p>
+
+<p>When declaring a <code>struct</code> it is also possible to initialize a variable of that struct type via <code>varName = { .. };</code>:</p>
+
+<pre><code class="language-C">struct point {
+  int x;
+  int y;
+}
+pt = {42, 25+2},
+pt2 = {105, 99};
+</code></pre>
+
+<p>To only initialize specific elements by their name one can use the following notation with a leading dot to do so:</p>
+
+<pre><code class="language-C">struct point {
+  int x;
+  int y;
+  int z;
+};
+
+struct point pt = {.z=44, .y=25+2}; // order does not matter (ᵔᴥᵔ)
+</code></pre>
+
+<p>There are only few operations and therefore operators allowed to be used on structs:</p>
+
+<ul>
+<li>assignment via  <code>=</code></li>
+<li>retrieve address via <code>&amp;</code></li>
+<li>access elements via <code>.</code></li>
+</ul>
+
+<p>It is pretty common practice in C to create anonymous struct variables (the variable is anonymous not the struct!) with malloc/calloc and use them with pointers:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct point {
+  int x;
+  int y;
+};
+
+int main ()
+{
+  struct point *pt = malloc(sizeof(struct point));
+  (*pt).x = 42; // dot has precedence over * thats why you need parens!
+  (*pt).y = 23;
+  printf(&quot;member of pt: x=%d, y=%d\n&quot;, (*pp).x ,(*ppt).y);
+  return 0;
+}
+</code></pre>
+
+<p>Because you need to wrap the dereferencing part of a pointer in parens when accessing a member via <code>.</code> because the dot has higher precedence there is another notation for this common use case.
+The <code>-&gt;</code> operator does exactly this. The following code is therefore equivalent:</p>
+
+<pre><code class="language-C">(*pt).x = 42;
+pt-&gt;x = 109;
+</code></pre>
+
+<p>When creating a variable of specific struct type the <code>struct</code> keyword has always to be used. This gets pretty repetitive and boring quick! That&rsquo;s why you may want to do a little type alias via <code>typedef</code>.
+So instead of:</p>
+
+<pre><code class="language-C">struct pointer {
+  int x;
+  int y;
+};
+
+struct pointer pt = {20, 44};
+</code></pre>
+
+<p>You can do:</p>
+
+<pre><code class="language-C">typedef struct {
+  int x;
+  int y;
+} pointer;
+pointer pt = {20, 44};
+</code></pre>
+
+<p>Neat! (It is not possible to direclty initialize a variable with <code>typedef</code>)</p>
+
+<h3 id="composite-data-type-union">Composite data type <code>union</code></h3>
+
+<p>A union is a special data type available in C that allows to store different data types in the same memory location. You can define a union with many members, but only one member can contain a value at any given time. Unions provide an efficient way of using the same memory location for multiple-purpose.</p>
+
+<pre><code class="language-C">union Data {
+   int i;
+   float f;
+   char str[20];
+} data;
+</code></pre>
+
+<p>Now, a variable of <code>Data</code> type can store an integer, a floating-point number, or a string of characters. It means a single variable, i.e., same memory location, can be used to store multiple types of data. You can use any built-in or user defined data types inside a union based on your requirement.</p>
+
+<p>The memory occupied by a union will be large enough to hold the largest member of the union. For example, in the above example, Data type will occupy 20 bytes of memory space because this is the maximum space which can be occupied by a character string.</p>
+
+<p>To access a member of a union the <strong>member access operator</strong> <code>.</code> is used as with structs.</p>
+
+<h3 id="enumeration-data-type-enum">Enumeration data type <code>enum</code></h3>
+
+<p>With the help of enumeration data types it is possible to define types with discrete, named values. The corresponding keyword in C is <code>enum</code>.
+We can use this keyword to declare and initialize a sequence of integer constants eg <code>enum colors {RED, YELLOW, GREEN, BLUE};</code></p>
+
+<p>Here, colors is the name given to the set of constants - the name is optional. Now, if you don&rsquo;t assign a value to a constant, the default value for the first one in the list - <code>RED</code> in our case, has the value of <code>0</code>. The rest of the undefined constants have a value <code>1</code> more than the one before, so in our case, <code>YELLOW</code> is <code>1</code>, GREEN is <code>2</code> and BLUE is <code>3</code>.</p>
+
+<p>But you can assign values if you wanted to also in random order as well:
+<code>enum colors {RED=1, YELLOW, GREEN=6, BLUE };</code>
+Now <code>RED=1</code>, <code>YELLOW=2</code>, <code>GREEN=6</code> and <code>BLUE=7</code>.</p>
+
+<p>The main advantage of enum is that if you don&rsquo;t initialize your constants, each one would have a unique value. The first would be zero and the rest would then count upwards.</p>
+
+<p>Enums are helpful to assign specific (constant) values:</p>
+
+<pre><code class="language-C">enum month {jan=1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec};
+enum escape {NL='\n', BACKSPACE='\b', TAB='\t', RETURN='\r', BELL='\a'};
+</code></pre>
+
+<p>Enums are determined at compile time and offer therefore the ability to define constants. This is however <strong>only</strong> applies for integer constants.
+In contrast to <code>const</code> (see below) an &ldquo;unused&rdquo; (ungebrauchtes) <code>enum</code> does not need memory space at runtime.</p>
+
+<p>Since enums are basically treated like ints, they only offer restricted type safety.</p>
+
+<h3 id="array-data-type">Array data type</h3>
+
+<p>C provides the derived array type do deal with collection of values with the same type. The declaration of an array doesn&rsquo;t require a keyword, since it is done via the <em>index operator</em> <code>[]</code> in which the amount of elements has to be written in and which needs to go after the variable name <code>int xa[10]</code> (array of 10 ints).</p>
+
+<p>The base type of an array can be of any type, look at the following declarations:</p>
+
+<pre><code class="language-C">int xa[10];
+int *pxa[10]; // Array of 10 pointers to integers
+double f[10];
+struct point {
+  int x;
+  int y;
+} pt[10]; // Array of 10 point structs
+</code></pre>
+
+<p>Elements of an array are also accessed via the index operator <code>int x1 = xa[0];</code>, however keep in mind that an array of size n has the indexes 0 til n-1 because the indexing of arrays (in C) is zero based as in many programming languages.</p>
+
+<p>It is also possible to declare multidimensional arrays (array which elements are arrays themselves). Eg <code>int xa[4][3]</code> declares an 4x3 array, which is an array that has 4 elements and those 4 elements are arrays as well with a size of 3 elements that can hold ints.
+Basically this can be done for an arbitrary amount of arrays inside arrays <code>int xa[4][3][2]</code>.</p>
+
+<p>Since C90 it is possible to create variable arrays. That means arrays of variable length which is determined at runtime, for example:</p>
+
+<pre><code class="language-C">int func(int s) {
+ double a[s];
+}
+</code></pre>
+
+<p>In C11 this is still possible however one should not rely on this with regards to portability.</p>
+
+<p>VLA (variable length array) also have some disadvantages:</p>
+
+<ul>
+<li>cannot be <code>static</code></li>
+<li>cannot be part of <code>struct</code></li>
+<li>&ldquo;Der Steuerfluss darf niemals hinter die Deklaration eines VLA in dessen Gültigkeitsbereich gelangen&rdquo; (? ლ,ᔑ•ﺪ͟͠•ᔐ.ლ)</li>
+</ul>
+
+<p>Similar to structs array can be initialized with curly braces <code>int xa[4] = {1, 2, 3, 4};</code> . This also works for multidimensional arrays:</p>
+
+<pre><code class="language-C">int xa[3][4] = {
+  {5, 3, 4, 2},
+  {7, 2, 1, 9},
+  {6, 5, 0, 8}
+};
+</code></pre>
+
+<p>When an array is initialized when its defined the (last) dimension may also be ommitted <code>int xa[] = {5, 2, 1}</code>.</p>
+
+<p>Since C90 it is also possible to do a partial initialization ala <code>int xa[10] = { [4] = 43, [1] = 5 };</code> . The elements which are not explicitly initialized then default to <code>0</code>. Similar to enums the following is also possible:</p>
+
+<pre><code class="language-C">int xa[8] = { [3] = 43, 8, 5, [0] = 200 };
+</code></pre>
+
+<p>&hellip; results in <code>200,0,0,43,8,5,0,0</code></p>
+
+<p>When passing arrays to functions it is said that arrays &ldquo;decay&rdquo; into pointers.
+If you&rsquo;re passing an array by value, what you&rsquo;re really doing is copying a pointer - a pointer to the array&rsquo;s first element is copied to the parameter (whose type should also be a pointer the array element&rsquo;s type). This works due to array&rsquo;s decaying nature; once decayed, sizeof no longer gives the complete array&rsquo;s size, because it essentially becomes a pointer. This is why it&rsquo;s preferred (among other reasons) to pass by reference or pointer.</p>
+
+<pre><code class="language-C">/* array.c -- an array decays */
+#include &lt;stdio.h&gt;
+
+typedef int myarray[10];
+
+void arrSize(myarray a) {
+  printf (&quot;Size of a: %ld\n&quot;, sizeof(a)); // really yields pointer size (8 byte on 64 bit machines)
+}
+
+int main() {
+  myarray x;
+  printf (&quot;Size of x: %ld\n&quot;, sizeof(x));
+  arrSize(x);
+
+  int ax[] = {1,2,3}; // decay looses dimensions thats why this is possible
+  arrSize(ax);
+  return 0;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>of</th>
+<th>x:</th>
+<th>40</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Size</td>
+<td>of</td>
+<td>a:</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>Size</td>
+<td>of</td>
+<td>a:</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+
+<p>So when passing an array, what really gets passed is a pointer to the first element in the array. Therefore the following function declarations are equivalent:</p>
+
+<pre><code class="language-C">void doSomething(double[]);
+void doSomething(double*);
+</code></pre>
+
+<p>A problem that occurs here is that there is no way to find out how big/large the array is that was passed. That&rsquo;s why many function which have arrays as parameters, have another (auxillary) parameter to specify the amount of elements of the array:</p>
+
+<pre><code class="language-C">/* array_param .c -- auxiliary parameter */
+#include &lt;stdio.h&gt;
+
+void print_int_array(int, int []);
+
+int main() {
+  int xa[3]={1, 2, 3};
+  print_int_array(3, xa);
+
+  int randomArr[] = {32, 32, 45, 54, 23, 77, 654};
+  print_int_array(sizeof(randomArr) / sizeof(int), randomArr);
+  return 0;
+}
+
+void print_int_array(int count, int array[]) {
+  int i = 0;
+  while (i &lt; count) {
+    printf(&quot;%d &quot;, array[i]);
+    i++;
+  }
+  printf(&quot;\n&quot;);
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>32</td>
+<td>32</td>
+<td>45</td>
+<td>54</td>
+<td>23</td>
+<td>77</td>
+<td>654</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="memory-layout">Memory Layout</h2>
+
+<p>Why is it that we can treat arrays as pointers? It is because array values are stored in contiguous memory locations. The array <code>int x[6] = {1, 2, 3, 4, 5, 6};</code> is for example stored like this in memory:
+<img src="/knowledge-database/images/array-in-memory.png" alt="" /></p>
+
+<p>This also applies to multidimensional arrays:
+<code>int x[4][12] = {{11,12}, {21,22}, {31,32}, {41,42}};</code>
+<img src="/knowledge-database/images/multi-array-in-memory.png" alt="" /></p>
+
+<p>The notion of <code>xa[i]</code> is actually just a different syntax for <code>*(&amp;xa+i)</code> (give me the address of xa which really gives the address of the first element of xa, then add i^1 to it and dereference the resulting address to give me the value).</p>
+
+<p>1 When adding an integer to a pointer, the integer is multiplied by the size of the type that the pointer points to because that is the &ldquo;distance between the addresses&rdquo; in memory. One memory location usually stores 1 Byte (8 bits) on modern systems. So when an integer is stored in 4 bytes than the offset between the first and second address of an int value in a array would be 4.</p>
+
+<p>Look at the following code which is really interesting and makes a lot of things clear:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main() {
+  printf(&quot;Size of int %ld\n&quot;, sizeof(int));
+
+  int xa[4] = {1,2};
+
+  printf(&quot;Address: %p\n&quot;, xa);
+  printf(&quot;Address: %p\n&quot;, &amp;xa[0]);
+  printf(&quot;Address: %p\n&quot;, &amp;xa[1]);
+  printf(&quot;Address: %p\n&quot;, &amp;xa[2]);
+
+  return 0;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>of</th>
+<th>int</th>
+<th>4</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Address:</td>
+<td>0x7ffeb1280460</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>Address:</td>
+<td>0x7ffeb1280460</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>Address:</td>
+<td>0x7ffeb1280464</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>Address:</td>
+<td>0x7ffeb1280468</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="char-arrays">Char Arrays</h2>
+
+<p>As we already know C does not provide strings by default. That&rsquo;s why <code>char</code> arrays are &ldquo;abused&rdquo; as such. There is a special way to intialize char arrays in C:</p>
+
+<pre><code class="language-C">char str[] = &quot;Hello!&quot;;
+</code></pre>
+
+<p>which really is the equivalent to:</p>
+
+<pre><code class="language-C">char str[] = {'H', 'e', 'l', 'l', 'o', '!', 0};
+</code></pre>
+
+<p>As you can see character strings are stored as an array containing the characters and are terminated with a <em>null character</em> (<code>0</code> or <code>'\0'</code>). Therefore <code>'\0'</code> musnt be in any string because it designates the ending of a string.</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main() {
+
+  char str[] = &quot;World&quot;;
+  printf(&quot;5th ('last') char: %c\n&quot;, str[4]);
+  printf(&quot;Really last element of the array %d\n&quot;, str[5]);
+
+  printf(&quot;Size of str: %ld\n&quot;, sizeof(str)); // 5 characters + null character = 6
+  return 0;
+}
+</code></pre>
+
+<p>A terminating 0 is a C convention and many functions from the standard library for example assume that as well (<code>int printf(char*,...)</code>, <code>int atoi(char*)</code>). A convention can be broken tho! Look at the following example:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+char str[] = {'H', 'e', 'l', 'l', 'o'}; // no terminating 0!
+char bla[] = &quot; This is top secret\n&quot;;
+
+int main() {
+  printf(str);
+  return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">Hello
+</code></pre>
+
+<p>I faked this output result for illustrating purposes because most modern compilers do not store those stuff sequentially anymore to reduce vulnerabilities (reading out values). plz have mercy. It really just printed &ldquo;Hello&rdquo;.</p>
+
+<h2 id="parameters-of-main">Parameters of <code>main()</code></h2>
+
+<p>The signature of C&rsquo;s  <code>main()</code> function is mentioned by C11 as the following:</p>
+
+<pre><code class="language-C">int main(void);
+int main(int argc, char* argv[]);
+</code></pre>
+
+<ul>
+<li><code>int argc</code> ist the count of prorgam parameters
+
+<ul>
+<li>because the name of the program is always passed when executing main with params <code>argc</code> is at least <code>1</code> because that&rsquo;s the program name</li>
+</ul></li>
+<li><code>char* argv</code> is the argument vector resp. an array of <strong>pointers</strong> to C-Strings
+
+<ul>
+<li>each of those C-Strings holds a <em>program parameter</em> (inclusive the program name at <code>argv[0]</code>)</li>
+</ul></li>
+</ul>
+
+<p>This is what the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1548.pdf">C11 standard</a> says:</p>
+
+<blockquote>
+<p>If the value of <code>argc</code> is greater than zero, the string pointed to by <code>argv[0]</code> represents the program name;
+<code>argv[0][0]</code> shall be the null character if the program name is not available from the host environment.
+If the value of <code>argc</code> is greater than one, the strings pointed to by <code>argv[1]</code> through <code>argv[argc-1]</code> represent the program parameters.</p>
+</blockquote>
+
+<figure>
+    <img src="/knowledge-database/images/argv-argc.png"/> 
+</figure>
+
+
+<p>As already mentioned the declaration <code>char *argv[]</code> stands for an <strong>array of pointers that hold memory addresses of <code>char</code> arrays</strong>
+Calling for example the code from the picture above this is how the corresponding memory layout would look like:
+<img src="/knowledge-database/images/argv-memory-layout.png" alt="" /></p>
+
+<h2 id="revision-storage-classes-and-storage-types-attributes">Revision: Storage Classes and Storage Types/Attributes</h2>
+
+<p>&rarr; see &ldquo;Named Variables&rdquo; in Lecture 06</p>
+
+<p>Storage classes:</p>
+
+<ul>
+<li><code>auto</code> &rarr; variables can only be accessed within the block of declaration which defines their scope</li>
+<li><code>static</code> &rarr; life cycle does not end with ending scope and last value is preserved through program execution; does not affect visibility</li>
+<li><code>extern</code> &rarr;  only declares a variable/function/we, addidtional definition is required (usally in another module or a library)</li>
+<li><code>register</code> &rarr; same functionality as auto variables with the difference that the compiler tries to store these variables in the register of the microprocessor, which makes access much faster than that of the variables stored in memory
+
+<ul>
+<li>address of register variables <strong>is not retrievable using pointers</strong></li>
+</ul></li>
+</ul>
+
+<p>The following code would not compile! (<code>error: address of register variable ‘fastInt’ requested</code>)</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+
+int main() {
+  register int fastInt = 42;
+  int * pf;
+
+  pf = &amp;fastInt;
+  printf(&quot;Fast int: %d\n&quot;, fastInt);
+  return 0;
+}
+</code></pre>
+
+<p>Storage types (<strong>Type Qualifiers</strong> seems to be the proper term, Speicherattribute in Skript):</p>
+
+<ul>
+<li><p><code>const</code></p>
+
+<ul>
+<li>constants are also like normal variables with the difference that their values can’t be modified by the program once they are defined (compiler prohibits assignment anywhere else than when initialized)</li>
+<li>enables the compiler to do some optimizations</li>
+<li>Gotchas:
+
+<ul>
+<li><code>const int * p</code> declares a <em>variable</em> pointer to a <em>constant</em> integer</li>
+<li><code>int * const p</code> declares a <em>constant</em> pointer to a <em>variable</em> integer</li>
+</ul></li>
+</ul></li>
+
+<li><p><code>volatile</code></p>
+
+<ul>
+<li>volatile (flüchtig, sprunghaft) variables indicate to the compiler that their value might have changed since the last explicit writing operation</li>
+<li>eg, if global variable’s address is passed to clock routine of the operating system to store the system time, the value in this address keep on changing without any assignment by the program</li>
+<li>indicates that the object should not be subject to compiler optimizations altering references to, or modifications of, the object</li>
+</ul>
+
+<!--listend-->
+
+<ul>
+<li><code>restrict</code>
+
+<ul>
+<li>introduced in C99</li>
+<li>only for pointer variables (and hereby derived for arrays)</li>
+<li>it doesn’t add any new functionality and it is only a way for programmers to inform about optimizations that the compiler can make</li>
+<li>when using <code>restrict</code> with a pointer <code>ptr</code>, it tells the compiler that <code>ptr</code> is the only way to access the object pointed by it and compiler doesn’t need to add any additional checks
+
+<ul>
+<li>for example when a variable is restrict the compiler will not reload the value at that adddress in its assembly code and therefore the assembly code is optimized</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>(Since C11 there is also <code>_Atomic</code> <a href="https://en.cppreference.com/w/c/language/atomic">here is more</a>)</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

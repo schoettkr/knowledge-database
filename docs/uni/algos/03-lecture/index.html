@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 03 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 03</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 15, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p><a href="https://osg.informatik.tu-chemnitz.de/lehre/aup/aup-02-IntroProgrammiersprachen-handout%5Fde.pdf">Script (1-28)</a></p>
+
+<h2 id="terms">Terms</h2>
+
+<ul>
+<li><strong>CPU</strong> = A central processing unit (CPU) is the electronic circuitry within a computer that carries out the instructions of a computer program by performing the basic arithmetic, logical, control and input/output (I/O) operations specified by the instructions. The computer industry has used the term &ldquo;central processing unit&rdquo; at least since the early 1960s. Traditionally, the term &ldquo;CPU&rdquo; refers to a processor, more specifically to its processing unit and control unit (CU), distinguishing these core elements of a computer from external components such as main memory and I/O circuitry.</li>
+<li><strong>bit patterns</strong> / <strong>binary code</strong> = A binary code represents text, computer processor instructions, or any other data using a two-symbol system. The two-symbol system used is often the binary number system&rsquo;s 0 and 1. The binary code assigns a pattern of binary digits, also known as bits, to each character, instruction, etc.</li>
+<li><strong>core</strong> = A core is usually the basic computation unit of the CPU - it can run a single program context. A CPU may have one or more cores to perform tasks at a given time.</li>
+<li><strong>processor design</strong> = refers to the way and scope that a core implements processor registers, control unit,  bus and  memory unit</li>
+<li><strong>processor register</strong> = quickly accessible location available to a computer&rsquo;s cpu, common register sizes are 8, 32 or 64-bit register</li>
+</ul>
+
+<h2 id="basics">Basics</h2>
+
+<p>An algorithm has to be interpretable to be executed by the computer. A (digital) processor can interpret bit patterns. <em>Bit patterns</em> are also called machine code. A <em>core</em> is a real implementation of an <em>processor design</em>. Processor designs differ in the way and scope that they implement <em>processor registers</em>, <em>control unit</em>,  <em>bus</em> and  <em>memory unit</em> (also see <a href="https://en.wikipedia.org/wiki/Von%5FNeumann%5Farchitecture">Von Neumann Architecture</a>).</p>
+
+<p>Different types of processors that implement mostly the same core design my be summarized as a &ldquo;<em>processor family</em>&rdquo;. A new processor family is formed when a processor design is considerably changed or altered (those are almost always backward compatible).</p>
+
+<p>In machine code the bit pattern \[11111010\] for example is treated by the x86-processor-family as a directive to ignore interrupts.</p>
+
+<h2 id="compiler-and-interpreter">Compiler and interpreter</h2>
+
+<p>Since machine code is not so handy for humans, programming languages have been created that should help with that. Programming languages use different models and abstractions. There is (atleast) one <em>assembly language</em> that represents machine code in an easier to read manner (mnemonics). \(1111 1010\) (resp. \(0xFA\))* for example would be &ldquo;cli&rdquo; in assembly language for x86 processors (clear interrrupt flag). Programs are either <strong>translated</strong> into machine code or are <strong>interpreted</strong> by another program. This &ldquo;translation&rdquo; is done by the <strong>compiler</strong> while the interpretation is done by the <strong>interpreter</strong>.</p>
+
+<p>&lowast; The 0 tells the parser it&rsquo;s dealing with a constant (and not an identifier/reserved word). Something is still needed to specify the number base HEX: the x is an arbitrary choice.</p>
+
+<h3 id="variants-of-execution">Variants of execution</h3>
+
+<figure>
+    <img src="/knowledge-database/images/execution-variants.png"/> 
+</figure>
+
+
+<h2 id="c">C</h2>
+
+<p>C is a programming language that is compiled into machine code without intermediate language representation (Zwischencode) or VM&rsquo;s.</p>
+
+<p>In this course we&rsquo;ll stick to the C99-standard. Since computers usually support multiple standards, the standard has to be set when compiling. C is &ldquo;close to the hardware&rdquo;. It is sometimes labeled as &ldquo;middle language&rdquo; eventhough it is still a high level programming language. Genereally a low level programming language is a language that provides no or little abstraction from a computer&rsquo;s instruction set architecture. Machine code and assembly language are usually counted as low level. However if you&rsquo;d for example compare C with Ruby or Php it would be the low level language in that comparison because it offers far less abstractions. That&rsquo;s why some say it is a &ldquo;middle language&rdquo;.</p>
+
+<p>Usually C programs are really compact - they don&rsquo;t require a lot of overhead and storage. C is widely spread and presumably still the language in most of today&rsquo;s programs are writte.</p>
+
+<p>It is possible to write really efficient C programs (not guaranteed though) and that&rsquo;s why the speed of C programs is often used as a benchmark when it comes to speed and/or efficiency.</p>
+
+<p>In this course the <code>clang</code> compiler or the compiler from the GNU Compiler Collection (<code>gcc</code>) is used. For example like this <code>cc -std=c99 -Wall program.c -o program</code> or (<code>cc -std=c99 -Wall program.c -o program</code>). If the compilation was succesfull, the program can be executed like this <code>./program</code> and an return value (from the main method) could be retrived with <code>echo $?</code>.</p>
+
+<h3 id="euclidian-algorithm-in-c">Euclidian Algorithm in C</h3>
+
+<p>The Euclidian Algorithm may be used to find the Greates Common Divisor (GCD) of numbers greater than 0. What follows is an implementation of it in C code:</p>
+
+<pre><code class="language-C">//static in this context means that the function is local and not exported to other modules
+  static int euclid(int, int); // function declaration
+
+
+  int main(void)
+  {
+    return euclid(45, 30);
+  }
+
+  int euclid(int x, int y) // function definition
+  {
+    if (x == y) return x;
+    else if (x &gt; y) return euclid(x-y, y);
+    else return euclid(x, y-x);
+  }
+</code></pre>
+
+<p>Because the function <code>euclid</code> is called in the main method before its defintion, it has to be declared before that so the compiler knows about it. If the function is <em>defined</em> <strong>before</strong> its first usage, the explicit declaration can be omitted.</p>
+
+<p>Because it is common to use functions from different libraries or modules the declaration serves as an assurance to the compiler that a called function exists and may be called. Else a warning (<code>implicit-function-declaration</code>) would be triggered when compiling, eventhough the compilation might still be successfull.</p>
+
+<p>This is risky because I can call the function without providing arguments for all the  parameters e.g <code>euclid(45);</code> and my program would compile just fine. That is until I run it and get a segmentation fault. In that case a declaration of the function interface would have saved me from the runtime error and thrown a compilation error instead.</p>
+
+<h3 id="input-and-output-in-c">Input and Output in C</h3>
+
+<p>Now we want to parameterize our euclidian algorithm (remember characteristic of an algorithm &rarr; should solve a batch of problems) and have an direct output, we need so called <em>library functions</em>.</p>
+
+<pre><code class="language-C">// euclidian algorithm with IO
+extern int printf(const char*, ...); // print format -&gt; write to output
+extern int atoi(const char*); // ascii to integer
+static int euclid(int, int);
+
+
+int main(const int c, const char* v[])
+{
+  printf(&quot;c is %d\n&quot;, c); // number of command line arguments passed
+  printf(&quot;v[0] is %s\n&quot;, v[0]); // path the program
+  const char* arg1 = v[1]; // const because declared as const in the parameter list
+  const char* arg2 = v[2];
+
+  printf(&quot;GCD of %s and %s is %d.\n&quot;, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); // formatter &quot;%s&quot; expects char*
+  return 0;
+}
+
+int euclid(int x, int y)
+{
+  if (x == y) return x;
+  else if (x &gt; y) return euclid(x-y, y);
+  else return euclid(x, y-x);
+}
+</code></pre>
+
+<p>Read the comment and syntax carefully! Furthermore the functions <code>printf</code> and <code>atoi</code> are defined in C&rsquo;s standard library <code>stdlib</code> which is always linked by default (directive to include a library <code>#include&lt;stdlib.h&gt;</code>).</p>
+
+<h3 id="operators">Operators</h3>
+
+<p>Depending on the position of an operator (e.g <code>+</code>, <code>-</code>, <code>%</code>, etc.) in regards to where the operator &ldquo;gets its operands&rdquo; it can be differentiated between:</p>
+
+<ul>
+<li>prefix operators (before an operand eg <code>++i</code> &rarr; <code>i</code> is incremented and then used)</li>
+<li>postifx operators (after an operand eg <code>i++</code> &rarr; <code>i</code> is used and then incremented)</li>
+<li>infix operators (between operands eg <code>5-2</code>)</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

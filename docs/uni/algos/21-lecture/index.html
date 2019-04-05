@@ -1,0 +1,428 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 22 &amp; 23 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 22 &amp; 23</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 7, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          8 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>This chapter spans two lectures so lecture 22 and 23 will be pooled into this single blog post.</p>
+
+<h2 id="linker-and-libraries">Linker and Libraries</h2>
+
+<p>In the last chapter where we built a game we split functionality into different modules which had their own source file. The linker was responsible for assembling the single modules together. We now want to take a more detailed look into the linker.</p>
+
+<p>The following image shows where the linker is involved:</p>
+
+<p></knowledge-database/images/linker-overview.png ></p>
+
+<p>Now let&rsquo;s look at the following code of a generic swap function:</p>
+
+<pre><code class="language-C">#include  &lt;stddef.h&gt; // for size_t
+
+extern void* malloc(size_t);
+extern void free(void*);
+
+static void bytecopy(char *dest, char *src, size_t size) {
+  while (size &gt; 0) {
+    *dest++ = *src++;
+    size--;
+  }
+}
+
+int swap(void *first, void *second, size_t size) {
+  void *tmp = malloc(size);
+  if (!tmp) return 0;
+
+  bytecopy(tmp, first, size);
+  bytecopy(first, second, size);
+  bytecopy(second, tmp, size);
+
+  free(tmp);
+
+  return 1;
+}
+</code></pre>
+
+<p>The code above can be used with different types as the following program demonstrates.</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int swap(void* first, void* second, size_t size);
+
+char* str1 = &quot;Hello&quot;;
+char* str2 = &quot;World&quot;;
+
+int a, b;
+
+int main() {
+  printf(&quot;1st string: %s, 2nd string: %s\n&quot;, str1, str2);
+  swap(&amp;str1, &amp;str2, sizeof(str1));
+  printf(&quot;1st string: %s, 2nd string: %s\n&quot;, str1, str2);
+
+  a = 42;
+  b = 23;
+
+  printf(&quot;1st integer: %d, 2nd integer: %d\n&quot;, a, b);
+  swap(&amp;a, &amp;b, sizeof(a));
+  printf(&quot;1st integer: %d, 2nd integer: %d\n&quot;, a, b);
+
+  return 0;
+}
+</code></pre>
+
+<p>Now to get one program file out of our two source code files (swap.c and smain.c) both need to be compiled/translated and then linked together:</p>
+
+<pre><code class="language-sh">cc -std=c99 -Wall euclid.c swap.c smain.c -o sm
+</code></pre>
+
+<p></knowledge-database/images/linking-process.png ></p>
+
+<p>and then execute the program file</p>
+
+<pre><code class="language-sh">./sm
+</code></pre>
+
+<pre><code class="language-text">1st string: Hello, 2nd string: World
+1st string: World, 2nd string: Hello
+1st integer: 42, 2nd integer: 23
+1st integer: 23, 2nd integer: 42
+</code></pre>
+
+<p>So let&rsquo;s repeat why we use/need a linker:</p>
+
+<ul>
+<li><strong>modularity</strong>
+
+<ul>
+<li>programs can be created as a collection of smaller source files instead of in one giant monolithic file</li>
+<li>enables creation and distribution of commonly used functions/functionality in libraries (eg standard library, math library etc)</li>
+</ul></li>
+<li><strong>efficiency</strong>
+
+<ul>
+<li>time: not all of the source code has to be compiled each time</li>
+<li>space: libraries can act as a collection of different functions, but the &ldquo;finished&rdquo; program only contains the functions that it needs/uses</li>
+</ul></li>
+</ul>
+
+<p>And what does the linker really do?</p>
+
+<ol>
+<li><strong>Resolution (Auflösung) of symbols</strong>
+
+<ul>
+<li>programs define and reference <strong>symbols</strong>, i.e. names of variables and functions:
+
+<ul>
+<li><code>int swap() { ... }</code> defines symbol <code>swap</code></li>
+<li><code>swap(&amp;a, &amp;b, sizeof(a))</code> references symbols <code>swap</code>, <code>a</code> and <code>b</code></li>
+<li><code>int a;</code> defines symbol <code>a</code></li>
+</ul></li>
+<li>symbol definitions are stored in a <strong>symbol table</strong> by the compiler
+
+<ul>
+<li>the symbol table is an array of a special data structure (struct) which stores the name, type, size and location for every symbol</li>
+</ul></li>
+<li>the linker connects (verknuepft) every symbol reference with exactly one symbol definition</li>
+</ul></li>
+<li><strong>Relocation (Verschiebung)</strong>
+
+<ul>
+<li>assembles separate code- and data sections into common sections (gemeinsame Abschnitte)</li>
+<li>moves symbols from their relative position in the object file (.o) to their final storage location in the executable file</li>
+<li>corrects all references to these symbols, so that all the references point to the new/updated/correct location</li>
+</ul></li>
+</ol>
+
+<h3 id="linker-symbols">Linker Symbols</h3>
+
+<p>There are three types of linker symbols:</p>
+
+<ul>
+<li><strong>global symbols</strong>
+
+<ul>
+<li>symbols that are defined in the module and are usable/referencable by other modules (eg non-static C functions or non-static global variables)</li>
+</ul></li>
+<li><strong>external symbols</strong>
+
+<ul>
+<li>global symbols that are referenced in a module, but defined in another module</li>
+</ul></li>
+<li><strong>local symbols</strong>
+
+<ul>
+<li>symbols that are defined in a module and only used/referenced in that module (eg functions and global variables that have the attribute <code>static</code>)</li>
+</ul></li>
+</ul>
+
+<p>Also <em>local variables</em> do not create linker symbols (not even local symbols)!</p>
+
+<p></knowledge-database/images/linker-symbols.png ></p>
+
+<p>Symbol tables can be inspected with programs like <code>readelf</code>, <code>objdump</code> or <code>nm</code>.</p>
+
+<h3 id="executable-and-linkable-format--elf">Executable and Linkable Format (ELF)</h3>
+
+<p>There are different data formats for object files, for example a.out, COFF, MATCH-O and PE. We&rsquo;ll take a look at ELF which stands for Executable and Linkable Format and was originally developed by AT&amp;T for System V and is nowadays used in many operating systems (i.a. Linux, BSD) for different kinds of binary data:</p>
+
+<ul>
+<li>movable object files (.o)</li>
+<li>executable program files</li>
+<li>separated object files (.so)</li>
+</ul>
+
+<p>The Executable and Linkable Format consists of the following sections:</p>
+
+<ul>
+<li><strong>ELF Header</strong>: specifies word size, byte alignment, file type, platform etc.</li>
+<li><strong>Segment-Header Table</strong>: specifies the page size, sections, segment size and is required for executable files</li>
+<li><strong>.text section</strong>: (machine) code</li>
+<li><strong>.rodata section</strong>: read only data (jump tables,..)</li>
+<li><strong>.data section</strong>: initialized global variables</li>
+<li><strong>.bbs section</strong>: uninitialized global variables
+
+<ul>
+<li>initialized with 0 in storage</li>
+</ul></li>
+<li><strong>.symtab section</strong>: symbol table</li>
+<li><strong>.rel.text section</strong>: relocation information for code
+
+<ul>
+<li>addresses of instructions that have to be modified when there&rsquo;s relocation</li>
+<li>instructions for relocating</li>
+</ul></li>
+<li><strong>.rel.data section</strong>: relocation information for variables</li>
+<li><strong>.debug section</strong>: information for symbolic debugging (<code>cc -g</code>)</li>
+<li><strong>Section header table</strong>: specifies offset and size of each section</li>
+</ul>
+
+<p></knowledge-database/images/ELF.png ></p>
+
+<p>Here&rsquo;s an example of how relocation of movable object code to executable code might look:</p>
+
+<p></knowledge-database/images/relocation.png ></p>
+
+<h3 id="problem-of-global-variables">Problem of global variables</h3>
+
+<p>In the process of linking only symbols are handled, there is <strong>no</strong> type checking performed. Given this code in 2 files:</p>
+
+<pre><code class="language-C">// Global 1
+  #include &lt;stdio.h&gt;
+
+  int a;
+  int b;
+
+  void printab1() {
+    printf(&quot;1: a=%d, b=%d\n&quot;, a, b);
+  }
+
+  void setab1() {
+    a = 42;
+    b = 23;
+  }
+</code></pre>
+
+<pre><code class="language-C">// Global 2
+  #include &lt;stdio.h&gt;
+
+  double a;
+  int b;
+
+  void printab2() {
+    printf(&quot;2: a=%0.0f, b=%d\n&quot;, a, b);
+  }
+
+  void setab1() {
+    a = 42.0;
+    b = 23;
+  }
+</code></pre>
+
+<p>The combined usage of the above code does have its problems though!</p>
+
+<pre><code class="language-C">// Global
+void printab1();
+void printab2();
+void setab1();
+void setab2();
+
+int main() {
+  setab1();
+  printab1();
+  setab2();
+  printab2();
+  printab1();
+
+  return 0;
+}
+
+</code></pre>
+
+<pre><code class="language-sh">cc -Wall -Wextra -c -o global1.o global1.c
+cc -Wall -Wextra -c -o global2.o global2.c
+cc -Wall -Wextra -c -o global.o global.c
+
+cc global1.o global2.o global.o -o global
+
+./global
+
+1: a=42, b=23
+2: a=42, b=23
+1: a=0, b=23  # ups a=0?
+</code></pre>
+
+<p>So if possible avoid using global variables. If not, try to use <code>static</code>, initialize global variables on definition and use <code>extern</code> for external variables.</p>
+
+<h3 id="libraries">Libraries</h3>
+
+<p>How can we package useful code that&rsquo;s commonly used? With the tools we know until now, there are 2 options:</p>
+
+<ul>
+<li>all functions go into a large source file and therefore in a large object file file as well
+
+<ul>
+<li>programmers then link this large object file into their programs</li>
+<li>this however is time and space inefficient</li>
+</ul></li>
+<li>every function goes into its own source file
+
+<ul>
+<li>programmers then link object files that they&rsquo;ve explicitly chosen into their programs</li>
+<li>while this is more efficient than option 1 it is very cumbersome for the programmer</li>
+</ul></li>
+</ul>
+
+<p>The solution is to use <em>archives</em> also known as (static) <em>libraries</em>. An archive is a single file that holds a collection of multiple object files along side with an index.</p>
+
+<p>The linker is extended in such way that he searches for unresolved references in one or more archives. When the linker finds an archive, he copies the appropriate object file and links it to the program.</p>
+
+<p>There&rsquo;s a tool for creating and managing archives which is called <code>ar</code>.</p>
+
+<p></knowledge-database/images/archiver.png ></p>
+
+<p>The archiver allows incremental updates where a changed source file gets compiled and then replaced in the archive.</p>
+
+<p>Every system has a set of libraries. The C standard requires at least two libraries:</p>
+
+<ul>
+<li><code>libc.a</code> or <code>libgcc.a</code>: standard library, in- and output, memory management,&hellip;</li>
+<li><code>libm.a</code>: floating point math</li>
+</ul>
+
+<p>The standard library (and start up code) is (as long as the option <code>-nodefaultlibs</code> and <code>-nostartfiles</code> is not activated) automatically linked by default.</p>
+
+<p>The linker can use any desired archives. The options are to provide</p>
+
+<ul>
+<li><code>-L{path}</code> the linker searches in {path} for libraries (this option can be given multiple times)</li>
+<li><code>-l{name}</code> the linker searches the archive file <code>lib{name}.a</code> when resolving symbols</li>
+</ul>
+
+<p>The following command instructs the linker to include the floating point number math library (<code>libm.a</code>): <code>cc -o myprog mycode.c -lm</code></p>
+
+<ul>
+<li><p>Dynamic Libraries</p>
+
+<p>However there are some disadvantages to static libraries:</p>
+
+<ul>
+<li>multiplication (Vervielfachung) of the code in the storage (Massenspeicher) (the standard library for example is used by almost every program)</li>
+<li>multiplication of code in memory</li>
+<li>small fixes in the library code requires explicitly linking every program again</li>
+</ul>
+
+<p>The solution to this problem are <em>dynamic libraries</em> (<em>shared libraries</em>):</p>
+
+<ul>
+<li>object files are loaded and linked on load/run time</li>
+<li>shared code is loaded into memory/storage only once and then used/shared</li>
+<li>slides: Standard in modernen Systemen u.a für C-Standardbibliothek (Linux: <code>libc.so</code>)</li>
+</ul>
+
+<p>This is how a dynamic library can be created:</p>
+
+<pre><code class="language-sh">gcc -c -Wall -Werror -fpic swap.c
+gcc -shared -o libsw.so swap.o
+</code></pre>
+
+<p>The options have the following meaning:</p>
+
+<ul>
+<li><code>-fpic</code>: creation of <em>position independant code</em> &rarr; keine &ldquo;Umrechnung&rdquo; beim Laden/Linken nötig</li>
+<li><code>-shared</code>: creates an independant library</li>
+</ul>
+
+<p>And this is how the library is included:</p>
+
+<pre><code class="language-sh">gcc smain2.c -o sm -L. -lsw
+</code></pre>
+
+<p>Attention! A dynamically linked program cannot &ldquo;just be executed&rdquo;:</p>
+
+<pre><code class="language-sh">./sm
+./sm: error while loading shared libraries: libsw.so: cannot open shared object file: No such file or directory
+</code></pre>
+
+<p>&rarr; The loader searches for dynamic libraries in predefined directories which are i.a. defined in the system variable <code>LD_LIBRARY_PATH</code>:</p>
+
+<pre><code class="language-sh"> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:. # add current directory to env var
+ ./sm
+1st string: Hello, 2nd string: World
+1st string: World, 2nd string: Hello
+1st integer: 42, 2nd integer: 23
+1st integer: 23, 2nd integer: 42
+</code></pre></li>
+</ul>
+
+<h3 id="usage-of-libraries">Usage of Libraries</h3>
+
+<p>You should always know or be aware of the effect of functions from foreign libraries. Some libraries are just a collection of related functions (eg <code>libmath</code>). Others are a complete <em>framework</em> where the functions can only be used together in a meaningful way (eg many GUI frameworks like GTK+ or Qt).</p>
+
+<p>In the appendix of the lecture script is an example application that uses the <code>ncurses</code> and <code>math</code> library to create an &ldquo;calculator&rdquo;. <code>ncurses</code> (advancement of <code>curses</code>) utilizes the capabilities of the ANSI terminal and exists for most operating systems. It offers (depending on the version) between 800 to 1000 functions.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

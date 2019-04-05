@@ -1,0 +1,709 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Database Essentials - Lecture 05 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Database Essentials - Lecture 05</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 21, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          10 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="relational-calculus--relationenkalkül">Relational Calculus (Relationenkalkül)</h2>
+
+<p>The expressions in <em>relational algebra</em> form a procedural way of describing the way to an result. The resulting relation is in turn derived from intermediate relation results. This way describes they way of <em>how</em> you come to the relation result.</p>
+
+<p>There is an alternative however to describe a query result without specifying the derivation (Herleitungsvorschrift), which is called <strong>relational calculus</strong>. In relational calculus only the requirements of the desired resulting tuples are specified/described but not the way they are retrieved. This way describes <em>what</em> is contained in the result relation.</p>
+
+<p>A calculus (Kalkül) is a method, that is determined by a set of rules, to deal with certain mathematical problems in a systematic manner and solve them automatically (slides: ist eine durch ein System von Regeln festgelegte Methode, mit deren Hilfe bestimmte mathematische Probleme systematisch behandelt und automatisch gelöst werden können)</p>
+
+<p>The basis for relational calculus is predicate/quantifier logic  of the first degree (Prädikatenlogik erster Ordnung) and the result of a query is a set of tuples. In relational calculus calculus expressions (Kalkülausdrücke) are used, in particular the <strong>tuple calculus</strong> and the <strong>domain calculus</strong>.</p>
+
+<h3 id="tuple-calculus">Tuple Calculus</h3>
+
+<p>The query notation for tuple calculus is {t | P(t)} where t is a tuple variable and P is a predicate over t. The result of such query is a set of all tuples for which the evaluation of the predicate P(t) yields <em>true</em>.</p>
+
+<p>Take the following example relation &ldquo;Student&rdquo;:</p>
+
+<table>
+<thead>
+<tr>
+<th>matrNr{PK}</th>
+<th>name</th>
+<th>major</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123456</td>
+<td>Archimedes</td>
+<td>Computer Science</td>
+</tr>
+
+<tr>
+<td>134534</td>
+<td>Sophokles</td>
+<td>Philosophy</td>
+</tr>
+
+<tr>
+<td>145698</td>
+<td>Cleopatra</td>
+<td>Computer Science</td>
+</tr>
+</tbody>
+</table>
+
+<p>Query: {s | s &isin; Student &and; s.major=&lsquo;Computer Science&rsquo;}</p>
+
+<p>Result:</p>
+
+<table>
+<thead>
+<tr>
+<th>matrNr{PK}</th>
+<th>name</th>
+<th>major</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123456</td>
+<td>Archimedes</td>
+<td>Computer Science</td>
+</tr>
+
+<tr>
+<td>145698</td>
+<td>Cleopatra</td>
+<td>Computer Science</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p>Tuple Calculus - Atoms and Formulas</p>
+
+<p>For the construction of formula we define sets of atomic formulas.
+<strong>Atoms</strong> in tuple calculus:</p>
+
+<ul>
+<li>t_i &isin; R_j &rarr; the relation R_j is assigned as the codomain(Wertebereich) to the tuple variable t_i</li>
+<li>t_i.A &Theta; t_j.B &rarr; comparison operation between two attributes A and B which are attributes of the relations that were assigned as codomains to t_i and t_j</li>
+<li>t_i.A &Theta; c &rarr; comparison operation between attribute A and constant C</li>
+<li>c &Theta; t_i.A &rarr; comparison operation between constant c and attribute A</li>
+</ul>
+
+<p>The comparison operation denoted by &Theta; encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are &lt;, &gt;, &le;, &ge;, =, &ne; and =, &ne; for boolean values.</p>
+
+<p>Every atom is a <em>formula</em>. When F_1 and F_2 are formulas then the following constructs are formulas as well:</p>
+
+<ul>
+<li>F_1 &and; F_2 = Conjunction</li>
+<li>F_1 &or; F_2 = Disjunction</li>
+<li>&not; F_1  = Negation</li>
+<li>(F_1) = wrapping (Klammerung)</li>
+</ul>
+
+<p>When F is a formula and t is a tuple variable in F then the following constructs are formulas:</p>
+
+<ul>
+<li>(&exist; t)(F) = existential quantifier (Existenzquantifizierung)</li>
+<li>(&forall; t)(F) = universal quantifier (Universalquantifizierung)</li>
+</ul></li>
+
+<li><p>Tuple Calculus - Free and Bounded Tuple Variables</p>
+
+<p>A tuple variable in an atom (respective in a formula consisting of one atom) is <strong>free</strong>.</p>
+
+<p>A tuple variable in a formula that is composed via negation, conjunction or disconjuction of other partial formulas is <strong>free</strong> or <strong>bound</strong> depending on its state in the other partial formulas. In this case a tuple variable can be free and bound at the same time.</p>
+
+<p><strong>Free</strong> tuple variables t of a formula F get <strong>bound</strong> to the respective quantifier F&rsquo; when they are embedded in one of the following formulas F&rsquo;:</p>
+
+<ul>
+<li>F&rsquo; = (&exist; t)(F)</li>
+<li>F&rsquo; = (&forall; t)(F)</li>
+</ul>
+
+<p>Examples:</p>
+
+<ul>
+<li>F_1: s.name = &lsquo;Cleopatra&rsquo;</li>
+<li>F_2: (&exist; t)(s.matrNr = t.matrNr)</li>
+<li>F_3: (&forall; s)(s.name = &lsquo;Cleopatra&rsquo;)</li>
+</ul></li>
+
+<li><p>Tuple Calculus - Computing Formulas (Substitution)</p>
+
+<p>Given that F(s) is a formula with the tuple variable s &isin; R and a tuple t &isin; R. Then the following happens in each atom of F(S) with a <em>free</em> s:</p>
+
+<ul>
+<li>s &isin; R is replaced with true</li>
+<li>s.A &Theta; u.B is replaced with t.A &Theta; u.B (A and B are atrtibutes, u is another tuple variable u &ne; s)</li>
+<li>s.A &Theta; c is replaced with the concrete boolean value of the operation t.A &Theta; c</li>
+</ul>
+
+<p>These steps are repeated for further tuple variables if necessary until F(s) only holds (possibly logically connected) boolean constants (true/false) and atoms with bound variables.</p>
+
+<p>Example:
+Given tuple variable s and t from a schema R(a,b) and the formula &forall; t(t &isin; R &and; t.a = s.a &and; t.b &lt; s.b) the substitution happens/looks like this:</p>
+
+<ul>
+<li>the tuple s = (8, 12) &rarr; &forall; t(t &isin; R &and; t.a = 8 &and; t.b &lt; 12)</li>
+<li>then the tuple t = (8, 9) &rarr; &forall; t(true &and; 8 = 8 &and; 9 &lt; 12) &rarr; &forall; t(true &and; true &and; true) &rarr; &forall; t(true)</li>
+</ul></li>
+
+<li><p>Tuple Calculus - Computing Formulas for bound Tuple Variables</p>
+
+<p>Given a tuple variable s &isin; R:</p>
+
+<ul>
+<li>the formula (&exist; t)(F) evaluates to <em>true</em> if F becomes true for at least one substitution of s and the formula evaluates to false otherwise
+
+<ul>
+<li>this means that at least one tuple can be associated with the free tuple variable s for which F becomes true</li>
+</ul></li>
+<li>the formular (&forall; t)(F) evaluates to <em>true</em> if F becomes true for <em>all</em> substitutions of s
+
+<ul>
+<li>this means that F is true/fulfilled for all tuples that can be assigned to the free tuple variable s</li>
+</ul></li>
+</ul>
+
+<p><strong>Final Formula Computation</strong> = formulas now only hold logically connected boolean values which can be evaluated accordingly.</p></li>
+
+<li><p>Tuple Calculus - Expressions and Queries</p>
+
+<p>In general an expression/query of the tuple calculus is of the following form: {t_1.A_1, t_2.A_2, &hellip;, t_n.A_n | F(t_1, &hellip;, t_m)}</p>
+
+<p>t_i are tuple variables (which in general encompass all tuples of the so called univesere, that&rsquo;s why they are usually assigned to a relation) and A_i are attributes of the relation that is assigned to the tuple variable t_i, while F(t_1, &hellip;, t_m) is the formula of the tuple calculus.</p>
+
+<p>Taking our previous student relation:</p>
+
+<table>
+<thead>
+<tr>
+<th>matrNr{PK}</th>
+<th>name</th>
+<th>major</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123456</td>
+<td>Archimedes</td>
+<td>Computer Science</td>
+</tr>
+
+<tr>
+<td>134534</td>
+<td>Sophokles</td>
+<td>Philosophy</td>
+</tr>
+
+<tr>
+<td>145698</td>
+<td>Cleopatra</td>
+<td>Computer Science</td>
+</tr>
+</tbody>
+</table>
+
+<p>Query: {s.matrNr, s.name | s &isin; Student &and; s.major=&lsquo;Philosophy&rsquo;} yields</p>
+
+<table>
+<thead>
+<tr>
+<th>matrNr{PK}</th>
+<th>name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>134534</td>
+<td>Sophokles</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p>Now onto another example. Given the relations teacher</p>
+
+<table>
+<thead>
+<tr>
+<th>persNr{PK}</th>
+<th>name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>3467</td>
+<td>Ares</td>
+</tr>
+
+<tr>
+<td>6897</td>
+<td>Zeus</td>
+</tr>
+
+<tr>
+<td>43467</td>
+<td>Hera</td>
+</tr>
+</tbody>
+</table>
+
+<p>and lectures</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>persNr{FK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>43467</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+<td>6897</td>
+</tr>
+</tbody>
+</table>
+
+<p>we want to know the names of the teachers that hold at least one lecture:
+{t.name | t &isin; Teacher &and; (&exist; l)(l &isin; lectures &and; t.persNr = l.persNr)} which leads to this resulting relation</p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Zeus</td>
+</tr>
+
+<tr>
+<td>Hera</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p>To query the lecture titles of lectures given by Zeus we&rsquo;d use the following:
+{t.title | t &isin; Lectures &and; (&exist; l)(l &isin; teacher &and; t.persNr = l.persNr &and; l.name=&lsquo;Zeus&rsquo;) } to get</p>
+
+<table>
+<thead>
+<tr>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>Databases in Praxis</td>
+</tr>
+
+<tr>
+<td>Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p>For the next example queries I embed the slides because it is more clearer and not so much overhead.
+</knowledge-database/images/tuple-calc-ex1.png >
+</knowledge-database/images/tuple-calc-ex2.png ></p>
+
+<p>One problem with queries of tuple calculus is that they can sometimes produce an infinite result relation, eg { s | &ne;(s &isin; Student) }.</p>
+
+<p>The domain of a formula contains all constant values of a formula and all possible attribute values of all tuples in the referenced relations.</p>
+
+<p>A <strong>safe query</strong> is a query where the result of the query stems from the domain of the formula &rarr; we only use safe queries (all queries we&rsquo;ve seen so far are safe).</p>
+
+<p>Also see <a href="https://en.wikipedia.org/wiki/Tuple%5Frelational%5Fcalculus">https://en.wikipedia.org/wiki/Tuple%5Frelational%5Fcalculus</a> for more</p></li>
+</ul>
+
+<h3 id="domain-calculus">Domain Calculus</h3>
+
+<p>The domain relational calculus is also a calculus that serves as a declarative database query language for the relational data model. In DRC queries have this form {d_1, d_2, &hellip;, d_n | F(d_1, d_2, &hellip;, d_m)} with m &ge; n where d_i are domain variables which describe the values of attribute domains and F(d_1, d_2, &hellip;, d_m) is the formula. The formula consists, like in the relational calculus (tuple?), of either a an atom, a logical connection of formulas or a formula with a domain variable which is existential quantified or universal quantified.</p>
+
+<ul>
+<li><p>Domain Calculus - Atoms and Comparison</p>
+
+<p>Given the relation R of degree n where every d_i is a domain variable, the atom \(R(d_1, d_2, &hellip;, d_n)\) expresses that the codomain (Werteliste) <d\_1, d\_2, ..., d\_n> has to be a tuple of the relation R.</p>
+
+<p>Comparisons</p>
+
+<ul>
+<li>d_i &theta; d_j &rarr; comparison operation between two domain variables d_i and d_j</li>
+<li>d_i &theta; c &rarr; comparison operation between domain variable d_i and constant c</li>
+<li>c &theta; d_i &rarr; comparison operation between constant c and domain variable d_i</li>
+</ul>
+
+<p>The comparison operation denoted by &Theta; encompasses the usual comparison operators that are valid on the respective attribute domains. Usually these are &lt;, &gt;, &le;, &ge;, =, &ne; and =, &ne; for boolean values (required that the elements of the domain can be compared pairwise).</p></li>
+
+<li><p>Domain Calculus - Example Queries</p>
+
+<p>Given the relations teacher</p>
+
+<table>
+<thead>
+<tr>
+<th>persNr{PK}</th>
+<th>name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>43467</td>
+<td>Ares</td>
+</tr>
+
+<tr>
+<td>6897</td>
+<td>Zeus</td>
+</tr>
+
+<tr>
+<td>43424</td>
+<td>Hera</td>
+</tr>
+</tbody>
+</table>
+
+<p>and lectures</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>persNr{FK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>43467</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+<td>6897</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>1.)</strong> List the lecture titles that are held by teacher with persNr 6897?</p>
+
+<ul>
+<li>The query {b | (&exist; a) (&exist; c) (Lecture(a,b,c) &and; c=6897)} yields:</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>Databases in Praxis</td>
+</tr>
+
+<tr>
+<td>Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>2.)</strong> What are the numbers and titles of lectures held by Zeus?</p>
+
+<ul>
+<li>The query {a, b | (&exist; c) (&exist; d) (&exist; e) (Lecture(a,b,c) &and; teacher(d,e) &and; c=d &and; e=&lsquo;Zeus&rsquo;)} yields:</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>3.)</strong> What&rsquo;s the title of lectures hold by teacher with persNr6987 with at least 5 Credits?</p>
+
+<p>We now have an additional column in our lecture relation:</p>
+
+<table>
+<thead>
+<tr>
+<th>number{PK}</th>
+<th>title</th>
+<th>credits</th>
+<th>persNr{FK}</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>123</td>
+<td>Data Structures</td>
+<td>5</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>234</td>
+<td>Databases in Praxis</td>
+<td>5</td>
+<td>6897</td>
+</tr>
+
+<tr>
+<td>345</td>
+<td>Database Essentials</td>
+<td>5</td>
+<td>43467</td>
+</tr>
+
+<tr>
+<td>456</td>
+<td>Exercise Data Structures</td>
+<td>2</td>
+<td>6897</td>
+</tr>
+</tbody>
+</table>
+
+<p>Alternatively a query can be formulated with a direct specification of constant attribute values: {b | (Lecture(a, b, <em>5</em>, <em>6897</em>))} which yields</p>
+
+<table>
+<thead>
+<tr>
+<th>title</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data Structures</td>
+</tr>
+
+<tr>
+<td>Databases in Praxis</td>
+</tr>
+</tbody>
+</table>
+
+<p>(slides: alle Variablen, die nicht „links“ auftreten, sind hierbei automatisch existenzquantifiziert)</p></li>
+</ul>
+
+<h2 id="relational-languages">Relational Languages</h2>
+
+<p>The following query languages possess the same expresiveness (Ausdrucksmächtigkeit):</p>
+
+<ul>
+<li>relational algebra</li>
+<li>tuple calculus (limited to safe queries)</li>
+<li>domain calculus (limited to safe queries)</li>
+</ul>
+
+<p>Queries can be converted between those languages at any time.</p>
+
+<p>In praxis the <strong>relational calculus</strong> is the foundation for &ldquo;real&rdquo; query languages of relational DBMS:</p>
+
+<ul>
+<li>tuple calculus is the foundation of SQL (Structured Query Language)</li>
+<li>domain calculus is the foundation of QBE (Query By Example)</li>
+</ul>
+
+<p><strong>Relational algebgra</strong> is the foundation for the realisation of queries in the query languages. The sequence of operations describes the path to the result of a query (which can be optimized in some circumstances).</p>
+
+<h2 id="introduction-to-sql">Introduction to SQL</h2>
+
+<h4 id="history">History</h4>
+
+<ul>
+<li>1970: Codd presents the relational model</li>
+<li>1974: development of the relational query language SEQUEL (Structured English Query Language)</li>
+<li>1976: further development (Weiterentwicklung) of SEQUEL served as a foundation of the DBMS prototype &ldquo;System R&rdquo; by IBM, which was later renamed to SQL (Structured Query Language)</li>
+<li>in the early 80s: a lot of DBMS emerge by different commercial providers &rarr; standardization is needed</li>
+<li>1987: first SQL Standard</li>
+<li>1992: big expansion of the standard &rarr; SQL 2 (SQL-92)</li>
+<li>since then continuous evolution: SQL-99 &rarr; SQL:2003 &rarr; SQL:2006 &rarr; SQL:2008 &rarr; SQL:2011</li>
+</ul>
+
+<h4 id="introduction-to-sql-components">Introduction to SQL - Components</h4>
+
+<p>There two high level components of SQL:</p>
+
+<p><strong>Data Definition Language (DDL)</strong></p>
+
+<ul>
+<li>defines the database structure</li>
+<li>manages the access rights to the data</li>
+</ul>
+
+<p>and</p>
+
+<p><strong>Data Manipulation Language (DML)</strong></p>
+
+<ul>
+<li>used to formulate queries for the data sets</li>
+<li>create, read, update, delete of data</li>
+</ul>
+
+<p>For now we&rsquo;ll focus on the Data Manipulation Language.</p>
+
+<p>SQL does not operate on relations, but rather their physical representation form which are <strong>tables</strong>. In tables duplicate entries are possible which we may have to exclude. In contrast to relations there is one more advantage to table which is that they can be sorted.</p>
+
+<h4 id="introduction-to-sql-queries">Introduction to SQL - Queries</h4>
+
+<p>All queries to a database in SQL are realized via the <code>select</code> statement.
+This is the general construction:</p>
+
+<ul>
+<li><code>select</code> <code>attribute|expression</code> &rarr; which attributes should the result table contain?</li>
+<li><code>from</code> <code>list of tables</code> &rarr; which tables are required for the query?</li>
+<li>[ <code>where</code>  <code>condition</code> ] &rarr; which conditions should the result tuples fulfill?</li>
+<li>[ <code>group by</code>  <code>list of attributes</code> ] &rarr; summarize/condense identical attribute values</li>
+<li>[ <code>having</code>  <code>condition</code> ] &rarr; condition in regards to grouped tables</li>
+
+<li><p>[ <code>order by</code>  <code>sort</code> ] &rarr; specification of sorting for the resulting table</p>
+
+<p>Now let&rsquo;s look at some simple example queries (mostly &pi; projection and \roh rename at one point):</p></li>
+</ul>
+
+<p>I insert the slides here because they are visually more appealing/clear :D</p>
+
+<p>Three simple queries:
+</knowledge-database/images/simple-sql-1.png >
+</knowledge-database/images/simple-sql-2.png >
+</knowledge-database/images/simple-sql-3.png ></p>
+
+<p>Sorting:
+</knowledge-database/images/simple-sql-4.png >
+</knowledge-database/images/simple-sql-5.png ></p>
+
+<p>Simple query with <em>distinct</em>
+</knowledge-database/images/simple-sql-6.png ></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

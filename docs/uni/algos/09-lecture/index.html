@@ -1,0 +1,667 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 09 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 09</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 5, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          13 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="complex-types-in-python">Complex Types in Python</h2>
+
+<p>There are built-in types in Python which offer similar functionality to the complex types in C and more.</p>
+
+<h3 id="python-strings">Python Strings</h3>
+
+<p>Strings are character sequences of a fixed length and are to be precise <strong>not</strong> a complex type (why?).
+String literals are enclosed by double or single quotes (and triple quotes to span eg multiple lines; single quotes are most used).</p>
+
+<p>Python strings are &ldquo;immutable&rdquo; which means they cannot be changed after they are created. Since strings can&rsquo;t be changed, we construct <strong>new</strong> strings as we go to represent computed values. So for example the expression <code>'hello' + 'there'</code> takes in the 2 strings <code>'hello'</code> and <code>'there'</code> and builds a new string <code>'hellothere'</code>. The resulting string has a different <code>id()</code> because a new object is created and the others may then be garbage collected.</p>
+
+<p>Python string also recognize escape sequences similarly to C for example <code>'\n'</code>  is recognized as a ASCII Linefeed. To prevent parsing of those one may use a <em>raw string</em> by prepending and <code>r</code> or <code>R</code> to the string:</p>
+
+<pre><code class="language-python">print(&quot;H\ni&quot;)
+print(r&quot;H\ni&quot;)
+
+a = &quot;Hello&quot;
+print(&quot;Id of &quot; + a + &quot; &quot; + str((id(a))))
+a += &quot; World&quot;
+print(&quot;Id of &quot; + a + &quot; &quot; + str((id(a))))
+</code></pre>
+
+<pre><code class="language-text">H
+i
+H\ni
+Id of Hello 139807144629000
+Id of Hello World 139807144032560
+</code></pre>
+
+<p>Individual characters of a string can be accessed via <code>[]</code> bracket notation.</p>
+
+<h3 id="python-lists">Python Lists</h3>
+
+<p>Python has a great built-in list type named &ldquo;list&rdquo;. List literals are written within square brackets <code>[ ]</code>. Lists work similarly to strings - use the <code>len()</code> function and square brackets [ ] to access data, with the first element at index <code>0</code>. To access elements from the back use negative indices.</p>
+
+<pre><code class="language-python">colors = ['red', 'blue', 'green']
+print(id(colors))
+print(id(colors[0]))
+
+test = 'red'
+print(id(test))
+
+
+print(id(colors[1]))
+print(id('blue'))
+</code></pre>
+
+<p>Assignment with an <code>=</code> on lists does not make a copy. Instead, assignment makes the two variables point to the one list in memory.</p>
+
+<p>The &ldquo;empty list&rdquo; is just an empty pair of brackets <code>[ ]</code>. The <code>+</code> works to append two lists, so <code>[1, 2] + [3, 4]</code> yields <code>[1, 2, 3, 4]</code> (this is just like <code>+</code> with strings).</p>
+
+<p>Lists in Python can (in contrast to arrays in C) hold values of different types.</p>
+
+<p>Python lists are also <em>mutable</em>. In fact there are a lot of <em>methods</em> to modify lists eg <code>append</code>, <code>insert</code>, <code>remove</code>, <code>pop</code>.</p>
+
+<h3 id="python-tuples">Python Tuples</h3>
+
+<p>Tuples in Python are similar to lists with the difference that they are <strong>immutable</strong>.</p>
+
+<p>A tuple is a sequence of immutable Python objects. Tuples are sequences, just like lists. The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses, whereas lists use square brackets.</p>
+
+<p>Creating a tuple is as simple as putting different comma-separated values. Optionally you can put these comma-separated values between parentheses also. For example:</p>
+
+<pre><code class="language-python">tup1 = ('physics', 'chemistry', 1997, 2000)
+tup2 = (1, 2, 3, 4, 5 )
+tup3 = &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;
+</code></pre>
+
+<p>The empty tuple is written as two parens containing nothing <code>tup1 = ()</code>. To write a tuple containing a single value you have to include a comma, even though there is only one value <code>(77,)</code></p>
+
+<p>Like string indices, tuple indices start at 0, and they can be sliced, concatenated, and so on.</p>
+
+<p>However if tuples are eg concatenated via <code>+</code> a new tuple is created:</p>
+
+<pre><code class="language-python">T = (1,2)
+print(&quot;tuple: &quot;, T, &quot;with id: &quot;, id(T))
+T += (3,4)
+print(&quot;tuple: &quot;, T, &quot;with id: &quot;, id(T))
+</code></pre>
+
+<pre><code class="language-text">tuple:  (1, 2) with id:  140023051332616
+tuple:  (1, 2, 3, 4) with id:  140023051304856
+</code></pre>
+
+<h3 id="python-sets">Python Sets</h3>
+
+<p>Since Python 2.6 there are set types (Mengentypen).
+A Set in Python is a data structure equivalent to sets in mathematics. It may consist of various elements; the order of elements in a set is undefined. You can add and delete elements of a set, you can iterate the elements of the set, you can perform standard operations on sets (union, intersection, difference). Besides that, you can check if an element belongs to a set.</p>
+
+<p>Unlike arrays, where the elements are stored as ordered list, the order of elements in a set is undefined (moreover, the set elements are usually not stored in order of appearance in the set; this allows checking if an element belongs to a set faster than just going through all the elements of the set).</p>
+
+<p>Any immutable data type can be an element of a set: a number, a string, a tuple. Mutable (changeable) data types cannot be elements of the set. In particular, lists cannot be an element of a set (but tuple can), and another set cannot be an element of a set. The requirement of immutability follows from the way how do computers represent sets in memory.</p>
+
+<p>Sets unlike lists or tuples can&rsquo;t have multiple occurrences of the same element &rarr; <code>set('a','b','c','a','b','c')</code> &rarr; <code>{'a','b','c'}</code> no values are duplicated.</p>
+
+<p>To create a set the <code>set()</code> is called which constructs a Python set from the given iterable and returns it.</p>
+
+<pre><code class="language-python"># empty set
+print(set())
+
+# from string
+print(set('Python'))
+
+# from tuple
+print(set(('a', 'e', 'i', 'o', 'u')))
+
+# from list
+print(set(['a', 'e', 'i', 'o', 'u']))
+
+# from range
+print(set(range(5)))
+</code></pre>
+
+<pre><code class="language-text">set()
+{'y', 't', 'n', 'P', 'o', 'h'}
+{'e', 'a', 'u', 'i', 'o'}
+{'e', 'a', 'u', 'i', 'o'}
+{0, 1, 2, 3, 4}
+</code></pre>
+
+<p>Sets are implemented in a way, which doesn&rsquo;t allow mutable objects. The following example demonstrates that we cannot include, for example, lists as elements:</p>
+
+<pre><code class="language-python">cities = set(((&quot;Python&quot;,&quot;Perl&quot;), (&quot;Paris&quot;, &quot;Berlin&quot;, &quot;London&quot;))) # valid set of tuples
+
+cities = set(([&quot;Python&quot;,&quot;Perl&quot;], [&quot;Paris&quot;, &quot;Berlin&quot;, &quot;London&quot;])) # -&gt; TypeError: unhashable type: 'list'
+</code></pre>
+
+<p>Although sets can&rsquo;t contain mutable objects, sets are mutable themselves. Elements may for example added via the <code>add</code> method (<code>cities.add(&quot;Tokyo&quot;)</code>).</p>
+
+<p>Frozensets are like sets except that they cannot be changed so they are immutable:</p>
+
+<pre><code class="language-python">cities = frozenset([&quot;Frankfurt&quot;, &quot;Basel&quot;,&quot;Freiburg&quot;])
+cities.add(&quot;Strasbourg&quot;) # AttributeError: 'frozenset' object  has no attribute 'add'
+</code></pre>
+
+<p>There&rsquo;s also a simplified shorter notation to construct sets:</p>
+
+<pre><code class="language-python">cities = {&quot;London&quot;, &quot;Paris&quot;, &quot;Madrid&quot;}
+print(type(cities))
+</code></pre>
+
+<pre><code class="language-text">&lt;class 'set'&gt;
+</code></pre>
+
+<p>The known operations from set theory are also available via Python Sets (following part in German xD):</p>
+
+<ul>
+<li><code>len(s)</code> gibt Mächtigkeit der Menge <code>s</code></li>
+<li><code>s1 | s2</code> gibt Vereinigungsmenge von <code>s1</code> und <code>s1</code></li>
+<li><code>s1 &amp; s2</code> gibt Schnittmenge von <code>s1</code> und <code>s1</code></li>
+<li><code>s1 - s2</code> gibt Differenzmenge von <code>s1</code> und <code>s1</code></li>
+<li><code>s1 ^ s2</code> gibt symmetrische Differenzmenge von <code>s1</code> und <code>s1</code></li>
+</ul>
+
+<h3 id="python-dictionaries">Python Dictionaries</h3>
+
+<p>A dictionary is a collection which is unordered, changeable (mutable) and indexed. In Python dictionaries are written with curly brackets, and they have keys and values.</p>
+
+<pre><code class="language-python">thisdict =	{
+  &quot;key&quot;: &quot;value&quot;,
+  &quot;brand&quot;: &quot;Ford&quot;,
+  &quot;model&quot;: &quot;Mustang&quot;,
+  &quot;year&quot;: 1964
+}
+print(thisdict)
+</code></pre>
+
+<pre><code class="language-text">{'key': 'value', 'brand': 'Ford', 'model': 'Mustang', 'year': 1964}
+</code></pre>
+
+<p>You can access the items of a dictionary by referring to its key name, inside square brackets:</p>
+
+<pre><code class="language-python">thisdict =	{
+  &quot;key&quot;: &quot;value&quot;,
+  &quot;brand&quot;: &quot;Ford&quot;,
+  &quot;model&quot;: &quot;Mustang&quot;,
+  &quot;year&quot;: 1964
+}
+print(thisdict[&quot;key&quot;])
+print(thisdict[&quot;model&quot;])
+print(thisdict[&quot;year&quot;])
+</code></pre>
+
+<pre><code class="language-text">value
+Mustang
+1964
+</code></pre>
+
+<p>More on dictionaries and how to work with them / their methods <a href="https://www.w3schools.com/python/python%5Fdictionaries.asp">here</a></p>
+
+<h2 id="loops-and-iterations">Loops and Iterations</h2>
+
+<p>In C there are three types of loops:</p>
+
+<ul>
+<li>while loop</li>
+<li>do while loop</li>
+<li>for loop</li>
+</ul>
+
+<p>All of these loops use conditions are able to simulate one another. Which one to use is often a matter of personal taste.</p>
+
+<h3 id="while-loop">While Loop</h3>
+
+<p>The while loop executes as long as a conditions is true resp. until a condition is false. This is the procedure:</p>
+
+<ol>
+<li>Check if condition <code>while (expression/Condition)</code> evaluates to true (nonzero)</li>
+<li>If yes: execute body of the loop and jump to 1.</li>
+<li>If no: resume program execution after the loop</li>
+</ol>
+
+<pre><code class="language-C">// Program to find factorial of a number
+// For a positive integer n, factorial = 1*2*3...n
+
+#include &lt;stdio.h&gt;
+int main()
+{
+    int number;
+    long long factorial;
+
+    // printf(&quot;Enter an integer: &quot;);
+    // scanf(&quot;%d&quot;,&amp;number); // cannot read from stdio in my blog :)
+    number = 5;
+
+    factorial = 1;
+
+    // loop terminates when number is less than or equal to 0
+    while (number &gt; 0)
+    {
+        factorial *= number;  // factorial = factorial*number;
+        number--;
+
+        // alternatively: factorial *= number--;
+    }
+
+    printf(&quot;Factorial= %lld&quot;, factorial);
+
+    return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">Factorial= 120
+</code></pre>
+
+<p>Loops can be used to fill fields of an array:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+enum { arraySize = 12 }; // constant for array size
+
+int main()
+{
+  int arr[arraySize], i = 0;
+
+  while (i &lt; arraySize) { // 0,1,2...11
+    arr[i] = i*i;
+    i++;
+  }
+
+  i = 0;
+  while (i &lt; arraySize) { // 0,1,2...11
+    printf(&quot;Element %d of arr: %d\n&quot;, i, arr[i]);
+    i++;
+  }
+
+  return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">Element 0 of arr: 0
+Element 1 of arr: 1
+Element 2 of arr: 4
+Element 3 of arr: 9
+Element 4 of arr: 16
+Element 5 of arr: 25
+Element 6 of arr: 36
+Element 7 of arr: 49
+Element 8 of arr: 64
+Element 9 of arr: 81
+Element 10 of arr: 100
+Element 11 of arr: 121
+</code></pre>
+
+<h3 id="do-while-loop">Do While Loop</h3>
+
+<p>The do while loop is similar to the while loop with the difference being that the do while loop checks the condition <strong>after</strong> it has run, therefore it always runs at least one time.
+The syntax is</p>
+
+<pre><code class="language-C">do {
+  statement(s);
+} while (expression/condition); // notice the semicolon!
+</code></pre>
+
+<h3 id="for-loop">For Loop</h3>
+
+<p>A for loop is a repetition control structure that allows you to efficiently write a loop that needs to execute a specific number of times.</p>
+
+<pre><code class="language-C">for (init; condition; mutation(eg increment/decrement)) { // &quot;conditon&quot; and &quot;mutation&quot; are expressions (see C standard) but that is how they're used commonly
+  statement(s);
+}
+</code></pre>
+
+<p>Here is the flow of control in a &lsquo;for&rsquo; loop :</p>
+
+<ul>
+<li>the init step is executed first, and only once
+
+<ul>
+<li>this step allows you to declare and initialize any loop control variables</li>
+<li>you are not required to put a statement here, as long as a semicolon appears</li>
+</ul></li>
+<li>next, the condition is evaluated
+
+<ul>
+<li>if it is true, the body of the loop is executed</li>
+<li>if it is false, the body of the loop does not execute and the flow of control jumps to the next statement just after the &lsquo;for&rsquo; loop</li>
+</ul></li>
+<li>after the body of the &lsquo;for&rsquo; loop executes, the flow of control jumps back up to the mutation statement
+
+<ul>
+<li>this statement allows you to update any loop control variables</li>
+<li>This statement can be left blank, as long as a semicolon appears after the condition</li>
+</ul></li>
+<li>the condition is now evaluated again
+
+<ul>
+<li>if it is true, the loop executes and the process repeats itself (body of loop, then mutation step, and then again condition)</li>
+<li>after the condition becomes false, the &lsquo;for&rsquo; loop terminates</li>
+</ul></li>
+</ul>
+
+<p>Omitting expressions:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[])
+{
+  int i = 0;
+  for (; i &lt; argc; i++) // omitting initalization
+    printf(&quot;%d. argument: %s\n&quot;, i+1, argv[i]);
+
+
+  for (;;) // endless loop
+    printf(&quot;The answer is 42\n&quot;);
+
+
+  return 0; // never reached
+}
+
+</code></pre>
+
+<p>Dont forget it is possible to have more complex conditions and multiple assignments!</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main()
+{
+  for (int i=2, j=1; i&lt;3 || j&lt;5; i++,j++)
+    {
+      printf(&quot;%d, %d\n&quot;,i ,j);
+    }
+  return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">2, 1
+3, 2
+4, 3
+5, 4
+</code></pre>
+
+<h3 id="break-and-continue"><code>break</code> and <code>continue</code></h3>
+
+<p>Loops run as long as the loop condition evaluates to true. There are however two ways to modify the control flow from <em>inside the function body</em>:</p>
+
+<ul>
+<li><code>break</code> stops execution of the loop regardless of the loop condition</li>
+<li><code>continue</code> immediately starts the next evaluation of first the loop condition and possibly the next loop iteration</li>
+</ul>
+
+<p><code>break</code> and <code>continue</code> should be used sparsely - an excessive use might be an indicator for insufficient program logic.</p>
+
+<pre><code class="language-cpp">/* reciprocal .c -- calculate reciprocal value of array elements */
+#include &lt;stdio.h&gt;
+
+/* a negative value indicates end of list */
+double f[]= {1.0 , .5 , 3.1415 , .33333 , 0.0 , 2.7182 , 42.23 , -1};
+
+int main ()
+{
+  int i ;
+  for (i = 0; ; i++) {
+    if (f[i] &lt; 0.0) break ;
+    if (f[i] &lt;= 0.0001) continue ;
+    f[i]= 1/f[i];
+  }
+
+  for (i = 0; f[i] &gt;= 0.0; i++) // notice the condition!
+    printf (&quot;%d value : %f\n&quot;, i, f[i]);
+
+  return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">0 value : 1.000000
+1 value : 2.000000
+2 value : 0.318319
+3 value : 3.000030
+4 value : 0.000000
+5 value : 0.367891
+6 value : 0.023680
+</code></pre>
+
+<h2 id="loops-in-python">Loops in Python</h2>
+
+<p>There are two types of loops in Python <code>for</code> and <code>while</code>.
+The <code>while</code> loops are similar to their pendants in C:</p>
+
+<pre><code class="language-python">i = 5;
+while (i &gt; 0):
+    print(&quot;i =&quot;, i)
+    i = i -1
+</code></pre>
+
+<pre><code class="language-text">i = 5
+i = 4
+i = 3
+i = 2
+i = 1
+</code></pre>
+
+<p><code>break</code> and <code>continue</code> are also available in Python with the same semantic as in C.</p>
+
+<p>In addition to what we know from C in Python there can be an optional <code>else</code> branch after a loop which is executed <strong>after the loop finished</strong> if it was <strong>not canceled</strong>:</p>
+
+<pre><code class="language-python">i = 0;
+
+while (i &lt; 3):
+    print(i)
+    i += 1;
+else:
+    print(&quot;1. Loop finished execution&quot;)
+
+print(&quot;------------&quot;)
+i = 0;
+while (True):
+    print(i)
+    i += 1;
+    if (i == 3):
+        break
+else:
+    print(&quot;2. Loop finished execution&quot;) # not executed because loop doesnt finish naturally but is canceled
+</code></pre>
+
+<pre><code class="language-text">0
+1
+2
+1. Loop finished execution
+------------
+0
+1
+2
+</code></pre>
+
+<p><code>else</code> can also be used with the for loop in Python!</p>
+
+<p>The <code>for</code> loop in Python iterates over a given <em>sequence</em> or <em>set</em> (an iterable type!):</p>
+
+<pre><code class="language-python">for i in ITERABLE:
+    do_something(i)
+</code></pre>
+
+<p>In the example above the elements of <code>ITERABLE</code> are assigned to <code>i</code> one by one per iteration.</p>
+
+<pre><code class="language-python">for x in ['John','Paul','George','Pete']:
+ print (x)
+</code></pre>
+
+<pre><code class="language-text">John
+Paul
+George
+Pete
+</code></pre>
+
+<p>This also works for mixed types:</p>
+
+<pre><code class="language-python">T = ('Alpha', 48, 0.2, (1, 2, 3))
+for x in T:
+    print(2 * x)
+</code></pre>
+
+<pre><code class="language-text">AlphaAlpha
+96
+0.4
+(1, 2, 3, 1, 2, 3)
+</code></pre>
+
+<p>To &ldquo;mimic&rdquo; the C for loop we can iterate over a <em>sequence</em> of numbers using the <code>range</code> function:</p>
+
+<pre><code class="language-python"># range([start,] stop [, step]) # generate from 'start' up to and NOT INCLUDING 'stop' and increment by 'step'
+
+for i in range(0, 6, 2):
+    print(i)
+
+print(&quot;------------&quot;)
+
+for i in range(3):
+    print(i)
+</code></pre>
+
+<pre><code class="language-text">0
+2
+4
+------------
+0
+1
+2
+</code></pre>
+
+<h2 id="iterators-and-loop-functions-in-c">Iterators and Loop Functions in C</h2>
+
+<p>Code sample of an iterator with C:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+char *names[] = {&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;, NULL};
+
+static int index = 0;
+
+char* first() {
+  return names[index = 0]; // so the iterator can be used multiple times -&gt; first ALWAYS returns first element
+}
+
+char* next() {
+  if (names[index] == NULL) index = 0; // set index to 0 when arrived at last element delmiited via NULL
+  else index++;
+
+  return names[index];
+}
+
+int main() {
+  for (char* str = first(); str != NULL; str = next()) {
+    printf(&quot;%s &quot;, str);
+  }
+
+  return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">John Paul George Ringo
+</code></pre>
+
+<p>Iterators like those above are more common in C++ where they are more elegant (also in C there are prettier ways to do this).</p>
+
+<p>Until now we used loops with assignments (state model). It is also possible to have loops in the functional model where they are realized via recursion:</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+void say_it(int i) {
+  if (i == 0) return;
+  printf(&quot;Ctuhlu!\n&quot;);
+  say_it(--i); // i-- would NOT work because i is evaluated -&gt; 3 and passed to the function and THEN decremented -&gt; endless loop
+}
+
+int main() {
+  say_it(3);
+  return 0;
+}
+</code></pre>
+
+<pre><code class="language-text">Ctuhlu!
+Ctuhlu!
+Ctuhlu!
+</code></pre>
+
+<p>It is also possible to separate the loop body from the &ldquo;loop mechanic&rdquo; &rarr; <em>generic loop function</em>. To do so we use a <em>pointer to functions</em>.</p>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+typedef void (*functionPointer) (int); // functions are passed by pointer (efficiency) need to be wrapped in () else it would be interpreted as &quot;void*&quot; return type (pointer to void) instead
+
+void loop(functionPointer func, int start, int end, unsigned int step) {
+  if (start &lt;= end) {
+    func(start);
+    loop(func, start+step, end, step);
+  }
+}
+
+void loopBody(int i) {
+  printf(&quot;%d^2 = %d\n&quot;, i, i * i);
+}
+
+int main() {
+  loop(loopBody, 0, 5, 1);
+  return 0;
+}
+
+</code></pre>
+
+<pre><code class="language-text">0^2 = 0
+1^2 = 1
+2^2 = 4
+3^2 = 9
+4^2 = 16
+5^2 = 25
+</code></pre>
+
+<p>In Python such things are achievable more easily via <a href="https://www.programiz.com/python-programming/anonymous-function">lambda functions</a>.</p>
+
+<h2 id="equivalence">Equivalence</h2>
+
+<p>Generally every loop in a program can be translated into a recursive function and each (trivially) recursive function can be computed via loops. To be precise: <em>primitive-recursive functions</em> can be computed with <em>a priori limited</em> loops, for the so called <em>μ-recursive functions</em> (<em>my</em> &ldquo;müh&rdquo; xD as i like to call it). The ACKERMANN-Function for example is not trivially recursive.</p>
+
+<p>So for the most practical use cases loops and recursion are equipotent (gleichmächtig). However loops are usually more clearer (übersichtlicher), but there are also cases where recursion are the handier solution.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

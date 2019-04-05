@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Design of Distributed Systems - Lecture 01 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Design of Distributed Systems - Lecture 01</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 9, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="definitions-of-distributed-systems">Definitions of Distributed Systems</h2>
+
+<ul>
+<li>Andrew S. Tanenbaum and Maarten van Steen:
+
+<ul>
+<li>„A distributed system is a collection of independent computers that appears to its users as a single coherent system.“</li>
+</ul></li>
+<li>Alexander Schill and Thomas Springer:
+
+<ul>
+<li>„Ein Verteiltes System setzt sich aus mehreren Einzelkomponenten auf unterschiedlichen Rechnern zusammen, die in der Regel nicht über gemeinsamen Speicher verfügen und somit mittels Nachrichtenaustausch kommunizieren, um in Kooperation eine gemeinsame Zielsetzung – etwa die Realisierung eines Geschäftsablaufs – zu erreichen.“</li>
+</ul></li>
+</ul>
+
+<p>Example of a layered approach:</p>
+
+<p><img src="/knowledge-database/images/layered-approach.png" alt="" />
+A distributed system is a <em>loosely coupled set of of components</em> which run on different computers&rsquo; <em>host systems</em> and coordinate by means of <em>message exchange</em> over a <em>communication medium</em> to reach a common goal. A host system is an autonomous runtime environment, which provides a component with the necessary execution and communication resources operated by that host system. Examples of host systems are operating systems, databases, a web server or middleware.</p>
+
+<p>Example: Interaction of host systems
+<img src="/knowledge-database/images/host-system-interaction.png" alt="" /></p>
+
+<h2 id="challenges">Challenges</h2>
+
+<p>Implementation of distributed systems faces numerours challenges:</p>
+
+<ul>
+<li>Heterogeneity
+
+<ul>
+<li>bringing the resources and the user together, remote resource access by means of cooperation/integration</li>
+</ul></li>
+<li>Openess
+
+<ul>
+<li>property of a distributed system</li>
+<li>for instance in terms of interoperability, flexibility and customizability</li>
+</ul></li>
+<li>Security
+
+<ul>
+<li>jeopardizes the common objective if lacking</li>
+<li>for example Denial of Service or security of mobile code</li>
+</ul></li>
+<li>Scalability
+
+<ul>
+<li>ability to compensate for the increasing demand by adding resources to ensure the effectivity and efficiency of the DS (distributed system)</li>
+<li>for example availability, geographical scalability; tightly bound to availability, i.e. cache and replication</li>
+</ul></li>
+<li>Availability / Error handling
+
+<ul>
+<li>detection of errors in components, hosts, computers</li>
+<li>error masking through configuration</li>
+<li>error tolerance through redundancy and recovery/self healing</li>
+</ul></li>
+<li>Concurrency
+
+<ul>
+<li>consistency of shared resources</li>
+<li>synchronization of joint actions</li>
+</ul></li>
+<li>Transparency
+
+<ul>
+<li>conceal the single component separation in a DS from the user for the system to be percieved as a whole</li>
+</ul></li>
+</ul>
+
+<h2 id="concepts-to-solve-the-challenges">Concepts to solve the challenges</h2>
+
+<ul>
+<li>System Models
+
+<ul>
+<li>specific models for particular aspects of a system</li>
+<li>fundamental models:
+
+<ul>
+<li>formal description models (eg interaction, error and security)</li>
+<li>for instance path-time diagrams, protocol automation, queuing models</li>
+</ul></li>
+<li><strong>architectural models - system architectures</strong>
+
+<ul>
+<li>placement of components and their relations within a distributed system</li>
+<li>for instance Client-Server or Peer-to-Peer models</li>
+</ul></li>
+</ul></li>
+<li>Communication
+
+<ul>
+<li>is the foundation of a decentralized systems&rsquo; realization</li>
+<li>finding communication partners</li>
+</ul></li>
+<li>Support systems and tools
+
+<ul>
+<li>middleware</li>
+<li>software development</li>
+<li>name- and directory services</li>
+</ul></li>
+<li>Web as information space
+
+<ul>
+<li>web-based protocols, SOA (service-oriented architecture), Web Services Stack</li>
+<li>related aspects: synchronization, transaction, security</li>
+</ul></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

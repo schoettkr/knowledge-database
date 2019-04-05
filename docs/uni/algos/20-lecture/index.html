@@ -1,0 +1,881 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Algos &amp; Programming - Lecture 20 &amp; 21 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Algos &amp; Programming - Lecture 20 &amp; 21</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Dec 14, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          22 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a &ldquo;game&rdquo;. Because the emphasis is on the development cycle, there will also be preliminary and &ldquo;wrong&rdquo; solutions.</p>
+
+<p>I might refer to the slides more often in the next two posts that regard this &ldquo;game&rdquo; because it would get pretty messy else and just copy &amp; pasting code is not a good use of time, so I might skip that at some points and tell you to look at the slides directly.</p>
+
+<p>This chapter also spans two lectures so lecture 20 and 21 will be pooled into this single blog post.</p>
+
+<h2 id="intro">Intro</h2>
+
+<p>The game we&rsquo;re building is TicTacToe (TTT), where there&rsquo;s one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
+These lead to the following high level pseudo algorithm:</p>
+
+<pre><code class="language-c">Input who will start -&gt; turn {player, computer}
+
+repeat
+  if turn == computer then
+    calculate move
+    turn &lt;- player
+  else
+    input move
+    turn &lt;- computer
+  end if
+  display move
+until (somebody won) or (draw)
+</code></pre>
+
+<p>Modern programs usually offer a GUI (graphical user interface) but we&rsquo;ll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
+On the terminal the game could be visualized like this:</p>
+
+<pre><code class="language-sh">x | o | x
+--+---+--
+x | o |
+--+---+--
+o |   | x
+</code></pre>
+
+<p>Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.</p>
+
+<p>To do so we <strong>modularize</strong> our project into three modules:</p>
+
+<ul>
+<li>&ldquo;ttt_main.c&rdquo; &rarr; superstructure that combines the others and provides the <code>main</code> method</li>
+<li>&ldquo;ttt_io.c&rdquo; &rarr; responsible for input and output</li>
+<li>&ldquo;ttt_strategie.c&rdquo; &rarr; responsible for calculating the move of the computer</li>
+</ul>
+
+<p>To share common types and interface we also want a shared header file &ldquo;ttt.h&rdquo;.</p>
+
+<p>This is how the file structure looks</p>
+
+<p></knowledge-database/images/file-structure.png ></p>
+
+<h3 id="excourse-make">Excourse: Make</h3>
+
+<p>When a project consists of multiple modules, each of them has to be translated to an object file seperately (eg via <code>gcc -c &lt;file.c&gt;</code>) and then all object files have to be linked (with the libraries).</p>
+
+<p>Doing this by hand is cumbersome.</p>
+
+<p>What to do? Well you could write a script to automate the job, but do we really want to compile and translate <em>every</em> file even if we only change one of lets say 10 files? Hint: No we don&rsquo;t :D and that&rsquo;s why scripts (batch jobs) are not so well suited (beware that it is still possible to do that and some programmers actually prefer that which is totally fine).</p>
+
+<p>Another solution to this are <strong>build systems</strong> also called <strong>build automation tools</strong>. Build automation is the process of automating the creation of a software build and the associated processes including: compiling computer source code into binary code, packaging binary code, and running automated tests (source: wikipedia).</p>
+
+<p>We&rsquo;ll focus on one of the most common build tools which is <strong>make</strong>.</p>
+
+<p>Wikipedia: Make is a build automation tool that automatically builds executable programs and libraries from source code by reading files called Makefiles which specify how to derive the target program. Though integrated development environments and language-specific compiler features can also be used to manage a build process, Make remains widely used, especially in Unix and Unix-like operating systems.</p>
+
+<p>Besides building programs, Make can be used to manage any project where some files must be updated automatically from others whenever the others change. There are now a number of dependency-tracking build utilities, but Make is one of the most widespread, primarily due to its inclusion in Unix.</p>
+
+<p>As stated above <code>make</code> interprets what is written in a so called &ldquo;Makefile&rdquo;. A Makefile contains five kinds of things: <em>explicit rules</em>, <em>implicit rules</em>, <em>variable definitions</em>, <em>directives</em>, and <em>comments</em>.</p>
+
+<ul>
+<li><em>explicit rule</em> &rarr; says when and how to remake one or more files, called the rule&rsquo;s targets; it lists the other files that the targets depend on, called the prerequisites of the target, and may also give a recipe to use to create or update the targets</li>
+<li><em>implicit rule</em> &rarr; says when and how to remake a class of files based on their names; it describes how a target may depend on a file with a name similar to the target and gives a recipe to create or update such a target</li>
+<li><em>variable definition</em> &rarr; is a line that specifies a text string value for a variable that can be substituted into the text later</li>
+<li><em>directive</em> &rarr; is an instruction for make to do something special while reading the makefile such as reading another makefile</li>
+<li><em>comment</em> &rarr; a comment is designated by &lsquo;#&rsquo; and ignores the rest of the line</li>
+</ul>
+
+<p>To define variables in a makefile the following syntax is used:</p>
+
+<pre><code class="language-sh"># &lt;name&gt; = &lt;value&gt; or &lt;name&gt; := &lt;value&gt;
+objects = program.o foo.o utils.o # variable that holds names of object files
+# or
+objects := program.o foo.o utils.o
+# acess via $(objects) or ${objects}
+</code></pre>
+
+<p>Slides: The variant/flavour without colons (&rdquo;:&ldquo;) allows for recursion in the name resolution.</p>
+
+<p>To read more about variables and the differences in the flavours you can go <a href="https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html%5Fchapter/make%5F6.html">here</a>.</p>
+
+<p>To define functions in a makefile the following syntax is used:</p>
+
+<pre><code class="language-sh"># $(&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..) or ${&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..}
+comma:= ,
+empty:=
+space:= $(empty) $(empty)
+foo:= a b c
+bar:= $(subst $(space),$(comma),$(foo)) # bar is now 'a,b,c'
+</code></pre>
+
+<p>Here the <code>subst</code> function, which is built-in with alot of others, replaces each space with a comma, through the value of foo, and substitutes the result. <a href="https://www.gnu.org/software/make/manual/html%5Fnode/Functions.html">Here</a> you can read more about functions in makefiles.</p>
+
+<p>Here&rsquo;s another example from the slides:</p>
+
+<pre><code class="language-sh">SOURCEFILES = $(wildcard ttt_*.c)
+OBJECTFILES = ${subst .c,.o,$(SOURCEFILES)}
+</code></pre>
+
+<p>It is pretty common to use functions for text manipulation purposes.</p>
+
+<p>Here&rsquo;re some more example functions (more can be found in the documentation):</p>
+
+<pre><code class="language-sh">$(subst &lt;from&gt;,&lt;to&gt;, &lt;text&gt;) # replaces all &lt;from&gt; with &lt;to&gt; in &lt;text&gt;
+$(addprefix &lt;prefix&gt;,&lt;list&gt;) / $(addsuffix &lt;suffix&gt;,&lt;list&gt;) # adds the pre or suffix to every word in &lt;list&gt;
+$(join &lt;list1&gt;,&lt;list2&gt;) # joins the two lists by word into one list
+$(foreach &lt;var&gt;,&lt;list&gt;,&lt;text&gt;) # creates for each value in &lt;list&gt; a new instance of &lt;text&gt; in which every occurence of &lt;var&gt; is replaced by the list value
+$(shell &lt;command&gt;) # executes the &lt;command&gt; in a shell
+</code></pre>
+
+<p>The rules in a makefile have the following form:</p>
+
+<pre><code class="language-sh">target: dependencies
+    system command(s)
+</code></pre>
+
+<p>A <strong>target</strong> is usually the name of a file that is generated by a program (eg executable or object files), but a target can also be the name of an action to carry out, such as &ldquo;clean&rdquo;.</p>
+
+<p>A <strong>dependency</strong> (also called <em>prerequisite</em>) is a file that is used as input to create the target, which often depends on several files. Rules that specify a <em>recipe</em> for the target don&rsquo;t <em>need</em> to have prerequisites (eg delete command that is associated with target &ldquo;clean&rdquo; does not have any prerequisites).</p>
+
+<p>The <strong>system command(s)</strong> (also called <strong>recipe</strong>) is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. Note the use of meaningful indentation in specifying commands; also note that the indentation must consist of a single <tab> character.</p>
+
+<p>Rules that operate on <em>classes</em> of files (eg via wildcard) are called &ldquo;implicit&rdquo; rules in constrast to explicit rules. <code>%</code> serve as wildcards.</p>
+
+<p>Example rules:</p>
+
+<pre><code class="language-sh">main.o: main.c defs.h
+    cc -c main.c
+
+clean:
+     rm edit main.o kbd.o command.o display.o
+</code></pre>
+
+<p>And here&rsquo;re some automatic special variables than can be used in rules:</p>
+
+<ul>
+<li><code>$@</code> = the file name of the target of the rule</li>
+<li><code>$&lt;</code> = the name of the first prerequisite (if the target got its recipe from an implicit rule, this will be the first prerequisite added by the implicit rule)</li>
+<li><code>$?</code> = the names of all the prerequisites that are newer than the target, with spaces between them</li>
+<li><code>$^</code> = the names of all the prerequisites, with spaces between them</li>
+<li><code>${@D}</code> = the directory part of the file name of the target, with the trailing slash removed</li>
+<li><code>${&lt;D}</code> = the directory part of the first prerequisite</li>
+<li><code>${@F}</code> = the file-within-directory part of the file name of the target</li>
+<li><code>${&lt;F}</code> = the file-within-directory part of the first prerequisite</li>
+</ul>
+
+<p>To execute <code>make</code> run <code>make &lt;target&gt;</code> which starts all activities that are accordingly to the Makefile required to update <code>&lt;target&gt;</code>. If a file is (already) updated is decided based on the timestamp of the file. If the <code>&lt;target&gt;</code> is ommitted when executing make, the first rule in the Makefile will be used.</p>
+
+<p>Example Makefiles:</p>
+
+<pre><code class="language-sh">a: b
+
+c: e f
+
+b: c d
+</code></pre>
+
+<p>So in this case when you run <code>make a</code>:</p>
+
+<ul>
+<li><code>f</code>, <code>e</code>, and <code>d</code> are required to existing</li>
+<li>then first <code>c</code> is generated/updated out of <code>e</code> and <code>f</code></li>
+<li>then <code>b</code> is generated/updated out of <code>c</code> and <code>d</code></li>
+<li>da es für „a“ Ausführungsteil gibt, ist hier die Abarbeitung beendet</li>
+</ul>
+
+<p>For our TicTacToe Project the Makefile could look like this:</p>
+
+<pre><code class="language-sh">PROG = ttt # program name
+CC = cc # compiler
+CFLAGS = -std=c99 -pedantic -Wall -Wextra # compiler flags
+LDFLAGS = # linker flags (ld is the gnu linker)
+
+HEADER = $(wildcard ttt*.h)
+SOURCEFILES = $(wildcard ttt_*.c)
+OBJECTFILES = $(subst .c, .o, $(SOURCEFILES))
+
+$(PROG): $(OBJECTFILES)
+    $(CC) $(LDFLAGS) $(OBJECTFILES) -o $(PROG)
+
+%.o: %c
+    $(CC) -c $(CFLAGS) $&lt;
+
+.PHONY: clean
+clean:
+    rm -f $(PROG) *.o
+
+</code></pre>
+
+<h3 id="the-main-loop">The Main Loop</h3>
+
+<p>Going back to our initial draft of our high level pseudo code algorithm we might want some modifications that account for:</p>
+
+<ul>
+<li>recognition weather win or draw
+
+<ul>
+<li>probably closely related to the strategy part of our program so should be done there</li>
+</ul></li>
+<li>cancellation of the game
+
+<ul>
+<li>has to be dealt with in the main loop</li>
+</ul></li>
+<li>multiple games in a row
+
+<ul>
+<li>also belongs in the main loop</li>
+</ul></li>
+</ul>
+
+<p>Here&rsquo;s the second version:</p>
+
+<pre><code class="language-c">repeat
+  Input who will start -&gt; turn {player, computer}
+
+  repeat
+    if turn == computer then
+      calculate move
+      turn &lt;- player
+    else // turn = player
+      input move // abort is special move
+      turn &lt;- computer
+    end if
+    display move
+  until (somebody won) or (draw) or (abort)
+  Input if another game?
+until not another game
+</code></pre>
+
+<p>This is how the main loop in &ldquo;ttt_main.c&rdquo; could look like in C:</p>
+
+<pre><code class="language-c">do { // main loop
+  int player =  ttt_x_or_o(); // select symbol (x or o)
+  bool computer_turn = (player == 'o'); // x starts if player is o then the computer starts
+  ttt_init_board(board); // erase board
+  int move, assessment;
+
+  do { // main loop for a game instance
+    ttt_update_display(board); // display board
+    move = computer_turn ? // computer's move?
+      ttt_calculate_move(board, ttt_opponent(player)) : ttt_input_move(board);
+
+    if (move != TTT_ABORT) { // continue?
+      board[move] = computer_turn ? ttt_opponent(player) : player; // apply move
+    }
+
+    computer_turn = !computer_turn; // change the turn
+    assessment = ttt_won_or_draw(board, player); // game over?
+
+    if (assessment != TTT_UNDECIDED) { // game finished
+      ttt_update_display(board); // display final board
+      ttt_output_result(assessment); // print result
+    }
+  } while ((move != TTT_ABORT) &amp;&amp; (assessment == TTT_UNDECIDED));
+ } while (ttt_another_game() == true);
+</code></pre>
+
+<p>As you can see we use function that are not defined yet. Some of those shall be implemented in other modules. A somewhat common (&ldquo;best&rdquo;) practice is to prefix global names with the name of the project (and optionally the module) to reduce the likelihood of name conflicts. In this case we use <code>ttt_</code> as a prefix.</p>
+
+<p>Now we&rsquo;ve got to ask ourselves how we want to represent the data in C. It first seems natural to use a multidimensional array <code>int board[3][3]</code> to represent the game board. <strong>But</strong></p>
+
+<ul>
+<li>this would always require two indices &rarr; and therefore 2 loops</li>
+<li>it is likely that we want to pass the board to functions &rarr; <strong>array decay</strong> even unclearer when dealing with nested arrays (see lecture 08 for array decay)</li>
+</ul>
+
+<p>For those reasons we use a &ldquo;normal&rdquo; array with 9 fields <code>int board[9]</code> (resp <code>typedef int ttt_board_t[NUMBER_OF_FIELDS])</code>.</p>
+
+<p>Let&rsquo;s put declarations of types and constants in the shared header file <code>ttt.h</code></p>
+
+<pre><code class="language-c">#include &lt;stdbool.h&gt;
+
+/* general constants */
+typedef enum {TTT_ABORT = -1, NUMBER_OF_FIELDS = 9} ttt_constant_t;
+
+/* game outcomes */
+typedef enum {TTT_PLAYER_WINS, TTT_COMPUTER_WINS, TTT_DRAW, TTT_UNDECIDED} ttt_result_t;
+
+typedef int ttt_board_t[NUMBER_OF_FIELDS];
+</code></pre>
+
+<p>The prototypes (interfaces/declarations) of the (to be written) C functions that will be called from other modules will also be added there.</p>
+
+<p>Two of the functions that we used in the main loop also go into the main file &ldquo;ttt_main.c&rdquo;:</p>
+
+<pre><code class="language-c">void ttt_init_board(ttt_board_t f) {
+  /* emtpies every field */
+  int i;
+  for (i = 0; i &lt; NUMBER_OF_FIELDS; i++) {
+    f[i] = ' ';
+  }
+}
+
+char ttt_opponent(char symbol) {
+  switch (symbol)
+    {
+    case 'x': return 'o';
+    case 'o': return 'x';
+    default: return ' ';
+    }
+}
+</code></pre>
+
+<h3 id="input-and-output">Input &amp; Output</h3>
+
+<p>Since we use a text based interface our user interface is not so complicated and does not require as much of an effort (real user interfaces usually require a lot of work). But we still want to be lazy :D</p>
+
+<p>For example let&rsquo;s look at options to clear the screen:</p>
+
+<ul>
+<li>scroll down &rarr; window size has to be known (N)</li>
+<li>unix command <code>clear</code> &rarr; really slow and not portable (N)</li>
+<li>ANSI/VT100 escape sequence (control command) &rarr; also not 100% portable</li>
+<li>best solution: usage of portable libraries for example ncurses (or pdcurses for windows)</li>
+</ul>
+
+<p>To keep it simple we use the solution with the ANSI escape codes:</p>
+
+<pre><code class="language-C">/* Use VT100 ESC code to clean terminal */
+static void ttt_clean_terminal(void) {
+  printf(&quot;%c[2J&quot;, 27);
+}
+</code></pre>
+
+<p>Now to determine whether or not another game should be started we use <code>getchar()</code>, which returns the integer value (!) of the entered character.</p>
+
+<pre><code class="language-c">bool ttt_another_game() {
+  int input;
+  printf(&quot;Do you want to play another game [y/n] -&gt; &quot;);
+  input = getchar();
+  getchar(); // see notes below..
+  if ((input == 'Y') || (input == 'y') ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+</code></pre>
+
+<p>Slides: Es gibt allerdings ein Problem und zwar, dass das Terminal gibt eine Eingabe erst weiter, wenn <RETURN> gedrückt wurde. Das Zeichen &ldquo;⏎&rdquo; ist Teil des Eingabestroms. Lösung: Die Funktion wird zweimal aufgerufen und das zweite Ergebnis verworfen.</p>
+
+<p>I actually fail to see what is meant by the &ldquo;problem&rdquo; described above and how the second call to <code>getchar()</code> should help with that&hellip; I tested the code with and without it and got identical behaviour, but this is what stands in the slides.</p>
+
+<p>Now let&rsquo;s implement the function for inputting a move:</p>
+
+<pre><code class="language-c">int ttt_input_move(const ttt_board_t board) {
+  int input;
+  printf(&quot;\nPlease enter the number of the field you want to occupy (0 for abort)\n&quot;);
+
+  ttt_display_board(numberfield);
+
+  printf(&quot;Your move -&gt;&quot;);
+
+  do {
+    do {
+      input = getchar(); getchar(); // xD defuq :D
+    } while ((input &lt; '0') || input &gt; '9');
+
+    if (input == '0') return TTT_ABORT;
+
+    input = input - 1 // character to integer array index
+      } while (board[input] != ' ');
+
+  return input;
+}
+</code></pre>
+
+<p>To output/print the board we use a bit of ACII art :D</p>
+
+<pre><code class="language-C">void ttt_display_board(const ttt_board_t board) {
+  for (int i = 0; i &lt; 3; i++) {
+    if (i) { // not for first row
+      printf(&quot;\n   -+-+-&quot;);
+    }
+
+    printf(&quot;\n   &quot;);
+
+    for (int j = 0; j &lt; 3; i++) {
+      if (j) { // not for first column
+        printf(&quot;|&quot;);
+      }
+
+      printf(&quot;%c&quot;, board[3*i+j]);
+    }
+  }
+  printf(&quot;\n&quot;);
+}
+</code></pre>
+
+<h3 id="strategy-and-logic">Strategy &amp; Logic</h3>
+
+<p>Now we turn our attention to the strategy and logic behind the Computer&rsquo;s move. Let&rsquo;s start with a high level strategy that can be finetuned later on:</p>
+
+<pre><code class="language-C">// Computer's Move Version 1
+if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if can I win next time? then
+            prepare win
+        else
+            whatever
+        end if
+    end if
+end if
+</code></pre>
+
+<p>To choose the winning move we have to know which combinations are considered a win. There are exactly 8 different winning combinations</p>
+
+<p></knowledge-database/images/winning-combinations.png ></p>
+
+<p>Such combination is from now on called <em>triple</em>. A win with a triple is possible when two fields of a triple are occupied with the own symbol/mark and the third field is free/unoccupied. Therefore there are \(8*3=24\) combinations for <strong>&ldquo;can I win?&rdquo;</strong>.</p>
+
+<p>We could hardcode this:</p>
+
+<pre><code class="language-C">// winning_move (not final version)
+int winning_move(const ttt_board_t f, char s) {
+
+  /* triplet (0,1,2) */
+  if ((f[0] == s) &amp;&amp; (f[1] == s) &amp;&amp; (f[2] == ' ')) return 2;
+  if ((f[1] == s) &amp;&amp; (f[2] == s) &amp;&amp; (f[0] == ' ')) return 0;
+  if ((f[0] == s) &amp;&amp; (f[2] == s) &amp;&amp; (f[1] == ' ')) return 1;
+
+  /* ...
+     and so on
+     ...
+  */
+
+  /* triplet (2,4,6) */
+  if ((f[2] == s) &amp;&amp; (f[4] == s) &amp;&amp; (f[6] == ' ')) return 6;
+  if ((f[4] == s) &amp;&amp; (f[6] == s) &amp;&amp; (f[2] == ' ')) return 2;
+  if ((f[2] == s) &amp;&amp; (f[6] == s) &amp;&amp; (f[4] == ' ')) return 4;
+
+  return -1;
+}
+</code></pre>
+
+<p>Although this function is correct. It is rather convoluted, unneccessarily big and therefore error prone. Another idea is to use data and indirections:</p>
+
+<pre><code class="language-C">// winning_move (not final version)
+enum { NUMBER_TRIPLES = 8, NONE = -1}; // Number of winning triples, and code when no win possible
+typedef int ttt_triple_t[3];
+
+const ttt_triple_t triples[NUMBER_TRIPLES] =
+  {
+   {0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}
+  };
+
+int winning_move(const ttt_board_t f, char s) {
+
+  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+    for (int j = 0; j &lt; 3; ++j) {
+      /* always get the two other indices to check all possible combs in a triple
+         j = 0 -&gt; idx2=1, idx3=2
+         j = 1 -&gt; idx2=2, idx3=0
+         j = 2 -&gt; idx2=0, idx3=1
+       */
+      int idx2 = (j+1) % 3;
+      int idx3 = (j+2) % 3;
+
+      // check the fields specified in triples eg 3,4,5 in the game board f
+      if ((f[triples[i][j]] == ' ') &amp;&amp;
+          (f[triples[i][idx2]] == s) &amp;&amp;
+          (f[triples[i][idx3]] == s)) {
+        return triples[i];
+      }
+    }
+  }
+
+  return NONE;
+}
+</code></pre>
+
+<p>To determine whether or not the opponent can win (<em>can opponent win?</em>) we can use the same function:</p>
+
+<pre><code class="language-C">// can opponent win (not final version)
+int block_opponent_winning_move(const ttt_board_t f, char s) {
+  return winning_move(f, ttt_opponent(s));
+}
+</code></pre>
+
+<p>Looking at this, a structure becomes apparent: Multiple functions that evaluate the positions similar to <code>winning_move()</code> are needed. So let&rsquo;s formulate a more generic function to evaluate the board situation/positions.</p>
+
+<p>There are a few things that could be of interest in regards to the situation on the board:</p>
+
+<ul>
+<li>a triple has won &rarr; end the game</li>
+<li>a triple can lead to a win &rarr; <code>winning_move()</code></li>
+<li>a triple is &ldquo;mine&rdquo; (triple is blocked/marked by me) &rarr; can force an opponent to a certain move</li>
+<li>a triple is useless (because blocked by both)</li>
+<li>a triple is empty</li>
+</ul>
+
+<p>How can we assess different &ldquo;evaluations&rdquo; of situations via code when we calculate them via the same schema? Idea: Usage of prime numbers.</p>
+
+<p>Own symbol counts 2. Opponent symbol counts 5 and an empty field counts 0. Then the fields/counts of a triple are added:</p>
+
+<ul>
+<li>own win &rarr; &sum; = 6</li>
+<li>opponent win &rarr; &sum; = 15</li>
+<li>own win possible &rarr; &sum; = 4</li>
+<li>opponent win possible &rarr; &sum; = 10</li>
+<li>&ldquo;my&rdquo; triple &rarr; &sum; = 2</li>
+<li>&ldquo;opponent&rsquo;s&rdquo; triple &rarr; &sum; = 5</li>
+<li>empty triple &rarr; &sum; = 0</li>
+<li>useless triple &rarr; &sum; = 7 or &sum; = 9 or &sum; = 12</li>
+</ul>
+
+<p>The advantage of this approach is that each triple only needs to be evaluated once. The disadvantage is that we then have to search <em>in</em> the triple for the empty field afterwards, but we are willing to take this consequence because we only execute once.</p>
+
+<pre><code class="language-C">enum { NUMBER_TRIPLES = 8, I_KEY = 2, OPP_KEY = 5 };
+
+
+typedef int ttt_triple_t[3];
+
+const ttt_triple_t triples[NUMBER_TRIPLES] =
+  {
+   {0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}
+  };
+
+
+// Evaluate a triple in accordance to the marked fields and keys
+int ttt_evaluate(const ttt_board_t field, int tnr, int my_symbol) { // tnr = index of tuple we want to evaluate
+  int val = 0;
+  int opp_symbol = ttt_opponent(my_symbol);
+
+  for (int i = 0; i &lt; 3; ++i) {
+    if (field[triples[tnr][i]] == my_symbol) {
+      val += I_KEY;
+    } else if (field[triples[tnr][i] == opp_symbol]) {
+      val += OPP_KEY;
+    }
+  }
+
+  return val;
+}
+</code></pre>
+
+<p>Now the strategy of the computer under the use of <code>ttt_evaluate</code> would look like this:</p>
+
+<pre><code class="language-C">static int winning_move(const ttt_board_t board,
+                        const ttt_tripleval_t eval,
+                        int who) {
+  for (int i = 0; i &lt; NUMBER_TRIPLES, i++) {
+    if (eval[i] == who) { // find winning triple
+      for (int j = 0; j &lt; 3; j++) {
+        if (board[triples[i][j]] == ' ') { // find the empty place
+          return triples[i][j];
+        }
+      }
+    }
+  }
+  return NONE;
+}
+
+int ttt_calculate_move(const ttt_board_t board, char symbol) {
+  ttt_tripleval_t eval;
+
+  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+    eval[i] = ttt_evaluate(field, i, symbol);
+  }
+
+  int move = winning_move(board, eval, I_CANWIN);
+
+  if (move != NONE) {
+    return move;
+  }
+
+  move = winning_move(board, eval, OPP_CANWIN);
+
+  if (move != NONE) {
+    return move;
+  }
+
+  // slides: yet to implement
+
+  return NONE;
+}
+</code></pre>
+
+<p>If we think back to our high level strategy:</p>
+
+<pre><code class="language-C">if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if can I win next time? then
+            prepare win
+        else
+            whatever
+        end if
+    end if
+end if
+</code></pre>
+
+<p>How can we <em>prepare a win</em> for the next draw (Zug)?</p>
+
+<p>To prepare a win we should prepare two triples that can be won (fork). For example in this picture where the computer is X and the player (O) can only block 1 winning triple</p>
+
+<p></knowledge-database/images/fork.png ></p>
+
+<p>The &ldquo;common&rdquo; field (in both winning tuples, the X in the bottom left)  shall be called &ldquo;pivot field&rdquo;.</p>
+
+<p>To find a pivot field two conditions need to be fulfilled:</p>
+
+<ul>
+<li>there have to be two triples that are solely owned by the computer (count/score = 2)</li>
+<li>those two triples need to share an empty field</li>
+</ul>
+
+<p>Procedure:</p>
+
+<ul>
+<li>inspect all 8 win tuples and determine whether or not they are evaluated with 2</li>
+<li>every field that occurs in one of these tuples <strong>and is empty</strong> gets a point (+=1)</li>
+<li>a field that then has more than 1 point is a pivot field</li>
+</ul>
+
+<pre><code class="language-C">int forking_move(const ttt_playground_t field, const ttt_tripleval_t eval) {
+  int i, j = 0;
+  int singles[NUMBER_OF_FIELDS] = {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}; // used to count the &quot;points&quot;
+
+  for (i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+    if (eval[i] == I_KEY) {
+      for (j = 0; j &lt; 3; j++) {
+        if (field[triples[i][j]] == ' ') {
+          ++singles[triples[i][j]];
+        }
+      }
+    }
+  }
+
+  // iterate over singles and find one with &gt;1 points which is therefore pivot field
+  for (i = 0; i &lt; NUMBER_OF_FIELDS; ++i) {
+    if (singles[i] &gt;= 2) {
+      return i;
+    }
+  }
+
+  return NONE;
+}
+</code></pre>
+
+<h3 id="offense">Offense</h3>
+
+<p>Suppose that our strategic calculations up till now don&rsquo;t yield a move. In that case we should execute a logic that blocks possible wins (via pivot fields) from our opponent. Let&rsquo;s adapt our high level algorithm accordingly:</p>
+
+<pre><code class="language-C">if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if (can I fork?) then
+            choose pivot element
+        else
+            if (can opponent fork?) then
+                block opponent's pivot element
+            else
+                whatever
+            end if
+        end if
+    end if
+end if
+</code></pre>
+
+<p>The problem with that is however that the opponent could get into possession of two pivot elements. So as an alternative approach we choose to go the offensive route, trying to get into a situation where we&rsquo;re forcing our opponent to block a win of ourselves. <em>But</em> there&rsquo;s an important detail. We have to avoid that we &ldquo;gift&rdquo; our opponent a fork/pivot field by forcing him to block our win! See below:</p>
+
+<p></knowledge-database/images/opponent-fork.png ></p>
+
+<p>So we have to adapt the strategy once again:</p>
+
+<pre><code class="language-C">if (can I win?) then
+    choose winning move
+else
+    if (can opponent win?) then
+        block winning move
+    else
+        if (can I fork?) then
+            choose pivot element
+        else
+            if (can I force without opponent's fork?) then
+                choose forcing move
+            else
+                move to best available place
+            end if
+        end if
+    end if
+end if
+</code></pre>
+
+<p>To find our offensive move/draw we first inspect where we <strong>cannot</strong> go. The fields remaining from that analysis are pivot fields of our opponent. Then we search for triples where we own <strong>exactly one</strong> field (and where there&rsquo;s <strong>no</strong> opponent field) and score those fields with a score of 2. If there&rsquo;s an pivot element from our opponent in one of those triples choose that as the target for our next move, else just choose an empty field. Here&rsquo;s the C implementation:</p>
+
+<pre><code class="language-C">int forcing_move (const ttt_board_t board, const ttt_tripleval_t eval) {
+  int opp_singles[NUMBER_OF_FIELDS];
+  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+    if (eval[i] == OPP_KEY) {
+      for(int j = 0; j &lt; 3; j++) {
+        if (board[triples[i][j]] == ' ') {
+          ++opp_singles[triples[i][j]];
+        }
+      }
+    }
+  }
+
+  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+
+    if (eval[i] == I_KEY) {
+
+      if ((opp_singles[triples[i][0]] &lt;= 1) &amp;&amp;
+          (opp_singles[triples[i][1]] &lt;= 1) &amp;&amp;
+          ( opp_singles[triples[i][2]] &lt;= 1)) {
+
+        for (j = 0; j &lt; 3; j++) {
+          if (board[triples[i][j]] == ' ') {
+            return triples[i][j];
+          }
+        }
+
+      }
+
+      for (j =0; j &lt; 3; j++) {
+        if( opp_singles[triples[i][j]] &gt; 1) {
+          return triples[i][j];
+        }
+      }
+    }
+  }
+  return NONE ;
+}
+</code></pre>
+
+<p>In the case where we still don&rsquo;t have a field for the next draw, we <em>move to best available place</em> in accordance to our algorithm. Fields still have different value though (middle &rarr; corners &rarr; edges):</p>
+
+<pre><code class="language-C">int best_remaining_move(const ttt_board_t board) {
+  const int best[] = {4, 0, 2, 6, 8, 1, 3, 5, 7}; // fields sorted by decreasing value
+
+  for (int i = 0; i &lt; NUMBER_OF_FIELDS; ++i) {
+    if (board[best[i]] == ' ') // if available
+      return best[i];
+  }
+
+  return NONE; // should never happen
+}
+</code></pre>
+
+<p>By combining all these functions that we defined, we are now able to calculate the move:</p>
+
+<pre><code class="language-C">int ttt_calculate_move (const ttt_board_t field, char symbol) {
+  ttt_tripleval_t eval;
+
+  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+    eval[i] = evaluate(field, i, symbol);
+  }
+
+  int move = winning_move(field, eval, I_CANWIN);
+  if (move != NONE) return move;
+
+  move = winning_move(field, eval, OPP_CANWIN);
+  if (move != NONE) return move;
+
+  move = forking_move(field, eval);
+  if (move != NONE) return move;
+
+  move = forcing_move(field, eval);
+  if (move != NONE) return move;
+
+  return best_remaining_move(field);
+}
+</code></pre>
+
+<p>Since all the functionality is combined in <code>ttt_calculate_move</code> we only have to make this function available to the outside, and declare all the other, internal functions as static.</p>
+
+<p>The last function we will also globally need is <code>ttt_win_or_draw</code> to determine the end of a game:</p>
+
+<pre><code class="language-C">ttt_result_t ttt_won_or_draw ( const ttt_board_t board , char symbol) {
+  bool undecided = false;
+
+  for(int i = 0; i &lt; NUMBER_TRIPLES; i++) {
+
+    int state = evaluate(board, i, 'x');
+
+    switch (state) {
+    case I_WIN:
+      if (symbol == 'x') return TTT_PLAYER_WINS;
+      else return TTT_COMPUTER_WINS;
+    case OPP_WIN:
+      if (symbol == 'o') return TTT_PLAYER_WINS ;
+      else return TTT_COMPUTER_WINS;
+    case DRAW_I: /* falltrough */
+    case DRAW_OPP: /* fall trough */
+      break;
+    case DRAW: /* fall trough */
+    default:
+      undecided = true;
+    }
+  }
+
+  if (undecided) {
+    return TTT_UNDECIDED;
+  } else {
+    return TTT_DRAW;
+  }
+
+}
+</code></pre>
+
+<p>Aaaaaand that&rsquo;s it  ◕ ‿‿ ◕</p>
+
+<p>The whole tic tac toe code is in the appendix of the official script. And remember that this is just <em>one of many</em> ways on how to implement tic tac toe :)</p>
+
+<hr />
+
+<p>Sources: Wikipedia was heavily used for this post</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

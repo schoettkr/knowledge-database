@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Database Essentials - Lecture 03 // My New Hugo Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My New Hugo Site</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Database Essentials - Lecture 03</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 24, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          15 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>As we have learned in the last lecture there are three distinct phases of database design:</p>
+
+<ol>
+<li><strong>Conceptual Design</strong> (Lecture 02)
+
+<ul>
+<li>creation of a semantic data model that describes all important aspects from the requirement analysis</li>
+<li>primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way</li>
+</ul></li>
+<li><strong>Logical Design</strong> (this lecture until ???)
+
+<ul>
+<li>transforms the conceptual model into a concrete data model, which can be implemented in a database system</li>
+<li>the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware</li>
+</ul></li>
+<li><strong>Physical Design</strong> (Lecture ???)
+
+<ul>
+<li>describes the actual implementation of the logical data model</li>
+</ul></li>
+</ol>
+
+<p>In this lecture we turn or focus onto the <strong>logical design</strong></p>
+
+<h2 id="logical-data-model">Logical Data Model</h2>
+
+<p>Which <em>data model</em> is appropiate for the <em>logical design process</em>? The <strong>relational data model</strong> because it has a simple structure, an elegant theoretical foundation (formal description) and is economically relevant (about ~80% of database systems are based on the relational paradigm despite development/creation of alternatives).</p>
+
+<h3 id="relational-model">Relational Model</h3>
+
+<p>The relational model (RM) was introduced in a paper by E.F. Codd in 1970, which pertains as a milestone to this day. The most know prototype of this theoretical approach was created by IBM in 1975 (System R). The in the process developed query language SEQUEL was later standardized as SQL and is the most common query language for relational DBMS today.</p>
+
+<p>The first commercial systems were released at the end of the 70s for example Orcale (by Orcale Corporation) or DB2 (by IBM). Today there are hundreds of DBMS that are based on the relational data model.</p>
+
+<h3 id="relational-model-terms-and-definitions">Relational Model - Terms and Definitions</h3>
+
+<p>The relational model is based on the mathematical concept of a (finitary?) relation, which can be represented well as a table consisting of <em>rows</em> and <em>columns</em>.
+<strong>Rows</strong> represent <strong>different attributes</strong> of <strong>one entity</strong>. <strong>Columns</strong> represent the <strong>same attribute</strong> of <strong>all entities</strong>. An attribute corresponds with the attribute idea in the Entity Relationship Model (conceptual design) and is a property/characteristic of an entity.</p>
+
+<ul>
+<li><strong>domain</strong>
+
+<ul>
+<li>describes the domain(Wertebereich, aber Wertebereich ist eig codomain und definitionsmenge ist domain..) of an attribute</li>
+<li>this domain has to be <strong>atomic</strong> &rarr; cannot hold nested structures and/or sets</li>
+</ul></li>
+<li><strong>relation</strong>
+
+<ul>
+<li>a relation R is a subset of the cartesian product of \(n\) domains \(D_i\):</li>
+</ul></li>
+</ul>
+
+<p>\( R \subseteq D_1 * D_2 &hellip; * D_i &hellip; D_n \)</p>
+
+<ul>
+<li><strong>tuple</strong>
+
+<ul>
+<li>an element (row) of a relation is called &ldquo;tuple&rdquo;</li>
+</ul></li>
+<li><strong>degree</strong> (Grad)
+
+<ul>
+<li>the degree of a relation R describes the amount of attributes resp involved domains</li>
+<li>symbol: degree&reg; / Grad&reg;</li>
+</ul></li>
+<li><strong>cardinality</strong>
+
+<ul>
+<li>the cardinality of a relation R describes the amount of tuples (rows/elements) in R</li>
+<li>symbol: |R|</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/rel-model-example.png"/> 
+</figure>
+
+
+<h3 id="relations-and-schemas">Relations and Schemas</h3>
+
+<p><strong>database context</strong></p>
+
+<ul>
+<li>the mathematical definition of a relation just describes a set of tuples</li>
+<li>an attribute results from the position of the attribute domain when forming the product (Produktbildung)</li>
+<li>since database context attributes shall be comfortably identifiable via their name, we need an additional compononent to describe the relation</li>
+</ul>
+
+<p><strong>relation schema</strong></p>
+
+<ul>
+<li>includes the specification of the domains and sets of all domain names/identifiers (attributes) which are uniquely to a relation (umfasst die Spezifikation der Domänen und die Menge aller - innerhalb einer Relation eindeutigen - Domänenbezeichnungen (Attribute))</li>
+<li>describes the creation procedure (Bildungsvorschrift/Schablone) for a relation
+
+<ul>
+<li>a relation is a set of tuples that is created with the help of this procedure guide</li>
+</ul></li>
+<li>databases usually manage multiple tables, therefore multiple relation schemas have to be described - this is done through <strong>database schemas</strong></li>
+<li>when \(A_1, A_2, &hellip;, A_n\) are named attributes with the domains \(D_1, D_2, &hellip;, D_n\) then the set \({A_1:D_1, A_2:D_2, &hellip;, A_n:D_n}\) is the according relation schema</li>
+</ul>
+
+<p><strong>relation</strong></p>
+
+<ul>
+<li>a relation R that is defined by a relation schema S is a set of projection (Menge von Abbildungen) of attribute names onto their corresponding domains
+
+<ul>
+<li>that means R is a set of \(n\) tuples \(A_1:d_1, A_2:d_2, &hellip;, A_n:d_n\) with \(d_1 \in D_1, d_2 \in D_2, &hellip;, d_n \in D_n\)</li>
+</ul></li>
+<li>eg: Buch \(\subseteq\) string(isbn) x string(titel) x decimal(preis)</li>
+<li>in the common use of language the terms &ldquo;relation&rdquo; and &ldquo;relation schema&rdquo; are often used interchangebly
+
+<ul>
+<li>so the term &ldquo;relation&rdquo; may refer to the relation schema, the manifestation (Ausprägung) of a schema or both</li>
+</ul></li>
+<li>however it is important to keep both aspects in mind: <strong>a relation underlies (unterliegt) a schema and is itself an instance (Ausprägung) of that schema</strong></li>
+<li>one of Codds requirements was that domains are atomic &rarr; the term <strong>normalized relation</strong> clarifies this demand and usually &ldquo;relation&rdquo; is meant as &ldquo;normalized relation&rdquo;</li>
+</ul>
+
+<p><strong>database schema</strong></p>
+
+<ul>
+<li>when \(R_1, R_2, &hellip;, R_n\) are differently named relation schemas then the set \(R = {R_1, R_2, &hellip;, R_n}\) represents the relation database schema R</li>
+</ul>
+
+<h3 id="relations-and-tables">Relations and Tables</h3>
+
+<p>Tables are physical representation forms of relation with some differences:</p>
+
+<ul>
+<li><strong>finiteness</strong> (Endlichkeit)
+
+<ul>
+<li>tables are finite (because of limited ressources)</li>
+<li>relations can be infinite (as long as at least one domain is finite)</li>
+</ul></li>
+<li><strong>order</strong> (Sortierung)
+
+<ul>
+<li>tables are always sorted (even when the sorting criteria is not immediately obvious)</li>
+<li>in case of relations only the existence of a tuple is relevant, for existing tuples is doesnt matter at which position they are</li>
+</ul></li>
+<li><strong>duplications</strong> (Duplikate)
+
+<ul>
+<li>tables may hold entries multiple times / duplicates</li>
+<li>all tuples of a relation are pairwise distinct</li>
+</ul></li>
+</ul>
+
+<h3 id="alternative-terms">Alternative Terms</h3>
+
+<p>Especially when using a concrete DBMS alternative terms than those of the relation model are used that are closer to the physical representation (I also added those somewhere above by myself b4 reading this because it felt more natural :D ):</p>
+
+<ul>
+<li>a &ldquo;relation&rdquo; is often called a &ldquo;table&rdquo; or a &ldquo;file&rdquo;</li>
+<li>a &ldquo;tuple&rdquo; is often called a &ldquo;row&rdquo; or &ldquo;data record&rdquo;</li>
+<li>an &ldquo;attribute&rdquo; is often called a &ldquo;column&rdquo; or &ldquo;field&rdquo;</li>
+</ul>
+
+<h3 id="relational-keys">Relational Keys</h3>
+
+<p><strong>superkeys</strong></p>
+
+<ul>
+<li>a superkey represents a set of attributes which allows to differentiate all tuples of a relation</li>
+</ul>
+
+<p><strong>candidate keys</strong></p>
+
+<ul>
+<li>a canidate key is a superkey who&rsquo;se attribute set is minimal &rarr; that means no subset of his attributes allows the unique identification of all tuples of a relation (so viel attribute wie nötig um eindeutig zu unterscheiden/identifizieren und mit weniger attributen nicht möglich)</li>
+</ul>
+
+<p><strong>primary keys</strong></p>
+
+<ul>
+<li>a primary key is a canidate which is used primarily to distingiush tuples of a relation</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/relational-keys.png"/> 
+</figure>
+
+
+<h3 id="relational-model-relationships">Relational Model - Relationships</h3>
+
+<p>Relations can be associated with each other. To achieve that primary key attributes of the relation which should be associated is added to the relation which realizes that relationship. The primary key which was added to a relation for this purpose is called <strong>foreign key</strong>. Therefore <em>every foreign key has to be a primary key somewhere in a relation</em>.</p>
+
+<figure>
+    <img src="/knowledge-database/images/relationship-rm.png"/> 
+</figure>
+
+
+<h3 id="null-values">Null Values</h3>
+
+<p>For some tuples of a relation the concrete value of an attribute may not be known (yet) or it may be inappropiate to have an value existing there. To represent such cases the <strong>null value</strong> (null) exists which is a &ldquo;non-value&rdquo; alas &ldquo;unknown value&rdquo; (which shall not be confused with the value 0).</p>
+
+<p>Null values have to be treated differently than the usual attribute values. There&rsquo;s an trivalent (dreiwertig) logic to deal with them (more on that later).</p>
+
+<p>It should be a goal to minimize the cases where null values are needed although this is often not possible to realize. An excessive use should be avoided, this is especially true when representing relationships.</p>
+
+<h2 id="logical-design-erm-to-rm">Logical Design: ERM to RM</h2>
+
+<p>The task at hand is to translate the conceptual data model (ERM, entity relationship model) from the conceptual design phase into the logical data model (RM, relational model).</p>
+
+<p>The steps required are:</p>
+
+<ul>
+<li>derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)</li>
+<li>normalization of relations</li>
+<li>validation of relations in regards to user transactions</li>
+<li>verification of integrity conditions (Integritätsbedingungen)</li>
+<li>consultation (Rücksprache) with users</li>
+</ul>
+
+<h3 id="erm-to-rm">ERM to RM</h3>
+
+<p>Lets start with the conversion of strong entity types.</p>
+
+<h4 id="erm-to-rm-strong-enitity-types">ERM to RM - Strong Enitity Types</h4>
+
+<p>For each strong entity type we create a relation:</p>
+
+<ul>
+<li>simple attributes are just copied into the relation</li>
+<li>in case of compound attributes only the underlying/simple attributes are copied</li>
+<li>we&rsquo;ll later deal with derived and multivalent (see Lecture 02 for a reminder on this)</li>
+<li>the primary key of the entity type will also be the primary key of the relation
+
+<ul>
+<li>the primary key is designated via underlining</li>
+</ul></li>
+</ul>
+
+<p>Example of a Student relation: Student( <span class="underline">matrikelnum</span> , firstname, lastname, birthdate)</p>
+
+<h4 id="erm-to-rm-relationship-types">ERM to RM - Relationship Types</h4>
+
+<p>Create a new relation for each relationship types (not always required as we&rsquo;ll see later why/how):</p>
+
+<ul>
+<li>copy (if existing) relationship attributes to the new relation</li>
+<li>add the primary keys of the involved entity types and mark them as foreign keys
+
+<ul>
+<li>foreign keys are visualized via a <strong>bold font</strong> (in the exam you can draw a rectangle around because bold font is difficult)</li>
+</ul></li>
+<li>depending on the cardinality of the relationship type mark a <em>subset of the foreign keys</em> as the primary key of the relationship relation:
+
+<ul>
+<li><code>1:1</code> &rarr; one of the two foreign keys becomes the primary key</li>
+<li><code>1:N</code> &rarr; the foreign key which stems from the <code>N</code> side becomes the primary key</li>
+<li><code>N:M</code> &rarr; both foreign keys have to become primary keys</li>
+<li>complex relationships &rarr; sensible identification via complexity reduction (? lol)</li>
+</ul></li>
+</ul>
+
+<p>In general all relationship types can be expressed like this. The advantages are a simple and uniform procedure/strategy and the prevention of null values. However there are some disadvantages because there needs to be a relation created for each relationship type which can be a lot! Also some integrity conditions regarding cardinality may not be expressable adequately.</p>
+
+<p>So as an alternative relationship types of certain cardinalities can be expressed more efficient and adequately.</p>
+
+<ul>
+<li><p><code>N:M</code> Relationship</p>
+
+<p>The previous paragraph is not applicable for <code>N:M</code> relationship types. For those we always need a dedicated relation:
+<img src="/knowledge-database/images/n-to-m-relation.png" alt="" /></p>
+
+<p>In case of the other cardinalities we can use the alternative approach.</p></li>
+
+<li><p><code>1:N</code> Relationship</p>
+
+<p>We add the primary key of the entity type from the <code>1</code> side of the relationship as a foreign key to the entity type from the <code>N</code> side. If the relationship type has attributes, then those are also added to the entity relation from the <code>N</code> side of the relationship.
+<img src="/knowledge-database/images/one-to-n-inline-rel.png" alt="" /></p>
+
+<p>This is however optional and if for example null values are unacceptable then we have to express the relationship type in its own relationship relation.</p>
+
+<p>The above already kind of leads us to <em>optional</em> and <em>obligatory</em> participation of entities in relationships. As we&rsquo;ve seen above the primary key of the 1-side entity gets added as a foreign key to the n-side entity. This works perfectly as long as the participation of the 1-side entity is <em>obligatory</em> meaning that a n-side entity always gets a foreign key of a 1-side entity assigned since it is mandatory in that kind of relationship. However there might be other cases where a participation of 1-side entities might be completely <em>optional</em>. This would then lead to empty tuples / null values in some n-side entities. As already state above (after the picture) if this (null/empty values) are acceptable everything can be done as is, else there has to be created a designated relationship relation.</p>
+
+<div style="color:salmon;">
+  <div></div>
+
+<p><em>I find this is kind of hard to explain and therefore I split the general information (paragraphs around the picture) and the thing with the obligatory and optional participation. I advise to take a look at the lecture slides in regards to optional and obligatory participation. Don&rsquo;t know how important it is for the course tho, until now we did not speak about it really (in the tutorium for example).</em></p>
+
+<p></div></p></li>
+
+<li><p><code>1:1</code> Relationship</p>
+
+<p><strong>In case of an <em>obligatory</em> participation on <em>both</em> sides of the relationship:</strong>
+Since all entities of both entity types participate in the relationship, both entity relations and the relationship attributes could be merged into one relation. Then one of the two primary keys would serve as the primary key for the resulting relation. (<strong>Merging</strong>)</p>
+
+<p>However if both entity types are participating in other relationships as well (especially relationships with 1:N or N:M cardinalities) then it is not possible to merge them. In that case we add the primary key of one of the entity relations to the other entity relation as a foreign key (as well as the relationship attributes if existing). So to one relation you add the primary key of the other relation as a foreign key and all the relationship attributes. (<strong>Referencing</strong>)</p>
+
+<p>Example of merging the relationship as well as the entity relations:
+<img src="/knowledge-database/images/merge-relation.png" alt="" /></p>
+
+<p>Example of referencing (Variante A):
+<img src="/knowledge-database/images/ref-relation.png" alt="" /></p>
+
+<p>Example of referencing (Variante B):
+<img src="/knowledge-database/images/ref-relation-2.png" alt="" /></p>
+
+<p>\(\hookrightarrow\) in obligatory <code>1:1</code> the reference can be in either relation (see the above pictures)</p>
+
+<p><strong>In case of an <em>obligatory</em> participation on <em>one</em> side of the relationship:</strong>
+We add the primary key of the entity type that is <em>obligatory participating</em> <code>(1..1)</code> in the relationship as a foreign key to the entity type that is <em>optionally participating</em> (<code>0..1</code>). If the relationship type has attributes, then those are also added to the entity relation that is optionally participating in the relationship.
+<img src="/knowledge-database/images/one-to-one-optional.png" alt="" />
+Think about how this helps or why we do it this way. Look at the picture above, as you can see a faculty is always lead by exactly one professor, but a professor leads either 0 or 1 faculties. So if we would have put the faculty name as a foreign key into the professor relation then there can be null values in the case where a concrete professor entity does not lead a faculty. It is better like we did it! Because a faculty always has a professor that leads it (1..1 &rarr; obligatory) there won&rsquo;t be null values in the faculty relation since there <em>has</em> to be a <code>persNr</code> of an professor that leads it :) I hope this explanation helps.</p>
+
+<p><strong>In case of an <em>optional</em> participation on <em>both</em> sides of the relationship:</strong>
+When null values are not allowed / inacceptable a new relationship relation has to be created. In that relation the primary keys of the entity relations are added as foreign keys as well as potential relationship attributes. One of the foreignkeys also becomes the primary key of newly created relationship entity.</p>
+
+<p>When null values are allowed / acceptable then the primary key of one relation and potential relationship attributes are added to the other entity relation type. Theoretically it doesn&rsquo;t matter which entity relation is linked via it&rsquo;s primary key, however knowledge about the relationships and amount of data (rows for each relation) might help to pick the one where less null values would occur. If there is for example a entity relation type where we have two data sets forest 1 and forest 2 which are optionally managed by one ranger (Förster) at max (<code>0..1</code>). And we have 500 data sets of rangers which can optionally manage a forest (<code>0..1</code>) then it would make more sense to add the rangers PK as a foreign key to the forests instead of the other way round, since <code>forestID</code> as a foreign key in the ranger entity relation will be empty alot!</p>
+
+<p>Another example from the slides:
+<img src="/knowledge-database/images/one-to-one-both-optional.png" alt="" /></p></li>
+</ul>
+
+<h4 id="erm-to-rm-weak-entity-types">ERM to RM - Weak Entity Types</h4>
+
+<p>The expression of a weak entity type in the relational model always has to include the relationship to the superior strong entity type (übergeordneter starker Entitytyp). The following steps describe how do this, they are however optimizable:</p>
+
+<ul>
+<li>create a relation for every weak entity type in the ERM</li>
+<li>add the attributes to the relation in the same manner as you&rsquo;d do it for strong entity types</li>
+<li>then the primary key of the superior strong entity type is added as a foreign key</li>
+<li>the primary key of this new relation consists of the original primary key of the weak entity type (if existing) and the foreign key which stems from the super strong entity type</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/weak-entity-type.png"/> 
+</figure>
+
+
+<p>In case of an obligatory participation of all entities of both sides of a <code>1:1</code> relationship between a weak and a strong entity type, they entity types can be merged into one relation (as it is with obligatory <code>1:1</code> between strong ETs):
+<img src="/knowledge-database/images/weak-entity-merge.png" alt="" /></p>
+
+<h4 id="erm-to-rm-multivalent--mehrwertige--attributes">ERM to RM - Multivalent (Mehrwertige) Attributes</h4>
+
+<p>To translate multivalent attribute types into the relational model:</p>
+
+<ul>
+<li>create a relation \(R\) for the multivalent attribute \(A\) (empty relation with name of the attribute &ldquo;type&rdquo;)</li>
+<li>add the primary key \(K\) of the entity relation type and \(A\) to \(R\)</li>
+<li>mark \(K\) as a foreign key</li>
+<li>mark \(K\) and \(A\) as primary key of \(R\)
+
+<ul>
+<li>exception: if \(A\) itself serves as a primary key of the original entity type, then \(A\) is the primary key of \(R\)</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/multivalent-attr.png"/> 
+</figure>
+
+
+<hr />
+
+<p>Now remember the steps required to translate from ERM to RM from the beginning of this post:</p>
+
+<blockquote>
+<p>&ldquo;The steps required are:</p>
+
+<ul>
+<li>derive the relations from the attributes, entity types and relationship types of the ERM (ERM to RM)</li>
+<li>normalization of relations</li>
+<li>validation of relations in regards to user transactions</li>
+<li>verification of integrity conditions (Integritätsbedingungen)</li>
+<li>consultation (Rücksprache) with users&rdquo;</li>
+</ul>
+</blockquote>
+
+<p>At this point we covered the first step <em>yay</em>.</p>
+
+<p>The normalization of relations will be covered latter and now we&rsquo;ll shortly turn to integrity conditions.</p>
+
+<h3 id="integrity-conditions-and-data-integrity">Integrity Conditions and Data Integrity</h3>
+
+<p>Integrity conditions/rules describe a set of requirements to guarantee the consistency, the correctness and completeness of data. It is required to document all integrity rules in the logical design phase.</p>
+
+<p>The following kinds of integrity constraints have to be respected:</p>
+
+<ul>
+<li><strong>entity integrity</strong> &rarr; is an integrity rule which states that a primary key should be unique and not null</li>
+<li><strong>referential integrity</strong> &rarr; integrity rule that states any foreign-key value can only be null or the value of some existing primary key; it has to be specified what happens when changing operations on PKs and FKs occur</li>
+<li><strong>domain integrity</strong> &rarr; the value of an attribute has to be part of the (co)domain (Wertebereich) of its attribute domain</li>
+<li><strong>obligatory data</strong> &rarr; for some attributes a concrete value has to be specified for every tuple (eg key attributes)</li>
+<li><strong>cardinality and participation</strong> &rarr; rules that describe restrictions of relationships</li>
+<li><strong>other</strong> &rarr; rules that describe all other integrity constraints derived from requirements of the real world &ldquo;problem&rdquo;</li>
+</ul>
+
+<h3 id="interim-conclusion--zwischenfazit">Interim Conclusion (Zwischenfazit)</h3>
+
+<p>Since the expressiveness (Ausdruckskraft) of the relational model (logical design) is much lower than the epressiveness of a conceptual model (eg ERM), the conceptual model should always be done and done first! The meaning of things is often times not clear without additional knowledge from the conceptual design.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
