@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Computer Science I - Lecture 09
-.. slug: cs-I-09
-.. date: 2018-12-07
-.. tags: 
-.. category: university cs01
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Computer Science I - Lecture 09
+#+DATE: 2018-12-07
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/cs1
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 This post will be rather short (the CS posts usually are shorter anyway) because I already covered some of the stuff in the last post by accident because I wasn't able to attend the lecture and overestimated our progress.
 

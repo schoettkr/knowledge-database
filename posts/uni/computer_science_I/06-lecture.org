@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Computer Science I - Lecture 06
-.. slug: cs-I-06
-.. date: 2018-11-16
-.. tags: 
-.. category: university cs01
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Computer Science I - Lecture 06
+#+DATE: 2018-11-16
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/cs1
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).
 

@@ -1,14 +1,10 @@
-#+BEGIN_COMMENT
-.. title: Computer Science I - Lecture 08
-.. slug: cs-I-08
-.. date: 2018-11-30
-.. tags: 
-.. category: university cs01
-.. link: 
-.. description: 
-.. type: text
-.. has_math: true
-#+END_COMMENT
+#+TITLE: Computer Science I - Lecture 08
+#+DATE: 2018-11-30
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/cs1
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
 
 *Disclaimer:* /I was not able to attend this and next weeks lectures that take place on friday because I am required to attend some course at another university in another city. That means that the blog posts 7th and 8th Computer Science I lecture and the blog posts to the 14th and 16th Algorithms & Programming lecture is not supplemented by the notes I usually take during the lecture. Also the slides that I cover in each post may be a bit off from what was actually covered (especially in CS01 because I "guess" what we covered, while for A&P a classmate hands me the covered slides)/
 
