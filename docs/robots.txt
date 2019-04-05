@@ -1,4 +1,0 @@
-Sitemap: https://schoettkr.github.io/knowledge-database/sitemapindex.xml
-
-User-Agent: *
-Host: schoettkr.github.io
