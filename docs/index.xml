@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>schoettkr</title>
     <link>https://schoettkr.github.io/knowledge-database/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0100</lastBuildDate>

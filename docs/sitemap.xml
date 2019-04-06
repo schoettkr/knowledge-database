@@ -219,18 +219,18 @@
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/</loc>
-    <lastmod>2019-04-06T00:17:38+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
+    <lastmod>2019-04-06T00:17:38+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/</loc>
     <lastmod>2019-04-06T00:17:38+02:00</lastmod>
     <priority>0</priority>
   </url>

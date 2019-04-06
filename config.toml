@@ -1,7 +1,15 @@
 baseURL = "https://schoettkr.github.io/knowledge-database/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "schoettkr"
 theme = "m10c"
 publishDir = "docs"
+avatar = "avatar.png"
 [permalinks]
   uni-posts = "/:year/:month/:title/"
+[params]
+author = "Schoettkr"
+# description = "(Web) Developer from Germany currently pursuing a master's degree"
+description = "Software developer currently pursuing a master's degree in Germany"
+[[params.social]]
+  name = "github"
+  url = "https://github.com/schoettkr"
