@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Computer Science II - Lecture 01 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Computer Science II - Lecture 01</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 4, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">Uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/cs2/">Cs2</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>Computer Science II basically continues where CS I left off. Both lectures are based on a script that is split into two parts. These weeks lecture introduced pointers. Therefore I&rsquo;ll keep it short because there already a lot of posts for lectures regarding pointers on this page :) and at this point is not really a new or special topic.</p>
+
+<h2 id="pointers">Pointers</h2>
+
+<p>Every variable has a memory adress. In case of arrays the base adress of the variable points to the beginning of an array eg the <code>&amp;a</code> is the same adress as <code>&amp;a[0]</code>. Since arrays are stored consecutively in memory this is how the third (index = 2) element, or rather it adress, of an int array <code>integers</code> would be retrieved: <code>integers[0] + 2 * 4</code>, more generally that equals to <code>base_adress + index * (size of the underlying data type)</code>. See for yourself:</p>
+
+<pre><code class="language-C++">int integers[8] = {1,2,3,4,5,6,7,8};
+
+cout &lt;&lt; &amp;integers &lt;&lt; endl;
+cout &lt;&lt; &amp;(integers[0]) &lt;&lt; endl;
+cout &lt;&lt; &amp;integers[1] &lt;&lt; endl;
+</code></pre>
+
+<pre><code class="language-text">0x7ffe0c455460
+0x7ffe0c455460
+0x7ffe0c455464
+</code></pre>
+
+<p>As you can see the adress of the second element equals the adress of the first element + 4.
+Also when you increment a pointer eg <code>ptr++</code> it is <em>not</em> incremented by <strong>1</strong> but instead incremented by the size of (in bytes*) the data type of the value that the pointer currently points to.<br />
+So it is totally possible to compute the some of an integer array like this:</p>
+
+<pre><code class="language-C++">int b[4];
+int sum() {
+  int* ipointer;
+  int sum = 0;
+  // for (ipointer = &amp;b[0]; ipointer &lt; &amp;b[4]; ipointer++)
+  // alternatively:
+  for (ipointer = b; ipointer &lt; b+4; ipointer++)
+    sum += *ipointer;
+  return sum;
+}
+</code></pre>
+
+<p>Don&rsquo;t do this though, this is just for demonstration purposes :D. Note that while doing arithmetics with pointers and integers is valid, you cannot do crazy stuff like <code>ptr1 + ptr2</code> which is not a valid operation for the <code>+</code> operator and two pointer operands. Comparing pointers via <code>==</code> is totally valid though.<br />
+It is also possible to <em>dynamically</em> allocate &amp; delete memory for pointers (goes on the heap, which has to be managed by the programmer), like this:</p>
+
+<pre><code class="language-C++">myPointer = new int;
+delete myPointer; //freed memory
+myPointer = NULL; //pointed dangling ptr to NULL; same as 0
+</code></pre>
+
+<p>More on heap &amp; stack <a href="https://www.gribblelab.org/CBootCamp/7%5FMemory%5FStack%5Fvs%5FHeap.html">here</a>.<br />
+Pointers prove to be especially usefull when we want to for example &ldquo;pass&rdquo; an array to a function, want to &ldquo;return&rdquo; multiple things from a function (achieved by passing pointers and manipulating the values stored there), work with &ldquo;large&rdquo; data object or dynamic data structures.
+Here&rsquo;s an example to find the min and max value in an array via one function:</p>
+
+<pre><code class="language-text">1 | 4
+</code></pre>
+
+<p>It is also possible to use qualifiers like <code>const</code> or <code>volatile</code> when declaring pointers:</p>
+
+<pre><code class="language-C++">int i,j;
+int* const p = &amp;i;
+p = &amp;j; // Error
+*p = 11; // Allowed
+</code></pre>
+
+<p>*technically the size is measured in the number of char-sized storage units which is usually 8 bits and therefore 1 byte - but this is not guaruanteed; what is guaranteed is that <code>sizeof(char)</code> is always equal to 1 (more <a href="https://en.wikipedia.org/wiki/Sizeof">here</a>)</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

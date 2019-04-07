@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cs2 on schoettkr</title>
+    <link>https://schoettkr.github.io/knowledge-database/tags/cs2/</link>
+    <description>Recent content in Cs2 on schoettkr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/cs2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Computer Science II - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cs2/01-lecture/</link>
+      <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/01-lecture/</guid>
+      <description>Computer Science II basically continues where CS I left off. Both lectures are based on a script that is split into two parts. These weeks lecture introduced pointers. Therefore I&amp;rsquo;ll keep it short because there already a lot of posts for lectures regarding pointers on this page :) and at this point is not really a new or special topic.
+Pointers Every variable has a memory adress. In case of arrays the base adress of the variable points to the beginning of an array eg the &amp;amp;a is the same adress as &amp;amp;a[0].</description>
+    </item>
+    
+  </channel>
+</rss>
