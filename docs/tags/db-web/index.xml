@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Db Web on schoettkr</title>
+    <link>https://schoettkr.github.io/knowledge-database/tags/db-web/</link>
+    <description>Recent content in Db Web on schoettkr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/db-web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Databases &amp; Webtechnology - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</guid>
+      <description>Organizational Tutorial Dates: 09.04, 16.04, 23.04, 30.04, 07.05, 14.05, 20.05 (Project Start), 23.06 (Project End), 01.07-12.07 (Project Presentation ~15 minutes)
+IT-Architectures Throughout times there where different architectures favored or dominant. In the beginning there were mostly monolithic architectures. Mainframes are an example of monolithic architecture and are nowadays used primarily by large organizations for critical applications; bulk data processing, such as census, industry and consumer statistics, enterprise resource planning; and transaction processing.</description>
+    </item>
+    
+  </channel>
+</rss>

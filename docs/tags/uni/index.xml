@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uni on schoettkr</title>
+    <link>https://schoettkr.github.io/knowledge-database/tags/uni/</link>
+    <description>Recent content in Uni on schoettkr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/uni/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Databases &amp; Webtechnology - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</guid>
+      <description>Organizational Tutorial Dates: 09.04, 16.04, 23.04, 30.04, 07.05, 14.05, 20.05 (Project Start), 23.06 (Project End), 01.07-12.07 (Project Presentation ~15 minutes)
+IT-Architectures Throughout times there where different architectures favored or dominant. In the beginning there were mostly monolithic architectures. Mainframes are an example of monolithic architecture and are nowadays used primarily by large organizations for critical applications; bulk data processing, such as census, industry and consumer statistics, enterprise resource planning; and transaction processing.</description>
+    </item>
+    
+    <item>
+      <title>Computer Networks - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cn/01_lecture/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cn/01_lecture/</guid>
+      <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here  the main programming language used will be python  Fundamental literature:</description>
+    </item>
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</guid>
+      <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   </description>
+    </item>
+    
+    <item>
+      <title>Course Information Summer 19</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/org/sose19/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/org/sose19/</guid>
+      <description>Dates Okay so the new semester started (01.04.19). Here&amp;rsquo;s an overview of the most important stuff:
+Start Lecture Period: 01.04.2019 End Lecture Period: 12.07.2019
+Beginn of central examination period: 15.07.2019 End of central examination period: 10.08.2019
+Re-matriculation Period: 03.06. - 13.09.2019
+Courses and related links  Datastructures  Material Exam type: written  Operating Systems  Course Homepage Tutorial Page Exam type: written  Artificial Intelligence  Course Homepage Exam type: written  Security of Distributed Software  Course Homepage Tutorial Page Exam type: written (might be open-book)  Databases &amp;amp; Webtechniques  Material Exam type: project until 23.</description>
+    </item>
+    
+  </channel>
+</rss>

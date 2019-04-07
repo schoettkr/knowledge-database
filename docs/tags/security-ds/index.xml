@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security Ds on schoettkr</title>
+    <link>https://schoettkr.github.io/knowledge-database/tags/security-ds/</link>
+    <description>Recent content in Security Ds on schoettkr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/security-ds/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</guid>
+      <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   </description>
+    </item>
+    
+  </channel>
+</rss>
