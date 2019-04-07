@@ -2,7 +2,7 @@
 title = "Course Information Summer 19"
 author = ["eo shiru"]
 date = 2019-04-01
-lastmod = 2019-04-07T12:14:12+02:00
+lastmod = 2019-04-07T14:27:56+02:00
 tags = ["uni", "organizational"]
 draft = false
 +++
@@ -24,6 +24,7 @@ Re-matriculation Period: 03.06. - 13.09.2019
 
 -   Datastructures
     -   [Material](https://www.tu-chemnitz.de/informatik/DVS/lehre/DS/)
+    -   PVL: at least 50% of homework correct and handed in [here](https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/20079083525/CourseNode/99472489676373)
     -   Exam type: written
 -   Operating Systems
     -   [Course Homepage](https://osg.informatik.tu-chemnitz.de/lehre/os/index.php)

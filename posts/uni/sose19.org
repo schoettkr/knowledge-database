@@ -20,6 +20,7 @@ Re-matriculation Period: 03.06. - 13.09.2019
 ** Courses and related links
 - Datastructures
   - [[https://www.tu-chemnitz.de/informatik/DVS/lehre/DS/][Material]]
+  - PVL: at least 50% of homework correct and handed in [[https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/20079083525/CourseNode/99472489676373][here]]
   - Exam type: written
 - Operating Systems
   - [[https://osg.informatik.tu-chemnitz.de/lehre/os/index.php][Course Homepage]]
