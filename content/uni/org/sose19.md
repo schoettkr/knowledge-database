@@ -2,7 +2,7 @@
 title = "Course Information Summer 19"
 author = ["eo shiru"]
 date = 2019-04-01
-lastmod = 2019-04-06T14:55:40+02:00
+lastmod = 2019-04-07T12:14:12+02:00
 tags = ["uni", "organizational"]
 draft = false
 +++
@@ -36,7 +36,10 @@ Re-matriculation Period: 03.06. - 13.09.2019
     -   [Course Homepage](https://vsr.informatik.tu-chemnitz.de/edu/2019/svs/)
     -   [Tutorial Page](https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/19946340368/CourseNode/86516925533323)
     -   Exam type: written (might be open-book)
--   Databases & Webtechniques
+-   Media Encoding
+    -   [Course Homepage](https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/3190226946?4)
+    -   Exam type: written
+-   Databases & Webtechnology
     -   [Material](https://www.tu-chemnitz.de/informatik/DVS/lehre/DBW/)
     -   Exam type: project until 23.06 & presentation until 12.07
 -   Computer Networks
@@ -53,3 +56,5 @@ Re-matriculation Period: 03.06. - 13.09.2019
 Weekly calendar may be viewed [here.](https://www.tu-chemnitz.de/verwaltung/vlvz/meinplan/view/calendar)
 Alternatively here is an image:
 ![](/knowledge-database/images/week-schedule-ss19.png)
+
+-   don't forget that there's "Media Encoding" which is an online lecture.

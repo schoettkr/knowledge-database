@@ -32,6 +32,9 @@ Re-matriculation Period: 03.06. - 13.09.2019
   - [[https://vsr.informatik.tu-chemnitz.de/edu/2019/svs/][Course Homepage]]
   - [[https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/19946340368/CourseNode/86516925533323][Tutorial Page]]
   - Exam type: written (might be open-book)
+- Media Encoding
+  - [[https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/3190226946?4][Course Homepage]]
+  - Exam type: written
 - Databases & Webtechnology
   - [[https://www.tu-chemnitz.de/informatik/DVS/lehre/DBW/][Material]]
   - Exam type: project until 23.06 & presentation until 12.07
@@ -47,3 +50,5 @@ Re-matriculation Period: 03.06. - 13.09.2019
 Weekly calendar may be viewed [[https://www.tu-chemnitz.de/verwaltung/vlvz/meinplan/view/calendar][here.]]
 Alternatively here is an image:
 [[/knowledge-database/images/week-schedule-ss19.png]]
+
++ don't forget that there's "Media Encoding" which is an online lecture.
