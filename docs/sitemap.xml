@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/ds/01_lecture/</loc>
+    <lastmod>2019-04-07T20:19:22+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</loc>
     <lastmod>2019-04-07T10:03:42+02:00</lastmod>
   </url>
@@ -246,6 +251,12 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/cs2/</loc>
     <lastmod>2019-04-07T14:21:08+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/datastructures/</loc>
+    <lastmod>2019-04-07T20:19:22+02:00</lastmod>
     <priority>0</priority>
   </url>
   

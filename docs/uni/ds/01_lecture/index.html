@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Datastructures - Lecture 01 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Datastructures - Lecture 01</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 4, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">Uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/datastructures/">Datastructures</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>In the first lectures of the datastructures we&rsquo;ll repeat a few things that were already covered in the Algorithm &amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.</p>
+
+<h2 id="computational-effort-and-complexity">Computational Effort &amp; Complexity</h2>
+
+<p>To compare datastructures and algorithms in regards to efficiency we need a way to measure the &ldquo;cost&rdquo; / computational effort. This is done by counting the required computing &ldquo;steps&rdquo; (Rechenschritte). A computation step is generally an elementary operation like an arithmetic operation or accessing an memory adress. More complex operations may in cases also be seen as one computational step. Because it is known how long a step takes we also speak about <em>computation time</em>. The computation time does not only depends on the concrete algorithm or the used datastructure but also on the distribution of data. That&rsquo;s why we distinguish between the best, worst and average case. However the average computational time can only be stated if there&rsquo;s also a probality distribution which is known.<br />
+Let&rsquo;s compare the computing steps for two functions that compute the sum up to a certain number:</p>
+
+<pre><code class="language-C++">int sum1(int n) {
+  int s = 0;
+  for (int i = 1; i &lt;= n; i++)
+    s = s + i;
+  return s;
+}
+
+int sum2(int n) {
+  int s;
+  s = n * (n+1) / 2;
+  return s;
+}
+</code></pre>
+
+<p>The function <code>sum1</code> has 4n+3 (<code>n+2</code> assignments, <code>n</code> increments, <code>n+1</code> comparisons, <code>n</code> additions) steps while <code>sum2</code> executes 4 operations (1 assignment, 3 basic mathematical operations) which are independant of <code>n</code>.<br />
+Since we do not want to determine the computational time for a concrete set of data we aim to find a function which determines the computational time in regards to the amount of elements <em>n</em> in a data set. Furthermore the concrete function is kind of irrelevant as well. What we are really interested in, is the behaviour of this function, especially when the input data set and therefore <em>n</em> grows (asymptotic complexity). Doing so we can neglect/ignore constants and implementation details which are irrelevant to the function growth.</p>
+
+<h3 id="o-notation">O-Notation</h3>
+
+<p>O-Notation is used to express the efficiency of an algorithm separately from the computer architecture, programming language and compiler etc. The efficiency is usually judged in regards to time as well as space. There also posts from the algorithm lecture that cover O-Notation on here, so you might want to check those out. Here are common typical complexities:
+<img src="/knowledge-database/images/common-complexities.png" alt="" /></p>
+
+<h2 id="datastructure-array">Datastructure - Array</h2>
+
+<p>An array is a linear arrangement of elements of the same data type, which gets stored in a continuous block of memory. Accessing an element at a certain index is an operation which requires constant time O(1).</p>
+
+<h3 id="operations-on-arrays">Operations on Arrays</h3>
+
+<ul>
+<li>accessing each element has a complexity of O(n)</li>
+<li>searching/counting elements has a complexity of O(n)</li>
+</ul>
+
+<p><strong>Inserting an element into an array</strong> requires that all elements from the position of insertion <em>p</em> have to be pushed back by one position before the new element can be set to position <em>p</em>. One problem in this case however is what happens with the last element in the array? If the element is already at full capacity we loose the last element. One way to avoid this would be to create an overflow buffer (Ueberlaufpuffer) by creating a larger array in advance and tracking the real size of the array (count of elements) in a separate variable. Disadvantages of this are however that first of all storage is wasted and second of all there still would be no guarantee that the array fills up to its capacity at some point on time. In the bad case the insertion of a element into an array would require n Operations &rarr; complexity of O(n)  because all n elements would have to be moved.<br />
+<strong>Deleting an element from an array</strong> requires that all elements from the position of deletion <em>p</em> are moved/shifted forward by one position. Here&rsquo;s the problem that that there&rsquo;s an empty field at the end of array left over. Analogously to the insertion we could track the actual count of elements via a separate variable. This results however in wasting storage aswell and also includes the linear time complexity of O(n) in the worst case where every element has to be shifted.</p>
+
+<p>So arrays are not really suited for storing data where elements often have to be added/deleted. It is also not good optimal when it is unsorted and elements have to be searched for often times.</p>
+
+<h4 id="example-of-array-usage-sieve-of-eratosthenes">Example of array usage: Sieve of Eratosthenes</h4>
+
+<p>The Sieve of Eratosthenes is an algorithm to determine prime numbers. An array can be used to implement this algorithm:</p>
+
+<ol>
+<li>Write down (store) all natural numbers from 2 up to an arbitrary maximum number <code>m</code>. First all numbers are unmarked.</li>
+<li>Repeat the following:
+
+<ul>
+<li>take the smallest unmarked number <em>P</em> which has not been taken already (P is always a prime number btw)</li>
+<li>is \(P^2 &gt; m\) than the algorithms stops and all unnmarked numbers are the prime numbers from 2 to m</li>
+<li>mark all multiples of P, starting at \(P^2\)</li>
+</ul></li>
+</ol>
+
+<pre><code class="language-C++">void sieve_of_eratosthenes(int m) {
+  int arr[m] = {0};
+
+  for (int i = 2; i &lt; m; i++) {
+    for (int j = i*i; j &lt; m; j += i) {
+      arr[j-1] = 1;
+    }
+  }
+
+  for (int i = 1; i &lt; m; i++) {
+    if (!arr[i-1])
+      cout &lt;&lt; i &lt;&lt; &quot;  &quot;;
+  }
+}
+sieve_of_eratosthenes(50);
+</code></pre>
+
+<pre><code class="language-text">1  2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+</code></pre>
+
+<h4 id="example-of-array-usage-binary-search">Example of array usage: Binary Search</h4>
+
+<p>When the elements of an array are sorted we can speed up the search process significantly:</p>
+
+<ol>
+<li>Look at the whole array</li>
+<li>Compare the middle element with the search value
+
+<ul>
+<li>is the search value smaller than the middle element, continue looking at the part of the array that is to the left of the middle element</li>
+<li>is the search value larger than the middle element, continue looking at the part of the array that is to the right of the middle element</li>
+</ul></li>
+<li>Go to step 2 until the values match or the size of the part of the array to look at is 0</li>
+</ol>
+
+<p>Because the array is halved in each iteration the time complexity is only O(log n).</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
