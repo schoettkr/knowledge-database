@@ -2,7 +2,7 @@
 title = "Course Information Summer 19"
 author = ["eo shiru"]
 date = 2019-04-01
-lastmod = 2019-04-07T14:27:56+02:00
+lastmod = 2019-04-07T20:51:23+02:00
 tags = ["uni", "organizational"]
 draft = false
 +++
