@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ai on schoettkr</title>
+    <link>https://schoettkr.github.io/knowledge-database/tags/ai/</link>
+    <description>Recent content in Ai on schoettkr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Artificial Intelligence - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</guid>
+      <description>Not much to write about this lecture since it was mostly an introduction and generic overview of the field. The lecturant was also half an hour late so that didn&amp;rsquo;t help either. There won&amp;rsquo;t be posts about this course if the input does not increase :P</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,19 @@
     <description>Recent content in Uni on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Artificial Intelligence - Lecture 01</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</guid>
+      <description>Not much to write about this lecture since it was mostly an introduction and generic overview of the field. The lecturant was also half an hour late so that didn&amp;rsquo;t help either. There won&amp;rsquo;t be posts about this course if the input does not increase :P</description>
+    </item>
     
     <item>
       <title>Computer Science II - Lecture 01</title>
@@ -29,16 +38,6 @@ Pointers Every variable has a memory adress. In case of arrays the base adress o
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/01_lecture/</guid>
       <description>In the first lectures of the datastructures we&amp;rsquo;ll repeat a few things that were already covered in the Algorithm &amp;amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.
 Computational Effort &amp;amp; Complexity To compare datastructures and algorithms in regards to efficiency we need a way to measure the &amp;ldquo;cost&amp;rdquo; / computational effort. This is done by counting the required computing &amp;ldquo;steps&amp;rdquo; (Rechenschritte).</description>
-    </item>
-    
-    <item>
-      <title>Databases &amp; Webtechnology - Lecture 01</title>
-      <link>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</link>
-      <pubDate>Wed, 03 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</guid>
-      <description>Organizational Tutorial Dates: 09.04, 16.04, 23.04, 30.04, 07.05, 14.05, 20.05 (Project Start), 23.06 (Project End), 01.07-12.07 (Project Presentation ~15 minutes)
-IT-Architectures Throughout times there where different architectures favored or dominant. In the beginning there were mostly monolithic architectures. Mainframes are an example of monolithic architecture and are nowadays used primarily by large organizations for critical applications; bulk data processing, such as census, industry and consumer statistics, enterprise resource planning; and transaction processing.</description>
     </item>
     
     <item>

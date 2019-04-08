@@ -6,10 +6,19 @@
     <description>Recent content in Tags on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ai</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/ai/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/ai/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Computer Networks</title>
@@ -39,15 +48,6 @@
     </item>
     
     <item>
-      <title>Db Web</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/db-web/</link>
-      <pubDate>Wed, 03 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/db-web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Organizational</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/organizational/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0200</pubDate>
@@ -68,7 +68,7 @@
     <item>
       <title>Uni</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/uni/</link>
-      <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/tags/uni/</guid>
       <description></description>

@@ -1,0 +1,9 @@
+#+TITLE: Artificial Intelligence - Lecture 01
+#+DATE: 2019-04-08
+#+HUGO_TAGS: uni ai
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/dbw
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+Not much to write about this lecture since it was mostly an introduction and generic overview of the field. The lecturant was also half an hour late so that didn't help either. There won't be posts about this course if the input does not increase :P 
