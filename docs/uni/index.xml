@@ -21,6 +21,16 @@
     </item>
     
     <item>
+      <title>Datastructures - Lecture 02</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/ds/02_lecture/</link>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/ds/02_lecture/</guid>
+      <description>Continuing the repetition of some Algorithm lectures we went over pointers again.
+int* pi; // pointer to int value (undefined) char** ppc; // pointer to char pointer (= pointer that points to a pointer pointing to a char :D) int i = 1; pi = &amp;amp;i; // assign address of i to pi int x = 1, y; int* px = &amp;amp;x; // pointer to x int** ppx = &amp;amp;px; // pointer to pointer of x **ppx = *px + 1; // double deferencing via &#39;**&#39;, equals x = x + 1 y = **ppx + 2; // double deferencing via &#39;**&#39;, equals y = x + 2  Now onto some new stuff!</description>
+    </item>
+    
+    <item>
       <title>Computer Science II - Lecture 01</title>
       <link>https://schoettkr.github.io/knowledge-database/uni/cs2/01-lecture/</link>
       <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>

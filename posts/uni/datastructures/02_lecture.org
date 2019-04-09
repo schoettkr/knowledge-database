@@ -1,0 +1,116 @@
+#+TITLE: Datastructures - Lecture 02
+#+DATE: 2019-04-05
+#+HUGO_TAGS: uni datastructures
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/ds
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+Continuing the repetition of some Algorithm lectures we went over pointers again.
+#+BEGIN_SRC C++
+int* pi; // pointer to int value (undefined)
+char** ppc; // pointer to char pointer (= pointer that points to a pointer pointing to a char :D)
+
+int i = 1;
+pi = &i; // assign address of i to pi
+
+int x = 1, y;
+int* px = &x; // pointer to x
+int** ppx = &px; // pointer to pointer of x
+,**ppx = *px + 1; // double deferencing via '**', equals x = x + 1
+y = **ppx + 2; // double deferencing via '**', equals y = x + 2
+#+END_SRC
+
+Now onto some new stuff! Since we used bare C in Algorithms, we now introduce some C++ specific stuff.
+
+*** References
+When a variable is declared as reference, it becomes an alternative name for an existing variable (think alias). A variable can be declared as reference by putting ‘&’ after the type / before the identifier in a declaration, eg:
+#+BEGIN_SRC C++
+int A = 5;
+int& rA = A;
+int b = rA; // b = A = 5
+#+END_SRC
+
+*** Pointer to Structs
+In C++ a =typedef= is not needed, thus =struct node { int element; }= is automatically a new /type/ with a member called "element". Quite often structs are accessed/passed via pointers:
+#+BEGIN_SRC C++
+node n[2]; // array of 2 nodes
+node* pN = n; // pointer to n = currently pointing to base address of the array n
+(*pn).element = 1; // setting element = 1 for first element in the n array
+(*(pn + 1)).element = 2; // setting element = 2 for second element in the n array
+#+END_SRC
+Because of operator precedence =*= to dereference needs to be wrapped in parens when accessing a member of a struct. To avoid this kind of cumbersome syntax, there is the arrow operator =->= which enables the following:
+#+BEGIN_SRC C++
+pn->element = -1;
+(pn+1)->element = -2;
+#+END_SRC
+
+*** Reference Parameters
+Pass-by-reference means to pass the reference of an argument in the calling function to the corresponding formal parameter of the called function. The called function can modify the value of the argument by using its reference passed in. Usually or "by default" C++ passes by value.
+
+Pass-by-references is more efficient than pass-by-value, because it does not copy the arguments. The formal parameter is an alias for the argument. When the called function read or write the formal parameter, it is actually read or write the argument itself.
+
+The difference between pass-by-reference and pass-by-value is that modifications made to arguments passed in by reference in the called function have effect in the calling function, whereas modifications made to arguments passed in by value in the called function can not affect the calling function. Use pass-by-reference if you want to modify the argument value in the calling function. Otherwise, use pass-by-value to pass arguments.
+
+The difference between pass-by-reference and pass-by-pointer is that pointers can be NULL or reassigned whereas references cannot. Use pass-by-pointer if NULL is a valid parameter value or if you want to reassign the pointer. Otherwise, use constant or non-constant references to pass arguments.
+
+The following example shows how arguments are passed by reference. The reference parameters are initialized with the actual arguments when the function is called.
+#+BEGIN_SRC C++ :exports both :results print output
+#include <stdio.h>
+
+void swapnum(int &i, int &j) {
+  int temp = i;
+  i = j;
+  j = temp;
+}
+
+int main(void) {
+  int a = 10;
+  int b = 20;
+
+  swapnum(a, b);
+  printf("A is %d and B is %d\n", a, b);
+  return 0;
+}
+#+END_SRC
+[[http://www.fredosaurus.com/notes-cpp/functions/refparams.html][Here's]] a similar example.
+
+*** Memory Management in C++
+Many programmers coming to C++ from C are used to doing manual memory management, particularly for string manipulation this is not so needed in C++ like it is in C because there's a =string= type which does not need any explicit allocation. Apart from this miniature (:D) C++ also offers =new= and =delete= for manual memory management. Side note: /Modern C++ code tends to use new quite rarely, and delete very rarely. From a memory standpoint, the disadvantage is that "new" allocates memory off the heap while local objects allocate memory off the stack. Heap allocation times are much slower than allocations off the stack. However, there are still times when it's appropriate to do so, and a solid understanding of how these low-level facilities work can help with understanding of what normally happens "below the hood". There are even times when new and delete are too high-level, and we need to drop back to malloc and free -- but those situations are rare exceptions indeed./\\
+The basic idea of *new* and *delete* is simple: *new* creates an object of a given type and gives a pointer to it, and *delete* destroys an object created by new, given a pointer to it. The reason that new and delete exist in the language is that code often does not know when it is compiled exactly which objects it will need to create at runtime, or how many of them. Thus new and delete expressions allow for "dynamic" allocation of objects. Here's a short example:
+#+BEGIN_SRC C++
+int main() {
+  int * p = new int(3);
+  int * q = p;
+  delete q; // the same as delete p
+  return 0;
+}
+#+END_SRC
+For those familiar with the C programming language, =new= is a kind of "type-aware" version of =malloc=: the type of the expression =new int= is =int*=. Hence in C++ where a cast would be necessary to write =int * p = reinterpret_cast<int *>(malloc(sizeof *p));=, no cast is required when using =new=. Because =new= is type-aware, it can also initialize the newly created objects, calling constructors if appropriate. The example above uses this ability to initialize the int created to have the value 3. Another enhancement of new and delete compared to malloc and free is that the C++ standard provides a standard way to change how new and delete allocate memory; in C this is normally achieved using a non-standard technique known as /"interpositioning"/.
+
+Side note: All dynamically allocated memory must be released before the pointer (except smart pointers) pointing to it goes out of scope. So, if the memory is dynamically allocated for a variable within a function, the memory should be released within the function unless a pointer to it is returned or stored by that function.
+
+The basic new and delete operators are intended to allocate only a single object at a time; they are supplemented by =new[]= and =delete[]= for dynamically allocating entire arrays. Uses of =new[]= and =delete[]= are even rarer than uses of basic new and delete; usually a std::vector is a more convenient way to manage a dynamically allocated array.
+
+Note that when you dynamically allocate an array of objects, you must write delete[] when freeing it, not plain delete. Compilers cannot usually give an error if you get this wrong; most likely your code will crash when you run it. Also never free memory that was allocated by =new= with the /C/ =free= function! Since this may lead to corruption of data und expected results.
+
+When a call to delete[] runs, it first retrieves information stored by new[] describing how many elements are present in the dynamically allocated array, and then calls the destructor for each element before deallocating the memory. The actual address of the memory block that was allocated may differ from the value returned by new[] to allow room to store the number of elements; this is one reason why accidentally mixing the array form of new[] with the single-element form of delete may lead to crashes.
+
+Also after deleting pointer via =delete=, using most compilers the pointer variable will still point to the initially reserverd memory location, which can lead to extremely complicated and confusing consequences. That's why pointer variables should be explicit set to =NULL= or =0= after calling =delete= on them to avoid problems.\\
+This is how we'd dynamically create an array with the techniques we just learned:
+#+BEGIN_SRC C++
+int* a = NULL;   // Pointer to int, initialize to nothing.
+int n;           // Size needed for array
+cin >> n;        // Read in the size
+a = new int[n];  // Allocate n ints and save ptr in a.
+for (int i=0; i<n; i++) {
+    a[i] = 0;    // Initialize all elements to zero.
+}
+. . .  // Use a as a normal array
+delete [] a;  // When done, free memory pointed to by a.
+a = NULL;     // Clear a to prevent using invalid memory reference.
+#+END_SRC
+It isn't strictly necessary to reset a pointer to =NULL=, but it's very good practice so that any use of the pointer will produce an error. Attempts to use memory location 0, which is the normal default value of NULL, will be blocked by the way most operating systems allocate memory. Why doesn't =delete= reset the pointer? It does in some systems, but the language specification does not require it, so not all systems do it.
+
+*** Misc
+Useful C++ notes/summaries http://www.fredosaurus.com/notes-cpp/ as well as https://en.wikibooks.org/wiki/C%2B%2B_Programming
