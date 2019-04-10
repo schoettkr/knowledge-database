@@ -1,0 +1,479 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Operating Systems - Operating System Design // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Operating Systems - Operating System Design</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 4, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          12 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">Uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">Os</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>Complex systems consist of single component. Therefore the successfull design of a complex system requires knowledge about the variants and relations of the components.<br />
+There are some fundamental, reoccuring concepts when it comes to operating systems:</p>
+
+<ul>
+<li><strong>virtualization</strong>
+
+<ul>
+<li>refers to the act of creating a virtual (rather than actual) version of something, including virtual computer hardware platforms, storage devices, and computer network resources</li>
+<li>the things &ldquo;created&rdquo; by virtualizing often don&rsquo;t exist (or not the required amount or in the quality)</li>
+<li>for example relevant for processes, memory space</li>
+</ul></li>
+<li><strong>concurrency</strong>
+
+<ul>
+<li>ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the final outcome</li>
+<li>allows for parallel execution of the concurrent units, which can significantly improve overall speed of the execution in multi-processor and multi-core systems</li>
+<li>allows execution without a linear order</li>
+<li>for example relevant for threads, IPC, resource management</li>
+</ul></li>
+<li><strong>persistence</strong>
+
+<ul>
+<li>refers to the characteristic of state that outlives the process that created it</li>
+<li>achieved in practice by storing the state as data in computer data storage</li>
+<li>for example relevant for file systems, files, nonvolatile (persistent) storage</li>
+</ul></li>
+</ul>
+
+<p>This course will mainly deal with virtualization and concurrency since persistence is a subject of the database modules.</p>
+
+<h2 id="1-dot--design-principles">1.) Design Principles</h2>
+
+<p>Best practices apply to the general design of systems and discuss typical design principles. At times best practices are violated, which is acceptable if there&rsquo;s a justified reason.</p>
+
+<h3 id="1-dot-1-kiss">1.1) KISS</h3>
+
+<ul>
+<li>&ldquo;keep it small and simple&rdquo; or &ldquo;keep it simple, stupid&rdquo;</li>
+<li>Occam’s Razor: „Plurality should not be assumed without necessity.“
+
+<ul>
+<li>&rarr; <em>simpler solutions are more likely to be correct than complex ones</em></li>
+</ul></li>
+<li>A. Einstein: „Everything should be made as simple as possible, but no simpler&rdquo;</li>
+<li>Antoine de Saint-Exupery: „Perfection [in design] is achieved not when there is nothing more to add, but rather when there is nothing more to take away.“</li>
+</ul>
+
+<h3 id="1-dot-2-modularity">1.2) Modularity</h3>
+
+<p>A system is subdivides into smaller parts called modules, so that:</p>
+
+<ul>
+<li>the interaction <strong>in</strong> a module is <strong>high</strong></li>
+<li>the interaction <strong>between</strong> a module is <strong>low</strong></li>
+<li>the <strong>interfaces</strong> between modules is <strong>simple</strong></li>
+<li>the modules are managable in regards to their size and complexity</li>
+</ul>
+
+<p>Interaction refers to control flow and the exchange of data (information flow).
+Modularization can be applied hierarchially, for example in a tree-like organization of similar elements to create scalability and control of complexity. For example this windows device tree:<br />
+<img src="/knowledge-database/images/windows-device-tree.png" alt="" /></p>
+
+<h3 id="1-dot-3-layering">1.3) Layering</h3>
+
+<ul>
+<li>modularization via seperating the functionality a system into layers, where
+
+<ul>
+<li>more simple and universally functionality are layered at the bottom</li>
+<li>more complex and specific functionality is layered at the top</li>
+</ul></li>
+<li>each layer abstracts lower layers</li>
+<li>each layer has an interface that allows usage by higher layers</li>
+</ul>
+
+<p>Exemplified by the IP stack:<br />
+<img src="/knowledge-database/images/ip-stack-layers.png" alt="" /></p>
+
+<h3 id="1-dot-4-end-to-end-principle">1.4) End-to-end Principle</h3>
+
+<p>„A function of service should be carried out within a general layer only if it is needed by all clients of that layer and if it can be completely implemented in that layer.“<br />
+<img src="/knowledge-database/images/e2e-principle.png" alt="" /></p>
+
+<p>The &ldquo;hour-glass architecture&rdquo; visualizes this principle:<br />
+<img src="/knowledge-database/images/hourglass.png" alt="" /></p>
+
+<p>In case of the internet there could be different applications at the top of the hour glass (diversity) which all adhere to the internet protocol (uniformity) to connect to different networks (diversity). Transfering this to operating systems there could also be different applications at the top, a operating system API in the middle (uniform) and different hardware at the bottom (divers).<br />
+Take for example the Portable Operating System Interface (POSIX) which offers an uniform API for UNIX-like systems and allows compatibility and portability of eg source code.</p>
+
+<h3 id="1-dot-5-principle-of-separating-policy-and-mechanism">1.5) Principle of separating policy and mechanism</h3>
+
+<ul>
+<li>to have portable/neutral functionality sometimes compromises are needed</li>
+<li>for example lower layers may offer mechanisms or functionality which then has to be parameterized in higher layers with regards to the specific application
+
+<ul>
+<li>e.g <code>clone()</code> in Linux or <code>CreateProcess()</code> in Windows</li>
+</ul></li>
+<li>separation of policy (<em>what</em>) and mechanism (<em>how</em>)</li>
+</ul>
+
+<h3 id="1-dot-6-orthogonality">1.6) Orthogonality</h3>
+
+<ul>
+<li>functionalities of an operating systems should be independant of each other</li>
+<li>every component should incorporate orthogonal design criteria, which in this case means free combinability (freie Kombinierbarkeit)</li>
+</ul>
+
+<h3 id="1-dot-7-ssot-spot">1.7) SSOT / SPOT</h3>
+
+<ul>
+<li>SSOT = Single Source of Truth or SPOT = Single Point of Truth</li>
+<li>is the practice of structuring information models and associated data schema such that every data element is stored exactly once</li>
+<li>any possible linkages to this data element are by reference only</li>
+<li>code: functionality is implement once</li>
+<li>data: every information has only one represantion</li>
+<li>applying this principle prevents inconsistency</li>
+</ul>
+
+<h2 id="2-dot--architectures">2.) Architectures</h2>
+
+<p>An operating systems manages resources. Resources can be divided/allocated in regards to time and space (eg processor cycles, storage, bandwith). This management is generally just code as well. But is is some sort of special code because</p>
+
+<ul>
+<li>it has the priviliges to &ldquo;control&rdquo; applications and hardware</li>
+<li>arranges and assigns resources</li>
+</ul>
+
+<p>The interaction of \(\textbf{Prozessor - Operating System - Resource - Program}\) is realized via the concept of a <strong>&ldquo;process&rdquo;</strong>.<br />
+From a conceptual perspective processes do not exist in the hardware. Something has to provide processes and support their interaction. This &ldquo;something&rdquo; is called the <strong>kernel</strong> of an Operating System and it provides the essential <strong>infrastrucute for processes</strong>.<br />
+In a first, highlevel outline of operating systems we divide the address space (virtual memory) between the:</p>
+
+<ul>
+<li><strong>user space</strong> (slides: Prozessbereich?) for the running processes
+
+<ul>
+<li>area of virtual memory where user processes run</li>
+</ul></li>
+<li><strong>kernel space</strong> (Kernbereich)
+
+<ul>
+<li>area of virtual memory where kernel processes run</li>
+<li>offers infrastructure for processes</li>
+<li>OS, background processes, kernel extensions and most device driver run here</li>
+</ul></li>
+</ul>
+
+<p>Which exactly belongs in the kernel and what not depends on the architecture. For example in (some?) Windows the graphic system runs in the Kernel, in Linux usually not</p>
+
+<h3 id="2-dot-1-monolithic-system">2.1) Monolithic System</h3>
+
+<figure>
+    <img src="/knowledge-database/images/monolithic-os.png"/> 
+</figure>
+
+
+<ul>
+<li>no strict separation between applications and operating system</li>
+<li>operating system as a library</li>
+<li>suited for small static system (zB Echtzeitbereich)</li>
+</ul>
+
+<h3 id="2-dot-2-monolithic-kernel">2.2) Monolithic Kernel</h3>
+
+<figure>
+    <img src="/knowledge-database/images/monolithic-os-kernel.png"/> 
+</figure>
+
+
+<ul>
+<li>operating system architecture where the entire operating system is working in kernel space</li>
+<li>clear separation (protection) between applications and OS</li>
+<li>no protection between kernel components internally</li>
+<li>eg Windows till Windows ME and early Linux</li>
+<li>speed advantages over microkernel but also more error prone because a crash of a part crashes the whole system</li>
+</ul>
+
+<h3 id="2-dot-3-microkernel--μ-kernel">2.3) Microkernel (μ-kernel)</h3>
+
+<figure>
+    <img src="/knowledge-database/images/micro-kerlen.png"/> 
+</figure>
+
+
+<ul>
+<li>as the near-minimum amount of software that can provide the mechanisms needed to implement an operating system</li>
+<li>mechanisms include low-level address space management, thread management, and inter-process communication</li>
+<li>kernel contains as litte functionality as possible</li>
+<li>usually limited to the process concept and their interaction</li>
+<li>eg MkLinux, Minix</li>
+</ul>
+
+<h3 id="2-dot-4-hybrid-kernel">2.4) Hybrid Kernel</h3>
+
+<figure>
+    <img src="/knowledge-database/images/hybrid-kernel.png"/> 
+</figure>
+
+
+<ul>
+<li>operating system kernel architecture that attempts to combine aspects and benefits of microkernel and monolithic kernel architectures</li>
+<li>the idea behind a hybrid kernel is to have a kernel structure similar to that of a microkernel, but to implement that structure in the manner of a monolithic kernel</li>
+<li>in contrast to a microkernel, all (or nearly all) operating system services in a hybrid kernel are still in kernel space
+
+<ul>
+<li>so there&rsquo;re none of reliability benefits of having services in user space, as with microkernel
+
+<ul>
+<li>but just as with monolithic kernels there there is none of the performance overhead for message passing and context switching between kernel and user mode that normally comes with a microkernel</li>
+</ul></li>
+</ul></li>
+<li>eg Windows since NT/2000, MacOS</li>
+</ul>
+
+<h2 id="reference-architecture">Reference Architecture</h2>
+
+<p>A reference architecture in the field of software architecture provides a template solution for an architecture for a particular domain. It also provides a common vocabulary with which to discuss implementations, often with the aim to stress commonality. A reference architecture provides a template, often based on the generalization of a set of solutions. These solutions may have been generalized and structured for the depiction of one or more architecture structures based on the harvesting of a set of patterns that have been observed in a number of successful implementations.<br />
+In this course we will (primarily) view a microkernel architecture as a reference architecture which helps from a didactical point of view.<br />
+Side note: μ-kernel is a relative term, since the size of a micro kernel can vary a lot:</p>
+
+<ul>
+<li>Mach ≈ 350 kByte</li>
+<li>L4 ≈ 12 kByte</li>
+</ul>
+
+<p>Advantages of Microkernels</p>
+
+<ul>
+<li>clear API/interface facilitates a modular structure</li>
+<li>more security and stability</li>
+<li>improved flexibility and extensability</li>
+<li>improved verifiability of critical parts</li>
+</ul>
+
+<p>Disadvantages of Microkernels</p>
+
+<ul>
+<li>usually worse performance because of the required interaction between many processes</li>
+</ul>
+
+<h2 id="3-dot--prozessbereich--user-space">3.) Prozessbereich (User Space?)</h2>
+
+<p>Die erste grobe Gliederung zwischen Prozessbereich und Kernel wird nun beginnend mit dem Prozessbereich verfeinert:
+<img src="/knowledge-database/images/userspace.png" alt="" /></p>
+
+<h3 id="3-dot-1-flow-job-control--steuerung-des-ablaufs">3.1) Flow / job Control (Steuerung des Ablaufs)</h3>
+
+<p>In regards to control management there&rsquo;s typically a distinction between:</p>
+
+<ul>
+<li>operations (Bedienung) = interaction between human and system
+
+<ul>
+<li>OS commands</li>
+<li>User interfaces (GUI, shell)</li>
+<li>window systems (Fenstersysteme)</li>
+</ul></li>
+<li>handling (Abwicklung) = define complex jobs for the OS
+
+<ul>
+<li>batch jobs</li>
+<li>cron services</li>
+<li>shell via pipes, scripts etc</li>
+</ul></li>
+</ul>
+
+<p>PS this section in the slides really annoyed me because the used terms are so random and nonstandard..omg :D.. my favorite is probably &ldquo;Betriebsmittel&rdquo; DFQ :DDD bruh</p>
+
+<h3 id="3-dot-2-services--dienste">3.2) Services (Dienste)</h3>
+
+<p>Further refining the User Space section we come across so called Services. Since many application have similar &ldquo;wishes&rdquo; or demands for the infrastructure, there are standardized services of the OS. This is realized via the hourglass principle (see above). Diverse applications make use of uniform services to access diverse things. Sidenote: Service is a term most common in the windows world - a service and a daemon (unix) are generally the same thing.<br />
+Each service/daemon provides an interface or connects or at least has a context of a certain system ressource (BETRIEBSMITTEL :D), for example files, windows, network etc. We can distinguish between two kinds of system resources:</p>
+
+<ul>
+<li>real, physical system resources
+
+<ul>
+<li>serial interface, graphics card</li>
+</ul></li>
+<li>logical system resource
+
+<ul>
+<li>simplify and ease access</li>
+<li>eg files or windows</li>
+<li>are realized via physical resources</li>
+</ul></li>
+</ul>
+
+<p>There are also two aspects when it comes to system resources:</p>
+
+<ol>
+<li>resource management (who can use what and when?)</li>
+<li>actual resource usage (eg data transfer)</li>
+</ol>
+
+<figure>
+    <img src="/knowledge-database/images/resource-management.png"/> 
+</figure>
+
+
+<p>Here&rsquo;s an outline of the service layers:<br />
+<img src="/knowledge-database/images/service-layer.png" alt="" /><br />
+Every layer (eg operating / Betrieb) can be partitioned eg into Operation Device A, B (Betrieb Geraet A, B, ..) and so on. &ldquo;Aufwaertsaufrufe&rdquo; between layers are allowed as long as no cycles occur. Eg layer n-1 calls layer n which calls layer n+1. Layer n+1 then calls layer n but another &ldquo;part&rdquo; (partition, therefore no cycle) which calls another part in layer n which then again calls another part in layer n+1.<br />
+Inlining the just acquired knowledge about services and resources into the user space overview this is what we get:
+<img src="/knowledge-database/images/userspace-resources.png" alt="" /><br /></p>
+
+<h3 id="kernel-interface">Kernel Interface</h3>
+
+<p>Services are available via <em>system calls</em>, here are some UNIX examples of service interacting:</p>
+
+<ul>
+<li>resource: process
+
+<ul>
+<li><code>fork</code> start new process</li>
+<li><code>exit</code> end process</li>
+<li><code>kill</code> send signal to process</li>
+</ul></li>
+<li>resource: file
+
+<ul>
+<li><code>open</code> open file</li>
+<li><code>read/write</code> read from or write to file</li>
+<li><code>chmod</code> change access rights for file</li>
+</ul></li>
+
+<li><p>resource: directory</p>
+
+<ul>
+<li><code>mkdir</code> create directory</li>
+<li><code>unlink</code> remove file name</li>
+</ul>
+
+<p>A system call is the transition between the user space and the kernel space (slides: Infrastrukturbereich). Wiki: A system call is the programmatic way in which a computer program requests a service from the kernel of the operating system it is executed on. This may include hardware-related services (for example, accessing a hard disk drive), creation and execution of new processes, and communication with integral kernel services such as process scheduling. System calls provide an essential interface between a process and the operating system.<br /></p></li>
+</ul>
+
+<p>In most systems, system calls can only be made from userspace processes, while in some systems, OS/360 and successors for example, privileged system code also issues system calls.<br />
+So system calls offer a controlled way to interact with kernel services. However it is thinkable that there might be bogus or malicious usage of this (for example abuse of resources of other processes). Therefore the kernel has to be protected of ill usage - but the kernel itself is software. The answer to this problem comes from the layer system &rarr; delegation of most safety mesaures to the hardware.</p>
+
+<h4 id="processor-modes">Processor modes</h4>
+
+<p>In any modern operating system, the CPU is actually spending time in two very distinct modes:</p>
+
+<ul>
+<li><strong>kernel mode</strong>
+
+<ul>
+<li>the executing code has complete and unrestricted access to the underlying hardware</li>
+<li>code can execute any CPU instruction and reference any memory address</li>
+<li>generally reserved for the lowest-level, most trusted functions of the operating system</li>
+<li>crashes in kernel mode are catastrophic; they will halt the entire PC</li>
+</ul></li>
+<li><strong>user mode</strong>
+
+<ul>
+<li>the executing code has no ability to <em>directly</em> access hardware or reference memory</li>
+<li>code running in user mode must delegate to system APIs to access hardware or memory</li>
+<li>due to the protection afforded by this sort of isolation, crashes in user mode are always recoverable</li>
+<li>most of the code running on the computer will execute in user mode</li>
+</ul></li>
+</ul>
+
+<p>These two modes aren&rsquo;t mere labels - they&rsquo;re <strong>enforced</strong> by the <strong>CPU</strong>. Issuing a system call as well as returning from one triggers a mode change / transition between user and kernel mode (is a bit expensive). So a system call should implicate a mode transition in the hardware. A normal function call is not sufficient for this and the concrete implementation differs between hardware and operating systems but typically it goes like this:</p>
+
+<ol>
+<li>user program stores a parameter at a designated location (memory adress, register)</li>
+<li>program signals (via interrupt or special instruction) to the system that a system call should be performed</li>
+<li>signal leads to mode change</li>
+<li>OS evaluates the parameter and executes the appropriate service</li>
+<li>results are stored for the user program</li>
+<li>another mode change and the application / user program resumes its work</li>
+</ol>
+
+<p>x86 CPU hardware (intel) actually provides four protection rings: 0, 1, 2, and 3. Only rings 0 (Kernel) and 3 (User) are typically used because that&rsquo;s most compatible across different processor models:<br />
+<img src="/knowledge-database/images/protection-rings.png" alt="" /><br />
+The outer rings can only use something from inner rings in a controlled manner. Switching rings is performed via special instructions / interrupts / traps.</p>
+
+<p>Example of <code>read</code> in Unix:<br />
+<img src="/knowledge-database/images/read-unix.png" alt="" /><br /></p>
+
+<h2 id="4-dot--kernel--kernel-space">4.) Kernel (Kernel Space)</h2>
+
+<p>The kernel provides services via interfaces. A typical microkernel consists of the following layers:<br />
+<img src="/knowledge-database/images/microkernel-layers.png" alt="" /><br /></p>
+
+<p>In the following lectures we will inspects (parts of) these layers more deeply:</p>
+
+<ul>
+<li>kernel operations
+
+<ul>
+<li>process management</li>
+<li>process interactions (IPC)</li>
+</ul></li>
+<li>process switching operation
+
+<ul>
+<li>process abstraction</li>
+<li>scheduling</li>
+</ul></li>
+<li>data structure operations</li>
+<li>lists, trees, hashes</li>
+<li>kernel memory management
+
+<ul>
+<li>linear memory</li>
+</ul></li>
+</ul>
+
+<p>So inlining all of the mentioned layers into our two side/part OS microarchitecture this is what we get and will assume (if not stated otherwise) for the rest of the course / the following lectures:<br />
+<img src="/knowledge-database/images/user-kernel-space.png" alt="" /><br /></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
