@@ -2,7 +2,7 @@
 #+DATE: 2019-04-08
 #+HUGO_TAGS: uni ai
 #+HUGO_BASE_DIR: ../../../
-#+HUGO_SECTION: uni/dbw
+#+HUGO_SECTION: uni/ai
 #+HUGO_DRAFT: false
 #+HUGO_AUTO_SET_LASTMOD: true
 
