@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Databases &amp; Webtechnology - Lecture 02 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Databases &amp; Webtechnology - Lecture 02</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 10, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">Uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/db-web/">Db Web</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="client-webtechnology">Client Webtechnology</h2>
+
+<p>In the last lecture we looked at different kinds of server-side webtechnology. In this lecture we turn our attention to client-side webtechnology.</p>
+
+<h2 id="1-dot-persistent-code">1. Persistent Code</h2>
+
+<h3 id="1-dot-1-external-applications-tools--hilfsprogramme">1.1 External applications / Tools (Hilfsprogramme)</h3>
+
+<p>External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&rsquo;s not HTML. These applications run seperately from the browser and have their own functionality. Therefore they can also be executed without a browser. Examples of external applications would be Acrobat Reader, a Mail Client or a Torrent Downloader.<br />
+Basically the browser recieves some content and then has two options if the data cannot by displayed by the browser itself:</p>
+
+<ul>
+<li>start the application that is registered for the type which is noted in the MIME header of the file and let it process the data (eg display of PDFs back when browsers couldnt do that)</li>
+<li>the browser offers to download the data in form of a file</li>
+</ul>
+
+<p><strong>Pro:</strong></p>
+
+<ul>
+<li>universal
+
+<ul>
+<li>almost all data is processable in some way because external applications offer this functionality</li>
+</ul></li>
+<li>security
+
+<ul>
+<li>no interference with the browser or server, because external programs/processes are active</li>
+</ul></li>
+</ul>
+
+<p><strong>Contra:</strong></p>
+
+<ul>
+<li>platform dependence
+
+<ul>
+<li>applications need to be installed and executable from/on the client side</li>
+</ul></li>
+</ul>
+
+<h3 id="1-dot-2-plugins">1.2 Plugins</h3>
+
+<p>Plugins facilitate clientside support to process/display data which is otherwise not supported by the client itself. These plugins run (similar to BGI on serverside) in the same process space as the client (-&gt; the browser).<br />
+Plugins are separate programs that are loaded by the browser (client) and run in the same process, to process data that is not supported natively. These plugins run in the browser and are therefore not executable without the browser.</p>
+
+<ul>
+<li>client recieves data for which MIME type a plugin is registered</li>
+<li>client loads plugin that is registered for this MIME type</li>
+<li>plugin processes the data</li>
+</ul>
+
+<p><strong>Pro:</strong></p>
+
+<ul>
+<li>functionality
+
+<ul>
+<li>it is possible to process varying kinds of data</li>
+</ul></li>
+<li>convenience
+
+<ul>
+<li>plugins are installed once and require no care from then on (usually)</li>
+</ul></li>
+</ul>
+
+<p><strong>Contra:</strong></p>
+
+<ul>
+<li>platform dependence
+
+<ul>
+<li>plugins depend on the computer, OS and client (browser)</li>
+</ul></li>
+<li>security
+
+<ul>
+<li>plugins run in the same process as the client/browser (analogous to BGI)</li>
+</ul></li>
+</ul>
+
+<h2 id="2-dot-temporary-code">2. Temporary Code</h2>
+
+<h3 id="2-dot-1-scripts--interpreted-code">2.1 Scripts (interpreted code)</h3>
+
+<p>Scripts allow the execution of application logic from the internet client (browser) if the browser has an interpreter for that scripting language. The code gets for example embedded in the HTML document and the browser interprets and executes the instructions. Thus it is possible to integrate complex presentation logic into an HTML document.</p>
+
+<ul>
+<li><p>eg <code>&lt;script&gt;</code> tag for JavaScript</p>
+
+<pre><code class="language-html">&lt;script language=&quot;JavaScript&quot;&gt;
+  function makeCookie() {
+    document.cookie = Date()
+  }
+&lt;/script&gt;
+...
+&lt;body onLoad=&quot;makeCookie()&quot;
+</code></pre></li>
+
+<li><p>or <code>&lt;applet&gt;</code> for Java classes</p>
+
+<pre><code class="language-html">&lt;applet code = &quot;TicTacToe.class&quot;&gt;
+&lt;/applet&gt;
+</code></pre></li>
+</ul>
+
+<p><strong>Pro:</strong></p>
+
+<ul>
+<li>functionality
+
+<ul>
+<li>the browser functionalilty and capabilities can be extended a lot (eg setting Cookies, verify input etc)</li>
+</ul></li>
+<li>platform independence
+
+<ul>
+<li>no machine code (-&gt; ASCII)</li>
+</ul></li>
+<li>simplicity
+
+<ul>
+<li>easy and fast to write and (re)use with different apps</li>
+</ul></li>
+</ul>
+
+<p><strong>Contra:</strong></p>
+
+<ul>
+<li>version and language dependence
+
+<ul>
+<li>browsers may require a certain version of a language interpreter and respectively have an interpreter included at all (eg JavaVM for execution of applets)</li>
+</ul></li>
+</ul>
+
+<h3 id="2-dot-2-machine-code">2.2 Machine code</h3>
+
+<p>It is possible to execute machine code on the client side when there&rsquo;s an appropiate environment (temporarly but also permanently possible). With a special <code>&lt;object&gt;</code> tag the machine code object can be integrated with the appropiate environment into the clientside process. In the world of Microsoft this is usually realized via ActiveX by packaging machine code objects into activeX containers which are then loaded into Internet Explorer. As a diference to client scripts, the executable objects kind of bring their execution environment (Ausführungsumgebung) with them.</p>
+
+<ul>
+<li>client scans recieved data for <code>&lt;object&gt;</code> tags</li>
+<li>the code is loaded into the clients process and executed</li>
+</ul>
+
+<p><strong>Pro:</strong></p>
+
+<ul>
+<li>functionality
+
+<ul>
+<li>the browser functionality can be largely extended</li>
+</ul></li>
+<li>complexity
+
+<ul>
+<li>a comprehensive system concept together with the MS component model</li>
+</ul></li>
+</ul>
+
+<p><strong>Contra:</strong></p>
+
+<ul>
+<li>vendor dependence
+
+<ul>
+<li>browsers have to be ActiveX compatible wich is Microsoft technology</li>
+</ul></li>
+</ul>
+
+<h4 id="verdict-on-temporary-code">Verdict on temporary code</h4>
+
+<p>Scripts:</p>
+
+<ul>
+<li>suitable for eg reoccuring validations</li>
+<li>platform independant but clients need appropiate interpreter</li>
+<li>security is not always guaranteed despite the sandbox principle</li>
+</ul>
+
+<p>Machine code:</p>
+
+<ul>
+<li>can extend functionality just like scripts</li>
+<li>more complex because of the execution environment</li>
+<li>but more flexible because of the container principle (component model) where the clients only need a &ldquo;docking mechanism&rdquo; for the containers (COM) or alternatively plugin capabilities to include execution environments and dont require a language interpreter</li>
+</ul>
+
+<h3 id="3-dot-summary-of-clientside-webtechnologies">3. Summary of clientside webtechnologies</h3>
+
+<h4 id="3-dot-1-programming-effort">3.1 Programming Effort</h4>
+
+<ul>
+<li>no/low effort for plug-ins because these usually get bought (very high tho when written)</li>
+<li>medium for scripts (scope of application is usually not that large)</li>
+<li>very high for applets and machine code (complex technique and usually used for more complex application)</li>
+</ul>
+
+<h4 id="3-dot-2-os-dependence">3.2 OS Dependence</h4>
+
+<ul>
+<li>no for scripts because everything is done by the browser/client (of course browser depends on OS)</li>
+<li>low to mediuem for applets because they&rsquo;re mostly</li>
+</ul>
+
+<p>Okay&hellip;sorry I have to interrupt here. I stayed quiet until now but the information on the slides is such Bullshit at some points&hellip; I&rsquo;ll skip the rest of this great &ldquo;summary&rdquo; because I cba anymore to write this shit down :D. Here&rsquo;s another image from the slides<br /></p>
+
+<figure>
+    <img src="/knowledge-database/images/webtechnik-eignung.png"/> 
+</figure>
+
+
+<p>So since there is no written exam in this course but a practical project, I won&rsquo;t be posting about this course anymore since it is not worth it and the slides are just..no comment :D..</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

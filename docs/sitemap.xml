@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</loc>
-    <lastmod>2019-04-08T15:40:22+02:00</lastmod>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/dbw/02_lecture/</loc>
+    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/ai/01_lecture/</loc>
+    <lastmod>2019-04-11T13:41:14+02:00</lastmod>
   </url>
   
   <url>
@@ -30,6 +35,11 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/os/01_lecture/</loc>
     <lastmod>2019-04-10T10:05:57+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/dbw/01_lecture/</loc>
+    <lastmod>2019-04-11T13:41:19+02:00</lastmod>
   </url>
   
   <url>
@@ -254,7 +264,7 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/ai/</loc>
-    <lastmod>2019-04-08T15:40:22+02:00</lastmod>
+    <lastmod>2019-04-11T13:41:14+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -278,6 +288,12 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/datastructures/</loc>
     <lastmod>2019-04-09T22:46:06+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/db-web/</loc>
+    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -307,25 +323,25 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
-    <lastmod>2019-04-08T15:40:22+02:00</lastmod>
+    <lastmod>2019-04-11T13:41:14+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
-    <lastmod>2019-04-08T15:40:22+02:00</lastmod>
+    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
-    <lastmod>2019-04-08T15:40:22+02:00</lastmod>
+    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/</loc>
-    <lastmod>2019-04-08T15:40:22+02:00</lastmod>
+    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
     <priority>0</priority>
   </url>
   
