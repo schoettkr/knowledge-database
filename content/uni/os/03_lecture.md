@@ -2,7 +2,7 @@
 title = "Operating Systems - Processes"
 author = ["eo shiru"]
 date = 2019-04-11T10:00:00+02:00
-lastmod = 2019-04-24T16:43:43+02:00
+lastmod = 2019-04-24T17:40:38+02:00
 tags = ["uni", "os"]
 draft = false
 +++
@@ -520,4 +520,14 @@ Contra:
 
 ---
 
-Additional Resources: <http://faculty.salina.k-state.edu/tim/ossg/index.html>
+Additional Resources:
+
+-   <http://faculty.salina.k-state.edu/tim/ossg/index.html>
+-   <https://de.wikipedia.org/wiki/Prozess%5F(Informatik)>
+-   <https://en.wikipedia.org/wiki/Context%5Fswitch>
+-   <https://de.wikipedia.org/wiki/Register%5F(Computer)>
+-   <https://de.wikipedia.org/wiki/Registersatz>
+-   <https://en.wikipedia.org/wiki/Program%5Fcounter>
+-   <https://de.wikipedia.org/wiki/Multitasking>
+-   <https://en.wikipedia.org/wiki/Critical%5Fsection>
+-   <https://en.wikipedia.org/wiki/Preemption%5F(computing)>

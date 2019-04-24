@@ -433,4 +433,13 @@ Contra:
 
 
 -------
-Additional Resources: http://faculty.salina.k-state.edu/tim/ossg/index.html
+Additional Resources: 
+- http://faculty.salina.k-state.edu/tim/ossg/index.html
+- https://de.wikipedia.org/wiki/Prozess_(Informatik)
+- https://en.wikipedia.org/wiki/Context_switch
+- https://de.wikipedia.org/wiki/Register_(Computer)
+- https://de.wikipedia.org/wiki/Registersatz
+- https://en.wikipedia.org/wiki/Program_counter
+- https://de.wikipedia.org/wiki/Multitasking
+- https://en.wikipedia.org/wiki/Critical_section
+- https://en.wikipedia.org/wiki/Preemption_(computing)
