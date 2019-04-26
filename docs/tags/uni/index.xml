@@ -6,10 +6,41 @@
     <description>Recent content in Uni on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Processes</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/03_lecture/</link>
+      <pubDate>Thu, 11 Apr 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/03_lecture/</guid>
+      <description>The term process serves as an abstraction for the cooporation between CPU, OS, resources and programs. There are different definitions in the literature tho:
+ unit of an activity from the OS / programmers view executing instance of a program unit of protection (virtual) adress space collection of resources  Wiki: A process is the instance of a computer program that is being executed. It contains the program code and its activity.</description>
+    </item>
+    
+    <item>
+      <title>Computer Science II - Lecture 02</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</guid>
+      <description>After repeating some pointer basics in the last lecture, we continued with some more pointer stuff in this lecture and also introduced C++ references.
+Pointer to Functions What follows is an example that let&amp;rsquo;s the user choose a function which shall be executed (late binding, dynamic binding)
+#include &amp;lt;iostream&amp;gt; using namespace std; int max(int x, int y) { return x &amp;gt; y ? x : y; // ternary operator } int min(int x, int y) { return x &amp;lt; y ?</description>
+    </item>
+    
+    <item>
+      <title>Datastructures - Lecture 03</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</guid>
+      <description>Simple Sorting Algorithms In this lecture we&amp;rsquo;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
+ performance  amount of comparison operations amount of data shifts (Datenverschiebungen) we neglect unimportant details and only count comparison and shifts of the data that we want to sort  data distribution  some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)  decomposability (Zerlegbarkeit)  is the sorting algorithm suitable for external sorting?</description>
+    </item>
     
     <item>
       <title>Databases &amp; Webtechnology - Lecture 02</title>

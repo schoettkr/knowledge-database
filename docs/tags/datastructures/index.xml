@@ -6,10 +6,20 @@
     <description>Recent content in Datastructures on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/datastructures/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Datastructures - Lecture 03</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</guid>
+      <description>Simple Sorting Algorithms In this lecture we&amp;rsquo;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
+ performance  amount of comparison operations amount of data shifts (Datenverschiebungen) we neglect unimportant details and only count comparison and shifts of the data that we want to sort  data distribution  some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)  decomposability (Zerlegbarkeit)  is the sorting algorithm suitable for external sorting?</description>
+    </item>
     
     <item>
       <title>Datastructures - Lecture 02</title>

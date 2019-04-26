@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/os/03_lecture/</loc>
+    <lastmod>2019-04-24T17:40:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</loc>
+    <lastmod>2019-04-24T21:33:44+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</loc>
+    <lastmod>2019-04-25T12:17:32+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/dbw/02_lecture/</loc>
     <lastmod>2019-04-11T16:47:25+02:00</lastmod>
   </url>
@@ -281,13 +296,13 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/cs2/</loc>
-    <lastmod>2019-04-07T14:21:08+02:00</lastmod>
+    <lastmod>2019-04-24T21:33:44+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/datastructures/</loc>
-    <lastmod>2019-04-09T22:46:06+02:00</lastmod>
+    <lastmod>2019-04-25T12:17:32+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -311,7 +326,7 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/os/</loc>
-    <lastmod>2019-04-10T20:42:59+02:00</lastmod>
+    <lastmod>2019-04-24T17:40:38+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -329,19 +344,19 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
-    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
+    <lastmod>2019-04-24T17:40:38+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
-    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
+    <lastmod>2019-04-24T17:40:38+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/</loc>
-    <lastmod>2019-04-11T16:47:25+02:00</lastmod>
+    <lastmod>2019-04-24T17:40:38+02:00</lastmod>
     <priority>0</priority>
   </url>
   

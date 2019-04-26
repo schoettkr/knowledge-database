@@ -6,10 +6,20 @@
     <description>Recent content in Os on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Apr 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/os/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Processes</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/03_lecture/</link>
+      <pubDate>Thu, 11 Apr 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/03_lecture/</guid>
+      <description>The term process serves as an abstraction for the cooporation between CPU, OS, resources and programs. There are different definitions in the literature tho:
+ unit of an activity from the OS / programmers view executing instance of a program unit of protection (virtual) adress space collection of resources  Wiki: A process is the instance of a computer program that is being executed. It contains the program code and its activity.</description>
+    </item>
     
     <item>
       <title>Operating Systems - Operating System Design</title>

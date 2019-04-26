@@ -6,10 +6,21 @@
     <description>Recent content in Cs2 on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/cs2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Computer Science II - Lecture 02</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</guid>
+      <description>After repeating some pointer basics in the last lecture, we continued with some more pointer stuff in this lecture and also introduced C++ references.
+Pointer to Functions What follows is an example that let&amp;rsquo;s the user choose a function which shall be executed (late binding, dynamic binding)
+#include &amp;lt;iostream&amp;gt; using namespace std; int max(int x, int y) { return x &amp;gt; y ? x : y; // ternary operator } int min(int x, int y) { return x &amp;lt; y ?</description>
+    </item>
     
     <item>
       <title>Computer Science II - Lecture 01</title>
