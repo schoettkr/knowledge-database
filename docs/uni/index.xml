@@ -6,10 +6,19 @@
     <description>Recent content in Unis on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Apr 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Datastructures - Lecture 04</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/ds/04_lecture/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/ds/04_lecture/</guid>
+      <description>Efficient Sorting Algorithms 1. Quicksort For applying the quicksort sorting algorithm we first choose a (random) pivot element (Drehpunkt/Mittelpunkt/Achse). The array gets partitioned into two virtual arrays. Virtual in this case means that the original array and the allocated memory for the original array is used for virtual subarrays. The first &amp;ldquo;subarray&amp;rdquo; holds all elements which are less than or equal to the pivot element, the other &amp;ldquo;subarray&amp;rdquo; holds all elements which are greater than or equal to the pivot element.</description>
+    </item>
     
     <item>
       <title>Operating Systems - Processes</title>

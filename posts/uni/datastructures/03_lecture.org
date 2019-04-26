@@ -1,0 +1,108 @@
+#+TITLE: Datastructures - Lecture 03
+#+DATE: 2019-04-11
+#+HUGO_TAGS: uni datastructures
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/ds
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+* Simple Sorting Algorithms
+In this lecture we're looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
+- performance
+  - amount of comparison operations
+  - amount of data shifts (Datenverschiebungen)
+  - we neglect unimportant details and only count comparison and shifts of the data that we want to sort
+- data distribution
+  - some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand
+  - we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)
+- decomposability (Zerlegbarkeit)
+  - is the sorting algorithm suitable for external sorting?
+  - the data set might be too large to fit into memory \rightarrow sorting algorithm needs to be able to split the data, sort parts of it and then piece the whole sorted data set together
+  - so to be precise, data needs to be read from secondary storage (SSD, HDD) and written to secondary storage after it has been sorted
+    - since this is a lot slower/intensive than accessing primary storage, these operations should be minimized
+- data set
+  - size of the sorting criteria
+    - are the compared elements just simple integers then comparison operations can be executed comparably fast - however when the data set consists of more complex elements such as strings, vectors or compound data types then the required time to perform comparisons increases a lot 
+  - dataset size
+    - with an increasing data set size, the importance of shifting/moving elements increases as well
+- complexity
+  - the complexity of the underlying procedures matters in the decision regaring sorting algorithms
+  - sorting scenario 1: once in a while a few elements are sorted
+    - when self-implementing an easy 8 liner may be better than a more efficient but really complex and therefore errorprone sorting algorithm implementation
+    - make use of library functions
+  - sorting scenario 2: frequently a lot of elements are sorted
+    - when self-implementing the speed difference between a seemingly neglectable 10% faster algorithm should not be ignored
+    - library functions need be inspected in regards to their underlying sorting technique
+      
+** 1. Bubble Sort
+As most of the sorting algorithms require some functionality to swap elements in an array we prepare a function that does exactly this via call by reference:
+#+BEGIN_SRC C++
+void swap (TYPE& a, TYPE& b) {
+  TYPE temp = a;
+  a = b;
+  b = temp;
+}
+#+END_SRC
+Each call of =swap= performs 3 data operations.\\
+The bubble sort algorithms works by repeatedly swapping the adjacent elements if they are in wrong order until no more swaps have been performed iterating over the whole array. 
+#+BEGIN_SRC C++
+void bubbleSort (int data[], int n) {
+  bool swapped = true;
+  while (swapped) {
+    swapped = false;
+    for (int i = 1; i < n; i++) {
+      if (data[i-1] > data[i]) {
+        swapped = true;
+        swap(data[i-1], data[i]);
+      }
+    }
+  }
+}
+#+END_SRC
+In the best case scenario there are no swap operations and n-1 comparisons. In the worst case scenario we have as many swap operations as comparisons. In the average case there are $\frac{n(n-1)}{4}$ swaps.\\
+The bubble sort algorithm is pretty easy to understand and implement. It also does not require additional storage. The disadvantage is that the max complexity is O(n^2).
+** 2. Selection Sort
+1) Search the smallest element in the array and put it at the first place
+2) Build a new (virtual) array that works with all fields of the last array starting at the second place
+3) If the virtual array has at least two elements go to step 1
+
+#+BEGIN_SRC C++
+void selectionSort(int data[], int n) {
+  for (int i = 0; i < n - 1; i++) {
+    int min = i;
+    for (int j = i + 1; j < n; j++) {
+      if (data[j] < data[min]) {
+        min = j;
+      }
+    }
+    swap(data[min], data[i]);
+  }
+}
+#+END_SRC
+*Comparisons:*\\
+The outer loop is executed n-1 times and the inner loop runs n-1-i times for the i-th iteration.
+*Swap Operations:*\\
+Completely independent of the comparisons there are swap operations in every iteration of the outer loop. Every call to swap does 3 swap operations \rightarrow $3(n-1)$.
+
+The amount of comparisons and swaps stays constant, independent of any presorted input. The complexity of selection sort therefore only depends on the amount of elements and is O(n^2). Selection sort has constant space complexity O(1).
+
+** 3. Insertion Sort
+Look at all elements successively and insert each at its place in the already looked at elements.
+#+BEGIN_SRC C++
+void insertionSort(int data[], int n) {
+  int i, j;
+  for (i = 1; i < n; i++) {
+    int temp = data[i];
+    for (j = i; j > 0 && temp < data[j-1]; j--) {
+      data[j] = data[j-1];
+    }
+    data[j] = temp;
+  }
+}
+#+END_SRC
+In the best case scenario insertion sort needs n-1 comparisons and 2(n-1) swaps. In the worst case we have i comparisons per iteration of the outer loops so $\frac{n(n-1)}{2} comparisons all in all. For each comparison we have a swap and in addition to that the 2(n-1) swaps which are independant of the comparisons, which sums so \frac{n^2 + 3n - 4}{2}.\\
+Insertion Sorts only performs swap operations if necessary, when the array is already sorted there are no considerable swaps. However if an element is inserted, all other elements in the rest array have to be pushed back by 1 index. The complexity of insertion sort is O(n^2).
+
+* Summary
+All of these sorting algorithms have a general complexity of O(n^2). However bubble sort requires twice as much comparisons as insertion sort when the amount of swaps is the same and n-times more swaps than selection sort when the amount of comparisons is the same. So despite the same upper complexity boundary insertion and selection sort should be prefered over bubble sort.
+

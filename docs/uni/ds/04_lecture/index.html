@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Datastructures - Lecture 04 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Datastructures - Lecture 04</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 12, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          7 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">Uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/datastructures/">Datastructures</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="efficient-sorting-algorithms">Efficient Sorting Algorithms</h2>
+
+<h3 id="1-dot-quicksort">1. Quicksort</h3>
+
+<p>For applying the quicksort sorting algorithm we first choose a (random) <em>pivot element</em> (Drehpunkt/Mittelpunkt/Achse). The array gets partitioned into two virtual arrays. Virtual in this case means that the original array and the allocated memory for the original array is used for virtual subarrays. The <em>first &ldquo;subarray&rdquo;</em> holds all elements which are <em>less than or equal to</em> the pivot element, the other &ldquo;subarray&rdquo; holds all elements which are greater than or equal to the pivot element.<br />
+The resulting subarrays are then sorted recursively via the same technique:</p>
+
+<ul>
+<li>find pivot element</li>
+<li>divide out elements into two subarrays</li>
+</ul>
+
+<p>This process gets repeated until there are only arrays with one element (cannot be sorted any more). Now the original array is sorted.</p>
+
+<p><strong>Pseudocode</strong>:<br /></p>
+
+<pre><code class="language-python">Quicksort(array)
+  if (feldlaenge &gt; 1)
+    determine pivot element P
+    while (there unsorted elements in the array)
+      take out element E from array
+      if E &lt;= P
+        insert E in subarray1
+      if E &gt;= P
+        insert E in subarray2
+Quicksort(subarray1)
+Quicksort(subarray2)
+</code></pre>
+
+<p>The performance of the quicksort algorithm is linked to choosing the right pivot element. Quicksort works the best when every partitioning creates two subarrays of equal size. So we should choose a pivot element where the amount of smaller or equal elements is roughly the same as larger or equal element.</p>
+
+<p>Sidenote from slides: Die ambivalente Zuordnung von Elementen, die gleich dem Pivot-Element sind, in entweder das linke oder das rechte Teilfeld ist beabsichtigt und geschieht mit der Zielstellung, die beiden Teilfelder möglichst gleich groß zu halten</p>
+
+<p>There are different strategies to choosing the optimal pivot element. For now we&rsquo;ll go with the element in the middle of the (sub)array.<br />
+After choosing a pivot element the other elements have to be distributed into the subarrays. Because we don&rsquo;t want to create new arrays and don&rsquo;t know the boundaries of the subarrays yet, we swap elements in the array as long as there are elements on the left side of the pivot element wich are larger and elements on the right side of the pivot element which are smaller than the pivot element and then swap these.<br />
+We run in (aufeiander zu laufen) from both (sub)array boundaries until we find an element that violates the pivot criterion (leftside &amp; larger - rightside &amp; smaller) and swap these elements. We do this until the boundaries overlap.<br />
+The position at which the overlap happens, determines the boundary for both resulting subarrays, as well as the final position of the pivot element.</p>
+
+<p>We&rsquo;ll first define a swap helper function:</p>
+
+<pre><code class="language-C++">void swap (TYPE&amp; a, TYPE&amp; b) {
+  TYPE temp = a;
+  a = b;
+  b = temp;
+}
+</code></pre>
+
+<p>Vorbereitender Schritt: Da wir die endgültige Position des Pivot-Elements im Vorhinein nicht kennen, vertauschen wir vor der Aufteilung der Elemente noch das erste Feldelement mit dem Pivot-Element, müssen diese Vertauschung nach der Aufteilung aber wieder rückgängig machen. Dazu vertauschen wir das Element an der ermittelten Grenzposition zwischen den Teilfeldern mit dem in der ersten Feldkomponente zwischengelagerten Pivot-Element.</p>
+
+<pre><code class="language-C++">void quicksort(int data[], int first, int last) {
+  if ((last-first) &gt; 0) { // false if the array has only 1 element and is therefore already sorted
+    int lower = first+1, upper = last;
+    swap(data[first], data[(first+last)/2]); // take pivot element
+    int pivot = data[first];
+
+    while (lower &lt;= upper) {
+      while (data[lower] &lt; pivot &amp;&amp; lower &lt; last) {
+        lower++; // find an element that is larger than pivot in the left subarray
+      }
+      while (data[upper] &gt; pivot &amp;&amp; upper &gt; first) {
+        upper--; // find an element that is smaller than pivot in the right subarray
+      }
+
+      if (lower &lt; upper) {
+        swap(data[lower++], data[upper--]); // swap both elements
+      } else {
+        lower++;
+      }
+    }
+    swap(data[upper], data[first]); //  move pivot element back to its final position
+    quicksort(data, first, upper-1); // sort left subarray
+    quicksort(data, upper+1, last); // sort right subarray
+  }
+}
+</code></pre>
+
+<p>The performance of the quicksort algorithm is largely affected by the chosen pivot element and the hence resulting partitioning into subarrays. In the best case scenario each partitioning yields subarrays with an roughly equal size. This means an array with n elements becomes two subarrays with round about n/2 elements each and n/4 elements in the next step and so on. Therefore the amount of needed comparisons is equal to \(n + 2 \frac{n}{2} + 4 \frac{n}{4} + 8 \frac{n}{8} + &hellip; + n \frac{n}{n} = n (\log n + 1)\). This equals a runtime complexity of O(n log n).<br />
+In the worst case scenario the partitioning process reduces the original array size in each step by only one. This is the case when one subarray is empty and the other subarray contains all other elements except the pivot element. The amount of required comparisons then roughly equals \(n-2 + n-3 + n-4 + &hellip; + 1 = \sum_{i=1}^{n=2} i = (n-1)(n-2)\frac{1}{2}\). This results in a runtime complexity of O(n^2). The worst case occurs when we continously choose the largest or smallest element as a pivot element. When the array is already sorted and we choose the first element as a pivot element then this would be fatal because the complexity is O(n^2) eventhough the array is already sorted. To avoid this problem with arrays that may already be sorted, we can always choose the middle element (median) as the pivot element. The real median of unsorted elements can of course be computed. However this involves additional steps, that&rsquo;s why we can alternatively draw a sample of 3 elements eg the first, the middle and the last element and use the median of these 3 elements as our pivot element. Of course there are more methods of stabilizing the quicksort algorithm. In practice quicksort is usually the fastest sorting algorithm in most cases (except for small arrays with up to 10 elements - in that case insertionsort might be a better fit).</p>
+
+<h3 id="2-dot-mergesort">2. Mergesort</h3>
+
+<p>The basic idea behind the mergesort algorithm is merging two sorted halfes into one array. Since the halfes need to be sorted themselves, recursion is used until the subarrays/halves arrive at an array length of 1 where they&rsquo;re implicitly in a sorted state. Going up the recursion path these subarrays are then merged and sorted into bigger arrays.
+<strong>Pseudocode</strong>:<br /></p>
+
+<pre><code class="language-python">mergesort(data[])
+  if (data[] contains at least two elements)
+     mergesort(left subarr of data[])
+     mergesort(right subarr of data[])
+     merge(data[])
+</code></pre>
+
+<p>To work with only one array, we pass boundaries as parameters. Nevertheless to <em>merge</em> arrays we need a temporary array, with the dimension of the &ldquo;virtual array&rdquo; (specified via the passed parameters).</p>
+
+<pre><code class="language-python">merge(data[], first, last)
+  middle = (first + last) / 2;
+  pos = 0; left = first; right = middle + 1;
+  while (there still elements in either subarr)
+    if data[left] &lt; data[right] # element in left subarr is smaller than element in right subarr
+      temp[pos++] = data[left++]; # insert element of left subarr into temp[] at pos
+    else
+      temp[pos++] = data[right++]; # insert element of right subarr into temp[] at pos
+  copy temp into data
+</code></pre>
+
+<p><strong>Performance:</strong><br />
+<em>1. Data Movements:</em><br />
+In each call to <code>merge()</code> we copy all n elements of the respective array into the temporary array and back. So the amount of data movement operation is 2n. Since mergesort is defined recursively we can determine the count of all data move operations M(n) as the sum of of the movement operations of the two subarrays &rarr; M(n) = 2M(n/2) + 2n. The recursion stops at arrays with one element and there are no operations performed &rarr; M(1) = 0.<br />
+By inserting each recursion step and accounting for the halving of the array in each steps, the count of data movement operations can be calculated explicitly:
+\[M(n) = 2M(\frac{n}{2}) + 2n = 4M(\frac{n}{4}) + 4 n = 8M(\frac{n}{8}) + 6n = &hellip; = 2^i M (\frac{n}{2^i}) + 2in = 2n \log n \]</p>
+
+<p><em>2. Comparisons:</em><br />
+In each execution of <code>merge()</code> we compare the n elements of the current array and therefore perform n-1 comparisons. Analogously to the data movements the amount of comparisons can be explicitly calculated as
+\[C(n) = 2^i C(\frac{n}{2^i}) + in - 2^i -1 = n \log n - n + 1\]</p>
+
+<p>Mergesort has a runtime complexity of O(n log n).</p>
+
+<h3 id="quicksort-vs-mergesort">Quicksort vs Mergesort</h3>
+
+<p>Since mergesort has a time complexity of O(n log n) it is in the same complexity category as quicksort. Furthermore mergesort is suitable for external sorting. However merge sort requires additional memory to allow the merging of the sorted subarrays. Because of the additional data movement operations merge sort is in practice generally slower than quicksort.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
