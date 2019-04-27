@@ -6,10 +6,22 @@
     <description>Recent content in Unis on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 03</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/03_lecture/</link>
+      <pubDate>Tue, 16 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/03_lecture/</guid>
+      <description>Attacks on End Systems Attacks on end systems via
+ computer viruses computer worms trojan horses exploits cracking systems  might focus on
+ unsecured computer systems exploiting programming errors bad security measures weak passwords  Computer Virus
+ based on biological model infects resources of the host system to replicate itself malicious functions  load generation data corruption spying  various types  boot sector viruses file viruses macro viruses script viruses composites  self-defense mechanisms of viruses:  stealth modification cryptographic methods polymorphism retroviruses (against anti-virus programs)  passive distribution: by embedding into other programs and execution by the host system  Computer Worm</description>
+    </item>
     
     <item>
       <title>Datastructures - Lecture 04</title>
@@ -59,6 +71,17 @@ Pointer to Functions What follows is an example that let&amp;rsquo;s the user ch
       <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/02_lecture/</guid>
       <description>Client Webtechnology In the last lecture we looked at different kinds of server-side webtechnology. In this lecture we turn our attention to client-side webtechnology.
 1. Persistent Code 1.1 External applications / Tools (Hilfsprogramme) External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&amp;rsquo;s not HTML.</description>
+    </item>
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 02</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/02_lecture/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/02_lecture/</guid>
+      <description>We can achieve the security goals mentioned in the previours lecture by:
+ information encryption implementation of authentication establishment of security activities monitoring of the system or the network in terms of attacks continous reduction of weak spots etc    In the data transfer model (2 users communicating) we can distinguish for example two types of attackers:
+ passive attacker  can only listen, not manipulate confidentiality threat  active attacker  can listen, change, delete, duplicate threat for confidentiality, integrity and authenticity   The difference between authenticity and liability lays in the focus between internal and external relationships.</description>
     </item>
     
     <item>
@@ -148,7 +171,7 @@ IT-Architectures Throughout times there where different architectures favored or
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</guid>
       <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
- the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   </description>
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   Distributed Solution Design</description>
     </item>
     
     <item>
