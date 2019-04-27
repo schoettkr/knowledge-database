@@ -2,7 +2,7 @@
 title = "Security of Distributed Software - Lecture 02"
 author = ["eo shiru"]
 date = 2019-04-09
-lastmod = 2019-04-27T09:47:52+02:00
+lastmod = 2019-04-27T09:49:29+02:00
 tags = ["uni", "security-ds"]
 draft = false
 +++
@@ -56,21 +56,6 @@ Tapping cables or radio links
 -   Break-in by means of active components (trojans, worms, backdoors)
 -   Breaking cryptographic algorithms
 -   Social Engineering (e.g. through direct contact and social web)
-
-Attacks on end systems via
-
--   computer viruses
--   computer worms
--   trojan horses
--   exploits
--   cracking systems
-
-might focus on
-
--   unsecured computer systems
--   exploiting programming errors
--   bad security measures
--   weak passwords
 
 And some countermeasures:
 

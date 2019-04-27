@@ -52,19 +52,6 @@ Tapping cables or radio links
 - Breaking cryptographic algorithms
 - Social Engineering (e.g. through direct contact and social web)
   
-Attacks on end systems via
-- computer viruses
-- computer worms
-- trojan horses
-- exploits
-- cracking systems
-
-might focus on
-- unsecured computer systems
-- exploiting programming errors
-- bad security measures
-- weak passwords
-
 And some countermeasures:
 - Don‘t use self-made algorithms, use only proven algorithms that are considered safe!
 - Use safe methods and replace old algorithms
