@@ -2,7 +2,7 @@
 title = "Operating Systems - Operating System Design"
 author = ["eo shiru"]
 date = 2019-04-04T10:00:00+02:00
-lastmod = 2019-04-10T20:42:59+02:00
+lastmod = 2019-05-01T11:38:06+02:00
 tags = ["uni", "os"]
 draft = false
 +++
@@ -311,3 +311,26 @@ In the following lectures we will inspects (parts of) these layers more deeply:
 
 So inlining all of the mentioned layers into our two side/part OS microarchitecture this is what we get and will assume (if not stated otherwise) for the rest of the course / the following lectures:<br />
 ![](/knowledge-database/images/user-kernel-space.png)<br />
+
+Nice post from Reddit, explaining and summarising some things about kernels etc:
+Most advanced processors have a memory management unit (an MMU). It's a hardware mechanism for limiting the access a program has to memory (be it RAM, or memory-mapped hardware like graphics cards)
+
+It has at least two modes: a "kernel mode" accessed only by the OS, in which the entirety of memory is available; and a "user mode", accessed by regular programs, in which only data that belongs to this program is accessible. While running in user mode, the program won't be able to read data of another program, or anything like that. This is called virtual memory and is essential for providing security (otherwise, programs might be able to read data from other programs).
+
+Periodically, the processor will interrupt the program that is running and pass the control back to the operating system. This is called [preemptive multitasking](<http://en.wikipedia.org/wiki/Preemption%5F(computing)>. The OS can then pass control to some other program. The goal here is to give each program a fair share of processor time. This is accomplished by the process scheduler.
+
+[ Scheduling was a somewhat heated area on Linux some years ago, where Con Kolivas, an amateur kernel hacker, proposed schedulers (the rotating staircase deadline scheduler and later the brain fuck scheduler) that would improve interactivity, but his code was rejected and he left (but eventually a code with similar goals was incorporated in Linux) ]
+
+External events, like pressing the keyboard, moving the mouse, or receiving data from internet will interrupt the running program too, and pass control to the OS. Ever wondered why you can do ctrl+alt+del (or something like Alt+SysRQ+B in Linux) even if the computer seems to have hanged? While the graphical interface might be frozen, keyboard input is delivered by interrupts, and so if the processor is running it's always delivered. (sometimes the kernel is running out of memory or is having some other problem and has a hard time fulfilling user input - but it always gets delivered)
+
+Also, the OS shouldn't be doing a lot of work inside the interrupt. What if another interrupt fires while he is at it? To prevent that, it disables interrupts. Non-urgent bookkeeping code competes for processor time just like regular programs, and have to go through the scheduler.
+
+Anyway, what if a program wants to read a file, or send data to Internet? It must call a system call. It passes control to the operating system, which can do a lot of things. Sometimes, the program asked something that will take a while - for example, asked to read a file, which can take some milliseconds on a hard disk - and the kernel puts it to sleep. In the mean time it can then schedule other programs, and will wake the program when its data arrives.
+
+The other major thing that is missing are drivers. Processors can communicate with the external world by means of pins that carry electrical signals. Those pins are typically connected to a bus like PCI express, which in turn ultimately connects everything to the processor - keyboard, mouse, graphics card, sound card, etc. While the processor handles the low-level aspects of the bus (and the BIOS does some device initialization), it's the kernel that is in charge of actually receiving and sending data to each of those devices. It's sometimes done by using memory-mapping (so the kernel writes and reads from some pre-determined part of memory to communicate to a device), but there are other methods. Each device has its own way to talk with the processor, and the kernel has to learn it all. Because, what use would have a kernel if you couldn't display anything on a monitor and couldn't type with a keyboard?
+
+I didn't touch everything about operating systems, but anyway, interrupts and syscalls bring operating systems to live, drivers makes operating systems useful, and MMUs makes it much easier to write secure operating systems. While you can run Linux without a MMU, for such processors it's more common to write your code without an operating system (those processors are typically called microcontrollers and are used in embedded environments, like a children's toy or controlling an industrial plant - often you don't need a full blown operating system!)
+
+Anyway, notice that I used "operating system" and "kernel" interchangeable here. That's because in computer science terms, they are the same (and when you study operating systems at university, you normally are studying kernels. For example Modern Operating Systems, a classic book on the field, is about kernels). Also, where I said "processor" you could say "CPU".
+
+Another thing: there is also the idea that current kernels are too bloated, and we should move code from the kernel to user programs (what's left is a minimal kernel called microkernel). For example, you could write device drivers and filesystems as regular programs, instead of having them in the kernel. That way, if they crash, they won't bring the whole system down (the blue screen of death of Windows fame happened mostly due to crappy device drivers). The opposite of microkernel is monolithic kernel. The trouble with microkernels is that they are slower, sometimes considerably so.

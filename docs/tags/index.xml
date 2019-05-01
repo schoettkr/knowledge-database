@@ -6,22 +6,13 @@
     <description>Recent content in Tags on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Ai</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/ai/</link>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/ai/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Computer Networks</title>
+      <title>computer-networks</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/computer-networks/</link>
       <pubDate>Tue, 16 Apr 2019 00:00:00 +0200</pubDate>
       
@@ -30,52 +21,7 @@
     </item>
     
     <item>
-      <title>Cs2</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/cs2/</link>
-      <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/cs2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Datastructures</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/datastructures/</link>
-      <pubDate>Fri, 12 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/datastructures/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Db Web</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/db-web/</link>
-      <pubDate>Wed, 10 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/db-web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Organizational</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/organizational/</link>
-      <pubDate>Mon, 01 Apr 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/organizational/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Os</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/os/</link>
-      <pubDate>Thu, 11 Apr 2019 10:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/os/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Security Ds</title>
+      <title>security-ds</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/security-ds/</link>
       <pubDate>Tue, 16 Apr 2019 00:00:00 +0200</pubDate>
       
@@ -84,11 +30,65 @@
     </item>
     
     <item>
-      <title>Uni</title>
+      <title>uni</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/uni/</link>
       <pubDate>Tue, 16 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/tags/uni/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datastructures</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/datastructures/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/datastructures/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>os</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/os/</link>
+      <pubDate>Thu, 11 Apr 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/os/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cs2</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/cs2/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/cs2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>db-web</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/db-web/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/db-web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ai</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/ai/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>organizational</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/organizational/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/organizational/</guid>
       <description></description>
     </item>
     
