@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 18 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.3" />
+    <meta name="generator" content="Hugo 0.55.5" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -171,27 +171,35 @@ int main ()
   fclose(file);
   return 0;
 }
-</code></pre></li>
+</code></pre>
 
-<li><p>Characterwise data input &amp; output</p>
+<ul>
+<li>Characterwise data input &amp; output</li>
+</ul>
 
 <p>The function <code>int fgetc(FILE* stream)</code> returns the next character of a file <code>stream</code> as an integer. When there&rsquo;s no character left, the constant <code>EOF</code> (defined in <code>stdio.h</code>) is returned (same thing when an error occurs).</p>
 
-<p>The function <code>int fputc(int c, FILE* stream)</code> writes the integer coded character <code>c</code> into the file <code>stream</code> and returns the number of written characters (= 1). In case of an error it returns <code>EOF</code>.</p></li>
+<p>The function <code>int fputc(int c, FILE* stream)</code> writes the integer coded character <code>c</code> into the file <code>stream</code> and returns the number of written characters (= 1). In case of an error it returns <code>EOF</code>.</p>
 
-<li><p>String data input &amp; output</p>
+<ul>
+<li>String data input &amp; output</li>
+</ul>
 
 <p>The function <code>char* fgets(char restrict * str, int n, FILE* restrict stream)</code> reads maximally <code>n-1</code> characters from the file <code>stream</code> into a character string that is pointed to by <code>str</code>. The reading proccess ends with the end of the line/file or when an error occurs. When no error occurs <code>\0</code> is appended to <code>str</code> and the return value points to <code>str</code> (and to <code>NULL</code> if there was an error). Beware that it is the duty of the programmer to guarantee that <code>str</code> points to an character array which has a size of at least <code>n</code> characters.</p>
 
-<p>The function <code>int fputs(char* str, FILE* stream)</code> writes the (zero-terminated) string <code>str</code> into the file <code>stream</code>. It returns a non-negative integer on success and <code>EOF</code> in case of an error (old C versions used to return <code>0</code> on success)</p></li>
+<p>The function <code>int fputs(char* str, FILE* stream)</code> writes the (zero-terminated) string <code>str</code> into the file <code>stream</code>. It returns a non-negative integer on success and <code>EOF</code> in case of an error (old C versions used to return <code>0</code> on success)</p>
 
-<li><p>Binary data input &amp; output</p>
+<ul>
+<li>Binary data input &amp; output</li>
+</ul>
 
 <p>The function <code>size_t fread(void* ptr, size_t size, size_t nitems, FILE* stream)</code> reads <code>nitems</code> of size <code>size</code> from the file <code>stream</code> and stores them at the address specified by <code>ptr</code>. It then returns the count of successfully read items/elements (not bytes!).</p>
 
-<p>The function <code>size_t fwrite(void* ptr, size_t size, size_t nitems, FILE* stream)</code> writes <code>nitems</code> from the address <code>ptr</code> of size <code>size</code> in the file <code>stream</code> and also returns the count of successfully written elements/items (not bytes).</p></li>
+<p>The function <code>size_t fwrite(void* ptr, size_t size, size_t nitems, FILE* stream)</code> writes <code>nitems</code> from the address <code>ptr</code> of size <code>size</code> in the file <code>stream</code> and also returns the count of successfully written elements/items (not bytes).</p>
 
-<li><p>Standard Data Streams</p>
+<ul>
+<li>Standard Data Streams</li>
+</ul>
 
 <p>The standard input-output devices or the associated files or text streams, are referred to as:</p>
 

@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 03 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.3" />
+    <meta name="generator" content="Hugo 0.55.5" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -43,7 +43,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          4 min read
+          7 min read
         </div><div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
@@ -297,6 +297,162 @@
 <li>NBTEnum &rarr; search for other Windows systems</li>
 <li>Network Monitors &rarr; traffic analysis (eg TTL field observations) with respect to transparent bridges or dangers arising from IDS (not to attract attention)</li>
 </ul></li>
+<li>break-in via exploits for example toolkits, known exploits, zero day exploits</li>
+</ul>
+
+<h2 id="attacks-on-data-protocols">Attacks on Data / Protocols</h2>
+
+<p>Attacks on data / protocols via</p>
+
+<ul>
+<li>communication interception</li>
+<li>information manipulation</li>
+<li>attacks on protocols and core mechanism</li>
+</ul>
+
+<p>Focus on</p>
+
+<ul>
+<li>protocol weaknesses</li>
+<li>(lack of) communication weaknesses</li>
+<li>focus on manipulating algorithms and protocols (eg via &ldquo;contributions&rdquo; to open source projects)</li>
+</ul>
+
+<p>Examples:<br /></p>
+
+<h4 id="address-resolution-protocol">Address Resolution Protocol</h4>
+
+<ul>
+<li><strong>weak spot</strong> of the ARP is that it is a stateless protocol and therefore it is possible to send ARP-Replies without any requests</li>
+<li><strong>ARP-Spoofing</strong> (ARP Request Poisoning, ARP Poison Routing)
+
+<ul>
+<li>sniffing = collecting network information</li>
+<li>poisoning = targeted sending of wrong ARP packets (ARP-Reply with MAC adress for a foreign IP adress) to caches</li>
+<li>data packets will now be sent to attacker (address in the cache) which manipulates/spies on the data packets before they are sent to their real destination &rarr; this faked association enables Man-in-the-Middle attacks</li>
+</ul></li>
+<li>there are various tools to simplify attacks eg <a href="https://www.youtube.com/watch?v=RTXAUJ2yqCg">ARP Video</a></li>
+</ul>
+
+<h4 id="internet-protocol">Internet Protocol</h4>
+
+<ul>
+<li><strong>weak spot</strong> of the IP is that IP-packets are not protected</li>
+<li><strong>attack possibilities</strong>
+
+<ul>
+<li>reading IP-packets is simple</li>
+<li>checksums for integrity checking are not safe</li>
+<li>no protection of IP-PCI (IP Header) &rarr; manipulation of the protocol header is simple</li>
+<li>liability is unsafe because authenticity of addresses is not provable</li>
+</ul></li>
+<li><strong>attack scenario</strong>
+
+<ul>
+<li>target system is protected by IP-sender adresses (meaning that only systems with registered IP addresses are alllowed to use the target system)</li>
+<li>sniffing: spying of systems that exchange data with the target system (can also be encrypted)</li>
+<li>connecting to the target system using spied out IP addresses</li>
+</ul></li>
+</ul>
+
+<h4 id="transmission-control-protocol--tcp">Transmission Control Protocol (TCP)</h4>
+
+<ul>
+<li><strong>weak spot</strong> of TCP is that a large number of ACK messages leads to high load on the firewall control
+
+<ul>
+<li>ACK = acknowledgement; TCP is an acknowledgement-based protocol; when computers communicate via TCP, received packets are acknowledged by sending back a packet with ACK bit set</li>
+<li>some firewalls check incoming home network internet traffic insufficiently</li>
+<li>verification only for SYN messages, ACK messages are all let through
+
+<ul>
+<li>SYN =  synchronize message via which a client requests a connection from the server</li>
+<li>part of the TCP three-way handshake (SYN &rarr; SYN-ACK &rarr; ACK)</li>
+</ul></li>
+</ul></li>
+<li><strong>attack possibilities</strong>
+
+<ul>
+<li>incorrect ACKS are used to implement exploits (rather unproblematic)</li>
+<li>ACK-Tunneling = ACK is used for data transport &rarr; Trojan/Dropper acts as an ACK server and reads fata from the ACK (problematic)</li>
+<li><a href="https://en.wikipedia.org/wiki/SYN%5Fflood">SYN flood</a></li>
+</ul></li>
+<li><strong>attack scenario</strong>
+
+<ul>
+<li>intrusion into the target system and installation of an ACK server, which acts as a remote shell, or dropper, etc</li>
+<li>target system can now be controlled remotely (until replacement by a better firewall)</li>
+</ul></li>
+</ul>
+
+<h3 id="web-based-attacks">Web-based attacks</h3>
+
+<h4 id="sql-injection">SQL Injection</h4>
+
+<ul>
+<li><strong>weak spot</strong>: web applications that use databases and without properly sanatizing etc</li>
+<li><strong>attack possibilities</strong>
+
+<ul>
+<li>transfer of input data to the database (Form, URL) in a way to spy, change, delete data and execute code</li>
+</ul></li>
+</ul>
+
+<h4 id="xss-cross-site-scripting">XSS - Cross Site Scripting</h4>
+
+<ul>
+<li><strong>weak spot</strong>
+
+<ul>
+<li>possibility of executing script code in the browser</li>
+<li>weak user input checks</li>
+</ul></li>
+<li><strong>attack possibilities</strong>
+
+<ul>
+<li>identify weak spots in web applications (eg possible user input via URL) that allow execution of script code &rarr; construct URL with script code</li>
+<li>other variants possible: <img>, <iframe>, etc and send those to potential targets (spam)</li>
+</ul></li>
+<li><strong>attack scenario</strong>
+
+<ul>
+<li>URL queries cookies and sends those to a script &rarr; script calls the current application with the stolen cookies and uses the application under false idenity (session hijacking)</li>
+</ul></li>
+</ul>
+
+<h4 id="cross-site-request-forgery--csrf">Cross Site Request Forgery (CSRF)</h4>
+
+<ul>
+<li>exploiting the functionality of a web applications where victims have accounts</li>
+<li>submit manipulated HTTP requests
+
+<ul>
+<li>embed link or images in e-mails</li>
+<li>cross-site scripting</li>
+<li>malware</li>
+</ul></li>
+</ul>
+
+<h2 id="attacks-by-communication-partner">Attacks by Communication Partner</h2>
+
+<p>Attacks of the communication partner by</p>
+
+<ul>
+<li>faking identities</li>
+<li>trust abuse</li>
+<li>attacks on the data
+
+<ul>
+<li>listening to the data (sniffing)</li>
+<li>manipulating data</li>
+<li>decrypting protected data</li>
+</ul></li>
+</ul>
+
+<p>Focus on</p>
+
+<ul>
+<li>misuse of trust, eg social engineering</li>
 </ul>
 
     </div>

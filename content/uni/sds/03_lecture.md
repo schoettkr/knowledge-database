@@ -2,7 +2,7 @@
 title = "Security of Distributed Software - Lecture 03"
 author = ["eo shiru"]
 date = 2019-04-16
-lastmod = 2019-04-27T11:12:31+02:00
+lastmod = 2019-05-17T13:01:55+02:00
 tags = ["uni", "security-ds"]
 draft = false
 +++
@@ -173,3 +173,109 @@ Break-in
     -   GHDB &rarr; default SSID and passwords of WIFI routers
     -   NBTEnum &rarr; search for other Windows systems
     -   Network Monitors &rarr; traffic analysis (eg TTL field observations) with respect to transparent bridges or dangers arising from IDS (not to attract attention)
+-   break-in via exploits for example toolkits, known exploits, zero day exploits
+
+
+## Attacks on Data / Protocols {#attacks-on-data-protocols}
+
+Attacks on data / protocols via
+
+-   communication interception
+-   information manipulation
+-   attacks on protocols and core mechanism
+
+Focus on
+
+-   protocol weaknesses
+-   (lack of) communication weaknesses
+-   focus on manipulating algorithms and protocols (eg via "contributions" to open source projects)
+
+Examples:<br />
+
+
+#### Address Resolution Protocol {#address-resolution-protocol}
+
+-   **weak spot** of the ARP is that it is a stateless protocol and therefore it is possible to send ARP-Replies without any requests
+-   **ARP-Spoofing** (ARP Request Poisoning, ARP Poison Routing)
+    -   sniffing = collecting network information
+    -   poisoning = targeted sending of wrong ARP packets (ARP-Reply with MAC adress for a foreign IP adress) to caches
+    -   data packets will now be sent to attacker (address in the cache) which manipulates/spies on the data packets before they are sent to their real destination &rarr; this faked association enables Man-in-the-Middle attacks
+-   there are various tools to simplify attacks eg [ARP Video](https://www.youtube.com/watch?v=RTXAUJ2yqCg)
+
+
+#### Internet Protocol {#internet-protocol}
+
+-   **weak spot** of the IP is that IP-packets are not protected
+-   **attack possibilities**
+    -   reading IP-packets is simple
+    -   checksums for integrity checking are not safe
+    -   no protection of IP-PCI (IP Header) &rarr; manipulation of the protocol header is simple
+    -   liability is unsafe because authenticity of addresses is not provable
+-   **attack scenario**
+    -   target system is protected by IP-sender adresses (meaning that only systems with registered IP addresses are alllowed to use the target system)
+    -   sniffing: spying of systems that exchange data with the target system (can also be encrypted)
+    -   connecting to the target system using spied out IP addresses
+
+
+#### Transmission Control Protocol (TCP) {#transmission-control-protocol--tcp}
+
+-   **weak spot** of TCP is that a large number of ACK messages leads to high load on the firewall control
+    -   ACK = acknowledgement; TCP is an acknowledgement-based protocol; when computers communicate via TCP, received packets are acknowledged by sending back a packet with ACK bit set
+    -   some firewalls check incoming home network internet traffic insufficiently
+    -   verification only for SYN messages, ACK messages are all let through
+        -   SYN =  synchronize message via which a client requests a connection from the server
+        -   part of the TCP three-way handshake (SYN &rarr; SYN-ACK &rarr; ACK)
+-   **attack possibilities**
+    -   incorrect ACKS are used to implement exploits (rather unproblematic)
+    -   ACK-Tunneling = ACK is used for data transport &rarr; Trojan/Dropper acts as an ACK server and reads fata from the ACK (problematic)
+    -   [SYN flood](https://en.wikipedia.org/wiki/SYN%5Fflood)
+-   **attack scenario**
+    -   intrusion into the target system and installation of an ACK server, which acts as a remote shell, or dropper, etc
+    -   target system can now be controlled remotely (until replacement by a better firewall)
+
+
+### Web-based attacks {#web-based-attacks}
+
+
+#### SQL Injection {#sql-injection}
+
+-   **weak spot**: web applications that use databases and without properly sanatizing etc
+-   **attack possibilities**
+    -   transfer of input data to the database (Form, URL) in a way to spy, change, delete data and execute code
+
+
+#### XSS - Cross Site Scripting {#xss-cross-site-scripting}
+
+-   **weak spot**
+    -   possibility of executing script code in the browser
+    -   weak user input checks
+-   **attack possibilities**
+    -   identify weak spots in web applications (eg possible user input via URL) that allow execution of script code &rarr; construct URL with script code
+    -   other variants possible: <img>, <iframe>, etc and send those to potential targets (spam)
+-   **attack scenario**
+    -   URL queries cookies and sends those to a script &rarr; script calls the current application with the stolen cookies and uses the application under false idenity (session hijacking)
+
+
+#### Cross Site Request Forgery (CSRF) {#cross-site-request-forgery--csrf}
+
+-   exploiting the functionality of a web applications where victims have accounts
+-   submit manipulated HTTP requests
+    -   embed link or images in e-mails
+    -   cross-site scripting
+    -   malware
+
+
+## Attacks by Communication Partner {#attacks-by-communication-partner}
+
+Attacks of the communication partner by
+
+-   faking identities
+-   trust abuse
+-   attacks on the data
+    -   listening to the data (sniffing)
+    -   manipulating data
+    -   decrypting protected data
+
+Focus on
+
+-   misuse of trust, eg social engineering

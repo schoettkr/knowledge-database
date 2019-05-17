@@ -3,48 +3,53 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/sds/04_lecture/</loc>
+    <lastmod>2019-05-17T13:14:04+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
+    <lastmod>2019-05-17T13:14:04+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
+    <lastmod>2019-05-17T13:14:04+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/</loc>
+    <lastmod>2019-05-17T13:14:04+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/security-ds/</loc>
+    <lastmod>2019-05-17T13:14:04+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
+    <lastmod>2019-05-17T13:14:04+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/cn/03_lecture/</loc>
     <lastmod>2019-04-27T13:36:26+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/sds/03_lecture/</loc>
-    <lastmod>2019-04-27T11:12:31+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
-    <lastmod>2019-05-01T11:38:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
-    <lastmod>2019-05-01T11:38:06+02:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-05-17T13:01:55+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/computer-networks/</loc>
     <lastmod>2019-04-27T13:36:26+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/</loc>
-    <lastmod>2019-05-01T11:38:06+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/security-ds/</loc>
-    <lastmod>2019-04-27T11:12:31+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
-    <lastmod>2019-05-01T11:38:06+02:00</lastmod>
     <priority>0</priority>
   </url>
   
