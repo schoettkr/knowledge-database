@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Computer Networks - Lecture 04 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Computer Networks - Lecture 04</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 30, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/computer-networks/">computer-networks</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="signals-and-bit-transmission">Signals and Bit Transmission</h2>
+
+<h3 id="introduction">Introduction</h3>
+
+<p><strong>Data Transmission - Bit to Signal to Bit</strong>:<br /></p>
+
+<ul>
+<li>sits directly on the physical medium (eg cable)</li>
+<li>Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model</li>
+<li>transmission of unstructured bit sequences via physical medium</li>
+<li>data transmission entails the physical connection and the conversion between data &lt;-&gt; signals</li>
+<li>there are norms for interfaces (especially for physical interfaces)</li>
+</ul>
+
+<h3 id="signals-and-their-parameters">Signals and their Parameters</h3>
+
+<p>A <strong>signal</strong> is a state or a modification of material systems. Such systems can be for example of acoustic, electromagnetic or biochemical nature. In a first state, a signal is considered as a pure information carrier without any symbolic character. This distinction of information and symbol will be of later interest for the coding of information. It enables the technical analysis of information without their interpretation in a symbolic form. For the intuitive understanding, this is an elementary hurdle: auditory signals, thus acoustic waves, are instantaneously perceived by humans on a symbolic layer (i.e. language). For the encoding however, this layer can here be regarded as a secondary meaning.<br />
+<strong>Signal parameters</strong> are the physical parameters of signal which represent the data by their values. We distinguish between signals in the <em>time</em> and <em>space</em> domain (ortsabhaengige Signale, zeitabhaengige Signale):</p>
+
+<ul>
+<li>signals in the time domain: values of the signal parameter S are a function of time \(S = S(t)\)</li>
+<li>signals in the space domain: values of the signal parameter are a function of the space(Ort) for example the storage medium like CD/DVD</li>
+</ul>
+
+<p>Every signal in the space domain can be transfered into a signal in the time domain and vica versa. In this lecture we solely focus on signals in the time domain.<br />
+Generally there are four classes of signals in the time domain:</p>
+
+<ul>
+<li>zeitkontinuierliche, signalwertkontinuierliche Signale</li>
+<li>zeitdiskrete, signalwertkontinuierliche Signale</li>
+<li>zeitkontinuierliche, signalwertdiskrete Signale</li>
+<li>zeitdiskrete, signalwertdiskrete Signale</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/signal-classes.png"/> 
+</figure>
+
+
+<h3 id="analog-to-digital-conversion">Analog to Digital Conversion</h3>
+
+<p>This is how a digital signal can be formed via quantization:<br />
+<img src="/knowledge-database/images/quantization.png" alt="" /></p>
+
+<p><strong>Principles of A/D Conversion:</strong><br /></p>
+
+<ol>
+<li><em>Sampling</em> (Abtastung, Scan): reduction of a continous-time signal to a discrete -time signal (Auslesen des Signalwertes zu diskreten Zeitpunkten)</li>
+<li><em>Quantization</em>: transformation of the sampled value into a discrete value by mapping it onto so called quantization intervalls of size a (quantization error max a/2 &rarr; difference between input value and its quantized value)</li>
+</ol>
+
+<p><strong>Hertz</strong> = <em>Hertz</em> is a unit of frequency (of change in state or cycle in a sound wave, alternating current, or other cyclical waveform) of one cycle per second. It replaces the earlier term of &ldquo;cycle per second (cps).&rdquo;<br />
+For example, in the United States, common house electrical supply is at 60 hertz (meaning the current changes direction or polarity 120 times, or 60 cycles, a second). (In Europe, line frequency is 50 hertz, or 50 cycles per second.) Broadcast transmission is at much higher frequency rates, usually expressed in kilohertz (kHz) or megahertz (MHz).</p>
+
+<p>H. Nyquist (1924): The maximum data rate (Datenrate/ Kanalkapazität) for a noise-free channel with a limited bandwith is maxDataRate [bit/s] = 2 B ld n where B = bandwith of the channel in Hz and n is the amount of discrete signal levels (Signalstufe).<br />
+C.E. Shannon (1948): The maximum data rate (Datenrate/ Kanalkapazität) for a channel with random (thermal) noise in dependance of the Signal-Noise-Ratio = maxDataRate [bit/s] = B ld (1 + S/N) where S/N is the signal-noise-ratio where the Dämpfung D [dB] = 10 log<sub>10</sub> (S/N)<br />
+Example:<br />
+Channel with bandwith 3000 Hz, binaere Kodierung, Dämpfung 30 dB</p>
+
+<ul>
+<li><strong>Nyquist</strong>: data rate = \((2 * 3000 * ld 2 ) = 6000\) bit/s</li>
+
+<li><p><strong>Shannon</strong>: data rate = \(3000 * ld (1+1000) ≈ 30000\) bit/s</p>
+
+<ul>
+<li>S/N = 1000 = 10^3, because 30 dB = 10 log<sub>10</sub> (S/N)</li>
+</ul></li>
+
+<li><p>Nyquist-Shannon Sampling Theorem (Slides: Abtasttheorem von Shannon &amp; Raabe)</p>
+
+<p>The Nyquist-Shannon Theorem, also known as the sampling theorem, is a principle that engineers follow in the digitization of analog signals. For analog-to-digital conversion (ADC) to result in a faithful reproduction of the signal, slices, called samples, of the analog waveform must be taken frequently. The number of samples per second is called the sampling rate or sampling frequency.<br />
+Suppose the highest frequency component, in hertz, for a given analog signal is f<sub>max</sub>. According to the Nyquist-Shannon Theorem, the sampling rate must be at least 2f<sub>max</sub>, or twice the highest analog frequency component. The sampling in an analog-to-digital converter is actuated by a pulse generator (clock). If the sampling rate is less than 2f<sub>max</sub>, some of the highest frequency components in the analog input signal will not be correctly represented in the digitized output.</p>
+
+<p>Note: It is kind of hard to research what really is the Nyquist, the Shannon and the Raabe theorem. This will be taken from the slides but may not be the truth.</p>
+
+<p><strong>H. Nyquist</strong> (1924): Max. Datenrate (Kanalkapazität) fuer einen rauschfreien Kanal mit lediglich eingeschraenkter Bandbreite.<br />
+Maximale Datanrate [bit/s] $= 2 B log<sub>2</sub> n$<br />
+B = Bandbreite des Kanals (Hz)<br />
+n = Anzahl diskreter Signalstufen</p>
+
+<p><strong>Abtasttheorem von Shannon und Raabe</strong>:<br />
+Die Abtastfrequenz \(f_A\) muss mind zweimal so hoch wie die Grenzfrequenz \(f_{Grenz}\) sein: \(f_A &gt; 2 * f_{Grenz}\).</p>
+
+<p><strong>Shannon Theorem</strong> (1948):<br />
+Max. Datenrate fuer Kanal mit zufaelligem (thermischem) Rauschen. Das Shannon Theorem gibt eine obere Grenze fuer die auf einer Datenleitung erzielbare Datenrate in Abhaengigkeit des Signal-Rausch-Abstandes (Signal-Noise-Ratio, SNR):<br />
+Maximale Datenrate [bit/s] = $B log_2 (1 + \frac{S}{N})<br />
+B = Bandbreite des Kanals (Hz)<br />
+\(\frac{S}{N}\) = Signal-Rauschabstand, wobei Daempfung D[db] = \(10 \log_{10} (\frac{S}{N})\) (Signalenergie / Rauschenergie)</p>
+
+<p>Beispiel:<br />
+Kanal mit Bandbreite 3000 Hz, binaere Kodierung, Daempfung 30dB</p>
+
+<ul>
+<li>Nyquist: Datenrate = \((2*3000*\log_{2} 2 )\) bit/s = 6000 bit/s</li>
+<li>Shannon: Datenrate = \(3000 * \log_2 (1+1000) \approx 30000\) bit/s [S/N = 1000 = 10^3 , da 30 dB = 10 log<sub>10</sub> (S/N)]</li>
+</ul></li>
+</ul>
+
+<h4 id="periodische-und-digitale-signale">Periodische und digitale Signale</h4>
+
+<p>Die wesentlichen Kenngroessen periodischer Signale sind die:</p>
+
+<ul>
+<li><strong>Periode T</strong></li>
+<li><strong>Frequenz \(\frac{1}{T}\)</strong></li>
+<li><strong>Amplitude S(t)</strong></li>
+<li>*Phase &phi; *</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

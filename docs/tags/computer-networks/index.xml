@@ -6,10 +6,20 @@
     <description>Recent content in computer-networks on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/computer-networks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Computer Networks - Lecture 04</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cn/04_lecture/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cn/04_lecture/</guid>
+      <description>Signals and Bit Transmission Introduction Data Transmission - Bit to Signal to Bit:
+ sits directly on the physical medium (eg cable) Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model transmission of unstructured bit sequences via physical medium data transmission entails the physical connection and the conversion between data &amp;lt;-&amp;gt; signals there are norms for interfaces (especially for physical interfaces)  Signals and their Parameters A signal is a state or a modification of material systems.</description>
+    </item>
     
     <item>
       <title>Computer Networks - Lecture 03</title>
