@@ -1,0 +1,22 @@
+#+TITLE: Operating Systems - Scheduling
+#+DATE: 2019-04-25 10:00
+#+HUGO_TAGS: uni os
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/os
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+* Introduction
+A "process" is a concept of virtualization of the hardware resource CPU. There's a /strategy/ to decide which process is allowed to use the CPU at what time and there's a /mechanism/ which refers to the way the strategy is carried out. /Dispatching/ as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.\\
+Generally /scheduling/ means the temporal assignment (zeitliche Zuordnung) of activities to ressources in regards. There different levels of granuality where scheduling occurs:
+- when should programms start?
+- when should a process use a CPU?
+- when should a given instruction of an instruction sequence get executed?
+- when may a process use a device?
+- when may a program run in a cluster?
+  
+In the sphere of operating systems however scheduling usually refers to the assignment of CPU resources. The scheduling strategy can have a significant impact on the performance of a system and choosing a strategy depends on certain goals (eg high efficiency, low latency, fairness, puncuality, high troughput).\\
+[[/knowledge-database/images/scheduling-schema.png]]\\
+[[/knowledge-database/images/execution-response.png]]
+
+* Common Strategies

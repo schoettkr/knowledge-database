@@ -1,0 +1,19 @@
+#+TITLE: Computer Networks - Chapter 04 Netz-Zugang
+#+DATE: 2019-05-07
+#+HUGO_TAGS: uni computer-networks
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/cn
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+*DLC-Protokolle: Uebersicht*\\
+Data Link Control
+- asynchrone Uebertragung
+  - Uebertragung /nicht/ innerhalb eines groesseren Uebertragungsrahmen, sondern /zeichenweiser Start-Stop-Betrieb/ (Telexdienst)
+- synchrone Uebertragung
+  - /zeichenorientiert/ = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit
+    - zB PPP
+  - /bitorientiert/ = kleinste Uebertragungseinheit ist 1 Bit
+    - zB HDLDC, LLC (LAN), LAPD (ISDN)
+
+** 4.1 Synchronisation

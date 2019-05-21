@@ -2,7 +2,7 @@
 title = "Computer Networks - Lecture 04"
 author = ["eo shiru"]
 date = 2019-04-30
-lastmod = 2019-05-20T10:44:38+02:00
+lastmod = 2019-05-21T14:50:25+02:00
 tags = ["uni", "computer-networks"]
 draft = false
 +++
