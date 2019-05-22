@@ -6,10 +6,20 @@
     <description>Recent content in uni on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Computer Networks - Lecture 05</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</guid>
+      <description>Modems Modem = MOdulator/DEmodulator
+ basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)  Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
+    </item>
     
     <item>
       <title>Computer Networks - Lecture 04</title>
@@ -19,6 +29,16 @@
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/04_lecture/</guid>
       <description>Signals and Bit Transmission Introduction Data Transmission - Bit to Signal to Bit:
  sits directly on the physical medium (eg cable) Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model transmission of unstructured bit sequences via physical medium data transmission entails the physical connection and the conversion between data &amp;lt;-&amp;gt; signals there are norms for interfaces (especially for physical interfaces)  Signals and their Parameters A signal is a state or a modification of material systems.</description>
+    </item>
+    
+    <item>
+      <title>Operating Systems - Scheduling</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/04_lecture/</link>
+      <pubDate>Thu, 25 Apr 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/04_lecture/</guid>
+      <description>Introduction A &amp;ldquo;process&amp;rdquo; is a concept of virtualization of the hardware resource CPU. There&amp;rsquo;s a strategy to decide which process is allowed to use the CPU at what time and there&amp;rsquo;s a mechanism which refers to the way the strategy is carried out. Dispatching as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.
+Generally scheduling means the temporal assignment (zeitliche Zuordnung) of activities to ressources in regards.</description>
     </item>
     
     <item>

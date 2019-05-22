@@ -6,10 +6,20 @@
     <description>Recent content in computer-networks on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/computer-networks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Computer Networks - Lecture 05</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</guid>
+      <description>Modems Modem = MOdulator/DEmodulator
+ basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)  Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
+    </item>
     
     <item>
       <title>Computer Networks - Lecture 04</title>

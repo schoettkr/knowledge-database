@@ -6,7 +6,7 @@
     <description>Recent content in Tags on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>computer-networks</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/computer-networks/</link>
-      <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/tags/computer-networks/</guid>
       <description></description>
@@ -23,9 +23,18 @@
     <item>
       <title>uni</title>
       <link>https://schoettkr.github.io/knowledge-database/tags/uni/</link>
-      <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/tags/uni/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>os</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/os/</link>
+      <pubDate>Thu, 25 Apr 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/os/</guid>
       <description></description>
     </item>
     
@@ -44,15 +53,6 @@
       <pubDate>Fri, 12 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/tags/datastructures/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>os</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/os/</link>
-      <pubDate>Thu, 11 Apr 2019 10:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/os/</guid>
       <description></description>
     </item>
     

@@ -43,7 +43,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          5 min read
+          6 min read
         </div><div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
@@ -129,7 +129,7 @@ Suppose the highest frequency component, in hertz, for a given analog signal is 
 <p>Note: It is kind of hard to research what really is the Nyquist, the Shannon and the Raabe theorem. This will be taken from the slides but may not be the truth.</p>
 
 <p><strong>H. Nyquist</strong> (1924): Max. Datenrate (Kanalkapazität) fuer einen rauschfreien Kanal mit lediglich eingeschraenkter Bandbreite.<br />
-Maximale Datanrate [bit/s] $= 2 B log<sub>2</sub> n$<br />
+Maximale Datanrate [bit/s] \(= 2 B \log_{2} n\) <br />
 B = Bandbreite des Kanals (Hz)<br />
 n = Anzahl diskreter Signalstufen</p>
 
@@ -138,7 +138,7 @@ Die Abtastfrequenz \(f_A\) muss mind zweimal so hoch wie die Grenzfrequenz \(f_{
 
 <p><strong>Shannon Theorem</strong> (1948):<br />
 Max. Datenrate fuer Kanal mit zufaelligem (thermischem) Rauschen. Das Shannon Theorem gibt eine obere Grenze fuer die auf einer Datenleitung erzielbare Datenrate in Abhaengigkeit des Signal-Rausch-Abstandes (Signal-Noise-Ratio, SNR):<br />
-Maximale Datenrate [bit/s] = $B log_2 (1 + \frac{S}{N})<br />
+Maximale Datenrate [bit/s] = \(B log_2 (1 + \frac{S}{N})\) <br />
 B = Bandbreite des Kanals (Hz)<br />
 \(\frac{S}{N}\) = Signal-Rauschabstand, wobei Daempfung D[db] = \(10 \log_{10} (\frac{S}{N})\) (Signalenergie / Rauschenergie)</p>
 
@@ -156,10 +156,63 @@ Kanal mit Bandbreite 3000 Hz, binaere Kodierung, Daempfung 30dB</p>
 <p>Die wesentlichen Kenngroessen periodischer Signale sind die:</p>
 
 <ul>
-<li><strong>Periode T</strong></li>
-<li><strong>Frequenz \(\frac{1}{T}\)</strong></li>
+<li><strong>Periode T</strong>
+
+<ul>
+<li>die Periode/Periodendauer ist das kleinste oertliche oder zeitliche Intervall, nach dem sich der Vorgang wiederholt</li>
+</ul></li>
+<li><strong>Frequenz \(f = \frac{1}{T}\)</strong>
+
+<ul>
+<li>ein Mass dafuer, wie schnell bei einem periodischen Vorgang die Wiederholungen aufeinander folgen</li>
+<li>ist der Kehrwert der Periodendauer</li>
+<li>als Einheit fuer die Frequenz wird idR <strong>Hertz</strong> Hz verwendet
+
+<ul>
+<li>Hz = Anzahl sich wiederholender Vorgaenge pro Sekunde in einem periodischen Signal</li>
+</ul></li>
+</ul></li>
 <li><strong>Amplitude S(t)</strong></li>
-<li>*Phase &phi; *</li>
+<li><strong>Phase &phi;</strong> (auch <em>Phasenwinkel</em>)
+
+<ul>
+<li>gibt die aktuelle Position im Ablauf eines periodischen Vorgangs an</li>
+<li>die Phasendifferenz (auch Phasenverschiebung) &Delta; &phi; ist ein Begriff im Zusammenhang von periodischen Vorgaengen
+
+<ul>
+<li>bezeichnet bei Wellenvorgaengen gleicher Frequenz die Differenz zwischen ihren Phasen zur Zeit Null; zwei Wellen gleicher Geschwindigkeit &amp; Frequenz haben eine konstante Phasenverschiebung, welche nur von den Anfangsphasen abhaengt</li>
+<li>zwei Wellen unterschiedlicher Geschwindigkeit oder Frequenz haben eine variable Phasenverschiebung</li>
+</ul></li>
+<li>siehe <a href="http://www.abi-physik.de/buch/wellen/phasenverschiebung-gangunterschied/">hier</a> und <a href="https://www.youtube.com/watch?v=T8kNcfv8LvY">hier</a></li>
+</ul></li>
+<li>die <strong>Zeitfunktion</strong> (Zeitdarstellung) ist eine Zuordnung von Signalwert und Zeit</li>
+<li>die <strong>Frequenzfunktion</strong> (Frequenzgang, Spektrum) ist eine Zuordnung von Werten sinusfoermiger Signale und der Frequenz</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/zeit-frequenz-fkt.png"/> 
+</figure>
+
+
+<p>Jede periodische Funktion kann durch eine Summe von Sinus- und Kosinusfunktionen dargestellt werden (Fourier-Reihe).</p>
+
+<h4 id="uebertragungssystem">Uebertragungssystem</h4>
+
+<p>Letztendlich werden Nachrichten mittels eines physikalischen Mediums uebertragen:<br />
+<img src="/knowledge-database/images/physikal-medium.png" alt="" /></p>
+
+<p>Jene Signaltransportmedien bzw Uebertragungssysteme sind <em>bandbegrenzt</em>, d.h. sie uebertragen stets nur ein endliches Frequenzspektrum (Rest wird abgeschnitten/begrenzt). Die <em>Bandbreite</em> in Hz gibt den Frequenzbereich an, der ueber ein Medium uebertragen werden kann. Konkret ergibt sich die Bandbreite aus der Differenz zwischen der hoechsten und der niedrigsten uebertragbaren Frequenz. Aufgrund nicht-idealer Bandbegrenzungen werden Abschneidefrequenzen festgelegt. Demnach muessen Signale an die Uebertragungscharakteristik des jeweiligen Mediums angepasst werden.</p>
+
+<h4 id="stoereinfluesse">Stoereinfluesse</h4>
+
+<p>Bisher wurden lediglich medienbedingte Abweichungen betrachtet (zB Bandbegrenzung). Zusaetzlich koennen Stoerungen auftreten, die das Signal beeinflussen, beispielsweise:</p>
+
+<ul>
+<li>weisses Rauschen (Grundstoeranteil)</li>
+<li>Echobildung (durch zeitverschobenes Eingabesignal)</li>
+<li>Nebensprechen (ggseitige Medienbeeinflussung)</li>
+<li>Brummsignale (niederfrequente Stoersignale)</li>
+<li>Stoerimpulse (kurzzeitig mit hoher Amplitude)</li>
 </ul>
 
     </div>

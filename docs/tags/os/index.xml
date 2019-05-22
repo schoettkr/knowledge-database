@@ -6,10 +6,20 @@
     <description>Recent content in os on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Apr 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 25 Apr 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/os/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Scheduling</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/04_lecture/</link>
+      <pubDate>Thu, 25 Apr 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/04_lecture/</guid>
+      <description>Introduction A &amp;ldquo;process&amp;rdquo; is a concept of virtualization of the hardware resource CPU. There&amp;rsquo;s a strategy to decide which process is allowed to use the CPU at what time and there&amp;rsquo;s a mechanism which refers to the way the strategy is carried out. Dispatching as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.
+Generally scheduling means the temporal assignment (zeitliche Zuordnung) of activities to ressources in regards.</description>
+    </item>
     
     <item>
       <title>Operating Systems - Processes</title>

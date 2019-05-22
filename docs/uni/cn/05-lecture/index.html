@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Computer Networks - Lecture 05 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Computer Networks - Lecture 05</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 7, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/computer-networks/">computer-networks</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="modems">Modems</h2>
+
+<p>Modem = MOdulator/DEmodulator</p>
+
+<ul>
+<li>basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/modem-verbindung.png"/> 
+</figure>
+
+
+<ul>
+<li><strong>Leistungsanschaltung</strong> = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale</li>
+<li><strong>Modulationsteil</strong> = Modulation/Demodulation (zB Amplitude, Frequenz, &hellip;)
+
+<ul>
+<li>Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht</li>
+<li>die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)</li>
+</ul></li>
+<li><strong>Steuer-/Meldeteil</strong> =  Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)</li>
+</ul>
+
+<h3 id="mehrfachnutzung-von-medien">Mehrfachnutzung von Medien</h3>
+
+<p><strong>Multiplexverfahren</strong> (lat. multiplex „vielfach, vielfältig“) sind Methoden zur Signal- und Nachrichtenübertragung, bei denen mehrere Signale zusammengefasst (gebündelt) und simultan über ein Medium (Leitung, Kabel oder Funkstrecke) übertragen werden. Oftmals werden Multiplexverfahren auch kombiniert, um eine noch höhere Nutzung zu erreichen. Die Bündelung erfolgt, nachdem die Nutzdaten auf ein Trägersignal moduliert wurden. Entsprechend werden sie beim Empfänger nach der Entbündelung (dem Demultiplexen) demoduliert.</p>
+
+<p><strong>Raummultiplex-Verfahren</strong></p>
+
+<ul>
+<li>Uebertragunskanaele (Leitungen, Richtfunkstrecken) werden zu parallelen, aber exklusiven Nutzung durch mehrere Sender und Empfaenger gebuendelt</li>
+<li>Buendelung von Adern(paaren)</li>
+<li>Analogie: Personen sprechen an verschiedenen Orten miteiander, bei genuegend grossem Abstand stoeren sich die Gespraeche nicht gegenseitig</li>
+</ul>
+
+<p><strong>Zeitmultiplex-Verfahren</strong></p>
+
+<ul>
+<li>mehrere Signale werden zeitversetzt uebertragen</li>
+<li>die Signale sind zeitlich ineinander verschachtelt</li>
+<li>Zeitfenster koennen synchronisiert und gleich lang oder asynchron und bedarfsabhaengig sein</li>
+<li>Aufteilung in Zeitschlitze</li>
+<li>Analogie: in einer Schulkklasse oder beim Funken hat in der Regel nur je ein Sprecher gleichzeitig das Wort (asynchrones Zeitmultiplexverfahren), in Parlamenten hat jeder Redner eine Redezeit definierter Laenge (synchrones Zeitmultiplexverfahren)</li>
+</ul>
+
+<p><strong>Frequenzmultiplex-Verfahren</strong></p>
+
+<ul>
+<li>mehrere Signale weden in unterschiedlichen Frequenzbereichen uebertragen</li>
+<li><em>Wellenlaengenmultiplex</em> (Sonderform Frequenzmultiplex)
+
+<ul>
+<li>bei Funk- und Lichtwellenleiteruebertragung werden unterschiedlichen Signalen unterschiedliche Wellenlaengen zugewiesen</li>
+<li>Uebertragung unterschiedlicher Wellenlaengen (&ldquo;Farben&rdquo;) ueber eine Glasfaser</li>
+<li>momentan bis zu 80 verschiedene Wellenlaengen moeglich</li>
+<li>innerhalb einer Wellenlaenge ist zudem Zeitmultiplexverfahren moeglich (derzeit Datenraten von 80 GBit/s pro Wellenlaenge erreichbar, was theoretisch 6,4 TBit/ pro Faser entspricht)</li>
+</ul></li>
+<li>Analogie: Eine Hundepfeife oder Fledermaeuse erzeugen fuer den Menschen unhoerbare Signale, eine parallele Kommunikatoin ist moeglich</li>
+</ul>
+
+<p><strong>Codemultiplex-Verfahren</strong></p>
+
+<ul>
+<li>wird in Funktechnik (drahtlose Netze) und Datenbussen eingesetzt</li>
+<li>verschiedene Signalfolgen werden ueber eine Leitung oder eine Funkfrequenz uebertragen &amp; koennen anhand ihrer unterschiedlichen Codierung zugeordnet werden</li>
+<li>im Empfaenger wird nur das passend kodierte Signal erkannt und ausgewertet</li>
+<li>Analogie: bei vielen gleichzeitig gesprochenen Sprachen hoert man seine Muttersprache heraus; bekannte Personen erkennt am Klang ihrer Stimme</li>
+</ul>
+
+<h3 id="uebertragungsverfahren-und-umformung--modulationsteil">Uebertragungsverfahren und Umformung (Modulationsteil)</h3>
+
+<p>Zur Uebertragung erforderlich:</p>
+
+<ul>
+<li>Umformung des primaeren Quellsignals in das Eingabesignal des Mediums</li>
+<li>Rueckformung des Ausgabesignals in das primaere Senkensignal</li>
+</ul>
+
+<p>Bei <strong>digitalen</strong> Kanaelen wird im Wesentlichen unterschieden zwischen:</p>
+
+<p><strong>1. Basisbanduebertragung</strong>:<br />
+Unter einer Basisbandübertragung wird die Übertragung eines Zeitsignals in jenem Frequenzbereich verstanden, welches das Zeitsignal als Frequenzspektrum aufweist. Dieses Frequenzspektrum wird dann auch als Basisband bezeichnet. Bei digitalen Übertragungen kann durch die Leitungscodierung Einfluss auf die Eigenschaften des übertragenen Frequenzspektrums im Basisband genommen werden. Die Leitungscodierung ist die Abbildungsvorschrift, dafuer wie das digitale Primaersignal auf das digitale Uebertragungssignal abgebildet wird.
+Im einfachen Verfahren unterscheidet man zwischen Einfachstrom (zB 0 = 0V, 1 = 5V) und Doppelstrom-Verahren (zB 0 = -5V, 1 = 5V). Die angestrebten Eigenschaften einer   Leitungscodierung:</p>
+
+<ul>
+<li>Eliminierung des Gleichstromanteils</li>
+<li>Wiedergewinnung des Takts aus dem Signal (selbsttaktender Signalcode)</li>
+<li>Erkennung von Signalfehlern auf Signalebene</li>
+</ul>
+
+<p>Slides: digitale elektrische Uebertragung, bei der das zu uebertragende Signal direkt auf das Medium gelangt; das Signal beansprucht bei diesem Verfahren die gesamte Bandbreite des Mediums</p>
+
+<p>Beispiel Manchester Codierung:<br /></p>
+
+<ul>
+<li>Doppelstromverfahren</li>
+<li>jedes zu uebertragene Bit (0 oder 1) wird in <em>zwei Uebertragungsschritte</em> gleicher Dauer aufgeteilt
+
+<ul>
+<li>1 = High-Low</li>
+<li>0 = Low-High</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/manchester-codierung.png"/> 
+</figure>
+
+
+<p><strong>2. Breitbanduebertragung</strong>:<br />
+Die Bandbreite eines Mediums wird in verschiedene Kanaele aufgeteilt (vgl Frequenz-/Zeitmultiplex)</p>
+
+<ul>
+<li><p>Nutzung der unterschiedlichen Kanaele durch Aufpraegung des Quellsignals auf harmonische Traegerschwingung, Umformung digital &lt;-&gt; analog</p>
+
+<ul>
+<li>Amplitudentastung (Amplitudenmodulation)</li>
+<li>Frequenztastung (Frequenzmodulation)</li>
+<li>Phasentastung (Phasenmodulation)</li>
+</ul></li>
+
+<li><p>Amplitudenmodulation</p>
+
+<ul>
+<li>Uebertragung mittels Basisbanduebertragung nicht moeglich
+
+<ul>
+<li>primaeres Signal wird durch Amplitudenveraenderung auf Traegersignal moduliert</li>
+</ul></li>
+<li>Amplitudenmodulation ist sehr stoeranfaellig</li>
+<li>Erkennung langer Folgen von 1 erfordert sehr stabile Taktgeneratoren</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/amplitudenmodulation.png"/> 
+</figure>
+</li>
+
+<li><p>Frequenzmodulation</p>
+
+<ul>
+<li>primaeres Signal wird durch gezielte Aenderung der Traegerfrequenz moduliert</li>
+<li>Frequenzmodulation ist das unter anderem auch bei UKW-Rundfunk eingesetzte Modulationsverfahren</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/frequenzmodulation.png"/> 
+</figure>
+</li>
+
+<li><p>Phasenmodulation</p>
+
+<ul>
+<li>primaeres Signal wird mittels gezielter Phasenspruenge des Traegersignals moduliert</li>
+<li>CCITT-Empfehlung:
+
+<ul>
+<li>0 = Phasendrehung um 180 Grad</li>
+<li>1 = keine Phasendrehung</li>
+</ul></li>
+<li>Phasenmodulation ist das beste, aber auch aufwendigste Verfahren</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/phasenmodulation.png"/> 
+</figure>
+</li>
+
+<li><p>Quadratur-Amplituden-Modulation (QAM)</p>
+
+<ul>
+<li>Kombination  aus Amplituden- und Phasenmodulation
+
+<ul>
+<li>gleichzeitige Uebertragung von mehreren Bits pro Uebertragungsschritt</li>
+<li>Verwendung von mehreren Amplituden und Phasenzustaenden</li>
+<li>bis zu 10 Bit pro Schritt uebertragbar (1024)</li>
+<li>Stoeranfaelligkeit steigt mit Anzahl der zu uebertragenen Bits pro Schritt</li>
+</ul></li>
+<li>Beispiel: 2 Amplituden, 8 Phasen &rarr; 16 Zustaende = 4 Bit</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/qam.png"/> 
+</figure>
+</li>
+</ul>
+
+<h3 id="technologien-zur-datenuebertragung-ueber-telefonleitungen">Technologien zur Datenuebertragung ueber Telefonleitungen</h3>
+
+<h4 id="dsl--digital-subscriber-line">DSL (Digital Subscriber Line)</h4>
+
+<ul>
+<li>hochratige, digitale Datenuebertragung zwischen Teilnehmern und Vermittlungsstellen ueber installierte Kupferadern des Telefonnetzes (2-adrig, Twisted Pair)</li>
+<li>Uebertragungsraten im Bereich von Mbit/s</li>
+<li>Koexistenz von DSL und bestehenden Telefonsystem (analoges Telefonnetz und ISDN)</li>
+<li>Grundidee: Ausnutzung der gesamten Bandbreite des Uebertragungsmediums</li>
+
+<li><p>es gibt unterschiedliche Realisierungen der DSL-Technik {x}DSL:</p></li>
+
+<li><p>SDSL (Symmetric DSL)</p>
+
+<ul>
+<li>HDSL ueber Zweidraht-Leitung, 760 kbit/s</li>
+</ul></li>
+
+<li><p>TDSL (Stand ca 2002)</p>
+
+<ul>
+<li>768 kbit/s downstream</li>
+<li>128 kbit/s upstream</li>
+</ul></li>
+
+<li><p>HDSL (High Bitrate DSL)</p>
+
+<ul>
+<li>1.5 Mbit/s ueber Viedraht-Leitung</li>
+</ul></li>
+
+<li><p>RADSL (Rate Adaptive DSL)</p>
+
+<ul>
+<li>2.2 Mbit/s Downstream</li>
+<li>1.1 Mbit/s Upstream</li>
+</ul></li>
+
+<li><p>ADSL (Asymmetric Digital Subscriber Line)</p>
+
+<ul>
+<li>Grundprinzip: &ldquo;hohe Bitrate zum Teilnehmer, niedrige Bitrate vom Telnehmer&rdquo;</li>
+<li>Datenraten:
+
+<ul>
+<li>max 8 Mbit/s Downstream (je nach Entfernung &amp; Leitungsqualitaet)</li>
+<li>max 640 kbit/s Upstream (je nach Entfernung &amp; Leitungsqualitaet)</li>
+</ul></li>
+<li>Reichweite in der Praxis 5000-6000m
+
+<ul>
+<li>in DE ist die durchschn. Laenger einer Teilnehmeranschlussleitung 2km</li>
+</ul></li>
+</ul></li>
+
+<li><p>VDSL (Very High Bitrate DSL)</p>
+
+<ul>
+<li>13-52 Mbit/s Downstream, bis 6 Mbit/s Upstream</li>
+</ul></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
