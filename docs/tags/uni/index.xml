@@ -22,6 +22,16 @@
     </item>
     
     <item>
+      <title>Operating Systems - Linear Memory Model</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/05_lecture/</link>
+      <pubDate>Wed, 01 May 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/05_lecture/</guid>
+      <description>Intro When a program is executed the instruction are present in memory/storage and then the CPU loads those instructions and executes them (program counter, Assembler). Hardware is able to deal with absolute (direct) and relative adressing modes.
+ absolute (direct) addressing = memory locations of operands are specified as a whole and completely relative addressing = memory locations are specified relative to the current PC (program counter) via on offset that is added to the address of the next instruction  Address Space Primary memory (RAM) is constituted via adress spaces</description>
+    </item>
+    
+    <item>
       <title>Computer Networks - Lecture 04</title>
       <link>https://schoettkr.github.io/knowledge-database/uni/cn/04_lecture/</link>
       <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
