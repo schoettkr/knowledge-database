@@ -2,7 +2,7 @@
 title = "Security of Distributed Software - Lecture 03"
 author = ["eo shiru"]
 date = 2019-04-16
-lastmod = 2019-05-17T13:01:55+02:00
+lastmod = 2019-05-28T11:10:51+02:00
 tags = ["uni", "security-ds"]
 draft = false
 +++
@@ -279,3 +279,23 @@ Attacks of the communication partner by
 Focus on
 
 -   misuse of trust, eg social engineering
+
+
+## Web-based Attacks: GHDB {#web-based-attacks-ghdb}
+
+-   exploits are known and possibly even the corresponding targets, tanks to search engines such as the Google Hacking Database or other databases where there are plenty of where attackers might get user ids, passwords and other identity properties from
+
+
+## Social Engineering {#social-engineering}
+
+-   phone
+    -   call the victim or services of the victim
+    -   example: Apple's password reset - procedure
+-   trash of the victim (Harddisc, CD, USB-Sticks)
+    -   searching for sensitive data
+    -   lots of examples exists in the media
+-   confidence tricks
+    -   all kinds of scams
+-   online databases
+    -   social sites &rarr; check news about victim at typical user sites
+-   U3-USB-Stick

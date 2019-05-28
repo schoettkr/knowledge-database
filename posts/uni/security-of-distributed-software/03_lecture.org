@@ -233,3 +233,17 @@ Attacks of the communication partner by
 Focus on
 - misuse of trust, eg social engineering
 
+* Web-based Attacks: GHDB
+- exploits are known and possibly even the corresponding targets, tanks to search engines such as the Google Hacking Database or other databases where there are plenty of where attackers might get user ids, passwords and other identity properties from
+* Social Engineering
+- phone
+  - call the victim or services of the victim
+  - example: Apple's password reset - procedure
+- trash of the victim (Harddisc, CD, USB-Sticks)
+  - searching for sensitive data
+  - lots of examples exists in the media
+- confidence tricks
+  - all kinds of scams
+- online databases
+  - social sites \rightarrow check news about victim at typical user sites
+- U3-USB-Stick
