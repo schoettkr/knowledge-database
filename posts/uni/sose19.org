@@ -26,9 +26,6 @@ Re-matriculation Period: 03.06. - 13.09.2019
   - [[https://osg.informatik.tu-chemnitz.de/lehre/os/index.php][Course Homepage]]
   - [[https://osg.informatik.tu-chemnitz.de/lehre/os/index.php#tutorial][Tutorial Page]]
   - Exam type: written
-- Artificial Intelligence
-  - [[https://www.tu-chemnitz.de/informatik/KI/edu/ki/][Course Homepage]]
-  - Exam type: written
 - Security of Distributed Software
   - [[https://vsr.informatik.tu-chemnitz.de/edu/2019/svs/][Course Homepage]]
   - [[https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/19946340368/CourseNode/86516925533323][Tutorial Page]]
