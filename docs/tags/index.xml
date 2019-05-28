@@ -6,10 +6,28 @@
     <description>Recent content in Tags on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 May 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 08 May 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>os</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/os/</link>
+      <pubDate>Wed, 08 May 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/os/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>uni</title>
+      <link>https://schoettkr.github.io/knowledge-database/tags/uni/</link>
+      <pubDate>Wed, 08 May 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/tags/uni/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>computer-networks</title>
@@ -17,24 +35,6 @@
       <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/tags/computer-networks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>uni</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/uni/</link>
-      <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/uni/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>os</title>
-      <link>https://schoettkr.github.io/knowledge-database/tags/os/</link>
-      <pubDate>Wed, 01 May 2019 10:00:00 +0200</pubDate>
-      
-      <guid>https://schoettkr.github.io/knowledge-database/tags/os/</guid>
       <description></description>
     </item>
     
