@@ -17,3 +17,134 @@ Data Link Control
     - zB HDLDC, LLC (LAN), LAPD (ISDN)
 
 ** 4.1 Synchronisation
+Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb)\\
+[[/knowledge-database/images/asynchrone-uebertragung.png]]
+- setzt Ruhepegel und feste Zahl von Nutzschritten voraus
+- 3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)
+
+Synchrone Uebertragung (Blocksynchronisation)\\
+[[/knowledge-database/images/synchrone-uebertragung.png]]
+- setzt Benutzung eindeutiger Blockstart- und/oder Blockendmuster voraus
+- Modifikation / rueckgaengig machen entsprechender Muster im Block (Zeichen-/Bitstopfen)
+
+*Codetransparenz* bei synchroner Uebertragung = Vereinbarung von Regeln zur codetransparenten Uebertragung von Nutzdaten (d.h. Uebertragung beliebiger Bit- bzw Zeichenkombinationen im Nutzdatenfeld)\\
+\rightarrow einfacher Loesungsansatz: Laengenangabe der Nutzdaten
+- [[/knowledge-database/images/code-transparenz.png]]
+  
+**** Synchrone zeichenorientierte Uebertragung
+*Character Stuffing*
+- Anfang und Ende der Nutzdaten (eines Rahmens) werden durch STX bzw ETX symbolisiert
+  - [[/knowledge-database/images/c-stuffing-1.png]]
+  - Problem: wenn ein ETX in den Nutzdaten enthalten ist signalisiert dies das vorzeitige Ende des Rahmens
+  - Loesung: das Sonderzeichen DLE (Data Link Escape) macht nutzdaten transparent, ein ETX wird daher nur dann als solches erkannt, wenn ein DLE davor steht
+  - [[/knowledge-database/images/c-stuffing-2.png]]
+  - Problem: ein DLE in den Nutzdaten koennte jederzeit zu einer Fehlinterpretation fuehren
+  - Loesung: Sender verdoppelt DLEs innerhalb der Nutzdaten. Der Empfaenger interpretiert einfache DLEs als Steuerzeichen und bei doppeltne DLEs wird das kuenstlich eingefuegte wieder geloescht:
+  - [[/knowledge-database/images/c-stuffing-3.png]]
+
+[[/knowledge-database/images/character-stuffing.png]]
+
+**** Synchrone bitorientierte Uebertragung
+*Bit Stuffing*
+- Blockbegrenzung (Flag) ist eine ausgewaehlte Bitfolge (zB 01111110)
+  -  [[/knowledge-database/images/bit-stuffing.png]]
+  - Problem: zufaelliges Auftretet dieser Bitfolge 01111110 in Nutzdaten
+  - Loesung: Bit Stuffing
+    - Sender fuegt /innerhalb/ der Nutzdaten nach 5 auf einander folgenden "1" eine "0" ein
+    - Empfaenger entfernt nach 5 aufeinanderfolgenden "1" eine "0"
+  - [[/knowledge-database/images/bit-stuffing-2.png]]
+
+**** Synchrone Uebertragung: Coderegelverletzung
+Synchrone Uebertragung ohne Laengenfeld oder Character/Bit Stuffing:
+- Verwendung von Block-Start/Endmustern (Flags)
+- Flags enthalten (gemaess Leitungscodierung) ungueltige Bits
+- Bsp: Manchester Codierung
+  - [[/knowledge-database/images/coderegel-verletzung.png]]
+
+** 4.2 Sicherung der Datenuebertragung - Uebertragungsfehler
+Wesentlich fuer eine fehlerfreie Uebertragung sind korrekt synchronisierte Sender und Empfaenger
+- ungenaue Abtastzeitpunkte koennen u.U zu sporadischen Bitfehlern fuehren, obwohl die Signalfolge korrekt uebertragen wurde
+- falsch synchronisierte Sender und Empfaenger fuehren haeufig zu einer vollstaendig falsch interpretierten Bitfolge
+  
+Uebertragungsfehler sind hardwareinduzierte Fehler, die vorzugsweise auf dem Uebertragungsmedium entstehen, aber auch in den Anschlusselektroniken der kommunizierenden Stationen.
+- Art & Haeufigkeit stark vom Uebertragungsmedium abhaengig
+- in der Funktechnik existieren andere Fehlerursachen, Fehlerhaeufigkeiten und Fehlerauswirkungen als in der leitungsgebundenen Uebertragungstechnik
+- *Einzelbitfehler:* zB Rauschspitzen, die die Detektionsschwelle bei digitaler Signalerfassung ueberschreiten
+- *Buendelfehler:* laenger anhaltende Stoerung zb durch Ueberspannung
+- *Synchronisierfehler:* alle Bits bzw Zeichen werden falsch erkannt
+  
+*** Fehlerhaeufigkeiten
+Maß fuer die Fehlerhaeufigkeit:
+Bitfehlerrate = $\frac{\text{Summe gestoerte Bits}}{\text{Summe uebertragene Bits}}$
+- stark vom Uebertragungsmedium bzw Netz abhaengig
+- Bitfehlerraten zu uebertragender digitaler Daten im analogen Netz sind sehr viel hoeher als in digitalen Uebertragungssystemen
+  - moderne ISDN/PCM Systeme haben eine bessere Uebertragungsqualitaet als klassische digitale Netze
+- die Uebertragungsfehlerhaeufigkeit ist auch stark von der Gesamtlaenge des Uebertragungsweges abhaengig
+- typische Wahrscheinlichkeiten fuer Bitfehler
+  - analoges Fernsprechnetz: 2*10^{-4}
+  - Funkstrecke: 10^{-3} - 10^{-4}
+  - Ethnernet (10Base2): 10^{-9} - 10^{-10}
+  - Glasfaser 10^{-10} - 10^{-12}
+
+*** Fehlerwirkungen
+- abhaengig davon welche Bits betroffen sind
+  - (Nutz-)Datenfehler: Bits innerhalb der Nutzdaten (gesehen zB aus Sicht der Sicherungsschicht) werden gestoert
+  - Protokollfehler: Stoerungen koennen Protokollkontrolldaten, Steuerzeichen, Adressen oder sonstige protokollrelevante Daten verfaelschen oder vernichten
+- Fehlererkennungs- und Behandlungsmassnahmen (error detection and recovery) erforderlich
+- Fehlererkennung durch (kuenstliches) Hinzufuegen von Redundanz beim Sender
+  - error detecting codes
+  - Spezialfall: error correcting nodes
+    
+*** Fehlererkennung
+**** Paritaetsueberpruefung
+- gerade/ungerade Paritaet
+  - Gesamtzahl der "1" einschliesslich des Paritaetsbits ist gerade/ungerade
+- Unterscheidung von Quer-, Laengs- und Kreuzparitaet
+**** Cyclic Redundancy Check (CRC)
+- zu pruefender Block wird als unstrukturierte Bitfolge aufgefasst
+  - Anzahl der zu pruefenden Bits ist beliebig
+- Pruefbitfolge (Block Check Sequence bzw Frame Check Sequence) wird an den zu pruefenden Uebermittlungsdatenblock angehaengt
+- [[/knowledge-database/images/CRC.png]]
+- Bildung der Pruefsequenz:
+  - zu pruefende Bitfolge wird als Polynom aufgefasst
+  - nach Erweiterung um 0-Folge (Anzahl 0-en = Grad des Pruefpolynoms) wird sie durch vereinbartes Pruefpolynom (Generatorpolynom) geteilt
+  - die BCS/FCS ist Rest der Division, der an die Bitfolge angehaengt wird
+  - beim Empfaenger wird neu dividiert (einschliesslich Rest) - bei fehlerfreier Uebertragung muss das Ergebnis 0 sein
+- CRC Beispiel auf Folie 9 bis 11
+- folgende Fehler werden durch CRC erkannt
+  - saemtliche Einzelbitfehler
+  - saemtliche Doppelfehler, wenn ($x^k + 1$) nicht durch das Pruefpolynom teilbar ist
+  - saemtliche Fehler ungeraer Anzahl, wenn ($x+1$) Faktor des Pruefpolynoms ist
+  - saemtliche Buendelfehler der Laenge \leq Grad des Pruefpolynoms
+*** Fehlerbehandlung
+Bei einer Uebertragung ohne Fehlerbehandlung sind Sender und Empfaenger immer bereit und es gibt einen staendigen Datenfluss vom Sender zum Empfaenger (..?).
+**** Automatic Repeat Request (ARQ)
+Wird ein Uebertragungsfehler erkannt (zB anhand fehlerhafter CRC-Pruefsumme), so ist dennoch der Empfang des entsprechenden Datenpakets sicherzustellen.\\
+*Eingesetzte Mechanismen*\\
+- Bestaetigungen (Acknowledgements, ACKs, auch negativ als NAK)
+  - durch spezielle Steuerpakete oder im Datenpaket selbst
+- Timeouts + Uebertragungswiederholungen
+
+Die allgemeine Bezeichnung fuer gesicherte Datenuebertragung unter Verwendung dieser Mechanismen lautet *Automatic Repeat Request*. ARQ-Algorithmen:
+- Stop & Wait
+  - Varianten: implizit, explizit
+- Sliding Window
+  - Verwendung ISO/OSI:Sicherungsschicht, Internet:TCP
+  - Varianten: Go-Back-N, Selective Repeat
+    
+*Stop & Wait - Ablauf*\\
+- Empfaenger muss durch eine Meldung den Empfang eines Pakets bestaetigen
+- Sender muss auf Bestaetigung (ACK) warten, ehe er weiter senden darf \rightarrow keine Ueberlastung des Empfaengers moeglich
+- [[/knowledge-database/images/stop-wait-ablauf.png]]
+
+*Stop & Wait - Implizit*\\
+- Behandlung verlorengegangener Pakete/Quittungen:
+  - Zeitueberwachung (Timeout), nach der Uebertragung wiederholt wird
+  - Sequenznummer pro Paket, um Duplikate beim Empfaenger zu unterscheiden
+    - bei stop & wait sind Folgenummern 0/1 ausreichen
+- [[/knowledge-database/images/stop-wait-implizit.png]]
+
+*Stop & Wait - Explizit*\\
+- um den Ablauf der Uebertragungswiederholung zu beschleunigen, koennen fehlerhafte Pakete explizit durch NAK (Negative Acknowledgement) angefordert/signalisiert werden
+- [[/knowledge-database/images/stop-wait-explizit.png]]
+
