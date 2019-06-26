@@ -22,6 +22,18 @@
     </item>
     
     <item>
+      <title>Computer Networks - Chapter 04 Netz-Zugang</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/cn/chapter-04/</link>
+      <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/cn/chapter-04/</guid>
+      <description>DLC-Protokolle: Uebersicht
+Data Link Control
+ asynchrone Uebertragung  Uebertragung nicht innerhalb eines groesseren Uebertragungsrahmen, sondern zeichenweiser Start-Stop-Betrieb (Telexdienst)  synchrone Uebertragung  zeichenorientiert = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit  zB PPP  bitorientiert = kleinste Uebertragungseinheit ist 1 Bit  zB HDLDC, LLC (LAN), LAPD (ISDN)    4.1 Synchronisation Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb)
+ setzt Ruhepegel und feste Zahl von Nutzschritten voraus 3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)  Synchrone Uebertragung (Blocksynchronisation)</description>
+    </item>
+    
+    <item>
       <title>Computer Networks - Lecture 05</title>
       <link>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</link>
       <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
