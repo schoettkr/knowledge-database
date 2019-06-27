@@ -43,7 +43,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          2 min read
+          3 min read
         </div><div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
@@ -200,9 +200,58 @@ Data Link Control</p>
 <li><strong>Synchronisierfehler:</strong> alle Bits bzw Zeichen werden falsch erkannt</li>
 </ul>
 
-<p><strong>Fehlerhaeufigkeiten</strong><br />
-Maß fuer die Fehlerhaeufigkeit:
-Bitfehlerrate = \(\frac{\text{Summe gestoerte Bits}{Summe uebertragene Bits}}\)</p>
+<h3 id="fehlerhaeufigkeiten">Fehlerhaeufigkeiten</h3>
+
+<p>Maß fuer die Fehlerhaeufigkeit:
+Bitfehlerrate = \(\frac{\text{Summe gestoerte Bits}}{\text{Summe uebertragene Bits}}\)</p>
+
+<ul>
+<li>stark vom Uebertragungsmedium bzw Netz abhaengig</li>
+<li>Bitfehlerraten zu uebertragender digitaler Daten im analogen Netz sind sehr viel hoeher als in digitalen Uebertragungssystemen
+
+<ul>
+<li>moderne ISDN/PCM Systeme haben eine bessere Uebertragungsqualitaet als klassische digitale Netze</li>
+</ul></li>
+<li>die Uebertragungsfehlerhaeufigkeit ist auch stark von der Gesamtlaenge des Uebertragungsweges abhaengig</li>
+<li>typische Wahrscheinlichkeiten fuer Bitfehler
+
+<ul>
+<li>analoges Fernsprechnetz: 2*10<sup>-4</sup></li>
+<li>Funkstrecke: 10<sup>-3</sup> - 10<sup>-4</sup></li>
+<li>Ethnernet (10Base2): 10<sup>-9</sup> - 10<sup>-10</sup></li>
+<li>Glasfaser 10<sup>-10</sup> - 10<sup>-12</sup></li>
+</ul></li>
+</ul>
+
+<h3 id="fehlerwirkungen">Fehlerwirkungen</h3>
+
+<ul>
+<li>abhaengig davon welche Bits betroffen sind
+
+<ul>
+<li>(Nutz-)Datenfehler: Bits innerhalb der Nutzdaten (gesehen zB aus Sicht der Sicherungsschicht) werden gestoert</li>
+<li>Protokollfehler: Stoerungen koennen Protokollkontrolldaten, Steuerzeichen, Adressen oder sonstige protokollrelevante Daten verfaelschen oder vernichten</li>
+</ul></li>
+<li>Fehlererkennungs- und Behandlungsmassnahmen (error detection and recovery) erforderlich</li>
+<li>Fehlererkennung durch (kuenstliches) Hinzufuegen von Redundanz beim Sender
+
+<ul>
+<li>error detecting codes</li>
+<li>Spezialfall: error correcting nodes</li>
+</ul></li>
+</ul>
+
+<h3 id="fehlererkennung">Fehlererkennung</h3>
+
+<h4 id="paritaetsueberpruefung">Paritaetsueberpruefung</h4>
+
+<ul>
+<li>gerade/ungerade Paritaet
+
+<ul>
+<li>Gesamtzahl der &ldquo;1&rdquo; einschliesslich des Paritaetsbits ist gerade/ungerade</li>
+</ul></li>
+</ul>
 
     </div>
     <div class="post-footer">

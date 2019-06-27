@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Operating Systems - Interprocess Communication // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Operating Systems - Interprocess Communication</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 22, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">os</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Processes are usually a part of more complex systems. Therefore they sometimes have to exchange data between each other (inter process communication, IPC). Operations to achieve inter process communication are besides process management one of the major tasks of an OS kernel.<br />
+There&rsquo;s a functional and a timely aspect when it comes to inter process communication. In this chapter we will cover the functional aspect and the timely aspect will be covered in the next chapter.<br />
+Inter process communication can happen in two basic forms:</p>
+
+<ul>
+<li>communication</li>
+<li>cooperation</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/ipc-forms.png"/> 
+</figure>
+
+
+<h2 id="commmunication">Commmunication</h2>
+
+<ul>
+<li>communication requires another abstraction &rarr; channel/canal (Kanal)</li>
+<li>a channel is a data object that provides the operations <code>send</code> and <code>recieve</code> which each take the address of a container (Behaelter) as their argument</li>
+<li>there are different variants of passing the message:
+
+<ul>
+<li>value passing: the message ist directly put into the container (two copy operations, only synchronously)</li>
+<li>reference passing: address of the message is put into the container (one copy operations)</li>
+</ul></li>
+<li>container passing: parts of the sender address space, which contain the message are inserted into the recievers&rsquo; address space (does not require copying)</li>
+</ul>
+
+<p>Process communication does not involve <em>time semantics</em> at first - it is asynchronously &rarr; sender and reciever can execute their operations at arbitrary times. This results in the following two possible scenarios:</p>
+
+<ol>
+<li>First send, then recieve
+
+<ul>
+<li>message or message address is stored in the channel/container and can then be retrieved when recieving</li>
+</ul></li>
+<li>First recieve, then send
+
+<ul>
+<li>address of target/destination buffer is stored, so that the message then can be copied to that place</li>
+</ul></li>
+</ol>
+
+<p>In either case there&rsquo;s a intermediate storage (Zwischenspeicherung) in the channel. Also in reality sending and recieving operations are usually coupled with synchronization (see Chapter 9 / next post).<br />
+<img src="/knowledge-database/images/ipc-time-aspect.png" alt="" /></p>
+
+<p>When a channel is used for multiple communication procedures (Kommunikationsvorgaenge) there has to be the <em>capacity</em> for multiple messages (this is the default case). Variants:</p>
+
+<ul>
+<li>dynamic size &rarr; requires memory management</li>
+<li>fixed size &rarr; semantic has to be clear in the case of an overflow
+
+<ul>
+<li>possible semantics:
+
+<ul>
+<li>oldest message decays</li>
+<li>recent message decays</li>
+<li>requires synchronization (chapter 09) &rarr; blocking</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="communication-variants">Communication Variants</h4>
+
+<ul>
+<li>Versuchendes Empfangen (polling/probing recieving) = occasionally checking <em>if</em> a message is present &rarr; if that is the case, the message gets copied, if not nothing happens</li>
+<li>Umlenkendes Senden/Empfangen = after successfully transmitting a message, the commmunication partner gets interrupted and redirected to a special program piece
+
+<ul>
+<li>first arriving process stores a redirect address besides the container/channel address</li>
+<li>when the partner arrives the message is copied and the process gets redirected to the specified address</li>
+</ul></li>
+</ul>
+
+<p>A channel is an sovereing communication object and can exist independently of any senders and recievers. Sometimes it makes sense though to assign a channel to a process. This can happen on the sender or the reciever side:</p>
+
+<ul>
+<li>Kanal eines Prozesses, in dem er alle seine ausgehenden Nachrichten ablegt: Ausgangstor</li>
+<li>Kanal eines Prozesses, in dem alle eingehenden Nachrichten ablegt werden: Eingangstor (port)</li>
+</ul>
+
+<p>Eingangstore sind n:1-Kanäle, Ausgangstore 1:n-Kanäle</p>
+
+<p>Ports are the most commonly used communication objects in modern operating systems.<br />
+<img src="/knowledge-database/images/ipc-binding.png" alt="" /></p>
+
+<h2 id="cooperation">Cooperation</h2>
+
+<p>Cooperation happens when multiple proccesses access the same data which can be for example shared memory or shared files. In contrast to <em>communication</em> the abstraction (eg memory) already exists &ldquo;naturally&rdquo; and doesn&rsquo;t need to be created (like a channel for communication). Only the common ground (Gemeinsamkeit) might need to be established.</p>
+
+<h3 id="cooperation-shared-memory">Cooperation - Shared Memory</h3>
+
+<p>Shared memory between multiple threads of a main process is nothing special and doesn&rsquo;t require any special measures. Shared memory between multiple distinct processes has to be explicitly requested (system call) (slides: Realisierung über streuende Adressübersetzung).</p>
+
+<h3 id="cooperation-shared-files">Cooperation - Shared Files</h3>
+
+<p>Many operating systems support <em>memory mapped files</em>. A memory-mapped file is a segment of virtual memory that has been assigned a direct byte-for-byte correlation with some portion of a file or file-like resource. This resource is typically a file that is physically present on disk. Once present, this correlation between the file and the memory space permits applications to treat the mapped portion as if it were primary memory.</p>
+
+<ul>
+<li>operations with pointers and variables directly on the file data/content</li>
+<li>reading/writing of the file is handled by the Kernels memory management</li>
+<li>usually used for code</li>
+<li>the resource doesnt need to be a file but can also be a device, shared memory object, or other resource that the operating system can reference through a file descriptor</li>
+<li>can be used to realize shared memory when eg two processes hook in the same shared file</li>
+</ul>
+
+<h3 id="cooperation-problems">Cooperation - Problems</h3>
+
+<p>Data inconsistencies may occur when cooperating because the reception of data is not directly or indirectly initiated by the recipient.<br />
+<img src="/knowledge-database/images/cooperation-problem.png" alt="" /></p>
+
+<ul>
+<li>inconsistencies on concurrent access is one of the main error sources in thread programming</li>
+</ul>
+
+<h2 id="ipc-examples">IPC Examples</h2>
+
+<h3 id="pipes-and-named-pipes">Pipes &amp; Named Pipes</h3>
+
+<ul>
+<li>originally from UNIX and nowadays in many operating systems</li>
+<li>unidirectional communication between exactly two processes</li>
+<li>limited capacity</li>
+<li>synchronization:
+
+<ul>
+<li>when the pipe is full, the sending (writing) process is blocked</li>
+<li>when the pipe is empty, the recieving (reading) process is blocked</li>
+<li>a pipe is a &ldquo;bounded-buffer&rdquo; between two processes</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-C">#include &lt;sys/wait.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main (int argc , char ** argv) {
+  int fd [2];
+  pid_t pid ;
+  char send_msg [12]= &quot;Hello World&quot;;
+  char recv_msg [12];
+
+  pipe(fd);
+  pid = fork();
+
+  if (pid &gt; 0) { /* parent */
+    write(fd[1], send_msg, 12);
+    waitpid (pid, NULL, 0);
+  } else { /* child */
+    read (fd[0], recv_msg, 12);
+    printf(&quot;Got data : %s\n&quot;, recv_msg);
+  }
+
+  return (0);
+}
+</code></pre>
+
+<pre><code class="language-text">Got data : Hello World
+</code></pre>
+
+<p>Pipes <code>|</code> are also pretty commonly used in the shell. What happens is that an anonymous pipe is created and <code>fork()</code> is called for the &lsquo;left&rsquo; program (STDOUT on the write descriptor) and the &lsquo;right&rsquo; program (STDIN on the read descriptor) eg in <code>cat data.txt | grep term</code>.<br />
+Named pipes can communicate in both directions and are named via a path in the file system.</p>
+
+<h3 id="unix-signals">Unix Signals</h3>
+
+<p>Signals are one of the oldest inter-process communication methods used by Unix systems. They are used to signal asynchronous events to one or more processes. A signal could be generated by a keyboard interrupt or an error condition such as the process attempting to access a non-existent location in its virtual memory. Signals are also used by the shells to signal job control commands to their child processes.<br />
+There are a set of defined signals that the kernel can generate or that can be generated by other processes in the system, provided that they have the correct privileges. You can list a system&rsquo;s set of signals using the kill command (<code>kill -l</code>).</p>
+
+<ul>
+<li>terminal, kernel or process send a signal &rarr; <code>raise()</code> system call or <code>kill</code> command</li>
+<li>current execution is interrupted and jump to a special function the <em>signal handler</em></li>
+<li>default implementation (default action) is part of the C library</li>
+<li>all signals except SIGKILL and SIGSTOP can be programatically ignored</li>
+</ul>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt; // sleep
+#include &lt;signal.h&gt;
+
+void handle_signal (int signal) {
+  printf (&quot;\nGot it !\n&quot;);
+}
+
+int main () {
+  struct sigaction sa = {
+                         .sa_handler = handle_signal ,
+                         .sa_flags = SA_RESTART };
+
+  sigaction(SIGUSR1, &amp;sa , NULL);
+
+  while (1) {
+    printf(&quot;.&quot;);
+    fflush(stdout);
+    sleep(1);
+  }
+}
+</code></pre>
+
+<h3 id="sockets">Sockets</h3>
+
+<ul>
+<li>platform independent API to program communicating applications</li>
+<li><em>socket</em> as a virtual file is requested from the application</li>
+<li>original description in RFC147 (today as Berkeley Sockets)</li>
+<li>local endpoint of a channel (address + port)</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/icp-socket.png"/> 
+</figure>
+
+
+<ul>
+<li>see slides 26+27 (chapter 08) for an example socket implementation</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

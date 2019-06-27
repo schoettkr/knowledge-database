@@ -1,0 +1,517 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Operating Systems - Efficient Memory Management // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Operating Systems - Efficient Memory Management</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 15, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          9 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">os</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="virtualization-and-caching">Virtualization and Caching</h2>
+
+<p>Hierarchy of storages:<br />
+<img src="/knowledge-database/images/storage-hierarchy.png" alt="" /></p>
+
+<ul>
+<li>in this chapter we deal with the interaction of these hierarchies</li>
+</ul>
+
+<h3 id="locality-of-reference--lokalitaetsprinzip">Locality of reference (Lokalitaetsprinzip)</h3>
+
+<p>The storage hierarchy is based on the principle of locality. The principle of locality states that only a small part of the address space \(A\) is accessed in small intervalls \(\delta t\) and that there is a tendency of a processor to access the same set of memory locations repetitively over a short period of time.<br />
+&ldquo;When address \(a\) is accessed it is likely that an address nearby to \(a\) will be accessed&rdquo;.</p>
+
+<ul>
+<li>eg von-Neumann-principle where programs are executed sequentially (next instruction is nearby to the current instruction)</li>
+</ul>
+
+<p>&ldquo;When address \(a\) is accessed it is likely that \(a\) will be accessed in the near future again&rdquo;.</p>
+
+<ul>
+<li>eg when a variable gets written, it probably will be read or written again soon</li>
+</ul>
+
+<p>Commonly both of these principals apply, for example in the case of arrays.</p>
+
+<h3 id="caching-vs-virtualization">Caching vs Virtualization</h3>
+
+<ul>
+<li>programer/user of a storage hierachy usually does not see all layers (some are transparent)</li>
+<li>accessing layer \(k\)
+
+<ul>
+<li>de facto access of layer \(k-1\) &rarr; caching</li>
+<li>de facto access of layer \(k+1\) &rarr; virtualization</li>
+</ul></li>
+<li>caching makes access <em>faster</em> and virtualization <em>increases</em> the <em>capacity</em></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/caching-vs-virt.png"/> 
+</figure>
+
+
+<h3 id="volatile-vs-non-volatile-memory">Volatile vs Non-Volatile Memory</h3>
+
+<ul>
+<li>fluechtier (volatile) vs permament (non-volatile) Speicher</li>
+<li>the mediums used at the top of the storage hierarchy are <em>volatile</em> while the the bottom layers are <em>non-volatile</em>
+
+<ul>
+<li>the mediums are used accordingly for example for program variables (volatile) and persistant data (non-volatile)</li>
+</ul></li>
+<li>problem: caching &amp; virtualization lead to a blending of these separations
+
+<ul>
+<li>eg unwanted retention/storing, unexpected loss</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/vola-non-vola.png"/> 
+</figure>
+
+
+<h3 id="caching-and-the-os">Caching and the OS</h3>
+
+<ul>
+<li>caching of primary storage happens directly by the hardware</li>
+<li>the OS may need to configure the caching
+
+<ul>
+<li>which storage locations/areas are covered by the cache</li>
+<li>what is the writing policy (write through vs write back)</li>
+<li>how does the cache behave in case of concurrent access</li>
+</ul></li>
+<li>if the OS interfers in the memory mapping (common in case of strewing mapping), the caches may need to be invalidated (may apply the TLB as well)</li>
+<li>caching of the lower storage hierarchy layers needs to be handled by the OS</li>
+<li>transportation of data &amp; instructions between memory, cache and CPU is directly handled by the hardware</li>
+<li>accessing the harddisk is a task of the OS</li>
+<li>reading/writing from/to archive storage is either directly initiated by the use or automatically by the OS (filesystem)</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/storage-hierarchy-2.png"/> 
+</figure>
+
+
+<h2 id="virtualization">Virtualization</h2>
+
+<ul>
+<li>primary memory is often not sufficient for all processes</li>
+<li>therefore there are multiple approaches to use more storage space from the storage hierarchy (harddrive)
+
+<ul>
+<li><strong>swapping</strong> = a process only runs when it is completely in primary memory; proceses as a whole get swapped in and out of memory repeatedly (eg early UNIX)</li>
+<li><strong>memory overlay</strong> = processes do their own memory management and swap parts of their storage in and out of files</li>
+<li><strong>demand paging</strong> = processes run even if they&rsquo;re only partly in primary storage (almost all modern OS)</li>
+</ul></li>
+</ul>
+
+<h3 id="demand-paging">Demand Paging</h3>
+
+<ul>
+<li>demand paging is state of the art</li>
+<li>idea: automated conjunction of <em>strewing mapping</em> (streuender Adressierung) und <em>storage hierarchy</em></li>
+<li>not needed parts of storage are outsourced to the harddrive and insourced on demand</li>
+<li>for users/programers
+
+<ul>
+<li>transparent</li>
+<li>capacity limitations of memory gets replaced by the capacity limitations of the swap out device (practically unlimited)</li>
+<li>this unlimited storage is however just <em>virtually</em> existant</li>
+</ul></li>
+</ul>
+
+<p><strong>Datastrucutes for Demand Paging</strong><br /></p>
+
+<ul>
+<li>absence of a memory page needs to be <strong>automatically</strong> recognized by the hardware</li>
+<li>access to non-existant (or unavailable) page triggers a trap &rarr; page fault</li>
+<li>management requires additional information
+
+<ul>
+<li>page in primary storage?
+
+<ul>
+<li>&rarr; presence bit (not for inverteded page table)</li>
+</ul></li>
+<li>frame occupied/available?
+
+<ul>
+<li>&rarr; occupation bit (only for inverted page table)</li>
+</ul></li>
+<li>documentation of page access?
+
+<ul>
+<li>&rarr; reference information (maybe just a bit; reference bit)</li>
+</ul></li>
+<li>page modified?
+
+<ul>
+<li>&rarr; dirty bit</li>
+</ul></li>
+<li>possibly (access) rights</li>
+<li>possibly TLB configuration information</li>
+</ul></li>
+</ul>
+
+<p>Page table for virtual memory where each process typicaly has an own page table (&rarr; uniform memory layout from the CPU pov)<br />
+<img src="/knowledge-database/images/page-table-virt.png" alt="" /><br />
+<img src="/knowledge-database/images/pte-x86.png" alt="" /><br />
+<img src="/knowledge-database/images/page-fault.png" alt="" /></p>
+
+<p><strong>Concurrency</strong><br /></p>
+
+<ul>
+<li>page swapping requires I/O (&rarr; <strong>time intensive</strong>)
+
+<ul>
+<li>should be avoided; only modified pages should be written</li>
+</ul></li>
+<li>avoid unneccessary blocking by increasing the concurrency
+
+<ul>
+<li>ISR (interrupt service routine; interrupt handler) of the page fault does not handle the (synchronous) harddrive access</li>
+<li>ISR blocks the triggering process and wakes the <em>page swapper</em></li>
+<li>the page swapper (own process itself) organizes the page swapping &rarr; asynchronous interaction with the hardware
+
+<ul>
+<li>depending on the strategy not only the triggering page is replaced but maybe also more (principle of locality)</li>
+</ul></li>
+<li>because page faults usually occur fitfully (stossweise) the concurrency may be increased by a <em>frame emptier</em> (Frameleerer) which organizes a reserve of empty page frames</li>
+</ul></li>
+</ul>
+
+<h3 id="selection-strategies">Selection Strategies</h3>
+
+<ul>
+<li>page fault rate depends i.a. on which pages are kept in primary memory and which are outsourced</li>
+<li>global vs local view: are only pages of the page fault triggering process viewed or all pages?
+
+<ul>
+<li>local view
+
+<ul>
+<li>concept of working sets: max amount of pages which can be accessed by a process without a page fault</li>
+<li>determing the size of working-sets may require its own strategy</li>
+</ul></li>
+</ul></li>
+<li>policy (Ersetzungstrategie): which selection minimizes the amount of page faults?</li>
+<li>global/local view and policy are orthogonal</li>
+</ul>
+
+<h4 id="random-selection--zufaellige-auswahl">Random Selection (Zufaellige Auswahl)</h4>
+
+<ul>
+<li>hereinafter we use the following example to evaluate different selection strategies
+
+<ul>
+<li>storage size: 3 page frame</li>
+<li>reference sequence: 0 &rarr; 2  &rarr; 4 &rarr; 3 &rarr; 2 &rarr; 3 &rarr; 0  &rarr; 1 &rarr; 0 &rarr; 3 &rarr; 0  &rarr; 2</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/random-selection.png"/> 
+</figure>
+
+
+<ul>
+<li>7 page swaps/replacements, 10 page faults</li>
+<li>result could be worse or better, but how much better could it maximally be?</li>
+</ul>
+
+<h4 id="optimal-selection-strategy">Optimal Selection Strategy</h4>
+
+<ul>
+<li>goal of an optimal strategy: the amount of page fault should be minimized for the respective reference sequence</li>
+<li>perfect oracle \rigtarrow remove the page which will not be needed for the longest time</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/optimal-strategy.png"/> 
+</figure>
+
+
+<ul>
+<li>3 page replacements/swaps</li>
+<li>6 page faults</li>
+<li>not feasible because knowledge of the future is required</li>
+<li>but can be used as a a-posteriori-comparison for other strategies</li>
+<li>feasible strategies use principle of locality and use past values to estimate the future</li>
+</ul>
+
+<h4 id="fifo">Fifo</h4>
+
+<ul>
+<li>pages are swapped-in and -out in the same order</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/fifo-strategy.png"/> 
+</figure>
+
+
+<ul>
+<li>4 page swaps</li>
+<li>7 page faults</li>
+<li>problem: anomaly
+
+<ul>
+<li>amount of page swaps should monotonously fall for increasing amount of page frames &rarr; this does not apply to the FIFO strategy:</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/fifo-anomaly.png"/> 
+</figure>
+
+
+<h4 id="lfu--least-frequently-used">LFU (Least Frequently Used)</h4>
+
+<ul>
+<li>LFU algorithm has a counter for all pages, which is incremented for every access</li>
+<li>pages with least count are removed/swapped out</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/lfu-strategy.png"/> 
+</figure>
+
+
+<ul>
+<li>4 page swaps</li>
+<li>7 page faults</li>
+</ul>
+
+<h4 id="lru--least-recently-used">LRU (Least Recently Used)</h4>
+
+<ul>
+<li>the page which has not been used for the longest time gets removed</li>
+<li>possible implementation via queue
+
+<ul>
+<li>page at the beginning of the queue gets replaced</li>
+<li>referenced pages are moved back to the end of the queue</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/lru-strategy.png"/> 
+</figure>
+
+
+<ul>
+<li>4 page swaps</li>
+<li>7 page faults</li>
+</ul>
+
+<h4 id="rnu--recently-not-used">RNU (Recently Not Used)</h4>
+
+<ul>
+<li>similar to LRU but with a fixed time window of length \(k\) which is set via the reference sequence</li>
+<li>every page that was not referenced during the time window can be removed</li>
+<li>\(k\) has to be choosen in a way where the amount of RNU pages is small but still \(&gt;0\)</li>
+</ul>
+
+<p>Example for \(k=2\):<br />
+<img src="/knowledge-database/images/rnu-strategy.png" alt="" /></p>
+
+<ul>
+<li>4 page swaps</li>
+<li>7 page faults</li>
+</ul>
+
+<h3 id="thrashing">Thrashing</h3>
+
+<p>Thrashing occurs when a computer&rsquo;s virtual memory resources are overused, leading to a constant state of paging and page faults, inhibiting most application-level processing. This causes the performance of the computer to degrade or collapse. The situation can continue indefinitely until either the user closes some running applications or the active processes free up additional virtual memory resources. The system is busy swapping pages and doesn&rsquo;t get to do productive work.</p>
+
+<h4 id="measures-to-overcome-the-thrashing-effect">Measures to overcome the Thrashing Effect</h4>
+
+<ul>
+<li><strong>better program profiles</strong> &rarr; increase locality
+
+<ul>
+<li>eg alot of small loops instead of a few large loops</li>
+<li>eg work on large matrices row-wise instead of column-wise (also depends on memory layout)</li>
+</ul></li>
+<li><strong>measures on the OS level</strong>
+
+<ul>
+<li>faster storage (eg SSD)</li>
+<li>efficient organization of swapping files (centre of the drive)</li>
+<li>reduction of processes with memory requirements/demands (swapping instead of paging, &ldquo;atmende&rdquo; working sets)</li>
+</ul></li>
+</ul>
+
+<h2 id="examples-in-concrete-operating-systems">Examples in concrete Operating Systems</h2>
+
+<h3 id="memory-managment-in-unix">Memory Managment in UNIX</h3>
+
+<ul>
+<li>early UNIX systems <em>without virtual memory</em> but with <em>swapping</em> &rarr; memory as a resource was managed via suspending/suspensions (Verdraengung)</li>
+<li>processes were completely swapped out to the drive when..
+
+<ul>
+<li>.. there was no more space to create processes</li>
+<li>.. a dynamic memory allocation request couldn&rsquo;t be fulfilled</li>
+</ul></li>
+<li>criteria for swapping:
+
+<ul>
+<li>state &rarr; favor to swap out blocking processes</li>
+<li>priority and time spent in memory
+
+<ul>
+<li>priority and time since the process was swapped in are added</li>
+<li>process with highest value is swapped out</li>
+</ul></li>
+</ul></li>
+<li>management via First-Fit</li>
+</ul>
+
+<h4 id="demand-paging-in-unix">Demand Paging in UNIX</h4>
+
+<ul>
+<li>todays UNIX systems use demand paging with an additional page frame emptieer (page daemon)</li>
+<li>global view on the memory</li>
+<li>swapping strategy: <strong>Second Chance Algorithm</strong>
+
+<ul>
+<li>if a page is accessed a reference bit is set in the page table</li>
+<li>clock hand (&ldquo;Uhrzeiger&rdquo;) cyclically runs through all page frames</li>
+<li>the reference bit gets reseted for pages where it is set</li>
+<li>a page without a set reference bit to begin with is swapped out</li>
+<li>approximation of LRU/RNU</li>
+</ul></li>
+<li>fallback to swapping when thrashing occurs</li>
+</ul>
+
+<p>In 4.3BSD a modified second-chance algorithm was introduced where 2 hands (Zeiger) were used, one for marking and one for emptying/swapping out. The additional parameter <em>handspread</em> (Abstand der Zeiger) can be adapted to the situation.<br />
+<img src="/knowledge-database/images/second-chance-algorithm.png" alt="" /></p>
+
+<h4 id="fork-via-copy-on-write">Fork via Copy-On-Write</h4>
+
+<ul>
+<li><strong>copy-on-write</strong> = the child process created via the <code>fork()</code> system call inherits the state of the parent process</li>
+<li>user pov: copying of a memory area / address space</li>
+</ul>
+
+<p>Implementation:</p>
+
+<ul>
+<li>only the page table is copied</li>
+<li>page table entries of parents and childs are marked as read only</li>
+<li>MMU yields access error on writing access</li>
+<li>OS treats/handles error, creates a real copy and then repeats the action</li>
+</ul>
+
+<h3 id="memory-managment-in-windows">Memory Managment in Windows</h3>
+
+<ul>
+<li>local page swap strategy &rarr; <strong>Working Set</strong></li>
+<li>working sets of the processes are adapted in accordance to page fault rate and total amount of page frames
+
+<ul>
+<li>little (wenig) page faults &rarr; <em>working set trimming</em></li>
+<li>lot page faults &rarr; <em>working set expansion</em></li>
+<li>system wide maximum is calculated on startup (MmMaximumWorkingSetSize)</li>
+</ul></li>
+<li>swap in and swap out auf Kosten des Seitenfehler verursachenden Prozesses</li>
+<li>treatment/handling of page faults in the context of the violating process (modus switch)</li>
+<li>a process always starts with an empty working set
+
+<ul>
+<li>page fault on access</li>
+<li>gets filled over time when the process is running</li>
+<li>only data that is really needed lays in primary memory</li>
+</ul></li>
+<li><em>read-ahead</em> mechanisms = read in more pages than required</li>
+<li>use LRU-schema when trimming the working set</li>
+<li>kernel has its own system working set
+
+<ul>
+<li>includes global cache of the file system</li>
+<li>kernel code and data (incl drivers) can be swapped out</li>
+</ul></li>
+</ul>
+
+<h3 id="frame-managment-in-windows">Frame Managment in Windows</h3>
+
+<ul>
+<li><p>unused frames are managed via global FIFO lists</p>
+
+<ul>
+<li><strong>free page list</strong> = available frames, not filled with 0</li>
+<li><strong>modified page list</strong> = modified pages/frames, removed from working set</li>
+<li><strong>standby page list</strong> = unmodified pages/frames, removed from working set</li>
+<li><strong>zero page list</strong> = available frames, filled with 0</li>
+<li><strong>bad page list</strong> = frame didnt withstand hardware test</li>
+</ul></li>
+
+<li><p>system-wide optimization by adjusting the working sets of single processes</p></li>
+
+<li><p>new tiles (Kacheln) for processes from the Free Page List or the Zero Page List (depending on the use case)</p></li>
+
+<li><p><em>Soft Page Fault</em> = frame goes from the standby or modified list back into the working set (no I/O operations needed)</p></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

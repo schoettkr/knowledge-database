@@ -6,10 +6,30 @@
     <description>Recent content in uni on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 May 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 22 May 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Interprocess Communication</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/08_lecture/</link>
+      <pubDate>Wed, 22 May 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/08_lecture/</guid>
+      <description>Introduction Processes are usually a part of more complex systems. Therefore they sometimes have to exchange data between each other (inter process communication, IPC). Operations to achieve inter process communication are besides process management one of the major tasks of an OS kernel.
+There&amp;rsquo;s a functional and a timely aspect when it comes to inter process communication. In this chapter we will cover the functional aspect and the timely aspect will be covered in the next chapter.</description>
+    </item>
+    
+    <item>
+      <title>Operating Systems - Efficient Memory Management</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/07_lecture/</link>
+      <pubDate>Wed, 15 May 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/07_lecture/</guid>
+      <description>Virtualization and Caching Hierarchy of storages:
+ in this chapter we deal with the interaction of these hierarchies  Locality of reference (Lokalitaetsprinzip) The storage hierarchy is based on the principle of locality. The principle of locality states that only a small part of the address space \(A\) is accessed in small intervalls \(\delta t\) and that there is a tendency of a processor to access the same set of memory locations repetitively over a short period of time.</description>
+    </item>
     
     <item>
       <title>Operating Systems - Address Mapping</title>
