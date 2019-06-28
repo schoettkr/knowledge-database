@@ -6,10 +6,21 @@
     <description>Recent content in os on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 29 May 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/os/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Coordination</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/09_lecture/</link>
+      <pubDate>Wed, 29 May 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/09_lecture/</guid>
+      <description>Introduction In the last chapter we looked at communication and cooperation to exchange information/data between processes. In this chapter we take a look at the timely aspect &amp;rarr; coordination which is also often called synchronization. We focus on coordination between processes as we&amp;rsquo;ve already kind of covered coordination in the kernel via suspension etc.
+Elementary Coordination Many coordination problems can be solved with a uniform concept &amp;rarr; signaling:
+ signaling uses signals to create a sequence relationship (Reihenfolgebeziehung) ATTENTION: this has nothing to do with UNIX-signals!</description>
+    </item>
     
     <item>
       <title>Operating Systems - Interprocess Communication</title>
