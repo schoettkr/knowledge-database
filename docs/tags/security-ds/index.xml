@@ -6,10 +6,20 @@
     <description>Recent content in security-ds on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/security-ds/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 05</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/05_lecture/</link>
+      <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/05_lecture/</guid>
+      <description>SSL/TLS Wiki: Transport Layer Security (TLS), and its now-deprecated predecessor, Secure Sockets Layer (SSL), are cryptographic protocols designed to provide communications security over a computer network. Several versions of the protocols find widespread use in applications such as web browsing, email, instant messaging, and voice over IP (VoIP). Websites can use TLS to secure all communications between their servers and web browsers.
+The TLS protocol aims primarily to provide privacy and data integrity between two or more communicating computer applications.</description>
+    </item>
     
     <item>
       <title>Security of Distributed Software - Lecture 04</title>
