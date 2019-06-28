@@ -1,0 +1,43 @@
+#+TITLE: Security of Distributed Software - Lecture 07
+#+DATE: 2019-05-13
+#+HUGO_TAGS: uni security-ds
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/sds
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+* Management of Access Rights
+*Authorization* is the process of verification and access right assignment for a resource/service to a subject and is not to be confused with /Authentication/ which is the process of verificating claimed properties. Access Control is a process of access rights management and control.
+
+*Access Matrix*\\
+[[/knowledge-database/images/access-matrix.png]]
+- group- and role-based access rights management:
+  - complexity reduction by clustering users into 'role groups'
+  - inheritance relationships in rights management
+  - permissions based on roles
+    
+*Access Control Lists*\\
+[[/knowledge-database/images/access-list.png]]
+- /principal/ is a user, group or process that can be authenticated
+- simply put: ACL is a set/list of resources, principals and corresponding access rights
+
+*Access Control Models*\\
+- Discretionary Access Control (DAC)
+  - access rights are assigned per user
+  - owner of a resource can pass his own rights
+- Mandatory Access Control (MAC)
+  - rights passing is not allowed
+  - the system alone decides on which user has access to which resources
+- Role-Based Access Control (RBAC)
+  - user could potentially be assigned multiple roles
+  - access rights are role-based
+
+** Realization in Operating Systems
+
+Unix/Linux
+- data/directories are associated to an inode descriptor (contains ID of the owner, ID of the group, ACL etc)
+- assignment of rights to the file owner, group, everyone else
+  
+Windows 2000/XP/Vista/7
+- permissions/restrictions can be assigned to individual users and groups
+- security descriptors contain owner-ID, group-ID, Access Control Elements with Allow/Deny entries, logging operations

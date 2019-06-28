@@ -6,10 +6,31 @@
     <description>Recent content in security-ds on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Apr 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/security-ds/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 07</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</guid>
+      <description>Management of Access Rights Authorization is the process of verification and access right assignment for a resource/service to a subject and is not to be confused with Authentication which is the process of verificating claimed properties. Access Control is a process of access rights management and control.
+Access Matrix
+ group- and role-based access rights management:  complexity reduction by clustering users into &amp;lsquo;role groups&amp;rsquo; inheritance relationships in rights management permissions based on roles   Access Control Lists</description>
+    </item>
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 06</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/06_lecture/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/06_lecture/</guid>
+      <description>Authentication Introduction Authentication is the process of verficating if someone is the one who he claims to be. There are different kinds of authenticators:
+ knowledge-based  PIN, passwords Challenge-Response  biometrics  fingerprint, iris, voice, signature, keystroke behavior  ownership-based  something that you do not notice, but what is stored on a medium IDs, magnetic cards, certificates, smart cards  multi-factor authentication  combination of different types of authentication 2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS 3 Factors: eg password + smart card + fingerprint   Knowledge-based Authentication Knowledge-based Authentication using passwords</description>
+    </item>
     
     <item>
       <title>Security of Distributed Software - Lecture 05</title>

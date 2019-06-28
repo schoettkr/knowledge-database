@@ -43,6 +43,17 @@ There&amp;rsquo;s a functional and a timely aspect when it comes to inter proces
     </item>
     
     <item>
+      <title>Security of Distributed Software - Lecture 07</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</guid>
+      <description>Management of Access Rights Authorization is the process of verification and access right assignment for a resource/service to a subject and is not to be confused with Authentication which is the process of verificating claimed properties. Access Control is a process of access rights management and control.
+Access Matrix
+ group- and role-based access rights management:  complexity reduction by clustering users into &amp;lsquo;role groups&amp;rsquo; inheritance relationships in rights management permissions based on roles   Access Control Lists</description>
+    </item>
+    
+    <item>
       <title>Operating Systems - Address Mapping</title>
       <link>https://schoettkr.github.io/knowledge-database/uni/os/06_lecture/</link>
       <pubDate>Wed, 08 May 2019 10:00:00 +0200</pubDate>
@@ -72,6 +83,16 @@ Data Link Control
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</guid>
       <description>Modems Modem = MOdulator/DEmodulator
  basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)  Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
+    </item>
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 06</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/06_lecture/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/06_lecture/</guid>
+      <description>Authentication Introduction Authentication is the process of verficating if someone is the one who he claims to be. There are different kinds of authenticators:
+ knowledge-based  PIN, passwords Challenge-Response  biometrics  fingerprint, iris, voice, signature, keystroke behavior  ownership-based  something that you do not notice, but what is stored on a medium IDs, magnetic cards, certificates, smart cards  multi-factor authentication  combination of different types of authentication 2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS 3 Factors: eg password + smart card + fingerprint   Knowledge-based Authentication Knowledge-based Authentication using passwords</description>
     </item>
     
     <item>
