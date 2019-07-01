@@ -6,10 +6,21 @@
     <description>Recent content in security-ds on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 May 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/security-ds/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 08</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/08_lecture/</link>
+      <pubDate>Mon, 20 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/08_lecture/</guid>
+      <description>Internet Firewalls (Chapter 6) Definition: Firewalls are hard- or software components, which control the interconnection point between two network areas and implement security strategies by restricting packet forwarding.
+Fundamentals:
+ Packet filter  entity, which selectively processes flowing packets according to predefined rules, in particular, preventing packet forwarding  Proxy approaches  representative of a client process  Network Address Translation (NAT)  address translation, public and private addresses are distinguished  Bastion Host  computer with particularly high protection requirements; vulnerability mainly results from the computer&amp;rsquo;s exposed location  Dual-Homed Host  computer with at least two network interfaces for two different subnets   These approaches are now covered in more detail.</description>
+    </item>
     
     <item>
       <title>Security of Distributed Software - Lecture 07</title>

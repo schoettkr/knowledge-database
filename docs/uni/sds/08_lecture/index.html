@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Security of Distributed Software - Lecture 08 // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Security of Distributed Software - Lecture 08</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 20, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="internet-firewalls--chapter-6">Internet Firewalls (Chapter 6)</h2>
+
+<p>Definition: Firewalls are hard- or software components, which control the interconnection point between two network areas and implement security strategies by restricting packet forwarding.</p>
+
+<p>Fundamentals:</p>
+
+<ul>
+<li>Packet filter
+
+<ul>
+<li>entity, which selectively processes flowing packets according to predefined rules, in particular, preventing packet forwarding</li>
+</ul></li>
+<li>Proxy approaches
+
+<ul>
+<li>representative of a client process</li>
+</ul></li>
+<li>Network Address Translation (NAT)
+
+<ul>
+<li>address translation, public and private addresses are distinguished</li>
+</ul></li>
+<li>Bastion Host
+
+<ul>
+<li>computer with particularly high protection requirements; vulnerability mainly results from the computer&rsquo;s exposed location</li>
+</ul></li>
+<li>Dual-Homed Host
+
+<ul>
+<li>computer with at least two network interfaces for two different subnets</li>
+</ul></li>
+</ul>
+
+<p>These approaches are now covered in more detail.</p>
+
+<h3 id="packet-filter">Packet Filter</h3>
+
+<figure>
+    <img src="/knowledge-database/images/packet-filter.png"/> 
+</figure>
+
+
+<p>Then there are also router filter rules for example <code>deny icmp 129.12.0.0 0.0.255.255 any</code> in Linux environments this can be done via iptables, ipchains, ipfilter, &hellip;<br />
+There are also dynamic packet filters:<br />
+<img src="/knowledge-database/images/dynamic-packet-filter.png" alt="" /></p>
+
+<p>Filter Table Guidelines</p>
+
+<ul>
+<li>&ldquo;default deny&rdquo; &rarr; prohibit everything, which is not explicitly allowed</li>
+<li>order &rarr; filter table is usually processed sequentially, analysis is terminated after all the rules have been applied
+
+<ul>
+<li>correct order should be maintained</li>
+</ul></li>
+<li>prevent spoofing attacks
+
+<ul>
+<li>packets coming from &lsquo;outside&rsquo; with &lsquo;inside&rsquo; addresses are rejected; the same holds true in the other direction if the source address is not an &lsquo;inside&rsquo; address</li>
+</ul></li>
+<li>static filters: UDP blocking</li>
+<li>controlled handling of ICMP</li>
+<li>prevent source-routing</li>
+<li>efficiency: unneccessary filtering rules have to be removed</li>
+</ul>
+
+<h3 id="proxy-firewall">Proxy Firewall</h3>
+
+<figure>
+    <img src="/knowledge-database/images/proxy-firewall.png"/> 
+</figure>
+
+
+<ul>
+<li>typically at transport layer or as an application proxy</li>
+<li>transport layer: requires client code modification</li>
+<li>application proxy: can perform service-specific controls</li>
+</ul>
+
+<h3 id="network-address-translation">Network Address Translation</h3>
+
+<p>NAT is a proxy concept at the network layer. Initially it was intended as a measure to preserve the IPv4 address space while today it is used to conceal internal network structures.</p>
+
+<ul>
+<li>doing NAT in practice gives up the end-to-end principle as it leads to numerous diffuclties (eg ftp)</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/NAT.png"/> 
+</figure>
+
+
+<h3 id="architectures">Architectures</h3>
+
+<p>Let&rsquo;s look at different architectures utilizing different kinds of firewalls:<br />
+<img src="/knowledge-database/images/architecture-1.png" alt="" />
+<img src="/knowledge-database/images/architecture-2.png" alt="" />
+<img src="/knowledge-database/images/architecture-3.png" alt="" /></p>
+
+<p>One traditional conception in network design has been that of the &ldquo;perimeter&rdquo; which means that there&rsquo;s an &ldquo;inside&rdquo; and &ldquo;outside&rdquo; to our network. However this is not applicable to the modern situation because of eg</p>
+
+<ul>
+<li>mobile devices</li>
+<li>peer-to-peer systems</li>
+<li>ubiquitous computing</li>
+<li>ad-hoc networks</li>
+<li>sensor networks</li>
+<li>&hellip;</li>
+</ul>
+
+<p>So there is no clearly defined &ldquo;perimeter network&rdquo; available anymore.</p>
+
+<h3 id="it-security-management-aspects">IT-Security Management Aspects</h3>
+
+<ul>
+<li>determination of the required security level</li>
+<li>firewall placement and coordination
+
+<ul>
+<li>clear transition between &lsquo;internal&rsquo; and &lsquo;external&rsquo;?</li>
+<li>select entrance architecture (dual homed, screened, subnet,..)</li>
+<li>should the subnets be protected from one another?</li>
+<li>do devices require &lsquo;personal firewalls&rsquo;?</li>
+<li>how can the three stages (entrace, subnet, end-system) be kept consistent and checked for errors?</li>
+</ul></li>
+<li>Analysis of open communication channels
+
+<ul>
+<li>dependencies on the first point</li>
+<li>administration concept: who gets to issue which rules?</li>
+</ul></li>
+<li>firewall management requires security policy support</li>
+</ul>
+
+<h2 id="intrusion-detection-systems--chapter-7">Intrusion Detection Systems (Chapter 7)</h2>
+
+<p>Motivation:</p>
+
+<ul>
+<li>computer has been compromized and is used for (illegal) data distribution</li>
+<li>network operator performs IP accounting and finds out that a computer, which has previously generated next to no load, is suddenly generating a high amount of it</li>
+<li>Goal: attack detection and intrusion detection alarm</li>
+</ul>
+
+<p>Intrusion Detection Systems</p>
+
+<ul>
+<li>find and report suspicious activity in systems and networks</li>
+<li>intrusion prevention: initiation of control measures
+
+<ul>
+<li>intrusion response</li>
+</ul></li>
+</ul>
+
+<h3 id="classification-of-intrusion-detection-systems">Classification of Intrusion Detection Systems</h3>
+
+<p>Location:</p>
+
+<ul>
+<li>Host-based
+
+<ul>
+<li>system breach and misuse detection</li>
+<li>examination of log files</li>
+<li>integrity checks by checksums</li>
+<li>inspection of &ldquo;privilege escalation&rdquo;</li>
+</ul></li>
+<li>Network-based
+
+<ul>
+<li>monitoring and verification of network traffic, which can take place at various network locations</li>
+</ul></li>
+<li>Hybrid</li>
+</ul>
+
+<p>Detection:</p>
+
+<ul>
+<li>signature-based</li>
+<li>anomaly-based</li>
+</ul>
+
+<h4 id="signature-based-detection">Signature-based Detection</h4>
+
+<ul>
+<li>break-in (attempt) detection based on known procedures
+
+<ul>
+<li>eg buffer overflow attack</li>
+<li>eg implies <em>default.ida</em> within a URL in an HTTP packet together with a certain pattern in the URL Argument Name Field is a Code Red attack</li>
+</ul></li>
+<li>signatures must (same holds true for virus scanners) be kept up-to-date</li>
+<li>challenges:
+
+<ul>
+<li>register the attacks</li>
+<li>describe the attacks</li>
+<li>errors of type 1 and 2 (classification problem)</li>
+</ul></li>
+</ul>
+
+<h4 id="anomaly-based-detection">Anomaly-based Detection</h4>
+
+<ul>
+<li>detection of &ldquo;normal&rdquo; user behaviour deviations</li>
+<li>normal behaviour has to be statically describable</li>
+<li>classification problem</li>
+<li>normal behaviour should be determined through learning</li>
+
+<li><p>very effective attacks which are not deviating much from normal user behaviour might remain undetected</p></li>
+
+<li><p>Example: Securing Gateways</p>
+
+<figure>
+    <img src="/knowledge-database/images/gateways.png"/> 
+</figure>
+</li>
+</ul>
+
+<h3 id="intrusion-detection-system-honeypots">Intrusion Detection System - Honeypots</h3>
+
+<p>Approach:</p>
+
+<ul>
+<li>place unsecured server/service (&ldquo;honeypot&rdquo;) in the network</li>
+<li>monitor honeypots</li>
+<li>analyse attacks and compromises
+
+<ul>
+<li>identify tools, tactics and intruder motives</li>
+</ul></li>
+</ul>
+
+<p>Typical objectives:</p>
+
+<ul>
+<li>detect botnet attacks
+
+<ul>
+<li>botnet = network of compromized computers that can be remotely orchestrated by the attacker</li>
+</ul></li>
+<li>detect phishing attacks</li>
+</ul>
+
+<h3 id="ids-in-it-security-management">IDS in IT-Security Management</h3>
+
+<ul>
+<li>Intrusion Detection is a reactive IT-security approach
+
+<ul>
+<li>complements preventive measures, such as firewalls</li>
+</ul></li>
+<li>data protection legal requirements must be met</li>
+<li>intrusion prevention (response): given automatic reactions, one has to make sure they cannot be used as an attack themselves (such as Denial of Service)</li>
+<li>integration with network management is appropriate and necessary</li>
+</ul>
+
+<h2 id="incident-management--chapter-8">Incident Management (Chapter 8)</h2>
+
+<h3 id="history-of-certs-csirts">History of CERTs / CSIRTs</h3>
+
+<ul>
+<li>CERT = Computer Emergency Response Team</li>
+
+<li><p>CIRT = Computer Security Indicent Response Team</p></li>
+
+<li><p>trigger: internet worm 1988</p></li>
+
+<li><p>need of an IT-security &lsquo;fire brigage&rsquo; became evident</p></li>
+
+<li><p>CERT/CC (Coordination Center) was founded by DARPA located at CMU</p></li>
+</ul>
+
+<p>Today:</p>
+
+<ul>
+<li>not just &lsquo;response&rsquo;, but generally incident handling</li>
+<li>many CERTs and CSIRTs in the world eg DFN-CERT, CERT-Bund</li>
+<li>in Germany: CERT-network</li>
+<li>international network: FIRST (Forum of Incident Response and Security Teams)</li>
+</ul>
+
+<h3 id="csirts-tasks">CSIRTs Tasks</h3>
+
+<p>Reactive Services</p>
+
+<ul>
+<li>alerts and warnings</li>
+<li>incident handling
+
+<ul>
+<li>incident analysis</li>
+<li>incident response on site</li>
+<li>incident response support</li>
+<li>incident response coordination</li>
+</ul></li>
+<li>vulnerability handling
+
+<ul>
+<li>vulnerability analysis</li>
+<li>vulnerability response</li>
+<li>vulnerability response coordination</li>
+</ul></li>
+<li>artifact handling
+
+<ul>
+<li>artifact analysis</li>
+<li>artifact response</li>
+<li>artifact response coordination</li>
+</ul></li>
+</ul>
+
+<p>Proactive Services</p>
+
+<ul>
+<li>announcements</li>
+<li>technology watch</li>
+<li>security audit or assessments</li>
+<li>configuration &amp; maintenance of security tools, applications &amp; infrastructures</li>
+<li>development of security tools</li>
+<li>intrusion detection services</li>
+<li>security related information dissemination</li>
+</ul>
+
+<p>Security Quality Management Services</p>
+
+<ul>
+<li>risk analysis</li>
+<li>business continuity &amp; disaster recovery planning</li>
+<li>security consulting</li>
+<li>awareness building</li>
+<li>education/training</li>
+
+<li><p>product evaluation or certification</p></li>
+
+<li><p>Incident Handling</p>
+
+<figure>
+    <img src="/knowledge-database/images/incident-handling.png"/> 
+</figure>
+</li>
+
+<li><p>Coordination: Early Warning System</p>
+
+<figure>
+    <img src="/knowledge-database/images/early-warning.png"/> 
+</figure>
+</li>
+</ul>
+
+<h4 id="naming-of-vulnerabilities">Naming of Vulnerabilities</h4>
+
+<p>Naming requires standardization</p>
+
+<ul>
+<li>otherwise cooperation &amp; coordination become complex</li>
+</ul>
+
+<p>Standard: common vulnerabilities and exposures</p>
+
+<ul>
+<li>managed by The Mitre Corporation</li>
+</ul>
+
+<p>Example:</p>
+
+<p>Name: CVE-2004-0309<br />
+Description: Stack-based buffer overflow in the SMTP service support in vsmon.exe in Zone Labs ZoneAlarm before 4.5.538.001, ZoneLabs Integrity client 4.0 before 4.0.146.046, and 4.5 before 4.5.085, allows remote attackers to execute arbitrary code via a long RCPT TO argument.<br />
+Status: Entry<br />
+Reference: BUGTRAQ:20040219 EEYE: ZoneLabs SMTP Processing Buffer Overflow<br />
+Reference: CERT-VN:VU#619982</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

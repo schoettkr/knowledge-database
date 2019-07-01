@@ -9,13 +9,13 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
-    <lastmod>2019-06-28T13:20:17+02:00</lastmod>
+    <lastmod>2019-07-01T11:44:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
-    <lastmod>2019-06-28T13:20:17+02:00</lastmod>
+    <lastmod>2019-07-01T11:44:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -27,19 +27,30 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/</loc>
-    <lastmod>2019-06-28T13:20:17+02:00</lastmod>
+    <lastmod>2019-07-01T11:44:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
-    <lastmod>2019-06-28T13:20:17+02:00</lastmod>
+    <lastmod>2019-07-01T11:44:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/os/08_lecture/</loc>
     <lastmod>2019-06-27T11:39:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/sds/08_lecture/</loc>
+    <lastmod>2019-07-01T11:44:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/security-ds/</loc>
+    <lastmod>2019-07-01T11:44:16+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -50,12 +61,6 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</loc>
     <lastmod>2019-06-28T13:20:12+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/security-ds/</loc>
-    <lastmod>2019-06-28T13:20:17+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
