@@ -23,6 +23,17 @@ Elementary Coordination Many coordination problems can be solved with a uniform 
     </item>
     
     <item>
+      <title>Security of Distributed Software - Lecture 09</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/09_lecture/</link>
+      <pubDate>Mon, 27 May 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/09_lecture/</guid>
+      <description>Part III: Trustworthy Software Engineering
+Trustworthy Software
+ in Cordis.Europa.Eu security document defined as: Trustworthiness can be seen as software and infrastructure that is secure, reliable and resilient to attacks and operational failures; guaranteeing quality of service; protecting user data; ensuring privacy and providing usable and trusted tools to support the user in his/her security management. trustworthiness needs to be considered from the outset rather than being addressed as add-on feature  So we focus on: Identity &amp;amp; Security By Design (SBD)</description>
+    </item>
+    
+    <item>
       <title>Operating Systems - Interprocess Communication</title>
       <link>https://schoettkr.github.io/knowledge-database/uni/os/08_lecture/</link>
       <pubDate>Wed, 22 May 2019 10:00:00 +0200</pubDate>
