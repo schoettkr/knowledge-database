@@ -85,4 +85,48 @@ A detection algorithm has to account for /all/ processes and cann be called..
 - in the system idle process (Leerlaufprozess)
 - when suspicious (manually)
   
-F 19
+*Formal Deadlock Definition*\\
+The next slides, slide 19 to slide 33, provide a formal description of deadlocks. These are very hard to convert into this blog format so check them out in the [[https://osg.informatik.tu-chemnitz.de/lehre/os/bs-10-Deadlock-handout_de.pdf][slides]].
+**** Deadlock Avoidance
+- a deadlock regards the /current/ allocation/occupation situation
+- /before/ carrying out an allocation request a check is done and the request might get denied
+- most unfavorable situation: running process requests all outstanding resources (laufender  Prozess stellt komplette Restforderungen)
+  - if all of these demands can be met, the situation is still safe/secure, else the situation is unsafe/unsecure
+    - an unsafe/unsecure resource situation is characterized by the circumstance that there's a subset of processes whose outstanding (resource) request cannot be fullfilled (sooner or later)
+    - current requests might be fullfillable, however a deadlock may occur if the ordering of requests and releases is not optimal
+
+Example of two processes and two resources:\\
+[[/knowledge-database/images/trajectory-1.png]]
+- occupation trajectory of two processes $P_1$ and $P_2$ which both require the resources A and B
+- when both resources are differently assigned/allocated the situation is unsafe
+  - no deadlock if lucky
+  - guaranteed deadlock if unlucky
+- secure trajectories avoid a deadlock
+
+[[/knowledge-database/images/trajectory-1.png]]
+
+Formal Definition of safe situations:\\
+[[/knowledge-database/images/safe-situations.png]]
+
+Definition safe set of processes: A set of processes $P = {P_1, P2, ..., P_m}$ is /safe/ when $\exists$ permutation $P_{k1}, P_{k2}, ..., P_{km} \text{with} \overrightarrow{g}_{k1} - \overrightarrow{b}_{k1} \text{and} \forall j \in {2, ..., m}, \overrightarrow{g}_{kj} - \overrightarrow{b}_{kj} \leq \overrightarrow{f} + \sum_{i=1}^{j-1}\overrightarrow{b}_{ki}$
+
+The states "safe/secure" and "deadlock free" are really similar.
+- in case of a "deadlock free" situation a permutation is searched, which can be executed under all current occupations/allocation requests
+- in case of a "safe/secure" situation the same is done for the *outstanding requests* (Restforderungen) $R= G - B$
+- algorithms to detect deadlocks can also be used to avoid deadlocks
+- the matrix alogrithm by Dijkstra which is also known as Banker's algorithm is used to prevent deadlocks
+  - slides: es muessen lediglich die aktuellen Anforderungen durch die Restforderungen ersetzt werden; Problem: Restanforderungen sind i.d.R. nicht genau bekannt
+  - the Banker's algorithm is executed at each allocation and the situation that /would arise when granting/ the request is evaluated
+    - if the resulting situation is safe, the allocation request is allowed else it is put back
+
+[[/knowledge-database/images/bankers-algorithm.png]]
+
+*** Deadlock Resolution/Recovery
+- every resolution of a deadlock consists of breaking the waiting cycle
+- if an ordered resource withdrawal (BM-Entzug) is not possible, the *abortion* (Abbruch) of a process is the only option
+  - question: which process should be cancelled?
+  - criteria:
+    - requested size
+    - urgency/priority
+    - user vs system process
+    - etc....

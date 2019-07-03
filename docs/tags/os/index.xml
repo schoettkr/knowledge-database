@@ -6,10 +6,21 @@
     <description>Recent content in os on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 May 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/os/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Coordination Problems</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/10_lecture/</link>
+      <pubDate>Wed, 05 Jun 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/10_lecture/</guid>
+      <description>Coordination mechanisms and techniques can solve a lot of problems like guaranteeing data consistency when cooperating (guarding critical sections), managing exclusive ressource access etc. However new problems may occur when employing coordination mechanisms:
+ priority inversion starving (verhungern) deadlock (verklemmen)  Priority Inversion In the case of priority based scheduling a process with higher priority may be blocked by a process with lower priority, for example:
+ low-prio process \(P_L\) enters a critical section high-prio process \(P_H\) gets ready to execute and tries the same \(P_H\) is blocked  Now if a process with medium priority \(P_M\) suspenses the low-prio process \(P_L\) the blocking/stopping of \(P_H\) may continue.</description>
+    </item>
     
     <item>
       <title>Operating Systems - Coordination</title>
