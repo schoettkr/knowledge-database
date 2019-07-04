@@ -2,7 +2,7 @@
 title = "Security of Distributed Software - Lecture 05"
 author = ["eo shiru"]
 date = 2019-04-30
-lastmod = 2019-06-28T11:25:53+02:00
+lastmod = 2019-07-04T11:02:11+02:00
 tags = ["uni", "security-ds"]
 draft = false
 +++
@@ -78,3 +78,11 @@ The SSL/TLS Architecture basically consists of of 2 protocol layers:<br />
     -   compressed
     -   protected
     -   encrypted
+
+---
+
+
+#### Further Reads {#further-reads}
+
+-   <https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/>
+-   <https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/>
