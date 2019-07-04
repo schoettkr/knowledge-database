@@ -2,7 +2,7 @@
 title = "Security of Distributed Software - Lecture 08"
 author = ["eo shiru"]
 date = 2019-05-20
-lastmod = 2019-07-01T11:44:16+02:00
+lastmod = 2019-07-04T12:20:09+02:00
 tags = ["uni", "security-ds"]
 draft = false
 +++
@@ -69,9 +69,9 @@ NAT is a proxy concept at the network layer. Initially it was intended as a meas
 ### Architectures {#architectures}
 
 Let's look at different architectures utilizing different kinds of firewalls:<br />
-![](/knowledge-database/images/architecture-1.png)
-![](/knowledge-database/images/architecture-2.png)
-![](/knowledge-database/images/architecture-3.png)
+![](/knowledge-database/images/architectures-1.png)
+![](/knowledge-database/images/architectures-2.png)
+![](/knowledge-database/images/architectures-3.png)
 
 One traditional conception in network design has been that of the "perimeter" which means that there's an "inside" and "outside" to our network. However this is not applicable to the modern situation because of eg
 

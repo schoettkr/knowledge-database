@@ -55,9 +55,9 @@ NAT is a proxy concept at the network layer. Initially it was intended as a meas
 
 ** Architectures
 Let's look at different architectures utilizing different kinds of firewalls:\\
-[[/knowledge-database/images/architecture-1.png]]
-[[/knowledge-database/images/architecture-2.png]]
-[[/knowledge-database/images/architecture-3.png]]
+[[/knowledge-database/images/architectures-1.png]]
+[[/knowledge-database/images/architectures-2.png]]
+[[/knowledge-database/images/architectures-3.png]]
 
 One traditional conception in network design has been that of the "perimeter" which means that there's an "inside" and "outside" to our network. However this is not applicable to the modern situation because of eg
 - mobile devices
