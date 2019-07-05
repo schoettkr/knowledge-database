@@ -6,10 +6,19 @@
     <description>Recent content in os on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Jun 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 12 Jun 2019 10:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/os/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Operating Systems - Services, Resources and Devices</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/os/11_lecture/</link>
+      <pubDate>Wed, 12 Jun 2019 10:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/os/11_lecture/</guid>
+      <description>Services  services deal with resources we distinguish between active and passive resources services which are not offered by the kernel are realized via processes (or groups of processes) of the OS  this is the majority in a micro kernel system with the exception of process management, IPC and possibly memory management UNIX concept for such processes are daemons clients utilize service via IPC (usually communication &amp;rarr; via channels)  a process can be a client and a server at the same time  Service - Service Relationship    a server usually offers multiple operations that can be called by the client a &amp;ldquo;job&amp;rdquo; means the execution of such operation for example  file service: open, close, read, write name service: resolve, register, delete  the server operations can be realized in one or more processes  Service - Time  the service relationship has an influence on the progress  client has to wait (blocked) until the result comes from the server server is not available to other clients until the next round (limited throughput)  improvement via  drifting the communication buffering parallelism in the server   Service - Drifting  goal: overlap between client and server activity realization:  dispatch job at the earliest possible point in time recieve/take back the result at the latest possible point in time  that means the job sending operation of the client should &amp;ldquo;drift forward&amp;rdquo; and the recieve operation should &amp;ldquo;drift backwards&amp;rdquo;  Service - Buffering  instead of having huge jobs it might make sense to divide jobs in smaller chunks &amp;rarr; job processing can start earlier decoupling via buffering  increased parallelism between client and server avoid blocking  analagous for the result  especially useful for services that (directly or indirectly) access I/O devices since there are may occur huge delays  besides a higher parallelism there are other goals that can be achieved via buffering:  caching eg buffer for files changing data semantics eg character oriented I/O at blocked devices and vica versa or terminal modes (raw, cooked, halfcooked)   Different kinds of buffers:</description>
+    </item>
     
     <item>
       <title>Operating Systems - Coordination Problems</title>

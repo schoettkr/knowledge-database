@@ -1,0 +1,501 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Operating Systems - Services, Resources and Devices // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Operating Systems - Services, Resources and Devices</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 12, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          8 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">os</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="services">Services</h2>
+
+<ul>
+<li>services deal with resources</li>
+<li>we distinguish between active and passive resources</li>
+<li>services which are not offered by the kernel are realized via processes (or groups of processes) of the OS
+
+<ul>
+<li>this is the majority in a micro kernel system with the exception of process management, IPC and possibly memory management</li>
+<li>UNIX concept for such processes are <strong>daemons</strong></li>
+<li>clients utilize service via IPC (usually communication &rarr; via channels)</li>
+</ul></li>
+<li>a process can be a client and a server at the same time</li>
+</ul>
+
+<h3 id="service-service-relationship">Service - Service Relationship</h3>
+
+<figure>
+    <img src="/knowledge-database/images/service-relationship.png"/> 
+</figure>
+
+
+<ul>
+<li>a server usually offers multiple operations that can be called by the client</li>
+<li>a &ldquo;job&rdquo; means the execution of such operation for example
+
+<ul>
+<li>file service: open, close, read, write</li>
+<li>name service: resolve, register, delete</li>
+</ul></li>
+<li>the server operations can be realized in one or more processes</li>
+</ul>
+
+<h3 id="service-time">Service - Time</h3>
+
+<ul>
+<li>the service relationship has an influence on the progress
+
+<ul>
+<li>client has to wait (blocked) until the result comes from the server</li>
+<li>server is not available to other clients until the next round (limited throughput)</li>
+</ul></li>
+<li>improvement via
+
+<ul>
+<li>drifting the communication</li>
+<li>buffering</li>
+<li>parallelism in the server</li>
+</ul></li>
+</ul>
+
+<h4 id="service-drifting">Service - Drifting</h4>
+
+<ul>
+<li>goal: overlap between client and server activity</li>
+<li>realization:
+
+<ul>
+<li>dispatch job at the earliest possible point in time</li>
+<li>recieve/take back the result at the latest possible point in time</li>
+</ul></li>
+<li>that means the job sending operation of the client should &ldquo;drift forward&rdquo; and the recieve operation should &ldquo;drift backwards&rdquo;</li>
+</ul>
+
+<h4 id="service-buffering">Service - Buffering</h4>
+
+<ul>
+<li>instead of having huge jobs it might make sense to divide jobs in smaller chunks &rarr; job processing can start earlier</li>
+<li>decoupling via buffering
+
+<ul>
+<li>increased parallelism between client and server</li>
+<li>avoid blocking</li>
+</ul></li>
+<li>analagous for the result
+
+<ul>
+<li>especially useful for services that (directly or indirectly) access I/O devices since there are may occur huge delays</li>
+</ul></li>
+<li>besides a higher parallelism there are other goals that can be achieved via buffering:
+
+<ul>
+<li>caching eg buffer for files</li>
+<li>changing data semantics eg character oriented I/O at blocked devices and vica versa or terminal modes (raw, cooked, halfcooked)</li>
+</ul></li>
+</ul>
+
+<p>Different kinds of buffers:<br />
+<img src="/knowledge-database/images/service-buffers.png" alt="" /></p>
+
+<h4 id="service-parallelism">Service - Parallelism</h4>
+
+<ul>
+<li>parallelism between client and server improves the response time at the client (and therefore at the user)</li>
+<li>we look at 3 approaches:
+
+<ul>
+<li>cloning</li>
+<li>pipelining</li>
+<li>multiplexing</li>
+</ul></li>
+
+<li><p>besides that there&rsquo;s also the option to increase server throughput</p></li>
+
+<li><p>Service - Parallelism: Cloning</p>
+
+<ul>
+<li>server process gets offered in multiple identical clones</li>
+<li>all server processes take their jobs from a shared channel</li>
+<li>characteristics:
+
+<ul>
+<li>transparency for the client</li>
+<li>overtaking (Ueberholung) is possible</li>
+<li>simple to realize</li>
+</ul></li>
+</ul></li>
+
+<li><p>Service - Parallelism: Pipelining</p>
+
+<ul>
+<li>server process gets &ldquo;cut&rdquo; into multiple subprocesses</li>
+<li>there&rsquo;s a buffer between the subprocesses</li>
+<li>characteristics:
+
+<ul>
+<li>no overtaking</li>
+<li>higher transport expenditure (hoeherer Transportaufwand), inner channels</li>
+<li>harder to realize</li>
+</ul></li>
+</ul></li>
+
+<li><p>Service - Parallelism: Multiplexing</p>
+
+<ul>
+<li>when there are complex server which for example request sub-jobs from other servers there are multiple wait places</li>
+<li>processes gets stuck at recieving point, but could continue work at other places</li>
+<li>approach: combine all recieve channels together and react accordingly depending on the message</li>
+<li>characteristics:
+
+<ul>
+<li>only one process</li>
+<li>arbitrary jobs processed at the same time</li>
+<li>difficult to realize</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li>there are two major aspects when it comes to resources:
+
+<ul>
+<li>management: who can access when?</li>
+<li>execution: how is the resource used?</li>
+</ul></li>
+<li>further classification of resources (besides real/logical and possibly virtual)
+
+<ul>
+<li><strong>reusable</strong>
+
+<ul>
+<li>resources are usually released after they&rsquo;ve been used and can then be used from other processes</li>
+</ul></li>
+<li><strong>consumable</strong> (verbrauchbar)
+
+<ul>
+<li>some logical resources are consumed via their usage, that means they get created and don&rsquo;t exist any more after they&rsquo;ve been used</li>
+<li>examples: signals, messages, timestamps</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3 id="resources-scarcenes--knappheit">Resources - Scarcenes (Knappheit)</h3>
+
+<ul>
+<li>some resources are unlimited and don&rsquo;t require specific managment</li>
+<li>it gets interesting when it comes to scarce/limited resources</li>
+<li>approaches:
+
+<ul>
+<li>(central) <strong>resource manager</strong> &rarr; intermediate instance (zwischengeschaltete Instanz)
+
+<ul>
+<li>eg printer driver</li>
+</ul></li>
+<li><strong>shared protocol</strong> &rarr; contestants coordinate their access
+
+<ul>
+<li>eg critical sections, decentral bus arbitration, global serialization in distributed systems</li>
+</ul></li>
+<li><strong>uncoordinated usage</strong> &rarr; collision danger, needs to be detected and repaired
+
+<ul>
+<li>eg MAC access in Ethernet, optimistic transaction</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Note: in the case of a central resource manager or when following a common/shared protocol the Coffman criteria might be fulfilled (danger of a deadlock)</p>
+
+<ul>
+<li>in case of uncoordinated usage &ldquo;damage&rdquo; can happen! &rarr; only use when collision is unlikely and the damage would be reparable</li>
+</ul>
+
+<h3 id="resources-selection--kandidatenauswahl">Resources - Selection (Kandidatenauswahl)</h3>
+
+<ul>
+<li>problem: from a set/sequence of waiting resource requests one (fulfillable) should be chosen</li>
+<li>there are different strategies for this, the goals are
+
+<ul>
+<li>full utilization of the resource and/or</li>
+<li>fair treatment of the contestants</li>
+</ul></li>
+</ul>
+
+<p>Be:</p>
+
+<ul>
+<li>\(n_f(t)\) amount of free/available resource units at moment \(t\)</li>
+<li>\(n_(i)\) amount of requested units by process \(P_i\)</li>
+<li>\(W_(t)\) set of waiting request/processes
+
+<ul>
+<li>is a queue where new arrivals/request are put at the back</li>
+</ul></li>
+</ul>
+
+<p>If \(n_f &gt; 1\) is true for a resource it is a &ldquo;Mehrexemplarbetriebsmittel&rdquo; (term seems made up by professor, please let me know the correct English term)</p>
+
+<h4 id="resources-selection-strategies">Resources - Selection Strategies</h4>
+
+<p><strong>FIFO</strong> (first in first out) / <strong>FCFS</strong> (first come first served)</p>
+
+<ul>
+<li>only the currently first request in the queue is handled</li>
+<li>when \(n(i) \leq n_f(t)\) then \(n(i)\) get allocated/occupied for the process \(P_i\), else nothing happens</li>
+<li>disadvantages:
+
+<ul>
+<li>resource utilization (BM-Auslastung) can be bad when the first request is really large; subsequent smaller - and fulfillable - requests don&rsquo;t get considered</li>
+</ul></li>
+</ul>
+
+<p><strong>First Fit Request</strong></p>
+
+<ul>
+<li>the queue is searched through from the start <em>until</em> a request \(j\), which is fulfillable ($n(i) &le; n_f(t)), is found</li>
+<li>disadvantage:
+
+<ul>
+<li>danger of process starvation for large request</li>
+</ul></li>
+</ul>
+
+<p><strong>Best Fit Request</strong></p>
+
+<ul>
+<li>the request wich minimizes the free rest capacity gets selected</li>
+<li>the queue gets searched through completely and then the request \(j\) gets chosen, for which the following is minimal:<br /></li>
+</ul>
+
+<p>\[j_{\text{sel}} = j, j \in W(t), n(j) \leq n_f(t), n_f(t) - n(j) = min_k (n_f(t) - n(k))\]</p>
+
+<ul>
+<li>disadvantage:
+
+<ul>
+<li>danger of process starvation for large request</li>
+</ul></li>
+</ul>
+
+<p>After a release of a large amount of resource units it might be possible that multiple requests are fulfillable at the same time. Because of that the above strategies can be applied iteratively (again and again and again,..) until no further occupations are possible</p>
+
+<ul>
+<li>to reduce the effort one can limit this to a window of size \(L\), which means that only the first \(L\) positions in the queue are considered</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/selection-window.png"/> 
+</figure>
+
+
+<h4 id="resources-starvation">Resources - Starvation</h4>
+
+<ul>
+<li>starving of large request (first fit, best fit) can be avoided by using a dynamic window size</li>
+<li>\(L{\text{max}}\) be the maximum window size (initial value)</li>
+<li>then when a successfull occupation happens the window size \(L\) is modified in the following way:</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/resource-window-mod.png"/> 
+</figure>
+
+
+<p>After the first request has been passed over \(L_{\text{max}} - 1\) times, the window size will be \(L = 1\) so the first request <em>has to be handled</em>. For \(L \rightarrow 1\) Best-Fit and First-Fit converge to FCFS.</p>
+
+<p>See pages 21 to 27 for extensive examples of selection strategies!</p>
+
+<h2 id="i-o-devices">I/O Devices</h2>
+
+<ul>
+<li>real/physical resources are usually for input/output
+
+<ul>
+<li>exceptions: CPU, memory</li>
+</ul></li>
+<li>usage mainly has two tasks:
+
+<ul>
+<li><strong>transport</strong>: exchange/copy data between the central (CPU, memory) and the device</li>
+<li><strong>control/management</strong>: set/read conditions/parameters/states for the transport eg set transfer rate, position the write/read head, &hellip;</li>
+</ul></li>
+</ul>
+
+<h3 id="i-o-devices-software-requirements">I/O Devices - Software Requirements</h3>
+
+<ul>
+<li><strong>abstraction</strong> = usage should be uniform across device types (eg harddrive and CD)</li>
+<li>parallelism/synchronicity = while asynchronous usage increases efficiency, synchronicity is prefered because users have a synchronous view and it simplifies the programming (see 11.2 for examples)</li>
+<li>error handling = errors should be handled as close to the device as possible &rarr; transparency</li>
+</ul>
+
+<h3 id="i-o-devices-types-of-data-transfer">I/O Devices - Types of data transfer</h3>
+
+<p><strong>Synchronous I/O</strong></p>
+
+<ul>
+<li>user programm uses a system call</li>
+<li>call is handled by the kernel and converted to the according procedure call on the (device) driver</li>
+<li>the driver executes the input/output (possibly with polling and multiplexing) and returns/jumps back</li>
+<li>OS kernel yields control back to the user program</li>
+<li><em>disadvantage</em>: inefficient and therefoure rarely used</li>
+</ul>
+
+<p><strong>Asynchronous I/O</strong></p>
+
+<ul>
+<li>driver instruct the device with the task and waits for an interrupt on finish</li>
+<li>the interrupt is created from the device controller</li>
+<li>OS does other things in the mean time</li>
+<li><em>disadvantage</em>: possibly too many interrupt (eg per printed character)</li>
+</ul>
+
+<p><strong>I/O Processors</strong> (direct memory access, DMA)</p>
+
+<ul>
+<li>a special processor (DMA chip on device) controls the data flow</li>
+<li>CPU initializes the processor and hands him the I/O task</li>
+<li>when the chip is done he creates an interrupt</li>
+<li><em>disadvantage</em>: increased efforts on hardware side</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/sync-io.png"/> 
+</figure>
+
+
+<h3 id="i-o-control">I/O Control</h3>
+
+<ul>
+<li><strong>trigger</strong> (how does the device gets its tasks?)
+
+<ul>
+<li>CPU needs to load control register of the control unit
+
+<ul>
+<li>type of operation (eg read, write)</li>
+<li>source</li>
+<li>target</li>
+</ul></li>
+</ul></li>
+<li><strong>reaction</strong> (feedback/response to CPU)
+
+<ul>
+<li>after finishing the I/O the CPU needs to be informed
+
+<ul>
+<li>synchronous I/O: CPU occasionally checks the control register of the control unit &rarr; <strong>polling</strong></li>
+<li>asynchronous I/O + DMA:  CPU is informed via an <strong>interrupt</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Typical structure (simplified) of a simple driver process:<br /></p>
+
+<h3 id="i-o-devices-interrupt-problem">I/O Devices - Interrupt Problem</h3>
+
+<ul>
+<li>as we&rsquo;ve seen interrupts are widely used
+
+<ul>
+<li>preemptive scheduling</li>
+<li>I/O</li>
+<li>traps (eg memory fault)</li>
+</ul></li>
+<li>interrupts are <strong>fully asynchronous</strong>, which means that they can happen at any times also <em>while</em> an interrupt is getting handled &rarr; problem
+
+<ul>
+<li>blocking &rarr; can lead to data and flow inconsistencies</li>
+<li>nested interrupts &rarr; requires resumable code</li>
+<li>delayed (sequential) interrupts &rarr; increased control efforts (Verwaltungsaufwand)</li>
+</ul></li>
+</ul>
+
+<p>slides: Bei der Programmierung von ISR ist besondere Sorgfalt nötig!</p>
+
+<ul>
+<li>Kontamination von Zuständen vermeiden ➡ kritische Zustände</li>
+</ul>
+
+<p>retten</p>
+
+<ul>
+<li>Lange ISR vermeiden ➡ Parallelisierung</li>
+<li>Typische Compileroptimierungen können schaden (z.B. sollten Variablen explizit volatile sein)</li>
+</ul>
+
+<h3 id="i-o-devices-error-handling">I/O Devices - Error Handling</h3>
+
+<ul>
+<li>Bei der Verlaufsanalyse wird vor allem überprüft, ob Fehler aufgetreten sind und ggf. darauf reagiert</li>
+<li>three types of errors:
+
+<ul>
+<li><strong>delaying</strong> (verzoegernd) &rarr; can be fixed with help of user (eg no paper in printer, no usb stick)</li>
+<li><strong>stochastically</strong> &rarr; random disturbances which can be fixed via redundance (repeating the action), eg timeout, collision</li>
+<li><strong>definite/final</strong> (endgueltig) &rarr; not recoverable, job/task has to be cancelled (eg no operating voltage, unknown adress)</li>
+</ul></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

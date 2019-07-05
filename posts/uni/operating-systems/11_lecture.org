@@ -1,0 +1,229 @@
+#+TITLE: Operating Systems - Services, Resources and Devices
+#+DATE: 2019-06-12 10:00
+#+HUGO_TAGS: uni os
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/os
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+* Services
+- services deal with resources
+- we distinguish between active and passive resources
+- services which are not offered by the kernel are realized via processes (or groups of processes) of the OS
+  - this is the majority in a micro kernel system with the exception of process management, IPC and possibly memory management
+  - UNIX concept for such processes are *daemons*
+  - clients utilize service via IPC (usually communication \rightarrow via channels)
+- a process can be a client and a server at the same time
+  
+** Service - Service Relationship
+[[/knowledge-database/images/service-relationship.png]]
+- a server usually offers multiple operations that can be called by the client
+- a "job" means the execution of such operation for example
+  - file service: open, close, read, write
+  - name service: resolve, register, delete
+- the server operations can be realized in one or more processes
+
+** Service - Time
+- the service relationship has an influence on the progress
+  - client has to wait (blocked) until the result comes from the server
+  - server is not available to other clients until the next round (limited throughput)
+- improvement via
+  - drifting the communication
+  - buffering
+  - parallelism in the server
+
+*** Service - Drifting
+- goal: overlap between client and server activity
+- realization:
+  - dispatch job at the earliest possible point in time
+  - recieve/take back the result at the latest possible point in time
+- that means the job sending operation of the client should "drift forward" and the recieve operation should "drift backwards"
+  
+*** Service - Buffering
+- instead of having huge jobs it might make sense to divide jobs in smaller chunks \rightarrow job processing can start earlier
+- decoupling via buffering
+  - increased parallelism between client and server
+  - avoid blocking
+- analagous for the result
+  - especially useful for services that (directly or indirectly) access I/O devices since there are may occur huge delays
+- besides a higher parallelism there are other goals that can be achieved via buffering:
+  - caching eg buffer for files
+  - changing data semantics eg character oriented I/O at blocked devices and vica versa or terminal modes (raw, cooked, halfcooked)
+    
+Different kinds of buffers:\\
+[[/knowledge-database/images/service-buffers.png]]
+
+*** Service - Parallelism
+- parallelism between client and server improves the response time at the client (and therefore at the user)
+- we look at 3 approaches:
+  - cloning
+  - pipelining
+  - multiplexing
+- besides that there's also the option to increase server throughput
+
+**** Service - Parallelism: Cloning
+- server process gets offered in multiple identical clones
+- all server processes take their jobs from a shared channel
+- characteristics:
+  - transparency for the client
+  - overtaking (Ueberholung) is possible
+  - simple to realize
+
+**** Service - Parallelism: Pipelining
+- server process gets "cut" into multiple subprocesses
+- there's a buffer between the subprocesses
+- characteristics:
+  - no overtaking
+  - higher transport expenditure (hoeherer Transportaufwand), inner channels
+  - harder to realize
+
+**** Service - Parallelism: Multiplexing
+- when there are complex server which for example request sub-jobs from other servers there are multiple wait places
+- processes gets stuck at recieving point, but could continue work at other places
+- approach: combine all recieve channels together and react accordingly depending on the message
+- characteristics:
+  - only one process
+  - arbitrary jobs processed at the same time
+  - difficult to realize
+* Resources
+- there are two major aspects when it comes to resources:
+  - management: who can access when?
+  - execution: how is the resource used?
+- further classification of resources (besides real/logical and possibly virtual)
+  - *reusable*
+    - resources are usually released after they've been used and can then be used from other processes
+  - *consumable* (verbrauchbar)
+    - some logical resources are consumed via their usage, that means they get created and don't exist any more after they've been used
+    - examples: signals, messages, timestamps
+** Resources - Scarcenes (Knappheit)
+- some resources are unlimited and don't require specific managment
+- it gets interesting when it comes to scarce/limited resources
+- approaches:
+  - (central) *resource manager* \rightarrow intermediate instance (zwischengeschaltete Instanz)
+    - eg printer driver
+  - *shared protocol* \rightarrow contestants coordinate their access 
+    - eg critical sections, decentral bus arbitration, global serialization in distributed systems
+  - *uncoordinated usage* \rightarrow collision danger, needs to be detected and repaired
+    - eg MAC access in Ethernet, optimistic transaction
+
+Note: in the case of a central resource manager or when following a common/shared protocol the Coffman criteria might be fulfilled (danger of a deadlock)
+- in case of uncoordinated usage "damage" can happen! \rightarrow only use when collision is unlikely and the damage would be reparable
+  
+** Resources - Selection (Kandidatenauswahl)
+- problem: from a set/sequence of waiting resource requests one (fulfillable) should be chosen
+- there are different strategies for this, the goals are
+  - full utilization of the resource and/or
+  - fair treatment of the contestants
+    
+Be:
+- $n_f(t)$ amount of free/available resource units at moment $t$
+- $n_(i)$ amount of requested units by process $P_i$
+- $W_(t)$ set of waiting request/processes 
+  - is a queue where new arrivals/request are put at the back
+
+If $n_f > 1$ is true for a resource it is a "Mehrexemplarbetriebsmittel" (term seems made up by professor, please let me know the correct English term)
+
+*** Resources - Selection Strategies
+*FIFO* (first in first out) / *FCFS* (first come first served)
+- only the currently first request in the queue is handled
+- when $n(i) \leq n_f(t)$ then $n(i)$ get allocated/occupied for the process $P_i$, else nothing happens
+- disadvantages:
+  - resource utilization (BM-Auslastung) can be bad when the first request is really large; subsequent smaller - and fulfillable - requests don't get considered
+
+*First Fit Request*
+- the queue is searched through from the start /until/ a request $j$, which is fulfillable ($n(i) \leq n_f(t)), is found
+- disadvantage:
+  - danger of process starvation for large request
+
+*Best Fit Request*
+- the request wich minimizes the free rest capacity gets selected
+- the queue gets searched through completely and then the request $j$ gets chosen, for which the following is minimal:\\
+$$j_{\text{sel}} = j, j \in W(t), n(j) \leq n_f(t), n_f(t) - n(j) = min_k (n_f(t) - n(k))$$
+- disadvantage:
+  - danger of process starvation for large request
+
+After a release of a large amount of resource units it might be possible that multiple requests are fulfillable at the same time. Because of that the above strategies can be applied iteratively (again and again and again,..) until no further occupations are possible
+- to reduce the effort one can limit this to a window of size $L$, which means that only the first $L$ positions in the queue are considered
+
+[[/knowledge-database/images/selection-window.png]]
+*** Resources - Starvation
+- starving of large request (first fit, best fit) can be avoided by using a dynamic window size
+- $L{\text{max}}$ be the maximum window size (initial value)
+- then when a successfull occupation happens the window size $L$ is modified in the following way:
+
+[[/knowledge-database/images/resource-window-mod.png]]
+
+After the first request has been passed over $L_{\text{max}} - 1$ times, the window size will be $L = 1$ so the first request /has to be handled/. For $L \rightarrow 1$ Best-Fit and First-Fit converge to FCFS.
+
+See pages 21 to 27 for extensive examples of selection strategies!
+
+* I/O Devices
+- real/physical resources are usually for input/output
+  - exceptions: CPU, memory
+- usage mainly has two tasks:
+  - *transport*: exchange/copy data between the central (CPU, memory) and the device
+  - *control/management*: set/read conditions/parameters/states for the transport eg set transfer rate, position the write/read head, ...
+    
+** I/O Devices - Software Requirements
+- *abstraction* = usage should be uniform across device types (eg harddrive and CD)
+- parallelism/synchronicity = while asynchronous usage increases efficiency, synchronicity is prefered because users have a synchronous view and it simplifies the programming (see 11.2 for examples)
+- error handling = errors should be handled as close to the device as possible \rightarrow transparency
+
+** I/O Devices - Types of data transfer
+*Synchronous I/O*
+- user programm uses a system call
+- call is handled by the kernel and converted to the according procedure call on the (device) driver
+- the driver executes the input/output (possibly with polling and multiplexing) and returns/jumps back
+- OS kernel yields control back to the user program
+- /disadvantage/: inefficient and therefoure rarely used
+
+*Asynchronous I/O*
+- driver instruct the device with the task and waits for an interrupt on finish
+- the interrupt is created from the device controller
+- OS does other things in the mean time
+- /disadvantage/: possibly too many interrupt (eg per printed character)
+
+*I/O Processors* (direct memory access, DMA)
+- a special processor (DMA chip on device) controls the data flow
+- CPU initializes the processor and hands him the I/O task
+- when the chip is done he creates an interrupt
+- /disadvantage/: increased efforts on hardware side
+
+[[/knowledge-database/images/sync-io.png]]
+
+** I/O Control
+- *trigger* (how does the device gets its tasks?)
+  - CPU needs to load control register of the control unit
+    - type of operation (eg read, write)
+    - source
+    - target
+- *reaction* (feedback/response to CPU)
+  - after finishing the I/O the CPU needs to be informed
+    - synchronous I/O: CPU occasionally checks the control register of the control unit \rightarrow *polling*
+    - asynchronous I/O + DMA:  CPU is informed via an *interrupt*
+      
+Typical structure (simplified) of a simple driver process:\\
+
+** I/O Devices - Interrupt Problem
+- as we've seen interrupts are widely used
+  - preemptive scheduling
+  - I/O
+  - traps (eg memory fault)
+- interrupts are *fully asynchronous*, which means that they can happen at any times also /while/ an interrupt is getting handled \rightarrow problem
+  - blocking \rightarrow can lead to data and flow inconsistencies
+  - nested interrupts \rightarrow requires resumable code
+  - delayed (sequential) interrupts \rightarrow increased control efforts (Verwaltungsaufwand)
+    
+slides: Bei der Programmierung von ISR ist besondere Sorgfalt nötig!
+- Kontamination von Zuständen vermeiden ➡ kritische Zustände
+retten
+- Lange ISR vermeiden ➡ Parallelisierung
+- Typische Compileroptimierungen können schaden (z.B. sollten Variablen explizit volatile sein)
+ 
+  
+** I/O Devices - Error Handling
+- Bei der Verlaufsanalyse wird vor allem überprüft, ob Fehler aufgetreten sind und ggf. darauf reagiert
+- three types of errors:
+  - *delaying* (verzoegernd) \rightarrow can be fixed with help of user (eg no paper in printer, no usb stick)
+  - *stochastically* \rightarrow random disturbances which can be fixed via redundance (repeating the action), eg timeout, collision
+  - *definite/final* (endgueltig) \rightarrow not recoverable, job/task has to be cancelled (eg no operating voltage, unknown adress)
