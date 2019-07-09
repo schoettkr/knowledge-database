@@ -2,7 +2,7 @@
 title = "Security of Distributed Software - Lecture 09"
 author = ["eo shiru"]
 date = 2019-05-27
-lastmod = 2019-07-02T08:37:28+02:00
+lastmod = 2019-07-09T10:47:43+02:00
 tags = ["uni", "security-ds"]
 draft = false
 +++
@@ -118,5 +118,23 @@ These definitions embrace Kerberos, X.509, SAML. They take this problem of the e
             -   they require a unidirectional identifier, which can be used in combination with a trusted beacon (no correlation, eg user-bank interaction)
             -   negative examples: bluetooth and RFID, partially WLAN
 5.  **Pluralism of Operators and Technologies**
+    -   _a unifying identity metasystem must channel and enable the inter-working of multiple identity technologies run by multiple identity providers_
+        -   system may be ideal with respect to one characteristic, but not with respect to another
+        -   example: Authority vs Employer vs Individual
+        -   old and new technologies must be used and co-exist; identity system must not be in competition with technology, but must use it
+        -   technologies may have more growth than others (identity ecology)
 6.  **Human Integration**
+    -   _a unifying identity metasystem must define the human user as a component integrated through protected and unambiguous human-machine communications_
+        -   communication can be completely secure but what about the last two meters (off the screen and into the eyes of the viewer); does the user really know who it is he's communicating with?
+            -   phishing attacks are a good example of this
+        -   protocol for use of safety issues has to become a ceremony, absolutely predictable and controlled
+            -   example: communication in the cockpit (channel 9 on United Airlines)
 7.  **Consistent Experience Across Contexts**
+    -   _a unifying identity metasystem must provide a simple consistent experience while enabling separation of contexts through multiple operators and technologies_
+        -   simplicity and clarity are the main goal - identities have to be used in a similar fashion to all other things on the desktop
+            -   user must be able to see, verify, add and remove identities
+        -   which type of identity is acceptable in which context?
+            -   properties of such candidates are defined by the using parties
+            -   users must be able to recover the identity in the given context and understand which information is associated with it
+            -   person (human/legal) could possibly accept different types of identities
+            -   user must be able to choose the best identity in his opinion
