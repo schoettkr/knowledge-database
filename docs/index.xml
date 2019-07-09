@@ -6,10 +6,20 @@
     <description>Recent content on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jun 2019 10:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jul 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Security of Distributed Software - Lecture 10</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/sds/10_lecture/</link>
+      <pubDate>Tue, 02 Jul 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/sds/10_lecture/</guid>
+      <description>Part III: Trustworthy Software Engineering
+Identity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Identity define requirements of dealing with identities  first focus on conceptual/basic understanding  identity in global context has to comply with different levels  layered approach of identity management:      Identity - Security - Privacy  identity (in a digital setting) is often &amp;ldquo;only&amp;rdquo; closely linked to security, identity is more!</description>
+    </item>
     
     <item>
       <title>Operating Systems - Services, Resources and Devices</title>

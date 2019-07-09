@@ -1,0 +1,95 @@
+#+TITLE: Security of Distributed Software - Lecture 10
+#+DATE: 2019-07-02
+#+HUGO_TAGS: uni security-ds
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: uni/sds
+#+HUGO_DRAFT: false
+#+HUGO_AUTO_SET_LASTMOD: true
+
+*Part III: Trustworthy Software Engineering*\\
+
+* Identity in the Light of Privacy, Security and Trust (Chapter 2)
+- 7 Laws of Identity define requirements of dealing with identities
+  - first focus on conceptual/basic understanding
+- identity in global context has to comply with different levels
+  - layered approach of identity management:
+  - [[/knowledge-database/images/identity-layers.png]]
+** Identity - Security - Privacy
+- identity (in a digital setting) is often "only" closely linked to security, identity is more!
+  - security = protect data from unauthorized access, removal, tampering
+  - privacy = protect attributes, preferences, etc which are associated with identity, against unnecessary use by subject
+  - identity is in relation to others \rightarrow attributes realize trust relation ships
+** Identity & Trust
+- Trust (wiki) = In a social context, trust has several connotations. Definitions of trust typically refer to a situation characterised by the following aspects: One party (trustor) is willing to rely on the actions of another party (trustee); the situation is directed to the future. In addition, the trustor (voluntarily or forcedly) abandons control over the actions performed by the trustee. As a consequence, the trustor is uncertain about the outcome of the other's actions; he can only develop and evaluate expectations. The uncertainty involves the risk of failure or harm to the trustor if the trustee will not behave as desired
+- *Trust = Conviction and belief in the sincerity, honesty and good intentions of another party with respect to a risk-prone action.*
+*** Trust examples
+- shopping with credit card, which trust relationships & risks exist?
+  - identity and Credit Card company
+  - identity and service
+  - identity/service and card register
+  - identity/service and money
+- \rightarrow trust is always associated with risk
+- trust is something one connects to a person
+  - one cannot enforce trust by another person
+*** Trust properties
+- trust is rarely transitive
+  - example: I trust Sara's taste in music, she, in turn, trusts Peter's - therefore I would possibly trust Peter in selecting music for my Birthday Party
+- trust cannot be shared
+  - example: A trusts B and C, which does not imply that B and C trust each other
+- trust is not symmetric
+  - example: if I trust you, you don't necessarily trust me in return
+- trustworthiness cannot be self-declared ("trust me!")
+- trust is a value closely related to evidence
+  - buying a brand computer which is more expensive because I trust the brand
+  - Computer allows access upon login, since the provided evidence (login/password) serve as proof
+- trust is hard to quantify
+  - I trust Sara more than Peter - what does that mean?
+  - in business context trust can be evaluated against risks (given obvious risk levels)
+  - otherwise a contract is used as a basis: analysis is required, risks are evaluated and thereby cotractual relationships are defined; leads to Service Level Agreements (SLA) providers and users
+- Trust by reputation
+  - trust in a person can develop from other people's statements about him/her (Communities of Trust)
+  - examples:
+    - all security experts advise caution when traveling in the following countries
+    - ebay: one buys a product from a handler he doesnt know, but which has good reviews (high reputation)
+** Identity & Privacy
+- privacy is an important and complicated topic (tightly coupled with data protection)
+- identity and privacy are closely related
+  - what does privacy mean for a person?
+    - generally: private data shouldn't become public
+    - however, often: private data disclosure is ok if it yields considerable benefits
+  - privcacy must be observed in context
+    - eg discount systems: provide us your address and date of birth and we'll give you a 15% discount
+- privacy is partially legally regulated
+  - eg Federal Data Protection Act, European Data Protection Directive, Patriot Act
+- conclusion in legal context: own applications systems must take identity and privacy into account (see Laws of Identity)
+  - embed the concepts of identity and privacy in design
+  - use of identity and privacy-relevant information must be comprehensible, verifiable and reportable at any point in time
+  - identity management system or an identity metasystem must be able to answer questions on identity privacy terms
+  - legal requirements forcte system operators to testify on privacy policy
+    - eg webshop sends cookies to customers, what should the privacy policy say? (eg We use cookies)
+- privacy principle - respect privacy
+  - accountability
+  - identifying purposes
+  - requirement of affected person's consent
+  - minimal privacy data collection (time limit)
+  - limitations of use
+  - data collection accuracy
+  - protection
+  - access to personal data (to the owner)
+  - comprehensible regulations
+      
+* Identity Management Systems (Chapter 3)
+- what is needed for identity implemenation?
+  - some kind of *identity metasystem* \rightarrow contains 3 certain roles (can be more)
+  - *identity provider*
+    - person or an organization, which creates digital identities, either for themselves or on behalf, eg online shop could create identities for customers, authorities provide identities for their employees
+  - *relying party* (human/legal person)
+    - person or organization, which requires digital identity before allowing entry/acess
+    - example: users willing to revoke a contract - the relying party defines which claims are required in order to execute cancellation, as well as which formats and credentials are accepted
+  - *digital subject*
+    - individual or entity for which claims are made
+
+Definition *Identity Management*: "Identity management is the set of processes, tools and social contracts surrounding the creation, maintenance and termination of a digital Identity for people or, more generally, for systems and services to enable secure access to an expanding set of systems and applications."
+
+*Identity Management Lifecycle*\\
+[[/knowledge-database/images/identity-management-lifecycle.png]]
