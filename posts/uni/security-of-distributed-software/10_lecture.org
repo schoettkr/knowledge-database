@@ -93,3 +93,97 @@ Definition *Identity Management*: "Identity management is the set of processes, 
 
 *Identity Management Lifecycle*\\
 [[/knowledge-database/images/identity-management-lifecycle.png]]
+
+There are three identity management levels:
+- personal identity management
+- organization-related identity management
+- federated identity mangament
+  
+*** Personal Identity Management
+Entity-perspective
+- Management of different identities (different accounts for different systems)
+- Management and control of which information is provided to a service (z.B. Email, phone number etc.) 
+- eg MS Passport, MS Cardspace
+*** Organization-related Identity Management
+Organizational perspective
+- Management of identities of an organization
+- Different services of an organization are provided with and updated by identity information.
+- Traceability of data flows and data accesses
+- Management of privileges and roles within the organization
+- Definition of organization‘s policies as to the entities i.e. which data can be accessed
+- eg SUN Identity Management Suite (SUN Identity Manager), Microsoft Identity Integration Server, IBM Tivoli Identity Manager
+  
+*** Federated identity Management
+What is meant by “Federation“?
+- “Federation is an association of independent organizational units, which have
+a trust relationship.“
+- Among the latest developements in the field of IdM.
+- Is driven both by the state and industry
+  - Common and simplified resource access
+  - Complex problems/business processes and a high level of specialization require cooperation.
+  - Harmonization of business pocesses
+  - Cost savings with respect to administration and resource use
+- Frequently used technologies
+  - SAML (Security Assertion Markup Language)
+  - XML (Schema, Encryption, Signature etc.)
+  - Web Service interfaces
+- Federation perspective
+  - association of organizational units, organizations or even nations
+  - Shared use of resources and services of Federation partners
+  - Cross-organizational business processes within the Federation
+  - Modeling and definition of trust relationships
+  - Federative services are then made available according to the defined trust relationships providing ease of access to resources/data (i.e. Single Sign-on) 
+- Example projects/products/approaches: Liberty Alliance Projekt (SAML 2.0) , WS-Federation specification , SUN Identity Management Suite (SUN Federation/Access Manager) , Ping-ID, PingFederate , Shibboleth , FOAF+SSL
+
+** Anticipitated Benefits of IDMS
+Reduced management overhead
+- Better optimization/automatization of business processes
+- Reduced time required for providing a new employee with access rights to resources
+- Reduced risk of a former employee accessing resources
+- Policy and legal requirement compliance support (privacy)
+- Data consistency (data matching, modification checks, …)
+- Standard interfaces (APIs, standards …) to data/services/resources
+
+** Components of IDM systems
+"he focus of identity management is on user provisioning — the creation, maintenance, and termination of user accounts and management of credentials in support of authentication and access control." (HurwitzGroup, 2001)\\
+[[/knowledge-database/images/idm-components.png]]
+*** Basic Components
+- *Repository*
+  - Repository represents the core component for many identity management systems
+  - It is a *logical data storage* (i.e. database, directory service), in which identity information, guidelines and other organization information can be stored
+- *Propagation*
+  - Depending on the system in use, an identity entry could need to be transferred from the current reposiroty to another one
+- *Authentication Provider/Identity Provider*
+  - is responsible for primary identity authentication
+  - often issues a credential, which can be used for further authentication and authorization (z.B. SAML Token)
+  - provides multiple interfaces (z.B. LDAP, Kerberos), by means of which service can perform authentication
+- *Policy Control*
+  - policy control governs rules of information usage, disclosure and logging
+  - authorization policies determine which identity can access and manipualte which information
+  - policy control monitors the defined guidelines, creates events to be audited and signalled of according to certain rules (for example, security warnings)
+- *Auditing, Monitoring*
+  - auditing provides necessary mechanisms for information detection and storage
+  - that information normally contains access protocols and data operations (specifically in the repository)
+  - if form a basis for tracking whether the policies are being adhered to and is used for subsequent security checks
+*** Lifecycle Components
+- *(De-)Provisioning and propagation/synchronization*
+  - applies automation of all the procedures and tools to manage the identity lifecycle
+  - this Lifecycle is split into initial provosioning, synchronization and de-provisioning phases
+  - in the initial provisioning phase the according service is supplied with the necessary identity information such that the new identity can use the service (provisioning process)
+  - in the synchronzsation phase identity information is updated and compared between services (synchronization and propagation process)
+  - in the de-provisioning phase all the identity information is removed (de-provisioning process)
+- *History, Longevity*
+  - History and longevity tools create historical records, by means of which one can examine evolution of an identity overtime (i.e. creation, activation, locking, new status, removal)
+  - these components provide means for such activites as investigating whether or not a certain identity exists in the system and which changes it underwent
+*** Usage Components
+- *Single Sign-on*
+  - Single Sign-on enables an identity to perform its initial authentication and access numerous services and data without further re-authentication.
+  - Initial authentication is typically performed by an associated Identity Provider, which issues a credential.
+  - That Credential is then used to authenticate to other systems.
+- *Personalization*
+  - Personalization and preference management tools provide the identity an ability to set up individual settings for applications/services bound to that identity.
+- *Access Management*
+  - Similar to policy control
+  - Identity can define policies as to which identity can access/modify which information.
+* WAM (WebComposotion Architecture Model)
+WAM is a modeling language for designing distributed, organization-spanning web applications and (who would've thought) was developed by the lecturer/prof and is absolutely industry irrelevant for that matter. But hey that's just how things are at Chemnitz University. By the way are you looking for irrelevant + outdated material? You'd love to study some unstructured slides enhanced by Internet Explorer 6 screenshots? You hate effective use of slides and think that using results of pedagogical research to help students learn better is for nonbelievers? MAN I HAVE SOMETHING FOR YOU! Go to https://www.tu-chemnitz.de and get yourself the new and updated "Bullshit University Education"-StarterPack right now!

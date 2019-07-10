@@ -43,7 +43,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          5 min read
+          9 min read
         </div><div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
@@ -238,6 +238,178 @@
 
 <p><strong>Identity Management Lifecycle</strong><br />
 <img src="/knowledge-database/images/identity-management-lifecycle.png" alt="" /></p>
+
+<p>There are three identity management levels:</p>
+
+<ul>
+<li>personal identity management</li>
+<li>organization-related identity management</li>
+<li>federated identity mangament</li>
+</ul>
+
+<h4 id="personal-identity-management">Personal Identity Management</h4>
+
+<p>Entity-perspective</p>
+
+<ul>
+<li>Management of different identities (different accounts for different systems)</li>
+<li>Management and control of which information is provided to a service (z.B. Email, phone number etc.)</li>
+<li>eg MS Passport, MS Cardspace</li>
+</ul>
+
+<h4 id="organization-related-identity-management">Organization-related Identity Management</h4>
+
+<p>Organizational perspective</p>
+
+<ul>
+<li>Management of identities of an organization</li>
+<li>Different services of an organization are provided with and updated by identity information.</li>
+<li>Traceability of data flows and data accesses</li>
+<li>Management of privileges and roles within the organization</li>
+<li>Definition of organization‘s policies as to the entities i.e. which data can be accessed</li>
+<li>eg SUN Identity Management Suite (SUN Identity Manager), Microsoft Identity Integration Server, IBM Tivoli Identity Manager</li>
+</ul>
+
+<h4 id="federated-identity-management">Federated identity Management</h4>
+
+<p>What is meant by “Federation“?</p>
+
+<ul>
+<li>“Federation is an association of independent organizational units, which have</li>
+</ul>
+
+<p>a trust relationship.“</p>
+
+<ul>
+<li>Among the latest developements in the field of IdM.</li>
+<li>Is driven both by the state and industry
+
+<ul>
+<li>Common and simplified resource access</li>
+<li>Complex problems/business processes and a high level of specialization require cooperation.</li>
+<li>Harmonization of business pocesses</li>
+<li>Cost savings with respect to administration and resource use</li>
+</ul></li>
+<li>Frequently used technologies
+
+<ul>
+<li>SAML (Security Assertion Markup Language)</li>
+<li>XML (Schema, Encryption, Signature etc.)</li>
+<li>Web Service interfaces</li>
+</ul></li>
+<li>Federation perspective
+
+<ul>
+<li>association of organizational units, organizations or even nations</li>
+<li>Shared use of resources and services of Federation partners</li>
+<li>Cross-organizational business processes within the Federation</li>
+<li>Modeling and definition of trust relationships</li>
+<li>Federative services are then made available according to the defined trust relationships providing ease of access to resources/data (i.e. Single Sign-on)</li>
+</ul></li>
+<li>Example projects/products/approaches: Liberty Alliance Projekt (SAML 2.0) , WS-Federation specification , SUN Identity Management Suite (SUN Federation/Access Manager) , Ping-ID, PingFederate , Shibboleth , FOAF+SSL</li>
+</ul>
+
+<h3 id="anticipitated-benefits-of-idms">Anticipitated Benefits of IDMS</h3>
+
+<p>Reduced management overhead</p>
+
+<ul>
+<li>Better optimization/automatization of business processes</li>
+<li>Reduced time required for providing a new employee with access rights to resources</li>
+<li>Reduced risk of a former employee accessing resources</li>
+<li>Policy and legal requirement compliance support (privacy)</li>
+<li>Data consistency (data matching, modification checks, …)</li>
+<li>Standard interfaces (APIs, standards …) to data/services/resources</li>
+</ul>
+
+<h3 id="components-of-idm-systems">Components of IDM systems</h3>
+
+<p>&ldquo;he focus of identity management is on user provisioning — the creation, maintenance, and termination of user accounts and management of credentials in support of authentication and access control.&rdquo; (HurwitzGroup, 2001)<br />
+<img src="/knowledge-database/images/idm-components.png" alt="" /></p>
+
+<h4 id="basic-components">Basic Components</h4>
+
+<ul>
+<li><strong>Repository</strong>
+
+<ul>
+<li>Repository represents the core component for many identity management systems</li>
+<li>It is a <strong>logical data storage</strong> (i.e. database, directory service), in which identity information, guidelines and other organization information can be stored</li>
+</ul></li>
+<li><strong>Propagation</strong>
+
+<ul>
+<li>Depending on the system in use, an identity entry could need to be transferred from the current reposiroty to another one</li>
+</ul></li>
+<li><strong>Authentication Provider/Identity Provider</strong>
+
+<ul>
+<li>is responsible for primary identity authentication</li>
+<li>often issues a credential, which can be used for further authentication and authorization (z.B. SAML Token)</li>
+<li>provides multiple interfaces (z.B. LDAP, Kerberos), by means of which service can perform authentication</li>
+</ul></li>
+<li><strong>Policy Control</strong>
+
+<ul>
+<li>policy control governs rules of information usage, disclosure and logging</li>
+<li>authorization policies determine which identity can access and manipualte which information</li>
+<li>policy control monitors the defined guidelines, creates events to be audited and signalled of according to certain rules (for example, security warnings)</li>
+</ul></li>
+<li><strong>Auditing, Monitoring</strong>
+
+<ul>
+<li>auditing provides necessary mechanisms for information detection and storage</li>
+<li>that information normally contains access protocols and data operations (specifically in the repository)</li>
+<li>if form a basis for tracking whether the policies are being adhered to and is used for subsequent security checks</li>
+</ul></li>
+</ul>
+
+<h4 id="lifecycle-components">Lifecycle Components</h4>
+
+<ul>
+<li><strong>(De-)Provisioning and propagation/synchronization</strong>
+
+<ul>
+<li>applies automation of all the procedures and tools to manage the identity lifecycle</li>
+<li>this Lifecycle is split into initial provosioning, synchronization and de-provisioning phases</li>
+<li>in the initial provisioning phase the according service is supplied with the necessary identity information such that the new identity can use the service (provisioning process)</li>
+<li>in the synchronzsation phase identity information is updated and compared between services (synchronization and propagation process)</li>
+<li>in the de-provisioning phase all the identity information is removed (de-provisioning process)</li>
+</ul></li>
+<li><strong>History, Longevity</strong>
+
+<ul>
+<li>History and longevity tools create historical records, by means of which one can examine evolution of an identity overtime (i.e. creation, activation, locking, new status, removal)</li>
+<li>these components provide means for such activites as investigating whether or not a certain identity exists in the system and which changes it underwent</li>
+</ul></li>
+</ul>
+
+<h4 id="usage-components">Usage Components</h4>
+
+<ul>
+<li><strong>Single Sign-on</strong>
+
+<ul>
+<li>Single Sign-on enables an identity to perform its initial authentication and access numerous services and data without further re-authentication.</li>
+<li>Initial authentication is typically performed by an associated Identity Provider, which issues a credential.</li>
+<li>That Credential is then used to authenticate to other systems.</li>
+</ul></li>
+<li><strong>Personalization</strong>
+
+<ul>
+<li>Personalization and preference management tools provide the identity an ability to set up individual settings for applications/services bound to that identity.</li>
+</ul></li>
+<li><strong>Access Management</strong>
+
+<ul>
+<li>Similar to policy control</li>
+<li>Identity can define policies as to which identity can access/modify which information.</li>
+</ul></li>
+</ul>
+
+<h2 id="wam--webcomposotion-architecture-model">WAM (WebComposotion Architecture Model)</h2>
+
+<p>WAM is a modeling language for designing distributed, organization-spanning web applications and (who would&rsquo;ve thought) was developed by the lecturer/prof and is absolutely industry irrelevant for that matter. But hey that&rsquo;s just how things are at Chemnitz University. By the way are you looking for irrelevant + outdated material? You&rsquo;d love to study some unstructured slides enhanced by Internet Explorer 6 screenshots? You hate effective use of slides and think that using results of pedagogical research to help students learn better is for nonbelievers? MAN I HAVE SOMETHING FOR YOU! Go to <a href="https://www.tu-chemnitz.de">https://www.tu-chemnitz.de</a> and get yourself the new and updated &ldquo;Bullshit University Education&rdquo;-StarterPack right now!</p>
 
     </div>
     <div class="post-footer">
