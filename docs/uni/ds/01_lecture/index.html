@@ -3,7 +3,7 @@
   <head>
     <title>Datastructures - Lecture 01 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -104,34 +104,36 @@ Since we do not want to determine the computational time for a concrete set of d
 
 <ol>
 <li>Write down (store) all natural numbers from 2 up to an arbitrary maximum number <code>m</code>. First all numbers are unmarked.</li>
-<li>Repeat the following:
+
+<li><p>Repeat the following:</p>
 
 <ul>
 <li>take the smallest unmarked number <em>P</em> which has not been taken already (P is always a prime number btw)</li>
 <li>is \(P^2 &gt; m\) than the algorithms stops and all unnmarked numbers are the prime numbers from 2 to m</li>
-<li>mark all multiples of P, starting at \(P^2\)</li>
-</ul></li>
-</ol>
+
+<li><p>mark all multiples of P, starting at \(P^2\)</p>
 
 <pre><code class="language-C++">void sieve_of_eratosthenes(int m) {
-  int arr[m] = {0};
+int arr[m] = {0};
 
-  for (int i = 2; i &lt; m; i++) {
-    for (int j = i*i; j &lt; m; j += i) {
-      arr[j-1] = 1;
-    }
-  }
+for (int i = 2; i &lt; m; i++) {
+for (int j = i*i; j &lt; m; j += i) {
+arr[j-1] = 1;
+}
+}
 
-  for (int i = 1; i &lt; m; i++) {
-    if (!arr[i-1])
-      cout &lt;&lt; i &lt;&lt; &quot;  &quot;;
-  }
+for (int i = 1; i &lt; m; i++) {
+if (!arr[i-1])
+cout &lt;&lt; i &lt;&lt; &quot;  &quot;;
+}
 }
 sieve_of_eratosthenes(50);
 </code></pre>
 
 <pre><code class="language-text">1  2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
-</code></pre>
+</code></pre></li>
+</ul></li>
+</ol>
 
 <h4 id="example-of-array-usage-binary-search">Example of array usage: Binary Search</h4>
 

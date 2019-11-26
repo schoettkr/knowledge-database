@@ -1,6 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/fcs/01_lecture/</loc>
+    <lastmod>2019-11-26T11:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/</loc>
+    <lastmod>2019-11-26T11:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/</loc>
+    <lastmod>2019-11-26T11:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
+    <lastmod>2019-11-26T11:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
+    <lastmod>2019-11-26T11:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
+    <lastmod>2019-11-26T11:29:54+01:00</lastmod>
+  </url>
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/uni/sds/10_lecture/</loc>
@@ -8,33 +38,8 @@
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/</loc>
-    <lastmod>2019-07-10T15:53:38+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/uni/</loc>
-    <lastmod>2019-07-10T15:53:38+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/</loc>
-    <lastmod>2019-07-10T15:53:38+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/security-ds/</loc>
     <lastmod>2019-07-10T15:53:38+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/uni/</loc>
-    <lastmod>2019-07-10T15:53:38+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -45,7 +50,6 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/os/</loc>
     <lastmod>2019-07-05T14:10:57+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -101,7 +105,6 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/computer-networks/</loc>
     <lastmod>2019-05-28T13:10:50+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -145,14 +148,13 @@
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/uni/ds/04_lecture/</loc>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/datastructures/</loc>
     <lastmod>2019-04-26T13:51:45+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/datastructures/</loc>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/ds/04_lecture/</loc>
     <lastmod>2019-04-26T13:51:45+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -166,14 +168,13 @@
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</loc>
-    <lastmod>2019-04-25T12:17:32+02:00</lastmod>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/cs2/</loc>
+    <lastmod>2019-04-24T21:33:44+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/cs2/</loc>
-    <lastmod>2019-04-24T21:33:44+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</loc>
+    <lastmod>2019-04-25T12:17:32+02:00</lastmod>
   </url>
   
   <url>
@@ -184,7 +185,6 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/db-web/</loc>
     <lastmod>2019-04-11T16:47:25+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -198,14 +198,13 @@
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/uni/ai/01_lecture/</loc>
+    <loc>https://schoettkr.github.io/knowledge-database/tags/ai/</loc>
     <lastmod>2019-04-11T13:41:14+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schoettkr.github.io/knowledge-database/tags/ai/</loc>
+    <loc>https://schoettkr.github.io/knowledge-database/uni/ai/01_lecture/</loc>
     <lastmod>2019-04-11T13:41:14+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -256,7 +255,6 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/tags/organizational/</loc>
     <lastmod>2019-04-07T20:51:23+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -397,7 +395,6 @@
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/misc/</loc>
     <lastmod>2019-04-06T00:23:00+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -472,7 +469,6 @@
   
   <url>
     <loc>https://schoettkr.github.io/knowledge-database/categories/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

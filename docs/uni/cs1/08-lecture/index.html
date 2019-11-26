@@ -3,7 +3,7 @@
   <head>
     <title>Computer Science I - Lecture 08 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -98,8 +98,8 @@
 <ul>
 <li>outside of any functions are visible/present/accessible until the end of the source code</li>
 <li>inside of functions (or as function parameters) are visible/present/accessible until the end of that function</li>
-<li>inside of blocks (<code>{...}</code>) are visible/present/accessible until the end of that block</li>
-</ul>
+
+<li><p>inside of blocks (<code>{...}</code>) are visible/present/accessible until the end of that block</p>
 
 <pre><code class="language-C++">#include &lt;iostream&gt;
 using namespace std;
@@ -107,17 +107,18 @@ using namespace std;
 int x;  // outside of any function
 
 void f1() {
-  int x; // inside of f1
-  x = 7;
-  cout &lt;&lt; x &lt;&lt; endl;
+int x; // inside of f1
+x = 7;
+cout &lt;&lt; x &lt;&lt; endl;
 }
 
 int main() {
-  x = 5;
-  f1();
-  cout &lt;&lt; x;
+x = 5;
+f1();
+cout &lt;&lt; x;
 }
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>The two <code>x</code>&rsquo;s in the code above have their own, different places in memory.</p>
 

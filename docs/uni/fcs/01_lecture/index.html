@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Einführung in die Funktion von Computersystemen - Lecture 01: Informationen und ihre Darstellung // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Einführung in die Funktion von Computersystemen - Lecture 01: Informationen und ihre Darstellung</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 1, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/">funktion-computersysteme</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<p>Äquivalente Informationen können in vielen verschiedenen Darstellungen übermittelt werden. Eine symbolische Darstellung entspricht dabei der Syntax, welche via Interpretation Semantik (Bedeutung) erlangt. Bei unbekannten Interpretationsregeln kann Bedeutung jedoch nicht erkannt werden.<br />
+Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in einem Alphabet festgehalten. Ein <strong>Alphabet</strong> ist eine <strong>endliche Menge</strong> von <strong>Symbolen</strong>. Das kleinste Alphabet ist das der Binärzahlen \({0,1}\). Mit sogenannten Binärcodes also Zusammensetzungen der Symbole \(0\) und \(1\) lassen sich die Symbole aller denkbaren Alphabete ausdrücken (Binärcodierung).</p>
+
+<h2 id="codes-für-zahlen">Codes für Zahlen</h2>
+
+<h3 id="vorzeichenlose-dualzahlen">Vorzeichenlose Dualzahlen</h3>
+
+<p>Was ist der Wertebereich einer n-stelliger Dualzahl?</p>
+
+<ul>
+<li>Wertebereich: $0..(2^n)-1$<br /></li>
+</ul>
+
+<p>In C beispielsweise gebräuchlich: <code>char</code> (\(n=8\), 0..255), <code>int</code>, <code>short</code> (\(n=16\), 0..65535) etc</p>
+
+<h3 id="vorzeichenbehaftete-dualzahlen">Vorzeichenbehaftete Dualzahlen</h3>
+
+<p>Doch wie lassen sich vorzeichenbehaftete Zahlen in binärschreibweise darstellen?</p>
+
+<ul>
+<li>Idee: 1 Bit dient der Darstellung des Vorzeichens (sign + value)
+
+<ul>
+<li>\(+5=00..0101\)</li>
+<li>\(-5=10..0101\)</li>
+</ul></li>
+<li>Wertebereich: \(-(2^(n-1)-1)..2^(n-1)-1\)</li>
+<li>Problem:
+
+<ul>
+<li>keine eindeutige Darstellung für 0 (\(1000\) oder \(0000\)?)</li>
+<li>Rechenwerk für Addition schwierig</li>
+</ul></li>
+</ul>
+
+<h4 id="lösungsansätze-zur-darstellung-von-vorzeichenbehafteten-zahlen">Lösungsansätze zur Darstellung von vorzeichenbehafteten Zahlen</h4>
+
+<ul>
+<li><p>Einerkomplement</p>
+
+<ul>
+<li>positiver Wert wird wie bisher dargestellt</li>
+<li>der negative Wert entsteht durch Umkehren (negieren) aller Bits</li>
+<li>\(+5=00..0101\) &rarr; \(-5=11..1010\)</li>
+<li>Eigenschaften:
+
+<ul>
+<li>nicht eindeutig</li>
+<li>Addition/Subtraktion problematisch bei Vorzeichenwechsel</li>
+</ul></li>
+</ul></li>
+
+<li><p>Zweierkomplement</p>
+
+<ul>
+<li>ist die häufigsten Darstellung und vermeidet Nachteile von 1er Komplement/Vorzeichenzahl</li>
+<li>positive Zahlen: werden wie bisher dargestellt</li>
+<li>negative Zahlen: zuerst 1er Komplement bilden und dann 1 addieren</li>
+<li>\(+5=00..0101\) &rarr; \(-5=11..1011\)</li>
+<li>Eigenschaften:
+
+<ul>
+<li>nur eine Darstellung der 0 (eindeutig)</li>
+<li>unsymmetrischer Wertebereich \(-2^(n-1)..2^(n-1)-1\)</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3 id="gebrochene-zahlen">Gebrochene Zahlen</h3>
+
+<ul>
+<li>bisher nur ganze Zahlen (Komma steht ganz rechts)</li>
+<li>Idee: Darstellung einer gebrochenen Zahl durch zwei ganze Zahlen</li>
+<li>Problem:
+
+<ul>
+<li>Wertebereich versus Genauigkeit</li>
+<li>evtl werden Bits verschenkt</li>
+</ul></li>
+<li>Idee: Kommaposition verschiebbar &rarr; Speichern von Informationen über die Position des Kommas &rarr; <strong>Gleitkommazahl</strong>:</li>
+</ul>
+
+<p>\[z = (-1)^s * m * b^e\]</p>
+
+<ul>
+<li>\(s\) = Vorzeichen (sign)</li>
+<li>\(m\) = Mantisse (Ziffernstellen einer Gleitkommazahl vor der Potenz, zB bei \(2,9979 · 10^8\) ist \(2,9979\) die Mantisse)</li>
+<li>\(b\) = Basis (zB 2, 10, 16)</li>
+<li>\(e\) = Exponent</li>
+</ul>
+
+<p>bei bekannter Basis genügt es \(s\), \(m\) und \(e\) zu speichern</p>
+
+<h4 id="normalisierung-von-gleitkommazahlen">Normalisierung von Gleitkommazahlen</h4>
+
+<ul>
+<li>Problem: Gleitkommazahlen sind nicht eindeutig</li>
+
+<li><p>Beispiel wie eine Dezimalzahl (\(123\)) umgeformt werden kann:</p>
+
+<ul>
+<li>\(123 = 123 * 10^0 = 12.3 * 10^1 = 1.23 * 10 ^ 2 = 0.123 * 10^3 = 0.0123 * 10^4\)</li>
+</ul></li>
+
+<li><p>daher werden Gleitkommazahlen <strong>normalisiert</strong>, das heißt dass sie so umgeformt wird, dass in der Mantisse die erste Ziffer die keine Null ist direkt links vor dem Komma steht</p>
+
+<ul>
+<li>im obigen Fall wäre dies \(1.23 * 10^2\)</li>
+</ul></li>
+
+<li><p>außerdem ist bei Binärzahlen die erste Stelle immer eine 1, kann im obigen Fall also weggelassen werden</p>
+
+<ul>
+<li>zB wird Mantisse \(1.0110\) als $.0110$ dargestellt</li>
+</ul></li>
+</ul>
+
+<p>Es gibt außerdem verschiedene Präzisionsformen von Gleitkommazahlen (IEEE 754)
+<img src="/knowledge-database/images/precision-gleitkommazahlen.png" alt="" /></p>
+
+<p>Probleme können jedoch beim Umgang mit ganzen Zahlen in Gleitkommarepräsentation auftreten (Ungenauigkeiten/Rundungsfehler)</p>
+
+<h2 id="aussagelogik">Aussagelogik</h2>
+
+<ul>
+<li>Teil der Logik, in dem Eigenschaften von Aussagen, die mittels Aussagenverknüpfungen aus anderen Aussagen entstehen, untersucht werden</li>
+<li>jede Aussage hat einen Wahrheitswert</li>
+<li><strong>Prinzip der Zweiwertigkeit</strong>
+
+<ul>
+<li>jede Aussage hat entweder den Wert <strong>wahr</strong> oder <strong>falsch</strong></li>
+</ul></li>
+<li><strong>Satz vom ausgeschlossenen Dritten</strong> (tertium non datur)
+
+<ul>
+<li>jede Aussage ist immer entweder wahr oder falsch</li>
+</ul></li>
+<li><strong>Satz vom ausgeschlossenen Widerspruch</strong>
+
+<ul>
+<li>keine Aussage ist zugleich wahr und falsch</li>
+</ul></li>
+<li><strong>Prinzip der Extensionalität</strong>
+
+<ul>
+<li>der Wahrheitswert einer Aussageverknüpfung hängt ausschließlich von den Wahrheitswerten ihrer Bestandteile ab</li>
+</ul></li>
+</ul>
+
+<p>Operatoren der Booleschen Algebra: ∧, ∨, ¬</p>
+
+<p><img src="/knowledge-database/images/boolsch-1.png" alt="" /><br />
+<img src="/knowledge-database/images/boolsch-2.png" alt="" /><br />
+<img src="/knowledge-database/images/boolsch-3.png" alt="" /><br />
+<img src="/knowledge-database/images/boolsch-4.png" alt="" /></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

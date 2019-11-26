@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 06 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -155,28 +155,29 @@ return 0;
 
 <ul>
 <li><code>void *p</code> pointer that is pointing to an address</li>
-<li>assigning void pointers is compatible to/with all other pointer types (&rarr; no warnings!)</li>
-</ul>
+
+<li><p>assigning void pointers is compatible to/with all other pointer types (&rarr; no warnings!)</p>
 
 <pre><code class="language-C">/* addr2 .c -- pointer to a variable */
 extern printf(char* c, ...);
 
 int main ()
 {
-  int var = 42 , * pvar ;
-  pvar = &amp;var ;
-  printf (&quot; Variable var has the address %p and the value %d\n&quot;, pvar, var);
-  printf (&quot;Variable pvar has the address %p and the value %p\n&quot;, &amp;pvar , pvar);
+int var = 42 , * pvar ;
+pvar = &amp;var ;
+printf (&quot; Variable var has the address %p and the value %d\n&quot;, pvar, var);
+printf (&quot;Variable pvar has the address %p and the value %p\n&quot;, &amp;pvar , pvar);
 
-  printf (&quot;The value that the pointer stored in pvar points to is %d\n&quot;, *pvar);
-  return 0;
+printf (&quot;The value that the pointer stored in pvar points to is %d\n&quot;, *pvar);
+return 0;
 }
 </code></pre>
 
 <pre><code class="language-text">Variable var has the address 0x7ffd069fee4c and the value 42
 Variable pvar has the address 0x7ffd069fee50 and the value 0x7ffd069fee4c
 The value that the pointer stored in pvar points to is 42
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>Example memory representation of the above code (addresses will differ):
 <img src="/knowledge-database/images/pointer-memory-representation.png" alt="" /></p>

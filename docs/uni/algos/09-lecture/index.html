@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 09 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -258,8 +258,8 @@ Mustang
 <ol>
 <li>Check if condition <code>while (expression/Condition)</code> evaluates to true (nonzero)</li>
 <li>If yes: execute body of the loop and jump to 1.</li>
-<li>If no: resume program execution after the loop</li>
-</ol>
+
+<li><p>If no: resume program execution after the loop</p>
 
 <pre><code class="language-C">// Program to find factorial of a number
 // For a positive integer n, factorial = 1*2*3...n
@@ -267,32 +267,33 @@ Mustang
 #include &lt;stdio.h&gt;
 int main()
 {
-    int number;
-    long long factorial;
+int number;
+long long factorial;
 
-    // printf(&quot;Enter an integer: &quot;);
-    // scanf(&quot;%d&quot;,&amp;number); // cannot read from stdio in my blog :)
-    number = 5;
+// printf(&quot;Enter an integer: &quot;);
+// scanf(&quot;%d&quot;,&amp;number); // cannot read from stdio in my blog :)
+number = 5;
 
-    factorial = 1;
+factorial = 1;
 
-    // loop terminates when number is less than or equal to 0
-    while (number &gt; 0)
-    {
-        factorial *= number;  // factorial = factorial*number;
-        number--;
+// loop terminates when number is less than or equal to 0
+while (number &gt; 0)
+{
+    factorial *= number;  // factorial = factorial*number;
+    number--;
 
-        // alternatively: factorial *= number--;
-    }
+    // alternatively: factorial *= number--;
+}
 
-    printf(&quot;Factorial= %lld&quot;, factorial);
+printf(&quot;Factorial= %lld&quot;, factorial);
 
-    return 0;
+return 0;
 }
 </code></pre>
 
 <pre><code class="language-text">Factorial= 120
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>Loops can be used to fill fields of an array:</p>
 

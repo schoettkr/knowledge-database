@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 13 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -97,40 +97,39 @@
 <p>However if you find yourself in the need of such data structure there are a multitude of approaches to implement it such. Here are two:</p>
 
 <ul>
-<li>via <strong>adjacency matrix</strong>:
+<li><p>via <strong>adjacency matrix</strong>:</p>
 
 <ul>
 <li>a square matrix to represent a finite graph</li>
 <li>the elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph</li>
-<li>in 2d array each element <code>a_{i,j}</code> holds information weather or not an edge connects the vertices <code>v_i</code> and <code>v_j</code> or which weight the edge has:</li>
-</ul></li>
-</ul>
+
+<li><p>in 2d array each element <code>a_{i,j}</code> holds information weather or not an edge connects the vertices <code>v_i</code> and <code>v_j</code> or which weight the edge has:</p>
 
 <pre><code class="language-C">enum {nodes = 5};
 
 bool a[nodes][nodes];
 
 a[0][1] = true; // -&gt; edge between verticle 0 and verticle 1 exists
-</code></pre>
-
-<ul>
-<li>via <strong>structs and pointers</strong>:
-
-<ul>
-<li>vertices can be modelled as structs and edges as pointers inside of those:</li>
+</code></pre></li>
 </ul></li>
-</ul>
+
+<li><p>via <strong>structs and pointers</strong>:</p>
+
+<ul>
+<li><p>vertices can be modelled as structs and edges as pointers inside of those:</p>
 
 <pre><code class="language-C">enum {maxDegree = 6};
 
 struct node;
 
 typedef struct node {
-  int id;
-  struct node *in[maxDegree];
-  struct node *out[maxDegree];
+int id;
+struct node *in[maxDegree];
+struct node *out[maxDegree];
 } node_t;
-</code></pre>
+</code></pre></li>
+</ul></li>
+</ul>
 
 <p>Since graph theory is a relatively old field of mathematics there are a lot of theorems, laws and standard algorithms for solving certain problems.</p>
 

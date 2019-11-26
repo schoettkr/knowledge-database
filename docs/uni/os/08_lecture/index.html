@@ -3,7 +3,7 @@
   <head>
     <title>Operating Systems - Interprocess Communication // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -179,42 +179,44 @@ Inter process communication can happen in two basic forms:</p>
 <li>originally from UNIX and nowadays in many operating systems</li>
 <li>unidirectional communication between exactly two processes</li>
 <li>limited capacity</li>
-<li>synchronization:
+
+<li><p>synchronization:</p>
 
 <ul>
 <li>when the pipe is full, the sending (writing) process is blocked</li>
 <li>when the pipe is empty, the recieving (reading) process is blocked</li>
-<li>a pipe is a &ldquo;bounded-buffer&rdquo; between two processes</li>
-</ul></li>
-</ul>
+
+<li><p>a pipe is a &ldquo;bounded-buffer&rdquo; between two processes</p>
 
 <pre><code class="language-C">#include &lt;sys/wait.h&gt;
 #include &lt;stdio.h&gt;
 #include &lt;unistd.h&gt;
 
 int main (int argc , char ** argv) {
-  int fd [2];
-  pid_t pid ;
-  char send_msg [12]= &quot;Hello World&quot;;
-  char recv_msg [12];
+int fd [2];
+pid_t pid ;
+char send_msg [12]= &quot;Hello World&quot;;
+char recv_msg [12];
 
-  pipe(fd);
-  pid = fork();
+pipe(fd);
+pid = fork();
 
-  if (pid &gt; 0) { /* parent */
-    write(fd[1], send_msg, 12);
-    waitpid (pid, NULL, 0);
-  } else { /* child */
-    read (fd[0], recv_msg, 12);
-    printf(&quot;Got data : %s\n&quot;, recv_msg);
-  }
+if (pid &gt; 0) { /* parent */
+write(fd[1], send_msg, 12);
+waitpid (pid, NULL, 0);
+} else { /* child */
+read (fd[0], recv_msg, 12);
+printf(&quot;Got data : %s\n&quot;, recv_msg);
+}
 
-  return (0);
+return (0);
 }
 </code></pre>
 
 <pre><code class="language-text">Got data : Hello World
-</code></pre>
+</code></pre></li>
+</ul></li>
+</ul>
 
 <p>Pipes <code>|</code> are also pretty commonly used in the shell. What happens is that an anonymous pipe is created and <code>fork()</code> is called for the &lsquo;left&rsquo; program (STDOUT on the write descriptor) and the &lsquo;right&rsquo; program (STDIN on the read descriptor) eg in <code>cat data.txt | grep term</code>.<br />
 Named pipes can communicate in both directions and are named via a path in the file system.</p>
@@ -228,31 +230,32 @@ There are a set of defined signals that the kernel can generate or that can be g
 <li>terminal, kernel or process send a signal &rarr; <code>raise()</code> system call or <code>kill</code> command</li>
 <li>current execution is interrupted and jump to a special function the <em>signal handler</em></li>
 <li>default implementation (default action) is part of the C library</li>
-<li>all signals except SIGKILL and SIGSTOP can be programatically ignored</li>
-</ul>
+
+<li><p>all signals except SIGKILL and SIGSTOP can be programatically ignored</p>
 
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 #include &lt;unistd.h&gt; // sleep
 #include &lt;signal.h&gt;
 
 void handle_signal (int signal) {
-  printf (&quot;\nGot it !\n&quot;);
+printf (&quot;\nGot it !\n&quot;);
 }
 
 int main () {
-  struct sigaction sa = {
-                         .sa_handler = handle_signal ,
-                         .sa_flags = SA_RESTART };
+struct sigaction sa = {
+                     .sa_handler = handle_signal ,
+                     .sa_flags = SA_RESTART };
 
-  sigaction(SIGUSR1, &amp;sa , NULL);
+sigaction(SIGUSR1, &amp;sa , NULL);
 
-  while (1) {
-    printf(&quot;.&quot;);
-    fflush(stdout);
-    sleep(1);
-  }
+while (1) {
+printf(&quot;.&quot;);
+fflush(stdout);
+sleep(1);
 }
-</code></pre>
+}
+</code></pre></li>
+</ul>
 
 <h3 id="sockets">Sockets</h3>
 

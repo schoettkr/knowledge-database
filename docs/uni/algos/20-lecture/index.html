@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 20 &amp; 21 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -678,33 +678,34 @@ end if
 <ul>
 <li>inspect all 8 win tuples and determine whether or not they are evaluated with 2</li>
 <li>every field that occurs in one of these tuples <strong>and is empty</strong> gets a point (+=1)</li>
-<li>a field that then has more than 1 point is a pivot field</li>
-</ul>
+
+<li><p>a field that then has more than 1 point is a pivot field</p>
 
 <pre><code class="language-C">int forking_move(const ttt_playground_t field, const ttt_tripleval_t eval) {
-  int i, j = 0;
-  int singles[NUMBER_OF_FIELDS] = {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}; // used to count the &quot;points&quot;
+int i, j = 0;
+int singles[NUMBER_OF_FIELDS] = {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}; // used to count the &quot;points&quot;
 
-  for (i = 0; i &lt; NUMBER_TRIPLES; ++i) {
-    if (eval[i] == I_KEY) {
-      for (j = 0; j &lt; 3; j++) {
-        if (field[triples[i][j]] == ' ') {
-          ++singles[triples[i][j]];
-        }
-      }
+for (i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+if (eval[i] == I_KEY) {
+  for (j = 0; j &lt; 3; j++) {
+    if (field[triples[i][j]] == ' ') {
+      ++singles[triples[i][j]];
     }
   }
-
-  // iterate over singles and find one with &gt;1 points which is therefore pivot field
-  for (i = 0; i &lt; NUMBER_OF_FIELDS; ++i) {
-    if (singles[i] &gt;= 2) {
-      return i;
-    }
-  }
-
-  return NONE;
 }
-</code></pre>
+}
+
+// iterate over singles and find one with &gt;1 points which is therefore pivot field
+for (i = 0; i &lt; NUMBER_OF_FIELDS; ++i) {
+if (singles[i] &gt;= 2) {
+  return i;
+}
+}
+
+return NONE;
+}
+</code></pre></li>
+</ul>
 
 <h3 id="offense">Offense</h3>
 

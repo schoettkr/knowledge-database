@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 19 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -407,44 +407,46 @@ switch (p[pos]) {
 <ul>
 <li>one edge to the state after the next state (folgezustand des folgezustands) with the condition that the character of the next state is found (represents the optionality)</li>
 <li>one edge to the next state when neither the character of the next state nor EOT is matched (represents arbitrary char)</li>
-<li>one edge for EOT that goes to fail state</li>
-</ul>
+
+<li><p>one edge for EOT that goes to fail state</p>
 
 <pre><code class="language-C">case '!':
-  ++snr;
+++snr;
 
-  a.state[snr].type = StateDefault;
-  a.state[snr].ch = a.state[snr-1].ch; // get character from next state
+a.state[snr].type = StateDefault;
+a.state[snr].ch = a.state[snr-1].ch; // get character from next state
 
-  a.state[snr].edge[0].condition = MatchChar;
-  a.state[snr].edge[0].next = a.state[snr-1].edge[0].next;
+a.state[snr].edge[0].condition = MatchChar;
+a.state[snr].edge[0].next = a.state[snr-1].edge[0].next;
 
-  a.state[snr].edge[1].condition = MatchEOT;
-  a.state[snr].edge[1].next = S_FAIL;
+a.state[snr].edge[1].condition = MatchEOT;
+a.state[snr].edge[1].next = S_FAIL;
 
 
-  a.state[snr].edge[2].condition = MatchNotCharNotEOT;
-  a.state[snr].edge[2].next = snr-1;
+a.state[snr].edge[2].condition = MatchNotCharNotEOT;
+a.state[snr].edge[2].next = snr-1;
 
-  break;
+break;
 
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>In contrast to the previous cases, the <code>'*'</code> character <strong>does not</strong> create a new state. Instead the state of the next character is <strong>modified</strong></p>
 
 <ul>
 <li>the condition of the edge to &lsquo;fail&rsquo; is mititgated (abgeschwächt) to EOT</li>
-<li>a loop to itself is added, when neither the original character nor EOT are matched</li>
-</ul>
+
+<li><p>a loop to itself is added, when neither the original character nor EOT are matched</p>
 
 <pre><code class="language-C">case '*':
-  // no ++snr
-  a.state[snr].edge[1].condition = MatchEOT;
-  a.state[snr].edge[2].condition = MatchNotCharNotEOT;
-  a.state[snr].edge[2].next = snr;
-  break;
+// no ++snr
+a.state[snr].edge[1].condition = MatchEOT;
+a.state[snr].edge[2].condition = MatchNotCharNotEOT;
+a.state[snr].edge[2].next = snr;
+break;
 }
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>Finally we also need to determine the initial state of our state machine. Since we operated on the search pattern from the tail, the initial state is the state that was generated last.</p>
 

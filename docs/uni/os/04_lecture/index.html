@@ -3,7 +3,7 @@
   <head>
     <title>Operating Systems - Scheduling // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -332,23 +332,30 @@ The goals in mind were to achieve an improved scalability and SMP (symmetric mul
 <pre><code class="language-C">#define BASE_TIMESLICE(p) (MIN_TIMESLICE + \
     ((MAX_TIMESLICE - MIN_TIMESLICE) * \
      (MAX_PRIO - 1 - (p)-&gt;static_prio / (MAX_USER_PRIO-1)))
-</code></pre>
+</code></pre></li>
+
+<li><p>per processor/core there are two priority arrays</p>
 
 <ul>
-<li>per processor/core there are two priority arrays</li>
 <li>array for all processes with a positive quantum</li>
 <li>array for all processes with a used up quantum</li>
-<li>each of these arrays consists of a bitmap and a queue of runable processes for every priority level</li>
+</ul></li>
+
+<li><p>each of these arrays consists of a bitmap and a queue of runable processes for every priority level</p>
+
+<ul>
 <li>bit in the bitmap specifies if a task is available in the corresponding queue</li>
-<li>when there are no more processes with a positive quantum then the pointer of the two arrays are swapped</li>
-<li>the next process is chosen based on the first bit that is set in the bitmap (highest prio) which respond to each prio level; inside a prio level Round Robin is then used to manage the processes</li>
+</ul></li>
+
+<li><p>when there are no more processes with a positive quantum then the pointer of the two arrays are swapped</p></li>
+
+<li><p>the next process is chosen based on the first bit that is set in the bitmap (highest prio) which respond to each prio level; inside a prio level Round Robin is then used to manage the processes</p></li>
 </ul>
 
 <figure>
     <img src="/knowledge-database/images/prio-bitmap.png"/> 
 </figure>
-</li>
-</ul>
+
 
     </div>
     <div class="post-footer">

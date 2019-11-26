@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 14 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -304,15 +304,16 @@ while (y != a) {
 <ol>
 <li>the values are natural numbers (incl 0)</li>
 <li>the value of &tau; decreases with each method call (recursion)</li>
-<li>discontinuation is forced at &tau; = 0 (or earlier)</li>
-</ol>
+
+<li><p>discontinuation is forced at &tau; = 0 (or earlier)</p>
 
 <pre><code class="language-C">/* Fibonacci Example */
 int fib(int n) {
-  if (n &lt; 3) return 1;
-  else return (fib(n-1) + fib(n-2));
+if (n &lt; 3) return 1;
+else return (fib(n-1) + fib(n-2));
 }
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>However proving termination is not always possible (eg golbachs conjecture for expressing integers as sum of primes)</p>
 

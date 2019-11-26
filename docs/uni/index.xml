@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unis on schoettkr</title>
@@ -6,10 +6,20 @@
     <description>Recent content in Unis on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Jul 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Einführung in die Funktion von Computersystemen - Lecture 01: Informationen und ihre Darstellung</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/fcs/01_lecture/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/01_lecture/</guid>
+      <description>Äquivalente Informationen können in vielen verschiedenen Darstellungen übermittelt werden. Eine symbolische Darstellung entspricht dabei der Syntax, welche via Interpretation Semantik (Bedeutung) erlangt. Bei unbekannten Interpretationsregeln kann Bedeutung jedoch nicht erkannt werden.
+Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in einem Alphabet festgehalten. Ein Alphabet ist eine endliche Menge von Symbolen. Das kleinste Alphabet ist das der Binärzahlen \({0,1}\). Mit sogenannten Binärcodes also Zusammensetzungen der Symbole \(0\) und \(1\) lassen sich die Symbole aller denkbaren Alphabete ausdrücken (Binärcodierung).</description>
+    </item>
     
     <item>
       <title>Security of Distributed Software - Lecture 10</title>
