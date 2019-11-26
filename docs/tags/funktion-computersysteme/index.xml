@@ -6,10 +6,21 @@
     <description>Recent content in funktion-computersysteme on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 08 Oct 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Einführung in die Funktion von Computersystemen - Lecture 02: Von der Schaltungslogik zur Informationsverarbeitung</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/fcs/02_lecture/</link>
+      <pubDate>Tue, 08 Oct 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/02_lecture/</guid>
+      <description>Schaltungslogik   Schaltnetze Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.
+Durch logisch vollständige Funktionen können beliebige andere Funktionen &amp;ldquo;gebaut&amp;rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:
+Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gibt es Methoden zur Optimierung, die da wären Verfahren nach McCluskey und das Verfahren nach Karnaugh und Veitch, welches wir im folgenden betrachten.</description>
+    </item>
     
     <item>
       <title>Einführung in die Funktion von Computersystemen - Lecture 01: Informationen und ihre Darstellung</title>
