@@ -1,0 +1,415 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von Neumann Rechner // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Einführung in die Funktion von Computersystemen - Lecture 03: Von Neumann Rechner</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 15, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/">funktion-computersysteme</a></div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="von-neumann-architektur">Von-Neumann-Architektur</h2>
+
+<ul>
+<li>1946: ENIAC als erster vollständiger Rechner aus den USA</li>
+<li><strong>EDVAC</strong>: Konzept des stored program computer von <em>John von Neumann</em>
+
+<ul>
+<li>Speicher enthält Programm &amp; Daten</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/von-neumann-architektur.png"/> 
+</figure>
+
+
+<p>Abstrakt gesehen besteht die Informationsverarbeitung in der Von-Neumann-Architektur aus drei Stufen:</p>
+
+<ol>
+<li>Datengewinnung und -eingabe</li>
+<li>Verarbeitung und Speicherung</li>
+<li>Datenausgabe</li>
+</ol>
+
+<p>Diese Stufen sollten sich in Geräten zur Informationsverarbeitung wiederspiegeln.</p>
+
+<figure>
+    <img src="/knowledge-database/images/von-neumann-rechner.png"/> 
+</figure>
+
+
+<ul>
+<li>John v. Neumann veröffentlichte erstmals die nach ihm benannten Prinzipien des Rechnerentwurfs, nachdem er für das Manhattan-Projekt beim Entwurf des EDVAC (Electronic Discrete Variable Automatic Computer) mitgearbeitet hatte</li>
+</ul>
+
+<h3 id="von-neumann-prinzipien">Von-Neumann-Prinzipien</h3>
+
+<ul>
+<li>ein Rechner besteht aus <strong>Rechenwerk</strong>, <strong>Steuerwerk</strong>, Speicher und Ein-/Ausgabegeräten</li>
+<li>die Zentraleinheit arbeitet <strong>taktgesteuert</strong></li>
+<li>die Signale werden <strong>binär</strong> kodiert</li>
+<li>der Inhalt eines Speicherwortes wird über eine <strong>Adresse</strong> angesprochen</li>
+<li>der Rechner verarbeitet <strong>externe Programme</strong> die intern gespeichert werden</li>
+<li>Programmbefehle und Daten werden im <strong>einheitlichen Hauptspeicher</strong> gespeichert</li>
+<li>Programme und Daten werden <strong>sequentiell</strong> abgearbeitet; der sequentielle Programmfluss kann durch (bedingte oder unbedingte) Sprünge verändert werden</li>
+<li>jede theoretisch mögliche Berechnung ist (im Rahmen der Kapazität des Rechners) <strong>berechenbar</strong></li>
+</ul>
+
+<p>Harvard Architektur vs Von Neumann Architektur:<br />
+<img src="/knowledge-database/images/harvard-vs-neumann.png" alt="" /></p>
+
+<h3 id="komponenten-des-von-neumann-rechners">Komponenten des von Neumann Rechners</h3>
+
+<h4 id="komponenten-bus">Komponenten: Bus</h4>
+
+<ul>
+<li>ein <strong>Bus</strong> (<em>bidirectional universal switch</em>) ist eine Verbindungseinheit zwischen verschiedenen logisch getrennten Funktionseinheiten</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/bus.png"/> 
+</figure>
+
+
+<h4 id="komponenten-zentrale-verarbeitungseinheit--cpu">Komponenten: Zentrale Verarbeitungseinheit (CPU)</h4>
+
+<ul>
+<li>ist Kernstück eines jeden Von-Neumann-Rechners</li>
+<li>CPU = central processing unit (ZVE, zentrale Verarbeitungseinheit)</li>
+<li>liegt häufig als ein IC (integrated circuit, integrierte Schaltung) vor
+
+<ul>
+<li>Mikroprozessor (microprocessor)</li>
+</ul></li>
+<li>bekannte Prozessorfamilien sind:
+
+<ul>
+<li>x86, IA-32, Intel-64</li>
+<li>m68k, m88k</li>
+<li>PowerPC</li>
+<li>ARM</li>
+<li>MIPS</li>
+<li>SPARC</li>
+</ul></li>
+<li>in der CPU findet die eigentliche Informationsverarbeitung statt</li>
+<li>die CPU besteht mindestens aus <strong>Rechenwerk (ALU)</strong> und <strong>Steuerwerk</strong>
+
+<ul>
+<li>Rechenwerk macht die Arbeit</li>
+<li>Steuerwerk bestimmt welche Arbeit gemacht werden soll</li>
+</ul></li>
+
+<li><p>neben der CPU kann es noch andere Prozessoren geben die spezialisierte Aufgaben erfüllen (<strong>Koprozessoren</strong>) zb für: Gleitkommaarithmetik, Speichermanagement, Bus-Controller</p></li>
+
+<li><p>ALU / Rechenwerk</p>
+
+<ul>
+<li>ALU steht für arithmetic/logic unit</li>
+<li>Begriffe Rechenwerk und ALU sind nicht klar unterscheidbar</li>
+<li>zu den Aufgaben des Rechenwerks gehören:
+
+<ul>
+<li>Ausführung <strong>arithmetischer Operationen</strong> wie Addition, Subtraktion, Inkrementierung Dekrementierung und Bildung von Zahlenkomplementen</li>
+<li>Ausführung <strong>logischer Operationen</strong> wie bitweise Negation, Disjunktion, Konjunktion, Antivalenz etc</li>
+<li>Ausführung von <strong>Vergleichsoperationen</strong> zwischen Zahlen</li>
+<li>Ausführung von <strong>Schiebeoperationen</strong> also zyklisches und nichtzyklisches Rechts- oder Linksschieben
+
+<ul>
+<li>mitunter deshalb auch manchmal ALSU gennant (arithmetic/logic/shifting unit)</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><strong>ALU - Parameterschaltung</strong><br /></p>
+
+<ul>
+<li>durch verschiedene Eingangssignale <code>a</code> und <code>b</code> kann die Parameterschaltung alle einstelligen Binärfunktionen für <code>y</code> darstellen:</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/alu-parameterschaltung.png"/> 
+</figure>
+
+
+<ul>
+<li>durch Hinzuanehme der OR-Funktion wird die ALU <strong>logisch vollständig</strong>
+
+<ul>
+<li>dadurch große Flexibilität</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/alu-parameterschaltung2.png"/> 
+</figure>
+
+
+<ul>
+<li>ist die Steuerleitung <code>d=0</code> so wird <strong>kein</strong> Übertrag zwischen den einzelnen ALU-Kernzellen übertragen
+
+<ul>
+<li>aus arithmetischen Operationen werden logische, bei denen das Ergebnis einer Bitstelle nicht von anderen Bitstellen abhängt</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/alu3.png"/> 
+</figure>
+</li>
+
+<li><p>Steuerung ders ALU / des Rechenwerks</p>
+
+<ul>
+<li>schwarze Busse: <strong>Datensignale</strong>
+
+<ul>
+<li>Informationen die verarbeitet werden</li>
+</ul></li>
+<li>graue Busse: <strong>Steuersignale</strong>
+
+<ul>
+<li>bestimmen, <strong>wie</strong> die Informationen verarbeitet werden</li>
+<li>die Steuersignale können jedoch wieder zu Datenwörtern zusammengefasst werden</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/steuerung-alu.png"/> 
+</figure>
+</li>
+</ul>
+
+<h4 id="komponenten-status">Komponenten: Status</h4>
+
+<ul>
+<li>zur Realisierung von <strong>Vergleichsoperationen</strong> dient ein Statusregister (flag register)</li>
+<li><strong>Flags</strong> werden entsprechend dem Ergebnis der letzten Operation gesetzt</li>
+<li>typische Flags sind:
+
+<ul>
+<li><strong>Carry</strong> (\(C=c_n\)): eine arithmetische Operation hat einen Überlauf erzeugt</li>
+<li><strong>Zero</strong> (\(Z = \overline{q_0 \lor q_1 \lor &hellip; \lor q_{n-1}}\)) : ein Ergebnis besteht nur aus Nullen</li>
+<li><strong>Negative</strong> (\(N=q_n\)): ein Ergebnis stellt eine negative Zahl dar</li>
+<li><strong>Overflow</strong> ($V=c<sub>n+1</sub> &oplus; c_n): bei einer 2er Komplement Berechnung trat ein Überlauf auf</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/status.png"/> 
+</figure>
+
+
+<ul>
+<li>die Auswertung von Vergleichen erfolgt im Statusregister</li>
+<li>Vergleich (compare) erfolgt durch Ausführung einer Subtraktion ohne Speichern des Rechenergebnisses</li>
+<li>das Ergebnis des Vergleichs ist dann aus den Flags ablesbar</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/status-vergleich.png"/> 
+</figure>
+
+
+<h4 id="komponenten-registersatz">Komponenten: Registersatz</h4>
+
+<ul>
+<li>in der CPU gibt es i.d.R ein oder mehrere Register, deren Verwendungszweck nicht von vorneherein bestimmt ist
+
+<ul>
+<li>&rarr; <strong>Allzweckregister</strong> (general purpose register)</li>
+</ul></li>
+<li>diese Register kann ein Programmierer frei verwenden</li>
+<li>bestimmte Register in der CPU sind auf spezielle Aufgaben spezialisert
+
+<ul>
+<li>&rarr; <strong>Spezialregister</strong> (special purpose register)</li>
+</ul></li>
+<li>Anzahl und Einsetzbarkeit von Registern stellen ein wesentliches Merkmal einer Architektur dar</li>
+
+<li><p>die Gesamtheit der für den Programmierer nutzbaren Register wird Registersatz genannt</p></li>
+
+<li><p>Sichtbare und unsichtbare Register</p>
+
+<ul>
+<li>PC (<em>programm counter</em>, Befehlszähler, BZ, häufig auch IP <em>instruction pointer</em>) hält die Adresse der Speicherzelle, in der der nächste auszuführende Befehl steht</li>
+<li>IR (<em>instruction register</em>, Befehlsregister, BR) speichert den gerade ausgeführten Befehl</li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/pc-ir.png"/> 
+</figure>
+</li>
+</ul>
+
+<h4 id="komponenten-control-unit-steuerwerk">Komponenten: Control Unit / Steuerwerk</h4>
+
+<ul>
+<li>das Steuerwerk (auch <em>control unit</em>; Steuereinheit) koordiniert das Rechenwerk, Ein-/Ausgabeeinheit und Speichersystem</li>
+<li>es fungiert als Nervenzentrum
+
+<ul>
+<li>sendet Steuersignale an andere Einheiten</li>
+<li>ergründet deren Status</li>
+</ul></li>
+<li>wesentliche Funktionen:
+
+<ul>
+<li><strong>sequencing</strong> &rarr; Generierung von Steuersignale zur Abarbeitung einer beliebigen, gegebenen Instruktion (innerhalb der CPU)</li>
+<li>Steuerung/Überwachung von Speicher und E/A-System</li>
+</ul></li>
+</ul>
+
+<h3 id="interagieren-mit-dem-speicher">Interagieren mit dem Speicher</h3>
+
+<ul>
+<li>Speicher dient zum Ablegen von Informationen (Daten, Programmen, Ergebnissen)
+
+<ul>
+<li>es ist aus HW-Sicht im Allgemeinen nicht zu erkennen <em>was</em> im Speicher liegt (Datentyp)</li>
+<li>die Interpretation obliegt der auf den Speicher zugreifenden Einheit</li>
+</ul></li>
+<li>um Zugriff zum Speicher zu erhalten muss ein Adresssignal erzeugt werden, außerdem muss ein Steuersignal erzeugt werden, das besagt ob gelesen oder geschrieben wird</li>
+<li>es gibt verschiedene Arten von Speicher:
+
+<ul>
+<li>Schreiben + Lesen möglich: <em>random access memory</em> (<strong>RAM</strong>, Speicher mit wahlfreiem Zugriff)</li>
+<li>nur Lesen möglich: <em>read only memory</em> (<strong>ROM</strong>, nur Lese-speicher)</li>
+</ul></li>
+<li>um mit dem Speicher kommunizieren zu können gibt es eine Reihe von Spezialregistern in der CPU (siehe weiter oben)</li>
+<li><strong>MAR</strong> (<em>memory adress register</em>, <strong>Speicheradressierungsregister, *SAR</strong>)
+
+<ul>
+<li>speichert die Adresse eines gesuchten Wertes im Speicher</li>
+</ul></li>
+<li><strong>MDR</strong> (<em>memory data register</em>, <strong>Speicherdatenregister</strong>, SDR)
+
+<ul>
+<li>speichert den Wert, der in den Speicher geschrieben werden soll oder der aus dem Speicher gelesen wurde</li>
+</ul></li>
+<li>MAR und MDR stehen dem Programmierer nicht direkt zur Verfügung</li>
+</ul>
+
+<p>Warum werden MAR und MDR gebraucht? Es könnte ja auch direkt auf/vom das/dem betreffenden Register gelesen werden.</p>
+
+<ul>
+<li>Werte auf dem Bus müssen u.U. länger anliegen
+
+<ul>
+<li>die CPU interne Verarbeitung wäre solange blockiert</li>
+</ul></li>
+<li>Adressen können sich aus komplexen Ausdrücken zusammensetzen
+
+<ul>
+<li>MAR dient als Zwischenspeicher</li>
+</ul></li>
+<li>Busse speichern keinen Wert
+
+<ul>
+<li>Register dienen als Busrepräsentation (Portal)</li>
+</ul></li>
+<li>aus ähnlichen Gründen gibt es innerhalb der CPU bestimmte Register, die als Portal zu nichtspeichernden Einheiten dienen
+
+<ul>
+<li>bei der ALU: <strong>Operandenregister</strong> (meist mit X und Y bezeichnet) und <strong>Ergebnisregister</strong> (meist mit Z bezeichnet)</li>
+</ul></li>
+</ul>
+
+<h4 id="speicherlesen-und-schreiben">Speicherlesen und -schreiben</h4>
+
+<ul>
+<li><strong>Lesen</strong>
+
+<ul>
+<li>lade Adresse nach MAR</li>
+<li>setze R/W auf &ldquo;Lesen&rdquo;</li>
+<li>warte bis R-RDY = &ldquo;okay&rdquo; (MFC = memory function complete)</li>
+<li>übernehme Daten in MDR</li>
+</ul></li>
+<li><strong>Schreiben</strong>
+
+<ul>
+<li>lade Adresse nach MAR</li>
+<li>lade Datenwert in MDR</li>
+<li>setze R/W auf &ldquo;Schreiben&rdquo;</li>
+<li>setze W-RDY auf &ldquo;okay&rdquo;</li>
+<li>warte bis R-RDY = &ldquo;okay&rdquo; (MFC = memory function complete)</li>
+</ul></li>
+</ul>
+
+<figure>
+    <img src="/knowledge-database/images/mar-mdr.png"/> 
+</figure>
+
+
+<h3 id="ein-und-ausgabe">Ein- und Ausgabe</h3>
+
+<ul>
+<li>die Ein- und Ausgabe an Geräte funktioniert analog zum Speicherlesen und -schreiben</li>
+<li>durch eine Adresse wird ein Gerät ausgewählt; aus Sicht der CPU heißt eine solche Adresse <strong>Port</strong></li>
+<li>ein auf den Port geschriebener oder von dort gelesener Wert wird in bestimmten Registern zwischengespeichert</li>
+<li>in manchen Architekturen wird nicht zwischen Speicher und anderen Geräten unterschieden
+
+<ul>
+<li>Geräte haben speziellen Adressbereich</li>
+</ul></li>
+<li>andere Architekturen besitzen spezielle Steuerleitungen für Ein- und Ausgabe</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

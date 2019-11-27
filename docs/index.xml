@@ -6,10 +6,21 @@
     <description>Recent content on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Oct 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 15 Oct 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von Neumann Rechner</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/fcs/03_lecture/</link>
+      <pubDate>Tue, 15 Oct 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/03_lecture/</guid>
+      <description>Von-Neumann-Architektur  1946: ENIAC als erster vollständiger Rechner aus den USA EDVAC: Konzept des stored program computer von John von Neumann  Speicher enthält Programm &amp;amp; Daten     Abstrakt gesehen besteht die Informationsverarbeitung in der Von-Neumann-Architektur aus drei Stufen:
+ Datengewinnung und -eingabe Verarbeitung und Speicherung Datenausgabe  Diese Stufen sollten sich in Geräten zur Informationsverarbeitung wiederspiegeln.
+   John v. Neumann veröffentlichte erstmals die nach ihm benannten Prinzipien des Rechnerentwurfs, nachdem er für das Manhattan-Projekt beim Entwurf des EDVAC (Electronic Discrete Variable Automatic Computer) mitgearbeitet hatte  Von-Neumann-Prinzipien  ein Rechner besteht aus Rechenwerk, Steuerwerk, Speicher und Ein-/Ausgabegeräten die Zentraleinheit arbeitet taktgesteuert die Signale werden binär kodiert der Inhalt eines Speicherwortes wird über eine Adresse angesprochen der Rechner verarbeitet externe Programme die intern gespeichert werden Programmbefehle und Daten werden im einheitlichen Hauptspeicher gespeichert Programme und Daten werden sequentiell abgearbeitet; der sequentielle Programmfluss kann durch (bedingte oder unbedingte) Sprünge verändert werden jede theoretisch mögliche Berechnung ist (im Rahmen der Kapazität des Rechners) berechenbar  Harvard Architektur vs Von Neumann Architektur:</description>
+    </item>
     
     <item>
       <title>Einführung in die Funktion von Computersystemen - Lecture 02: Von der Schaltungslogik zur Informationsverarbeitung</title>
