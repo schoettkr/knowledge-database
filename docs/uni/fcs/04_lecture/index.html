@@ -1,0 +1,438 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von der Befehls- zur Programmausführung // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.60.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Einführung in die Funktion von Computersystemen - Lecture 03: Von der Befehls- zur Programmausführung</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 22, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          7 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/">funktion-computersysteme</a></div></div>
+    </header>
+    <div class="post-content">
+      <h2 id="programmierung">Programmierung</h2>
+<ul>
+<li>wir können nun prinzipiell arithmetisch &amp; logische Operationen ausführen und mit dem Speicher kommunizieren</li>
+<li>Problem: Was genau soll wann gemacht werden?
+<ul>
+<li><strong>Makroebene</strong>: <em>Programm</em> (durch Nutzer/Programmierer)
+<ul>
+<li>Programm liegt in durch den Prozessor &ldquo;lesbarer&rdquo; Form im Speicher</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Problem: Wie wird es &ldquo;verstanden&rdquo;?
+<ul>
+<li><strong>Mikroebene</strong>: <em>Sequencing</em> (durch Hersteller)
+<ul>
+<li><strong>automatische</strong> Interpretation des Nutzerprogramms</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>→ gemeinsame Schnittstelle: <strong>Rechnerorganisation</strong> (zB Register, Befehle, &hellip;)</p>
+<p><strong>Wiederholung: verschiedene Register</strong></p>
+<ul>
+<li>die sichtbaren Elemente der CPU und der Speicher können mit Befehlen (Instruktionen) durch den Programmierer manipuliert werden
+<ul>
+<li>die CPU scheint die Befehle zu &ldquo;verstehen&rdquo;</li>
+</ul>
+</li>
+<li>dieses &ldquo;verstehen&rdquo; ist wieder ein automatisierter Vorgang</li>
+</ul>
+<h2 id="abarbeitung-von-instruktionen">Abarbeitung von Instruktionen</h2>
+<ul>
+<li>grundlegender Zyklus der Befehlsabarbeitung:
+<ul>
+<li>fetch &amp; execute (Befehlsholen und Befehlsausführung)</li>
+</ul>
+</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/fetch-execute.png"/> 
+</figure>
+
+<ul>
+<li>das während der Fetch-Phase gelesene Datenwort wird <strong>als Befehl interpretiert</strong> und nach IR gespeichert</li>
+<li>dieses Interpretieren wird auch als <em>decodieren</em> bezeichnet (es erfolgt &ldquo;nebenbei&rdquo;)</li>
+<li>Zyklus wird trotzdem häufig auch als Fetch-Decode-Execute Zyklus bezeichnet</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/beispiel-cpu.png"/> 
+</figure>
+
+<ul>
+<li>in unserer obigen Beispiel-CPU passiert folgendes im Fetch-Execute Zyklus:
+<ul>
+<li>lade PC in das MAR</li>
+<li>lese Befehl aus dem Speicher und speichere ihn in IR</li>
+<li>dekodiere Befehl und inkrementiere PC</li>
+<li><em>lade evtl. benötigte Operandenadresse nach MAR</em></li>
+<li><em>lese den/die Operanden aus dem Speicher</em></li>
+<li>führe Operation aus; <em>lade evtl. benötigte Ergebnisadresse nach MAR</em></li>
+<li>schreibe Ergebnis <em>evtl. in den Speicher</em></li>
+<li>beginne von vorn</li>
+</ul>
+</li>
+</ul>
+<p>die Schritte in kursiver Schrift werden nur ausgeführt, wenn die entsprechenden Operanden/Ergebnisse im Speicher sind</p>
+<h2 id="sequencing">Sequencing</h2>
+<ul>
+<li>der Standardzyklus wird in eine Sequenz von Steuersignalen übersetzt</li>
+<li>zur Generierung dieser Sequenzen gibt es verschiedene Möglichkeiten:
+<ul>
+<li><strong>festverdrahtete</strong> CPU</li>
+<li><strong>mikroprogrammierte</strong> CPU</li>
+</ul>
+</li>
+<li>betrachten zweiten Ansatz → Funktionsidee ist ähnlich wie bei einer Spieluhr</li>
+</ul>
+<h4 id="sequencing-mikroprogrammierte-cpu">Sequencing - Mikroprogrammierte CPU</h4>
+<ul>
+<li>Analogie:
+<ul>
+<li>IR bestimmt welche &ldquo;Walze&rdquo; gewählt wird</li>
+<li>Taktgeber/Zähler entsprechen Kurbel + Getriebe</li>
+<li>Steuersignale sind Töne</li>
+<li>Ergebnisabhängigkeit (Flags) gibt es bei Spieluhr (leider?) nicht</li>
+</ul>
+</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/mikro-cpu.png"/> 
+</figure>
+
+<p><strong>Welche Steuersignale?</strong></p>
+<ul>
+<li>die Steuersequenz muss aus dem Befehl gewonnen werden → Befehl steht in IR</li>
+<li>Steuersignale realisiert bewirken zB Registerein- und -ausgaben  (zB <code>Y_{out}</code>), Parameterwahl (Operation) der ALU etc</li>
+<li>im Zusammenwirken kann über einen Bus ein Transfer erfolgen
+<ul>
+<li>Beispiel: <code>Y_{out}</code> gleichzeitig mit <code>X_{in}</code>, wobei beide am gleichen Bus liegen
+<ul>
+<li>damit wird der Inhalt von Register Y nach X gebracht</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bus kann pro Zyklus nur einmal verwendet werden</li>
+<li>komplexere Rechenwerke haben deshalb mehrere interne Busse</li>
+</ul>
+<p><strong>Beispiel:</strong> Unbedingter relativer Sprung<!-- raw HTML omitted --></p>
+<ul>
+<li>PC<!-- raw HTML omitted -->out<!-- raw HTML omitted -->; MAR<!-- raw HTML omitted -->in<!-- raw HTML omitted -->; read; clear Y; Set carry-in to ALU; Add to Z</li>
+<li>Z<!-- raw HTML omitted -->out<!-- raw HTML omitted -->; PC<!-- raw HTML omitted -->in<!-- raw HTML omitted -->; Wait for MFC</li>
+<li>MDR<!-- raw HTML omitted -->out<!-- raw HTML omitted -->; IR<!-- raw HTML omitted -->in<!-- raw HTML omitted -->;</li>
+<li>PC<!-- raw HTML omitted -->out<!-- raw HTML omitted -->; Y<!-- raw HTML omitted -->in<!-- raw HTML omitted --></li>
+<li>Adr(IR)<!-- raw HTML omitted -->out<!-- raw HTML omitted -->; Add to Z</li>
+<li>Z<!-- raw HTML omitted -->out<!-- raw HTML omitted -->; PC<!-- raw HTML omitted -->in<!-- raw HTML omitted -->; End</li>
+</ul>
+<p>→ 6 nicht überlappende Zeiteinheiten sind für die Abarbeitung der Sprungoperationen nötig</p>
+<ul>
+<li>siehe nochmals CPU Bild</li>
+</ul>
+<h2 id="befehlssatz">Befehlssatz</h2>
+<ul>
+<li>jeder Prozessor hat einen vorgegebenen Befehlssatz (Menge von Befehlen die er &ldquo;versteht&rdquo;)</li>
+<li>Befehlssätze sind meist nach einem einheitlichen Schema gestaltet</li>
+<li>prinzipieller Aufbau:
+<ul>
+<li>Op-Code-Feld → Was soll gemacht werden?</li>
+<li>Feld für Addressierungsart → Welche Art von Adressen sollen genutzt werden?</li>
+<li>Feld zur Darstellung Adressen → Welche Operanden sind betroffen?</li>
+</ul>
+</li>
+<li>beim Entwurf von Befehlssätzen gab es zwei (gegensätzliche) Entwurfsprinzipien:
+<ul>
+<li><strong>RISC</strong> (Reduced Instruction Set Computer)
+<ul>
+<li>Verzicht auf komplexe, &ldquo;bequeme&rdquo; Befehle</li>
+<li>Konzentration auf wenige, dafür schneller ausführbare Befehle</li>
+<li>Speicher wird meist nur bei Transferbefehlen benutzt, sonst Register</li>
+<li>meist festverdrahtet implementiert</li>
+</ul>
+</li>
+<li><strong>CISC</strong> (Complex Instruction Set Computer)
+<ul>
+<li>komplexe, mächtige und &ldquo;bequeme&rdquo; Befehle für Spezialzwecke</li>
+<li>möglichst alle Adressierungsarten für Befehle</li>
+<li>meist mittels Mikroprogramm implementiert</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>moderne Rechner versuchen einen guten Kompromiss zwischen RISC- und CISC-Entwurf zu realisieren</li>
+</ul>
+<h4 id="befehlssatz-aufbau">Befehlssatz - Aufbau</h4>
+<ul>
+<li>allgemein kann eine Operation analog zu einer Funktion aufgefasst werden:</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/operand-funktion.png"/> 
+</figure>
+
+<ul>
+<li>Unterscheidung von Befehlssätzen nach Anzahl der Adressen
+<ul>
+<li><strong>Drei-Adress-Maschine</strong> → beide Operanden und das Ziel sind Bestandteil der Instruktion</li>
+<li><strong>Zwei-Adress-Maschine</strong> → beide Operanden sind Bestandteil der Instruktion, ein Operand ist gleichzeitig Ziel oder Ziel ist implizit der Akkumulator</li>
+<li><strong>Ein-Adress-Maschine</strong> → ein Operand in Instruktion, zweiter Operand und Ziel in Akkumulator (ausgezeichnetes Register)</li>
+</ul>
+</li>
+</ul>
+<h3 id="addressierungsarten">Addressierungsarten</h3>
+<ul>
+<li><strong>absolut (direct)</strong> = Adresse (Speicherstelle) des Operanden ist explizit als Teil der Instruktion gegeben</li>
+<li><strong>unmittelbar (immediate)</strong> = Operand ist Teil der Instruktion</li>
+<li><strong>indirekt</strong> = effektive Adresse des Operanden ist in einem Register oder einer Hauptspeicherstelle, deren Adresse in der Instruktion erscheint</li>
+<li><strong>indiziert (indexed)</strong> = effektive Adresse des Operanden wird generiert durch Addieren einer Konstanten zu einem Registerinhalt</li>
+<li>manche Befehle nutzen auch <strong>implizit</strong> bestimmte Operanden, wie den <strong>Akkumulator</strong> oder den <strong>Stack</strong></li>
+</ul>
+<h2 id="stack">Stack</h2>
+<ul>
+<li>viele Architekturen kennen einen Stack, wobei eine weitere Art der Adressierung genutzt wird:
+<ul>
+<li>Speicher wird nicht als frei adressierbar angesehen, sondern als ein Stapel (<em>stack</em>) auf deren oberstes Element zugegriffen werden kann</li>
+</ul>
+</li>
+<li>typische Befehle:
+<ul>
+<li><code>push x</code> lege Element <code>x</code> auf den Stack</li>
+<li><code>pop x</code> hole Element <code>x</code> vom Stack</li>
+<li><code>call adr</code> lege PC auf den Stack und springe zu Adresse <code>adr</code></li>
+<li><code>ret</code> hole PC vom Stack</li>
+</ul>
+</li>
+<li>beim Aufruf eines Unterprogramms können benutzte Register auf den Stack zwischengelagert und anschließend wieder zurückgeholt werden</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/unterprogramme.png"/> 
+</figure>
+
+<figure>
+    <img src="/knowledge-database/images/unterprogramme-stack.png"/> 
+</figure>
+
+<h2 id="typen-von-instruktionen">Typen von Instruktionen</h2>
+<ul>
+<li>typischerweise enthält ein Befehlssatz folgende Arten von Instruktionen:
+<ul>
+<li><strong>Transfer-Operation</strong> → zB lade Registerinhalt nach Speicher, lege Wert auf Stack</li>
+<li><strong>arithmetische Operationen</strong> → zB inkrementiere Registerinhalt, addiere die obersten beiden Werte auf dem Stack</li>
+<li><strong>logische Operationen</strong> → zB bilde das Komplement des Akkumulatorinhalts, bilde die UND-Verknuepfung der obersten beide Werte auf dem Stack</li>
+<li><strong>Operationen zur Programmsteuerung</strong> → zB Springe bei Z = 1 nach Adresse <em>adr</em>, halte Programmausführung an, rufe Unterprogramm</li>
+<li><strong>Eingabe/Ausgabe-Operationen</strong> → zB gebe den Akkumulatorinhalt an Port <em>ptr</em> aus</li>
+</ul>
+</li>
+</ul>
+<p>die Zahl der Instruktionen variiert zwischen den verschiedenen Architekturen</p>
+<h3 id="instruktionen-maschinenbefehle">Instruktionen - Maschinenbefehle</h3>
+<ul>
+<li>Programme bestehen aus Instruktionen (Bitmustern) die der Prozessor &ldquo;versteht&rdquo; → <strong>Maschinenbefehle</strong></li>
+<li>es entsteht die Illusion, dass der Prozessor diese Befehle unmittelbar ausführt → <strong>Programmierermodell</strong></li>
+<li>damit der Mensch sich nicht die Bitmuster der Befehle merken muss, gibt es symbolische Abkürzungen → <strong>Mnemonics</strong></li>
+<li>spezielle Programme übersetzen Mnemonics in Maschinencode → <strong>Assembler</strong></li>
+<li>Programme zum übersetzen von Hochsprachen (C, Pascal, Prolog, etc) generieren heute oft direkt Maschinencode → <strong>Compiler</strong>
+<ul>
+<li>bei ihnen liegt im Gegensatz zum Assemblern <strong>keine</strong> 1-zu-1 Abbildung vom (Hochsprach-)Befehl auf Maschinencode vor</li>
+</ul>
+</li>
+<li>Adressierungsart wird durch das Mnemonic oder durch die Operanden angegeben</li>
+<li>typische Mnemonics sind:
+<ul>
+<li><code>mov x,y</code> oder <code>ld x,y</code> (move bzw load)</li>
+<li><code>add, sub, and, or, mul, div,</code> etc (add, subtract &hellip;)</li>
+<li><code>jmp, call jr, jrcc</code> oder <code>bra, bcc</code> (jump, call, jump relative, jump relative if condition <code>cc</code> is true, branch, branch if condition <code>cc</code> is true)</li>
+</ul>
+</li>
+<li>die Reihenfolge von Quelle (source) und Ziel (destination) ist vom Assembler abhängig
+<ul>
+<li><code>mov ax, 30H</code> AX ← 3016 im i80286-Assembler</li>
+<li><code>moveq #17, D0</code> 17 → im MC68020-Assembler</li>
+</ul>
+</li>
+<li>Klammern (), [] oder @ zeigen indirekte Addressierung an zum Beispiel:
+<ul>
+<li><code>mov ax, [bx]</code> i80x86</li>
+<li><code>ld a, (h1)</code> Z80</li>
+<li><code>moveb @R1, 0x17</code> PDP-11</li>
+</ul>
+</li>
+</ul>
+<h3 id="instruktionen-interrupts">Instruktionen - Interrupts</h3>
+<ul>
+<li>auf bestimmte Bedingungen soll sehr schnell reagiert werden</li>
+<li>Möglichkeiten:
+<ul>
+<li>im Code wird die Bedingung ständing abgefragt → <strong>Polling</strong>
+<ul>
+<li>höherer Aufwand für Software, keine Hardware-Unterstützung nötig</li>
+</ul>
+</li>
+<li>die HW erkennt die Bedingung → <strong>Interrupt</strong>
+<ul>
+<li>weniger Aufwand für Software, höherer Aufwand für Hardware</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Interrupts werden auf Hardwareebene <strong>angemeldet</strong> → Signal
+<ul>
+<li>durch Peripheriegeräte</li>
+<li>durch Koprozessoren</li>
+<li>durch die CPU selbst wegen Ausnahmebedingung (zB Fehler)</li>
+<li>durch die CPU selbst wegen entsprechenden Befehls (Softwareinterrupt, Trap)</li>
+</ul>
+</li>
+<li>manche Interrupts können abgewiesen (maskiert) werden</li>
+<li>unterstützt eine CPU Interrupts ändert sich der Grundzyklus zu: <strong>Fetch - Execute - Interrupt handling</strong></li>
+<li>der Aufruf einer <strong>Interruptbehandlung</strong> (ISR) entspricht etwa einem Unterprogrammaufruf
+<ul>
+<li>der Befehlszähler wird gerettet (idR auf dem Stack)</li>
+<li><strong>Interruptserviceroutine</strong> (ISR) wird bearbeitet</li>
+<li>Befehlszähler wird nach Bearbeitung des Interrupts zurückgeholt</li>
+</ul>
+</li>
+</ul>
+<p><strong>Merke:</strong></p>
+<ul>
+<li>ein Interrupt kann zu jedem beliebigen Zeitpunkt auftreten (Asynchronität)</li>
+<li>die ISR kann daher vom gerade ausgeführten Code nichts &ldquo;wissen&rdquo;</li>
+<li>ein normaler Code kann von dem Auftreten eines Interrupts nichts &ldquo;wissen&rdquo;</li>
+<li>während der Behandlung eines Interrupts können weitere Interrupts auftreten
+<ul>
+<li>mehrere Möglichkeiten:
+<ul>
+<li>Interrupt abweisen (maskieren)</li>
+<li>geschachtelte Interrupts</li>
+<li>Interrupt verzögern</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="lebenslauf-eines-programms">&ldquo;Lebenslauf&rdquo; eines Programms</h2>
+<ul>
+<li>Quellcode schreiben</li>
+<li>Quellcode übersetzen</li>
+<li>binden/linken von Symbolen</li>
+<li>Laden des Programms</li>
+<li>Ausführen → Programm wird zum <strong>Prozess</strong> (Kapitel 5)
+<ul>
+<li>Unterbrechen / Auslagern / Einlagern / Fortführen (Kapitel 5)</li>
+</ul>
+</li>
+<li>Beenden des Prozesses (Kapitel 5)</li>
+</ul>
+<h3 id="generieren-einer-ausführbaren-binär-datei">Generieren einer ausführbaren Binär-Datei</h3>
+<ul>
+<li><strong>Compiler</strong>
+<ul>
+<li>zB <code>/usr/local/bin/gcc</code></li>
+<li>übersetzen des Quellcodes</li>
+<li>Quellcode Datei → Assembler Datei</li>
+</ul>
+</li>
+<li><strong>Assembler</strong>
+<ul>
+<li>zB <code>/usr/local/bin/gas</code></li>
+<li>übersetzen in Maschinencode, unbekannte <strong>Symbole</strong> bleiben erhalten</li>
+<li>Erzeugung verschiedener <strong>Segmente</strong>, typisch:
+<ul>
+<li>Text-Segment: Binär Code</li>
+<li>Daten-Segment: Variablen mit initialen Werten</li>
+<li>BSS-Segment: Platzhalter für nicht initialisierte Variablen</li>
+</ul>
+</li>
+<li>Assembler-Datei → Objekt-Datei</li>
+</ul>
+</li>
+<li>Compiler &amp; Assembler (und z.T. Linker) sind meist in ein Programm integriert</li>
+<li><strong>Linken</strong> zur Ergänzung unaufgelöster Symbole
+<ul>
+<li>zB <code>/bin/ld</code></li>
+<li><em>statisches Binden (static linking)</em>
+<ul>
+<li>alle Symbole müssen zur Linkzeit bekannt sein</li>
+<li>Import der Symbole über Header-Dateien</li>
+</ul>
+</li>
+<li><em>dynamisches Binden (dynamic linking)</em>
+<ul>
+<li>Symbole werden erst zur Laufzeit aufgelöst</li>
+<li>Import der Symbol-Daten über Header-Dateien</li>
+<li>Verweise auf Bibliotheken werden eingefügt</li>
+</ul>
+</li>
+<li>Objekt-Datei → zB a.out</li>
+</ul>
+</li>
+<li><strong>Laden</strong>: Platzierung von Programmen im Adressraum</li>
+</ul>
+<p>Beispiel <code>hello.c</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
+  <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hallo die Antwort ist i: %d</span><span style="color:#e6db74">&#34;</span>, i);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>beim GNU Compiler können mit der Option <code>-v</code> die einzelnen Schritte sichtbar gemacht werden\<br>
+<img src="/knowledge-database/images/compile-assemble-link.png" alt=""></p>
+<p>Gutes Video das diesen Ablauf erklärt: <a href="https://www.youtube.com/watch?v=N2y6csonII4">https://www.youtube.com/watch?v=N2y6csonII4</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

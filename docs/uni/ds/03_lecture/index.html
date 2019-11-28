@@ -3,7 +3,7 @@
   <head>
     <title>Datastructures - Lecture 03 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,99 +51,87 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/datastructures/">datastructures</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="simple-sorting-algorithms">Simple Sorting Algorithms</h2>
-
-<p>In this lecture we&rsquo;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:</p>
-
+      <h2 id="simple-sorting-algorithms">Simple Sorting Algorithms</h2>
+<p>In this lecture we're looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:</p>
 <ul>
 <li>performance
-
 <ul>
 <li>amount of comparison operations</li>
 <li>amount of data shifts (Datenverschiebungen)</li>
 <li>we neglect unimportant details and only count comparison and shifts of the data that we want to sort</li>
-</ul></li>
+</ul>
+</li>
 <li>data distribution
-
 <ul>
 <li>some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand</li>
 <li>we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)</li>
-</ul></li>
+</ul>
+</li>
 <li>decomposability (Zerlegbarkeit)
-
 <ul>
 <li>is the sorting algorithm suitable for external sorting?</li>
-<li>the data set might be too large to fit into memory &rarr; sorting algorithm needs to be able to split the data, sort parts of it and then piece the whole sorted data set together</li>
+<li>the data set might be too large to fit into memory → sorting algorithm needs to be able to split the data, sort parts of it and then piece the whole sorted data set together</li>
 <li>so to be precise, data needs to be read from secondary storage (SSD, HDD) and written to secondary storage after it has been sorted
-
 <ul>
 <li>since this is a lot slower/intensive than accessing primary storage, these operations should be minimized</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>data set
-
 <ul>
 <li>size of the sorting criteria
-
 <ul>
 <li>are the compared elements just simple integers then comparison operations can be executed comparably fast - however when the data set consists of more complex elements such as strings, vectors or compound data types then the required time to perform comparisons increases a lot</li>
-</ul></li>
+</ul>
+</li>
 <li>dataset size
-
 <ul>
 <li>with an increasing data set size, the importance of shifting/moving elements increases as well</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>complexity
-
 <ul>
 <li>the complexity of the underlying procedures matters in the decision regaring sorting algorithms</li>
 <li>sorting scenario 1: once in a while a few elements are sorted
-
 <ul>
 <li>when self-implementing an easy 8 liner may be better than a more efficient but really complex and therefore errorprone sorting algorithm implementation</li>
 <li>make use of library functions</li>
-</ul></li>
+</ul>
+</li>
 <li>sorting scenario 2: frequently a lot of elements are sorted
-
 <ul>
 <li>when self-implementing the speed difference between a seemingly neglectable 10% faster algorithm should not be ignored</li>
 <li>library functions need be inspected in regards to their underlying sorting technique</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="1-dot-bubble-sort">1. Bubble Sort</h3>
-
 <p>As most of the sorting algorithms require some functionality to swap elements in an array we prepare a function that does exactly this via call by reference:</p>
-
-<pre><code class="language-C++">void swap (TYPE&amp; a, TYPE&amp; b) {
-  TYPE temp = a;
-  a = b;
-  b = temp;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swap</span> (TYPE<span style="color:#f92672">&amp;</span> a, TYPE<span style="color:#f92672">&amp;</span> b) {
+  TYPE temp <span style="color:#f92672">=</span> a;
+  a <span style="color:#f92672">=</span> b;
+  b <span style="color:#f92672">=</span> temp;
 }
-</code></pre>
-
-<p>Each call of <code>swap</code> performs 3 data operations.<br />
+</code></pre></div><p>Each call of <code>swap</code> performs 3 data operations.<!-- raw HTML omitted -->
 The bubble sort algorithms works by repeatedly swapping the adjacent elements if they are in wrong order until no more swaps have been performed iterating over the whole array.</p>
-
-<pre><code class="language-C++">void bubbleSort (TYPE data[], int n) {
-  bool swapped = true;
-  while (swapped) {
-    swapped = false;
-    for (int i = 1; i &lt; n; i++) {
-      if (data[i-1] &gt; data[i]) {
-        swapped = true;
-        swap(data[i-1], data[i]);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bubbleSort</span> (TYPE data[], <span style="color:#66d9ef">int</span> n) {
+  <span style="color:#66d9ef">bool</span> swapped <span style="color:#f92672">=</span> true;
+  <span style="color:#66d9ef">while</span> (swapped) {
+    swapped <span style="color:#f92672">=</span> false;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+      <span style="color:#66d9ef">if</span> (data[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> data[i]) {
+        swapped <span style="color:#f92672">=</span> true;
+        swap(data[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], data[i]);
       }
     }
   }
 }
-</code></pre>
-
-<p>In the best case scenario there are no swap operations and n-1 comparisons. In the worst case scenario we have as many swap operations as comparisons. In the average case we have \(\frac{n(n-1)}{4}\) swaps.</p>
+</code></pre></div><p>In the best case scenario there are no swap operations and n-1 comparisons. In the worst case scenario we have as many swap operations as comparisons. In the average case we have \(\frac{n(n-1)}{4}\) swaps.</p>
 
     </div>
     <div class="post-footer">

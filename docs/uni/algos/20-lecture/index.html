@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 20 &amp; 21 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,152 +47,97 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<p>In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a &ldquo;game&rdquo;. Because the emphasis is on the development cycle, there will also be preliminary and &ldquo;wrong&rdquo; solutions.</p>
-
+      <p>In this lecture chapter we turn our attention to a little project to use some of the learned skills together to build something. Therefore we build a &ldquo;game&rdquo;. Because the emphasis is on the development cycle, there will also be preliminary and &ldquo;wrong&rdquo; solutions.</p>
 <p>I might refer to the slides more often in the next two posts that regard this &ldquo;game&rdquo; because it would get pretty messy else and just copy &amp; pasting code is not a good use of time, so I might skip that at some points and tell you to look at the slides directly.</p>
-
 <p>This chapter also spans two lectures so lecture 20 and 21 will be pooled into this single blog post.</p>
-
 <h2 id="intro">Intro</h2>
-
-<p>The game we&rsquo;re building is TicTacToe (TTT), where there&rsquo;s one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
+<p>The game we're building is TicTacToe (TTT), where there's one player versus the computer as the opponent player. TTT is a round-based game. Regardless of whose turn it is, the current game score should always be shown. The game continues until victory or draw.
 These lead to the following high level pseudo algorithm:</p>
-
-<pre><code class="language-c">Input who will start -&gt; turn {player, computer}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">Input who will start <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> turn {player, computer}
 
 repeat
-  if turn == computer then
+  <span style="color:#66d9ef">if</span> turn <span style="color:#f92672">=</span><span style="color:#f92672">=</span> computer then
     calculate move
-    turn &lt;- player
-  else
+    turn <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> player
+  <span style="color:#66d9ef">else</span>
     input move
-    turn &lt;- computer
-  end if
+    turn <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> computer
+  end <span style="color:#66d9ef">if</span>
   display move
 until (somebody won) or (draw)
-</code></pre>
-
-<p>Modern programs usually offer a GUI (graphical user interface) but we&rsquo;ll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
+</code></pre></div><p>Modern programs usually offer a GUI (graphical user interface) but we'll stick to our beloved console (which might actually help with portability if we adhere to the POSIX-Standard).
 On the terminal the game could be visualized like this:</p>
-
-<pre><code class="language-sh">x | o | x
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">x | o | x
 --+---+--
 x | o |
 --+---+--
 o |   | x
-</code></pre>
-
-<p>Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.</p>
-
+</code></pre></div><p>Not as beatufiul as a GUI but much more simple for now. And to not obstruct the later development of a possible GUI, we should seperate the user interface as much as possible from the program logic.</p>
 <p>To do so we <strong>modularize</strong> our project into three modules:</p>
-
 <ul>
-<li>&ldquo;ttt_main.c&rdquo; &rarr; superstructure that combines the others and provides the <code>main</code> method</li>
-<li>&ldquo;ttt_io.c&rdquo; &rarr; responsible for input and output</li>
-<li>&ldquo;ttt_strategie.c&rdquo; &rarr; responsible for calculating the move of the computer</li>
+<li>&ldquo;ttt_main.c&rdquo; → superstructure that combines the others and provides the <code>main</code> method</li>
+<li>&ldquo;ttt_io.c&rdquo; → responsible for input and output</li>
+<li>&ldquo;ttt_strategie.c&rdquo; → responsible for calculating the move of the computer</li>
 </ul>
-
 <p>To share common types and interface we also want a shared header file &ldquo;ttt.h&rdquo;.</p>
-
 <p>This is how the file structure looks</p>
-
-<p></knowledge-database/images/file-structure.png ></p>
-
+<p>&lt;/knowledge-database/images/file-structure.png &gt;</p>
 <h3 id="excourse-make">Excourse: Make</h3>
-
 <p>When a project consists of multiple modules, each of them has to be translated to an object file seperately (eg via <code>gcc -c &lt;file.c&gt;</code>) and then all object files have to be linked (with the libraries).</p>
-
 <p>Doing this by hand is cumbersome.</p>
-
-<p>What to do? Well you could write a script to automate the job, but do we really want to compile and translate <em>every</em> file even if we only change one of lets say 10 files? Hint: No we don&rsquo;t :D and that&rsquo;s why scripts (batch jobs) are not so well suited (beware that it is still possible to do that and some programmers actually prefer that which is totally fine).</p>
-
+<p>What to do? Well you could write a script to automate the job, but do we really want to compile and translate <em>every</em> file even if we only change one of lets say 10 files? Hint: No we don't :D and that's why scripts (batch jobs) are not so well suited (beware that it is still possible to do that and some programmers actually prefer that which is totally fine).</p>
 <p>Another solution to this are <strong>build systems</strong> also called <strong>build automation tools</strong>. Build automation is the process of automating the creation of a software build and the associated processes including: compiling computer source code into binary code, packaging binary code, and running automated tests (source: wikipedia).</p>
-
-<p>We&rsquo;ll focus on one of the most common build tools which is <strong>make</strong>.</p>
-
+<p>We'll focus on one of the most common build tools which is <strong>make</strong>.</p>
 <p>Wikipedia: Make is a build automation tool that automatically builds executable programs and libraries from source code by reading files called Makefiles which specify how to derive the target program. Though integrated development environments and language-specific compiler features can also be used to manage a build process, Make remains widely used, especially in Unix and Unix-like operating systems.</p>
-
 <p>Besides building programs, Make can be used to manage any project where some files must be updated automatically from others whenever the others change. There are now a number of dependency-tracking build utilities, but Make is one of the most widespread, primarily due to its inclusion in Unix.</p>
-
 <p>As stated above <code>make</code> interprets what is written in a so called &ldquo;Makefile&rdquo;. A Makefile contains five kinds of things: <em>explicit rules</em>, <em>implicit rules</em>, <em>variable definitions</em>, <em>directives</em>, and <em>comments</em>.</p>
-
 <ul>
-<li><em>explicit rule</em> &rarr; says when and how to remake one or more files, called the rule&rsquo;s targets; it lists the other files that the targets depend on, called the prerequisites of the target, and may also give a recipe to use to create or update the targets</li>
-<li><em>implicit rule</em> &rarr; says when and how to remake a class of files based on their names; it describes how a target may depend on a file with a name similar to the target and gives a recipe to create or update such a target</li>
-<li><em>variable definition</em> &rarr; is a line that specifies a text string value for a variable that can be substituted into the text later</li>
-<li><em>directive</em> &rarr; is an instruction for make to do something special while reading the makefile such as reading another makefile</li>
-<li><em>comment</em> &rarr; a comment is designated by &lsquo;#&rsquo; and ignores the rest of the line</li>
+<li><em>explicit rule</em> → says when and how to remake one or more files, called the rule's targets; it lists the other files that the targets depend on, called the prerequisites of the target, and may also give a recipe to use to create or update the targets</li>
+<li><em>implicit rule</em> → says when and how to remake a class of files based on their names; it describes how a target may depend on a file with a name similar to the target and gives a recipe to create or update such a target</li>
+<li><em>variable definition</em> → is a line that specifies a text string value for a variable that can be substituted into the text later</li>
+<li><em>directive</em> → is an instruction for make to do something special while reading the makefile such as reading another makefile</li>
+<li><em>comment</em> → a comment is designated by &lsquo;#&rsquo; and ignores the rest of the line</li>
 </ul>
-
 <p>To define variables in a makefile the following syntax is used:</p>
-
-<pre><code class="language-sh"># &lt;name&gt; = &lt;value&gt; or &lt;name&gt; := &lt;value&gt;
-objects = program.o foo.o utils.o # variable that holds names of object files
-# or
-objects := program.o foo.o utils.o
-# acess via $(objects) or ${objects}
-</code></pre>
-
-<p>Slides: The variant/flavour without colons (&rdquo;:&ldquo;) allows for recursion in the name resolution.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># &lt;name&gt; = &lt;value&gt; or &lt;name&gt; := &lt;value&gt;</span>
+objects <span style="color:#f92672">=</span> program.o foo.o utils.o <span style="color:#75715e"># variable that holds names of object files</span>
+<span style="color:#75715e"># or</span>
+objects :<span style="color:#f92672">=</span> program.o foo.o utils.o
+<span style="color:#75715e"># acess via $(objects) or ${objects}</span>
+</code></pre></div><p>Slides: The variant/flavour without colons (&quot;:&quot;) allows for recursion in the name resolution.</p>
 <p>To read more about variables and the differences in the flavours you can go <a href="https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html%5Fchapter/make%5F6.html">here</a>.</p>
-
 <p>To define functions in a makefile the following syntax is used:</p>
-
-<pre><code class="language-sh"># $(&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..) or ${&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..}
-comma:= ,
-empty:=
-space:= $(empty) $(empty)
-foo:= a b c
-bar:= $(subst $(space),$(comma),$(foo)) # bar is now 'a,b,c'
-</code></pre>
-
-<p>Here the <code>subst</code> function, which is built-in with alot of others, replaces each space with a comma, through the value of foo, and substitutes the result. <a href="https://www.gnu.org/software/make/manual/html%5Fnode/Functions.html">Here</a> you can read more about functions in makefiles.</p>
-
-<p>Here&rsquo;s another example from the slides:</p>
-
-<pre><code class="language-sh">SOURCEFILES = $(wildcard ttt_*.c)
-OBJECTFILES = ${subst .c,.o,$(SOURCEFILES)}
-</code></pre>
-
-<p>It is pretty common to use functions for text manipulation purposes.</p>
-
-<p>Here&rsquo;re some more example functions (more can be found in the documentation):</p>
-
-<pre><code class="language-sh">$(subst &lt;from&gt;,&lt;to&gt;, &lt;text&gt;) # replaces all &lt;from&gt; with &lt;to&gt; in &lt;text&gt;
-$(addprefix &lt;prefix&gt;,&lt;list&gt;) / $(addsuffix &lt;suffix&gt;,&lt;list&gt;) # adds the pre or suffix to every word in &lt;list&gt;
-$(join &lt;list1&gt;,&lt;list2&gt;) # joins the two lists by word into one list
-$(foreach &lt;var&gt;,&lt;list&gt;,&lt;text&gt;) # creates for each value in &lt;list&gt; a new instance of &lt;text&gt; in which every occurence of &lt;var&gt; is replaced by the list value
-$(shell &lt;command&gt;) # executes the &lt;command&gt; in a shell
-</code></pre>
-
-<p>The rules in a makefile have the following form:</p>
-
-<pre><code class="language-sh">target: dependencies
-    system command(s)
-</code></pre>
-
-<p>A <strong>target</strong> is usually the name of a file that is generated by a program (eg executable or object files), but a target can also be the name of an action to carry out, such as &ldquo;clean&rdquo;.</p>
-
-<p>A <strong>dependency</strong> (also called <em>prerequisite</em>) is a file that is used as input to create the target, which often depends on several files. Rules that specify a <em>recipe</em> for the target don&rsquo;t <em>need</em> to have prerequisites (eg delete command that is associated with target &ldquo;clean&rdquo; does not have any prerequisites).</p>
-
-<p>The <strong>system command(s)</strong> (also called <strong>recipe</strong>) is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. Note the use of meaningful indentation in specifying commands; also note that the indentation must consist of a single <tab> character.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># $(&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..) or ${&lt;functionname&gt; &lt;arg1&gt;, &lt;arg2&gt;, ..}</span>
+comma:<span style="color:#f92672">=</span> ,
+empty:<span style="color:#f92672">=</span>
+space:<span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>empty<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>empty<span style="color:#66d9ef">)</span>
+foo:<span style="color:#f92672">=</span> a b c
+bar:<span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>subst <span style="color:#66d9ef">$(</span>space<span style="color:#66d9ef">)</span>,<span style="color:#66d9ef">$(</span>comma<span style="color:#66d9ef">)</span>,<span style="color:#66d9ef">$(</span>foo<span style="color:#66d9ef">)</span><span style="color:#66d9ef">)</span> <span style="color:#75715e"># bar is now &#39;a,b,c&#39;</span>
+</code></pre></div><p>Here the <code>subst</code> function, which is built-in with alot of others, replaces each space with a comma, through the value of foo, and substitutes the result. <a href="https://www.gnu.org/software/make/manual/html%5Fnode/Functions.html">Here</a> you can read more about functions in makefiles.</p>
+<p>Here's another example from the slides:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">SOURCEFILES <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>wildcard ttt_*.c<span style="color:#66d9ef">)</span>
+OBJECTFILES <span style="color:#f92672">=</span> <span style="color:#e6db74">${</span>subst .c,.o,<span style="color:#66d9ef">$(</span>SOURCEFILES<span style="color:#66d9ef">)</span><span style="color:#e6db74">}</span>
+</code></pre></div><p>It is pretty common to use functions for text manipulation purposes.</p>
+<p>Here're some more example functions (more can be found in the documentation):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#66d9ef">$(</span>subst &lt;from&gt;,&lt;to&gt;, &lt;text&gt;<span style="color:#66d9ef">)</span> <span style="color:#75715e"># replaces all &lt;from&gt; with &lt;to&gt; in &lt;text&gt;</span>
+<span style="color:#66d9ef">$(</span>addprefix &lt;prefix&gt;,&lt;list&gt;<span style="color:#66d9ef">)</span> / <span style="color:#66d9ef">$(</span>addsuffix &lt;suffix&gt;,&lt;list&gt;<span style="color:#66d9ef">)</span> <span style="color:#75715e"># adds the pre or suffix to every word in &lt;list&gt;</span>
+<span style="color:#66d9ef">$(</span>join &lt;list1&gt;,&lt;list2&gt;<span style="color:#66d9ef">)</span> <span style="color:#75715e"># joins the two lists by word into one list</span>
+<span style="color:#66d9ef">$(</span>foreach &lt;var&gt;,&lt;list&gt;,&lt;text&gt;<span style="color:#66d9ef">)</span> <span style="color:#75715e"># creates for each value in &lt;list&gt; a new instance of &lt;text&gt; in which every occurence of &lt;var&gt; is replaced by the list value</span>
+<span style="color:#66d9ef">$(</span>shell &lt;command&gt;<span style="color:#66d9ef">)</span> <span style="color:#75715e"># executes the &lt;command&gt; in a shell</span>
+</code></pre></div><p>The rules in a makefile have the following form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">target: dependencies
+    system command<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</code></pre></div><p>A <strong>target</strong> is usually the name of a file that is generated by a program (eg executable or object files), but a target can also be the name of an action to carry out, such as &ldquo;clean&rdquo;.</p>
+<p>A <strong>dependency</strong> (also called <em>prerequisite</em>) is a file that is used as input to create the target, which often depends on several files. Rules that specify a <em>recipe</em> for the target don't <em>need</em> to have prerequisites (eg delete command that is associated with target &ldquo;clean&rdquo; does not have any prerequisites).</p>
+<p>The <strong>system command(s)</strong> (also called <strong>recipe</strong>) is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. Note the use of meaningful indentation in specifying commands; also note that the indentation must consist of a single <!-- raw HTML omitted --> character.</p>
 <p>Rules that operate on <em>classes</em> of files (eg via wildcard) are called &ldquo;implicit&rdquo; rules in constrast to explicit rules. <code>%</code> serve as wildcards.</p>
-
 <p>Example rules:</p>
-
-<pre><code class="language-sh">main.o: main.c defs.h
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">main.o: main.c defs.h
     cc -c main.c
 
 clean:
      rm edit main.o kbd.o command.o display.o
-</code></pre>
-
-<p>And here&rsquo;re some automatic special variables than can be used in rules:</p>
-
+</code></pre></div><p>And here're some automatic special variables than can be used in rules:</p>
 <ul>
 <li><code>$@</code> = the file name of the target of the rule</li>
 <li><code>$&lt;</code> = the name of the first prerequisite (if the target got its recipe from an implicit rule, this will be the first prerequisite added by the implicit rule)</li>
@@ -203,680 +148,565 @@ clean:
 <li><code>${@F}</code> = the file-within-directory part of the file name of the target</li>
 <li><code>${&lt;F}</code> = the file-within-directory part of the first prerequisite</li>
 </ul>
-
 <p>To execute <code>make</code> run <code>make &lt;target&gt;</code> which starts all activities that are accordingly to the Makefile required to update <code>&lt;target&gt;</code>. If a file is (already) updated is decided based on the timestamp of the file. If the <code>&lt;target&gt;</code> is ommitted when executing make, the first rule in the Makefile will be used.</p>
-
 <p>Example Makefiles:</p>
-
-<pre><code class="language-sh">a: b
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">a: b
 
 c: e f
 
 b: c d
-</code></pre>
-
-<p>So in this case when you run <code>make a</code>:</p>
-
+</code></pre></div><p>So in this case when you run <code>make a</code>:</p>
 <ul>
 <li><code>f</code>, <code>e</code>, and <code>d</code> are required to existing</li>
 <li>then first <code>c</code> is generated/updated out of <code>e</code> and <code>f</code></li>
 <li>then <code>b</code> is generated/updated out of <code>c</code> and <code>d</code></li>
 <li>da es für „a“ Ausführungsteil gibt, ist hier die Abarbeitung beendet</li>
 </ul>
-
 <p>For our TicTacToe Project the Makefile could look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PROG <span style="color:#f92672">=</span> ttt <span style="color:#75715e"># program name</span>
+CC <span style="color:#f92672">=</span> cc <span style="color:#75715e"># compiler</span>
+CFLAGS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c99 -pedantic -Wall -Wextra <span style="color:#75715e"># compiler flags</span>
+LDFLAGS <span style="color:#f92672">=</span> <span style="color:#75715e"># linker flags (ld is the gnu linker)</span>
 
-<pre><code class="language-sh">PROG = ttt # program name
-CC = cc # compiler
-CFLAGS = -std=c99 -pedantic -Wall -Wextra # compiler flags
-LDFLAGS = # linker flags (ld is the gnu linker)
+HEADER <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>wildcard ttt*.h<span style="color:#66d9ef">)</span>
+SOURCEFILES <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>wildcard ttt_*.c<span style="color:#66d9ef">)</span>
+OBJECTFILES <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>subst .c, .o, <span style="color:#66d9ef">$(</span>SOURCEFILES<span style="color:#66d9ef">)</span><span style="color:#66d9ef">)</span>
 
-HEADER = $(wildcard ttt*.h)
-SOURCEFILES = $(wildcard ttt_*.c)
-OBJECTFILES = $(subst .c, .o, $(SOURCEFILES))
-
-$(PROG): $(OBJECTFILES)
-    $(CC) $(LDFLAGS) $(OBJECTFILES) -o $(PROG)
+<span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span>: <span style="color:#66d9ef">$(</span>OBJECTFILES<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>LDFLAGS<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>OBJECTFILES<span style="color:#66d9ef">)</span> -o <span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span>
 
 %.o: %c
-    $(CC) -c $(CFLAGS) $&lt;
+    <span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> -c <span style="color:#66d9ef">$(</span>CFLAGS<span style="color:#66d9ef">)</span> $&lt;
 
 .PHONY: clean
 clean:
-    rm -f $(PROG) *.o
+    rm -f <span style="color:#66d9ef">$(</span>PROG<span style="color:#66d9ef">)</span> *.o
 
-</code></pre>
-
-<h3 id="the-main-loop">The Main Loop</h3>
-
+</code></pre></div><h3 id="the-main-loop">The Main Loop</h3>
 <p>Going back to our initial draft of our high level pseudo code algorithm we might want some modifications that account for:</p>
-
 <ul>
 <li>recognition weather win or draw
-
 <ul>
 <li>probably closely related to the strategy part of our program so should be done there</li>
-</ul></li>
+</ul>
+</li>
 <li>cancellation of the game
-
 <ul>
 <li>has to be dealt with in the main loop</li>
-</ul></li>
+</ul>
+</li>
 <li>multiple games in a row
-
 <ul>
 <li>also belongs in the main loop</li>
-</ul></li>
 </ul>
-
-<p>Here&rsquo;s the second version:</p>
-
-<pre><code class="language-c">repeat
-  Input who will start -&gt; turn {player, computer}
+</li>
+</ul>
+<p>Here's the second version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">repeat
+  Input who will start <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> turn {player, computer}
 
   repeat
-    if turn == computer then
+    <span style="color:#66d9ef">if</span> turn <span style="color:#f92672">=</span><span style="color:#f92672">=</span> computer then
       calculate move
-      turn &lt;- player
-    else // turn = player
-      input move // abort is special move
-      turn &lt;- computer
-    end if
+      turn <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> player
+    <span style="color:#66d9ef">else</span> <span style="color:#75715e">// turn = player
+</span><span style="color:#75715e"></span>      input move <span style="color:#75715e">// abort is special move
+</span><span style="color:#75715e"></span>      turn <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> computer
+    end <span style="color:#66d9ef">if</span>
     display move
   until (somebody won) or (draw) or (abort)
-  Input if another game?
+  Input <span style="color:#66d9ef">if</span> another game<span style="color:#f92672">?</span>
 until not another game
-</code></pre>
+</code></pre></div><p>This is how the main loop in &ldquo;ttt_main.c&rdquo; could look like in C:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">do</span> { <span style="color:#75715e">// main loop
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> player <span style="color:#f92672">=</span>  ttt_x_or_o(); <span style="color:#75715e">// select symbol (x or o)
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">bool</span> computer_turn <span style="color:#f92672">=</span> (player <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">o</span><span style="color:#e6db74">&#39;</span>); <span style="color:#75715e">// x starts if player is o then the computer starts
+</span><span style="color:#75715e"></span>  ttt_init_board(board); <span style="color:#75715e">// erase board
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> move, assessment;
 
-<p>This is how the main loop in &ldquo;ttt_main.c&rdquo; could look like in C:</p>
+  <span style="color:#66d9ef">do</span> { <span style="color:#75715e">// main loop for a game instance
+</span><span style="color:#75715e"></span>    ttt_update_display(board); <span style="color:#75715e">// display board
+</span><span style="color:#75715e"></span>    move <span style="color:#f92672">=</span> computer_turn <span style="color:#f92672">?</span> <span style="color:#75715e">// computer&#39;s move?
+</span><span style="color:#75715e"></span>      ttt_calculate_move(board, ttt_opponent(player)) <span style="color:#f92672">:</span> ttt_input_move(board);
 
-<pre><code class="language-c">do { // main loop
-  int player =  ttt_x_or_o(); // select symbol (x or o)
-  bool computer_turn = (player == 'o'); // x starts if player is o then the computer starts
-  ttt_init_board(board); // erase board
-  int move, assessment;
+    <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> TTT_ABORT) { <span style="color:#75715e">// continue?
+</span><span style="color:#75715e"></span>      board[move] <span style="color:#f92672">=</span> computer_turn <span style="color:#f92672">?</span> ttt_opponent(player) <span style="color:#f92672">:</span> player; <span style="color:#75715e">// apply move
+</span><span style="color:#75715e"></span>    }
 
-  do { // main loop for a game instance
-    ttt_update_display(board); // display board
-    move = computer_turn ? // computer's move?
-      ttt_calculate_move(board, ttt_opponent(player)) : ttt_input_move(board);
-
-    if (move != TTT_ABORT) { // continue?
-      board[move] = computer_turn ? ttt_opponent(player) : player; // apply move
-    }
-
-    computer_turn = !computer_turn; // change the turn
-    assessment = ttt_won_or_draw(board, player); // game over?
-
-    if (assessment != TTT_UNDECIDED) { // game finished
-      ttt_update_display(board); // display final board
-      ttt_output_result(assessment); // print result
-    }
-  } while ((move != TTT_ABORT) &amp;&amp; (assessment == TTT_UNDECIDED));
- } while (ttt_another_game() == true);
-</code></pre>
-
-<p>As you can see we use function that are not defined yet. Some of those shall be implemented in other modules. A somewhat common (&ldquo;best&rdquo;) practice is to prefix global names with the name of the project (and optionally the module) to reduce the likelihood of name conflicts. In this case we use <code>ttt_</code> as a prefix.</p>
-
-<p>Now we&rsquo;ve got to ask ourselves how we want to represent the data in C. It first seems natural to use a multidimensional array <code>int board[3][3]</code> to represent the game board. <strong>But</strong></p>
-
+    computer_turn <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>computer_turn; <span style="color:#75715e">// change the turn
+</span><span style="color:#75715e"></span>    assessment <span style="color:#f92672">=</span> ttt_won_or_draw(board, player); <span style="color:#75715e">// game over?
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">if</span> (assessment <span style="color:#f92672">!</span><span style="color:#f92672">=</span> TTT_UNDECIDED) { <span style="color:#75715e">// game finished
+</span><span style="color:#75715e"></span>      ttt_update_display(board); <span style="color:#75715e">// display final board
+</span><span style="color:#75715e"></span>      ttt_output_result(assessment); <span style="color:#75715e">// print result
+</span><span style="color:#75715e"></span>    }
+  } <span style="color:#66d9ef">while</span> ((move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> TTT_ABORT) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (assessment <span style="color:#f92672">=</span><span style="color:#f92672">=</span> TTT_UNDECIDED));
+ } <span style="color:#66d9ef">while</span> (ttt_another_game() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> true);
+</code></pre></div><p>As you can see we use function that are not defined yet. Some of those shall be implemented in other modules. A somewhat common (&ldquo;best&rdquo;) practice is to prefix global names with the name of the project (and optionally the module) to reduce the likelihood of name conflicts. In this case we use <code>ttt_</code> as a prefix.</p>
+<p>Now we've got to ask ourselves how we want to represent the data in C. It first seems natural to use a multidimensional array <code>int board[3][3]</code> to represent the game board. <strong>But</strong></p>
 <ul>
-<li>this would always require two indices &rarr; and therefore 2 loops</li>
-<li>it is likely that we want to pass the board to functions &rarr; <strong>array decay</strong> even unclearer when dealing with nested arrays (see lecture 08 for array decay)</li>
+<li>this would always require two indices → and therefore 2 loops</li>
+<li>it is likely that we want to pass the board to functions → <strong>array decay</strong> even unclearer when dealing with nested arrays (see lecture 08 for array decay)</li>
 </ul>
-
 <p>For those reasons we use a &ldquo;normal&rdquo; array with 9 fields <code>int board[9]</code> (resp <code>typedef int ttt_board_t[NUMBER_OF_FIELDS])</code>.</p>
+<p>Let's put declarations of types and constants in the shared header file <code>ttt.h</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdbool.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/* general constants */</span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {TTT_ABORT <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, NUMBER_OF_FIELDS <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>} ttt_constant_t;
 
-<p>Let&rsquo;s put declarations of types and constants in the shared header file <code>ttt.h</code></p>
+<span style="color:#75715e">/* game outcomes */</span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {TTT_PLAYER_WINS, TTT_COMPUTER_WINS, TTT_DRAW, TTT_UNDECIDED} ttt_result_t;
 
-<pre><code class="language-c">#include &lt;stdbool.h&gt;
-
-/* general constants */
-typedef enum {TTT_ABORT = -1, NUMBER_OF_FIELDS = 9} ttt_constant_t;
-
-/* game outcomes */
-typedef enum {TTT_PLAYER_WINS, TTT_COMPUTER_WINS, TTT_DRAW, TTT_UNDECIDED} ttt_result_t;
-
-typedef int ttt_board_t[NUMBER_OF_FIELDS];
-</code></pre>
-
-<p>The prototypes (interfaces/declarations) of the (to be written) C functions that will be called from other modules will also be added there.</p>
-
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">int</span> ttt_board_t[NUMBER_OF_FIELDS];
+</code></pre></div><p>The prototypes (interfaces/declarations) of the (to be written) C functions that will be called from other modules will also be added there.</p>
 <p>Two of the functions that we used in the main loop also go into the main file &ldquo;ttt_main.c&rdquo;:</p>
-
-<pre><code class="language-c">void ttt_init_board(ttt_board_t f) {
-  /* emtpies every field */
-  int i;
-  for (i = 0; i &lt; NUMBER_OF_FIELDS; i++) {
-    f[i] = ' ';
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ttt_init_board</span>(ttt_board_t f) {
+  <span style="color:#75715e">/* emtpies every field */</span>
+  <span style="color:#66d9ef">int</span> i;
+  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_OF_FIELDS; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    f[i] <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>;
   }
 }
 
-char ttt_opponent(char symbol) {
-  switch (symbol)
+<span style="color:#66d9ef">char</span> <span style="color:#a6e22e">ttt_opponent</span>(<span style="color:#66d9ef">char</span> symbol) {
+  <span style="color:#66d9ef">switch</span> (symbol)
     {
-    case 'x': return 'o';
-    case 'o': return 'x';
-    default: return ' ';
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">x</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">o</span><span style="color:#e6db74">&#39;</span>;
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">o</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">x</span><span style="color:#e6db74">&#39;</span>;
+    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>;
     }
 }
-</code></pre>
-
-<h3 id="input-and-output">Input &amp; Output</h3>
-
+</code></pre></div><h3 id="input-and-output">Input &amp; Output</h3>
 <p>Since we use a text based interface our user interface is not so complicated and does not require as much of an effort (real user interfaces usually require a lot of work). But we still want to be lazy :D</p>
-
-<p>For example let&rsquo;s look at options to clear the screen:</p>
-
+<p>For example let's look at options to clear the screen:</p>
 <ul>
-<li>scroll down &rarr; window size has to be known (N)</li>
-<li>unix command <code>clear</code> &rarr; really slow and not portable (N)</li>
-<li>ANSI/VT100 escape sequence (control command) &rarr; also not 100% portable</li>
+<li>scroll down → window size has to be known (N)</li>
+<li>unix command <code>clear</code> → really slow and not portable (N)</li>
+<li>ANSI/VT100 escape sequence (control command) → also not 100% portable</li>
 <li>best solution: usage of portable libraries for example ncurses (or pdcurses for windows)</li>
 </ul>
-
 <p>To keep it simple we use the solution with the ANSI escape codes:</p>
-
-<pre><code class="language-C">/* Use VT100 ESC code to clean terminal */
-static void ttt_clean_terminal(void) {
-  printf(&quot;%c[2J&quot;, 27);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">/* Use VT100 ESC code to clean terminal */</span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ttt_clean_terminal</span>(<span style="color:#66d9ef">void</span>) {
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%c[2J</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">27</span>);
 }
-</code></pre>
-
-<p>Now to determine whether or not another game should be started we use <code>getchar()</code>, which returns the integer value (!) of the entered character.</p>
-
-<pre><code class="language-c">bool ttt_another_game() {
-  int input;
-  printf(&quot;Do you want to play another game [y/n] -&gt; &quot;);
-  input = getchar();
-  getchar(); // see notes below..
-  if ((input == 'Y') || (input == 'y') ) {
-    return true;
-  } else {
-    return false;
+</code></pre></div><p>Now to determine whether or not another game should be started we use <code>getchar()</code>, which returns the integer value (!) of the entered character.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">ttt_another_game</span>() {
+  <span style="color:#66d9ef">int</span> input;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Do you want to play another game [y/n] -&gt; </span><span style="color:#e6db74">&#34;</span>);
+  input <span style="color:#f92672">=</span> getchar();
+  getchar(); <span style="color:#75715e">// see notes below..
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> ((input <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Y</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">|</span><span style="color:#f92672">|</span> (input <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">y</span><span style="color:#e6db74">&#39;</span>) ) {
+    <span style="color:#66d9ef">return</span> true;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">return</span> false;
   }
 }
-</code></pre>
-
-<p>Slides: Es gibt allerdings ein Problem und zwar, dass das Terminal gibt eine Eingabe erst weiter, wenn <RETURN> gedrückt wurde. Das Zeichen &ldquo;⏎&rdquo; ist Teil des Eingabestroms. Lösung: Die Funktion wird zweimal aufgerufen und das zweite Ergebnis verworfen.</p>
-
+</code></pre></div><p>Slides: Es gibt allerdings ein Problem und zwar, dass das Terminal gibt eine Eingabe erst weiter, wenn <!-- raw HTML omitted --> gedrückt wurde. Das Zeichen &ldquo;⏎&rdquo; ist Teil des Eingabestroms. Lösung: Die Funktion wird zweimal aufgerufen und das zweite Ergebnis verworfen.</p>
 <p>I actually fail to see what is meant by the &ldquo;problem&rdquo; described above and how the second call to <code>getchar()</code> should help with that&hellip; I tested the code with and without it and got identical behaviour, but this is what stands in the slides.</p>
-
-<p>Now let&rsquo;s implement the function for inputting a move:</p>
-
-<pre><code class="language-c">int ttt_input_move(const ttt_board_t board) {
-  int input;
-  printf(&quot;\nPlease enter the number of the field you want to occupy (0 for abort)\n&quot;);
+<p>Now let's implement the function for inputting a move:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ttt_input_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t board) {
+  <span style="color:#66d9ef">int</span> input;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Please enter the number of the field you want to occupy (0 for abort)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 
   ttt_display_board(numberfield);
 
-  printf(&quot;Your move -&gt;&quot;);
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Your move -&gt;</span><span style="color:#e6db74">&#34;</span>);
 
-  do {
-    do {
-      input = getchar(); getchar(); // xD defuq :D
-    } while ((input &lt; '0') || input &gt; '9');
+  <span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">do</span> {
+      input <span style="color:#f92672">=</span> getchar(); getchar(); <span style="color:#75715e">// xD defuq :D
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">while</span> ((input <span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">|</span><span style="color:#f92672">|</span> input <span style="color:#f92672">&gt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>);
 
-    if (input == '0') return TTT_ABORT;
+    <span style="color:#66d9ef">if</span> (input <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">return</span> TTT_ABORT;
 
-    input = input - 1 // character to integer array index
-      } while (board[input] != ' ');
+    input <span style="color:#f92672">=</span> input <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// character to integer array index
+</span><span style="color:#75715e"></span>      } <span style="color:#66d9ef">while</span> (board[input] <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>);
 
-  return input;
+  <span style="color:#66d9ef">return</span> input;
 }
-</code></pre>
-
-<p>To output/print the board we use a bit of ACII art :D</p>
-
-<pre><code class="language-C">void ttt_display_board(const ttt_board_t board) {
-  for (int i = 0; i &lt; 3; i++) {
-    if (i) { // not for first row
-      printf(&quot;\n   -+-+-&quot;);
+</code></pre></div><p>To output/print the board we use a bit of ACII art :D</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ttt_display_board</span>(<span style="color:#66d9ef">const</span> ttt_board_t board) {
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">if</span> (i) { <span style="color:#75715e">// not for first row
+</span><span style="color:#75715e"></span>      printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">   -+-+-</span><span style="color:#e6db74">&#34;</span>);
     }
 
-    printf(&quot;\n   &quot;);
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">   </span><span style="color:#e6db74">&#34;</span>);
 
-    for (int j = 0; j &lt; 3; i++) {
-      if (j) { // not for first column
-        printf(&quot;|&quot;);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+      <span style="color:#66d9ef">if</span> (j) { <span style="color:#75715e">// not for first column
+</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">|</span><span style="color:#e6db74">&#34;</span>);
       }
 
-      printf(&quot;%c&quot;, board[3*i+j]);
+      printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%c</span><span style="color:#e6db74">&#34;</span>, board[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j]);
     }
   }
-  printf(&quot;\n&quot;);
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 }
-</code></pre>
-
-<h3 id="strategy-and-logic">Strategy &amp; Logic</h3>
-
-<p>Now we turn our attention to the strategy and logic behind the Computer&rsquo;s move. Let&rsquo;s start with a high level strategy that can be finetuned later on:</p>
-
-<pre><code class="language-C">// Computer's Move Version 1
-if (can I win?) then
+</code></pre></div><h3 id="strategy-and-logic">Strategy &amp; Logic</h3>
+<p>Now we turn our attention to the strategy and logic behind the Computer's move. Let's start with a high level strategy that can be finetuned later on:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Computer&#39;s Move Version 1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (can I win<span style="color:#f92672">?</span>) then
     choose winning move
-else
-    if (can opponent win?) then
+<span style="color:#66d9ef">else</span>
+    <span style="color:#66d9ef">if</span> (can opponent win<span style="color:#f92672">?</span>) then
         block winning move
-    else
-        if can I win next time? then
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> can I win next time<span style="color:#f92672">?</span> then
             prepare win
-        else
+        <span style="color:#66d9ef">else</span>
             whatever
-        end if
-    end if
-end if
-</code></pre>
-
-<p>To choose the winning move we have to know which combinations are considered a win. There are exactly 8 different winning combinations</p>
-
-<p></knowledge-database/images/winning-combinations.png ></p>
-
-<p>Such combination is from now on called <em>triple</em>. A win with a triple is possible when two fields of a triple are occupied with the own symbol/mark and the third field is free/unoccupied. Therefore there are \(8*3=24\) combinations for <strong>&ldquo;can I win?&rdquo;</strong>.</p>
-
+        end <span style="color:#66d9ef">if</span>
+    end <span style="color:#66d9ef">if</span>
+end <span style="color:#66d9ef">if</span>
+</code></pre></div><p>To choose the winning move we have to know which combinations are considered a win. There are exactly 8 different winning combinations</p>
+<p>&lt;/knowledge-database/images/winning-combinations.png &gt;</p>
+<p>Such combination is from now on called <em>triple</em>. A win with a triple is possible when two fields of a triple are occupied with the own symbol/mark and the third field is free/unoccupied. Therefore there are \(8*3=24\) combinations for <strong>&ldquo;can I win?&quot;</strong>.</p>
 <p>We could hardcode this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// winning_move (not final version)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">winning_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t f, <span style="color:#66d9ef">char</span> s) {
 
-<pre><code class="language-C">// winning_move (not final version)
-int winning_move(const ttt_board_t f, char s) {
+  <span style="color:#75715e">/* triplet (0,1,2) */</span>
+  <span style="color:#66d9ef">if</span> ((f[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+  <span style="color:#66d9ef">if</span> ((f[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">if</span> ((f[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 
-  /* triplet (0,1,2) */
-  if ((f[0] == s) &amp;&amp; (f[1] == s) &amp;&amp; (f[2] == ' ')) return 2;
-  if ((f[1] == s) &amp;&amp; (f[2] == s) &amp;&amp; (f[0] == ' ')) return 0;
-  if ((f[0] == s) &amp;&amp; (f[2] == s) &amp;&amp; (f[1] == ' ')) return 1;
+  <span style="color:#75715e">/* ...
+</span><span style="color:#75715e">     and so on
+</span><span style="color:#75715e">     ...
+</span><span style="color:#75715e">  */</span>
 
-  /* ...
-     and so on
-     ...
-  */
+  <span style="color:#75715e">/* triplet (2,4,6) */</span>
+  <span style="color:#66d9ef">if</span> ((f[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">6</span>;
+  <span style="color:#66d9ef">if</span> ((f[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+  <span style="color:#66d9ef">if</span> ((f[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (f[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">4</span>;
 
-  /* triplet (2,4,6) */
-  if ((f[2] == s) &amp;&amp; (f[4] == s) &amp;&amp; (f[6] == ' ')) return 6;
-  if ((f[4] == s) &amp;&amp; (f[6] == s) &amp;&amp; (f[2] == ' ')) return 2;
-  if ((f[2] == s) &amp;&amp; (f[6] == s) &amp;&amp; (f[4] == ' ')) return 4;
-
-  return -1;
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 }
-</code></pre>
+</code></pre></div><p>Although this function is correct. It is rather convoluted, unneccessarily big and therefore error prone. Another idea is to use data and indirections:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// winning_move (not final version)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">enum</span> { NUMBER_TRIPLES <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, NONE <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}; <span style="color:#75715e">// Number of winning triples, and code when no win possible
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">int</span> ttt_triple_t[<span style="color:#ae81ff">3</span>];
 
-<p>Although this function is correct. It is rather convoluted, unneccessarily big and therefore error prone. Another idea is to use data and indirections:</p>
-
-<pre><code class="language-C">// winning_move (not final version)
-enum { NUMBER_TRIPLES = 8, NONE = -1}; // Number of winning triples, and code when no win possible
-typedef int ttt_triple_t[3];
-
-const ttt_triple_t triples[NUMBER_TRIPLES] =
+<span style="color:#66d9ef">const</span> ttt_triple_t triples[NUMBER_TRIPLES] <span style="color:#f92672">=</span>
   {
-   {0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}
+   {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>}, {<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>}, {<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>}, {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>}, {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>}, {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>}, {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>}, {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>}
   };
 
-int winning_move(const ttt_board_t f, char s) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">winning_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t f, <span style="color:#66d9ef">char</span> s) {
 
-  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
-    for (int j = 0; j &lt; 3; ++j) {
-      /* always get the two other indices to check all possible combs in a triple
-         j = 0 -&gt; idx2=1, idx3=2
-         j = 1 -&gt; idx2=2, idx3=0
-         j = 2 -&gt; idx2=0, idx3=1
-       */
-      int idx2 = (j+1) % 3;
-      int idx3 = (j+2) % 3;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>j) {
+      <span style="color:#75715e">/* always get the two other indices to check all possible combs in a triple
+</span><span style="color:#75715e">         j = 0 -&gt; idx2=1, idx3=2
+</span><span style="color:#75715e">         j = 1 -&gt; idx2=2, idx3=0
+</span><span style="color:#75715e">         j = 2 -&gt; idx2=0, idx3=1
+</span><span style="color:#75715e">       */</span>
+      <span style="color:#66d9ef">int</span> idx2 <span style="color:#f92672">=</span> (j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span>;
+      <span style="color:#66d9ef">int</span> idx3 <span style="color:#f92672">=</span> (j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span>;
 
-      // check the fields specified in triples eg 3,4,5 in the game board f
-      if ((f[triples[i][j]] == ' ') &amp;&amp;
-          (f[triples[i][idx2]] == s) &amp;&amp;
-          (f[triples[i][idx3]] == s)) {
-        return triples[i];
+      <span style="color:#75715e">// check the fields specified in triples eg 3,4,5 in the game board f
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> ((f[triples[i][j]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span>
+          (f[triples[i][idx2]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span>
+          (f[triples[i][idx3]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> s)) {
+        <span style="color:#66d9ef">return</span> triples[i];
       }
     }
   }
 
-  return NONE;
+  <span style="color:#66d9ef">return</span> NONE;
 }
-</code></pre>
-
-<p>To determine whether or not the opponent can win (<em>can opponent win?</em>) we can use the same function:</p>
-
-<pre><code class="language-C">// can opponent win (not final version)
-int block_opponent_winning_move(const ttt_board_t f, char s) {
-  return winning_move(f, ttt_opponent(s));
+</code></pre></div><p>To determine whether or not the opponent can win (<em>can opponent win?</em>) we can use the same function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// can opponent win (not final version)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">block_opponent_winning_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t f, <span style="color:#66d9ef">char</span> s) {
+  <span style="color:#66d9ef">return</span> winning_move(f, ttt_opponent(s));
 }
-</code></pre>
-
-<p>Looking at this, a structure becomes apparent: Multiple functions that evaluate the positions similar to <code>winning_move()</code> are needed. So let&rsquo;s formulate a more generic function to evaluate the board situation/positions.</p>
-
+</code></pre></div><p>Looking at this, a structure becomes apparent: Multiple functions that evaluate the positions similar to <code>winning_move()</code> are needed. So let's formulate a more generic function to evaluate the board situation/positions.</p>
 <p>There are a few things that could be of interest in regards to the situation on the board:</p>
-
 <ul>
-<li>a triple has won &rarr; end the game</li>
-<li>a triple can lead to a win &rarr; <code>winning_move()</code></li>
-<li>a triple is &ldquo;mine&rdquo; (triple is blocked/marked by me) &rarr; can force an opponent to a certain move</li>
+<li>a triple has won → end the game</li>
+<li>a triple can lead to a win → <code>winning_move()</code></li>
+<li>a triple is &ldquo;mine&rdquo; (triple is blocked/marked by me) → can force an opponent to a certain move</li>
 <li>a triple is useless (because blocked by both)</li>
 <li>a triple is empty</li>
 </ul>
-
 <p>How can we assess different &ldquo;evaluations&rdquo; of situations via code when we calculate them via the same schema? Idea: Usage of prime numbers.</p>
-
 <p>Own symbol counts 2. Opponent symbol counts 5 and an empty field counts 0. Then the fields/counts of a triple are added:</p>
-
 <ul>
-<li>own win &rarr; &sum; = 6</li>
-<li>opponent win &rarr; &sum; = 15</li>
-<li>own win possible &rarr; &sum; = 4</li>
-<li>opponent win possible &rarr; &sum; = 10</li>
-<li>&ldquo;my&rdquo; triple &rarr; &sum; = 2</li>
-<li>&ldquo;opponent&rsquo;s&rdquo; triple &rarr; &sum; = 5</li>
-<li>empty triple &rarr; &sum; = 0</li>
-<li>useless triple &rarr; &sum; = 7 or &sum; = 9 or &sum; = 12</li>
+<li>own win → ∑ = 6</li>
+<li>opponent win → ∑ = 15</li>
+<li>own win possible → ∑ = 4</li>
+<li>opponent win possible → ∑ = 10</li>
+<li>&ldquo;my&rdquo; triple → ∑ = 2</li>
+<li>&ldquo;opponent's&rdquo; triple → ∑ = 5</li>
+<li>empty triple → ∑ = 0</li>
+<li>useless triple → ∑ = 7 or ∑ = 9 or ∑ = 12</li>
 </ul>
-
 <p>The advantage of this approach is that each triple only needs to be evaluated once. The disadvantage is that we then have to search <em>in</em> the triple for the empty field afterwards, but we are willing to take this consequence because we only execute once.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">enum</span> { NUMBER_TRIPLES <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, I_KEY <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, OPP_KEY <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> };
 
-<pre><code class="language-C">enum { NUMBER_TRIPLES = 8, I_KEY = 2, OPP_KEY = 5 };
 
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">int</span> ttt_triple_t[<span style="color:#ae81ff">3</span>];
 
-typedef int ttt_triple_t[3];
-
-const ttt_triple_t triples[NUMBER_TRIPLES] =
+<span style="color:#66d9ef">const</span> ttt_triple_t triples[NUMBER_TRIPLES] <span style="color:#f92672">=</span>
   {
-   {0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}
+   {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>}, {<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>}, {<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>}, {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>}, {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>}, {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>}, {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>}, {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>}
   };
 
 
-// Evaluate a triple in accordance to the marked fields and keys
-int ttt_evaluate(const ttt_board_t field, int tnr, int my_symbol) { // tnr = index of tuple we want to evaluate
-  int val = 0;
-  int opp_symbol = ttt_opponent(my_symbol);
+<span style="color:#75715e">// Evaluate a triple in accordance to the marked fields and keys
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ttt_evaluate</span>(<span style="color:#66d9ef">const</span> ttt_board_t field, <span style="color:#66d9ef">int</span> tnr, <span style="color:#66d9ef">int</span> my_symbol) { <span style="color:#75715e">// tnr = index of tuple we want to evaluate
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">int</span> opp_symbol <span style="color:#f92672">=</span> ttt_opponent(my_symbol);
 
-  for (int i = 0; i &lt; 3; ++i) {
-    if (field[triples[tnr][i]] == my_symbol) {
-      val += I_KEY;
-    } else if (field[triples[tnr][i] == opp_symbol]) {
-      val += OPP_KEY;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">if</span> (field[triples[tnr][i]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> my_symbol) {
+      val <span style="color:#f92672">+</span><span style="color:#f92672">=</span> I_KEY;
+    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (field[triples[tnr][i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> opp_symbol]) {
+      val <span style="color:#f92672">+</span><span style="color:#f92672">=</span> OPP_KEY;
     }
   }
 
-  return val;
+  <span style="color:#66d9ef">return</span> val;
 }
-</code></pre>
-
-<p>Now the strategy of the computer under the use of <code>ttt_evaluate</code> would look like this:</p>
-
-<pre><code class="language-C">static int winning_move(const ttt_board_t board,
-                        const ttt_tripleval_t eval,
-                        int who) {
-  for (int i = 0; i &lt; NUMBER_TRIPLES, i++) {
-    if (eval[i] == who) { // find winning triple
-      for (int j = 0; j &lt; 3; j++) {
-        if (board[triples[i][j]] == ' ') { // find the empty place
-          return triples[i][j];
+</code></pre></div><p>Now the strategy of the computer under the use of <code>ttt_evaluate</code> would look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">winning_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t board,
+                        <span style="color:#66d9ef">const</span> ttt_tripleval_t eval,
+                        <span style="color:#66d9ef">int</span> who) {
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES, i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">if</span> (eval[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> who) { <span style="color:#75715e">// find winning triple
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (board[triples[i][j]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) { <span style="color:#75715e">// find the empty place
+</span><span style="color:#75715e"></span>          <span style="color:#66d9ef">return</span> triples[i][j];
         }
       }
     }
   }
-  return NONE;
+  <span style="color:#66d9ef">return</span> NONE;
 }
 
-int ttt_calculate_move(const ttt_board_t board, char symbol) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ttt_calculate_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t board, <span style="color:#66d9ef">char</span> symbol) {
   ttt_tripleval_t eval;
 
-  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
-    eval[i] = ttt_evaluate(field, i, symbol);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    eval[i] <span style="color:#f92672">=</span> ttt_evaluate(field, i, symbol);
   }
 
-  int move = winning_move(board, eval, I_CANWIN);
+  <span style="color:#66d9ef">int</span> move <span style="color:#f92672">=</span> winning_move(board, eval, I_CANWIN);
 
-  if (move != NONE) {
-    return move;
+  <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NONE) {
+    <span style="color:#66d9ef">return</span> move;
   }
 
-  move = winning_move(board, eval, OPP_CANWIN);
+  move <span style="color:#f92672">=</span> winning_move(board, eval, OPP_CANWIN);
 
-  if (move != NONE) {
-    return move;
+  <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NONE) {
+    <span style="color:#66d9ef">return</span> move;
   }
 
-  // slides: yet to implement
-
-  return NONE;
+  <span style="color:#75715e">// slides: yet to implement
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">return</span> NONE;
 }
-</code></pre>
-
-<p>If we think back to our high level strategy:</p>
-
-<pre><code class="language-C">if (can I win?) then
+</code></pre></div><p>If we think back to our high level strategy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">if</span> (can I win<span style="color:#f92672">?</span>) then
     choose winning move
-else
-    if (can opponent win?) then
+<span style="color:#66d9ef">else</span>
+    <span style="color:#66d9ef">if</span> (can opponent win<span style="color:#f92672">?</span>) then
         block winning move
-    else
-        if can I win next time? then
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> can I win next time<span style="color:#f92672">?</span> then
             prepare win
-        else
+        <span style="color:#66d9ef">else</span>
             whatever
-        end if
-    end if
-end if
-</code></pre>
-
-<p>How can we <em>prepare a win</em> for the next draw (Zug)?</p>
-
+        end <span style="color:#66d9ef">if</span>
+    end <span style="color:#66d9ef">if</span>
+end <span style="color:#66d9ef">if</span>
+</code></pre></div><p>How can we <em>prepare a win</em> for the next draw (Zug)?</p>
 <p>To prepare a win we should prepare two triples that can be won (fork). For example in this picture where the computer is X and the player (O) can only block 1 winning triple</p>
-
-<p></knowledge-database/images/fork.png ></p>
-
+<p>&lt;/knowledge-database/images/fork.png &gt;</p>
 <p>The &ldquo;common&rdquo; field (in both winning tuples, the X in the bottom left)  shall be called &ldquo;pivot field&rdquo;.</p>
-
 <p>To find a pivot field two conditions need to be fulfilled:</p>
-
 <ul>
 <li>there have to be two triples that are solely owned by the computer (count/score = 2)</li>
 <li>those two triples need to share an empty field</li>
 </ul>
-
 <p>Procedure:</p>
-
 <ul>
 <li>inspect all 8 win tuples and determine whether or not they are evaluated with 2</li>
 <li>every field that occurs in one of these tuples <strong>and is empty</strong> gets a point (+=1)</li>
-
-<li><p>a field that then has more than 1 point is a pivot field</p>
-
-<pre><code class="language-C">int forking_move(const ttt_playground_t field, const ttt_tripleval_t eval) {
-int i, j = 0;
-int singles[NUMBER_OF_FIELDS] = {0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}; // used to count the &quot;points&quot;
-
-for (i = 0; i &lt; NUMBER_TRIPLES; ++i) {
-if (eval[i] == I_KEY) {
-  for (j = 0; j &lt; 3; j++) {
-    if (field[triples[i][j]] == ' ') {
-      ++singles[triples[i][j]];
-    }
-  }
-}
-}
-
-// iterate over singles and find one with &gt;1 points which is therefore pivot field
-for (i = 0; i &lt; NUMBER_OF_FIELDS; ++i) {
-if (singles[i] &gt;= 2) {
-  return i;
-}
-}
-
-return NONE;
-}
-</code></pre></li>
+<li>a field that then has more than 1 point is a pivot field</li>
 </ul>
-
-<h3 id="offense">Offense</h3>
-
-<p>Suppose that our strategic calculations up till now don&rsquo;t yield a move. In that case we should execute a logic that blocks possible wins (via pivot fields) from our opponent. Let&rsquo;s adapt our high level algorithm accordingly:</p>
-
-<pre><code class="language-C">if (can I win?) then
-    choose winning move
-else
-    if (can opponent win?) then
-        block winning move
-    else
-        if (can I fork?) then
-            choose pivot element
-        else
-            if (can opponent fork?) then
-                block opponent's pivot element
-            else
-                whatever
-            end if
-        end if
-    end if
-end if
-</code></pre>
-
-<p>The problem with that is however that the opponent could get into possession of two pivot elements. So as an alternative approach we choose to go the offensive route, trying to get into a situation where we&rsquo;re forcing our opponent to block a win of ourselves. <em>But</em> there&rsquo;s an important detail. We have to avoid that we &ldquo;gift&rdquo; our opponent a fork/pivot field by forcing him to block our win! See below:</p>
-
-<p></knowledge-database/images/opponent-fork.png ></p>
-
-<p>So we have to adapt the strategy once again:</p>
-
-<pre><code class="language-C">if (can I win?) then
-    choose winning move
-else
-    if (can opponent win?) then
-        block winning move
-    else
-        if (can I fork?) then
-            choose pivot element
-        else
-            if (can I force without opponent's fork?) then
-                choose forcing move
-            else
-                move to best available place
-            end if
-        end if
-    end if
-end if
-</code></pre>
-
-<p>To find our offensive move/draw we first inspect where we <strong>cannot</strong> go. The fields remaining from that analysis are pivot fields of our opponent. Then we search for triples where we own <strong>exactly one</strong> field (and where there&rsquo;s <strong>no</strong> opponent field) and score those fields with a score of 2. If there&rsquo;s an pivot element from our opponent in one of those triples choose that as the target for our next move, else just choose an empty field. Here&rsquo;s the C implementation:</p>
-
-<pre><code class="language-C">int forcing_move (const ttt_board_t board, const ttt_tripleval_t eval) {
-  int opp_singles[NUMBER_OF_FIELDS];
-  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
-    if (eval[i] == OPP_KEY) {
-      for(int j = 0; j &lt; 3; j++) {
-        if (board[triples[i][j]] == ' ') {
-          ++opp_singles[triples[i][j]];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">forking_move</span>(<span style="color:#66d9ef">const</span> ttt_playground_t field, <span style="color:#66d9ef">const</span> ttt_tripleval_t eval) {
+  <span style="color:#66d9ef">int</span> i, j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">int</span> singles[NUMBER_OF_FIELDS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span> ,<span style="color:#ae81ff">0</span>}; <span style="color:#75715e">// used to count the &#34;points&#34;
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">if</span> (eval[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> I_KEY) {
+      <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (field[triples[i][j]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) {
+          <span style="color:#f92672">+</span><span style="color:#f92672">+</span>singles[triples[i][j]];
         }
       }
     }
   }
 
-  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
+  <span style="color:#75715e">// iterate over singles and find one with &gt;1 points which is therefore pivot field
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_OF_FIELDS; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">if</span> (singles[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) {
+      <span style="color:#66d9ef">return</span> i;
+    }
+  }
 
-    if (eval[i] == I_KEY) {
+  <span style="color:#66d9ef">return</span> NONE;
+}
+</code></pre></div><h3 id="offense">Offense</h3>
+<p>Suppose that our strategic calculations up till now don't yield a move. In that case we should execute a logic that blocks possible wins (via pivot fields) from our opponent. Let's adapt our high level algorithm accordingly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">if</span> (can I win<span style="color:#f92672">?</span>) then
+    choose winning move
+<span style="color:#66d9ef">else</span>
+    <span style="color:#66d9ef">if</span> (can opponent win<span style="color:#f92672">?</span>) then
+        block winning move
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> (can I fork<span style="color:#f92672">?</span>) then
+            choose pivot element
+        <span style="color:#66d9ef">else</span>
+            <span style="color:#66d9ef">if</span> (can opponent fork<span style="color:#f92672">?</span>) then
+                block opponent<span style="color:#960050;background-color:#1e0010">&#39;</span>s pivot element
+            <span style="color:#66d9ef">else</span>
+                whatever
+            end <span style="color:#66d9ef">if</span>
+        end <span style="color:#66d9ef">if</span>
+    end <span style="color:#66d9ef">if</span>
+end <span style="color:#66d9ef">if</span>
+</code></pre></div><p>The problem with that is however that the opponent could get into possession of two pivot elements. So as an alternative approach we choose to go the offensive route, trying to get into a situation where we're forcing our opponent to block a win of ourselves. <em>But</em> there's an important detail. We have to avoid that we &ldquo;gift&rdquo; our opponent a fork/pivot field by forcing him to block our win! See below:</p>
+<p>&lt;/knowledge-database/images/opponent-fork.png &gt;</p>
+<p>So we have to adapt the strategy once again:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">if</span> (can I win<span style="color:#f92672">?</span>) then
+    choose winning move
+<span style="color:#66d9ef">else</span>
+    <span style="color:#66d9ef">if</span> (can opponent win<span style="color:#f92672">?</span>) then
+        block winning move
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> (can I fork<span style="color:#f92672">?</span>) then
+            choose pivot element
+        <span style="color:#66d9ef">else</span>
+            <span style="color:#66d9ef">if</span> (can I force without opponent<span style="color:#960050;background-color:#1e0010">&#39;</span>s fork<span style="color:#f92672">?</span>) then
+                choose forcing move
+            <span style="color:#66d9ef">else</span>
+                move to best available place
+            end <span style="color:#66d9ef">if</span>
+        end <span style="color:#66d9ef">if</span>
+    end <span style="color:#66d9ef">if</span>
+end <span style="color:#66d9ef">if</span>
+</code></pre></div><p>To find our offensive move/draw we first inspect where we <strong>cannot</strong> go. The fields remaining from that analysis are pivot fields of our opponent. Then we search for triples where we own <strong>exactly one</strong> field (and where there's <strong>no</strong> opponent field) and score those fields with a score of 2. If there's an pivot element from our opponent in one of those triples choose that as the target for our next move, else just choose an empty field. Here's the C implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">forcing_move</span> (<span style="color:#66d9ef">const</span> ttt_board_t board, <span style="color:#66d9ef">const</span> ttt_tripleval_t eval) {
+  <span style="color:#66d9ef">int</span> opp_singles[NUMBER_OF_FIELDS];
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">if</span> (eval[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> OPP_KEY) {
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span> (board[triples[i][j]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) {
+          <span style="color:#f92672">+</span><span style="color:#f92672">+</span>opp_singles[triples[i][j]];
+        }
+      }
+    }
+  }
 
-      if ((opp_singles[triples[i][0]] &lt;= 1) &amp;&amp;
-          (opp_singles[triples[i][1]] &lt;= 1) &amp;&amp;
-          ( opp_singles[triples[i][2]] &lt;= 1)) {
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
 
-        for (j = 0; j &lt; 3; j++) {
-          if (board[triples[i][j]] == ' ') {
-            return triples[i][j];
+    <span style="color:#66d9ef">if</span> (eval[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> I_KEY) {
+
+      <span style="color:#66d9ef">if</span> ((opp_singles[triples[i][<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span>
+          (opp_singles[triples[i][<span style="color:#ae81ff">1</span>]] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span>
+          ( opp_singles[triples[i][<span style="color:#ae81ff">2</span>]] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)) {
+
+        <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+          <span style="color:#66d9ef">if</span> (board[triples[i][j]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) {
+            <span style="color:#66d9ef">return</span> triples[i][j];
           }
         }
 
       }
 
-      for (j =0; j &lt; 3; j++) {
-        if( opp_singles[triples[i][j]] &gt; 1) {
-          return triples[i][j];
+      <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+        <span style="color:#66d9ef">if</span>( opp_singles[triples[i][j]] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">return</span> triples[i][j];
         }
       }
     }
   }
-  return NONE ;
+  <span style="color:#66d9ef">return</span> NONE ;
 }
-</code></pre>
-
-<p>In the case where we still don&rsquo;t have a field for the next draw, we <em>move to best available place</em> in accordance to our algorithm. Fields still have different value though (middle &rarr; corners &rarr; edges):</p>
-
-<pre><code class="language-C">int best_remaining_move(const ttt_board_t board) {
-  const int best[] = {4, 0, 2, 6, 8, 1, 3, 5, 7}; // fields sorted by decreasing value
-
-  for (int i = 0; i &lt; NUMBER_OF_FIELDS; ++i) {
-    if (board[best[i]] == ' ') // if available
-      return best[i];
+</code></pre></div><p>In the case where we still don't have a field for the next draw, we <em>move to best available place</em> in accordance to our algorithm. Fields still have different value though (middle → corners → edges):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">best_remaining_move</span>(<span style="color:#66d9ef">const</span> ttt_board_t board) {
+  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> best[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>}; <span style="color:#75715e">// fields sorted by decreasing value
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_OF_FIELDS; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">if</span> (board[best[i]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e">// if available
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">return</span> best[i];
   }
 
-  return NONE; // should never happen
-}
-</code></pre>
-
-<p>By combining all these functions that we defined, we are now able to calculate the move:</p>
-
-<pre><code class="language-C">int ttt_calculate_move (const ttt_board_t field, char symbol) {
+  <span style="color:#66d9ef">return</span> NONE; <span style="color:#75715e">// should never happen
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>By combining all these functions that we defined, we are now able to calculate the move:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ttt_calculate_move</span> (<span style="color:#66d9ef">const</span> ttt_board_t field, <span style="color:#66d9ef">char</span> symbol) {
   ttt_tripleval_t eval;
 
-  for (int i = 0; i &lt; NUMBER_TRIPLES; ++i) {
-    eval[i] = evaluate(field, i, symbol);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    eval[i] <span style="color:#f92672">=</span> evaluate(field, i, symbol);
   }
 
-  int move = winning_move(field, eval, I_CANWIN);
-  if (move != NONE) return move;
+  <span style="color:#66d9ef">int</span> move <span style="color:#f92672">=</span> winning_move(field, eval, I_CANWIN);
+  <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NONE) <span style="color:#66d9ef">return</span> move;
 
-  move = winning_move(field, eval, OPP_CANWIN);
-  if (move != NONE) return move;
+  move <span style="color:#f92672">=</span> winning_move(field, eval, OPP_CANWIN);
+  <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NONE) <span style="color:#66d9ef">return</span> move;
 
-  move = forking_move(field, eval);
-  if (move != NONE) return move;
+  move <span style="color:#f92672">=</span> forking_move(field, eval);
+  <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NONE) <span style="color:#66d9ef">return</span> move;
 
-  move = forcing_move(field, eval);
-  if (move != NONE) return move;
+  move <span style="color:#f92672">=</span> forcing_move(field, eval);
+  <span style="color:#66d9ef">if</span> (move <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NONE) <span style="color:#66d9ef">return</span> move;
 
-  return best_remaining_move(field);
+  <span style="color:#66d9ef">return</span> best_remaining_move(field);
 }
-</code></pre>
-
-<p>Since all the functionality is combined in <code>ttt_calculate_move</code> we only have to make this function available to the outside, and declare all the other, internal functions as static.</p>
-
+</code></pre></div><p>Since all the functionality is combined in <code>ttt_calculate_move</code> we only have to make this function available to the outside, and declare all the other, internal functions as static.</p>
 <p>The last function we will also globally need is <code>ttt_win_or_draw</code> to determine the end of a game:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">ttt_result_t <span style="color:#a6e22e">ttt_won_or_draw</span> ( <span style="color:#66d9ef">const</span> ttt_board_t board , <span style="color:#66d9ef">char</span> symbol) {
+  <span style="color:#66d9ef">bool</span> undecided <span style="color:#f92672">=</span> false;
 
-<pre><code class="language-C">ttt_result_t ttt_won_or_draw ( const ttt_board_t board , char symbol) {
-  bool undecided = false;
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBER_TRIPLES; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
 
-  for(int i = 0; i &lt; NUMBER_TRIPLES; i++) {
+    <span style="color:#66d9ef">int</span> state <span style="color:#f92672">=</span> evaluate(board, i, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">x</span><span style="color:#e6db74">&#39;</span>);
 
-    int state = evaluate(board, i, 'x');
-
-    switch (state) {
-    case I_WIN:
-      if (symbol == 'x') return TTT_PLAYER_WINS;
-      else return TTT_COMPUTER_WINS;
-    case OPP_WIN:
-      if (symbol == 'o') return TTT_PLAYER_WINS ;
-      else return TTT_COMPUTER_WINS;
-    case DRAW_I: /* falltrough */
-    case DRAW_OPP: /* fall trough */
-      break;
-    case DRAW: /* fall trough */
-    default:
-      undecided = true;
+    <span style="color:#66d9ef">switch</span> (state) {
+    <span style="color:#66d9ef">case</span> I_WIN:
+      <span style="color:#66d9ef">if</span> (symbol <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">x</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">return</span> TTT_PLAYER_WINS;
+      <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> TTT_COMPUTER_WINS;
+    <span style="color:#66d9ef">case</span> OPP_WIN:
+      <span style="color:#66d9ef">if</span> (symbol <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">o</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">return</span> TTT_PLAYER_WINS ;
+      <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> TTT_COMPUTER_WINS;
+    <span style="color:#66d9ef">case</span> DRAW_I: <span style="color:#75715e">/* falltrough */</span>
+    <span style="color:#66d9ef">case</span> DRAW_OPP: <span style="color:#75715e">/* fall trough */</span>
+      <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> DRAW: <span style="color:#75715e">/* fall trough */</span>
+    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+      undecided <span style="color:#f92672">=</span> true;
     }
   }
 
-  if (undecided) {
-    return TTT_UNDECIDED;
-  } else {
-    return TTT_DRAW;
+  <span style="color:#66d9ef">if</span> (undecided) {
+    <span style="color:#66d9ef">return</span> TTT_UNDECIDED;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">return</span> TTT_DRAW;
   }
 
 }
-</code></pre>
-
-<p>Aaaaaand that&rsquo;s it  ◕ ‿‿ ◕</p>
-
+</code></pre></div><p>Aaaaaand that's it  ◕ ‿‿ ◕</p>
 <p>The whole tic tac toe code is in the appendix of the official script. And remember that this is just <em>one of many</em> ways on how to implement tic tac toe :)</p>
-
-<hr />
-
+<hr>
 <p>Sources: Wikipedia was heavily used for this post</p>
 
     </div>

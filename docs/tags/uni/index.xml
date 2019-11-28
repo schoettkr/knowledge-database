@@ -6,10 +6,19 @@
     <description>Recent content in uni on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/uni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von der Befehls- zur Programmausführung</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/fcs/04_lecture/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/04_lecture/</guid>
+      <description>Programmierung  wir können nun prinzipiell arithmetisch &amp;amp; logische Operationen ausführen und mit dem Speicher kommunizieren Problem: Was genau soll wann gemacht werden?  Makroebene: Programm (durch Nutzer/Programmierer)  Programm liegt in durch den Prozessor &amp;ldquo;lesbarer&amp;rdquo; Form im Speicher     Problem: Wie wird es &amp;ldquo;verstanden&amp;rdquo;?  Mikroebene: Sequencing (durch Hersteller)  automatische Interpretation des Nutzerprogramms      → gemeinsame Schnittstelle: Rechnerorganisation (zB Register, Befehle, &amp;hellip;)</description>
+    </item>
     
     <item>
       <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von Neumann Rechner</title>
@@ -17,9 +26,9 @@
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/03_lecture/</guid>
-      <description>Von-Neumann-Architektur  1946: ENIAC als erster vollständiger Rechner aus den USA EDVAC: Konzept des stored program computer von John von Neumann  Speicher enthält Programm &amp;amp; Daten     Abstrakt gesehen besteht die Informationsverarbeitung in der Von-Neumann-Architektur aus drei Stufen:
+      <description>Von-Neumann-Architektur  1946: ENIAC als erster vollständiger Rechner aus den USA EDVAC: Konzept des stored program computer von John von Neumann  Speicher enthält Programm &amp;amp; Daten      Abstrakt gesehen besteht die Informationsverarbeitung in der Von-Neumann-Architektur aus drei Stufen:
  Datengewinnung und -eingabe Verarbeitung und Speicherung Datenausgabe  Diese Stufen sollten sich in Geräten zur Informationsverarbeitung wiederspiegeln.
-   John v. Neumann veröffentlichte erstmals die nach ihm benannten Prinzipien des Rechnerentwurfs, nachdem er für das Manhattan-Projekt beim Entwurf des EDVAC (Electronic Discrete Variable Automatic Computer) mitgearbeitet hatte  Von-Neumann-Prinzipien  ein Rechner besteht aus Rechenwerk, Steuerwerk, Speicher und Ein-/Ausgabegeräten die Zentraleinheit arbeitet taktgesteuert die Signale werden binär kodiert der Inhalt eines Speicherwortes wird über eine Adresse angesprochen der Rechner verarbeitet externe Programme die intern gespeichert werden Programmbefehle und Daten werden im einheitlichen Hauptspeicher gespeichert Programme und Daten werden sequentiell abgearbeitet; der sequentielle Programmfluss kann durch (bedingte oder unbedingte) Sprünge verändert werden jede theoretisch mögliche Berechnung ist (im Rahmen der Kapazität des Rechners) berechenbar  Harvard Architektur vs Von Neumann Architektur:</description>
+   John v. Neumann veröffentlichte erstmals die nach ihm benannten Prinzipien des Rechnerentwurfs, nachdem er für das Manhattan-Projekt beim Entwurf des EDVAC (Electronic Discrete Variable Automatic Computer) mitgearbeitet hatte  Von-Neumann-Prinzipien  ein Rechner besteht aus Rechenwerk, Steuerwerk, Speicher und Ein-/Ausgabegeräten die Zentraleinheit arbeitet taktgesteuert die Signale werden binär kodiert der Inhalt eines Speicherwortes wird über eine Adresse angesprochen der Rechner verarbeitet externe Programme die intern gespeichert werden Programmbefehle und Daten werden im einheitlichen Hauptspeicher gespeichert Programme und Daten werden sequentiell abgearbeitet; der sequentielle Programmfluss kann durch (bedingte oder unbedingte) Sprünge verändert werden jede theoretisch mögliche Berechnung ist (im Rahmen der Kapazität des Rechners) berechenbar  Harvard Architektur vs Von Neumann Architektur:Komponenten des von Neumann Rechners Komponenten: Bus  ein Bus (bidirectional universal switch) ist eine Verbindungseinheit zwischen verschiedenen logisch getrennten Funktionseinheiten    Komponenten: Zentrale Verarbeitungseinheit (CPU)   ist Kernstück eines jeden Von-Neumann-Rechners</description>
     </item>
     
     <item>
@@ -28,9 +37,7 @@
       <pubDate>Tue, 08 Oct 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/02_lecture/</guid>
-      <description>Schaltungslogik   Schaltnetze Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.
-Durch logisch vollständige Funktionen können beliebige andere Funktionen &amp;ldquo;gebaut&amp;rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:
-Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gibt es Methoden zur Optimierung, die da wären Verfahren nach McCluskey und das Verfahren nach Karnaugh und Veitch, welches wir im folgenden betrachten.</description>
+      <description>Schaltungslogik   Schaltnetze Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.Durch logisch vollständige Funktionen können beliebige andere Funktionen &amp;ldquo;gebaut&amp;rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gibt es Methoden zur Optimierung, die da wären Verfahren nach McCluskey und das Verfahren nach Karnaugh und Veitch, welches wir im folgenden betrachten.</description>
     </item>
     
     <item>
@@ -39,8 +46,7 @@ Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gib
       <pubDate>Tue, 01 Oct 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/01_lecture/</guid>
-      <description>Äquivalente Informationen können in vielen verschiedenen Darstellungen übermittelt werden. Eine symbolische Darstellung entspricht dabei der Syntax, welche via Interpretation Semantik (Bedeutung) erlangt. Bei unbekannten Interpretationsregeln kann Bedeutung jedoch nicht erkannt werden.
-Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in einem Alphabet festgehalten. Ein Alphabet ist eine endliche Menge von Symbolen. Das kleinste Alphabet ist das der Binärzahlen \({0,1}\). Mit sogenannten Binärcodes also Zusammensetzungen der Symbole \(0\) und \(1\) lassen sich die Symbole aller denkbaren Alphabete ausdrücken (Binärcodierung).</description>
+      <description>Äquivalente Informationen können in vielen verschiedenen Darstellungen übermittelt werden. Eine symbolische Darstellung entspricht dabei der Syntax, welche via Interpretation Semantik (Bedeutung) erlangt. Bei unbekannten Interpretationsregeln kann Bedeutung jedoch nicht erkannt werden.Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in einem Alphabet festgehalten. Ein Alphabet ist eine endliche Menge von Symbolen. Das kleinste Alphabet ist das der Binärzahlen \({0,1}\). Mit sogenannten Binärcodes also Zusammensetzungen der Symbole \(0\) und \(1\) lassen sich die Symbole aller denkbaren Alphabete ausdrücken (Binärcodierung).</description>
     </item>
     
     <item>
@@ -49,8 +55,7 @@ Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in ei
       <pubDate>Tue, 02 Jul 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/10_lecture/</guid>
-      <description>Part III: Trustworthy Software Engineering
-Identity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Identity define requirements of dealing with identities  first focus on conceptual/basic understanding  identity in global context has to comply with different levels  layered approach of identity management:      Identity - Security - Privacy  identity (in a digital setting) is often &amp;ldquo;only&amp;rdquo; closely linked to security, identity is more!</description>
+      <description>Part III: Trustworthy Software EngineeringIdentity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Identity define requirements of dealing with identities  first focus on conceptual/basic understanding   identity in global context has to comply with different levels  layered approach of identity management:       Identity - Security - Privacy  identity (in a digital setting) is often &amp;ldquo;only&amp;rdquo; closely linked to security, identity is more!</description>
     </item>
     
     <item>
@@ -59,7 +64,7 @@ Identity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Iden
       <pubDate>Wed, 12 Jun 2019 10:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/11_lecture/</guid>
-      <description>Services  services deal with resources we distinguish between active and passive resources services which are not offered by the kernel are realized via processes (or groups of processes) of the OS  this is the majority in a micro kernel system with the exception of process management, IPC and possibly memory management UNIX concept for such processes are daemons clients utilize service via IPC (usually communication &amp;rarr; via channels)  a process can be a client and a server at the same time  Service - Service Relationship    a server usually offers multiple operations that can be called by the client a &amp;ldquo;job&amp;rdquo; means the execution of such operation for example  file service: open, close, read, write name service: resolve, register, delete  the server operations can be realized in one or more processes  Service - Time  the service relationship has an influence on the progress  client has to wait (blocked) until the result comes from the server server is not available to other clients until the next round (limited throughput)  improvement via  drifting the communication buffering parallelism in the server   Service - Drifting  goal: overlap between client and server activity realization:  dispatch job at the earliest possible point in time recieve/take back the result at the latest possible point in time  that means the job sending operation of the client should &amp;ldquo;drift forward&amp;rdquo; and the recieve operation should &amp;ldquo;drift backwards&amp;rdquo;  Service - Buffering  instead of having huge jobs it might make sense to divide jobs in smaller chunks &amp;rarr; job processing can start earlier decoupling via buffering  increased parallelism between client and server avoid blocking  analagous for the result  especially useful for services that (directly or indirectly) access I/O devices since there are may occur huge delays  besides a higher parallelism there are other goals that can be achieved via buffering:  caching eg buffer for files changing data semantics eg character oriented I/O at blocked devices and vica versa or terminal modes (raw, cooked, halfcooked)   Different kinds of buffers:</description>
+      <description>Services  services deal with resources we distinguish between active and passive resources services which are not offered by the kernel are realized via processes (or groups of processes) of the OS  this is the majority in a micro kernel system with the exception of process management, IPC and possibly memory management UNIX concept for such processes are daemons clients utilize service via IPC (usually communication → via channels)   a process can be a client and a server at the same time  Service - Service Relationship    a server usually offers multiple operations that can be called by the client a &amp;ldquo;job&amp;rdquo; means the execution of such operation for example  file service: open, close, read, write name service: resolve, register, delete   the server operations can be realized in one or more processes  Service - Time  the service relationship has an influence on the progress  client has to wait (blocked) until the result comes from the server server is not available to other clients until the next round (limited throughput)   improvement via  drifting the communication buffering parallelism in the server    Service - Drifting  goal: overlap between client and server activity realization:  dispatch job at the earliest possible point in time recieve/take back the result at the latest possible point in time   that means the job sending operation of the client should &amp;ldquo;drift forward&amp;rdquo; and the recieve operation should &amp;ldquo;drift backwards&amp;rdquo;  Service - Buffering  instead of having huge jobs it might make sense to divide jobs in smaller chunks → job processing can start earlier decoupling via buffering  increased parallelism between client and server avoid blocking   analagous for the result  especially useful for services that (directly or indirectly) access I/O devices since there are may occur huge delays   besides a higher parallelism there are other goals that can be achieved via buffering:  caching eg buffer for files changing data semantics eg character oriented I/O at blocked devices and vica versa or terminal modes (raw, cooked, halfcooked)    Different kinds of buffers:Service - Parallelism   parallelism between client and server improves the response time at the client (and therefore at the user)</description>
     </item>
     
     <item>
@@ -79,8 +84,8 @@ Identity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Iden
       <pubDate>Wed, 29 May 2019 10:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/09_lecture/</guid>
-      <description>Introduction In the last chapter we looked at communication and cooperation to exchange information/data between processes. In this chapter we take a look at the timely aspect &amp;rarr; coordination which is also often called synchronization. We focus on coordination between processes as we&amp;rsquo;ve already kind of covered coordination in the kernel via suspension etc.
-Elementary Coordination Many coordination problems can be solved with a uniform concept &amp;rarr; signaling:
+      <description>Introduction In the last chapter we looked at communication and cooperation to exchange information/data between processes. In this chapter we take a look at the timely aspect → coordination which is also often called synchronization. We focus on coordination between processes as we&#39;ve already kind of covered coordination in the kernel via suspension etc.
+Elementary Coordination Many coordination problems can be solved with a uniform concept → signaling:
  signaling uses signals to create a sequence relationship (Reihenfolgebeziehung) ATTENTION: this has nothing to do with UNIX-signals!</description>
     </item>
     
@@ -90,8 +95,7 @@ Elementary Coordination Many coordination problems can be solved with a uniform 
       <pubDate>Mon, 27 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/09_lecture/</guid>
-      <description>Part III: Trustworthy Software Engineering
-Trustworthy Software
+      <description>Part III: Trustworthy Software EngineeringTrustworthy Software
  in Cordis.Europa.Eu security document defined as: Trustworthiness can be seen as software and infrastructure that is secure, reliable and resilient to attacks and operational failures; guaranteeing quality of service; protecting user data; ensuring privacy and providing usable and trusted tools to support the user in his/her security management. trustworthiness needs to be considered from the outset rather than being addressed as add-on feature  So we focus on: Identity &amp;amp; Security By Design (SBD)</description>
     </item>
     
@@ -101,8 +105,7 @@ Trustworthy Software
       <pubDate>Wed, 22 May 2019 10:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/08_lecture/</guid>
-      <description>Introduction Processes are usually a part of more complex systems. Therefore they sometimes have to exchange data between each other (inter process communication, IPC). Operations to achieve inter process communication are besides process management one of the major tasks of an OS kernel.
-There&amp;rsquo;s a functional and a timely aspect when it comes to inter process communication. In this chapter we will cover the functional aspect and the timely aspect will be covered in the next chapter.</description>
+      <description>Introduction Processes are usually a part of more complex systems. Therefore they sometimes have to exchange data between each other (inter process communication, IPC). Operations to achieve inter process communication are besides process management one of the major tasks of an OS kernel.There&#39;s a functional and a timely aspect when it comes to inter process communication. In this chapter we will cover the functional aspect and the timely aspect will be covered in the next chapter.</description>
     </item>
     
     <item>
@@ -113,7 +116,7 @@ There&amp;rsquo;s a functional and a timely aspect when it comes to inter proces
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/08_lecture/</guid>
       <description>Internet Firewalls (Chapter 6) Definition: Firewalls are hard- or software components, which control the interconnection point between two network areas and implement security strategies by restricting packet forwarding.
 Fundamentals:
- Packet filter  entity, which selectively processes flowing packets according to predefined rules, in particular, preventing packet forwarding  Proxy approaches  representative of a client process  Network Address Translation (NAT)  address translation, public and private addresses are distinguished  Bastion Host  computer with particularly high protection requirements; vulnerability mainly results from the computer&amp;rsquo;s exposed location  Dual-Homed Host  computer with at least two network interfaces for two different subnets   These approaches are now covered in more detail.</description>
+ Packet filter  entity, which selectively processes flowing packets according to predefined rules, in particular, preventing packet forwarding   Proxy approaches  representative of a client process   Network Address Translation (NAT)  address translation, public and private addresses are distinguished   Bastion Host  computer with particularly high protection requirements; vulnerability mainly results from the computer&#39;s exposed location   Dual-Homed Host  computer with at least two network interfaces for two different subnets    These approaches are now covered in more detail.</description>
     </item>
     
     <item>
@@ -122,8 +125,7 @@ Fundamentals:
       <pubDate>Wed, 15 May 2019 10:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/07_lecture/</guid>
-      <description>Virtualization and Caching Hierarchy of storages:
- in this chapter we deal with the interaction of these hierarchies  Locality of reference (Lokalitaetsprinzip) The storage hierarchy is based on the principle of locality. The principle of locality states that only a small part of the address space \(A\) is accessed in small intervalls \(\delta t\) and that there is a tendency of a processor to access the same set of memory locations repetitively over a short period of time.</description>
+      <description>Virtualization and Caching Hierarchy of storages: in this chapter we deal with the interaction of these hierarchies  Locality of reference (Lokalitaetsprinzip) The storage hierarchy is based on the principle of locality. The principle of locality states that only a small part of the address space \(A\) is accessed in small intervalls \(\delta t\) and that there is a tendency of a processor to access the same set of memory locations repetitively over a short period of time.</description>
     </item>
     
     <item>
@@ -133,8 +135,7 @@ Fundamentals:
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</guid>
       <description>Management of Access Rights Authorization is the process of verification and access right assignment for a resource/service to a subject and is not to be confused with Authentication which is the process of verificating claimed properties. Access Control is a process of access rights management and control.
-Access Matrix
- group- and role-based access rights management:  complexity reduction by clustering users into &amp;lsquo;role groups&amp;rsquo; inheritance relationships in rights management permissions based on roles   Access Control Lists</description>
+Access Matrix group- and role-based access rights management:  complexity reduction by clustering users into &amp;lsquo;role groups&amp;rsquo; inheritance relationships in rights management permissions based on roles    Access Control Lists principal is a user, group or process that can be authenticated simply put: ACL is a set/list of resources, principals and corresponding access rights  Access Control Models Discretionary Access Control (DAC)  access rights are assigned per user owner of a resource can pass his own rights   Mandatory Access Control (MAC)  rights passing is not allowed the system alone decides on which user has access to which resources   Role-Based Access Control (RBAC)  user could potentially be assigned multiple roles access rights are role-based    Realization in Operating Systems Unix/Linux</description>
     </item>
     
     <item>
@@ -153,10 +154,8 @@ Access Matrix
       <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/chapter-04/</guid>
-      <description>DLC-Protokolle: Uebersicht
-Data Link Control
- asynchrone Uebertragung  Uebertragung nicht innerhalb eines groesseren Uebertragungsrahmen, sondern zeichenweiser Start-Stop-Betrieb (Telexdienst)  synchrone Uebertragung  zeichenorientiert = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit  zB PPP  bitorientiert = kleinste Uebertragungseinheit ist 1 Bit  zB HDLDC, LLC (LAN), LAPD (ISDN)    4.1 Synchronisation Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb)
- setzt Ruhepegel und feste Zahl von Nutzschritten voraus 3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)  Synchrone Uebertragung (Blocksynchronisation)</description>
+      <description>DLC-Protokolle: UebersichtData Link Control
+ asynchrone Uebertragung  Uebertragung nicht innerhalb eines groesseren Uebertragungsrahmen, sondern zeichenweiser Start-Stop-Betrieb (Telexdienst)   synchrone Uebertragung  zeichenorientiert = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit  zB PPP   bitorientiert = kleinste Uebertragungseinheit ist 1 Bit  zB HDLDC, LLC (LAN), LAPD (ISDN)      4.1 Synchronisation Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb) setzt Ruhepegel und feste Zahl von Nutzschritten voraus 3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)  Synchrone Uebertragung (Blocksynchronisation) setzt Benutzung eindeutiger Blockstart- und/oder Blockendmuster voraus Modifikation / rueckgaengig machen entsprechender Muster im Block (Zeichen-/Bitstopfen)  Codetransparenz bei synchroner Uebertragung = Vereinbarung von Regeln zur codetransparenten Uebertragung von Nutzdaten (d.</description>
     </item>
     
     <item>
@@ -166,7 +165,7 @@ Data Link Control
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</guid>
       <description>Modems Modem = MOdulator/DEmodulator
- basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)  Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
+ basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)   Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
     </item>
     
     <item>
@@ -176,7 +175,7 @@ Data Link Control
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/06_lecture/</guid>
       <description>Authentication Introduction Authentication is the process of verficating if someone is the one who he claims to be. There are different kinds of authenticators:
- knowledge-based  PIN, passwords Challenge-Response  biometrics  fingerprint, iris, voice, signature, keystroke behavior  ownership-based  something that you do not notice, but what is stored on a medium IDs, magnetic cards, certificates, smart cards  multi-factor authentication  combination of different types of authentication 2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS 3 Factors: eg password + smart card + fingerprint   Knowledge-based Authentication Knowledge-based Authentication using passwords</description>
+ knowledge-based  PIN, passwords Challenge-Response   biometrics  fingerprint, iris, voice, signature, keystroke behavior   ownership-based  something that you do not notice, but what is stored on a medium IDs, magnetic cards, certificates, smart cards   multi-factor authentication  combination of different types of authentication 2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS 3 Factors: eg password + smart card + fingerprint    Knowledge-based Authentication Knowledge-based Authentication using passwords</description>
     </item>
     
     <item>
@@ -195,8 +194,7 @@ Data Link Control
       <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/04_lecture/</guid>
-      <description>Signals and Bit Transmission Introduction Data Transmission - Bit to Signal to Bit:
- sits directly on the physical medium (eg cable) Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model transmission of unstructured bit sequences via physical medium data transmission entails the physical connection and the conversion between data &amp;lt;-&amp;gt; signals there are norms for interfaces (especially for physical interfaces)  Signals and their Parameters A signal is a state or a modification of material systems.</description>
+      <description>Signals and Bit Transmission Introduction Data Transmission - Bit to Signal to Bit: sits directly on the physical medium (eg cable) Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model transmission of unstructured bit sequences via physical medium data transmission entails the physical connection and the conversion between data &amp;lt;-&amp;gt; signals there are norms for interfaces (especially for physical interfaces)  Signals and their Parameters A signal is a state or a modification of material systems.</description>
     </item>
     
     <item>
@@ -215,8 +213,7 @@ The TLS protocol aims primarily to provide privacy and data integrity between tw
       <pubDate>Thu, 25 Apr 2019 10:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/04_lecture/</guid>
-      <description>Introduction A &amp;ldquo;process&amp;rdquo; is a concept of virtualization of the hardware resource CPU. There&amp;rsquo;s a strategy to decide which process is allowed to use the CPU at what time and there&amp;rsquo;s a mechanism which refers to the way the strategy is carried out. Dispatching as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.
-Generally scheduling means the temporal assignment (zeitliche Zuordnung) of activities to ressources in regards.</description>
+      <description>Introduction A &amp;ldquo;process&amp;rdquo; is a concept of virtualization of the hardware resource CPU. There&#39;s a strategy to decide which process is allowed to use the CPU at what time and there&#39;s a mechanism which refers to the way the strategy is carried out. Dispatching as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.Generally scheduling means the temporal assignment (zeitliche Zuordnung) of activities to ressources in regards.</description>
     </item>
     
     <item>
@@ -227,8 +224,8 @@ Generally scheduling means the temporal assignment (zeitliche Zuordnung) of acti
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/04_lecture/</guid>
       <description>Not so much related to rest of lecture:
 OWASP The Open Web Application Security Project is a worldwide not-for-profit charitable organization focusing on improving the security of software, which issues software tools and knowledge-based documentation on application security
-Security Mechanisms for Distributed Software Cryptography Cryptography is a broad field, which is only briefly touched in this lecture. The methods we&amp;rsquo;ll use in this lecure are:
- one key (symmetric algorithms)     both participants use the same key (for de- and encryption) the key therefore has to be transmitted aswell (risk)  two keys (asymmetric algorithms)     a public key is used to encrypt a message which can only be decrypted with the according private key &amp;rarr; private key is not submitted (thus more secure)  hybrid methods     session key is encrypted with public key and transmitted and then gets decrypted with private key session key is used to encrypt data/message and now the receiver can decrypt it with the earlier decrypted session key  one-way hash functions  compression  inputs of arbitrary length are mapped to outputs with fixed length  irreversibility (surjective function)  input can not be inferred from the output  collision-resistant  a hash function \(h()\) is called collision resistant - if it is hard to find to find two inputs \(a\) and \(b\) such that \(h(a)=h(b)\) and \(a \neq b\)    Public key cryptography visualized</description>
+Security Mechanisms for Distributed Software Cryptography Cryptography is a broad field, which is only briefly touched in this lecture. The methods we&#39;ll use in this lecure are:
+ one key (symmetric algorithms)     both participants use the same key (for de- and encryption) the key therefore has to be transmitted aswell (risk)   two keys (asymmetric algorithms)     a public key is used to encrypt a message which can only be decrypted with the according private key → private key is not submitted (thus more secure)   hybrid methods     session key is encrypted with public key and transmitted and then gets decrypted with private key session key is used to encrypt data/message and now the receiver can decrypt it with the earlier decrypted session key   one-way hash functions  compression  inputs of arbitrary length are mapped to outputs with fixed length   irreversibility (surjective function)  input can not be inferred from the output   collision-resistant  a hash function \(h()\) is called collision resistant - if it is hard to find to find two inputs \(a\) and \(b\) such that \(h(a)=h(b)\) and \(a \neq b\)      Public key cryptography visualized</description>
     </item>
     
     <item>
@@ -237,8 +234,7 @@ Security Mechanisms for Distributed Software Cryptography Cryptography is a broa
       <pubDate>Tue, 16 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/03_lecture/</guid>
-      <description>Basic model of (tele)communication    participants act either as a sender or receiver usage of the service occurs at a special interface (API) and by using a service address point the medium bridges the spatial (raeumlich) distance  The following image shows a layer model which shows the reduction of deficits from bottom to top:
-There are certain principles to structure communication. These principles are also called communication protocols or short protocols and define a set of rules which communication between two or more parties has to follow/obey.</description>
+      <description>Basic model of (tele)communication    participants act either as a sender or receiver usage of the service occurs at a special interface (API) and by using a service address point the medium bridges the spatial (raeumlich) distance  The following image shows a layer model which shows the reduction of deficits from bottom to top:There are certain principles to structure communication. These principles are also called communication protocols or short protocols and define a set of rules which communication between two or more parties has to follow/obey.</description>
     </item>
     
     <item>
@@ -250,7 +246,7 @@ There are certain principles to structure communication. These principles are al
       <description>Attacks on End Systems Attacks on end systems via
  computer viruses computer worms trojan horses exploits cracking systems  might focus on
  unsecured computer systems exploiting programming errors bad security measures weak passwords  Computer Virus
- based on biological model infects resources of the host system to replicate itself malicious functions  load generation data corruption spying  various types  boot sector viruses file viruses macro viruses script viruses composites  self-defense mechanisms of viruses:  stealth modification cryptographic methods polymorphism retroviruses (against anti-virus programs)  passive distribution: by embedding into other programs and execution by the host system  Computer Worm</description>
+ based on biological model infects resources of the host system to replicate itself malicious functions  load generation data corruption spying   various types  boot sector viruses file viruses macro viruses script viruses composites   self-defense mechanisms of viruses:  stealth modification cryptographic methods polymorphism retroviruses (against anti-virus programs)   passive distribution: by embedding into other programs and execution by the host system  Computer Worm</description>
     </item>
     
     <item>
@@ -279,7 +275,7 @@ There are certain principles to structure communication. These principles are al
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</guid>
       <description>After repeating some pointer basics in the last lecture, we continued with some more pointer stuff in this lecture and also introduced C++ references.
-Pointer to Functions What follows is an example that let&amp;rsquo;s the user choose a function which shall be executed (late binding, dynamic binding)
+Pointer to Functions What follows is an example that let&#39;s the user choose a function which shall be executed (late binding, dynamic binding)
 #include &amp;lt;iostream&amp;gt; using namespace std; int max(int x, int y) { return x &amp;gt; y ? x : y; // ternary operator } int min(int x, int y) { return x &amp;lt; y ?</description>
     </item>
     
@@ -289,8 +285,8 @@ Pointer to Functions What follows is an example that let&amp;rsquo;s the user ch
       <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</guid>
-      <description>Simple Sorting Algorithms In this lecture we&amp;rsquo;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
- performance  amount of comparison operations amount of data shifts (Datenverschiebungen) we neglect unimportant details and only count comparison and shifts of the data that we want to sort  data distribution  some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)  decomposability (Zerlegbarkeit)  is the sorting algorithm suitable for external sorting?</description>
+      <description>Simple Sorting Algorithms In this lecture we&#39;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
+ performance  amount of comparison operations amount of data shifts (Datenverschiebungen) we neglect unimportant details and only count comparison and shifts of the data that we want to sort   data distribution  some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)   decomposability (Zerlegbarkeit)  is the sorting algorithm suitable for external sorting?</description>
     </item>
     
     <item>
@@ -300,7 +296,7 @@ Pointer to Functions What follows is an example that let&amp;rsquo;s the user ch
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/02_lecture/</guid>
       <description>Client Webtechnology In the last lecture we looked at different kinds of server-side webtechnology. In this lecture we turn our attention to client-side webtechnology.
-1. Persistent Code 1.1 External applications / Tools (Hilfsprogramme) External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&amp;rsquo;s not HTML.</description>
+1. Persistent Code 1.1 External applications / Tools (Hilfsprogramme) External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&#39;s not HTML.</description>
     </item>
     
     <item>
@@ -309,10 +305,9 @@ Pointer to Functions What follows is an example that let&amp;rsquo;s the user ch
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/02_lecture/</guid>
-      <description>Back to the roots of the Internet
-The internet consists of
- a set of computers which  use the same network protocol (TCP/IP) are somehow (directly or indirectly) connected to each other offer or use certain services  a set of (human or technical) users which access and use services and a set of further networks accessible via gateways  The most commonly used Internet services are:
- World Wide Web (www)  platform for hypermedial information exchange based on the Hypertext Transfer Protocol (HTTP)  Email  exchange of multimedial messages based on the Simple Mail Transfer Protocol (SMTP)  File Exchange  access and transmission of files based on File Transfer Protocol (FTP)  Network Management  surveillance and control of connected systems based on Simple Network Management Protocol (SNMP)   Model of a simple transmission system:</description>
+      <description>Back to the roots of the InternetThe internet consists of
+ a set of computers which  use the same network protocol (TCP/IP) are somehow (directly or indirectly) connected to each other offer or use certain services   a set of (human or technical) users which access and use services and a set of further networks accessible via gateways  The most commonly used Internet services are:
+ World Wide Web (www)  platform for hypermedial information exchange based on the Hypertext Transfer Protocol (HTTP)   Email  exchange of multimedial messages based on the Simple Mail Transfer Protocol (SMTP)   File Exchange  access and transmission of files based on File Transfer Protocol (FTP)   Network Management  surveillance and control of connected systems based on Simple Network Management Protocol (SNMP)    Model of a simple transmission system:</description>
     </item>
     
     <item>
@@ -323,7 +318,7 @@ The internet consists of
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/02_lecture/</guid>
       <description>We can achieve the security goals mentioned in the previours lecture by:
  information encryption implementation of authentication establishment of security activities monitoring of the system or the network in terms of attacks continous reduction of weak spots etc    In the data transfer model (2 users communicating) we can distinguish for example two types of attackers:
- passive attacker  can only listen, not manipulate confidentiality threat  active attacker  can listen, change, delete, duplicate threat for confidentiality, integrity and authenticity   The difference between authenticity and liability lays in the focus between internal and external relationships.</description>
+ passive attacker  can only listen, not manipulate confidentiality threat   active attacker  can listen, change, delete, duplicate threat for confidentiality, integrity and authenticity    The difference between authenticity and liability lays in the focus between internal and external relationships.</description>
     </item>
     
     <item>
@@ -332,7 +327,7 @@ The internet consists of
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ai/01_lecture/</guid>
-      <description>Not much to write about this lecture since it was mostly an introduction and generic overview of the field. The lecturant was also half an hour late so that didn&amp;rsquo;t help either. There won&amp;rsquo;t be posts about this course if the input does not increase :P</description>
+      <description>Not much to write about this lecture since it was mostly an introduction and generic overview of the field. The lecturant was also half an hour late so that didn&#39;t help either. There won&#39;t be posts about this course if the input does not increase :P</description>
     </item>
     
     <item>
@@ -342,7 +337,7 @@ The internet consists of
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/02_lecture/</guid>
       <description>Continuing the repetition of some Algorithm lectures we went over pointers again.
-int* pi; // pointer to int value (undefined) char** ppc; // pointer to char pointer (= pointer that points to a pointer pointing to a char :D) int i = 1; pi = &amp;amp;i; // assign address of i to pi int x = 1, y; int* px = &amp;amp;x; // pointer to x int** ppx = &amp;amp;px; // pointer to pointer of x **ppx = *px + 1; // double deferencing via &#39;**&#39;, equals x = x + 1 y = **ppx + 2; // double deferencing via &#39;**&#39;, equals y = x + 2  Now onto some new stuff!</description>
+int* pi; // pointer to int value (undefined) char** ppc; // pointer to char pointer (= pointer that points to a pointer pointing to a char :D)  int i = 1; pi = &amp;amp;i; // assign address of i to pi  int x = 1, y; int* px = &amp;amp;x; // pointer to x int** ppx = &amp;amp;px; // pointer to pointer of x **ppx = *px + 1; // double deferencing via &amp;#39;**&amp;#39;, equals x = x + 1 y = **ppx + 2; // double deferencing via &amp;#39;**&amp;#39;, equals y = x + 2 Now onto some new stuff!</description>
     </item>
     
     <item>
@@ -351,9 +346,8 @@ int* pi; // pointer to int value (undefined) char** ppc; // pointer to char poin
       <pubDate>Thu, 04 Apr 2019 10:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/02_lecture/</guid>
-      <description>Complex systems consist of single component. Therefore the successfull design of a complex system requires knowledge about the variants and relations of the components.
-There are some fundamental, reoccuring concepts when it comes to operating systems:
- virtualization  refers to the act of creating a virtual (rather than actual) version of something, including virtual computer hardware platforms, storage devices, and computer network resources the things &amp;ldquo;created&amp;rdquo; by virtualizing often don&amp;rsquo;t exist (or not the required amount or in the quality) for example relevant for processes, memory space  concurrency  ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the final outcome allows for parallel execution of the concurrent units, which can significantly improve overall speed of the execution in multi-processor and multi-core systems allows execution without a linear order for example relevant for threads, IPC, resource management  persistence  refers to the characteristic of state that outlives the process that created it achieved in practice by storing the state as data in computer data storage for example relevant for file systems, files, nonvolatile (persistent) storage   This course will mainly deal with virtualization and concurrency since persistence is a subject of the database modules.</description>
+      <description>Complex systems consist of single component. Therefore the successfull design of a complex system requires knowledge about the variants and relations of the components.There are some fundamental, reoccuring concepts when it comes to operating systems:
+ virtualization  refers to the act of creating a virtual (rather than actual) version of something, including virtual computer hardware platforms, storage devices, and computer network resources the things &amp;ldquo;created&amp;rdquo; by virtualizing often don&#39;t exist (or not the required amount or in the quality) for example relevant for processes, memory space   concurrency  ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the final outcome allows for parallel execution of the concurrent units, which can significantly improve overall speed of the execution in multi-processor and multi-core systems allows execution without a linear order for example relevant for threads, IPC, resource management   persistence  refers to the characteristic of state that outlives the process that created it achieved in practice by storing the state as data in computer data storage for example relevant for file systems, files, nonvolatile (persistent) storage    This course will mainly deal with virtualization and concurrency since persistence is a subject of the database modules.</description>
     </item>
     
     <item>
@@ -362,7 +356,7 @@ There are some fundamental, reoccuring concepts when it comes to operating syste
       <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/01-lecture/</guid>
-      <description>Computer Science II basically continues where CS I left off. Both lectures are based on a script that is split into two parts. These weeks lecture introduced pointers. Therefore I&amp;rsquo;ll keep it short because there already a lot of posts for lectures regarding pointers on this page :) and at this point is not really a new or special topic.
+      <description>Computer Science II basically continues where CS I left off. Both lectures are based on a script that is split into two parts. These weeks lecture introduced pointers. Therefore I&#39;ll keep it short because there already a lot of posts for lectures regarding pointers on this page :) and at this point is not really a new or special topic.
 Pointers Every variable has a memory adress. In case of arrays the base adress of the variable points to the beginning of an array eg the &amp;amp;a is the same adress as &amp;amp;a[0].</description>
     </item>
     
@@ -372,7 +366,7 @@ Pointers Every variable has a memory adress. In case of arrays the base adress o
       <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/01_lecture/</guid>
-      <description>In the first lectures of the datastructures we&amp;rsquo;ll repeat a few things that were already covered in the Algorithm &amp;amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.
+      <description>In the first lectures of the datastructures we&#39;ll repeat a few things that were already covered in the Algorithm &amp;amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.
 Computational Effort &amp;amp; Complexity To compare datastructures and algorithms in regards to efficiency we need a way to measure the &amp;ldquo;cost&amp;rdquo; / computational effort. This is done by counting the required computing &amp;ldquo;steps&amp;rdquo; (Rechenschritte).</description>
     </item>
     
@@ -383,7 +377,7 @@ Computational Effort &amp;amp; Complexity To compare datastructures and algorith
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/os/01_lecture/</guid>
       <description>Although Operating Systems depend on the underlying hardware, there general principles that are common across different operating systems and this is the topic of this course. There are two different ways to &amp;ldquo;view&amp;rdquo; an operating system (2 Sichten):
- Top Down View (OS as a virtual machine)  offers an abstract view on the hardware real hardware characteristics are sort of hidden take for example the harddrive and the file system:  real machine (hardware): a sequence of data blocks of fixed size virtual machine: named files of variable size   Bottom Up View (OS as a resource manager)  OS coordinates the access on CPU, Memory, Storage etc.</description>
+ Top Down View (OS as a virtual machine)  offers an abstract view on the hardware real hardware characteristics are sort of hidden take for example the harddrive and the file system:  real machine (hardware): a sequence of data blocks of fixed size virtual machine: named files of variable size     Bottom Up View (OS as a resource manager)  OS coordinates the access on CPU, Memory, Storage etc.</description>
     </item>
     
     <item>
@@ -403,7 +397,7 @@ IT-Architectures Throughout times there where different architectures favored or
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/01_lecture/</guid>
       <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
- the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here  the main programming language used will be python  Fundamental literature:</description>
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   the main programming language used will be python  Fundamental literature:</description>
     </item>
     
     <item>
@@ -413,7 +407,7 @@ IT-Architectures Throughout times there where different architectures favored or
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</guid>
       <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
- the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   Distributed Solution Design</description>
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here    Distributed Solution DesignThe increasing decentralization of public networks by deregulation of telecommunications markets leads to increasingly extensive use of the Web and increasing usage of the open &amp;amp; decentralized Internet.</description>
     </item>
     
     <item>
@@ -422,11 +416,11 @@ IT-Architectures Throughout times there where different architectures favored or
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/org/sose19/</guid>
-      <description>Dates Okay so the new semester started (01.04.19). Here&amp;rsquo;s an overview of the most important stuff:
+      <description>Dates Okay so the new semester started (01.04.19). Here&#39;s an overview of the most important stuff:
 Start Lecture Period: 01.04.2019 End Lecture Period: 12.07.2019
 Beginn of central examination period: 15.07.2019 End of central examination period: 10.08.2019
 Re-matriculation Period: 03.06. - 13.09.2019
-Courses and related links  Datastructures  Material PVL: at least 50% of homework correct and handed in here Exam type: written  Operating Systems  Course Homepage Tutorial Page Exam type: written  Artificial Intelligence  Course Homepage Exam type: written  Security of Distributed Software  Course Homepage Tutorial Page Exam type: written (might be open-book)  Media Encoding  Course Homepage Exam type: written  Databases &amp;amp; Webtechnology  Material Exam type: project until 23.</description>
+Courses and related links  Datastructures  Material PVL: at least 50% of homework correct and handed in here Exam type: written   Operating Systems  Course Homepage Tutorial Page Exam type: written   Artificial Intelligence  Course Homepage Exam type: written   Security of Distributed Software  Course Homepage Tutorial Page Exam type: written (might be open-book)   Media Encoding  Course Homepage Exam type: written   Databases &amp;amp; Webtechnology  Material Exam type: project until 23.</description>
     </item>
     
   </channel>

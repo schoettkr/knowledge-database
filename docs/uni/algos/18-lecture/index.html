@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 18 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,72 +47,51 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="text-search">Text Search</h2>
-
+      <h2 id="text-search">Text Search</h2>
 <h3 id="files">Files</h3>
-
-<p>Bigger volumes of data are usually not entered interactively but rather stored in <strong>files</strong>. That&rsquo;s why we take a look at files first: A file is a set of data that logically belongs together and is treated as a unit. Files are usually acessed by a <em>file name</em> that is known to the operating system and get stored on persistant data volumes (eg harddrives).</p>
-
+<p>Bigger volumes of data are usually not entered interactively but rather stored in <strong>files</strong>. That's why we take a look at files first: A file is a set of data that logically belongs together and is treated as a unit. Files are usually acessed by a <em>file name</em> that is known to the operating system and get stored on persistant data volumes (eg harddrives).</p>
 <p>Files can be organized differently. In the sense of the UNIX philosophy a file is a single set of bytes with an arbitrary size. Such data set resp sequence of bit is also called <strong>bitstream</strong> resp. <strong>bytestream</strong>.</p>
-
 <p>The input/ouput of the C standard library is adapted to this concept so that there is no differentitation required between input from an input device or a file. To be more precise, the C standard library knows two types of file operations:</p>
-
 <ul>
 <li><strong>low level file operations</strong>
-
 <ul>
 <li>files and file/data streams are identified via a <strong>handle</strong></li>
 <li>specific to the particular operating system</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>high level file operations</strong>
-
 <ul>
 <li>files and file/data streams are identified via a <strong>file pointer</strong></li>
 <li>independant of the operating system</li>
-</ul></li>
 </ul>
+</li>
+</ul>
+<p>For now we'll look at <strong>high level file operations</strong>.</p>
+<p>Files have to be <strong>opened</strong>. When opening a file the management/administration information is created (Verwaltungsinformationen). There's a function in the standard library to open files <code>FILE* fopen(char* name, char* mode)</code> which returns a pointer to the file management structure (Dateiverwaltungsstruktur) or NULL:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/* ... */</span>
 
-<p>For now we&rsquo;ll look at <strong>high level file operations</strong>.</p>
+FILE <span style="color:#f92672">*</span>fp;
 
-<p>Files have to be <strong>opened</strong>. When opening a file the management/administration information is created (Verwaltungsinformationen). There&rsquo;s a function in the standard library to open files <code>FILE* fopen(char* name, char* mode)</code> which returns a pointer to the file management structure (Dateiverwaltungsstruktur) or NULL:</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-
-/* ... */
-
-FILE *fp;
-
-fp = fopen(&quot;myFile.dat&quot;, &quot;r&quot;);
-</code></pre>
-
-<p>A file that is no longer needed should be closed and the management resources shoudl eb released. That is done via <code>int fclose(FILE* stream)</code> which returns <code>0</code> when the file was closed successfully.</p>
-
-<p>Here&rsquo;s a list of the possible file access modes which are passed to <code>fopen</code>:</p>
-
+fp <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">myFile.dat</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>);
+</code></pre></div><p>A file that is no longer needed should be closed and the management resources shoudl eb released. That is done via <code>int fclose(FILE* stream)</code> which returns <code>0</code> when the file was closed successfully.</p>
+<p>Here's a list of the possible file access modes which are passed to <code>fopen</code>:</p>
 <ul>
-<li><code>&quot;r&quot;</code> &rarr; <strong>read</strong>: open file for input operations (reading from the file); the file must exist</li>
-<li><code>&quot;w&quot;</code> &rarr; <strong>write</strong>: create an empty file for output operations (writing to a file); if a file with the same name already exists, its contents are discarded and the file is treated as a new empty file</li>
-<li><code>&quot;a&quot;</code> &rarr; <strong>append</strong>: open file for output at the end of a file; output operations always write data at the end of the file, thus expanding it; repositioning operations (fseek, fsetpos, rewind) are ignored; the file is created if it does not exist</li>
-<li><code>&quot;r+&quot;</code> &rarr; <strong>read/update</strong>: open a file for update (both for input and output); the file must exist</li>
-<li><code>&quot;w+&quot;</code> &rarr; <strong>write/update</strong>: create an empty file and open it for update (both for input and output); if a file with the same name already exists its contents are discarded and the file is treated as a new empty file</li>
-<li><code>&quot;a+&quot;</code> &rarr; <strong>append/update</strong>: open a file for update (both for input and output) with all output operations writing data at the end of the file; repositioning operations (fseek, fsetpos, rewind) affects the next input operations, but output operations move the position back to the end of file; the file is created if it does not exist</li>
+<li><code>&quot;r&quot;</code> → <strong>read</strong>: open file for input operations (reading from the file); the file must exist</li>
+<li><code>&quot;w&quot;</code> → <strong>write</strong>: create an empty file for output operations (writing to a file); if a file with the same name already exists, its contents are discarded and the file is treated as a new empty file</li>
+<li><code>&quot;a&quot;</code> → <strong>append</strong>: open file for output at the end of a file; output operations always write data at the end of the file, thus expanding it; repositioning operations (fseek, fsetpos, rewind) are ignored; the file is created if it does not exist</li>
+<li><code>&quot;r+&quot;</code> → <strong>read/update</strong>: open a file for update (both for input and output); the file must exist</li>
+<li><code>&quot;w+&quot;</code> → <strong>write/update</strong>: create an empty file and open it for update (both for input and output); if a file with the same name already exists its contents are discarded and the file is treated as a new empty file</li>
+<li><code>&quot;a+&quot;</code> → <strong>append/update</strong>: open a file for update (both for input and output) with all output operations writing data at the end of the file; repositioning operations (fseek, fsetpos, rewind) affects the next input operations, but output operations move the position back to the end of file; the file is created if it does not exist</li>
 </ul>
-
 <p>With the <em>mode specifiers</em> above files are opened as <em>text files</em>. In order to open a file as a <em>binary file</em> a <code>&quot;b&quot;</code> character has to be included in the mode string.  This additional &ldquo;b&rdquo; character can either be appended at the end of the string (thus making the following compound modes: &ldquo;rb&rdquo;, &ldquo;wb&rdquo;, &ldquo;ab&rdquo;, &ldquo;r+b&rdquo;, &ldquo;w+b&rdquo;, &ldquo;a+b&rdquo;) or be inserted between the letter and the plus sign for the mixed modes (&ldquo;rb+&rdquo;, &ldquo;wb+&rdquo;, &ldquo;ab+&rdquo;).</p>
-
 <p>For data input and output, C provides a collection of library functions. These functions enable the transfer of data between the C program and standard input/output devices. C always treats all input-output data, regardless of where they originate or where they go, as a stream of characters.
 The operating system makes the input and output devices available to a C program as if these devices were files. So, essentially, when a C program reads data from the keyboard, it is in effect reading from the file associated with the keyboard device. When a C program sends output data to the console, it is in effect writing to the file associated with the console device.</p>
-
 <p>A stream of characters or text stream, is a sequence of characters divided into lines. Each line consists of various characters followed by a newline character (\n). All input-output functions in C conform to this model.</p>
-
 <p>In order to be able to use the above mentioned input-output functions in your C program, you must begin each C program with a pre-processor directive to include these standard library functions.</p>
-
 <p>This can be done via <code>#include &lt;stdio.h&gt;</code>.</p>
-
 <p>These are the most common/essential input-output functions:</p>
-
 <table>
 <thead>
 <tr>
@@ -121,32 +100,27 @@ The operating system makes the input and output devices available to a C program
 <th>Output</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>formatted</td>
 <td><code>int fscanf(FILE*, char*, ...)</code></td>
 <td><code>int fprintf(FILE*, char*, ...)</code></td>
 </tr>
-
 <tr>
 <td>characters</td>
 <td><code>int fgetc(FILE*)</code></td>
 <td><code>int fputc(int, FILE*)</code></td>
 </tr>
-
 <tr>
 <td>strings</td>
 <td><code>char* fgets(char*, int, FILE*)</code></td>
 <td><code>int fputs(char*, FILE*)</code></td>
 </tr>
-
 <tr>
 <td>binary</td>
 <td><code>size_t fread(void*, size_t, size_t, FILE*)</code></td>
 <td><code>size_t fwrite(void*, size_t, size_t, FILE*)</code></td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
@@ -154,13 +128,13 @@ The operating system makes the input and output devices available to a C program
 </tr>
 </tbody>
 </table>
-
 <ul>
-<li><p>Formatted data input &amp; output</p>
+<li>Formatted data input &amp; output</li>
+</ul>
+<pre><code>`fscanf` and `fprintf` work like `scanf` and `printf` but take a file pointer as an additional first parameter. To use `fscanf` the file has (at least) to be opened in read mode (&quot;r&quot;, &quot;r+&quot;, &quot;w+&quot;, &quot;a+&quot;). To use `fprintf` the file has (at least) to be opened in write mode (&quot;w&quot;, &quot;a&quot;, &quot;r+&quot;, &quot;w+&quot;, &quot;a+&quot;).
 
-<p><code>fscanf</code> and <code>fprintf</code> work like <code>scanf</code> and <code>printf</code> but take a file pointer as an additional first parameter. To use <code>fscanf</code> the file has (at least) to be opened in read mode (&ldquo;r&rdquo;, &ldquo;r+&rdquo;, &ldquo;w+&rdquo;, &ldquo;a+&rdquo;). To use <code>fprintf</code> the file has (at least) to be opened in write mode (&ldquo;w&rdquo;, &ldquo;a&rdquo;, &ldquo;r+&rdquo;, &ldquo;w+&rdquo;, &ldquo;a+&rdquo;).</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+```C
+#include &lt;stdio.h&gt;
 
 int main ()
 {
@@ -171,90 +145,82 @@ int main ()
   fclose(file);
   return 0;
 }
-</code></pre></li>
-
-<li><p>Characterwise data input &amp; output</p>
-
-<p>The function <code>int fgetc(FILE* stream)</code> returns the next character of a file <code>stream</code> as an integer. When there&rsquo;s no character left, the constant <code>EOF</code> (defined in <code>stdio.h</code>) is returned (same thing when an error occurs).</p>
-
-<p>The function <code>int fputc(int c, FILE* stream)</code> writes the integer coded character <code>c</code> into the file <code>stream</code> and returns the number of written characters (= 1). In case of an error it returns <code>EOF</code>.</p></li>
-
-<li><p>String data input &amp; output</p>
-
-<p>The function <code>char* fgets(char restrict * str, int n, FILE* restrict stream)</code> reads maximally <code>n-1</code> characters from the file <code>stream</code> into a character string that is pointed to by <code>str</code>. The reading proccess ends with the end of the line/file or when an error occurs. When no error occurs <code>\0</code> is appended to <code>str</code> and the return value points to <code>str</code> (and to <code>NULL</code> if there was an error). Beware that it is the duty of the programmer to guarantee that <code>str</code> points to an character array which has a size of at least <code>n</code> characters.</p>
-
-<p>The function <code>int fputs(char* str, FILE* stream)</code> writes the (zero-terminated) string <code>str</code> into the file <code>stream</code>. It returns a non-negative integer on success and <code>EOF</code> in case of an error (old C versions used to return <code>0</code> on success)</p></li>
-
-<li><p>Binary data input &amp; output</p>
-
-<p>The function <code>size_t fread(void* ptr, size_t size, size_t nitems, FILE* stream)</code> reads <code>nitems</code> of size <code>size</code> from the file <code>stream</code> and stores them at the address specified by <code>ptr</code>. It then returns the count of successfully read items/elements (not bytes!).</p>
-
-<p>The function <code>size_t fwrite(void* ptr, size_t size, size_t nitems, FILE* stream)</code> writes <code>nitems</code> from the address <code>ptr</code> of size <code>size</code> in the file <code>stream</code> and also returns the count of successfully written elements/items (not bytes).</p></li>
-
-<li><p>Standard Data Streams</p>
-
-<p>The standard input-output devices or the associated files or text streams, are referred to as:</p>
-
+```
+</code></pre>
 <ul>
-<li><strong>stdin</strong> - standard input file, normally connected to the keyboard</li>
-<li><strong>stdout</strong> - standard output file, normally connected to the screen/console</li>
-<li><strong>stderr</strong> - standard error display device file, normally connected to the screen/console</li>
+<li>Characterwise data input &amp; output</li>
 </ul>
+<pre><code>The function `int fgetc(FILE* stream)` returns the next character of a file `stream` as an integer. When there's no character left, the constant `EOF` (defined in `stdio.h`) is returned (same thing when an error occurs).
 
-<p><code>stdin</code>, <code>stdout</code>, <code>stderr</code> don&rsquo;t need to be opened like other files/streams (and cannot be opened):</p>
+The function `int fputc(int c, FILE* stream)` writes the integer coded character `c` into the file `stream` and returns the number of written characters (= 1). In case of an error it returns `EOF`.
+</code></pre>
+<ul>
+<li>String data input &amp; output</li>
+</ul>
+<pre><code>The function `char* fgets(char restrict * str, int n, FILE* restrict stream)` reads maximally `n-1` characters from the file `stream` into a character string that is pointed to by `str`. The reading proccess ends with the end of the line/file or when an error occurs. When no error occurs `\0` is appended to `str` and the return value points to `str` (and to `NULL` if there was an error). Beware that it is the duty of the programmer to guarantee that `str` points to an character array which has a size of at least `n` characters.
 
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+The function `int fputs(char* str, FILE* stream)` writes the (zero-terminated) string `str` into the file `stream`. It returns a non-negative integer on success and `EOF` in case of an error (old C versions used to return `0` on success)
+</code></pre>
+<ul>
+<li>Binary data input &amp; output</li>
+</ul>
+<pre><code>The function `size_t fread(void* ptr, size_t size, size_t nitems, FILE* stream)` reads `nitems` of size `size` from the file `stream` and stores them at the address specified by `ptr`. It then returns the count of successfully read items/elements (not bytes!).
+
+The function `size_t fwrite(void* ptr, size_t size, size_t nitems, FILE* stream)` writes `nitems` from the address `ptr` of size `size` in the file `stream` and also returns the count of successfully written elements/items (not bytes).
+</code></pre>
+<ul>
+<li>Standard Data Streams</li>
+</ul>
+<pre><code>The standard input-output devices or the associated files or text streams, are referred to as:
+
+-   **stdin** - standard input file, normally connected to the keyboard
+-   **stdout** - standard output file, normally connected to the screen/console
+-   **stderr** - standard error display device file, normally connected to the screen/console
+
+`stdin`, `stdout`, `stderr` don't need to be opened like other files/streams (and cannot be opened):
+
+```C
+#include &lt;stdio.h&gt;
 
 int main() {
   fprintf(stdout, &quot;This is usage data.\n&quot;);
   fprintf(stderr, &quot;This is status data.\n&quot;);
   return 0;
 }
-</code></pre></li>
-</ul>
-
+```
+</code></pre>
 <h4 id="manipulating-the-file-position-pointer">Manipulating the File Position Pointer</h4>
-
 <p>See: <a href="https://stackoverflow.com/questions/39687795/what-is-file-position-pointer">https://stackoverflow.com/questions/39687795/what-is-file-position-pointer</a></p>
-
 <p>Usually files are treated as data stream, which are accessed <strong>sequentally</strong>. In case of &ldquo;real files&rdquo; it is possible to deviate from this sequential access. The following functions may be used to do so:</p>
-
 <ul>
-<li><code>void rewind(FILE* stream)</code> &rarr; move the read or write position in the file <code>stream</code> back to the beginning of the file</li>
-<li><code>void fseek(FILE* stream, long offset, int whence)</code> &rarr; moves the read or write position in the file <code>stream</code> to a position which is <code>offset</code> bytes shifted from <code>whence</code> (von wo/woher)
-
+<li><code>void rewind(FILE* stream)</code> → move the read or write position in the file <code>stream</code> back to the beginning of the file</li>
+<li><code>void fseek(FILE* stream, long offset, int whence)</code> → moves the read or write position in the file <code>stream</code> to a position which is <code>offset</code> bytes shifted from <code>whence</code> (von wo/woher)
 <ul>
 <li><code>whence</code> shall be one of the following constants which are defined in <code>stdio.h</code>
-
 <ul>
 <li><code>SEEK_SET</code> = offset relative to the beginning of the file</li>
 <li><code>SEEK_CUR</code> = offset relative to the current position in the file</li>
 <li><code>SEEK_END</code> = offset relative to the end of the file</li>
-</ul></li>
-</ul></li>
-<li><code>long ftell(FILE* stream)</code> &rarr; may be used to get the current position in the file relative to the beginning of the file</li>
 </ul>
-
+</li>
+</ul>
+</li>
+<li><code>long ftell(FILE* stream)</code> → may be used to get the current position in the file relative to the beginning of the file</li>
+</ul>
 <p>Slides 17-19 provide code examples for reading/writing a file.</p>
-
 <p>A few other interesting functions in regards to files are:</p>
-
 <ul>
-<li><code>int feof(FILE* stream)</code> returns a value &ne; 0 when at the end of the file</li>
-<li><code>int ferror(FILE* stream)</code> returns a value &ne; 0 when an file error has occured before</li>
+<li><code>int feof(FILE* stream)</code> returns a value ≠ 0 when at the end of the file</li>
+<li><code>int ferror(FILE* stream)</code> returns a value ≠ 0 when an file error has occured before</li>
 <li><code>int flush(FILE* stream)</code> forces a physical write (emptying the cache)</li>
 <li><code>int remove(char* name)</code> deletes the file with a name of <code>name</code></li>
 </ul>
-
 <h4 id="files-in-python">Files in Python</h4>
-
 <p>F21
 A file is a data type in Python. A data variable is created via <code>f = open(filename[, mode[, bufsize]])</code> .
 The possible modes are a superset of the modes we know from C and with <code>bufsize</code> the cache size for the file can be set.
 This is the Python 3 <a href="https://docs.python.org/3/library/functions.html#open">documentation</a> for <code>open</code> (which looks kinda different than the slides).</p>
-
 <p>Here are a few common file operations in Python (<code>file</code> be a data variable):</p>
-
 <ul>
 <li><code>S = file.read()</code> reads the whole file into a single string</li>
 <li><code>S = file.read(N)</code> reads <code>N</code> bytes</li>
@@ -264,154 +230,122 @@ This is the Python 3 <a href="https://docs.python.org/3/library/functions.html#o
 <li><code>file.writeLines(L)</code> writes all strings in a list <code>L</code> into the file</li>
 <li><code>file.close()</code> closes the file</li>
 </ul>
-
 <p>Using iterations it is easy to work with a whole file in Python:</p>
-
-<pre><code class="language-python">f = open(&quot;foo.txt&quot;, &quot;r&quot;)
-for line in f:
-    print(line, end = ' ')
-</code></pre>
-
-<p>And Python provides more modules for file manipulations</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f <span style="color:#f92672">=</span> open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">foo.txt</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> f:
+    <span style="color:#66d9ef">print</span>(line, end <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>)
+</code></pre></div><p>And Python provides more modules for file manipulations</p>
 <ul>
 <li>module <code>os</code> for low level</li>
 <li>module <code>shelve</code> and <code>pickle</code> for high level storage of complex objects</li>
 <li>module <code>dbm</code> and <code>anydbm</code> for database interfaces</li>
 </ul>
-
 <h3 id="simple-search">Simple Search</h3>
-
 <p>Now with our newly acquired knowledge about files we can start looking into text search.</p>
-
 <p>Our program should take the following parameters:
 <code>./search &lt;searchText&gt; &lt;fileName&gt;</code></p>
-
 <p>And if the search text is found in the file, then the &ldquo;surrounding&rdquo; in which it was found should be returned, while the search text is wrapped in brackets to accentuate, eg</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./search <span style="color:#e6db74">&#34;example&#34;</span> lorem.txt
 
-<pre><code class="language-sh">./search &quot;example&quot; lorem.txt
-
-ullamcoprer subsciptit nisl ut aliqup [example] ea commodano
-</code></pre>
-
-<p>One of the first problems we encounter is that we don&rsquo;t know the size/length of neither a line nor the whole file. Here a few solution approaches:</p>
-
+ullamcoprer subsciptit nisl ut aliqup <span style="color:#f92672">[</span>example<span style="color:#f92672">]</span> ea commodano
+</code></pre></div><p>One of the first problems we encounter is that we don't know the size/length of neither a line nor the whole file. Here a few solution approaches:</p>
 <ul>
-<li>Approach 1: define a line buffer that is &ldquo;sufficiently large&rdquo; for all cases &rarr; not safe and not a good approach in general</li>
-<li>Approach 2: don&rsquo;t always read in whole lines &rarr; complicates the search if the search text is between two read-in blocks</li>
-<li>Approach 3: determine the file size, dynamically reserve space and read in the whole file &rarr; requires a lot of memory storage</li>
+<li>Approach 1: define a line buffer that is &ldquo;sufficiently large&rdquo; for all cases → not safe and not a good approach in general</li>
+<li>Approach 2: don't always read in whole lines → complicates the search if the search text is between two read-in blocks</li>
+<li>Approach 3: determine the file size, dynamically reserve space and read in the whole file → requires a lot of memory storage</li>
 </ul>
-
 <p>We go with approach 3 since it also offers speed advantages.</p>
-
-<p>So let&rsquo;s determine the file size first - how do we do that?
-The unix C function <code>int stat(char* name, struct stat* buf)</code> which writes informations about the file <code>name</code> into <code>buf</code> is not compatible so we don&rsquo;t use it and instead rely on using a combination of functions from the standard library:</p>
-
-<pre><code class="language-C">size_t filesize(FILE* file) {
+<p>So let's determine the file size first - how do we do that?
+The unix C function <code>int stat(char* name, struct stat* buf)</code> which writes informations about the file <code>name</code> into <code>buf</code> is not compatible so we don't use it and instead rely on using a combination of functions from the standard library:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">size_t <span style="color:#a6e22e">filesize</span>(FILE<span style="color:#f92672">*</span> file) {
   size_t ret;
-  fseek(file, 0L, SEEK_END); // offset the file position pointer by 0 bytes relative to the eof
-  ret = ftell(file); // get the current position relative to the beginning of the file
-  rewind(file); // move the file position pointer back to the beginning of the file
-  return ret;
+  fseek(file, <span style="color:#ae81ff">0L</span>, SEEK_END); <span style="color:#75715e">// offset the file position pointer by 0 bytes relative to the eof
+</span><span style="color:#75715e"></span>  ret <span style="color:#f92672">=</span> ftell(file); <span style="color:#75715e">// get the current position relative to the beginning of the file
+</span><span style="color:#75715e"></span>  rewind(file); <span style="color:#75715e">// move the file position pointer back to the beginning of the file
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> ret;
 }
-</code></pre>
-
-<p>By the way <code>size_t</code> is an OS dependant unsigned integer type that can store the maximum <em>size</em> of a theoretically possible object of any type (including array) and which is commonly used for array indexing and loop counting (Programs that use other types, such as <code>unsigned int</code>, for array indexing may fail on, e.g. 64-bit systems when the index exceeds <code>UINT_MAX</code> or if it relies on 32-bit modular arithmetic.).</p>
-
+</code></pre></div><p>By the way <code>size_t</code> is an OS dependant unsigned integer type that can store the maximum <em>size</em> of a theoretically possible object of any type (including array) and which is commonly used for array indexing and loop counting (Programs that use other types, such as <code>unsigned int</code>, for array indexing may fail on, e.g. 64-bit systems when the index exceeds <code>UINT_MAX</code> or if it relies on 32-bit modular arithmetic.).</p>
 <p>And this will be our main function which uses our <code>filesize</code> function amongst other things:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[]) {
+  FILE<span style="color:#f92672">*</span> file;
+  <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> text;
 
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+  <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>; <span style="color:#75715e">// wrong number of params
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">if</span> (file <span style="color:#f92672">=</span> fopen(argv[<span style="color:#ae81ff">2</span>], <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> NULL) { <span style="color:#75715e">// open file
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>; <span style="color:#75715e">// cant open file
+</span><span style="color:#75715e"></span>  }
 
-int main(int argc, char* argv[]) {
-  FILE* file;
-  char* text;
+  size_t size <span style="color:#f92672">=</span> filesize(file);
 
-  if (argc != 3) return -2; // wrong number of params
+  <span style="color:#75715e">/* allocate size+1 (for terminating 0) memory for our file buffer */</span>
+  <span style="color:#66d9ef">if</span> ((text <span style="color:#f92672">=</span> malloc(size<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> NULL) {
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>; <span style="color:#75715e">// out of memory
+</span><span style="color:#75715e"></span>  }
 
-  if (file = fopen(argv[2], &quot;r&quot;) == NULL) { // open file
-    return -3; // cant open file
-  }
+  <span style="color:#75715e">/* read one element of size &#39;size&#39; into our text buffer (the whole file) */</span>
+  <span style="color:#66d9ef">if</span> (fread(text, size, <span style="color:#ae81ff">1</span>, file) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>; <span style="color:#75715e">// can&#39;t read file
+</span><span style="color:#75715e"></span>  }
 
-  size_t size = filesize(file);
-
-  /* allocate size+1 (for terminating 0) memory for our file buffer */
-  if ((text = malloc(size+1)) == NULL) {
-    return -4; // out of memory
-  }
-
-  /* read one element of size 'size' into our text buffer (the whole file) */
-  if (fread(text, size, 1, file) != 1) {
-    return -5; // can't read file
-  }
-
-  text[size] = '\0'; // set the terminating 0;
-
-  int found = search(argv[1], text, size); // yet to implement!
-  if (found != -1) {
-    presentResult(found, text, argv[1]); // dito!
-  }
+  text[size] <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">\0</span><span style="color:#e6db74">&#39;</span>; <span style="color:#75715e">// set the terminating 0;
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">int</span> found <span style="color:#f92672">=</span> search(argv[<span style="color:#ae81ff">1</span>], text, size); <span style="color:#75715e">// yet to implement!
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (found <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    presentResult(found, text, argv[<span style="color:#ae81ff">1</span>]); <span style="color:#75715e">// dito!
+</span><span style="color:#75715e"></span>  }
 
   free(text);
 
-  return found;
+  <span style="color:#66d9ef">return</span> found;
 }
-</code></pre>
+</code></pre></div><p>This main function does the necessary preparations for the actual search. Besides the search function we also need a function for the presentation/output. We want to output 20 characters before and after the search string:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">presentResult</span>(<span style="color:#66d9ef">int</span> pos, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> str, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> pattern) { <span style="color:#75715e">// pos is the start of match position, str is the file buffer and pattern our search text
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> start, end, patlen, prelen;
 
-<p>This main function does the necessary preparations for the actual search. Besides the search function we also need a function for the presentation/output. We want to output 20 characters before and after the search string:</p>
+  start <span style="color:#f92672">=</span> pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">?</span> pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// output beginning
+</span><span style="color:#75715e"></span>
+  prelen <span style="color:#f92672">=</span> pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">:</span> pos; <span style="color:#75715e">// beginning of match
+</span><span style="color:#75715e"></span>  patternLength <span style="color:#f92672">=</span> length(pattern); <span style="color:#75715e">// yet to implement!
+</span><span style="color:#75715e"></span>
+  end <span style="color:#f92672">=</span> pos <span style="color:#f92672">+</span> patternLength;
 
-<pre><code class="language-C">void presentResult(int pos, const char* str, const char* pattern) { // pos is the start of match position, str is the file buffer and pattern our search text
-  int start, end, patlen, prelen;
-
-  start = pos &gt; 20 ? pos - 20 : 0; // output beginning
-
-  prelen = pos &gt; 20 ? 20 : pos; // beginning of match
-  patternLength = length(pattern); // yet to implement!
-
-  end = pos + patternLength;
-
-  printf(&quot;%.*s[%s]%.20s\n&quot;, prelen, &amp;str[start], pattern, &amp;str[end]);
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%.*s[%s]%.20s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, prelen, <span style="color:#f92672">&amp;</span>str[start], pattern, <span style="color:#f92672">&amp;</span>str[end]);
 }
-</code></pre>
+</code></pre></div><p>As seen in the code listing above we also need a function to determine the length of a string. There's an function for that in the standard library but we'll use our own:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">length</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> str) {
+  <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">if</span> (str <span style="color:#f92672">=</span><span style="color:#f92672">=</span> NULL) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 
-<p>As seen in the code listing above we also need a function to determine the length of a string. There&rsquo;s an function for that in the standard library but we&rsquo;ll use our own:</p>
-
-<pre><code class="language-C">int length(const char* str) {
-  int len = 0;
-  if (str == NULL) return 0;
-
-  while (str[len] != '\0') {
-    ++len;
+  <span style="color:#66d9ef">while</span> (str[len] <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">\0</span><span style="color:#e6db74">&#39;</span>) {
+    <span style="color:#f92672">+</span><span style="color:#f92672">+</span>len;
   }
 
-  return len;
+  <span style="color:#66d9ef">return</span> len;
 }
-</code></pre>
-
-<p>Now we can finally turn our attention to the actual search algorithm. The idea is that we want to test for each position in the text <code>str</code>, if the searchstring <code>p</code> begins there. If that is the case, then we want to test the next character and so on..</p>
-
-<p>Here&rsquo;s the pseudocode:</p>
-
-<pre><code class="language-C">// str is file/text buffer and p is search string
-Require: str and p is text, length(str) &gt; length(p)
+</code></pre></div><p>Now we can finally turn our attention to the actual search algorithm. The idea is that we want to test for each position in the text <code>str</code>, if the searchstring <code>p</code> begins there. If that is the case, then we want to test the next character and so on..</p>
+<p>Here's the pseudocode:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// str is file/text buffer and p is search string
+</span><span style="color:#75715e"></span>Require: str and p is text, length(str) <span style="color:#f92672">&gt;</span> length(p)
 Ensure: returns index of first appearance of p in str
 
-procedure SIMPLE-SEARCH(str, p)
-  pos = 1
-  while pos &lt; length(str) - length(p) do
-    j = 1
-    while ((j &lt;= length(p)) and (str[pos+j-1]) = p[j]) do
-      if j = length(p) then // found 1st occ of search string
-        return pos
+procedure SIMPLE<span style="color:#f92672">-</span>SEARCH(str, p)
+  pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">while</span> pos <span style="color:#f92672">&lt;</span> length(str) <span style="color:#f92672">-</span> length(p) <span style="color:#66d9ef">do</span>
+    j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">while</span> ((j <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> length(p)) and (str[pos<span style="color:#f92672">+</span>j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">=</span> p[j]) <span style="color:#66d9ef">do</span>
+      <span style="color:#66d9ef">if</span> j <span style="color:#f92672">=</span> length(p) then <span style="color:#75715e">// found 1st occ of search string
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> pos
       endif
-      j = j+1
-    end while
-    pos = pos + 1
-  end while
-  return &quot;not found&quot;
+      j <span style="color:#f92672">=</span> j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+    end <span style="color:#66d9ef">while</span>
+    pos <span style="color:#f92672">=</span> pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+  end <span style="color:#66d9ef">while</span>
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">not found</span><span style="color:#e6db74">&#34;</span>
 end procedure
-</code></pre>
-
-<p>The actual C implemenation is where we&rsquo;ll continue in the next lecture (19), have a nice day (◕‿‿◕)</p>
+</code></pre></div><p>The actual C implemenation is where we'll continue in the next lecture (19), have a nice day (◕‿‿◕)</p>
 
     </div>
     <div class="post-footer">

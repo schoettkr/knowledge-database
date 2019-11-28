@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 03 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,12 +51,8 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="attacks-on-end-systems">Attacks on End Systems</h2>
-
+      <h2 id="attacks-on-end-systems">Attacks on End Systems</h2>
 <p>Attacks on end systems via</p>
-
 <ul>
 <li>computer viruses</li>
 <li>computer worms</li>
@@ -64,428 +60,362 @@
 <li>exploits</li>
 <li>cracking systems</li>
 </ul>
-
 <p>might focus on</p>
-
 <ul>
 <li>unsecured computer systems</li>
 <li>exploiting programming errors</li>
 <li>bad security measures</li>
 <li>weak passwords</li>
 </ul>
-
 <p>Computer Virus</p>
-
 <ul>
 <li>based on biological model</li>
 <li>infects resources of the host system to replicate itself</li>
 <li>malicious functions
-
 <ul>
 <li>load generation</li>
 <li>data corruption</li>
 <li>spying</li>
-</ul></li>
+</ul>
+</li>
 <li>various types
-
 <ul>
 <li>boot sector viruses</li>
 <li>file viruses</li>
 <li>macro viruses</li>
 <li>script viruses</li>
 <li>composites</li>
-</ul></li>
+</ul>
+</li>
 <li>self-defense mechanisms of viruses:
-
 <ul>
 <li>stealth</li>
 <li>modification</li>
 <li>cryptographic methods</li>
 <li>polymorphism</li>
 <li>retroviruses (against anti-virus programs)</li>
-</ul></li>
+</ul>
+</li>
 <li>passive distribution: by embedding into other programs and execution by the host system</li>
 </ul>
-
 <p>Computer Worm</p>
-
 <ul>
 <li>based on biological model</li>
 <li>uses resources of the host system and of the network to spread over to other systems <em>automatically</em> in order to execute its malicious function there</li>
 <li>malicious functions
-
 <ul>
 <li>load generation</li>
 <li>data corruption</li>
 <li>spying</li>
 <li>spamming</li>
 <li>DDoS</li>
-</ul></li>
+</ul>
+</li>
 <li>various types
-
 <ul>
 <li>email worms (social worms, file attachment, active content)</li>
 <li>interactive worms (ask the user &ldquo;please press OK&rdquo; to use exploits)</li>
 <li>instant messaging worm (sending of malicious software / links to all chat partners)</li>
 <li>IRC worms (usage of scripting in IRC programs)</li>
-<li>P2P worms (at file-sharing sites: tempting names &rarr; download)</li>
+<li>P2P worms (at file-sharing sites: tempting names → download)</li>
 <li>cell phone worms (distribution via Bluetooth, MMS, etc)</li>
-</ul></li>
+</ul>
+</li>
 <li>often in combination with other forms of malware, eg viruses droppers, backdoors, trojans</li>
 </ul>
-
 <p>Dropper (virus dropper, DDoS dropper)</p>
-
 <ul>
 <li>executable program that acts as a carrier program for malware</li>
 <li>is usually terminated after the virurs has been installed</li>
 </ul>
-
 <p>Injector</p>
-
 <ul>
 <li>similar to dropper, but the malware will only be &ldquo;installed&rdquo; (injected) in memory</li>
 </ul>
-
 <p>Backdoor</p>
-
 <ul>
 <li>part of a program that allows users to gain acces to the machine / system bypassing the normal access security</li>
 <li>variants: default passwords (BIOS); specially equipped passwords / routines / servers that allow access (sometimes subsequently installed programs)</li>
 <li>closely linked to trojans and droppers</li>
 </ul>
-
 <p>Trojan (trojan horse)</p>
-
 <ul>
 <li>similar to the well-known story..</li>
-<li>program that executes a potentially harmful function without user&rsquo;s knowledge</li>
+<li>program that executes a potentially harmful function without user's knowledge</li>
 <li>attention: often mixed up in the context of rootkits and backdoors</li>
 </ul>
-
 <p>Rootkit (administrator toolbox)</p>
-
 <ul>
 <li>collection of software tools for concealment and stealth intrusions of malicious software</li>
 <li>examples: hiding backdoors by hiding processes, logs, log-ins</li>
 </ul>
-
 <p>Exploit</p>
-
 <ul>
 <li>a program (including scripts &amp; macros) that exploits the weaknesses or failures of a system or another application to obtain privileges or to use it for DoS attacks</li>
 </ul>
-
 <p><strong>Malware</strong> as generic term refers to malicious or unwanted software or programs.</p>
-
 <p>Buffer Overflow</p>
-
 <ul>
 <li>application reserves a buffer to store some input values</li>
 <li>the length of the input is larger than the buffer but the whole input still gets processed</li>
 <li>memory space outside the buffer gets overwritten/accessed</li>
 </ul>
-
 <h2 id="attacks-on-infrastructures">Attacks on Infrastructures</h2>
-
 <p>Attacks on infrastructures via</p>
-
 <ul>
 <li>attacks on signaling mechanisms</li>
 <li>distributed denial of service (DDoS)</li>
 <li>attacks on WLAN hotspots and routers</li>
 <li>break-ins (password theft, bugs, exploits)</li>
 </ul>
-
 <p>might focus on</p>
-
 <ul>
 <li>unsecured intermediate system</li>
 <li>overload situations</li>
 <li>unsecure data storage</li>
 <li>weak passwords</li>
 </ul>
-
 <p>Attacks on signaling mechanisms</p>
-
 <ul>
 <li>ICMP: fake control messages</li>
 <li>RSVP: fake resource allocation</li>
 </ul>
-
 <p>Attacks on router</p>
-
 <ul>
 <li>attacks on routing protocols</li>
 <li>distribution of false routes</li>
 <li>WLAN, Bluetooth etc</li>
 </ul>
-
 <p>Attacks on Hardware, eg virtual server</p>
-
 <ul>
 <li>usb-attacks</li>
 </ul>
-
 <p>Denial of Service Attack</p>
-
 <ul>
 <li>the targeted weak spot is the overload of the network component
-
 <ul>
 <li>may result in loss of service or entire computer systems</li>
-</ul></li>
+</ul>
+</li>
 <li>attack possibilities
-
 <ul>
 <li>basic principle: large amount of requests sent to the target service or target system</li>
 <li>requests must be designed in a way that they lead to an overload situation (more efficient use of exploits)</li>
-</ul></li>
+</ul>
+</li>
 <li>examples:
-
 <ul>
 <li>ping of death = fake &ldquo;echo request&rdquo; information leads to a crash</li>
 <li>smurf = broadcasting of an ICMP &ldquo;echo request&rdquo; with false return address (address of the victim)</li>
-</ul></li>
+</ul>
+</li>
 <li>special forms
-
 <ul>
 <li><strong>Distributed</strong> DoS = coordinated attack with a large number of computers
-
 <ul>
 <li>closely linked with trojan / droppers infected systems that can be used as a remote-controlled attack network (BotNets)</li>
 <li>BotNets - Malware starts its DDoS attacks after being distributed via a dropper</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p>WLAN Attacks</p>
-
 <ul>
 <li>the targeted weakspot is the transmission medium as well as utilizing encryption techniques</li>
 <li>attack scenario
-
 <ul>
 <li>capture data packets of a protected WIFI network</li>
-<li>&ldquo;attack&rdquo; on encryption &rarr; search for a key</li>
+<li>&ldquo;attack&rdquo; on encryption → search for a key</li>
 <li>use the found key for further attacks in the protected network</li>
-</ul></li>
+</ul>
+</li>
 <li>examples: wepcrack, weplab etc.</li>
 </ul>
-
 <p>Break-in</p>
-
 <ul>
 <li>the targeted weakspots are routers, proxys, computers and services in a network as well as weak passwords, poor and faulty security mechanisms</li>
 <li>attack scenarios
-
 <ol>
-<li><em>host scanning</em> &rarr; which computer / router / proxy exist in close proximity of the target (broadcasts, routing list, traffic, sniffing, DNSpredict/Google)? &rarr; list of target systems</li>
-<li><em>scanning the target system</em> &rarr; type of systems (by means of fingerprints, traffic analysis, Google, whois, etc.)  which services (IP/TCP/UDP) are available or vulnerable (portscanning &amp; ICMP etc)</li>
-<li><em>attack</em> &rarr; exploiting bugs, backdoors, exploits, password scanners/lists, dropper, GoogleHackingDB</li>
-<li><em>successfull breach</em> &rarr; read password lists, install droppers, backdoors, keyloggers, proxy monitor, rootkit, etc
-
+<li><em>host scanning</em> → which computer / router / proxy exist in close proximity of the target (broadcasts, routing list, traffic, sniffing, DNSpredict/Google)? → list of target systems</li>
+<li><em>scanning the target system</em> → type of systems (by means of fingerprints, traffic analysis, Google, whois, etc.)  which services (IP/TCP/UDP) are available or vulnerable (portscanning &amp; ICMP etc)</li>
+<li><em>attack</em> → exploiting bugs, backdoors, exploits, password scanners/lists, dropper, GoogleHackingDB</li>
+<li><em>successfull breach</em> → read password lists, install droppers, backdoors, keyloggers, proxy monitor, rootkit, etc
 <ul>
 <li>start attacks from the compromised system</li>
 <li>remove traces</li>
-</ul></li>
-</ol></li>
+</ul>
+</li>
+</ol>
+</li>
 <li>examples:
-
 <ul>
-<li>GHDB &rarr; default SSID and passwords of WIFI routers</li>
-<li>NBTEnum &rarr; search for other Windows systems</li>
-<li>Network Monitors &rarr; traffic analysis (eg TTL field observations) with respect to transparent bridges or dangers arising from IDS (not to attract attention)</li>
-</ul></li>
+<li>GHDB → default SSID and passwords of WIFI routers</li>
+<li>NBTEnum → search for other Windows systems</li>
+<li>Network Monitors → traffic analysis (eg TTL field observations) with respect to transparent bridges or dangers arising from IDS (not to attract attention)</li>
+</ul>
+</li>
 <li>break-in via exploits for example toolkits, known exploits, zero day exploits</li>
 </ul>
-
 <h2 id="attacks-on-data-protocols">Attacks on Data / Protocols</h2>
-
 <p>Attacks on data / protocols via</p>
-
 <ul>
 <li>communication interception</li>
 <li>information manipulation</li>
 <li>attacks on protocols and core mechanism</li>
 </ul>
-
 <p>Focus on</p>
-
 <ul>
 <li>protocol weaknesses</li>
 <li>(lack of) communication weaknesses</li>
 <li>focus on manipulating algorithms and protocols (eg via &ldquo;contributions&rdquo; to open source projects)</li>
 </ul>
-
-<p>Examples:<br /></p>
-
+<p>Examples:<!-- raw HTML omitted --></p>
 <h4 id="address-resolution-protocol">Address Resolution Protocol</h4>
-
 <ul>
 <li><strong>weak spot</strong> of the ARP is that it is a stateless protocol and therefore it is possible to send ARP-Replies without any requests</li>
 <li><strong>ARP-Spoofing</strong> (ARP Request Poisoning, ARP Poison Routing)
-
 <ul>
 <li>sniffing = collecting network information</li>
 <li>poisoning = targeted sending of wrong ARP packets (ARP-Reply with MAC adress for a foreign IP adress) to caches</li>
-<li>data packets will now be sent to attacker (address in the cache) which manipulates/spies on the data packets before they are sent to their real destination &rarr; this faked association enables Man-in-the-Middle attacks</li>
-</ul></li>
+<li>data packets will now be sent to attacker (address in the cache) which manipulates/spies on the data packets before they are sent to their real destination → this faked association enables Man-in-the-Middle attacks</li>
+</ul>
+</li>
 <li>there are various tools to simplify attacks eg <a href="https://www.youtube.com/watch?v=RTXAUJ2yqCg">ARP Video</a></li>
 </ul>
-
 <h4 id="internet-protocol">Internet Protocol</h4>
-
 <ul>
 <li><strong>weak spot</strong> of the IP is that IP-packets are not protected</li>
 <li><strong>attack possibilities</strong>
-
 <ul>
 <li>reading IP-packets is simple</li>
 <li>checksums for integrity checking are not safe</li>
-<li>no protection of IP-PCI (IP Header) &rarr; manipulation of the protocol header is simple</li>
+<li>no protection of IP-PCI (IP Header) → manipulation of the protocol header is simple</li>
 <li>liability is unsafe because authenticity of addresses is not provable</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>attack scenario</strong>
-
 <ul>
 <li>target system is protected by IP-sender adresses (meaning that only systems with registered IP addresses are alllowed to use the target system)</li>
 <li>sniffing: spying of systems that exchange data with the target system (can also be encrypted)</li>
 <li>connecting to the target system using spied out IP addresses</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="transmission-control-protocol--tcp">Transmission Control Protocol (TCP)</h4>
-
 <ul>
 <li><strong>weak spot</strong> of TCP is that a large number of ACK messages leads to high load on the firewall control
-
 <ul>
 <li>ACK = acknowledgement; TCP is an acknowledgement-based protocol; when computers communicate via TCP, received packets are acknowledged by sending back a packet with ACK bit set</li>
 <li>some firewalls check incoming home network internet traffic insufficiently</li>
 <li>verification only for SYN messages, ACK messages are all let through
-
 <ul>
 <li>SYN =  synchronize message via which a client requests a connection from the server</li>
-<li>part of the TCP three-way handshake (SYN &rarr; SYN-ACK &rarr; ACK)</li>
-</ul></li>
-</ul></li>
+<li>part of the TCP three-way handshake (SYN → SYN-ACK → ACK)</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>attack possibilities</strong>
-
 <ul>
 <li>incorrect ACKS are used to implement exploits (rather unproblematic)</li>
-<li>ACK-Tunneling = ACK is used for data transport &rarr; Trojan/Dropper acts as an ACK server and reads fata from the ACK (problematic)</li>
+<li>ACK-Tunneling = ACK is used for data transport → Trojan/Dropper acts as an ACK server and reads fata from the ACK (problematic)</li>
 <li><a href="https://en.wikipedia.org/wiki/SYN%5Fflood">SYN flood</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>attack scenario</strong>
-
 <ul>
 <li>intrusion into the target system and installation of an ACK server, which acts as a remote shell, or dropper, etc</li>
 <li>target system can now be controlled remotely (until replacement by a better firewall)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="web-based-attacks">Web-based attacks</h3>
-
 <h4 id="sql-injection">SQL Injection</h4>
-
 <ul>
 <li><strong>weak spot</strong>: web applications that use databases and without properly sanatizing etc</li>
 <li><strong>attack possibilities</strong>
-
 <ul>
 <li>transfer of input data to the database (Form, URL) in a way to spy, change, delete data and execute code</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="xss-cross-site-scripting">XSS - Cross Site Scripting</h4>
-
 <ul>
 <li><strong>weak spot</strong>
-
 <ul>
 <li>possibility of executing script code in the browser</li>
 <li>weak user input checks</li>
-</ul></li>
-<li><strong>attack possibilities</strong>
-
-<ul>
-<li>identify weak spots in web applications (eg possible user input via URL) that allow execution of script code &rarr; construct URL with script code</li>
-<li>other variants possible: <img>, <iframe>, etc and send those to potential targets (spam)</li>
-</ul></li>
-<li><strong>attack scenario</strong>
-
-<ul>
-<li>URL queries cookies and sends those to a script &rarr; script calls the current application with the stolen cookies and uses the application under false idenity (session hijacking)</li>
-</ul></li>
 </ul>
-
+</li>
+<li><strong>attack possibilities</strong>
+<ul>
+<li>identify weak spots in web applications (eg possible user input via URL) that allow execution of script code → construct URL with script code</li>
+<li>other variants possible: <!-- raw HTML omitted -->, <!-- raw HTML omitted -->, etc and send those to potential targets (spam)</li>
+</ul>
+</li>
+<li><strong>attack scenario</strong>
+<ul>
+<li>URL queries cookies and sends those to a script → script calls the current application with the stolen cookies and uses the application under false idenity (session hijacking)</li>
+</ul>
+</li>
+</ul>
 <h4 id="cross-site-request-forgery--csrf">Cross Site Request Forgery (CSRF)</h4>
-
 <ul>
 <li>exploiting the functionality of a web applications where victims have accounts</li>
 <li>submit manipulated HTTP requests
-
 <ul>
 <li>embed link or images in e-mails</li>
 <li>cross-site scripting</li>
 <li>malware</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="attacks-by-communication-partner">Attacks by Communication Partner</h2>
-
 <p>Attacks of the communication partner by</p>
-
 <ul>
 <li>faking identities</li>
 <li>trust abuse</li>
 <li>attacks on the data
-
 <ul>
 <li>listening to the data (sniffing)</li>
 <li>manipulating data</li>
 <li>decrypting protected data</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Focus on</p>
-
 <ul>
 <li>misuse of trust, eg social engineering</li>
 </ul>
-
 <h2 id="web-based-attacks-ghdb">Web-based Attacks: GHDB</h2>
-
 <ul>
 <li>exploits are known and possibly even the corresponding targets, tanks to search engines such as the Google Hacking Database or other databases where there are plenty of where attackers might get user ids, passwords and other identity properties from</li>
 </ul>
-
 <h2 id="social-engineering">Social Engineering</h2>
-
 <ul>
 <li>phone
-
 <ul>
 <li>call the victim or services of the victim</li>
-<li>example: Apple&rsquo;s password reset - procedure</li>
-</ul></li>
+<li>example: Apple's password reset - procedure</li>
+</ul>
+</li>
 <li>trash of the victim (Harddisc, CD, USB-Sticks)
-
 <ul>
 <li>searching for sensitive data</li>
 <li>lots of examples exists in the media</li>
-</ul></li>
+</ul>
+</li>
 <li>confidence tricks
-
 <ul>
 <li>all kinds of scams</li>
-</ul></li>
+</ul>
+</li>
 <li>online databases
-
 <ul>
-<li>social sites &rarr; check news about victim at typical user sites</li>
-</ul></li>
+<li>social sites → check news about victim at typical user sites</li>
+</ul>
+</li>
 <li>U3-USB-Stick</li>
 </ul>
 

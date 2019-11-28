@@ -26,8 +26,8 @@
       <pubDate>Thu, 11 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/03_lecture/</guid>
-      <description>Simple Sorting Algorithms In this lecture we&amp;rsquo;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
- performance  amount of comparison operations amount of data shifts (Datenverschiebungen) we neglect unimportant details and only count comparison and shifts of the data that we want to sort  data distribution  some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)  decomposability (Zerlegbarkeit)  is the sorting algorithm suitable for external sorting?</description>
+      <description>Simple Sorting Algorithms In this lecture we&#39;re looking at simple array sorting algorithms. There are multiple criteria for judging an (sorting) algorithm:
+ performance  amount of comparison operations amount of data shifts (Datenverschiebungen) we neglect unimportant details and only count comparison and shifts of the data that we want to sort   data distribution  some of the algorithms differ in their efficiency in regards to how the data is sorted beforehand we distinguish between data that is already sorted (best case), data that is inversly sorted (worst case) and data that is unsorted (average case)   decomposability (Zerlegbarkeit)  is the sorting algorithm suitable for external sorting?</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/02_lecture/</guid>
       <description>Continuing the repetition of some Algorithm lectures we went over pointers again.
-int* pi; // pointer to int value (undefined) char** ppc; // pointer to char pointer (= pointer that points to a pointer pointing to a char :D) int i = 1; pi = &amp;amp;i; // assign address of i to pi int x = 1, y; int* px = &amp;amp;x; // pointer to x int** ppx = &amp;amp;px; // pointer to pointer of x **ppx = *px + 1; // double deferencing via &#39;**&#39;, equals x = x + 1 y = **ppx + 2; // double deferencing via &#39;**&#39;, equals y = x + 2  Now onto some new stuff!</description>
+int* pi; // pointer to int value (undefined) char** ppc; // pointer to char pointer (= pointer that points to a pointer pointing to a char :D)  int i = 1; pi = &amp;amp;i; // assign address of i to pi  int x = 1, y; int* px = &amp;amp;x; // pointer to x int** ppx = &amp;amp;px; // pointer to pointer of x **ppx = *px + 1; // double deferencing via &amp;#39;**&amp;#39;, equals x = x + 1 y = **ppx + 2; // double deferencing via &amp;#39;**&amp;#39;, equals y = x + 2 Now onto some new stuff!</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ int* pi; // pointer to int value (undefined) char** ppc; // pointer to char poin
       <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/ds/01_lecture/</guid>
-      <description>In the first lectures of the datastructures we&amp;rsquo;ll repeat a few things that were already covered in the Algorithm &amp;amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.
+      <description>In the first lectures of the datastructures we&#39;ll repeat a few things that were already covered in the Algorithm &amp;amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.
 Computational Effort &amp;amp; Complexity To compare datastructures and algorithms in regards to efficiency we need a way to measure the &amp;ldquo;cost&amp;rdquo; / computational effort. This is done by counting the required computing &amp;ldquo;steps&amp;rdquo; (Rechenschritte).</description>
     </item>
     

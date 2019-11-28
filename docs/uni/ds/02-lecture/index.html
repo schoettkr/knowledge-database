@@ -3,7 +3,7 @@
   <head>
     <title>Design of Distributed Systems - Lecture 02 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,20 +47,12 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="system-architectures">System Architectures</h2>
-
-<p>Architecture is the fundamental <strong>organizsation</strong> of a <strong>system</strong> embodied in its <strong>components</strong>, their <strong>relationships</strong> to each other and to the <strong>environment</strong> and the principles guiding its design and evolution (Source: IEEE 1471 &larr; seems to be superseded by ISO/IEEE 42010).</p>
-
+      <h2 id="system-architectures">System Architectures</h2>
+<p>Architecture is the fundamental <strong>organizsation</strong> of a <strong>system</strong> embodied in its <strong>components</strong>, their <strong>relationships</strong> to each other and to the <strong>environment</strong> and the principles guiding its design and evolution (Source: IEEE 1471 ← seems to be superseded by ISO/IEEE 42010).</p>
 <p>A <strong>system</strong> is a <strong>collection of components</strong> organized to accomplish a specific function or set of functions. The term &ldquo;system&rdquo; encompasses individual applications, systems in the traditional sense, subsystems, systems of systems, product lines, product families, whole enterprises and other aggregations of interet. A system exists to fulfill one or more <strong>missions</strong> in its <strong>environment</strong>.</p>
-
 <p>The <strong>environment</strong> (or &ldquo;context&rdquo;) determines the setting and circumstances of developmental, operational, political and other influences upon that system.</p>
-
 <p>A <strong>mission</strong> is a use or operation for which a system is intended by one or more <strong>stakeholders</strong> to meet some set of objectives.</p>
-
 <p>An architecture</p>
-
 <ul>
 <li>defines structure</li>
 <li>defines behavior</li>
@@ -70,277 +62,222 @@
 <li>may conform to an architectural styling</li>
 <li>is influenced by its environment</li>
 </ul>
-
 <h3 id="client-server-model">Client/Server Model</h3>
-
 <p>The Client/Server Model is a traditional approach, which is made use of in many others. As a role-based approach the <strong>Server</strong> takes the role of a component on the <em>service providers&rsquo; side</em> and the <strong>Client</strong> takes the role of a component on the <em>service users&rsquo; side</em>.</p>
-
 <p>Examples of Client/Server Models would be TCP/IP, Sockets and Web Servers (plus many more!).</p>
-
 <figure>
     <img src="/knowledge-database/images/client-server-model.png"/> 
 </figure>
 
-
 <p>There are special types of the C/S Model for example:</p>
-
 <ul>
 <li><strong>object-oriented model</strong>
-
 <ul>
 <li>units of communication and distribution are objects</li>
 <li>according programming model</li>
 <li>data access is realized by direct object access, data transfer by reference semantics, location is modifiable (object migration)</li>
 <li>examples: Java RMI, SOAP, CORBA</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>component-based model</strong>
-
 <ul>
 <li>focus on reuse without the OO problem</li>
 <li>black-box principle with a focus on configuration and deployment model</li>
 <li>examples: Corba Components, Enterprise JavaBeans, .Net Components</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="n-tier-architecture">N-Tier Architecture</h3>
-
 <figure>
     <img src="/knowledge-database/images/n-tier-architecture.png"/> 
 </figure>
 
-
 <p>N-tier architecture (or multitier architecture) is a client-server architecture in which, presentation, application processing and data management functions are physically separated.</p>
-
 <p>It structures distributed systems into layers/levels (typically according to functional aspects), their distribution and interfaces.
 N-tier architecture is mostly realized with the help of middleware.</p>
-
 <p>Examples of n-tier architecture are:</p>
-
 <ul>
 <li><strong>two-tier architecture</strong> which corresponds to a Client/Server with fixed interfaces</li>
 <li><strong>three-tier architecture</strong> which is commonly used in practice for structuring according to <em>presentation</em>-, <em>processing</em>- and <em>persistency</em> layers</li>
 </ul>
-
 <h3 id="n-tier-architecture-cluster">N-Tier Architecture: Cluster</h3>
-
 <figure>
     <img src="/knowledge-database/images/n-tier-architecture.png"/> 
 </figure>
 
-
 <p>A <em>cluster</em> is a set of computers/servers, which are connected to each other over a fast network and can be seen as a single unit from the outside. This (often) entails the need/option for:</p>
-
 <ul>
 <li>load distribution</li>
 <li>fault tolerance</li>
 <li>parallel processing</li>
 </ul>
-
 <p>The Chemnitz-Hochleistungs-Linux-Clusters (CHiC) would be an example of a database cluster.</p>
-
 <p>Structuring the distributed system into such layers/levels enables replication with an focus of the processing and persistency layers</p>
-
 <h3 id="service-oriented-architecture--soa">Service-Oriented Architecture (SOA)</h3>
-
 <p>Service-Oriented Architecture is often associated with technologies such as Web Services, but is in fact independent of the technology used. It is a style of software design with focus on the interplay of service providers, service users and service agents.</p>
-
 <p>SOA is process-oriented with services as a base concept and enable cross-platform/-enterprise service delivery. Interface reuse and interoperability is amongst the main points in SOA. The service composition in SOA is done via <em>orchestration</em> and <em>choreography</em>.</p>
-
 <ul>
-<li><strong>orchestration</strong> = creation of new complex services through <em>composition</em> of existing ones &rarr; focus: <em>declarative composition</em></li>
-<li><strong>choreography</strong> = combination of services for business process &rarr; focus: description of message exchange procedure</li>
+<li><strong>orchestration</strong> = creation of new complex services through <em>composition</em> of existing ones → focus: <em>declarative composition</em></li>
+<li><strong>choreography</strong> = combination of services for business process → focus: description of message exchange procedure</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/soa.png"/> 
 </figure>
 
-
 <h3 id="grid-computing">Grid Computing</h3>
-
 <p>Grid computing is an approach to aggregation and shared use of heterogenous networked resources, such as computers, databases and scientific tools. The motivation behind grid computing lies (among other things) in the use of available but underutilized computers/resources.</p>
-
 <p>The &ldquo;grid&rdquo; acts as a coordinator of resource distribution and use. It dictates the protocols and interfaces to be used to achieve a certain quality of service.</p>
-
 <h3 id="peer-to-peer-architecture">Peer-to-Peer Architecture</h3>
-
 <p>In peer-to-peer architectures peers communicate with each other and offer services to their partners (peers) or use the partners&rsquo; services. Unlike typical C/S architectures with a few or one servers and many clients, P2P architectures have no fixed assignments.</p>
-
 <p>Communication in P2P architectures requires peer coordination for service provisioning and service utilization purposes. The type of a P2P network is either pure, superpeer or hybrid.
 The communication is structured  by means of algorithms for service discovery and addressing mostly via distributed hash table (DHT).</p>
-
 <p>Examples of P2P architectures are Gnutella, Napster or KaZaa for filesharing or collaboration tools.</p>
-
-<hr />
-
-<div style="color:red;">
-  <div></div>
-
+<hr>
+<!-- raw HTML omitted -->
 <p><strong>Important: Read about SOLID <a href="https://www.inrupt.com/blog/one-small-step-for-the-web">https://www.inrupt.com/blog/one-small-step-for-the-web</a> and must read: <a href="https://solid.inrupt.com/docs">https://solid.inrupt.com/docs</a></strong></p>
-
-<p></div></p>
-
-<hr />
-
+<!-- raw HTML omitted -->
+<hr>
 <p>Chapter 3 about basic communication models is skipped but can serve as reference material so you might want to skim through it.</p>
-
-<hr />
-
+<hr>
 <h2 id="communication-in-programming">Communication in Programming</h2>
-
 <h3 id="classical-programming">Classical Programming</h3>
-
 <p>The key idea of classical programming is to utilize algorithm(s) / knowledge hidden in a reusable unit. There are different programming approaches and they also differ in the way they reuse units:</p>
-
 <ul>
 <li><strong>procedural programming</strong>: Function
-
 <ul>
 <li>aggregation of functions (step-by-step, conditionals, loops etc)</li>
 <li>the knowledge abstraction is low and achieved via functions</li>
 <li>reuse is done via source code (same language)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>object oriented programming</strong>: Object
-
 <ul>
 <li>aggregation of data and functions (aka methods)</li>
 <li>the knowledge abstraction is high and achieved via objects, composition etc</li>
 <li>reuse is done via source code (same OO language)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>component-based software development</strong>: Component
-
 <ul>
 <li>separation between interface and component-based-software-development-knowledge</li>
 <li>the knowledge abstraction is packaged as a binary unit</li>
 <li>the reuse unit is very high via distribution of binary</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="reuse-units-in-distributed-systems">Reuse units in distributed systems?</h3>
-
 <p>Different systems provide different abstractions (eg database, webserver, business logic,..). These abstractions range from small to large scale and are (or should be!) independent from programming paradigms.</p>
-
 <p>To reuse units in distributed systems the focus is on <strong>communication</strong> / <strong>message exchange</strong>:</p>
-
 <ul>
 <li>as a means to provide functionality</li>
 <li>zero-installation (provider did already)</li>
 <li>risks and challenged are different from classical programming paradigm ones</li>
 </ul>
-
 <h3 id="communication">Communication</h3>
-
 <p>Communication is a mechanism of <em>data exchange</em> between components that are executed on host sytems.</p>
-
 <p>Challenges of communication:</p>
-
 <ul>
 <li>message transport with regard to communication medium conditions</li>
 <li>interoperability and cooperation of components and host systems</li>
 <li>system architecture support with regards to communication - or programming model</li>
 <li>much more: quality aspects, security trust</li>
 </ul>
-
 <h4 id="message-exchange-approach">Message Exchange Approach</h4>
-
 <p>Message exchange approaches follow the Sender-Reciever paradigm:</p>
-
 <ul>
-<li><strong>message</strong>: (typed) data is sent from a <strong>Sender(S)</strong> to a <strong>Reciever&reg;</strong></li>
+<li><strong>message</strong>: (typed) data is sent from a <strong>Sender(S)</strong> to a <strong>Reciever(R)</strong></li>
 <li>sender-reciever relationship
-
 <ul>
-<li><strong>symmetric</strong> &rarr; S and R know each other</li>
-<li><strong>asymmetric</strong> &rarr; only S knows R</li>
-</ul></li>
+<li><strong>symmetric</strong> → S and R know each other</li>
+<li><strong>asymmetric</strong> → only S knows R</li>
 </ul>
-
+</li>
+</ul>
 <p>There are different message exchange models which follow the sender-reciever paradigm, for instance:</p>
-
 <ul>
-<li>Direct Addressing Model</li>
+<li>
+<p>Direct Addressing Model</p>
+</li>
+<li>
+<p>Queue Communication Model</p>
+</li>
+<li>
+<p>Port-oriented Communication Model</p>
+</li>
+<li>
+<p>Request/Response Model</p>
+</li>
+<li>
+<p>Pull/Push Model</p>
+</li>
+<li>
+<p>Direct Addressing Model</p>
+</li>
+</ul>
+<pre><code>\\[\fbox{SEND msg TO R} \rightarrow msg \rightarrow \fbox{RECV msg FROM R}\\]
+</code></pre>
+<ul>
 <li>Queue Communication Model</li>
-<li>Port-oriented Communication Model</li>
-<li>Request/Response Model</li>
-
-<li><p>Pull/Push Model</p></li>
-
-<li><p>Direct Addressing Model</p>
-
-<p>\[\fbox{SEND msg TO R} \rightarrow msg \rightarrow \fbox{RECV msg FROM R}\]</p></li>
-
-<li><p>Queue Communication Model</p>
-
-<figure>
+</ul>
+<pre><code><figure>
     <img src="/knowledge-database/images/queue-communication.png"/> 
 </figure>
-</li>
 
-<li><p>Port-oriented Communication Model</p>
-
-<figure>
+</code></pre>
+<ul>
+<li>Port-oriented Communication Model</li>
+</ul>
+<pre><code><figure>
     <img src="/knowledge-database/images/port-communication.png"/> 
 </figure>
-</li>
 
-<li><p>Request/Response Model</p>
-
-<p>The request/response model is the standard idea of distributed computing. The focus lies on behavior of programming languages. Note that in contrast to message exchange models (kind of contradiction because this is listed as a message exchange model in the script as seen above?!), the request/response model is inherently synchronous. Each operation determines a communication relationship.</p>
+</code></pre>
+<ul>
+<li>Request/Response Model</li>
+</ul>
+<pre><code>The request/response model is the standard idea of distributed computing. The focus lies on behavior of programming languages. Note that in contrast to message exchange models (kind of contradiction because this is listed as a message exchange model in the script as seen above?!), the request/response model is inherently synchronous. Each operation determines a communication relationship.
 
 <figure>
     <img src="/knowledge-database/images/request-response-model.png"/> 
 </figure>
-</li>
 
-<li><p>Pull/Push Model</p>
-
-<p><strong>Pull-Medium</strong>: use of the endpoint originates from the user</p>
-
+</code></pre>
 <ul>
-<li>eg: Request/Response approaches like HTTP</li>
+<li>Pull/Push Model</li>
 </ul>
+<pre><code>**Pull-Medium**: use of the endpoint originates from the user
 
-<p><strong>Push-Medium</strong>: user is notified of specific events / provided data by the endpont</p>
+-   eg: Request/Response approaches like HTTP
 
-<ul>
-<li>eg: publish/subscribe approaches</li>
-</ul>
+**Push-Medium**: user is notified of specific events / provided data by the endpont
 
-<hr /></li>
-</ul>
+-   eg: publish/subscribe approaches
 
+---
+</code></pre>
 <h2 id="programming-in-distributed-systems">Programming in Distributed Systems</h2>
-
 <p>Programming in or with distributed systems requires a look at many different aspects:</p>
-
 <ul>
 <li>see above for the challenges discussed earlier</li>
 <li>communication aspects between components</li>
 <li>realisation of address, bindind and contract</li>
 <li>programming paradigms to take care of</li>
 </ul>
-
 <p>It all started with TCP/IP and sockets:</p>
-
 <h3 id="tcp-addressing">TCP: Addressing</h3>
-
-<p>Identification of TCP services occurs over ports (TSAPs in OSI terminology). Port numbers up to 255 are reserved for frequently used services, eg 13 for daytime, <sup>20</sup>&frasl;<sub>21</sub> for FTP, 23 for TELNET, 25 for SMTP, 53 for DNS, 80 for HTTP 119 for NNTP, 443 for HTTPS). A <strong>socket</strong> consists of a computers&rsquo; internet address and a port. The notation of a socket looks like <code>IP-Address:Port Number</code> and is applied internet wide.</p>
-
+<p>Identification of TCP services occurs over ports (TSAPs in OSI terminology). Port numbers up to 255 are reserved for frequently used services, eg 13 for daytime, 20/21 for FTP, 23 for TELNET, 25 for SMTP, 53 for DNS, 80 for HTTP 119 for NNTP, 443 for HTTPS). A <strong>socket</strong> consists of a computers&rsquo; internet address and a port. The notation of a socket looks like <code>IP-Address:Port Number</code> and is applied internet wide.</p>
 <p>FOr example a FTP server on a computer with the IP address <code>129.13.35.7</code> can be reachend on the <code>129.13.35.7:21</code> socket.</p>
-
 <h3 id="tcp-connection-setup">TCP: Connection Setup</h3>
-
 <p>Connections can be setup as <strong>active</strong> (<em>connect</em>) or <strong>passive</strong> (<em>listen</em> / <em>accept</em>) after socket creation.</p>
-
 <ul>
 <li><strong>active mode</strong>: request of a TCP connection with a specific socket</li>
 <li><strong>passive mode</strong>: user informs TCP that he is waiting for an incoming connection
-
 <ul>
 <li>specification of particular socket from which the incoming connection is anticipated (= <em>fully specified passive open</em>)</li>
 <li>accept all connections (= <em>unspecified passive open</em>)</li>
 <li>upon a connection request a new socket is created to become a connection endpoint</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
     </div>

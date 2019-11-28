@@ -3,7 +3,7 @@
   <head>
     <title>Computer Networks - Chapter 04 Netz-Zugang // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,68 +51,54 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/computer-networks/">computer-networks</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p><strong>DLC-Protokolle: Uebersicht</strong><br />
+      <p><strong>DLC-Protokolle: Uebersicht</strong><!-- raw HTML omitted -->
 Data Link Control</p>
-
 <ul>
 <li>asynchrone Uebertragung
-
 <ul>
 <li>Uebertragung <em>nicht</em> innerhalb eines groesseren Uebertragungsrahmen, sondern <em>zeichenweiser Start-Stop-Betrieb</em> (Telexdienst)</li>
-</ul></li>
+</ul>
+</li>
 <li>synchrone Uebertragung
-
 <ul>
 <li><em>zeichenorientiert</em> = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit
-
 <ul>
 <li>zB PPP</li>
-</ul></li>
+</ul>
+</li>
 <li><em>bitorientiert</em> = kleinste Uebertragungseinheit ist 1 Bit
-
 <ul>
 <li>zB HDLDC, LLC (LAN), LAPD (ISDN)</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="4-dot-1-synchronisation">4.1 Synchronisation</h2>
-
-<p>Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb)<br />
-<img src="/knowledge-database/images/asynchrone-uebertragung.png" alt="" /></p>
-
+<p>Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb)<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/asynchrone-uebertragung.png" alt=""></p>
 <ul>
 <li>setzt Ruhepegel und feste Zahl von Nutzschritten voraus</li>
 <li>3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)</li>
 </ul>
-
-<p>Synchrone Uebertragung (Blocksynchronisation)<br />
-<img src="/knowledge-database/images/synchrone-uebertragung.png" alt="" /></p>
-
+<p>Synchrone Uebertragung (Blocksynchronisation)<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/synchrone-uebertragung.png" alt=""></p>
 <ul>
 <li>setzt Benutzung eindeutiger Blockstart- und/oder Blockendmuster voraus</li>
 <li>Modifikation / rueckgaengig machen entsprechender Muster im Block (Zeichen-/Bitstopfen)</li>
 </ul>
-
-<p><strong>Codetransparenz</strong> bei synchroner Uebertragung = Vereinbarung von Regeln zur codetransparenten Uebertragung von Nutzdaten (d.h. Uebertragung beliebiger Bit- bzw Zeichenkombinationen im Nutzdatenfeld)<br />
-&rarr; einfacher Loesungsansatz: Laengenangabe der Nutzdaten</p>
-
+<p><strong>Codetransparenz</strong> bei synchroner Uebertragung = Vereinbarung von Regeln zur codetransparenten Uebertragung von Nutzdaten (d.h. Uebertragung beliebiger Bit- bzw Zeichenkombinationen im Nutzdatenfeld)<!-- raw HTML omitted -->
+→ einfacher Loesungsansatz: Laengenangabe der Nutzdaten</p>
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/code-transparenz.png"/> 
 </figure>
 </li>
 </ul>
-
 <h4 id="synchrone-zeichenorientierte-uebertragung">Synchrone zeichenorientierte Uebertragung</h4>
-
 <p><strong>Character Stuffing</strong></p>
-
 <ul>
 <li>Anfang und Ende der Nutzdaten (eines Rahmens) werden durch STX bzw ETX symbolisiert
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/c-stuffing-1.png"/> 
@@ -130,21 +116,17 @@ Data Link Control</p>
     <img src="/knowledge-database/images/c-stuffing-3.png"/> 
 </figure>
 </li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/character-stuffing.png"/> 
 </figure>
 
-
 <h4 id="synchrone-bitorientierte-uebertragung">Synchrone bitorientierte Uebertragung</h4>
-
 <p><strong>Bit Stuffing</strong></p>
-
 <ul>
 <li>Blockbegrenzung (Flag) ist eine ausgewaehlte Bitfolge (zB 01111110)
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/bit-stuffing.png"/> 
@@ -152,46 +134,39 @@ Data Link Control</p>
 </li>
 <li>Problem: zufaelliges Auftretet dieser Bitfolge 01111110 in Nutzdaten</li>
 <li>Loesung: Bit Stuffing
-
 <ul>
 <li>Sender fuegt <em>innerhalb</em> der Nutzdaten nach 5 auf einander folgenden &ldquo;1&rdquo; eine &ldquo;0&rdquo; ein</li>
 <li>Empfaenger entfernt nach 5 aufeinanderfolgenden &ldquo;1&rdquo; eine &ldquo;0&rdquo;</li>
-</ul></li>
+</ul>
+</li>
 <li><figure>
     <img src="/knowledge-database/images/bit-stuffing-2.png"/> 
 </figure>
 </li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="synchrone-uebertragung-coderegelverletzung">Synchrone Uebertragung: Coderegelverletzung</h4>
-
 <p>Synchrone Uebertragung ohne Laengenfeld oder Character/Bit Stuffing:</p>
-
 <ul>
 <li>Verwendung von Block-Start/Endmustern (Flags)</li>
 <li>Flags enthalten (gemaess Leitungscodierung) ungueltige Bits</li>
 <li>Bsp: Manchester Codierung
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/coderegel-verletzung.png"/> 
 </figure>
 </li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="4-dot-2-sicherung-der-datenuebertragung-uebertragungsfehler">4.2 Sicherung der Datenuebertragung - Uebertragungsfehler</h2>
-
 <p>Wesentlich fuer eine fehlerfreie Uebertragung sind korrekt synchronisierte Sender und Empfaenger</p>
-
 <ul>
 <li>ungenaue Abtastzeitpunkte koennen u.U zu sporadischen Bitfehlern fuehren, obwohl die Signalfolge korrekt uebertragen wurde</li>
 <li>falsch synchronisierte Sender und Empfaenger fuehren haeufig zu einer vollstaendig falsch interpretierten Bitfolge</li>
 </ul>
-
 <p>Uebertragungsfehler sind hardwareinduzierte Fehler, die vorzugsweise auf dem Uebertragungsmedium entstehen, aber auch in den Anschlusselektroniken der kommunizierenden Stationen.</p>
-
 <ul>
 <li>Art &amp; Haeufigkeit stark vom Uebertragungsmedium abhaengig</li>
 <li>in der Funktechnik existieren andere Fehlerursachen, Fehlerhaeufigkeiten und Fehlerauswirkungen als in der leitungsgebundenen Uebertragungstechnik</li>
@@ -199,58 +174,50 @@ Data Link Control</p>
 <li><strong>Buendelfehler:</strong> laenger anhaltende Stoerung zb durch Ueberspannung</li>
 <li><strong>Synchronisierfehler:</strong> alle Bits bzw Zeichen werden falsch erkannt</li>
 </ul>
-
 <h3 id="fehlerhaeufigkeiten">Fehlerhaeufigkeiten</h3>
-
 <p>Maß fuer die Fehlerhaeufigkeit:
 Bitfehlerrate = \(\frac{\text{Summe gestoerte Bits}}{\text{Summe uebertragene Bits}}\)</p>
-
 <ul>
 <li>stark vom Uebertragungsmedium bzw Netz abhaengig</li>
 <li>Bitfehlerraten zu uebertragender digitaler Daten im analogen Netz sind sehr viel hoeher als in digitalen Uebertragungssystemen
-
 <ul>
 <li>moderne ISDN/PCM Systeme haben eine bessere Uebertragungsqualitaet als klassische digitale Netze</li>
-</ul></li>
+</ul>
+</li>
 <li>die Uebertragungsfehlerhaeufigkeit ist auch stark von der Gesamtlaenge des Uebertragungsweges abhaengig</li>
 <li>typische Wahrscheinlichkeiten fuer Bitfehler
-
 <ul>
-<li>analoges Fernsprechnetz: 2*10<sup>-4</sup></li>
-<li>Funkstrecke: 10<sup>-3</sup> - 10<sup>-4</sup></li>
-<li>Ethnernet (10Base2): 10<sup>-9</sup> - 10<sup>-10</sup></li>
-<li>Glasfaser 10<sup>-10</sup> - 10<sup>-12</sup></li>
-</ul></li>
+<li>analoges Fernsprechnetz: 2*10<!-- raw HTML omitted -->-4<!-- raw HTML omitted --></li>
+<li>Funkstrecke: 10<!-- raw HTML omitted -->-3<!-- raw HTML omitted --> - 10<!-- raw HTML omitted -->-4<!-- raw HTML omitted --></li>
+<li>Ethnernet (10Base2): 10<!-- raw HTML omitted -->-9<!-- raw HTML omitted --> - 10<!-- raw HTML omitted -->-10<!-- raw HTML omitted --></li>
+<li>Glasfaser 10<!-- raw HTML omitted -->-10<!-- raw HTML omitted --> - 10<!-- raw HTML omitted -->-12<!-- raw HTML omitted --></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="fehlerwirkungen">Fehlerwirkungen</h3>
-
 <ul>
 <li>abhaengig davon welche Bits betroffen sind
-
 <ul>
 <li>(Nutz-)Datenfehler: Bits innerhalb der Nutzdaten (gesehen zB aus Sicht der Sicherungsschicht) werden gestoert</li>
 <li>Protokollfehler: Stoerungen koennen Protokollkontrolldaten, Steuerzeichen, Adressen oder sonstige protokollrelevante Daten verfaelschen oder vernichten</li>
-</ul></li>
+</ul>
+</li>
 <li>Fehlererkennungs- und Behandlungsmassnahmen (error detection and recovery) erforderlich</li>
 <li>Fehlererkennung durch (kuenstliches) Hinzufuegen von Redundanz beim Sender
-
 <ul>
 <li>error detecting codes</li>
 <li>Spezialfall: error correcting nodes</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="fehlererkennung">Fehlererkennung</h3>
-
 <h4 id="paritaetsueberpruefung">Paritaetsueberpruefung</h4>
-
 <ul>
 <li>gerade/ungerade Paritaet
-
 <ul>
 <li>Gesamtzahl der &ldquo;1&rdquo; einschliesslich des Paritaetsbits ist gerade/ungerade</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
     </div>

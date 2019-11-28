@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 06 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,55 +51,44 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="authentication">Authentication</h2>
-
+      <h2 id="authentication">Authentication</h2>
 <h3 id="introduction">Introduction</h3>
-
 <p>Authentication is the process of verficating if someone is the one who he claims to be. There are different kinds of authenticators:</p>
-
 <ul>
 <li>knowledge-based
-
 <ul>
 <li>PIN, passwords</li>
 <li>Challenge-Response</li>
-</ul></li>
+</ul>
+</li>
 <li>biometrics
-
 <ul>
 <li>fingerprint, iris, voice, signature, keystroke behavior</li>
-</ul></li>
+</ul>
+</li>
 <li>ownership-based
-
 <ul>
 <li>something that you do not notice, but what is stored on a medium</li>
 <li>IDs, magnetic cards, certificates, smart cards</li>
-</ul></li>
+</ul>
+</li>
 <li>multi-factor authentication
-
 <ul>
 <li>combination of different types of authentication</li>
 <li>2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS</li>
 <li>3 Factors: eg password + smart card + fingerprint</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="knowledge-based-authentication">Knowledge-based Authentication</h4>
-
 <p>Knowledge-based Authentication using passwords</p>
-
 <ul>
 <li>Alice agrees with Bob on a secret password p for authentication of Alice to Bob</li>
 <li>Bob applies a one-way or cryptographic hash function H on the password, and stores the image value H(p)</li>
 <li>when authenticating the password is send and then gets hashed again and compared to the stored hash</li>
 </ul>
-
 <h3 id="kerberos">Kerberos</h3>
-
 <p>Wiki: Kerberos is a computer-network authentication protocol that works on the basis of tickets to allow nodes communicating over a non-secure network to prove their identity to one another in a secure manner.</p>
-
 <ul>
 <li>works according to the KDC principle</li>
 <li><em>User</em> wants to use a certain service</li>
@@ -109,39 +98,33 @@
 <li>Ticket Granting Server (TGS) issues tickets for certain services</li>
 <li>KDC includes AS and TGS</li>
 </ul>
-
 <h4 id="accreditation">Accreditation</h4>
-
 <ul>
 <li>User and his password are provided to the AS</li>
 <li>TGS and its secret key are also accredited by the AS</li>
 <li>Server and its secret key are made known to the TGS</li>
 </ul>
-
 <p>See pages 5 - 12 for more on Kerberos</p>
-
 <h2 id="identity-information-in-directory-services">Identity Information in Directory Services</h2>
-
 <ul>
 <li>directory service is a special &lsquo;name service&rsquo;</li>
 <li>property-based requests
-
 <ul>
 <li>comparison: full-name DNS request</li>
 <li>similar to &lsquo;Yellow Pages&rsquo;</li>
-</ul></li>
+</ul>
+</li>
 <li>OSI X.500 is the &lsquo;classical&rsquo; Directory Service
-
 <ul>
 <li>however the complex &lsquo;Directory Access Protocol&rsquo; (DAP) prevented it from becoming more widespread</li>
-</ul></li>
+</ul>
+</li>
 <li>LDAP = Lightweight Directory Access Protocol
-
 <ul>
 <li>standardized by IETF</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Important: See pages 14 - 23</p>
 
     </div>

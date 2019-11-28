@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 22 &amp; 23 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,35 +47,27 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<p>This chapter spans two lectures so lecture 22 and 23 will be pooled into this single blog post.</p>
-
+      <p>This chapter spans two lectures so lecture 22 and 23 will be pooled into this single blog post.</p>
 <h2 id="linker-and-libraries">Linker and Libraries</h2>
-
 <p>In the last chapter where we built a game we split functionality into different modules which had their own source file. The linker was responsible for assembling the single modules together. We now want to take a more detailed look into the linker.</p>
-
 <p>The following image shows where the linker is involved:</p>
+<p>&lt;/knowledge-database/images/linker-overview.png &gt;</p>
+<p>Now let's look at the following code of a generic swap function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span>  <span style="color:#75715e">&lt;stddef.h&gt; // for size_t</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">malloc</span>(size_t);
+<span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">free</span>(<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span>);
 
-<p></knowledge-database/images/linker-overview.png ></p>
-
-<p>Now let&rsquo;s look at the following code of a generic swap function:</p>
-
-<pre><code class="language-C">#include  &lt;stddef.h&gt; // for size_t
-
-extern void* malloc(size_t);
-extern void free(void*);
-
-static void bytecopy(char *dest, char *src, size_t size) {
-  while (size &gt; 0) {
-    *dest++ = *src++;
-    size--;
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bytecopy</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dest, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>src, size_t size) {
+  <span style="color:#66d9ef">while</span> (size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#f92672">*</span>dest<span style="color:#f92672">+</span><span style="color:#f92672">+</span> <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>src<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+    size<span style="color:#f92672">-</span><span style="color:#f92672">-</span>;
   }
 }
 
-int swap(void *first, void *second, size_t size) {
-  void *tmp = malloc(size);
-  if (!tmp) return 0;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">swap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>first, <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>second, size_t size) {
+  <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>tmp <span style="color:#f92672">=</span> malloc(size);
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>tmp) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 
   bytecopy(tmp, first, size);
   bytecopy(first, second, size);
@@ -83,141 +75,113 @@ int swap(void *first, void *second, size_t size) {
 
   free(tmp);
 
-  return 1;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
+</code></pre></div><p>The code above can be used with different types as the following program demonstrates.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">swap</span>(<span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> first, <span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> second, size_t size);
 
-<p>The code above can be used with different types as the following program demonstrates.</p>
+<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> str1 <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello</span><span style="color:#e6db74">&#34;</span>;
+<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> str2 <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">World</span><span style="color:#e6db74">&#34;</span>;
 
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+<span style="color:#66d9ef">int</span> a, b;
 
-int swap(void* first, void* second, size_t size);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1st string: %s, 2nd string: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str1, str2);
+  swap(<span style="color:#f92672">&amp;</span>str1, <span style="color:#f92672">&amp;</span>str2, <span style="color:#66d9ef">sizeof</span>(str1));
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1st string: %s, 2nd string: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str1, str2);
 
-char* str1 = &quot;Hello&quot;;
-char* str2 = &quot;World&quot;;
+  a <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+  b <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
 
-int a, b;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1st integer: %d, 2nd integer: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a, b);
+  swap(<span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#66d9ef">sizeof</span>(a));
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1st integer: %d, 2nd integer: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a, b);
 
-int main() {
-  printf(&quot;1st string: %s, 2nd string: %s\n&quot;, str1, str2);
-  swap(&amp;str1, &amp;str2, sizeof(str1));
-  printf(&quot;1st string: %s, 2nd string: %s\n&quot;, str1, str2);
-
-  a = 42;
-  b = 23;
-
-  printf(&quot;1st integer: %d, 2nd integer: %d\n&quot;, a, b);
-  swap(&amp;a, &amp;b, sizeof(a));
-  printf(&quot;1st integer: %d, 2nd integer: %d\n&quot;, a, b);
-
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>Now to get one program file out of our two source code files (swap.c and smain.c) both need to be compiled/translated and then linked together:</p>
-
-<pre><code class="language-sh">cc -std=c99 -Wall euclid.c swap.c smain.c -o sm
-</code></pre>
-
-<p></knowledge-database/images/linking-process.png ></p>
-
+</code></pre></div><p>Now to get one program file out of our two source code files (swap.c and smain.c) both need to be compiled/translated and then linked together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cc -std<span style="color:#f92672">=</span>c99 -Wall euclid.c swap.c smain.c -o sm
+</code></pre></div><p>&lt;/knowledge-database/images/linking-process.png &gt;</p>
 <p>and then execute the program file</p>
-
-<pre><code class="language-sh">./sm
-</code></pre>
-
-<pre><code class="language-text">1st string: Hello, 2nd string: World
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./sm
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1st string: Hello, 2nd string: World
 1st string: World, 2nd string: Hello
 1st integer: 42, 2nd integer: 23
 1st integer: 23, 2nd integer: 42
-</code></pre>
-
-<p>So let&rsquo;s repeat why we use/need a linker:</p>
-
+</code></pre></div><p>So let's repeat why we use/need a linker:</p>
 <ul>
 <li><strong>modularity</strong>
-
 <ul>
 <li>programs can be created as a collection of smaller source files instead of in one giant monolithic file</li>
 <li>enables creation and distribution of commonly used functions/functionality in libraries (eg standard library, math library etc)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>efficiency</strong>
-
 <ul>
 <li>time: not all of the source code has to be compiled each time</li>
 <li>space: libraries can act as a collection of different functions, but the &ldquo;finished&rdquo; program only contains the functions that it needs/uses</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>And what does the linker really do?</p>
-
 <ol>
 <li><strong>Resolution (Auflösung) of symbols</strong>
-
 <ul>
 <li>programs define and reference <strong>symbols</strong>, i.e. names of variables and functions:
-
 <ul>
 <li><code>int swap() { ... }</code> defines symbol <code>swap</code></li>
 <li><code>swap(&amp;a, &amp;b, sizeof(a))</code> references symbols <code>swap</code>, <code>a</code> and <code>b</code></li>
 <li><code>int a;</code> defines symbol <code>a</code></li>
-</ul></li>
+</ul>
+</li>
 <li>symbol definitions are stored in a <strong>symbol table</strong> by the compiler
-
 <ul>
 <li>the symbol table is an array of a special data structure (struct) which stores the name, type, size and location for every symbol</li>
-</ul></li>
+</ul>
+</li>
 <li>the linker connects (verknuepft) every symbol reference with exactly one symbol definition</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Relocation (Verschiebung)</strong>
-
 <ul>
 <li>assembles separate code- and data sections into common sections (gemeinsame Abschnitte)</li>
 <li>moves symbols from their relative position in the object file (.o) to their final storage location in the executable file</li>
 <li>corrects all references to these symbols, so that all the references point to the new/updated/correct location</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h3 id="linker-symbols">Linker Symbols</h3>
-
 <p>There are three types of linker symbols:</p>
-
 <ul>
 <li><strong>global symbols</strong>
-
 <ul>
 <li>symbols that are defined in the module and are usable/referencable by other modules (eg non-static C functions or non-static global variables)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>external symbols</strong>
-
 <ul>
 <li>global symbols that are referenced in a module, but defined in another module</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>local symbols</strong>
-
 <ul>
 <li>symbols that are defined in a module and only used/referenced in that module (eg functions and global variables that have the attribute <code>static</code>)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Also <em>local variables</em> do not create linker symbols (not even local symbols)!</p>
-
-<p></knowledge-database/images/linker-symbols.png ></p>
-
+<p>&lt;/knowledge-database/images/linker-symbols.png &gt;</p>
 <p>Symbol tables can be inspected with programs like <code>readelf</code>, <code>objdump</code> or <code>nm</code>.</p>
-
 <h3 id="executable-and-linkable-format--elf">Executable and Linkable Format (ELF)</h3>
-
-<p>There are different data formats for object files, for example a.out, COFF, MATCH-O and PE. We&rsquo;ll take a look at ELF which stands for Executable and Linkable Format and was originally developed by AT&amp;T for System V and is nowadays used in many operating systems (i.a. Linux, BSD) for different kinds of binary data:</p>
-
+<p>There are different data formats for object files, for example a.out, COFF, MATCH-O and PE. We'll take a look at ELF which stands for Executable and Linkable Format and was originally developed by AT&amp;T for System V and is nowadays used in many operating systems (i.a. Linux, BSD) for different kinds of binary data:</p>
 <ul>
 <li>movable object files (.o)</li>
 <li>executable program files</li>
 <li>separated object files (.so)</li>
 </ul>
-
 <p>The Executable and Linkable Format consists of the following sections:</p>
-
 <ul>
 <li><strong>ELF Header</strong>: specifies word size, byte alignment, file type, platform etc.</li>
 <li><strong>Segment-Header Table</strong>: specifies the page size, sections, segment size and is required for executable files</li>
@@ -225,85 +189,72 @@ int main() {
 <li><strong>.rodata section</strong>: read only data (jump tables,..)</li>
 <li><strong>.data section</strong>: initialized global variables</li>
 <li><strong>.bbs section</strong>: uninitialized global variables
-
 <ul>
 <li>initialized with 0 in storage</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>.symtab section</strong>: symbol table</li>
 <li><strong>.rel.text section</strong>: relocation information for code
-
 <ul>
-<li>addresses of instructions that have to be modified when there&rsquo;s relocation</li>
+<li>addresses of instructions that have to be modified when there's relocation</li>
 <li>instructions for relocating</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>.rel.data section</strong>: relocation information for variables</li>
 <li><strong>.debug section</strong>: information for symbolic debugging (<code>cc -g</code>)</li>
 <li><strong>Section header table</strong>: specifies offset and size of each section</li>
 </ul>
-
-<p></knowledge-database/images/ELF.png ></p>
-
-<p>Here&rsquo;s an example of how relocation of movable object code to executable code might look:</p>
-
-<p></knowledge-database/images/relocation.png ></p>
-
+<p>&lt;/knowledge-database/images/ELF.png &gt;</p>
+<p>Here's an example of how relocation of movable object code to executable code might look:</p>
+<p>&lt;/knowledge-database/images/relocation.png &gt;</p>
 <h3 id="problem-of-global-variables">Problem of global variables</h3>
-
 <p>In the process of linking only symbols are handled, there is <strong>no</strong> type checking performed. Given this code in 2 files:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Global 1
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">int</span> a;
+  <span style="color:#66d9ef">int</span> b;
 
-<pre><code class="language-C">// Global 1
-  #include &lt;stdio.h&gt;
-
-  int a;
-  int b;
-
-  void printab1() {
-    printf(&quot;1: a=%d, b=%d\n&quot;, a, b);
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printab1</span>() {
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1: a=%d, b=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a, b);
   }
 
-  void setab1() {
-    a = 42;
-    b = 23;
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setab1</span>() {
+    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+    b <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
   }
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Global 2
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">double</span> a;
+  <span style="color:#66d9ef">int</span> b;
 
-<pre><code class="language-C">// Global 2
-  #include &lt;stdio.h&gt;
-
-  double a;
-  int b;
-
-  void printab2() {
-    printf(&quot;2: a=%0.0f, b=%d\n&quot;, a, b);
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printab2</span>() {
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">2: a=%0.0f, b=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a, b);
   }
 
-  void setab1() {
-    a = 42.0;
-    b = 23;
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setab1</span>() {
+    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">42.0</span>;
+    b <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
   }
-</code></pre>
+</code></pre></div><p>The combined usage of the above code does have its problems though!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Global
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printab1</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printab2</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setab1</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setab2</span>();
 
-<p>The combined usage of the above code does have its problems though!</p>
-
-<pre><code class="language-C">// Global
-void printab1();
-void printab2();
-void setab1();
-void setab2();
-
-int main() {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
   setab1();
   printab1();
   setab2();
   printab2();
   printab1();
 
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-</code></pre>
-
-<pre><code class="language-sh">cc -Wall -Wextra -c -o global1.o global1.c
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cc -Wall -Wextra -c -o global1.o global1.c
 cc -Wall -Wextra -c -o global2.o global2.c
 cc -Wall -Wextra -c -o global.o global.c
 
@@ -311,118 +262,96 @@ cc global1.o global2.o global.o -o global
 
 ./global
 
-1: a=42, b=23
-2: a=42, b=23
-1: a=0, b=23  # ups a=0?
-</code></pre>
-
-<p>So if possible avoid using global variables. If not, try to use <code>static</code>, initialize global variables on definition and use <code>extern</code> for external variables.</p>
-
+1: a<span style="color:#f92672">=</span>42, b<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span>
+2: a<span style="color:#f92672">=</span>42, b<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span>
+1: a<span style="color:#f92672">=</span>0, b<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span>  <span style="color:#75715e"># ups a=0?</span>
+</code></pre></div><p>So if possible avoid using global variables. If not, try to use <code>static</code>, initialize global variables on definition and use <code>extern</code> for external variables.</p>
 <h3 id="libraries">Libraries</h3>
-
-<p>How can we package useful code that&rsquo;s commonly used? With the tools we know until now, there are 2 options:</p>
-
+<p>How can we package useful code that's commonly used? With the tools we know until now, there are 2 options:</p>
 <ul>
 <li>all functions go into a large source file and therefore in a large object file file as well
-
 <ul>
 <li>programmers then link this large object file into their programs</li>
 <li>this however is time and space inefficient</li>
-</ul></li>
-<li>every function goes into its own source file
-
-<ul>
-<li>programmers then link object files that they&rsquo;ve explicitly chosen into their programs</li>
-<li>while this is more efficient than option 1 it is very cumbersome for the programmer</li>
-</ul></li>
 </ul>
-
+</li>
+<li>every function goes into its own source file
+<ul>
+<li>programmers then link object files that they've explicitly chosen into their programs</li>
+<li>while this is more efficient than option 1 it is very cumbersome for the programmer</li>
+</ul>
+</li>
+</ul>
 <p>The solution is to use <em>archives</em> also known as (static) <em>libraries</em>. An archive is a single file that holds a collection of multiple object files along side with an index.</p>
-
 <p>The linker is extended in such way that he searches for unresolved references in one or more archives. When the linker finds an archive, he copies the appropriate object file and links it to the program.</p>
-
-<p>There&rsquo;s a tool for creating and managing archives which is called <code>ar</code>.</p>
-
-<p></knowledge-database/images/archiver.png ></p>
-
+<p>There's a tool for creating and managing archives which is called <code>ar</code>.</p>
+<p>&lt;/knowledge-database/images/archiver.png &gt;</p>
 <p>The archiver allows incremental updates where a changed source file gets compiled and then replaced in the archive.</p>
-
 <p>Every system has a set of libraries. The C standard requires at least two libraries:</p>
-
 <ul>
 <li><code>libc.a</code> or <code>libgcc.a</code>: standard library, in- and output, memory management,&hellip;</li>
 <li><code>libm.a</code>: floating point math</li>
 </ul>
-
 <p>The standard library (and start up code) is (as long as the option <code>-nodefaultlibs</code> and <code>-nostartfiles</code> is not activated) automatically linked by default.</p>
-
 <p>The linker can use any desired archives. The options are to provide</p>
-
 <ul>
 <li><code>-L{path}</code> the linker searches in {path} for libraries (this option can be given multiple times)</li>
 <li><code>-l{name}</code> the linker searches the archive file <code>lib{name}.a</code> when resolving symbols</li>
 </ul>
-
 <p>The following command instructs the linker to include the floating point number math library (<code>libm.a</code>): <code>cc -o myprog mycode.c -lm</code></p>
-
 <ul>
-<li><p>Dynamic Libraries</p>
-
-<p>However there are some disadvantages to static libraries:</p>
-
-<ul>
-<li>multiplication (Vervielfachung) of the code in the storage (Massenspeicher) (the standard library for example is used by almost every program)</li>
-<li>multiplication of code in memory</li>
-<li>small fixes in the library code requires explicitly linking every program again</li>
+<li>Dynamic Libraries</li>
 </ul>
+<pre><code>However there are some disadvantages to static libraries:
 
-<p>The solution to this problem are <em>dynamic libraries</em> (<em>shared libraries</em>):</p>
+-   multiplication (Vervielfachung) of the code in the storage (Massenspeicher) (the standard library for example is used by almost every program)
+-   multiplication of code in memory
+-   small fixes in the library code requires explicitly linking every program again
 
-<ul>
-<li>object files are loaded and linked on load/run time</li>
-<li>shared code is loaded into memory/storage only once and then used/shared</li>
-<li>slides: Standard in modernen Systemen u.a für C-Standardbibliothek (Linux: <code>libc.so</code>)</li>
-</ul>
+The solution to this problem are _dynamic libraries_ (_shared libraries_):
 
-<p>This is how a dynamic library can be created:</p>
+-   object files are loaded and linked on load/run time
+-   shared code is loaded into memory/storage only once and then used/shared
+-   slides: Standard in modernen Systemen u.a für C-Standardbibliothek (Linux: `libc.so`)
 
-<pre><code class="language-sh">gcc -c -Wall -Werror -fpic swap.c
+This is how a dynamic library can be created:
+
+```sh
+gcc -c -Wall -Werror -fpic swap.c
 gcc -shared -o libsw.so swap.o
-</code></pre>
+```
 
-<p>The options have the following meaning:</p>
+The options have the following meaning:
 
-<ul>
-<li><code>-fpic</code>: creation of <em>position independant code</em> &rarr; keine &ldquo;Umrechnung&rdquo; beim Laden/Linken nötig</li>
-<li><code>-shared</code>: creates an independant library</li>
-</ul>
+-   `-fpic`: creation of _position independant code_ &amp;rarr; keine &quot;Umrechnung&quot; beim Laden/Linken nötig
+-   `-shared`: creates an independant library
 
-<p>And this is how the library is included:</p>
+And this is how the library is included:
 
-<pre><code class="language-sh">gcc smain2.c -o sm -L. -lsw
-</code></pre>
+```sh
+gcc smain2.c -o sm -L. -lsw
+```
 
-<p>Attention! A dynamically linked program cannot &ldquo;just be executed&rdquo;:</p>
+Attention! A dynamically linked program cannot &quot;just be executed&quot;:
 
-<pre><code class="language-sh">./sm
+```sh
+./sm
 ./sm: error while loading shared libraries: libsw.so: cannot open shared object file: No such file or directory
-</code></pre>
+```
 
-<p>&rarr; The loader searches for dynamic libraries in predefined directories which are i.a. defined in the system variable <code>LD_LIBRARY_PATH</code>:</p>
+&amp;rarr; The loader searches for dynamic libraries in predefined directories which are i.a. defined in the system variable `LD_LIBRARY_PATH`:
 
-<pre><code class="language-sh"> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:. # add current directory to env var
+```sh
+ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:. # add current directory to env var
  ./sm
 1st string: Hello, 2nd string: World
 1st string: World, 2nd string: Hello
 1st integer: 42, 2nd integer: 23
 1st integer: 23, 2nd integer: 42
-</code></pre></li>
-</ul>
-
+```
+</code></pre>
 <h3 id="usage-of-libraries">Usage of Libraries</h3>
-
 <p>You should always know or be aware of the effect of functions from foreign libraries. Some libraries are just a collection of related functions (eg <code>libmath</code>). Others are a complete <em>framework</em> where the functions can only be used together in a meaningful way (eg many GUI frameworks like GTK+ or Qt).</p>
-
 <p>In the appendix of the lecture script is an example application that uses the <code>ncurses</code> and <code>math</code> library to create an &ldquo;calculator&rdquo;. <code>ncurses</code> (advancement of <code>curses</code>) utilizes the capabilities of the ANSI terminal and exists for most operating systems. It offers (depending on the version) between 800 to 1000 functions.</p>
 
     </div>

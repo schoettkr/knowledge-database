@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 07 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,67 +51,53 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="management-of-access-rights">Management of Access Rights</h2>
-
+      <h2 id="management-of-access-rights">Management of Access Rights</h2>
 <p><strong>Authorization</strong> is the process of verification and access right assignment for a resource/service to a subject and is not to be confused with <em>Authentication</em> which is the process of verificating claimed properties. Access Control is a process of access rights management and control.</p>
-
-<p><strong>Access Matrix</strong><br />
-<img src="/knowledge-database/images/access-matrix.png" alt="" /></p>
-
+<p><strong>Access Matrix</strong><!-- raw HTML omitted -->
+<img src="/knowledge-database/images/access-matrix.png" alt=""></p>
 <ul>
 <li>group- and role-based access rights management:
-
 <ul>
 <li>complexity reduction by clustering users into &lsquo;role groups&rsquo;</li>
 <li>inheritance relationships in rights management</li>
 <li>permissions based on roles</li>
-</ul></li>
 </ul>
-
-<p><strong>Access Control Lists</strong><br />
-<img src="/knowledge-database/images/access-list.png" alt="" /></p>
-
+</li>
+</ul>
+<p><strong>Access Control Lists</strong><!-- raw HTML omitted -->
+<img src="/knowledge-database/images/access-list.png" alt=""></p>
 <ul>
 <li><em>principal</em> is a user, group or process that can be authenticated</li>
 <li>simply put: ACL is a set/list of resources, principals and corresponding access rights</li>
 </ul>
-
-<p><strong>Access Control Models</strong><br /></p>
-
+<p><strong>Access Control Models</strong><!-- raw HTML omitted --></p>
 <ul>
 <li>Discretionary Access Control (DAC)
-
 <ul>
 <li>access rights are assigned per user</li>
 <li>owner of a resource can pass his own rights</li>
-</ul></li>
+</ul>
+</li>
 <li>Mandatory Access Control (MAC)
-
 <ul>
 <li>rights passing is not allowed</li>
 <li>the system alone decides on which user has access to which resources</li>
-</ul></li>
+</ul>
+</li>
 <li>Role-Based Access Control (RBAC)
-
 <ul>
 <li>user could potentially be assigned multiple roles</li>
 <li>access rights are role-based</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="realization-in-operating-systems">Realization in Operating Systems</h3>
-
 <p>Unix/Linux</p>
-
 <ul>
 <li>data/directories are associated to an inode descriptor (contains ID of the owner, ID of the group, ACL etc)</li>
 <li>assignment of rights to the file owner, group, everyone else</li>
 </ul>
-
 <p>Windows 2000/XP/Vista/7</p>
-
 <ul>
 <li>permissions/restrictions can be assigned to individual users and groups</li>
 <li>security descriptors contain owner-ID, group-ID, Access Control Elements with Allow/Deny entries, logging operations</li>

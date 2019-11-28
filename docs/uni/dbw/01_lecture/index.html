@@ -3,7 +3,7 @@
   <head>
     <title>Databases &amp; Webtechnology - Lecture 01 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,35 +51,23 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/db-web/">db-web</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h3 id="organizational">Organizational</h3>
-
+      <h3 id="organizational">Organizational</h3>
 <p>Tutorial Dates: 09.04, 16.04, 23.04, 30.04, 07.05, 14.05, 20.05 (Project Start), 23.06 (Project End), 01.07-12.07 (Project Presentation ~15 minutes)</p>
-
 <h2 id="it-architectures">IT-Architectures</h2>
-
 <p>Throughout times there where different architectures favored or dominant. In the beginning there were mostly <em>monolithic</em> architectures. Mainframes are an example of monolithic architecture and are nowadays used primarily by large organizations for critical applications; bulk data processing, such as census, industry and consumer statistics, enterprise resource planning; and transaction processing. Advantages of such systems are the high availability and the processing power, while the cost and required operating are the main disadvantages.</p>
-
 <p>The development of <em>intelligent terminals</em> as clients and <em>backend machines</em> as server resulted in a turn away from mainframes to a <strong>dyadic</strong> (zweiteilig) <strong>architecture</strong> (Client/Server). This is how PCs came around whith the advantage of being more affordable and still being powerful. Disadvantages at the time were beingt dependant on few manufacturers when it comes to software and hardware.</p>
-
 <p>Then there is also the <strong>multi-tier</strong> <strong>architecture</strong> (often <em>three tier</em>) which allows excellent hard- and software specialization as well as connecting legacy systems with modern technologies (eg IDMS with the Internet). This comes at the price of increasing communication costs and possible over-specialization via a lot of tiers/layers.</p>
-
 <h2 id="server-webtechnology">Server Webtechnology</h2>
-
 <h3 id="external-programs-seperate-process">External Programs - Seperate Process</h3>
-
 <p><strong>CGI</strong> or Common Gateway Interface offers a standard protocol for web servers to execute programs (separate process) that are running on a server to generate web pages dynamically. Such programs that generate web pages are knows as <em>CGI scripts</em> or simply as <em>CGIs</em>. The specifics of how the script is executed by the server are determined by the server. In the common case, a CGI script executes at the time a request is made and generates HTML. This allows the <em>dynamic</em> creation of HTML in comparison to just transmitting static HTML that already lies on the server. This is how it typically goes:</p>
-
 <ol>
 <li>Client sends request to webserver, eg requesting the name of an entry in a wiki</li>
 <li>the Web Server executes the CGI (needed GET or POST parameter usually become env vars)</li>
-<li>the CGI program generates the content, eg retrieves the source of that requested entry&rsquo;s page and transforms it into HTML</li>
+<li>the CGI program generates the content, eg retrieves the source of that requested entry's page and transforms it into HTML</li>
 <li>the CGI program sends the answer/output to the webserver via standard output</li>
 <li>CGI program/process stops</li>
 <li>web server receives the input from the CGI and transmits it to the user agent</li>
 </ol>
-
 <table>
 <thead>
 <tr>
@@ -87,35 +75,29 @@
 <th>Contra</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>independant of programing language</td>
 <td>process management (process for each request)</td>
 </tr>
-
 <tr>
 <td>architectural freedom (single/multithreading)</td>
 <td>database usage (each process needs db connection)</td>
 </tr>
-
 <tr>
 <td>security (webserver is not modified, communication via standard IO)</td>
 <td>speed</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-
-<p><strong>FastCGI</strong> is a binary protocol for interfacing interactive programs with a web server. It is a variation on the earlier Common Gateway Interface (CGI). FastCGI&rsquo;s main aim is to reduce the overhead related to interfacing between web server and CGI programs, allowing a server to handle more web page requests per unit of time.<br />
-The &ldquo;one new process per request&rdquo; model of CGI programs makes them very simple to implement, but limits efficiency and scalability. At high loads, the operating system overhead for process creation and destruction becomes significant. Also, the CGI process model limits resource reuse methods, such as reusing database connections, in-memory caching, etc. Instead of creating a new process for each request, FastCGI uses persistent processes to handle a series of requests. These processes are owned by the FastCGI server, not the web server.<br />
-To service an incoming request, the web server sends environment variable information and the page request to a FastCGI process over either a Unix domain socket, a named pipe, or a Transmission Control Protocol (TCP) connection. Responses are returned from the process to the web server over the same connection, and the web server then delivers that response to the end user. The connection may be closed at the end of a response, but both web server and FastCGI service processes persist.<br />
+<p><strong>FastCGI</strong> is a binary protocol for interfacing interactive programs with a web server. It is a variation on the earlier Common Gateway Interface (CGI). FastCGI's main aim is to reduce the overhead related to interfacing between web server and CGI programs, allowing a server to handle more web page requests per unit of time.<!-- raw HTML omitted -->
+The &ldquo;one new process per request&rdquo; model of CGI programs makes them very simple to implement, but limits efficiency and scalability. At high loads, the operating system overhead for process creation and destruction becomes significant. Also, the CGI process model limits resource reuse methods, such as reusing database connections, in-memory caching, etc. Instead of creating a new process for each request, FastCGI uses persistent processes to handle a series of requests. These processes are owned by the FastCGI server, not the web server.<!-- raw HTML omitted -->
+To service an incoming request, the web server sends environment variable information and the page request to a FastCGI process over either a Unix domain socket, a named pipe, or a Transmission Control Protocol (TCP) connection. Responses are returned from the process to the web server over the same connection, and the web server then delivers that response to the end user. The connection may be closed at the end of a response, but both web server and FastCGI service processes persist.<!-- raw HTML omitted -->
 Each individual FastCGI process can handle many requests over its lifetime, thereby avoiding the overhead of per-request process creation and termination. Processing multiple requests concurrently can be done in several ways: by using one connection with internal multiplexing (i.e., multiple requests over one connection); by using multiple connections; or by a mix of these methods. Multiple FastCGI servers can be configured, increasing stability and scalability. When using FastCGI the webserver is only responsible for recieving the request, direct them to the FastCGI process and sending the results to the client.</p>
-
 <table>
 <thead>
 <tr>
@@ -123,29 +105,23 @@ Each individual FastCGI process can handle many requests over its lifetime, ther
 <th>Contra</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>process management (process stays alive)</td>
 <td>communication efforts may increase</td>
 </tr>
-
 <tr>
 <td>database management</td>
 <td></td>
 </tr>
-
 <tr>
 <td>security</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="external-programs-same-process">External Programs - Same Process</h3>
-
 <p><strong>BGI</strong> or Binary Gateway Interface is a serverside, external module that runs in the same process as the webserver. A BGI script is a stand-alone (eigenstaendig) module that gets loaded into the process space of the server and is therefore <em>not running</em> as a <em>separate process</em>. The webserver recieves the requests and forwards them to the BGI module by calling the modules functions. As an active part of the server process these functions than manage the transmission with the database and may only possibly (nur evtl) the processing of the requested data. After the data has been processed the webserver sends the data to the user agent.</p>
-
 <table>
 <thead>
 <tr>
@@ -153,53 +129,45 @@ Each individual FastCGI process can handle many requests over its lifetime, ther
 <th>Contra</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>speed (modules stay in server process space)</td>
 <td>security (illegitimidate actions may be performed via harmful parameters)</td>
 </tr>
-
 <tr>
 <td>database management</td>
 <td></td>
 </tr>
-
 <tr>
 <td>task separation</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="verdict-on-external-serverside-programs">Verdict on external serverside Programs</h3>
-
 <ul>
 <li>CGI
-
 <ul>
 <li>secure, slow, modest maintenance</li>
 <li>appropiate when few database requests are foreseeable</li>
-</ul></li>
+</ul>
+</li>
 <li>FastCGI
-
 <ul>
 <li>faster than CGI, more secure than BGI</li>
-</ul></li>
+</ul>
+</li>
 <li>BGI
-
 <ul>
 <li>fast and easily maintained</li>
 <li>server dependant because of its API character</li>
 <li>problematic in regards to security</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="server-extensions--erweiterungen--ssi">Server Extensions (Erweiterungen) - SSI</h3>
-
 <p><strong>SSI</strong> or or Server Side Include is a technique that is used for including/inserting the content of one or more files into a webpage (HTML document) on a web server via a <code>#include</code> directive.
 Typically the content that is to be inserted is stored on the server. The web server then interprets <code>include</code> directive in HTML documents and inserts the content of the specified file into the HTML document. This could commonly be a common piece of code throughout a site, such as a page header, a page footer and a navigation menu. SSI also contains control directives for conditional features and directives for calling expernal programs. In order for a web server to recognize an SSI-enabled HTML file and therefore carry out these instructions, either the filename should end with a special extension, by default .shtml, .stm, .shtm, or, if the server is configured to allow this, set the execution bit of the file.</p>
-
 <ol>
 <li>Client requests content that contains include directives from the webserver</li>
 <li>Webserver gathers the content and starts to &ldquo;create&rdquo; the webpage</li>
@@ -208,44 +176,37 @@ Typically the content that is to be inserted is stored on the server. The web se
 <li>Webserver finishes generating the webpage</li>
 <li>Webpage is sent to the Client</li>
 </ol>
-
 <p><strong>Pro:</strong></p>
-
 <ul>
 <li>Reusability
-
 <ul>
 <li>text blocks / boilerplate (like Copyrights, Signatures etc) can be inserted into HTML docs</li>
 <li>reoccuring functionality can be enabled by this technique (eg via Java Server Pages)
-
 <ul>
 <li>Zur Ausführung von Code ist diese Technik nicht geeignet! Sie stellt lediglich eine Voraussetzung dafür dar</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Simplicity
-
 <ul>
 <li>für Stereotype gut einsetzbar bei Webservern ohne Sprachinterpreter</li>
 <li>the principle of inserting data/files is possible for arbitrary files and contents</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Contra:</strong></p>
-
 <ul>
 <li>Server Load / Burden
-
 <ul>
 <li>the server has to carry the burden of inserting and executing the contents</li>
 <li>this applies especially for JSP</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="server-extensions--erweiterungen--scripts">Server Extensions (Erweiterungen) - Scripts</h3>
-
-<p>Server-side scripting is a technique used in web development which involves employing scripts on a web server which produce a response customized for each user&rsquo;s (client&rsquo;s) request to the website. A alternative is for the web server itself to deliver a static web page. Scripts can be written in any of a number of server-side scripting languages that are availabl, but require the appropiate interpreter for the scripting language to be installed on the server. Server-side scripting is distinguished from client-side scripting where embedded scripts, such as JavaScript, are run client-side in a web browser, but both techniques are often used together.
+<p>Server-side scripting is a technique used in web development which involves employing scripts on a web server which produce a response customized for each user's (client's) request to the website. A alternative is for the web server itself to deliver a static web page. Scripts can be written in any of a number of server-side scripting languages that are availabl, but require the appropiate interpreter for the scripting language to be installed on the server. Server-side scripting is distinguished from client-side scripting where embedded scripts, such as JavaScript, are run client-side in a web browser, but both techniques are often used together.
 In the Java world this is also called Java-Servlets or serverside applets. In this case the executing machine is the JavaVM which in combination with the Servlet-Engine serves as the runtime environment. This is the basic method of operation: The instructions that the webserver should execute are integrated into the HTML document with special tags. The webserver interprets these directives or passes them onto eg the JavaVM so that the instructions are executed. This allows execution of the whole application logic:</p>
-
 <ol>
 <li>Client requests content that contains script directive</li>
 <li>Webserver gathers content and starts document creation</li>
@@ -254,93 +215,78 @@ In the Java world this is also called Java-Servlets or serverside applets. In th
 <li>Content creation gets finished</li>
 <li>Content is sent to the client</li>
 </ol>
-
 <p><strong>Pro:</strong></p>
-
 <ul>
 <li>Flexibility/Dynamik
-
 <ul>
 <li>text blocks, database requests, user requests can easily be inlined into HTML documents</li>
-</ul></li>
+</ul>
+</li>
 <li>slides: Contemporary (zeitgemäß&hellip; <em>no comment by me :D</em>)</li>
 <li>Java (<em>rofl</em> how is this a plus XD)
-
 <ul>
 <li>portable, independant applications can be realized via servlets</li>
-</ul></li>
+</ul>
+</li>
 <li>Server Load / Burden
-
 <ul>
 <li>the webserver has to withstand an even higher load than in the case of SSI</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="verdict-on-serverside-extensions">Verdict on serverside Extensions</h3>
-
 <ul>
 <li>SSI
-
 <ul>
 <li>simple basic technique</li>
 <li>really suitable for usage with files <em>without code</em> on every webserver
-
 <ul>
 <li>together with files including code only suitable for webservers that have the appropiate environment for executing the code</li>
-</ul></li>
+</ul>
+</li>
 <li>maybe a lot of separate files in addition to the actual contents</li>
-</ul></li>
+</ul>
+</li>
 <li>Scripts
-
 <ul>
 <li>simple handling without additional files</li>
 <li>including language interpreters result in bulkier webservers</li>
 <li>possibly delayed response / content delivery because of the higher server load</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="summary">Summary</h2>
-
 <h3 id="programming-effort">Programming Effort</h3>
-
 <ul>
 <li>low to none for SSI when used for stereotypes (files w/o code), when used with JSP it gets more complicated tho</li>
 <li>medium for CGI because the applications are usually ought to be kept small</li>
 <li>high for scripts because the extent of the application is usually larger</li>
 <li>very high for BGI (when creating APIs) because users are offered a lot of functionality</li>
 </ul>
-
 <h3 id="server-dependence">Server Dependence</h3>
-
 <ul>
 <li>none for CGI because the programs are independant and communication happens solely via standard IO</li>
 <li>low for SSI because almost all servers can interpret include directives</li>
 <li>very high for BGI (APIs) because they have to be suited to the server type</li>
 <li>very high for scripts because the server has to have the appropiate environment (interpreter etc)</li>
 </ul>
-
 <h3 id="programming-language-dependence">Programming Language Dependence</h3>
-
 <ul>
 <li>low for SSI and CGI because independant
-
 <ul>
 <li>Servlets and JSP are an exception for SSI because then the dependence is really high on Java</li>
-</ul></li>
+</ul>
+</li>
 <li>medium for BGI (die daraus resultiert, dass es möglich sein muss, mit der verwendeten Programmiersprache dynamische Bibliotheken zu erstellen)</li>
 <li>very high for scripts because of reliance on the interpreter and language environment</li>
 </ul>
-
 <h3 id="security">Security</h3>
-
 <ul>
 <li>low for BGI because there a multiple ways to cause harm especially since the execution happens direclty in the process space of the server</li>
-<li>medium for scripts because they&rsquo;re sandboxed, but there are still ways to circumvent this security mechanism</li>
+<li>medium for scripts because they're sandboxed, but there are still ways to circumvent this security mechanism</li>
 <li>high for CGI and SSI (in case of stereotypes) because of the high independency of these techniques</li>
 </ul>
-
 <h3 id="server-load">Server Load</h3>
-
 <ul>
 <li>low for SSI because it does not required a lot to include files</li>
 <li>medium for BGI because special task are executed but no programm logic</li>

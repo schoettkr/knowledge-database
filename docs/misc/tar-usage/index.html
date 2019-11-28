@@ -3,7 +3,7 @@
   <head>
     <title>Usage of tar // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,47 +47,30 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="usage-of-tar">Usage of tar</h2>
-
-<p>GNU&rsquo;s <code>tar</code> is an archiving utility to store files into an archive and manipulate such archives.</p>
-
+      <h2 id="usage-of-tar">Usage of tar</h2>
+<p>GNU's <code>tar</code> is an archiving utility to store files into an archive and manipulate such archives.</p>
 <h3 id="compressing">Compressing</h3>
-
 <p>To compress files into an archive with tar use:</p>
-
-<pre><code class="language-sh">tar -cvzf &lt;name of tarball archive&gt;.tgz /filepath/or/path/to/source/folder # creates &quot;.tgz&quot; archive
-tar -cvzf &lt;name of tarball archive&gt;.tar /filepath/or/path/to/source/folder # creates &quot;.tar&quot; archive
-tar -cvzf &lt;name of tarball archive&gt;.tar.gz /filepath/or/path/to/source/folder # creates &quot;.tar.gz&quot; archive
-</code></pre>
-
-<h3 id="extracting">Extracting</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tar -cvzf &lt;name of tarball archive&gt;.tgz /filepath/or/path/to/source/folder <span style="color:#75715e"># creates &#34;.tgz&#34; archive</span>
+tar -cvzf &lt;name of tarball archive&gt;.tar /filepath/or/path/to/source/folder <span style="color:#75715e"># creates &#34;.tar&#34; archive</span>
+tar -cvzf &lt;name of tarball archive&gt;.tar.gz /filepath/or/path/to/source/folder <span style="color:#75715e"># creates &#34;.tar.gz&#34; archive</span>
+</code></pre></div><h3 id="extracting">Extracting</h3>
 <p>To extract or decompress archives use:</p>
-
-<pre><code class="language-sh">tar -xvzf &lt;name of archive&gt;.tgz # decompresses the archive into the current directory
-</code></pre>
-
-<h3 id="flags">Flags</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tar -xvzf &lt;name of archive&gt;.tgz <span style="color:#75715e"># decompresses the archive into the current directory</span>
+</code></pre></div><h3 id="flags">Flags</h3>
 <p>The flags stand for:</p>
-
 <ul>
-<li><strong>c</strong> &rarr; <strong>C</strong> ompress/create</li>
-<li><strong>x</strong> &rarr; e <strong>X</strong> tract</li>
-<li>z &rarr; zee (compression as in filter through gZip, Zlib, Zip)</li>
-<li>f &rarr; file</li>
-<li>v &rarr; verbose</li>
+<li><strong>c</strong> → <strong>C</strong> ompress/create</li>
+<li><strong>x</strong> → e <strong>X</strong> tract</li>
+<li>z → zee (compression as in filter through gZip, Zlib, Zip)</li>
+<li>f → file</li>
+<li>v → verbose</li>
 </ul>
-
 <h3 id="mnemonic">Mnemonic</h3>
-
 <p>To remember this more easily:</p>
-
 <ul>
-<li><code>tar -czf</code> &rarr; &ldquo;tar Create Zipped File&rdquo;</li>
-<li><code>tar -xzf</code> &rarr; &ldquo;tar eXtract Zipped File&rdquo;</li>
+<li><code>tar -czf</code> → &ldquo;tar Create Zipped File&rdquo;</li>
+<li><code>tar -xzf</code> → &ldquo;tar eXtract Zipped File&rdquo;</li>
 </ul>
 
     </div>

@@ -3,7 +3,7 @@
   <head>
     <title>Computer Science I - Lecture 03 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,73 +47,58 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="characteristics-of-a-language">Characteristics of a language</h2>
-
+      <h2 id="characteristics-of-a-language">Characteristics of a language</h2>
 <p>Languages consist of three main characteristics:</p>
-
 <ol>
 <li>Lexis (specification on formation of words)</li>
 <li>Syntax (specification on formation of sentences)</li>
 <li>Semantic (meaning)</li>
 </ol>
-
 <h3 id="lexis-and-lexical-elements-of-c">Lexis and lexical elements of C++</h3>
-
 <ul>
 <li>keywords: <code>if</code>, <code>else</code></li>
 <li>predefined identifiers: <code>int</code>, <code>char</code></li>
 <li>identifiers: <code>temp1</code>, <code>diff</code>
-
 <ul>
 <li>have to start with a letter (<code>_</code> is allowed aswell)</li>
 <li>can then contain arbitrary amount of characters/numbers</li>
 <li>are case sensitive</li>
-</ul></li>
-<li>special symbols:  ; , : . + − ∗ / % &gt; &lt; = ! ˜ ˆ &amp; | [ ] { } ( )</li>
+</ul>
+</li>
+<li>special symbols:  ; , : . + − ∗ / % &gt; &lt; = ! ˜ ˆ &amp; | <input disabled="" type="checkbox">{ } ( )</li>
 <li>separators: whitespace, tabulator, newline</li>
 <li>numeric values:
-
 <ul>
 <li>decimal: <code>255</code></li>
 <li>octal: <code>377</code></li>
 <li>hexadecimal: <code>0xff</code></li>
 <li>floats: <code>1.5</code> or <code>3.1e-15</code></li>
-</ul></li>
+</ul>
+</li>
 <li>characters: <code>'a'</code>, <code>'#'</code>, <code>'\n'</code> (in single quotes!)</li>
 <li>strings: <code>&quot;Test 1 \n&quot;</code> (in double quotes!)</li>
 <li>comments:
-
 <ul>
 <li><code>//</code> until end of line</li>
 <li><code>/* ... */</code> multiple lines</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="syntax-and-presentation-method--darstellungsmittel">Syntax and presentation method (Darstellungsmittel)</h3>
-
 <p>A method to present syntax is to use syntax diagrams. They represent a graphical alternative to e.g Backus–Naur form to represent formal or context-free grammar.</p>
-
 <h4 id="elements-of-syntax-diagrams">Elements of syntax diagrams</h4>
-
 <ul>
 <li>▭ a rectangle with sharp corners represents an abstract entity</li>
 <li>▢ a ellipse (rectangle with rounded corners) represents a concrete term of the language, therefore an element of the lexis</li>
 <li>⟶  an arrow indicates the flow direction (to build &ldquo;sentences&rdquo;)</li>
 </ul>
-
 <p>Example of an include directive represented as a syntax graph:</p>
-
 <figure>
     <img src="/knowledge-database/images/include-directive-graph.png"/> 
 </figure>
 
-
 <h2 id="boolean-algebra-logical-connectives-and-truth-tables">Boolean algebra, logical connectives and truth tables</h2>
-
 <p>C++ has the data type <code>bool</code> which can either be <code>true</code> or <code>false</code>. In integers a <code>0</code> is <code>false</code> and everything <code>≠0</code> is <code>true</code>.</p>
-
 <table>
 <thead>
 <tr>
@@ -123,7 +108,6 @@
 <th>a ‖ b</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>false</td>
@@ -131,21 +115,18 @@
 <td>false</td>
 <td>false</td>
 </tr>
-
 <tr>
 <td>true</td>
 <td>false</td>
 <td>false</td>
 <td>true</td>
 </tr>
-
 <tr>
 <td>false</td>
 <td>true</td>
 <td>false</td>
 <td>true</td>
 </tr>
-
 <tr>
 <td>true</td>
 <td>true</td>
@@ -154,97 +135,58 @@
 </tr>
 </tbody>
 </table>
-
 <p>There is also the <code>!</code> not operator to negate boolean values.</p>
-
-<p>Using these boolean operators in C++, yields values of type <code>bool</code> (&rarr; <code>true</code> or <code>false</code>)</p>
-
+<p>Using these boolean operators in C++, yields values of type <code>bool</code> (→ <code>true</code> or <code>false</code>)</p>
 <h3 id="bitwise-and-or-xor-not">Bitwise AND, OR, XOR, NOT</h3>
-
 <p>In digital computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations.</p>
-
 <p>These are the bitwise operators in C++ <code>|</code>, <code>&amp;</code>, <code>~</code> and <code>^</code>.</p>
-
 <p>What is really important to understand is, that bitwise operators operate on the single bits (in comparison to boolean operators who operate on the whole value and yield true or false and are not bitwise operators!).</p>
-
 <h4 id="bitwise-not">Bitwise NOT</h4>
-
 <p>The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones&rsquo; complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example</p>
-
-<pre><code class="language-org">~0111
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org">~0111
 = 1000
-</code></pre>
-
-<p>Comparing bitwise NOT to boolean NOT (the last letter indicates the number system e.g <code>d</code> = decimal, <code>b</code> = binary):</p>
-
-<pre><code class="language-org">boolean NOT: !1_d = 0_d; !5_d = 0_d
-bitwise NOT: ~1_d = 0_d; ~5_d = ~0101_b = 1010_b = 10_d
-</code></pre>
-
-<h4 id="bitwise-or">Bitwise OR</h4>
-
+</code></pre></div><p>Comparing bitwise NOT to boolean NOT (the last letter indicates the number system e.g <code>d</code> = decimal, <code>b</code> = binary):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org">boolean NOT: !1_d <span style="color:#a6e22e">= 0_d; !5_d =</span> 0_d
+bitwise NOT: ~1_d <span style="color:#a6e22e">= 0_d; ~5_d =</span> ~0101_b <span style="color:#a6e22e">= 1010_b =</span> 10_d
+</code></pre></div><h4 id="bitwise-or">Bitwise OR</h4>
 <p>A bitwise OR takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:</p>
-
-<pre><code class="language-org">0101 | 0011
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-org" data-lang="org">0101 | 0011
 = 0111
-</code></pre>
-
-<p>The bitwise OR shall not be confused with the boolean OR that treats its operands as boolean values and returns such.
+</code></pre></div><p>The bitwise OR shall not be confused with the boolean OR that treats its operands as boolean values and returns such.
 The bitwise OR can be used to manage flags if a program has to handle a lot of booleans and the memory is really limited. Each bit of a binary number could itself represent a boolean value (eg <code>0</code> = false, <code>1</code> true).</p>
-
 <p>For example <code>0010</code> may be seen as a list of flags where the first, second and fourth flag is not set (<code>0</code>), while the third flag is set (<code>1</code>). To set the first flag, this bit string can be combined with another bitstring that has a <code>1</code> in the first place:</p>
-
-<pre><code class="language-C">  0010
-| 1000
-= 1010
-</code></pre>
-
-<h4 id="bitwise-and">Bitwise AND</h4>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">  <span style="color:#ae81ff">0010</span>
+<span style="color:#f92672">|</span> <span style="color:#ae81ff">1000</span>
+<span style="color:#f92672">=</span> <span style="color:#ae81ff">1010</span>
+</code></pre></div><h4 id="bitwise-and">Bitwise AND</h4>
 <p>A bitwise AND takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). For example:</p>
-
-<pre><code class="language-c">    0101 (decimal 5)
-&amp;   0011 (decimal 3)
-  = 0001 (decimal 1)
-</code></pre>
-
-<p>The operation may be used to determine whether a particular bit is <em>set</em> (1) or <em>clear</em> (0). For example, given a bit pattern <code>0011</code> (decimal 3), to determine whether the second bit is set we use a bitwise AND with a bit pattern containing 1 only in the second bit:</p>
-
-<pre><code class="language-c">    0011 (decimal 3)
-&amp;   0010 (decimal 2)
-  = 0010 (decimal 2)
-</code></pre>
-
-<p>Because the result <code>0010</code> is non-zero, we know the second bit in the original pattern was set. This is often called bit masking. (By analogy, the use of masking tape covers, or masks, portions that should not be altered or portions that are not of interest. In this case, the 0 values mask the bits that are not of interest.)</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#ae81ff">0101</span> (decimal <span style="color:#ae81ff">5</span>)
+<span style="color:#f92672">&amp;</span>   <span style="color:#ae81ff">0011</span> (decimal <span style="color:#ae81ff">3</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0001</span> (decimal <span style="color:#ae81ff">1</span>)
+</code></pre></div><p>The operation may be used to determine whether a particular bit is <em>set</em> (1) or <em>clear</em> (0). For example, given a bit pattern <code>0011</code> (decimal 3), to determine whether the second bit is set we use a bitwise AND with a bit pattern containing 1 only in the second bit:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#ae81ff">0011</span> (decimal <span style="color:#ae81ff">3</span>)
+<span style="color:#f92672">&amp;</span>   <span style="color:#ae81ff">0010</span> (decimal <span style="color:#ae81ff">2</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0010</span> (decimal <span style="color:#ae81ff">2</span>)
+</code></pre></div><p>Because the result <code>0010</code> is non-zero, we know the second bit in the original pattern was set. This is often called bit masking. (By analogy, the use of masking tape covers, or masks, portions that should not be altered or portions that are not of interest. In this case, the 0 values mask the bits that are not of interest.)</p>
 <p>The bitwise AND may be used to clear selected bits (or flags) of a register in which each bit represents an individual Boolean state. This technique is an efficient way to store a number of Boolean values using as little memory as possible.</p>
-
 <p>For example, <code>0110</code> (decimal 6) can be considered a set of four flags, where the first and fourth flags are clear (0), and the second and third flags are set (1). The second bit may be cleared by using a bitwise AND with the pattern that has a zero only in the second bit:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#ae81ff">0110</span> (decimal <span style="color:#ae81ff">6</span>)
+<span style="color:#f92672">&amp;</span>   <span style="color:#ae81ff">1011</span> (decimal <span style="color:#ae81ff">11</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0010</span> (decimal <span style="color:#ae81ff">2</span>)
+</code></pre></div><p>The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a binary number, by checking the value of the lowest valued bit (<code>1_d</code>) which would be <code>1_b</code> if the number is odd:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#ae81ff">0110</span> (decimal <span style="color:#ae81ff">6</span>)
+AND <span style="color:#ae81ff">0001</span> (decimal <span style="color:#ae81ff">1</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0000</span> (decimal <span style="color:#ae81ff">0</span>) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> even
 
-<pre><code class="language-c">    0110 (decimal 6)
-&amp;   1011 (decimal 11)
-  = 0010 (decimal 2)
-</code></pre>
+    <span style="color:#ae81ff">0101</span> (decimal <span style="color:#ae81ff">5</span>)
+AND <span style="color:#ae81ff">0001</span> (decimal <span style="color:#ae81ff">1</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0001</span> (decimal <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> odd
 
-<p>The bitwise AND can be used to check the parity(Parität, gerade ungerade) of a binary number, by checking the value of the lowest valued bit (<code>1_d</code>) which would be <code>1_b</code> if the number is odd:</p>
-
-<pre><code class="language-c">    0110 (decimal 6)
-AND 0001 (decimal 1)
-  = 0000 (decimal 0) -&gt; even
-
-    0101 (decimal 5)
-AND 0001 (decimal 1)
-  = 0001 (decimal 1) -&gt; odd
-
-    0100 (decimal 4)
-AND 0001 (decimal 1)
-  = 0000 (decimal 0) -&gt; even
-</code></pre>
-
-<h4 id="bitwise-xor">Bitwise XOR</h4>
-
-<p>In addition to <code>or</code> and <code>and</code> there is also <code>xor</code> (exclusive or &rarr; only one value true):</p>
-
+    <span style="color:#ae81ff">0100</span> (decimal <span style="color:#ae81ff">4</span>)
+AND <span style="color:#ae81ff">0001</span> (decimal <span style="color:#ae81ff">1</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0000</span> (decimal <span style="color:#ae81ff">0</span>) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> even
+</code></pre></div><h4 id="bitwise-xor">Bitwise XOR</h4>
+<p>In addition to <code>or</code> and <code>and</code> there is also <code>xor</code> (exclusive or → only one value true):</p>
 <table>
 <thead>
 <tr>
@@ -253,26 +195,22 @@ AND 0001 (decimal 1)
 <th>a XOR b</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>false</td>
 <td>false</td>
 <td>false</td>
 </tr>
-
 <tr>
 <td>true</td>
 <td>false</td>
 <td>true</td>
 </tr>
-
 <tr>
 <td>false</td>
 <td>true</td>
 <td>true</td>
 </tr>
-
 <tr>
 <td>true</td>
 <td>true</td>
@@ -280,79 +218,46 @@ AND 0001 (decimal 1)
 </tr>
 </tbody>
 </table>
-
 <p>The bitwise <code>XOR</code> operator in C++ is <code>^</code>.</p>
-
 <p>A bitwise XOR takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only the first bit is 1 or only the second bit is 1, but will be 0 if both are 0 or both are 1. In this we perform the comparison of two bits, being 1 if the two bits are different, and 0 if they are the same. For example:</p>
-
-<pre><code class="language-C">    0101 (decimal 5)
-XOR 0011 (decimal 3)
-  = 0110 (decimal 6)
-</code></pre>
-
-<p>The bitwise XOR may be used to invert selected bits in a register (also called toggle or flip). Any bit may be toggled by XORing it with 1. For example, given the bit pattern <code>0010</code> (decimal 2) the second and fourth bits may be toggled by a bitwise XOR with a bit pattern containing 1 in the second and fourth positions:</p>
-
-<pre><code class="language-C">    0010 (decimal 2)
-XOR 1010 (decimal 10)
-  = 1000 (decimal 8)
-</code></pre>
-
-<p>This technique may be used to manipulate bit patterns representing sets of Boolean states.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    <span style="color:#ae81ff">0101</span> (decimal <span style="color:#ae81ff">5</span>)
+XOR <span style="color:#ae81ff">0011</span> (decimal <span style="color:#ae81ff">3</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0110</span> (decimal <span style="color:#ae81ff">6</span>)
+</code></pre></div><p>The bitwise XOR may be used to invert selected bits in a register (also called toggle or flip). Any bit may be toggled by XORing it with 1. For example, given the bit pattern <code>0010</code> (decimal 2) the second and fourth bits may be toggled by a bitwise XOR with a bit pattern containing 1 in the second and fourth positions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    <span style="color:#ae81ff">0010</span> (decimal <span style="color:#ae81ff">2</span>)
+XOR <span style="color:#ae81ff">1010</span> (decimal <span style="color:#ae81ff">10</span>)
+  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> (decimal <span style="color:#ae81ff">8</span>)
+</code></pre></div><p>This technique may be used to manipulate bit patterns representing sets of Boolean states.</p>
 <p>Assembly language programmers and optimizing compilers sometimes use XOR as a short-cut to setting the value of a register to zero. Performing XOR on a value against itself always yields zero, and on many architectures this operation requires fewer clock cycles and memory than loading a zero value and saving it to the register (german: Wendet man XOR auf zwei identische Operanden an, so erhält man immer 0. In vielen Architekturen benötigt diese Operation weniger Rechenzeit, als man für das Laden einer 0 und das Speichern im Register benötigt).</p>
-
 <h3 id="bitwise-shifting-bit-shifts">Bitwise shifting / bit shifts</h3>
-
 <p>The bit shifts are sometimes considered bitwise operations, because they treat a value as a series of bits rather than as a numerical quantity. In these operations the digits are moved, or shifted, to the left or right. Registers in a computer processor have a fixed width, so some bits will be &ldquo;shifted out&rdquo; of the register at one end, while the same number of bits are &ldquo;shifted in&rdquo; from the other end.</p>
-
 <p>The operator <code>&lt;&lt;</code> shifts to the left by the following value and <code>&gt;&gt;</code> shifts to the right by the following value. For example:</p>
-
-<pre><code class="language-C">0110 (6 in decimal) &lt;&lt; 1 = 1100 (12 in decimal)
-</code></pre>
-
-<p>So <code>6 &lt;&lt; 1 = 12</code> because the underlying bits are moved/shifted by 1 place to the left. Shifting left is equivalent to multiplication by powers of 2. So <code>6 &lt;&lt; 1</code> is equivalent to <code>6 * 2</code>, and <code>6 &lt;&lt; 3</code> is equivalent to <code>6 * 2^3 = 6 * 8</code>. A good optimizing compiler will replace multiplications with shifts when possible.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#ae81ff">0110</span> (<span style="color:#ae81ff">6</span> in decimal) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1100</span> (<span style="color:#ae81ff">12</span> in decimal)
+</code></pre></div><p>So <code>6 &lt;&lt; 1 = 12</code> because the underlying bits are moved/shifted by 1 place to the left. Shifting left is equivalent to multiplication by powers of 2. So <code>6 &lt;&lt; 1</code> is equivalent to <code>6 * 2</code>, and <code>6 &lt;&lt; 3</code> is equivalent to <code>6 * 2^3 = 6 * 8</code>. A good optimizing compiler will replace multiplications with shifts when possible.</p>
 <p>A logical right shift is the converse to the left shift. Rather than moving bits to the left, they simply move to the right. For example, shifting the number 12:</p>
-
-<pre><code class="language-C">1100 (12 in decimal) &gt;&gt; 1 = 0110 (6 in decimal)
-</code></pre>
-
-<p>That will get us back our original 6. So we see that shifting to the right is equivalent to division by powers of 2.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#ae81ff">1100</span> (<span style="color:#ae81ff">12</span> in decimal) <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0110</span> (<span style="color:#ae81ff">6</span> in decimal)
+</code></pre></div><p>That will get us back our original 6. So we see that shifting to the right is equivalent to division by powers of 2.</p>
 <p>But attention: If the variable ch contains the bit pattern <code>11100101</code>, then <code>ch &gt;&gt; 1</code> will produce the result <code>01110010</code>, and <code>ch &gt;&gt; 2</code> will produce <code>00111001</code>.
 Here blank spaces are generated simultaneously on the left when the bits are shifted to the right. When performed on an <strong>unsigned type</strong>, the operation performed is a logical shift, causing the blanks to be filled by <code>0s</code> (zeros). When performed on a <strong>signed type</strong>, the result is technically undefined and compiler dependent, however most compilers will perform an arithmetic shift, causing the blank to be filled with the sign bit of the left operand which might be <code>1s</code> (ones).</p>
-
 <p>From stackoverflow: Shifts on unsigned types are well defined (as long as the right operand is in non-negative and less than the width of the left operand), and they always zero-fill.</p>
-
-<p>Shifts (or any bitwise operations) on signed types are generally not a good idea. If the left operand is negative then &lt;&lt; has undefined behavior, and &gt;&gt; yields an implementation-defined result (meaning that the compiler has to document what it does, but there&rsquo;s no way for you to control it). For non-negative values of a signed type, the result is what you&rsquo;d expect &ndash; as long as it doesn&rsquo;t overflow (if it overflows, the behavior is undefined).</p>
-
+<p>Shifts (or any bitwise operations) on signed types are generally not a good idea. If the left operand is negative then &laquo; has undefined behavior, and &raquo; yields an implementation-defined result (meaning that the compiler has to document what it does, but there's no way for you to control it). For non-negative values of a signed type, the result is what you'd expect &ndash; as long as it doesn't overflow (if it overflows, the behavior is undefined).</p>
 <p>Another example:</p>
-
-<pre><code class="language-c">a = 1000 in decimal = 0000 0011 1110 1000 in binary
-b = 3
-a &lt;&lt; b = 0001 1111 0100 0000 in binary = 8000 in decimal
-a &gt;&gt; b = 0000 0000 0111 1101 in binary = 125 in decimal
-</code></pre>
-
-<p>There is also a difference between logical, arithmetic and circular shifting that you may want to look up.</p>
-
-<p>Also note that the &ldquo;<a id="orgb4e417f"></a>&rdquo; as a stream operator takes precedence over bit shifting so the following code:</p>
-
-<pre><code class="language-cpp">int a, b;
-a = 1;
-b = 5;
-cout &lt;&lt; b &lt;&lt; a &lt;&lt; endl;
-</code></pre>
-
-<p>Would yield <code>51</code>. To have it bitshifted one has to add parentheses:</p>
-
-<pre><code class="language-cpp">int a, b;
-a = 1;
-b = 5;
-cout &lt;&lt; (b &lt;&lt; a) &lt;&lt; endl;
-</code></pre>
-
-<p>Which would yield <code>10</code> because b is leftshifted by a (<code>n</code>) which is equal to a multiplication with 2^n and this case <code>a</code> is <code>1</code> so <code>b</code> is multiplcated by 2 which gives 10.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> in decimal <span style="color:#f92672">=</span> <span style="color:#ae81ff">0000</span> <span style="color:#ae81ff">0011</span> <span style="color:#ae81ff">1110</span> <span style="color:#ae81ff">1000</span> in binary
+b <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0001</span> <span style="color:#ae81ff">1111</span> <span style="color:#ae81ff">0100</span> <span style="color:#ae81ff">0000</span> in binary <span style="color:#f92672">=</span> <span style="color:#ae81ff">8000</span> in decimal
+a <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0000</span> <span style="color:#ae81ff">0000</span> <span style="color:#ae81ff">0111</span> <span style="color:#ae81ff">1101</span> in binary <span style="color:#f92672">=</span> <span style="color:#ae81ff">125</span> in decimal
+</code></pre></div><p>There is also a difference between logical, arithmetic and circular shifting that you may want to look up.</p>
+<p>Also note that the &ldquo;<!-- raw HTML omitted --><!-- raw HTML omitted -->&rdquo; as a stream operator takes precedence over bit shifting so the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> a, b;
+a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+b <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> b <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+</code></pre></div><p>Would yield <code>51</code>. To have it bitshifted one has to add parentheses:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> a, b;
+a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+b <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> (b <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+</code></pre></div><p>Which would yield <code>10</code> because b is leftshifted by a (<code>n</code>) which is equal to a multiplication with 2^n and this case <code>a</code> is <code>1</code> so <code>b</code> is multiplcated by 2 which gives 10.</p>
 
     </div>
     <div class="post-footer">

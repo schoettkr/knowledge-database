@@ -3,7 +3,7 @@
   <head>
     <title>Datastructures - Lecture 01 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,105 +51,77 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/datastructures/">datastructures</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p>In the first lectures of the datastructures we&rsquo;ll repeat a few things that were already covered in the Algorithm &amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.</p>
-
+      <p>In the first lectures of the datastructures we'll repeat a few things that were already covered in the Algorithm &amp; Programming Lecture so you may want to refer those blog posts as well. After all both courses belong to the same module.</p>
 <h2 id="computational-effort-and-complexity">Computational Effort &amp; Complexity</h2>
-
-<p>To compare datastructures and algorithms in regards to efficiency we need a way to measure the &ldquo;cost&rdquo; / computational effort. This is done by counting the required computing &ldquo;steps&rdquo; (Rechenschritte). A computation step is generally an elementary operation like an arithmetic operation or accessing an memory adress. More complex operations may in cases also be seen as one computational step. Because it is known how long a step takes we also speak about <em>computation time</em>. The computation time does not only depends on the concrete algorithm or the used datastructure but also on the distribution of data. That&rsquo;s why we distinguish between the best, worst and average case. However the average computational time can only be stated if there&rsquo;s also a probality distribution which is known.<br />
-Let&rsquo;s compare the computing steps for two functions that compute the sum up to a certain number:</p>
-
-<pre><code class="language-C++">int sum1(int n) {
-  int s = 0;
-  for (int i = 1; i &lt;= n; i++)
-    s = s + i;
-  return s;
+<p>To compare datastructures and algorithms in regards to efficiency we need a way to measure the &ldquo;cost&rdquo; / computational effort. This is done by counting the required computing &ldquo;steps&rdquo; (Rechenschritte). A computation step is generally an elementary operation like an arithmetic operation or accessing an memory adress. More complex operations may in cases also be seen as one computational step. Because it is known how long a step takes we also speak about <em>computation time</em>. The computation time does not only depends on the concrete algorithm or the used datastructure but also on the distribution of data. That's why we distinguish between the best, worst and average case. However the average computational time can only be stated if there's also a probality distribution which is known.<!-- raw HTML omitted -->
+Let's compare the computing steps for two functions that compute the sum up to a certain number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum1</span>(<span style="color:#66d9ef">int</span> n) {
+  <span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    s <span style="color:#f92672">=</span> s <span style="color:#f92672">+</span> i;
+  <span style="color:#66d9ef">return</span> s;
 }
 
-int sum2(int n) {
-  int s;
-  s = n * (n+1) / 2;
-  return s;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum2</span>(<span style="color:#66d9ef">int</span> n) {
+  <span style="color:#66d9ef">int</span> s;
+  s <span style="color:#f92672">=</span> n <span style="color:#f92672">*</span> (n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+  <span style="color:#66d9ef">return</span> s;
 }
-</code></pre>
-
-<p>The function <code>sum1</code> has 4n+3 (<code>n+2</code> assignments, <code>n</code> increments, <code>n+1</code> comparisons, <code>n</code> additions) steps while <code>sum2</code> executes 4 operations (1 assignment, 3 basic mathematical operations) which are independant of <code>n</code>.<br />
+</code></pre></div><p>The function <code>sum1</code> has 4n+3 (<code>n+2</code> assignments, <code>n</code> increments, <code>n+1</code> comparisons, <code>n</code> additions) steps while <code>sum2</code> executes 4 operations (1 assignment, 3 basic mathematical operations) which are independant of <code>n</code>.<!-- raw HTML omitted -->
 Since we do not want to determine the computational time for a concrete set of data we aim to find a function which determines the computational time in regards to the amount of elements <em>n</em> in a data set. Furthermore the concrete function is kind of irrelevant as well. What we are really interested in, is the behaviour of this function, especially when the input data set and therefore <em>n</em> grows (asymptotic complexity). Doing so we can neglect/ignore constants and implementation details which are irrelevant to the function growth.</p>
-
 <h3 id="o-notation">O-Notation</h3>
-
 <p>O-Notation is used to express the efficiency of an algorithm separately from the computer architecture, programming language and compiler etc. The efficiency is usually judged in regards to time as well as space. There also posts from the algorithm lecture that cover O-Notation on here, so you might want to check those out. Here are common typical complexities:
-<img src="/knowledge-database/images/common-complexities.png" alt="" /></p>
-
+<img src="/knowledge-database/images/common-complexities.png" alt=""></p>
 <h2 id="datastructure-array">Datastructure - Array</h2>
-
 <p>An array is a linear arrangement of elements of the same data type, which gets stored in a continuous block of memory. Accessing an element at a certain index is an operation which requires constant time O(1).</p>
-
 <h3 id="operations-on-arrays">Operations on Arrays</h3>
-
 <ul>
 <li>accessing each element has a complexity of O(n)</li>
 <li>searching/counting elements has a complexity of O(n)</li>
 </ul>
-
-<p><strong>Inserting an element into an array</strong> requires that all elements from the position of insertion <em>p</em> have to be pushed back by one position before the new element can be set to position <em>p</em>. One problem in this case however is what happens with the last element in the array? If the element is already at full capacity we loose the last element. One way to avoid this would be to create an overflow buffer (Ueberlaufpuffer) by creating a larger array in advance and tracking the real size of the array (count of elements) in a separate variable. Disadvantages of this are however that first of all storage is wasted and second of all there still would be no guarantee that the array fills up to its capacity at some point on time. In the bad case the insertion of a element into an array would require n Operations &rarr; complexity of O(n)  because all n elements would have to be moved.<br />
-<strong>Deleting an element from an array</strong> requires that all elements from the position of deletion <em>p</em> are moved/shifted forward by one position. Here&rsquo;s the problem that that there&rsquo;s an empty field at the end of array left over. Analogously to the insertion we could track the actual count of elements via a separate variable. This results however in wasting storage aswell and also includes the linear time complexity of O(n) in the worst case where every element has to be shifted.</p>
-
+<p><strong>Inserting an element into an array</strong> requires that all elements from the position of insertion <em>p</em> have to be pushed back by one position before the new element can be set to position <em>p</em>. One problem in this case however is what happens with the last element in the array? If the element is already at full capacity we loose the last element. One way to avoid this would be to create an overflow buffer (Ueberlaufpuffer) by creating a larger array in advance and tracking the real size of the array (count of elements) in a separate variable. Disadvantages of this are however that first of all storage is wasted and second of all there still would be no guarantee that the array fills up to its capacity at some point on time. In the bad case the insertion of a element into an array would require n Operations → complexity of O(n)  because all n elements would have to be moved.<!-- raw HTML omitted -->
+<strong>Deleting an element from an array</strong> requires that all elements from the position of deletion <em>p</em> are moved/shifted forward by one position. Here's the problem that that there's an empty field at the end of array left over. Analogously to the insertion we could track the actual count of elements via a separate variable. This results however in wasting storage aswell and also includes the linear time complexity of O(n) in the worst case where every element has to be shifted.</p>
 <p>So arrays are not really suited for storing data where elements often have to be added/deleted. It is also not good optimal when it is unsorted and elements have to be searched for often times.</p>
-
 <h4 id="example-of-array-usage-sieve-of-eratosthenes">Example of array usage: Sieve of Eratosthenes</h4>
-
 <p>The Sieve of Eratosthenes is an algorithm to determine prime numbers. An array can be used to implement this algorithm:</p>
-
 <ol>
 <li>Write down (store) all natural numbers from 2 up to an arbitrary maximum number <code>m</code>. First all numbers are unmarked.</li>
-
-<li><p>Repeat the following:</p>
-
+<li>Repeat the following:
 <ul>
 <li>take the smallest unmarked number <em>P</em> which has not been taken already (P is always a prime number btw)</li>
 <li>is \(P^2 &gt; m\) than the algorithms stops and all unnmarked numbers are the prime numbers from 2 to m</li>
-
-<li><p>mark all multiples of P, starting at \(P^2\)</p>
-
-<pre><code class="language-C++">void sieve_of_eratosthenes(int m) {
-int arr[m] = {0};
-
-for (int i = 2; i &lt; m; i++) {
-for (int j = i*i; j &lt; m; j += i) {
-arr[j-1] = 1;
-}
-}
-
-for (int i = 1; i &lt; m; i++) {
-if (!arr[i-1])
-cout &lt;&lt; i &lt;&lt; &quot;  &quot;;
-}
-}
-sieve_of_eratosthenes(50);
-</code></pre>
-
-<pre><code class="language-text">1  2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
-</code></pre></li>
-</ul></li>
+<li>mark all multiples of P, starting at \(P^2\)</li>
+</ul>
+</li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sieve_of_eratosthenes</span>(<span style="color:#66d9ef">int</span> m) {
+  <span style="color:#66d9ef">int</span> arr[m] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
 
-<h4 id="example-of-array-usage-binary-search">Example of array usage: Binary Search</h4>
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i<span style="color:#f92672">*</span>i; j <span style="color:#f92672">&lt;</span> m; j <span style="color:#f92672">+</span><span style="color:#f92672">=</span> i) {
+      arr[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    }
+  }
 
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>arr[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+      cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> i <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">  </span><span style="color:#e6db74">&#34;</span>;
+  }
+}
+sieve_of_eratosthenes(<span style="color:#ae81ff">50</span>);
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1  2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+</code></pre></div><h4 id="example-of-array-usage-binary-search">Example of array usage: Binary Search</h4>
 <p>When the elements of an array are sorted we can speed up the search process significantly:</p>
-
 <ol>
 <li>Look at the whole array</li>
 <li>Compare the middle element with the search value
-
 <ul>
 <li>is the search value smaller than the middle element, continue looking at the part of the array that is to the left of the middle element</li>
 <li>is the search value larger than the middle element, continue looking at the part of the array that is to the right of the middle element</li>
-</ul></li>
+</ul>
+</li>
 <li>Go to step 2 until the values match or the size of the part of the array to look at is 0</li>
 </ol>
-
 <p>Because the array is halved in each iteration the time complexity is only O(log n).</p>
 
     </div>

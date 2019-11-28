@@ -3,7 +3,7 @@
   <head>
     <title>Computer Science II - Lecture 02 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,372 +51,302 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/cs2/">cs2</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p>After repeating some pointer basics in the last lecture, we continued with some more pointer stuff in this lecture and also introduced C++ references.</p>
-
+      <p>After repeating some pointer basics in the last lecture, we continued with some more pointer stuff in this lecture and also introduced C++ references.</p>
 <h2 id="pointer-to-functions">Pointer to Functions</h2>
+<p>What follows is an example that let's the user choose a function which shall be executed (late binding, dynamic binding)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<p>What follows is an example that let&rsquo;s the user choose a function which shall be executed (late binding, dynamic binding)</p>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) {
+  <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&gt;</span> y <span style="color:#f92672">?</span> x : y; <span style="color:#75715e">// ternary operator
+</span><span style="color:#75715e"></span>}
 
-<pre><code class="language-C++">#include &lt;iostream&gt;
-
-using namespace std;
-
-int max(int x, int y) {
-  return x &gt; y ? x : y; // ternary operator
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">min</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) {
+  <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&lt;</span> y <span style="color:#f92672">?</span> x : y;
 }
 
-int min(int x, int y) {
-  return x &lt; y ? x : y;
-}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1700</span>, b <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>;
+  <span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>fp) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>); <span style="color:#75715e">// fp is pointer to a function
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">char</span> c;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">get max (1) or min (0)?</span><span style="color:#e6db74">&#34;</span>;
+  cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> c;
 
-int main() {
-  int a = 1700, b = 1000;
-  int (*fp) (int, int); // fp is pointer to a function
-
-  char c;
-  cout &lt;&lt; &quot;get max (1) or min (0)?&quot;;
-  cin &gt;&gt; c;
-
-  switch(c) {
-  case '0': fp = &amp;min; break;
-  case '1': fp = &amp;max; break;
-  default: fp = 0;
+  <span style="color:#66d9ef">switch</span>(c) {
+  <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span> fp <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>min; <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">1</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span> fp <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>max; <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span> fp <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
   }
 
-  if (fp) {
-    // dereference the function pointer and call the function
-    cout &lt;&lt; (*fp)(a, b) &lt;&lt; endl;
-    // alternatively: implicity type conversion
-    cout &lt;&lt; fp(a, b) &lt;&lt; endl;
+  <span style="color:#66d9ef">if</span> (fp) {
+    <span style="color:#75715e">// dereference the function pointer and call the function
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> (<span style="color:#f92672">*</span>fp)(a, b) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+    <span style="color:#75715e">// alternatively: implicity type conversion
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> fp(a, b) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
   }
 
 
 }
-</code></pre>
-
-<h2 id="dynamic-memory">Dynamic Memory</h2>
-
+</code></pre></div><h2 id="dynamic-memory">Dynamic Memory</h2>
 <p>I will copy this section over from &ldquo;Datastructures Lecture 02&rdquo;:</p>
-
 <h3 id="memory-management-in-c">Memory Management in C++</h3>
-
-<p>Many programmers coming to C++ from C are used to doing manual memory management, particularly for string manipulation this is not so needed in C++ like it is in C because there&rsquo;s a <code>string</code> type which does not need any explicit allocation. Apart from this miniature (:D) C++ also offers <code>new</code> and <code>delete</code> for manual memory management. Side note: <em>Modern C++ code tends to use new quite rarely, and delete very rarely. From a memory standpoint, the disadvantage is that &ldquo;new&rdquo; allocates memory off the heap while local objects allocate memory off the stack. Heap allocation times are much slower than allocations off the stack. However, there are still times when it&rsquo;s appropriate to do so, and a solid understanding of how these low-level facilities work can help with understanding of what normally happens &ldquo;below the hood&rdquo;. There are even times when new and delete are too high-level, and we need to drop back to malloc and free &ndash; but those situations are rare exceptions indeed.</em><br />
-The basic idea of <strong>new</strong> and <strong>delete</strong> is simple: <strong>new</strong> creates an object of a given type and gives a pointer to it, and <strong>delete</strong> destroys an object created by new, given a pointer to it. The reason that new and delete exist in the language is that code often does not know when it is compiled exactly which objects it will need to create at runtime, or how many of them. Thus new and delete expressions allow for &ldquo;dynamic&rdquo; allocation of objects. Here&rsquo;s a short example:</p>
-
-<pre><code class="language-C++">int main() {
-  int * p = new int(3);
-  int * q = p;
-  delete q; // the same as delete p
-  return 0;
+<p>Many programmers coming to C++ from C are used to doing manual memory management, particularly for string manipulation this is not so needed in C++ like it is in C because there's a <code>string</code> type which does not need any explicit allocation. Apart from this miniature (:D) C++ also offers <code>new</code> and <code>delete</code> for manual memory management. Side note: _Modern C++ code tends to use new quite rarely, and delete very rarely. From a memory standpoint, the disadvantage is that &ldquo;new&rdquo; allocates memory off the heap while local objects allocate memory off the stack. Heap allocation times are much slower than allocations off the stack. However, there are still times when it's appropriate to do so, and a solid understanding of how these low-level facilities work can help with understanding of what normally happens &ldquo;below the hood&rdquo;. There are even times when new and delete are too high-level, and we need to drop back to malloc and free &ndash; but those situations are rare exceptions indeed._<!-- raw HTML omitted -->
+The basic idea of <strong>new</strong> and <strong>delete</strong> is simple: <strong>new</strong> creates an object of a given type and gives a pointer to it, and <strong>delete</strong> destroys an object created by new, given a pointer to it. The reason that new and delete exist in the language is that code often does not know when it is compiled exactly which objects it will need to create at runtime, or how many of them. Thus new and delete expressions allow for &ldquo;dynamic&rdquo; allocation of objects. Here's a short example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">3</span>);
+  <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> p;
+  <span style="color:#66d9ef">delete</span> q; <span style="color:#75715e">// the same as delete p
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>For those familiar with the C programming language, <code>new</code> is a kind of &ldquo;type-aware&rdquo; version of <code>malloc</code>: the type of the expression <code>new int</code> is <code>int*</code>. Hence in C++ where a cast would be necessary to write <code>int * p = reinterpret_cast&lt;int *&gt;(malloc(sizeof *p));</code>, no cast is required when using <code>new</code>. Because <code>new</code> is type-aware, it can also initialize the newly created objects, calling constructors if appropriate. The example above uses this ability to initialize the int created to have the value 3. Another enhancement of new and delete compared to malloc and free is that the C++ standard provides a standard way to change how new and delete allocate memory; in C this is normally achieved using a non-standard technique known as <em>&ldquo;interpositioning&rdquo;</em>.</p>
-
+</code></pre></div><p>For those familiar with the C programming language, <code>new</code> is a kind of &ldquo;type-aware&rdquo; version of <code>malloc</code>: the type of the expression <code>new int</code> is <code>int*</code>. Hence in C++ where a cast would be necessary to write <code>int * p = reinterpret_cast&lt;int *&gt;(malloc(sizeof *p));</code>, no cast is required when using <code>new</code>. Because <code>new</code> is type-aware, it can also initialize the newly created objects, calling constructors if appropriate. The example above uses this ability to initialize the int created to have the value 3. Another enhancement of new and delete compared to malloc and free is that the C++ standard provides a standard way to change how new and delete allocate memory; in C this is normally achieved using a non-standard technique known as <em>&ldquo;interpositioning&rdquo;</em>.</p>
 <p>Side note: All dynamically allocated memory must be released before the pointer (except smart pointers) pointing to it goes out of scope. So, if the memory is dynamically allocated for a variable within a function, the memory should be released within the function unless a pointer to it is returned or stored by that function.</p>
-
 <p>The basic new and delete operators are intended to allocate only a single object at a time; they are supplemented by <code>new[]</code> and <code>delete[]</code> for dynamically allocating entire arrays. Uses of <code>new[]</code> and <code>delete[]</code> are even rarer than uses of basic new and delete; usually a std::vector is a more convenient way to manage a dynamically allocated array.</p>
-
 <p>Note that when you dynamically allocate an array of objects, you must write delete[] when freeing it, not plain delete. Compilers cannot usually give an error if you get this wrong; most likely your code will crash when you run it. Also never free memory that was allocated by <code>new</code> with the <em>C</em> <code>free</code> function! Since this may lead to corruption of data und expected results.</p>
-
 <p>When a call to delete[] runs, it first retrieves information stored by new[] describing how many elements are present in the dynamically allocated array, and then calls the destructor for each element before deallocating the memory. The actual address of the memory block that was allocated may differ from the value returned by new[] to allow room to store the number of elements; this is one reason why accidentally mixing the array form of new[] with the single-element form of delete may lead to crashes.</p>
-
-<p>Also after deleting pointer via <code>delete</code>, using most compilers the pointer variable will still point to the initially reserverd memory location, which can lead to extremely complicated and confusing consequences. That&rsquo;s why pointer variables should be explicit set to <code>NULL</code> or <code>0</code> after calling <code>delete</code> on them to avoid problems.<br />
-This is how we&rsquo;d dynamically create an array with the techniques we just learned:</p>
-
-<pre><code class="language-C++">int* a = NULL;   // Pointer to int, initialize to nothing.
-int n;           // Size needed for array
-cin &gt;&gt; n;        // Read in the size
-a = new int[n];  // Allocate n ints and save ptr in a.
-for (int i=0; i&lt;n; i++) {
-    a[i] = 0;    // Initialize all elements to zero.
-}
-. . .  // Use a as a normal array
-delete [] a;  // When done, free memory pointed to by a.
-a = NULL;     // Clear a to prevent using invalid memory reference.
-</code></pre>
-
-<p>It isn&rsquo;t strictly necessary to reset a pointer to <code>NULL</code>, but it&rsquo;s very good practice so that any use of the pointer will produce an error. Attempts to use memory location 0, which is the normal default value of NULL, will be blocked by the way most operating systems allocate memory. Why doesn&rsquo;t <code>delete</code> reset the pointer? It does in some systems, but the language specification does not require it, so not all systems do it.</p>
-
+<p>Also after deleting pointer via <code>delete</code>, using most compilers the pointer variable will still point to the initially reserverd memory location, which can lead to extremely complicated and confusing consequences. That's why pointer variables should be explicit set to <code>NULL</code> or <code>0</code> after calling <code>delete</code> on them to avoid problems.<!-- raw HTML omitted -->
+This is how we'd dynamically create an array with the techniques we just learned:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> a <span style="color:#f92672">=</span> NULL;   <span style="color:#75715e">// Pointer to int, initialize to nothing.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> n;           <span style="color:#75715e">// Size needed for array
+</span><span style="color:#75715e"></span>cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> n;        <span style="color:#75715e">// Read in the size
+</span><span style="color:#75715e"></span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[n];  <span style="color:#75715e">// Allocate n ints and save ptr in a.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    a[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e">// Initialize all elements to zero.
+</span><span style="color:#75715e"></span>}
+. . .  <span style="color:#75715e">// Use a as a normal array
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> [] a;  <span style="color:#75715e">// When done, free memory pointed to by a.
+</span><span style="color:#75715e"></span>a <span style="color:#f92672">=</span> NULL;     <span style="color:#75715e">// Clear a to prevent using invalid memory reference.
+</span></code></pre></div><p>It isn't strictly necessary to reset a pointer to <code>NULL</code>, but it's very good practice so that any use of the pointer will produce an error. Attempts to use memory location 0, which is the normal default value of NULL, will be blocked by the way most operating systems allocate memory. Why doesn't <code>delete</code> reset the pointer? It does in some systems, but the language specification does not require it, so not all systems do it.</p>
 <p>The &ldquo;old&rdquo; C-way of managing dynamic memory shouldnt be used anymore (malloc,..)</p>
-
 <h3 id="arrays-and-pointers-example">Arrays and Pointers - Example</h3>
-
 <p>The following code constructs a matrix. However the rows of this matrix are not stored sequentially in order as it would be the case with <code>int matrix[3][4]</code> declaration, because we use an array of int pointers. These can point to 1d int arrays somewhere in memory and dont need to be in sequential order:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<pre><code class="language-C++">#include &lt;iostream&gt;
-using namespace std;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">int</span> i,j;
+  <span style="color:#66d9ef">int</span> x,y;
+  <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span><span style="color:#f92672">*</span>m; <span style="color:#75715e">//pointer to int-pointer
+</span><span style="color:#75715e"></span>
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Enter x and y </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+  cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> y;
 
-int main() {
-  int i,j;
-  int x,y;
-  int **m; //pointer to int-pointer
-
-  cout &lt;&lt; &quot;Enter x and y \n&quot;;
-  cin &gt;&gt; x &gt;&gt; y;
-
-  m = new int*[x]; //Array of x int-pointers
-
-  for (i=0; i &lt; x; i++)
-    m[i] = new int[y]; //array of y ints
-  for (i = 0; i &lt; x; i++) {
-    for (j = 0 ; j &lt; y; j++) {
-      cin &gt;&gt; m[i][j];
+  m <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span>[x]; <span style="color:#75715e">//Array of x int-pointers
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> x; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
+    m[i] <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[y]; <span style="color:#75715e">//array of y ints
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> x; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; j <span style="color:#f92672">&lt;</span> y; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+      cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> m[i][j];
     }
   }
 
-  for (i = 0; i &lt; x ; i++) {
-    for (j = 0 ; j &lt; y; j++) {
-      cout &lt;&lt; m[i][j]&lt;&lt; ' ';
+  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> x ; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; j <span style="color:#f92672">&lt;</span> y; j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+      cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> m[i][j]<span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#39;</span>;
     }
-    cout &lt;&lt; endl;
+    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
   }
 
-  cout &lt;&lt; &amp;m &lt;&lt; endl;
-  cout &lt;&lt; &amp;m[0] &lt;&lt; endl;
-  cout &lt;&lt; &amp;m[0][0] &lt;&lt; endl;
-  cout &lt;&lt; &amp;m[0][1] &lt;&lt; endl;
-  cout &lt;&lt; &amp;m[1] &lt;&lt; endl;
-  cout &lt;&lt; &amp;m[1][0] &lt;&lt; endl;
-  cout &lt;&lt; &amp;m[1][1] &lt;&lt; endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#f92672">&amp;</span>m[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 }
-</code></pre>
-
-<p>&rarr; &ldquo;Enter  x  and  y&rdquo;<br />
-2 2<br />
-1 2 3 4<br />
-&rarr; 1   2<br />
-&rarr; 3   4<br />
-&rarr; 0x7fff15940a20 (&amp;m)<br />
-&rarr; 0x561b38f24e90 (&amp;m[0])<br />
-&rarr; 0x561b38f24eb0 (&amp;m[0][0])<br />
-&rarr; 0x561b38f24eb4 (&amp;m[0][1])<br />
-&rarr; 0x561b38f24e98 (&amp;m[1])<br />
-&rarr; 0x561b38f24ed0 (&amp;m[1][0])<br />
-&rarr; 0x561b38f24ed4 (&amp;m[1][1])</p>
-
+</code></pre></div><p>→ &ldquo;Enter  x  and  y&quot;<!-- raw HTML omitted -->
+2 2<!-- raw HTML omitted -->
+1 2 3 4<!-- raw HTML omitted -->
+→ 1   2<!-- raw HTML omitted -->
+→ 3   4<!-- raw HTML omitted -->
+→ 0x7fff15940a20 (&amp;m)<!-- raw HTML omitted -->
+→ 0x561b38f24e90 (&amp;m[0])<!-- raw HTML omitted -->
+→ 0x561b38f24eb0 (&amp;m[0][0])<!-- raw HTML omitted -->
+→ 0x561b38f24eb4 (&amp;m[0][1])<!-- raw HTML omitted -->
+→ 0x561b38f24e98 (&amp;m[1])<!-- raw HTML omitted -->
+→ 0x561b38f24ed0 (&amp;m[1][0])<!-- raw HTML omitted -->
+→ 0x561b38f24ed4 (&amp;m[1][1])</p>
 <h2 id="pointers-and-structs">Pointers and Structs</h2>
-
-<p>Also copied from Datastructures 02:<br />
+<p>Also copied from Datastructures 02:<!-- raw HTML omitted -->
 In C++ a <code>typedef</code> is not needed, thus <code>struct node { int element; }</code> is automatically a new <em>type</em> with a member called &ldquo;element&rdquo;. Quite often structs are accessed/passed via pointers:</p>
-
-<pre><code class="language-C++">node n[2]; // array of 2 nodes
-node* pN = n; // pointer to n = currently pointing to base address of the array n
-(*pn).element = 1; // setting element = 1 for first element in the n array
-(*(pn + 1)).element = 2; // setting element = 2 for second element in the n array
-</code></pre>
-
-<p>Because of operator precedence <code>*</code> to dereference needs to be wrapped in parens when accessing a member of a struct. To avoid this kind of cumbersome syntax, there is the arrow operator <code>-&gt;</code> which enables the following:</p>
-
-<pre><code class="language-C++">pn-&gt;element = -1;
-(pn+1)-&gt;element = -2;
-</code></pre>
-
-<p>Another example:</p>
-
-<pre><code class="language-C++">struct Person {
-  char name[20];
-  int birthyear;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++">node n[<span style="color:#ae81ff">2</span>]; <span style="color:#75715e">// array of 2 nodes
+</span><span style="color:#75715e"></span>node<span style="color:#f92672">*</span> pN <span style="color:#f92672">=</span> n; <span style="color:#75715e">// pointer to n = currently pointing to base address of the array n
+</span><span style="color:#75715e"></span>(<span style="color:#f92672">*</span>pn).element <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// setting element = 1 for first element in the n array
+</span><span style="color:#75715e"></span>(<span style="color:#f92672">*</span>(pn <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)).element <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// setting element = 2 for second element in the n array
+</span></code></pre></div><p>Because of operator precedence <code>*</code> to dereference needs to be wrapped in parens when accessing a member of a struct. To avoid this kind of cumbersome syntax, there is the arrow operator <code>-&gt;</code> which enables the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++">pn<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>element <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+(pn<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>element <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>;
+</code></pre></div><p>Another example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Person</span> {
+  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+  <span style="color:#66d9ef">int</span> birthyear;
 };
 
-Person max, moritz, leute[10];
+Person max, moritz, leute[<span style="color:#ae81ff">10</span>];
 
-max.birthyear = 1993;
-leute[0].birthyear = 1900;
+max.birthyear <span style="color:#f92672">=</span> <span style="color:#ae81ff">1993</span>;
+leute[<span style="color:#ae81ff">0</span>].birthyear <span style="color:#f92672">=</span> <span style="color:#ae81ff">1900</span>;
 
-int i = 0;
-Person* pp = leute;
+<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+Person<span style="color:#f92672">*</span> pp <span style="color:#f92672">=</span> leute;
 
-while (i &lt; 10) {
-  pp-&gt;birthyear = 1993; // alternative to (*pp).birthyear
-  pp++;
-  i++;
+<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>) {
+  pp<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>birthyear <span style="color:#f92672">=</span> <span style="color:#ae81ff">1993</span>; <span style="color:#75715e">// alternative to (*pp).birthyear
+</span><span style="color:#75715e"></span>  pp<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+  i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
  }
-</code></pre>
-
-<p>The arrow operator <code>-&gt;</code> allows accessing struct members that are referenced via pointers.</p>
-
+</code></pre></div><p>The arrow operator <code>-&gt;</code> allows accessing struct members that are referenced via pointers.</p>
 <h2 id="references">References</h2>
-
 <p>Also copied from Datastructures 02:
 Pass-by-reference means to pass the reference of an argument in the calling function to the corresponding formal parameter of the called function. The called function can modify the value of the argument by using its reference passed in. Usually or &ldquo;by default&rdquo; C++ passes by value.</p>
-
 <p>Pass-by-references is more efficient than pass-by-value, because it does not copy the arguments. The formal parameter is an alias for the argument. When the called function read or write the formal parameter, it is actually read or write the argument itself.</p>
-
 <p>The difference between pass-by-reference and pass-by-value is that modifications made to arguments passed in by reference in the called function have effect in the calling function, whereas modifications made to arguments passed in by value in the called function can not affect the calling function. Use pass-by-reference if you want to modify the argument value in the calling function. Otherwise, use pass-by-value to pass arguments.</p>
-
 <p>The difference between pass-by-reference and pass-by-pointer is that pointers can be NULL or reassigned whereas references cannot. Use pass-by-pointer if NULL is a valid parameter value or if you want to reassign the pointer. Otherwise, use constant or non-constant references to pass arguments.</p>
-
 <p>The following example shows how arguments are passed by reference. The reference parameters are initialized with the actual arguments when the function is called.</p>
-
-<pre><code class="language-C++">#include &lt;stdio.h&gt;
-
-void swapnum(int &amp;i, int &amp;j) {
-  int temp = i;
-  i = j;
-  j = temp;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swapnum</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>i, <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>j) {
+  <span style="color:#66d9ef">int</span> temp <span style="color:#f92672">=</span> i;
+  i <span style="color:#f92672">=</span> j;
+  j <span style="color:#f92672">=</span> temp;
 }
 
-int main(void) {
-  int a = 10;
-  int b = 20;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
+  <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+  <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
 
   swapnum(a, b);
-  printf(&quot;A is %d and B is %d\n&quot;, a, b);
-  return 0;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">A is %d and B is %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a, b);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-text">A is 20 and B is 10
-</code></pre>
-
-<p><a href="http://www.fredosaurus.com/notes-cpp/functions/refparams.html">Here&rsquo;s</a> a similar example.<br />
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">A is 20 and B is 10
+</code></pre></div><p><a href="http://www.fredosaurus.com/notes-cpp/functions/refparams.html">Here's</a> a similar example.<!-- raw HTML omitted -->
 References are mainly used when passing/calling by reference and for specifying operations on classes. One more example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>ri <span style="color:#f92672">=</span> i; <span style="color:#75715e">// ri and i refer to the same obj
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> ri; <span style="color:#75715e">// x = 1
+</span><span style="color:#75715e"></span>ri <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// -&gt; i = 2, x = 1
+</span></code></pre></div><p>References can also be returned from functions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<pre><code class="language-C++">int i = 1;
-int &amp;ri = i; // ri and i refer to the same obj
-int x = ri; // x = 1
-ri = 2; // -&gt; i = 2, x = 1
-</code></pre>
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>;
+<span style="color:#66d9ef">float</span> feld[MAX];
 
-<p>References can also be returned from functions:</p>
-
-<pre><code class="language-C++">#include &lt;iostream&gt;
-using namespace std;
-
-const int MAX = 1000;
-float feld[MAX];
-
-float&amp; element(int index) {
-  if (index &lt; 0 || index &gt;= MAX) {
-    cout &lt;&lt; &quot;Invalid index &quot; &lt;&lt; index &lt;&lt; endl;
-    index = 0;
+<span style="color:#66d9ef">float</span><span style="color:#f92672">&amp;</span> element(<span style="color:#66d9ef">int</span> index) {
+  <span style="color:#66d9ef">if</span> (index <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> index <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> MAX) {
+    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Invalid index </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> index <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+    index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
   }
 
-  return feld[index]; // reference!
-}
+  <span style="color:#66d9ef">return</span> feld[index]; <span style="color:#75715e">// reference!
+</span><span style="color:#75715e"></span>}
 
-int main() {
-  element(MAX) = 5; // Error Message
-  cout &lt;&lt; element(0) &lt;&lt; endl; // now set to 5
-}
-</code></pre>
-
-<pre><code class="language-text">Invalid index 1000
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  element(MAX) <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>; <span style="color:#75715e">// Error Message
+</span><span style="color:#75715e"></span>  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> element(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// now set to 5
+</span><span style="color:#75715e"></span>}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Invalid index 1000
 5
-</code></pre>
-
-<p>However in the example above where we wrote a custom array indexing function, it is still possible to access <code>feld</code> via eg <code>feld[3] = 7</code>. This shouldnt be possible. To circumvent this we can make use of a <em>static</em> array declaration <em>inside</em> the <code>element()</code> function (own scope):</p>
-
-<pre><code class="language-C++">float&amp; element(int index) {
-  static float feld[MAX];
+</code></pre></div><p>However in the example above where we wrote a custom array indexing function, it is still possible to access <code>feld</code> via eg <code>feld[3] = 7</code>. This shouldnt be possible. To circumvent this we can make use of a <em>static</em> array declaration <em>inside</em> the <code>element()</code> function (own scope):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">float</span><span style="color:#f92672">&amp;</span> element(<span style="color:#66d9ef">int</span> index) {
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">float</span> feld[MAX];
 }
-</code></pre>
-
-<h2 id="strings-c-style">Strings - C Style</h2>
-
+</code></pre></div><h2 id="strings-c-style">Strings - C Style</h2>
 <p>General remarks about strings in C:</p>
-
 <ul>
 <li>end of a character string is designated via &lsquo;\0&rsquo; (one additional byte)</li>
 <li>string constants are pointers to their first char (type = <code>char*</code>)</li>
 <li>need for enough storage for the respective character strings, else buffer overflow</li>
 <li>usage via <code>&lt;cstring&gt;</code> / <code>&lt;string.h&gt;</code></li>
 </ul>
-
 <p>Common string functions:</p>
-
 <ul>
 <li><code>int strlen(char* s)</code> for determining the length of a string</li>
 <li><code>int strcmp(char* s1, char* s2)</code> for comparing strings (0 when s1=s1, &lt; 0 for s1 &lt; s2, &gt; 0 for s1 &gt; s2)</li>
 <li><code>char* strcpy(char *destination, char* source)</code> and <code>char* strcat(char *destination, char* source)</code> for copying strings</li>
 </ul>
-
 <p>There surely is some more content about strings in C on my blog somewhere :D .</p>
+<h2 id="strings-c-style">Strings - C++ Style</h2>
+<p>In contrast to C strings, C++ strings work in an object oriented way. Since this paradigm hasn't been covered yet in this lecture, the usage of C++ strings will just be shown by an example for now:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#</span><span style="color:#75715e">include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span><span style="color:#75715e">&lt;string&gt; // Standard-String einschliessen</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span><span style="color:#75715e">&lt;cstddef&gt; // size_t</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<h2 id="strings-c-style-1">Strings - C++ Style</h2>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() { <span style="color:#75715e">// Programm mit typischen String-Operationen
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// String-Objekt einString anlegen und mit hallo initialisieren
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// einString kann ein beliebiger Name sein.
+</span><span style="color:#75715e"></span>  string einString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hallo</span><span style="color:#e6db74">&#34;</span>);
 
-<p>In contrast to C strings, C++ strings work in an object oriented way. Since this paradigm hasn&rsquo;t been covered yet in this lecture, the usage of C++ strings will just be shown by an example for now:</p>
+  <span style="color:#75715e">// String ausgeben
+</span><span style="color:#75715e"></span>  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-<pre><code class="language-C++">#include&lt;iostream&gt;
-#include&lt;string&gt; // Standard-String einschliessen
-#include&lt;cstddef&gt; // size_t
+  <span style="color:#75715e">// Beim Vektor waere stattdessen fuer die Ausgabe
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// eine Schleife notwendig, etwa der folgenden Art:
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> einString.size(); <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i)
+    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString[i];
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-using namespace std;
+  <span style="color:#75715e">// String zeichenweise mit Indexpruefung ausgeben. Die Anzahl der
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// Zeichen kann bei Strings auch mit length() ermittelt werden.
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> einString.length(); <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i)
+    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString.at(i);
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-int main() { // Programm mit typischen String-Operationen
+  <span style="color:#75715e">// Kopie des Strings einString erzeugen
+</span><span style="color:#75715e"></span>  string eineStringKopie(einString);
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> eineStringKopie <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// hallo
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// Kopie durch Zuweisung
+</span><span style="color:#75715e"></span>  string diesIstNeu(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">neu!</span><span style="color:#e6db74">&#34;</span>);
+  eineStringKopie <span style="color:#f92672">=</span> diesIstNeu;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> eineStringKopie <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// neu!
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// Zuweisung einer Zeichenkette in Anfuehrungszeichen
+</span><span style="color:#75715e"></span>  eineStringKopie <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Buchstaben</span><span style="color:#e6db74">&#34;</span>;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> eineStringKopie <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// Buchstaben
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// Zuweisung nur eines Zeichens vom Typ char
+</span><span style="color:#75715e"></span>  einString <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">X</span><span style="color:#e6db74">&#39;</span>;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// X
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// Strings mit dem +=-Operator verketten
+</span><span style="color:#75715e"></span>  einString <span style="color:#f92672">+</span><span style="color:#f92672">=</span> eineStringKopie;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// XBuchstaben
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// Strings mit dem +-Operator verketten
+</span><span style="color:#75715e"></span>  einString <span style="color:#f92672">=</span> eineStringKopie <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> ABC</span><span style="color:#e6db74">&#34;</span>;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString<span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// Buchstaben ABC
+</span><span style="color:#75715e"></span>  einString <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">123</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> eineStringKopie;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> einString <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl; <span style="color:#75715e">// 123Buchstaben
+</span><span style="color:#75715e"></span>
+  string<span style="color:#f92672">:</span><span style="color:#f92672">:</span>size_type pos <span style="color:#f92672">=</span> einString.find(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">BU</span><span style="color:#e6db74">&#34;</span>);
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Position von BU : </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> pos <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">\n</span><span style="color:#e6db74">&#39;</span>;
+  pos <span style="color:#f92672">=</span> einString.find(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Bu</span><span style="color:#e6db74">&#34;</span>);
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Position von Bu : </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> pos <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">\n</span><span style="color:#e6db74">&#39;</span>;
 
-  // String-Objekt einString anlegen und mit hallo initialisieren
-  // einString kann ein beliebiger Name sein.
-  string einString(&quot;hallo&quot;);
+  <span style="color:#75715e">// Eine Erklaerung gibts erst im Kapitel Ueberladen von Operatoren,
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// aber folgendes geht nicht:
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// einString = &#34;123&#34; + &#34;ABC&#34;; // Fehler!
+</span><span style="color:#75715e"></span>  string a(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Albert</span><span style="color:#e6db74">&#34;</span>), z(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Alberta</span><span style="color:#e6db74">&#34;</span>);
+  string b <span style="color:#f92672">=</span> a;
 
-  // String ausgeben
-  cout &lt;&lt; einString &lt;&lt; endl;
+  <span style="color:#66d9ef">if</span>(a <span style="color:#f92672">=</span><span style="color:#f92672">=</span> b) cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> == </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> b <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+  <span style="color:#66d9ef">else</span> cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> != </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> b <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-  // Beim Vektor waere stattdessen fuer die Ausgabe
-  // eine Schleife notwendig, etwa der folgenden Art:
-  for(size_t i = 0; i &lt; einString.size(); ++i)
-    cout &lt;&lt; einString[i];
-  cout &lt;&lt; endl;
+  <span style="color:#66d9ef">if</span>(a <span style="color:#f92672">&lt;</span> z) cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> &lt; </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> z <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-  // String zeichenweise mit Indexpruefung ausgeben. Die Anzahl der
-  // Zeichen kann bei Strings auch mit length() ermittelt werden.
-  for(size_t i = 0; i &lt; einString.length(); ++i)
-    cout &lt;&lt; einString.at(i);
-  cout &lt;&lt; endl;
+  <span style="color:#66d9ef">if</span>(z <span style="color:#f92672">&gt;</span> a) cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> z <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> &gt; </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 
-  // Kopie des Strings einString erzeugen
-  string eineStringKopie(einString);
-  cout &lt;&lt; eineStringKopie &lt;&lt; endl; // hallo
-
-  // Kopie durch Zuweisung
-  string diesIstNeu(&quot;neu!&quot;);
-  eineStringKopie = diesIstNeu;
-  cout &lt;&lt; eineStringKopie &lt;&lt; endl; // neu!
-
-  // Zuweisung einer Zeichenkette in Anfuehrungszeichen
-  eineStringKopie = &quot;Buchstaben&quot;;
-  cout &lt;&lt; eineStringKopie &lt;&lt; endl; // Buchstaben
-
-  // Zuweisung nur eines Zeichens vom Typ char
-  einString = 'X';
-  cout &lt;&lt; einString &lt;&lt; endl; // X
-
-  // Strings mit dem +=-Operator verketten
-  einString += eineStringKopie;
-  cout &lt;&lt; einString &lt;&lt; endl; // XBuchstaben
-
-  // Strings mit dem +-Operator verketten
-  einString = eineStringKopie + &quot; ABC&quot;;
-  cout &lt;&lt; einString&lt;&lt; endl; // Buchstaben ABC
-  einString = &quot;123&quot; + eineStringKopie;
-  cout &lt;&lt; einString &lt;&lt; endl; // 123Buchstaben
-
-  string::size_type pos = einString.find(&quot;BU&quot;);
-  cout &lt;&lt; &quot;Position von BU : &quot; &lt;&lt; pos &lt;&lt; '\n';
-  pos = einString.find(&quot;Bu&quot;);
-  cout &lt;&lt; &quot;Position von Bu : &quot; &lt;&lt; pos &lt;&lt; '\n';
-
-  // Eine Erklaerung gibts erst im Kapitel Ueberladen von Operatoren,
-  // aber folgendes geht nicht:
-  // einString = &quot;123&quot; + &quot;ABC&quot;; // Fehler!
-  string a(&quot;Albert&quot;), z(&quot;Alberta&quot;);
-  string b = a;
-
-  if(a == b) cout &lt;&lt; a &lt;&lt; &quot; == &quot; &lt;&lt; b &lt;&lt; endl;
-  else cout &lt;&lt; a &lt;&lt; &quot; != &quot; &lt;&lt; b &lt;&lt; endl;
-
-  if(a &lt; z) cout &lt;&lt; a &lt;&lt; &quot; &lt; &quot; &lt;&lt; z &lt;&lt; endl;
-
-  if(z &gt; a) cout &lt;&lt; z &lt;&lt; &quot; &gt; &quot; &lt;&lt; a &lt;&lt; endl;
-
-  if(z != a) cout &lt;&lt; z &lt;&lt; &quot; != &quot; &lt;&lt; a &lt;&lt; endl;
+  <span style="color:#66d9ef">if</span>(z <span style="color:#f92672">!</span><span style="color:#f92672">=</span> a) cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> z <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> != </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
 }
-</code></pre>
-
-<pre><code class="language-text">hallo
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">hallo
 hallo
 hallo
 hallo
@@ -432,8 +362,7 @@ Albert == Albert
 Albert &lt; Alberta
 Alberta &gt; Albert
 Alberta != Albert
-</code></pre>
-
+</code></pre></div>
     </div>
     <div class="post-footer">
       

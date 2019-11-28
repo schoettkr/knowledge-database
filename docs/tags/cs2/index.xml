@@ -18,7 +18,7 @@
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/02-lecture/</guid>
       <description>After repeating some pointer basics in the last lecture, we continued with some more pointer stuff in this lecture and also introduced C++ references.
-Pointer to Functions What follows is an example that let&amp;rsquo;s the user choose a function which shall be executed (late binding, dynamic binding)
+Pointer to Functions What follows is an example that let&#39;s the user choose a function which shall be executed (late binding, dynamic binding)
 #include &amp;lt;iostream&amp;gt; using namespace std; int max(int x, int y) { return x &amp;gt; y ? x : y; // ternary operator } int min(int x, int y) { return x &amp;lt; y ?</description>
     </item>
     
@@ -28,7 +28,7 @@ Pointer to Functions What follows is an example that let&amp;rsquo;s the user ch
       <pubDate>Thu, 04 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cs2/01-lecture/</guid>
-      <description>Computer Science II basically continues where CS I left off. Both lectures are based on a script that is split into two parts. These weeks lecture introduced pointers. Therefore I&amp;rsquo;ll keep it short because there already a lot of posts for lectures regarding pointers on this page :) and at this point is not really a new or special topic.
+      <description>Computer Science II basically continues where CS I left off. Both lectures are based on a script that is split into two parts. These weeks lecture introduced pointers. Therefore I&#39;ll keep it short because there already a lot of posts for lectures regarding pointers on this page :) and at this point is not really a new or special topic.
 Pointers Every variable has a memory adress. In case of arrays the base adress of the variable points to the beginning of an array eg the &amp;amp;a is the same adress as &amp;amp;a[0].</description>
     </item>
     

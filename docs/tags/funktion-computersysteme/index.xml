@@ -6,10 +6,19 @@
     <description>Recent content in funktion-computersysteme on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von der Befehls- zur Programmausführung</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/fcs/04_lecture/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0200</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/04_lecture/</guid>
+      <description>Programmierung  wir können nun prinzipiell arithmetisch &amp;amp; logische Operationen ausführen und mit dem Speicher kommunizieren Problem: Was genau soll wann gemacht werden?  Makroebene: Programm (durch Nutzer/Programmierer)  Programm liegt in durch den Prozessor &amp;ldquo;lesbarer&amp;rdquo; Form im Speicher     Problem: Wie wird es &amp;ldquo;verstanden&amp;rdquo;?  Mikroebene: Sequencing (durch Hersteller)  automatische Interpretation des Nutzerprogramms      → gemeinsame Schnittstelle: Rechnerorganisation (zB Register, Befehle, &amp;hellip;)</description>
+    </item>
     
     <item>
       <title>Einführung in die Funktion von Computersystemen - Lecture 03: Von Neumann Rechner</title>
@@ -17,9 +26,9 @@
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/03_lecture/</guid>
-      <description>Von-Neumann-Architektur  1946: ENIAC als erster vollständiger Rechner aus den USA EDVAC: Konzept des stored program computer von John von Neumann  Speicher enthält Programm &amp;amp; Daten     Abstrakt gesehen besteht die Informationsverarbeitung in der Von-Neumann-Architektur aus drei Stufen:
+      <description>Von-Neumann-Architektur  1946: ENIAC als erster vollständiger Rechner aus den USA EDVAC: Konzept des stored program computer von John von Neumann  Speicher enthält Programm &amp;amp; Daten      Abstrakt gesehen besteht die Informationsverarbeitung in der Von-Neumann-Architektur aus drei Stufen:
  Datengewinnung und -eingabe Verarbeitung und Speicherung Datenausgabe  Diese Stufen sollten sich in Geräten zur Informationsverarbeitung wiederspiegeln.
-   John v. Neumann veröffentlichte erstmals die nach ihm benannten Prinzipien des Rechnerentwurfs, nachdem er für das Manhattan-Projekt beim Entwurf des EDVAC (Electronic Discrete Variable Automatic Computer) mitgearbeitet hatte  Von-Neumann-Prinzipien  ein Rechner besteht aus Rechenwerk, Steuerwerk, Speicher und Ein-/Ausgabegeräten die Zentraleinheit arbeitet taktgesteuert die Signale werden binär kodiert der Inhalt eines Speicherwortes wird über eine Adresse angesprochen der Rechner verarbeitet externe Programme die intern gespeichert werden Programmbefehle und Daten werden im einheitlichen Hauptspeicher gespeichert Programme und Daten werden sequentiell abgearbeitet; der sequentielle Programmfluss kann durch (bedingte oder unbedingte) Sprünge verändert werden jede theoretisch mögliche Berechnung ist (im Rahmen der Kapazität des Rechners) berechenbar  Harvard Architektur vs Von Neumann Architektur:</description>
+   John v. Neumann veröffentlichte erstmals die nach ihm benannten Prinzipien des Rechnerentwurfs, nachdem er für das Manhattan-Projekt beim Entwurf des EDVAC (Electronic Discrete Variable Automatic Computer) mitgearbeitet hatte  Von-Neumann-Prinzipien  ein Rechner besteht aus Rechenwerk, Steuerwerk, Speicher und Ein-/Ausgabegeräten die Zentraleinheit arbeitet taktgesteuert die Signale werden binär kodiert der Inhalt eines Speicherwortes wird über eine Adresse angesprochen der Rechner verarbeitet externe Programme die intern gespeichert werden Programmbefehle und Daten werden im einheitlichen Hauptspeicher gespeichert Programme und Daten werden sequentiell abgearbeitet; der sequentielle Programmfluss kann durch (bedingte oder unbedingte) Sprünge verändert werden jede theoretisch mögliche Berechnung ist (im Rahmen der Kapazität des Rechners) berechenbar  Harvard Architektur vs Von Neumann Architektur:Komponenten des von Neumann Rechners Komponenten: Bus  ein Bus (bidirectional universal switch) ist eine Verbindungseinheit zwischen verschiedenen logisch getrennten Funktionseinheiten    Komponenten: Zentrale Verarbeitungseinheit (CPU)   ist Kernstück eines jeden Von-Neumann-Rechners</description>
     </item>
     
     <item>
@@ -28,9 +37,7 @@
       <pubDate>Tue, 08 Oct 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/02_lecture/</guid>
-      <description>Schaltungslogik   Schaltnetze Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.
-Durch logisch vollständige Funktionen können beliebige andere Funktionen &amp;ldquo;gebaut&amp;rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:
-Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gibt es Methoden zur Optimierung, die da wären Verfahren nach McCluskey und das Verfahren nach Karnaugh und Veitch, welches wir im folgenden betrachten.</description>
+      <description>Schaltungslogik   Schaltnetze Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.Durch logisch vollständige Funktionen können beliebige andere Funktionen &amp;ldquo;gebaut&amp;rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gibt es Methoden zur Optimierung, die da wären Verfahren nach McCluskey und das Verfahren nach Karnaugh und Veitch, welches wir im folgenden betrachten.</description>
     </item>
     
     <item>
@@ -39,8 +46,7 @@ Optimierung Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gib
       <pubDate>Tue, 01 Oct 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/01_lecture/</guid>
-      <description>Äquivalente Informationen können in vielen verschiedenen Darstellungen übermittelt werden. Eine symbolische Darstellung entspricht dabei der Syntax, welche via Interpretation Semantik (Bedeutung) erlangt. Bei unbekannten Interpretationsregeln kann Bedeutung jedoch nicht erkannt werden.
-Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in einem Alphabet festgehalten. Ein Alphabet ist eine endliche Menge von Symbolen. Das kleinste Alphabet ist das der Binärzahlen \({0,1}\). Mit sogenannten Binärcodes also Zusammensetzungen der Symbole \(0\) und \(1\) lassen sich die Symbole aller denkbaren Alphabete ausdrücken (Binärcodierung).</description>
+      <description>Äquivalente Informationen können in vielen verschiedenen Darstellungen übermittelt werden. Eine symbolische Darstellung entspricht dabei der Syntax, welche via Interpretation Semantik (Bedeutung) erlangt. Bei unbekannten Interpretationsregeln kann Bedeutung jedoch nicht erkannt werden.Eine symbolische Darstellung erfolgt mittels Symbolen. Jene Symbole werden in einem Alphabet festgehalten. Ein Alphabet ist eine endliche Menge von Symbolen. Das kleinste Alphabet ist das der Binärzahlen \({0,1}\). Mit sogenannten Binärcodes also Zusammensetzungen der Symbole \(0\) und \(1\) lassen sich die Symbole aller denkbaren Alphabete ausdrücken (Binärcodierung).</description>
     </item>
     
   </channel>

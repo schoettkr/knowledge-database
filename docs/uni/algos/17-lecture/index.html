@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 17 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,45 +47,32 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="recursion-and-backtracking">Recursion and Backtracking</h2>
-
-<p>Recursion was already covered in previous lectures so you can find additional informations in those blog posts. Now we want to discuss one difference between <em>loops</em> and <em>recursion</em> and therefore we turn our attention to the datastructure <strong>stack</strong> which is used in many CPU&rsquo;s.
+      <h2 id="recursion-and-backtracking">Recursion and Backtracking</h2>
+<p>Recursion was already covered in previous lectures so you can find additional informations in those blog posts. Now we want to discuss one difference between <em>loops</em> and <em>recursion</em> and therefore we turn our attention to the datastructure <strong>stack</strong> which is used in many CPU's.
 The stack is a container for holding data and there are two operations associated with it:</p>
-
 <ul>
-<li><strong>push</strong> &rarr; <code>push(D, S)</code> adds a data element <code>D</code> on top of the stack <code>S</code> (and &lsquo;overlays&rsquo; the other elements in S)
-
+<li><strong>push</strong> → <code>push(D, S)</code> adds a data element <code>D</code> on top of the stack <code>S</code> (and &lsquo;overlays&rsquo; the other elements in S)
 <ul>
 <li>usually returns the modified stack <code>S</code></li>
-</ul></li>
-<li><strong>pop</strong> &rarr; <code>pop(S)</code> the topmost and only visible element in <code>S</code> get&rsquo;s removed from the top of the stack and allows access to next element below it
-
+</ul>
+</li>
+<li><strong>pop</strong> → <code>pop(S)</code> the topmost and only visible element in <code>S</code> get's removed from the top of the stack and allows access to next element below it
 <ul>
 <li>usually returns the removed element <code>D</code></li>
-</ul></li>
 </ul>
-
-<p>A simple hardware implementation is achieved via a <em>stack pointer</em> that always points to the top of the stack (the topmost element). <a href="http://cryptroix.com/2016/10/16/journey-to-the-stack/">Here&rsquo;s</a> an in depth explanation and a shorter post can be found <a href="https://learn1.open.ac.uk/mod/oublog/viewpost.php?post=162710">here</a>.</p>
-
-<p></knowledge-database/images/call-stack.png >
+</li>
+</ul>
+<p>A simple hardware implementation is achieved via a <em>stack pointer</em> that always points to the top of the stack (the topmost element). <a href="http://cryptroix.com/2016/10/16/journey-to-the-stack/">Here's</a> an in depth explanation and a shorter post can be found <a href="https://learn1.open.ac.uk/mod/oublog/viewpost.php?post=162710">here</a>.</p>
+<p>&lt;/knowledge-database/images/call-stack.png &gt;
 Cite from the second link:</p>
-
 <blockquote>
 <p>When a call is made one method of passing arguments to a function is to push the data onto the stack along with the address of the program statement execution must return to when the function has completed its work. This stack is referred to as the <strong>call stack</strong> or sometimes the machine stack. A specific CPU register, the <strong>stack pointer (SP)</strong>, may be provided to manage it. In this case a call function instruction says: push the return onto the stack and jump to the function address, making that part of the pushing automatic.</p>
-
 <p>In the majority of cases the call stack grows downwards in memory giving local variables a positive offset from the SP. The SP points to the last element put on the stack not the next free space so it is decremented down before data is pushed on. It is usual to discuss the depth of function calls meaning the number of calls made before a return starts the climb back up to calls higher in the calling hierarchy. An upside down stack fits well with this view:</p>
-
 <p>When called the first action function code takes is to push the old value of another CPU register, the <strong>frame pointer (FP)</strong>, onto the stack. The current value of the SP is then stored in the FP allowing modification of the SP to make space on the stack for any additional local variables the function has.</p>
-
 <p>On a return from a function the value of the SP is restored from the FP and the FP gets its old value back, popped off the stack. Lastly, a return instruction in the machine code tells the CPU to send execution back to the instruction address stored on the stack by the call and currently referenced by the SP. Thus the FP and the SP work together to walk up and down the stack.</p>
-
 <p>The blocks of memory on the call stack for each individual function call are <strong>stack frames</strong>.  Function local variables that cannot be held in registers because they are too big to fit or because those registers may be used by the callee when that function calls another function are put on the stack. Large return items can be passed back on the stack but more usually the return or a reference to it is passed in a CPU register. Thus the availability of this storage space makes nested function calls possible.</p>
 </blockquote>
-
 <h4 id="recursion-vs-iteration">Recursion vs Iteration</h4>
-
 <table>
 <thead>
 <tr>
@@ -93,172 +80,131 @@ Cite from the second link:</p>
 <th>Iteration</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>recursive calls of a subroutine(Unterprogramm)</td>
 <td>execution of a set of instructions of an iteration step</td>
 </tr>
-
 <tr>
 <td>parameters of the subroutine are modified and tested for a break condition</td>
 <td>iterations usually limited via counter variable or a set</td>
 </tr>
-
 <tr>
 <td>processed elements are stored implicitly on the stack (subroutine params)</td>
 <td>processed elements elements have to be stored explicitly</td>
 </tr>
-
 <tr>
 <td>access to elements is limited to current component in the active subroutine</td>
 <td>access to elements is arbitrary</td>
 </tr>
-
 <tr>
 <td>corresponds to the function model</td>
 <td>corresponds to the state model</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="design-of-recursive-algorithms">Design of Recursive Algorithms</h3>
-
 <p>There are at least two cases which have to be handled in every recursive algorithm</p>
-
 <ul>
 <li>exit/break from the recursion</li>
 <li>recursive call</li>
 </ul>
-
 <p>In general there are two approache to craft recursive algorithms:</p>
-
 <ul>
 <li><strong>abstraction</strong>
-
 <ul>
-<li>drafting of a specific solution to a specific problem instances &rarr; draft more solutions and make use of the ones already existing &rarr; recognize similarities &rarr; encapsulate/summarize those to a universal solution (<strong>abstraction</strong>)</li>
-</ul></li>
+<li>drafting of a specific solution to a specific problem instances → draft more solutions and make use of the ones already existing → recognize similarities → encapsulate/summarize those to a universal solution (<strong>abstraction</strong>)</li>
+</ul>
+</li>
 <li><strong>leap of faith</strong>
-
 <ul>
 <li>assumption that the function/procedure is already working and use that for a smaller subproblem</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="fibonacci-numbers">Fibonacci Numbers</h4>
-
 <p>We already got to know the Fibonacci Numbers previously:</p>
-
-<pre><code class="language-C">// Computes the n-th fibonacci number
-long fib(long n) {
-  if (n == 0) return 0;
-  if (n &lt; 3) return 1;
-  return (fib(n-1) + fib(n-2));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Computes the n-th fibonacci number
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> <span style="color:#a6e22e">fib</span>(<span style="color:#66d9ef">long</span> n) {
+  <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">return</span> (fib(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>));
 }
-</code></pre>
-
-<p><strong>Regularity</strong> (Regelmäßigkeit):<br />
+</code></pre></div><p><strong>Regularity</strong> (Regelmäßigkeit):<!-- raw HTML omitted -->
 We can recognize that the next element in the fibonacci sequence is the sum of the previous both fibonacci numbers. So \(a_{n+2} = a_n  + a_{n+1}\).</p>
-
-<p><strong>Defaults</strong> (Standardfolge):<br />
+<p><strong>Defaults</strong> (Standardfolge):<!-- raw HTML omitted -->
 We set a_0 = 0 and a_1 = 1 and get the following sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, &hellip;</p>
-
 <p>However the fibonacci sequence is an example where recursion should not be used since the call stack will get pretty large and it is totally solvable with iterations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Computes the n-th fibonacci number
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> <span style="color:#a6e22e">fib</span>(<span style="color:#66d9ef">long</span> n) {
+  <span style="color:#66d9ef">long</span><span style="color:#f92672">*</span> fnum <span style="color:#f92672">=</span> malloc((n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">long</span>));
+  <span style="color:#66d9ef">long</span> res;
 
-<pre><code class="language-C">// Computes the n-th fibonacci number
-long fib(long n) {
-  long* fnum = malloc((n+1) * sizeof(long));
-  long res;
+  <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 
-  if (n == 0) return 0;
+  fnum[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  fnum[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
-  fnum[0] = 0;
-  fnum[1] = 1;
-
-  for (int i = 2; i &lt;= n; ++i) {
-    fnum[i] = fnum[i-1] + fnum[i-2];
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> n; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    fnum[i] <span style="color:#f92672">=</span> fnum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> fnum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
   }
 
-  res = fnum[n];
+  res <span style="color:#f92672">=</span> fnum[n];
 
   free(fnum);
-  return res;
+  <span style="color:#66d9ef">return</span> res;
 }
-</code></pre>
-
-<p>The complexity of this solution with a loop is \(\Theta(n)\), while the complexity of the solution with recursion was \(\Theta(c^n)\) with c &gt; 1.</p>
-
+</code></pre></div><p>The complexity of this solution with a loop is \(\Theta(n)\), while the complexity of the solution with recursion was \(\Theta(c^n)\) with c &gt; 1.</p>
 <h4 id="towers-of-hanoi">Towers of Hanoi</h4>
-
-<p>Now we&rsquo;ll turn our attention to a problem which can be well represented with recursion to demonstrate the principle of solutions. The <em>tower of hanoi</em> is a mathematical game/puzzle consisting of three rods and a number of differently sized disk on one rod which can slide onto any rod under the following rules:</p>
-
+<p>Now we'll turn our attention to a problem which can be well represented with recursion to demonstrate the principle of solutions. The <em>tower of hanoi</em> is a mathematical game/puzzle consisting of three rods and a number of differently sized disk on one rod which can slide onto any rod under the following rules:</p>
 <ul>
 <li>only one disk can be moved at a time</li>
 <li>each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or an empty rod</li>
 <li>no larger disk may be placed on top of a smaller disk</li>
 </ul>
-
 <p>This is the pseudo code to solve the towers of hanoi:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">require: tower with height n at place A;
+ensure: tower at place C <span style="color:#f92672">^</span> obey rules;
 
-<pre><code class="language-C">require: tower with height n at place A;
-ensure: tower at place C ^ obey rules;
-
-procedure MOVE-TOWER(height, goal)
-  if height == 0 then
-    return
-  end if
-  MOVE-TOWER(height-1, aux_place) // auxiliary place/Hilfsplatz
-  move last_ring to goal
-  MOVE-TOWER(height-1, goal)
+procedure MOVE<span style="color:#f92672">-</span>TOWER(height, goal)
+  <span style="color:#66d9ef">if</span> height <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> then
+    <span style="color:#66d9ef">return</span>
+  end <span style="color:#66d9ef">if</span>
+  MOVE<span style="color:#f92672">-</span>TOWER(height<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, aux_place) <span style="color:#75715e">// auxiliary place/Hilfsplatz
+</span><span style="color:#75715e"></span>  move last_ring to goal
+  MOVE<span style="color:#f92672">-</span>TOWER(height<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, goal)
 end procedure
-</code></pre>
-
-<ol>
+</code></pre></div><ol>
 <li>Move part of the tower with height n-1 from the start rod to the auxiliary rod (via the goal rod)</li>
 <li>Move the last/bottom disk from the start rod to the goal rod</li>
 <li>Move part of the tower with height n-1 from the auxiliary rod to the goal road (via the start rod)</li>
 </ol>
-
-<p>&rarr; The minimal number of moves required to solve a Tower of Hanoi puzzle is 2^n - 1, where n is the number of disks.</p>
-
+<p>→ The minimal number of moves required to solve a Tower of Hanoi puzzle is 2^n - 1, where n is the number of disks.</p>
 <h3 id="backtracking">Backtracking</h3>
-
-<p>To illustrate an use case for <em>backtracking</em> we&rsquo;ll turn our attention to the <em>Eight Queens Puzzle</em> (Damenproblem), which is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n queens problem of placing n non-attacking queens on an n×n chessboard, for which solutions exist for all natural numbers n with the exception of n=2 and n=3.</p>
-
+<p>To illustrate an use case for <em>backtracking</em> we'll turn our attention to the <em>Eight Queens Puzzle</em> (Damenproblem), which is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n queens problem of placing n non-attacking queens on an n×n chessboard, for which solutions exist for all natural numbers n with the exception of n=2 and n=3.</p>
 <p>A general algorithmic approach to get a solution could look like this:</p>
-
 <ol>
 <li>Put a queen in the the first row and first column</li>
 <li>Put another quuen in the next row and in the first column</li>
-<li>Move the the second queen right until she&rsquo;s in an allowed position (not possible to be attacked)</li>
+<li>Move the the second queen right until she's in an allowed position (not possible to be attacked)</li>
 <li>Repeat from Step 2 until:
-
 <ul>
-<li>all 8 Queens are placed &rarr; Solution</li>
-<li>no valid field can be found in the row for a queen &rarr; if this is the case then the <em>previous</em> queen is treated as invalid as well so that that one is moved right as well (when there is no valid position for the previous queen, then the queen previous to the previous one will be moved in search for a new valid place further to the right and so on&hellip;)</li>
-</ul></li>
+<li>all 8 Queens are placed → Solution</li>
+<li>no valid field can be found in the row for a queen → if this is the case then the <em>previous</em> queen is treated as invalid as well so that that one is moved right as well (when there is no valid position for the previous queen, then the queen previous to the previous one will be moved in search for a new valid place further to the right and so on&hellip;)</li>
+</ul>
+</li>
 </ol>
-
 <p>This approach where a partial solution is discarded to continue with a previous partial solution is called <strong>backtracking</strong>.</p>
-
 <p>From wikipedia:</p>
-
 <blockquote>
 <p>Backtracking is a general algorithm for finding all (or some) solutions to some computational problems, notably constraint satisfaction problems, that incrementally builds candidates to the solutions, and abandons a candidate (&ldquo;backtracks&rdquo;) as soon as it determines that the candidate cannot possibly be completed to a valid solution.</p>
-
 <p>The classic textbook example of the use of backtracking is the eight queens puzzle, that asks for all arrangements of eight chess queens on a standard chessboard so that no queen attacks any other. In the common backtracking approach, the partial candidates are arrangements of k queens in the first k rows of the board, all in different rows and columns. Any partial solution that contains two mutually attacking queens can be abandoned.</p>
-
 <p>Backtracking can be applied only for problems which admit the concept of a &ldquo;partial candidate solution&rdquo; and a relatively quick test of whether it can possibly be completed to a valid solution. It is useless, for example, for locating a given value in an unordered table. When it is applicable, however, backtracking is often much faster than brute force enumeration of all complete candidates, since it can eliminate a large number of candidates with a single test.</p>
 </blockquote>
-
 <p>If the backtracking has to be done until before the first queen then there is no solution. Backtracking is often used together with recursion but is however an indepent principle.</p>
-
-<p></knowledge-database/images/backtracking.png >
-</knowledge-database/images/backtracking-2.png ></p>
-
-<p>The above solution is not the only one. If there&rsquo;s a need for more (or all) solutions, they have to be saved and then backtracking needs to be triggered.</p>
-
+<p>&lt;/knowledge-database/images/backtracking.png &gt;
+&lt;/knowledge-database/images/backtracking-2.png &gt;</p>
+<p>The above solution is not the only one. If there's a need for more (or all) solutions, they have to be saved and then backtracking needs to be triggered.</p>
 <p><strong>Look at chapter 9 slides 31f. for a pseudo code and C implementation of the 8x8 queens problem</strong></p>
 
     </div>

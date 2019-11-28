@@ -3,7 +3,7 @@
   <head>
     <title>Databases &amp; Webtechnology - Lecture 02 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,222 +51,175 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/db-web/">db-web</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="client-webtechnology">Client Webtechnology</h2>
-
+      <h2 id="client-webtechnology">Client Webtechnology</h2>
 <p>In the last lecture we looked at different kinds of server-side webtechnology. In this lecture we turn our attention to client-side webtechnology.</p>
-
 <h2 id="1-dot-persistent-code">1. Persistent Code</h2>
-
 <h3 id="1-dot-1-external-applications-tools--hilfsprogramme">1.1 External applications / Tools (Hilfsprogramme)</h3>
-
-<p>External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&rsquo;s not HTML. These applications run seperately from the browser and have their own functionality. Therefore they can also be executed without a browser. Examples of external applications would be Acrobat Reader, a Mail Client or a Torrent Downloader.<br />
+<p>External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that's not HTML. These applications run seperately from the browser and have their own functionality. Therefore they can also be executed without a browser. Examples of external applications would be Acrobat Reader, a Mail Client or a Torrent Downloader.<!-- raw HTML omitted -->
 Basically the browser recieves some content and then has two options if the data cannot by displayed by the browser itself:</p>
-
 <ul>
 <li>start the application that is registered for the type which is noted in the MIME header of the file and let it process the data (eg display of PDFs back when browsers couldnt do that)</li>
 <li>the browser offers to download the data in form of a file</li>
 </ul>
-
 <p><strong>Pro:</strong></p>
-
 <ul>
 <li>universal
-
 <ul>
 <li>almost all data is processable in some way because external applications offer this functionality</li>
-</ul></li>
+</ul>
+</li>
 <li>security
-
 <ul>
 <li>no interference with the browser or server, because external programs/processes are active</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Contra:</strong></p>
-
 <ul>
 <li>platform dependence
-
 <ul>
 <li>applications need to be installed and executable from/on the client side</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="1-dot-2-plugins">1.2 Plugins</h3>
-
-<p>Plugins facilitate clientside support to process/display data which is otherwise not supported by the client itself. These plugins run (similar to BGI on serverside) in the same process space as the client (-&gt; the browser).<br />
+<p>Plugins facilitate clientside support to process/display data which is otherwise not supported by the client itself. These plugins run (similar to BGI on serverside) in the same process space as the client (-&gt; the browser).<!-- raw HTML omitted -->
 Plugins are separate programs that are loaded by the browser (client) and run in the same process, to process data that is not supported natively. These plugins run in the browser and are therefore not executable without the browser.</p>
-
 <ul>
 <li>client recieves data for which MIME type a plugin is registered</li>
 <li>client loads plugin that is registered for this MIME type</li>
 <li>plugin processes the data</li>
 </ul>
-
 <p><strong>Pro:</strong></p>
-
 <ul>
 <li>functionality
-
 <ul>
 <li>it is possible to process varying kinds of data</li>
-</ul></li>
+</ul>
+</li>
 <li>convenience
-
 <ul>
 <li>plugins are installed once and require no care from then on (usually)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Contra:</strong></p>
-
 <ul>
 <li>platform dependence
-
 <ul>
 <li>plugins depend on the computer, OS and client (browser)</li>
-</ul></li>
+</ul>
+</li>
 <li>security
-
 <ul>
 <li>plugins run in the same process as the client/browser (analogous to BGI)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="2-dot-temporary-code">2. Temporary Code</h2>
-
 <h3 id="2-dot-1-scripts--interpreted-code">2.1 Scripts (interpreted code)</h3>
-
 <p>Scripts allow the execution of application logic from the internet client (browser) if the browser has an interpreter for that scripting language. The code gets for example embedded in the HTML document and the browser interprets and executes the instructions. Thus it is possible to integrate complex presentation logic into an HTML document.</p>
-
 <ul>
-<li><p>eg <code>&lt;script&gt;</code> tag for JavaScript</p>
-
-<pre><code class="language-html">&lt;script language=&quot;JavaScript&quot;&gt;
-  function makeCookie() {
-    document.cookie = Date()
+<li>
+<p>eg <code>&lt;script&gt;</code> tag for JavaScript</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">language</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;JavaScript&#34;</span>&gt;
+  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeCookie</span>() {
+    document.<span style="color:#a6e22e">cookie</span> <span style="color:#f92672">=</span> Date()
   }
-&lt;/script&gt;
+&lt;/<span style="color:#f92672">script</span>&gt;
 ...
-&lt;body onLoad=&quot;makeCookie()&quot;
-</code></pre></li>
-
-<li><p>or <code>&lt;applet&gt;</code> for Java classes</p>
-
-<pre><code class="language-html">&lt;applet code = &quot;TicTacToe.class&quot;&gt;
-&lt;/applet&gt;
-</code></pre></li>
+&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">onLoad</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;makeCookie()&#34;</span>
+</code></pre></div></li>
+<li>
+<p>or <code>&lt;applet&gt;</code> for Java classes</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">applet</span> <span style="color:#a6e22e">code </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;TicTacToe.class&#34;</span>&gt;
+&lt;/<span style="color:#f92672">applet</span>&gt;
+</code></pre></div></li>
 </ul>
-
 <p><strong>Pro:</strong></p>
-
 <ul>
 <li>functionality
-
 <ul>
 <li>the browser functionalilty and capabilities can be extended a lot (eg setting Cookies, verify input etc)</li>
-</ul></li>
+</ul>
+</li>
 <li>platform independence
-
 <ul>
 <li>no machine code (-&gt; ASCII)</li>
-</ul></li>
+</ul>
+</li>
 <li>simplicity
-
 <ul>
 <li>easy and fast to write and (re)use with different apps</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Contra:</strong></p>
-
 <ul>
 <li>version and language dependence
-
 <ul>
 <li>browsers may require a certain version of a language interpreter and respectively have an interpreter included at all (eg JavaVM for execution of applets)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="2-dot-2-machine-code">2.2 Machine code</h3>
-
-<p>It is possible to execute machine code on the client side when there&rsquo;s an appropiate environment (temporarly but also permanently possible). With a special <code>&lt;object&gt;</code> tag the machine code object can be integrated with the appropiate environment into the clientside process. In the world of Microsoft this is usually realized via ActiveX by packaging machine code objects into activeX containers which are then loaded into Internet Explorer. As a diference to client scripts, the executable objects kind of bring their execution environment (Ausführungsumgebung) with them.</p>
-
+<p>It is possible to execute machine code on the client side when there's an appropiate environment (temporarly but also permanently possible). With a special <code>&lt;object&gt;</code> tag the machine code object can be integrated with the appropiate environment into the clientside process. In the world of Microsoft this is usually realized via ActiveX by packaging machine code objects into activeX containers which are then loaded into Internet Explorer. As a diference to client scripts, the executable objects kind of bring their execution environment (Ausführungsumgebung) with them.</p>
 <ul>
 <li>client scans recieved data for <code>&lt;object&gt;</code> tags</li>
 <li>the code is loaded into the clients process and executed</li>
 </ul>
-
 <p><strong>Pro:</strong></p>
-
 <ul>
 <li>functionality
-
 <ul>
 <li>the browser functionality can be largely extended</li>
-</ul></li>
+</ul>
+</li>
 <li>complexity
-
 <ul>
 <li>a comprehensive system concept together with the MS component model</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Contra:</strong></p>
-
 <ul>
 <li>vendor dependence
-
 <ul>
 <li>browsers have to be ActiveX compatible wich is Microsoft technology</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="verdict-on-temporary-code">Verdict on temporary code</h4>
-
 <p>Scripts:</p>
-
 <ul>
 <li>suitable for eg reoccuring validations</li>
 <li>platform independant but clients need appropiate interpreter</li>
 <li>security is not always guaranteed despite the sandbox principle</li>
 </ul>
-
 <p>Machine code:</p>
-
 <ul>
 <li>can extend functionality just like scripts</li>
 <li>more complex because of the execution environment</li>
 <li>but more flexible because of the container principle (component model) where the clients only need a &ldquo;docking mechanism&rdquo; for the containers (COM) or alternatively plugin capabilities to include execution environments and dont require a language interpreter</li>
 </ul>
-
 <h3 id="3-dot-summary-of-clientside-webtechnologies">3. Summary of clientside webtechnologies</h3>
-
 <h4 id="3-dot-1-programming-effort">3.1 Programming Effort</h4>
-
 <ul>
 <li>no/low effort for plug-ins because these usually get bought (very high tho when written)</li>
 <li>medium for scripts (scope of application is usually not that large)</li>
 <li>very high for applets and machine code (complex technique and usually used for more complex application)</li>
 </ul>
-
 <h4 id="3-dot-2-os-dependence">3.2 OS Dependence</h4>
-
 <ul>
 <li>no for scripts because everything is done by the browser/client (of course browser depends on OS)</li>
-<li>low to mediuem for applets because they&rsquo;re mostly</li>
+<li>low to mediuem for applets because they're mostly</li>
 </ul>
-
-<p>Okay&hellip;sorry I have to interrupt here. I stayed quiet until now but the information on the slides is such Bullshit at some points&hellip; I&rsquo;ll skip the rest of this great &ldquo;summary&rdquo; because I cba anymore to write this shit down :D. Here&rsquo;s another image from the slides<br /></p>
-
+<p>Okay&hellip;sorry I have to interrupt here. I stayed quiet until now but the information on the slides is such Bullshit at some points&hellip; I'll skip the rest of this great &ldquo;summary&rdquo; because I cba anymore to write this shit down :D. Here's another image from the slides<!-- raw HTML omitted --></p>
 <figure>
     <img src="/knowledge-database/images/webtechnik-eignung.png"/> 
 </figure>
 
-
-<p>So since there is no written exam in this course but a practical project, I won&rsquo;t be posting about this course anymore since it is not worth it and the slides are just..no comment :D..</p>
+<p>So since there is no written exam in this course but a practical project, I won't be posting about this course anymore since it is not worth it and the slides are just..no comment :D..</p>
 
     </div>
     <div class="post-footer">

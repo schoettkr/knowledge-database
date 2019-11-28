@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 09 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,154 +47,97 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="complex-types-in-python">Complex Types in Python</h2>
-
+      <h2 id="complex-types-in-python">Complex Types in Python</h2>
 <p>There are built-in types in Python which offer similar functionality to the complex types in C and more.</p>
-
 <h3 id="python-strings">Python Strings</h3>
-
 <p>Strings are character sequences of a fixed length and are to be precise <strong>not</strong> a complex type (why?).
 String literals are enclosed by double or single quotes (and triple quotes to span eg multiple lines; single quotes are most used).</p>
-
-<p>Python strings are &ldquo;immutable&rdquo; which means they cannot be changed after they are created. Since strings can&rsquo;t be changed, we construct <strong>new</strong> strings as we go to represent computed values. So for example the expression <code>'hello' + 'there'</code> takes in the 2 strings <code>'hello'</code> and <code>'there'</code> and builds a new string <code>'hellothere'</code>. The resulting string has a different <code>id()</code> because a new object is created and the others may then be garbage collected.</p>
-
+<p>Python strings are &ldquo;immutable&rdquo; which means they cannot be changed after they are created. Since strings can't be changed, we construct <strong>new</strong> strings as we go to represent computed values. So for example the expression <code>'hello' + 'there'</code> takes in the 2 strings <code>'hello'</code> and <code>'there'</code> and builds a new string <code>'hellothere'</code>. The resulting string has a different <code>id()</code> because a new object is created and the others may then be garbage collected.</p>
 <p>Python string also recognize escape sequences similarly to C for example <code>'\n'</code>  is recognized as a ASCII Linefeed. To prevent parsing of those one may use a <em>raw string</em> by prepending and <code>r</code> or <code>R</code> to the string:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">H</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">i</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">H</span><span style="color:#e6db74">\</span><span style="color:#e6db74">ni</span><span style="color:#e6db74">&#34;</span>)
 
-<pre><code class="language-python">print(&quot;H\ni&quot;)
-print(r&quot;H\ni&quot;)
-
-a = &quot;Hello&quot;
-print(&quot;Id of &quot; + a + &quot; &quot; + str((id(a))))
-a += &quot; World&quot;
-print(&quot;Id of &quot; + a + &quot; &quot; + str((id(a))))
-</code></pre>
-
-<pre><code class="language-text">H
+a <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Id of </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> a <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> str((id(a))))
+a <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> World</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Id of </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> a <span style="color:#f92672">+</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> str((id(a))))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">H
 i
 H\ni
 Id of Hello 139807144629000
 Id of Hello World 139807144032560
-</code></pre>
-
-<p>Individual characters of a string can be accessed via <code>[]</code> bracket notation.</p>
-
+</code></pre></div><p>Individual characters of a string can be accessed via <code>[]</code> bracket notation.</p>
 <h3 id="python-lists">Python Lists</h3>
-
 <p>Python has a great built-in list type named &ldquo;list&rdquo;. List literals are written within square brackets <code>[ ]</code>. Lists work similarly to strings - use the <code>len()</code> function and square brackets [ ] to access data, with the first element at index <code>0</code>. To access elements from the back use negative indices.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">colors <span style="color:#f92672">=</span> [<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">red</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blue</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">green</span><span style="color:#e6db74">&#39;</span>]
+<span style="color:#66d9ef">print</span>(id(colors))
+<span style="color:#66d9ef">print</span>(id(colors[<span style="color:#ae81ff">0</span>]))
 
-<pre><code class="language-python">colors = ['red', 'blue', 'green']
-print(id(colors))
-print(id(colors[0]))
-
-test = 'red'
-print(id(test))
+test <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">red</span><span style="color:#e6db74">&#39;</span>
+<span style="color:#66d9ef">print</span>(id(test))
 
 
-print(id(colors[1]))
-print(id('blue'))
-</code></pre>
-
-<p>Assignment with an <code>=</code> on lists does not make a copy. Instead, assignment makes the two variables point to the one list in memory.</p>
-
+<span style="color:#66d9ef">print</span>(id(colors[<span style="color:#ae81ff">1</span>]))
+<span style="color:#66d9ef">print</span>(id(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blue</span><span style="color:#e6db74">&#39;</span>))
+</code></pre></div><p>Assignment with an <code>=</code> on lists does not make a copy. Instead, assignment makes the two variables point to the one list in memory.</p>
 <p>The &ldquo;empty list&rdquo; is just an empty pair of brackets <code>[ ]</code>. The <code>+</code> works to append two lists, so <code>[1, 2] + [3, 4]</code> yields <code>[1, 2, 3, 4]</code> (this is just like <code>+</code> with strings).</p>
-
 <p>Lists in Python can (in contrast to arrays in C) hold values of different types.</p>
-
 <p>Python lists are also <em>mutable</em>. In fact there are a lot of <em>methods</em> to modify lists eg <code>append</code>, <code>insert</code>, <code>remove</code>, <code>pop</code>.</p>
-
 <h3 id="python-tuples">Python Tuples</h3>
-
 <p>Tuples in Python are similar to lists with the difference that they are <strong>immutable</strong>.</p>
-
 <p>A tuple is a sequence of immutable Python objects. Tuples are sequences, just like lists. The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses, whereas lists use square brackets.</p>
-
 <p>Creating a tuple is as simple as putting different comma-separated values. Optionally you can put these comma-separated values between parentheses also. For example:</p>
-
-<pre><code class="language-python">tup1 = ('physics', 'chemistry', 1997, 2000)
-tup2 = (1, 2, 3, 4, 5 )
-tup3 = &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;
-</code></pre>
-
-<p>The empty tuple is written as two parens containing nothing <code>tup1 = ()</code>. To write a tuple containing a single value you have to include a comma, even though there is only one value <code>(77,)</code></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tup1 <span style="color:#f92672">=</span> (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">physics</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">chemistry</span><span style="color:#e6db74">&#39;</span>, <span style="color:#ae81ff">1997</span>, <span style="color:#ae81ff">2000</span>)
+tup2 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> )
+tup3 <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">d</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>The empty tuple is written as two parens containing nothing <code>tup1 = ()</code>. To write a tuple containing a single value you have to include a comma, even though there is only one value <code>(77,)</code></p>
 <p>Like string indices, tuple indices start at 0, and they can be sliced, concatenated, and so on.</p>
-
 <p>However if tuples are eg concatenated via <code>+</code> a new tuple is created:</p>
-
-<pre><code class="language-python">T = (1,2)
-print(&quot;tuple: &quot;, T, &quot;with id: &quot;, id(T))
-T += (3,4)
-print(&quot;tuple: &quot;, T, &quot;with id: &quot;, id(T))
-</code></pre>
-
-<pre><code class="language-text">tuple:  (1, 2) with id:  140023051332616
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">T <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">tuple: </span><span style="color:#e6db74">&#34;</span>, T, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">with id: </span><span style="color:#e6db74">&#34;</span>, id(T))
+T <span style="color:#f92672">+</span><span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">tuple: </span><span style="color:#e6db74">&#34;</span>, T, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">with id: </span><span style="color:#e6db74">&#34;</span>, id(T))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">tuple:  (1, 2) with id:  140023051332616
 tuple:  (1, 2, 3, 4) with id:  140023051304856
-</code></pre>
-
-<h3 id="python-sets">Python Sets</h3>
-
+</code></pre></div><h3 id="python-sets">Python Sets</h3>
 <p>Since Python 2.6 there are set types (Mengentypen).
 A Set in Python is a data structure equivalent to sets in mathematics. It may consist of various elements; the order of elements in a set is undefined. You can add and delete elements of a set, you can iterate the elements of the set, you can perform standard operations on sets (union, intersection, difference). Besides that, you can check if an element belongs to a set.</p>
-
 <p>Unlike arrays, where the elements are stored as ordered list, the order of elements in a set is undefined (moreover, the set elements are usually not stored in order of appearance in the set; this allows checking if an element belongs to a set faster than just going through all the elements of the set).</p>
-
 <p>Any immutable data type can be an element of a set: a number, a string, a tuple. Mutable (changeable) data types cannot be elements of the set. In particular, lists cannot be an element of a set (but tuple can), and another set cannot be an element of a set. The requirement of immutability follows from the way how do computers represent sets in memory.</p>
-
-<p>Sets unlike lists or tuples can&rsquo;t have multiple occurrences of the same element &rarr; <code>set('a','b','c','a','b','c')</code> &rarr; <code>{'a','b','c'}</code> no values are duplicated.</p>
-
+<p>Sets unlike lists or tuples can't have multiple occurrences of the same element → <code>set('a','b','c','a','b','c')</code> → <code>{'a','b','c'}</code> no values are duplicated.</p>
 <p>To create a set the <code>set()</code> is called which constructs a Python set from the given iterable and returns it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># empty set</span>
+<span style="color:#66d9ef">print</span>(set())
 
-<pre><code class="language-python"># empty set
-print(set())
+<span style="color:#75715e"># from string</span>
+<span style="color:#66d9ef">print</span>(set(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Python</span><span style="color:#e6db74">&#39;</span>))
 
-# from string
-print(set('Python'))
+<span style="color:#75715e"># from tuple</span>
+<span style="color:#66d9ef">print</span>(set((<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">e</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">i</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">o</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;</span>)))
 
-# from tuple
-print(set(('a', 'e', 'i', 'o', 'u')))
+<span style="color:#75715e"># from list</span>
+<span style="color:#66d9ef">print</span>(set([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">e</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">i</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">o</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;</span>]))
 
-# from list
-print(set(['a', 'e', 'i', 'o', 'u']))
-
-# from range
-print(set(range(5)))
-</code></pre>
-
-<pre><code class="language-text">set()
-{'y', 't', 'n', 'P', 'o', 'h'}
-{'e', 'a', 'u', 'i', 'o'}
-{'e', 'a', 'u', 'i', 'o'}
+<span style="color:#75715e"># from range</span>
+<span style="color:#66d9ef">print</span>(set(range(<span style="color:#ae81ff">5</span>)))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">set()
+{&#39;y&#39;, &#39;t&#39;, &#39;n&#39;, &#39;P&#39;, &#39;o&#39;, &#39;h&#39;}
+{&#39;e&#39;, &#39;a&#39;, &#39;u&#39;, &#39;i&#39;, &#39;o&#39;}
+{&#39;e&#39;, &#39;a&#39;, &#39;u&#39;, &#39;i&#39;, &#39;o&#39;}
 {0, 1, 2, 3, 4}
-</code></pre>
+</code></pre></div><p>Sets are implemented in a way, which doesn't allow mutable objects. The following example demonstrates that we cannot include, for example, lists as elements:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cities <span style="color:#f92672">=</span> set(((<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Python</span><span style="color:#e6db74">&#34;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Perl</span><span style="color:#e6db74">&#34;</span>), (<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Paris</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Berlin</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">London</span><span style="color:#e6db74">&#34;</span>))) <span style="color:#75715e"># valid set of tuples</span>
 
-<p>Sets are implemented in a way, which doesn&rsquo;t allow mutable objects. The following example demonstrates that we cannot include, for example, lists as elements:</p>
-
-<pre><code class="language-python">cities = set(((&quot;Python&quot;,&quot;Perl&quot;), (&quot;Paris&quot;, &quot;Berlin&quot;, &quot;London&quot;))) # valid set of tuples
-
-cities = set(([&quot;Python&quot;,&quot;Perl&quot;], [&quot;Paris&quot;, &quot;Berlin&quot;, &quot;London&quot;])) # -&gt; TypeError: unhashable type: 'list'
-</code></pre>
-
-<p>Although sets can&rsquo;t contain mutable objects, sets are mutable themselves. Elements may for example added via the <code>add</code> method (<code>cities.add(&quot;Tokyo&quot;)</code>).</p>
-
+cities <span style="color:#f92672">=</span> set(([<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Python</span><span style="color:#e6db74">&#34;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Perl</span><span style="color:#e6db74">&#34;</span>], [<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Paris</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Berlin</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">London</span><span style="color:#e6db74">&#34;</span>])) <span style="color:#75715e"># -&gt; TypeError: unhashable type: &#39;list&#39;</span>
+</code></pre></div><p>Although sets can't contain mutable objects, sets are mutable themselves. Elements may for example added via the <code>add</code> method (<code>cities.add(&quot;Tokyo&quot;)</code>).</p>
 <p>Frozensets are like sets except that they cannot be changed so they are immutable:</p>
-
-<pre><code class="language-python">cities = frozenset([&quot;Frankfurt&quot;, &quot;Basel&quot;,&quot;Freiburg&quot;])
-cities.add(&quot;Strasbourg&quot;) # AttributeError: 'frozenset' object  has no attribute 'add'
-</code></pre>
-
-<p>There&rsquo;s also a simplified shorter notation to construct sets:</p>
-
-<pre><code class="language-python">cities = {&quot;London&quot;, &quot;Paris&quot;, &quot;Madrid&quot;}
-print(type(cities))
-</code></pre>
-
-<pre><code class="language-text">&lt;class 'set'&gt;
-</code></pre>
-
-<p>The known operations from set theory are also available via Python Sets (following part in German xD):</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cities <span style="color:#f92672">=</span> frozenset([<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Frankfurt</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Basel</span><span style="color:#e6db74">&#34;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Freiburg</span><span style="color:#e6db74">&#34;</span>])
+cities<span style="color:#f92672">.</span>add(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Strasbourg</span><span style="color:#e6db74">&#34;</span>) <span style="color:#75715e"># AttributeError: &#39;frozenset&#39; object  has no attribute &#39;add&#39;</span>
+</code></pre></div><p>There's also a simplified shorter notation to construct sets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cities <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">London</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Paris</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Madrid</span><span style="color:#e6db74">&#34;</span>}
+<span style="color:#66d9ef">print</span>(type(cities))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;class &#39;set&#39;&gt;
+</code></pre></div><p>The known operations from set theory are also available via Python Sets (following part in German xD):</p>
 <ul>
 <li><code>len(s)</code> gibt Mächtigkeit der Menge <code>s</code></li>
 <li><code>s1 | s2</code> gibt Vereinigungsmenge von <code>s1</code> und <code>s1</code></li>
@@ -202,124 +145,96 @@ print(type(cities))
 <li><code>s1 - s2</code> gibt Differenzmenge von <code>s1</code> und <code>s1</code></li>
 <li><code>s1 ^ s2</code> gibt symmetrische Differenzmenge von <code>s1</code> und <code>s1</code></li>
 </ul>
-
 <h3 id="python-dictionaries">Python Dictionaries</h3>
-
 <p>A dictionary is a collection which is unordered, changeable (mutable) and indexed. In Python dictionaries are written with curly brackets, and they have keys and values.</p>
-
-<pre><code class="language-python">thisdict =	{
-  &quot;key&quot;: &quot;value&quot;,
-  &quot;brand&quot;: &quot;Ford&quot;,
-  &quot;model&quot;: &quot;Mustang&quot;,
-  &quot;year&quot;: 1964
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">thisdict <span style="color:#f92672">=</span>	{
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">key</span><span style="color:#e6db74">&#34;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">value</span><span style="color:#e6db74">&#34;</span>,
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">brand</span><span style="color:#e6db74">&#34;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Ford</span><span style="color:#e6db74">&#34;</span>,
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">model</span><span style="color:#e6db74">&#34;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Mustang</span><span style="color:#e6db74">&#34;</span>,
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">year</span><span style="color:#e6db74">&#34;</span>: <span style="color:#ae81ff">1964</span>
 }
-print(thisdict)
-</code></pre>
-
-<pre><code class="language-text">{'key': 'value', 'brand': 'Ford', 'model': 'Mustang', 'year': 1964}
-</code></pre>
-
-<p>You can access the items of a dictionary by referring to its key name, inside square brackets:</p>
-
-<pre><code class="language-python">thisdict =	{
-  &quot;key&quot;: &quot;value&quot;,
-  &quot;brand&quot;: &quot;Ford&quot;,
-  &quot;model&quot;: &quot;Mustang&quot;,
-  &quot;year&quot;: 1964
+<span style="color:#66d9ef">print</span>(thisdict)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{&#39;key&#39;: &#39;value&#39;, &#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 1964}
+</code></pre></div><p>You can access the items of a dictionary by referring to its key name, inside square brackets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">thisdict <span style="color:#f92672">=</span>	{
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">key</span><span style="color:#e6db74">&#34;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">value</span><span style="color:#e6db74">&#34;</span>,
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">brand</span><span style="color:#e6db74">&#34;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Ford</span><span style="color:#e6db74">&#34;</span>,
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">model</span><span style="color:#e6db74">&#34;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Mustang</span><span style="color:#e6db74">&#34;</span>,
+  <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">year</span><span style="color:#e6db74">&#34;</span>: <span style="color:#ae81ff">1964</span>
 }
-print(thisdict[&quot;key&quot;])
-print(thisdict[&quot;model&quot;])
-print(thisdict[&quot;year&quot;])
-</code></pre>
-
-<pre><code class="language-text">value
+<span style="color:#66d9ef">print</span>(thisdict[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">key</span><span style="color:#e6db74">&#34;</span>])
+<span style="color:#66d9ef">print</span>(thisdict[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">model</span><span style="color:#e6db74">&#34;</span>])
+<span style="color:#66d9ef">print</span>(thisdict[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">year</span><span style="color:#e6db74">&#34;</span>])
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">value
 Mustang
 1964
-</code></pre>
-
-<p>More on dictionaries and how to work with them / their methods <a href="https://www.w3schools.com/python/python%5Fdictionaries.asp">here</a></p>
-
+</code></pre></div><p>More on dictionaries and how to work with them / their methods <a href="https://www.w3schools.com/python/python%5Fdictionaries.asp">here</a></p>
 <h2 id="loops-and-iterations">Loops and Iterations</h2>
-
 <p>In C there are three types of loops:</p>
-
 <ul>
 <li>while loop</li>
 <li>do while loop</li>
 <li>for loop</li>
 </ul>
-
 <p>All of these loops use conditions are able to simulate one another. Which one to use is often a matter of personal taste.</p>
-
 <h3 id="while-loop">While Loop</h3>
-
 <p>The while loop executes as long as a conditions is true resp. until a condition is false. This is the procedure:</p>
-
 <ol>
 <li>Check if condition <code>while (expression/Condition)</code> evaluates to true (nonzero)</li>
 <li>If yes: execute body of the loop and jump to 1.</li>
-
-<li><p>If no: resume program execution after the loop</p>
-
-<pre><code class="language-C">// Program to find factorial of a number
-// For a positive integer n, factorial = 1*2*3...n
-
-#include &lt;stdio.h&gt;
-int main()
-{
-int number;
-long long factorial;
-
-// printf(&quot;Enter an integer: &quot;);
-// scanf(&quot;%d&quot;,&amp;number); // cannot read from stdio in my blog :)
-number = 5;
-
-factorial = 1;
-
-// loop terminates when number is less than or equal to 0
-while (number &gt; 0)
-{
-    factorial *= number;  // factorial = factorial*number;
-    number--;
-
-    // alternatively: factorial *= number--;
-}
-
-printf(&quot;Factorial= %lld&quot;, factorial);
-
-return 0;
-}
-</code></pre>
-
-<pre><code class="language-text">Factorial= 120
-</code></pre></li>
+<li>If no: resume program execution after the loop</li>
 </ol>
-
-<p>Loops can be used to fill fields of an array:</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-enum { arraySize = 12 }; // constant for array size
-
-int main()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Program to find factorial of a number
+</span><span style="color:#75715e"></span><span style="color:#75715e">// For a positive integer n, factorial = 1*2*3...n
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  int arr[arraySize], i = 0;
+    <span style="color:#66d9ef">int</span> number;
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> factorial;
 
-  while (i &lt; arraySize) { // 0,1,2...11
-    arr[i] = i*i;
-    i++;
-  }
+    <span style="color:#75715e">// printf(&#34;Enter an integer: &#34;);
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// scanf(&#34;%d&#34;,&amp;number); // cannot read from stdio in my blog :)
+</span><span style="color:#75715e"></span>    number <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
 
-  i = 0;
-  while (i &lt; arraySize) { // 0,1,2...11
-    printf(&quot;Element %d of arr: %d\n&quot;, i, arr[i]);
-    i++;
-  }
+    factorial <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
-  return 0;
+    <span style="color:#75715e">// loop terminates when number is less than or equal to 0
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+    {
+        factorial <span style="color:#f92672">*</span><span style="color:#f92672">=</span> number;  <span style="color:#75715e">// factorial = factorial*number;
+</span><span style="color:#75715e"></span>        number<span style="color:#f92672">-</span><span style="color:#f92672">-</span>;
+
+        <span style="color:#75715e">// alternatively: factorial *= number--;
+</span><span style="color:#75715e"></span>    }
+
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Factorial= %lld</span><span style="color:#e6db74">&#34;</span>, factorial);
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Factorial= 120
+</code></pre></div><p>Loops can be used to fill fields of an array:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">enum</span> { arraySize <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span> }; <span style="color:#75715e">// constant for array size
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+  <span style="color:#66d9ef">int</span> arr[arraySize], i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-<pre><code class="language-text">Element 0 of arr: 0
+  <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> arraySize) { <span style="color:#75715e">// 0,1,2...11
+</span><span style="color:#75715e"></span>    arr[i] <span style="color:#f92672">=</span> i<span style="color:#f92672">*</span>i;
+    i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+  }
+
+  i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> arraySize) { <span style="color:#75715e">// 0,1,2...11
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Element %d of arr: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i, arr[i]);
+    i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+  }
+
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Element 0 of arr: 0
 Element 1 of arr: 1
 Element 2 of arr: 4
 Element 3 of arr: 9
@@ -331,180 +246,142 @@ Element 8 of arr: 64
 Element 9 of arr: 81
 Element 10 of arr: 100
 Element 11 of arr: 121
-</code></pre>
-
-<h3 id="do-while-loop">Do While Loop</h3>
-
+</code></pre></div><h3 id="do-while-loop">Do While Loop</h3>
 <p>The do while loop is similar to the while loop with the difference being that the do while loop checks the condition <strong>after</strong> it has run, therefore it always runs at least one time.
 The syntax is</p>
-
-<pre><code class="language-C">do {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">do</span> {
   statement(s);
-} while (expression/condition); // notice the semicolon!
-</code></pre>
-
-<h3 id="for-loop">For Loop</h3>
-
+} <span style="color:#66d9ef">while</span> (expression<span style="color:#f92672">/</span>condition); <span style="color:#75715e">// notice the semicolon!
+</span></code></pre></div><h3 id="for-loop">For Loop</h3>
 <p>A for loop is a repetition control structure that allows you to efficiently write a loop that needs to execute a specific number of times.</p>
-
-<pre><code class="language-C">for (init; condition; mutation(eg increment/decrement)) { // &quot;conditon&quot; and &quot;mutation&quot; are expressions (see C standard) but that is how they're used commonly
-  statement(s);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">for</span> (init; condition; mutation(eg increment<span style="color:#f92672">/</span>decrement)) { <span style="color:#75715e">// &#34;conditon&#34; and &#34;mutation&#34; are expressions (see C standard) but that is how they&#39;re used commonly
+</span><span style="color:#75715e"></span>  statement(s);
 }
-</code></pre>
-
-<p>Here is the flow of control in a &lsquo;for&rsquo; loop :</p>
-
+</code></pre></div><p>Here is the flow of control in a &lsquo;for&rsquo; loop :</p>
 <ul>
 <li>the init step is executed first, and only once
-
 <ul>
 <li>this step allows you to declare and initialize any loop control variables</li>
 <li>you are not required to put a statement here, as long as a semicolon appears</li>
-</ul></li>
+</ul>
+</li>
 <li>next, the condition is evaluated
-
 <ul>
 <li>if it is true, the body of the loop is executed</li>
 <li>if it is false, the body of the loop does not execute and the flow of control jumps to the next statement just after the &lsquo;for&rsquo; loop</li>
-</ul></li>
+</ul>
+</li>
 <li>after the body of the &lsquo;for&rsquo; loop executes, the flow of control jumps back up to the mutation statement
-
 <ul>
 <li>this statement allows you to update any loop control variables</li>
 <li>This statement can be left blank, as long as a semicolon appears after the condition</li>
-</ul></li>
+</ul>
+</li>
 <li>the condition is now evaluated again
-
 <ul>
 <li>if it is true, the loop executes and the process repeats itself (body of loop, then mutation step, and then again condition)</li>
 <li>after the condition becomes false, the &lsquo;for&rsquo; loop terminates</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Omitting expressions:</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-
-int main(int argc, char* argv[])
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[])
 {
-  int i = 0;
-  for (; i &lt; argc; i++) // omitting initalization
-    printf(&quot;%d. argument: %s\n&quot;, i+1, argv[i]);
+  <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">for</span> (; i <span style="color:#f92672">&lt;</span> argc; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) <span style="color:#75715e">// omitting initalization
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d. argument: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, argv[i]);
 
 
-  for (;;) // endless loop
-    printf(&quot;The answer is 42\n&quot;);
+  <span style="color:#66d9ef">for</span> (;;) <span style="color:#75715e">// endless loop
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">The answer is 42</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 
 
-  return 0; // never reached
-}
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// never reached
+</span><span style="color:#75715e"></span>}
 
-</code></pre>
-
-<p>Dont forget it is possible to have more complex conditions and multiple assignments!</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-
-int main()
+</code></pre></div><p>Dont forget it is possible to have more complex conditions and multiple assignments!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  for (int i=2, j=1; i&lt;3 || j&lt;5; i++,j++)
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">|</span><span style="color:#f92672">|</span> j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">5</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>,j<span style="color:#f92672">+</span><span style="color:#f92672">+</span>)
     {
-      printf(&quot;%d, %d\n&quot;,i ,j);
+      printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d, %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,i ,j);
     }
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-text">2, 1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">2, 1
 3, 2
 4, 3
 5, 4
-</code></pre>
-
-<h3 id="break-and-continue"><code>break</code> and <code>continue</code></h3>
-
+</code></pre></div><h3 id="break-and-continue"><code>break</code> and <code>continue</code></h3>
 <p>Loops run as long as the loop condition evaluates to true. There are however two ways to modify the control flow from <em>inside the function body</em>:</p>
-
 <ul>
 <li><code>break</code> stops execution of the loop regardless of the loop condition</li>
 <li><code>continue</code> immediately starts the next evaluation of first the loop condition and possibly the next loop iteration</li>
 </ul>
-
 <p><code>break</code> and <code>continue</code> should be used sparsely - an excessive use might be an indicator for insufficient program logic.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/* reciprocal .c -- calculate reciprocal value of array elements */</span>
+<span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/* a negative value indicates end of list */</span>
+<span style="color:#66d9ef">double</span> f[]<span style="color:#f92672">=</span> {<span style="color:#ae81ff">1.0</span> , <span style="color:#ae81ff">.5</span> , <span style="color:#ae81ff">3.1415</span> , <span style="color:#ae81ff">.33333</span> , <span style="color:#ae81ff">0.0</span> , <span style="color:#ae81ff">2.7182</span> , <span style="color:#ae81ff">42.23</span> , <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
 
-<pre><code class="language-cpp">/* reciprocal .c -- calculate reciprocal value of array elements */
-#include &lt;stdio.h&gt;
-
-/* a negative value indicates end of list */
-double f[]= {1.0 , .5 , 3.1415 , .33333 , 0.0 , 2.7182 , 42.23 , -1};
-
-int main ()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
 {
-  int i ;
-  for (i = 0; ; i++) {
-    if (f[i] &lt; 0.0) break ;
-    if (f[i] &lt;= 0.0001) continue ;
-    f[i]= 1/f[i];
+  <span style="color:#66d9ef">int</span> i ;
+  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; ; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) {
+    <span style="color:#66d9ef">if</span> (f[i] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.0</span>) <span style="color:#66d9ef">break</span> ;
+    <span style="color:#66d9ef">if</span> (f[i] <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0001</span>) <span style="color:#66d9ef">continue</span> ;
+    f[i]<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>f[i];
   }
 
-  for (i = 0; f[i] &gt;= 0.0; i++) // notice the condition!
-    printf (&quot;%d value : %f\n&quot;, i, f[i]);
+  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; f[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>; i<span style="color:#f92672">+</span><span style="color:#f92672">+</span>) <span style="color:#75715e">// notice the condition!
+</span><span style="color:#75715e"></span>    printf (<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d value : %f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i, f[i]);
 
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-text">0 value : 1.000000
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0 value : 1.000000
 1 value : 2.000000
 2 value : 0.318319
 3 value : 3.000030
 4 value : 0.000000
 5 value : 0.367891
 6 value : 0.023680
-</code></pre>
-
-<h2 id="loops-in-python">Loops in Python</h2>
-
+</code></pre></div><h2 id="loops-in-python">Loops in Python</h2>
 <p>There are two types of loops in Python <code>for</code> and <code>while</code>.
 The <code>while</code> loops are similar to their pendants in C:</p>
-
-<pre><code class="language-python">i = 5;
-while (i &gt; 0):
-    print(&quot;i =&quot;, i)
-    i = i -1
-</code></pre>
-
-<pre><code class="language-text">i = 5
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">i =</span><span style="color:#e6db74">&#34;</span>, i)
+    i <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">i = 5
 i = 4
 i = 3
 i = 2
 i = 1
-</code></pre>
-
-<p><code>break</code> and <code>continue</code> are also available in Python with the same semantic as in C.</p>
-
+</code></pre></div><p><code>break</code> and <code>continue</code> are also available in Python with the same semantic as in C.</p>
 <p>In addition to what we know from C in Python there can be an optional <code>else</code> branch after a loop which is executed <strong>after the loop finished</strong> if it was <strong>not canceled</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-<pre><code class="language-python">i = 0;
+<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>):
+    <span style="color:#66d9ef">print</span>(i)
+    i <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">else</span>:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">1. Loop finished execution</span><span style="color:#e6db74">&#34;</span>)
 
-while (i &lt; 3):
-    print(i)
-    i += 1;
-else:
-    print(&quot;1. Loop finished execution&quot;)
-
-print(&quot;------------&quot;)
-i = 0;
-while (True):
-    print(i)
-    i += 1;
-    if (i == 3):
-        break
-else:
-    print(&quot;2. Loop finished execution&quot;) # not executed because loop doesnt finish naturally but is canceled
-</code></pre>
-
-<pre><code class="language-text">0
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">------------</span><span style="color:#e6db74">&#34;</span>)
+i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> (True):
+    <span style="color:#66d9ef">print</span>(i)
+    i <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>):
+        <span style="color:#66d9ef">break</span>
+<span style="color:#66d9ef">else</span>:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">2. Loop finished execution</span><span style="color:#e6db74">&#34;</span>) <span style="color:#75715e"># not executed because loop doesnt finish naturally but is canceled</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
 1
 2
 1. Loop finished execution
@@ -512,157 +389,116 @@ else:
 0
 1
 2
-</code></pre>
-
-<p><code>else</code> can also be used with the for loop in Python!</p>
-
+</code></pre></div><p><code>else</code> can also be used with the for loop in Python!</p>
 <p>The <code>for</code> loop in Python iterates over a given <em>sequence</em> or <em>set</em> (an iterable type!):</p>
-
-<pre><code class="language-python">for i in ITERABLE:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> ITERABLE:
     do_something(i)
-</code></pre>
-
-<p>In the example above the elements of <code>ITERABLE</code> are assigned to <code>i</code> one by one per iteration.</p>
-
-<pre><code class="language-python">for x in ['John','Paul','George','Pete']:
- print (x)
-</code></pre>
-
-<pre><code class="language-text">John
+</code></pre></div><p>In the example above the elements of <code>ITERABLE</code> are assigned to <code>i</code> one by one per iteration.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> [<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">John</span><span style="color:#e6db74">&#39;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Paul</span><span style="color:#e6db74">&#39;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">George</span><span style="color:#e6db74">&#39;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Pete</span><span style="color:#e6db74">&#39;</span>]:
+ <span style="color:#66d9ef">print</span> (x)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">John
 Paul
 George
 Pete
-</code></pre>
-
-<p>This also works for mixed types:</p>
-
-<pre><code class="language-python">T = ('Alpha', 48, 0.2, (1, 2, 3))
-for x in T:
-    print(2 * x)
-</code></pre>
-
-<pre><code class="language-text">AlphaAlpha
+</code></pre></div><p>This also works for mixed types:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">T <span style="color:#f92672">=</span> (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Alpha</span><span style="color:#e6db74">&#39;</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">0.2</span>, (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))
+<span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> T:
+    <span style="color:#66d9ef">print</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> x)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">AlphaAlpha
 96
 0.4
 (1, 2, 3, 1, 2, 3)
-</code></pre>
+</code></pre></div><p>To &ldquo;mimic&rdquo; the C for loop we can iterate over a <em>sequence</em> of numbers using the <code>range</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># range([start,] stop [, step]) # generate from &#39;start&#39; up to and NOT INCLUDING &#39;stop&#39; and increment by &#39;step&#39;</span>
 
-<p>To &ldquo;mimic&rdquo; the C for loop we can iterate over a <em>sequence</em> of numbers using the <code>range</code> function:</p>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>):
+    <span style="color:#66d9ef">print</span>(i)
 
-<pre><code class="language-python"># range([start,] stop [, step]) # generate from 'start' up to and NOT INCLUDING 'stop' and increment by 'step'
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">------------</span><span style="color:#e6db74">&#34;</span>)
 
-for i in range(0, 6, 2):
-    print(i)
-
-print(&quot;------------&quot;)
-
-for i in range(3):
-    print(i)
-</code></pre>
-
-<pre><code class="language-text">0
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+    <span style="color:#66d9ef">print</span>(i)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0
 2
 4
 ------------
 0
 1
 2
-</code></pre>
-
-<h2 id="iterators-and-loop-functions-in-c">Iterators and Loop Functions in C</h2>
-
+</code></pre></div><h2 id="iterators-and-loop-functions-in-c">Iterators and Loop Functions in C</h2>
 <p>Code sample of an iterator with C:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>names[] <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">John</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Paul</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">George</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Ringo</span><span style="color:#e6db74">&#34;</span>, NULL};
 
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-char *names[] = {&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;, NULL};
+<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">first</span>() {
+  <span style="color:#66d9ef">return</span> names[index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>]; <span style="color:#75715e">// so the iterator can be used multiple times -&gt; first ALWAYS returns first element
+</span><span style="color:#75715e"></span>}
 
-static int index = 0;
+<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">next</span>() {
+  <span style="color:#66d9ef">if</span> (names[index] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> NULL) index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// set index to 0 when arrived at last element delmiited via NULL
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">else</span> index<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
 
-char* first() {
-  return names[index = 0]; // so the iterator can be used multiple times -&gt; first ALWAYS returns first element
+  <span style="color:#66d9ef">return</span> names[index];
 }
 
-char* next() {
-  if (names[index] == NULL) index = 0; // set index to 0 when arrived at last element delmiited via NULL
-  else index++;
-
-  return names[index];
-}
-
-int main() {
-  for (char* str = first(); str != NULL; str = next()) {
-    printf(&quot;%s &quot;, str);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> str <span style="color:#f92672">=</span> first(); str <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL; str <span style="color:#f92672">=</span> next()) {
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s </span><span style="color:#e6db74">&#34;</span>, str);
   }
 
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-text">John Paul George Ringo
-</code></pre>
-
-<p>Iterators like those above are more common in C++ where they are more elegant (also in C there are prettier ways to do this).</p>
-
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">John Paul George Ringo
+</code></pre></div><p>Iterators like those above are more common in C++ where they are more elegant (also in C there are prettier ways to do this).</p>
 <p>Until now we used loops with assignments (state model). It is also possible to have loops in the functional model where they are realized via recursion:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">say_it</span>(<span style="color:#66d9ef">int</span> i) {
+  <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span>;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Ctuhlu!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+  say_it(<span style="color:#f92672">-</span><span style="color:#f92672">-</span>i); <span style="color:#75715e">// i-- would NOT work because i is evaluated -&gt; 3 and passed to the function and THEN decremented -&gt; endless loop
+</span><span style="color:#75715e"></span>}
 
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-
-void say_it(int i) {
-  if (i == 0) return;
-  printf(&quot;Ctuhlu!\n&quot;);
-  say_it(--i); // i-- would NOT work because i is evaluated -&gt; 3 and passed to the function and THEN decremented -&gt; endless loop
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  say_it(<span style="color:#ae81ff">3</span>);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-
-int main() {
-  say_it(3);
-  return 0;
-}
-</code></pre>
-
-<pre><code class="language-text">Ctuhlu!
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Ctuhlu!
 Ctuhlu!
 Ctuhlu!
-</code></pre>
-
-<p>It is also possible to separate the loop body from the &ldquo;loop mechanic&rdquo; &rarr; <em>generic loop function</em>. To do so we use a <em>pointer to functions</em>.</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-
-typedef void (*functionPointer) (int); // functions are passed by pointer (efficiency) need to be wrapped in () else it would be interpreted as &quot;void*&quot; return type (pointer to void) instead
-
-void loop(functionPointer func, int start, int end, unsigned int step) {
-  if (start &lt;= end) {
+</code></pre></div><p>It is also possible to separate the loop body from the &ldquo;loop mechanic&rdquo; → <em>generic loop function</em>. To do so we use a <em>pointer to functions</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">void</span> (<span style="color:#f92672">*</span>functionPointer) (<span style="color:#66d9ef">int</span>); <span style="color:#75715e">// functions are passed by pointer (efficiency) need to be wrapped in () else it would be interpreted as &#34;void*&#34; return type (pointer to void) instead
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>(functionPointer func, <span style="color:#66d9ef">int</span> start, <span style="color:#66d9ef">int</span> end, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> step) {
+  <span style="color:#66d9ef">if</span> (start <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> end) {
     func(start);
-    loop(func, start+step, end, step);
+    loop(func, start<span style="color:#f92672">+</span>step, end, step);
   }
 }
 
-void loopBody(int i) {
-  printf(&quot;%d^2 = %d\n&quot;, i, i * i);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loopBody</span>(<span style="color:#66d9ef">int</span> i) {
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d^2 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i, i <span style="color:#f92672">*</span> i);
 }
 
-int main() {
-  loop(loopBody, 0, 5, 1);
-  return 0;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+  loop(loopBody, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-</code></pre>
-
-<pre><code class="language-text">0^2 = 0
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">0^2 = 0
 1^2 = 1
 2^2 = 4
 3^2 = 9
 4^2 = 16
 5^2 = 25
-</code></pre>
-
-<p>In Python such things are achievable more easily via <a href="https://www.programiz.com/python-programming/anonymous-function">lambda functions</a>.</p>
-
+</code></pre></div><p>In Python such things are achievable more easily via <a href="https://www.programiz.com/python-programming/anonymous-function">lambda functions</a>.</p>
 <h2 id="equivalence">Equivalence</h2>
-
 <p>Generally every loop in a program can be translated into a recursive function and each (trivially) recursive function can be computed via loops. To be precise: <em>primitive-recursive functions</em> can be computed with <em>a priori limited</em> loops, for the so called <em>μ-recursive functions</em> (<em>my</em> &ldquo;müh&rdquo; xD as i like to call it). The ACKERMANN-Function for example is not trivially recursive.</p>
-
 <p>So for the most practical use cases loops and recursion are equipotent (gleichmächtig). However loops are usually more clearer (übersichtlicher), but there are also cases where recursion are the handier solution.</p>
 
     </div>

@@ -3,7 +3,7 @@
   <head>
     <title>Operating Systems - Coordination // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,248 +51,199 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">os</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="introduction">Introduction</h2>
-
-<p>In the last chapter we looked at <em>communication</em> and <em>cooperation</em> to exchange information/data between processes. In this chapter we take a look at the timely aspect &rarr; <em>coordination</em> which is also often called <em>synchronization</em>. We focus on coordination between <em>processes</em> as we&rsquo;ve already kind of covered coordination in the kernel via suspension etc.</p>
-
+      <h2 id="introduction">Introduction</h2>
+<p>In the last chapter we looked at <em>communication</em> and <em>cooperation</em> to exchange information/data between processes. In this chapter we take a look at the timely aspect → <em>coordination</em> which is also often called <em>synchronization</em>. We focus on coordination between <em>processes</em> as we've already kind of covered coordination in the kernel via suspension etc.</p>
 <h2 id="elementary-coordination">Elementary Coordination</h2>
-
-<p>Many coordination problems can be solved with a uniform concept &rarr; <em>signaling</em>:</p>
-
+<p>Many coordination problems can be solved with a uniform concept → <em>signaling</em>:</p>
 <ul>
 <li>signaling uses <em>signals</em> to create a sequence relationship (Reihenfolgebeziehung)</li>
 <li>ATTENTION: this has nothing to do with UNIX-signals!</li>
 </ul>
-
 <p>Example:</p>
-
 <ul>
 <li>section <em>A</em> in process <em>P_1</em> shall run before section <em>B</em> in process <em>P_2</em></li>
-<li>Kernel offers the operations <code>signal</code> and <code>swait</code> (signal wait) for shared/common variable <em>s</em> (<code>signal</code> and <code>swait</code> are generic names; OS&rsquo;s have different names for this)</li>
+<li>Kernel offers the operations <code>signal</code> and <code>swait</code> (signal wait) for shared/common variable <em>s</em> (<code>signal</code> and <code>swait</code> are generic names; OS's have different names for this)</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/signaling.png"/> 
 </figure>
 
-
 <ul>
 <li>busy wait for the signal variable <code>s</code> wastes processor time by doing nothing
-
 <ul>
 <li>wiki: busy waiting, which occurs when a process frequently polls to determine if it has access to a critical section. This frequent polling robs processing time from other processes</li>
-</ul></li>
+</ul>
+</li>
 <li>in this most simple case (busy wait) a single bit is sufficient as a signaling variable <code>s</code>
-
 <ul>
 <li>atomic read and write is guaranteed because the data structure is secured by kernel exclusion</li>
 <li>slides: wenn jedoch mit Prozessorfreigabe gearbeitet wird, muss zusätzlich die Identität des wartenden Prozesses gespeichert werden</li>
-</ul></li>
+</ul>
+</li>
 <li>it is possible that multiple processes call <code>swait</code> for the same signal
-
 <ul>
 <li>then an already waiting process shall not get &ldquo;lost&rdquo;</li>
-<li>&rarr; save multiple waiting processes in a queue</li>
-</ul></li>
+<li>→ save multiple waiting processes in a queue</li>
+</ul>
+</li>
 <li>in the case of multiple waiting processes we can distinguish between two semantics:
-
 <ul>
 <li>group-signaling &amp; group-waiting = <em>all</em> waiting processes recieve the signal</li>
 <li>or-waiting = only <em>one</em> process recieves the signal while all others continue waiting</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="symmetric-synchronization">Symmetric Synchronization</h3>
-
 <ul>
 <li>symmetric usage of the operations causes <em>A_1</em> as well as <em>A_2</em> to be executed before <em>B_1</em> and <em>B_2</em></li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/symmetric-sync.png"/> 
 </figure>
 
-
 <h3 id="locks">Locks</h3>
-
-<p>If <em>A</em> and <em>B</em> cannot run simultaneously in the following scenario<br />
- <img src="/knowledge-database/images/lock_1.png" alt="" /></p>
-
+<p>If <em>A</em> and <em>B</em> cannot run simultaneously in the following scenario<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/lock_1.png" alt=""></p>
 <ul>
 <li>either A is executed before B or B is executed before A (no overlaping between the two)</li>
 <li>signaling operations can then be used to secure critical sections
-
 <ul>
 <li>the operations needed for that have own names <code>lock</code> and <code>unlock</code></li>
 <li>structurally <code>lock</code> equals <code>swait</code> and <code>unlock</code> equals <code>signal</code></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/lock_2.png"/> 
 </figure>
 
-
 <h3 id="discussion">Discussion</h3>
-
-<p>We&rsquo;re now able to realize different temporal orders:</p>
-
+<p>We're now able to realize different temporal orders:</p>
 <ul>
 <li>before-after</li>
 <li>simultaneously (synchronization)</li>
 <li>non-simultaneously</li>
 </ul>
-
 <h2 id="capacity">Capacity</h2>
-
 <p>Until now the signal variable was binary. Depending on the capacity this can be extended (scaled) and extensions partly have their own names:</p>
-
 <ul>
-<li>signaling &rarr; and/or-signaling</li>
-<li>synchronization &rarr; barrier</li>
-<li>lock &rarr; semaphore (Art von Zaehlersperre)</li>
+<li>signaling → and/or-signaling</li>
+<li>synchronization → barrier</li>
+<li>lock → semaphore (Art von Zaehlersperre)</li>
 </ul>
-
 <h3 id="or-signaling">Or-Signaling</h3>
-
 <ul>
 <li>should the situation arise a signaling object can store multiple signals (usually from different processes)</li>
 <li>this is called or-signaling (Oder-Signalisieren)</li>
 <li>as long as there are signals, all <code>swait</code> calls return immediately without blocking</li>
-<li>a binary variable is not sufficient for this anymore &rarr; use counter or similar</li>
+<li>a binary variable is not sufficient for this anymore → use counter or similar</li>
 <li>Note: Or-Waiting and Or-Signaling are different things - the former allows multiple <code>swait</code> calls in sequence (without setting a signal in between), the latter allows multiple sequential <code>signal</code> calls (without loosing a signal)</li>
 </ul>
-
 <h3 id="and-signaling">And-Signaling</h3>
-
 <ul>
 <li>there can be more than one process involved to generate a signal</li>
 <li>in the case of and-signaling the signal(-variable) is only set when enough processes set off a signal (or approved the signaling)</li>
 <li>count of approving processes has to be known</li>
 </ul>
-
 <h3 id="barrier">Barrier</h3>
-
 <ul>
-<li>synchronization with multiple participants &rarr; barrier synchronization</li>
+<li>synchronization with multiple participants → barrier synchronization</li>
 <li>all processes synchronize at one point</li>
 <li>processes can only continue executing when all other other processes arrived at the point of synchronization as well</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/barrier.png"/> 
 </figure>
-
 
 <ul>
 <li>other term: group-rendezvous</li>
 <li>wiki: in parallel computing, a barrier is a type of synchronization method. A barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier</li>
 </ul>
-
 <p>Example Barrier Implementation:</p>
-
-<pre><code class="language-C">class BarrierSync {
-  private int number = p ; // number of processes
-  private int count = 0; // number of waiting processes
-
-  public synchronized void sync () {
-    count = count +1;
-    if ( count &lt; number ) { // not everybody here , so ...
-      wait (); // wait , leave the method
-    } else {
-      notifyAll (); // deblock all waiting processes
-      count = 0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">class BarrierSync {
+  private <span style="color:#66d9ef">int</span> number <span style="color:#f92672">=</span> p ; <span style="color:#75715e">// number of processes
+</span><span style="color:#75715e"></span>  private <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// number of waiting processes
+</span><span style="color:#75715e"></span>
+  public synchronized <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sync</span> () {
+    count <span style="color:#f92672">=</span> count <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> ( count <span style="color:#f92672">&lt;</span> number ) { <span style="color:#75715e">// not everybody here , so ...
+</span><span style="color:#75715e"></span>      wait (); <span style="color:#75715e">// wait , leave the method
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+      notifyAll (); <span style="color:#75715e">// deblock all waiting processes
+</span><span style="color:#75715e"></span>      count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     }
   }
 }
-</code></pre>
-
-<h3 id="semaphore--variante-der-zaehlersperre">Semaphore (Variante der Zaehlersperre)</h3>
-
+</code></pre></div><h3 id="semaphore--variante-der-zaehlersperre">Semaphore (Variante der Zaehlersperre)</h3>
 <ul>
 <li>are used not to guarantee an exclusive access but a limited access (eg 5 processes can access the ressource at the same time)</li>
 <li>data type S functions as a counter and has two operations:
-
 <ul>
-<li>locksem(s), down(s) &rarr; reduce counter</li>
-<li>unlocksem(s), up(s) &rarr; increment counter</li>
-</ul></li>
+<li>locksem(s), down(s) → reduce counter</li>
+<li>unlocksem(s), up(s) → increment counter</li>
+</ul>
+</li>
 <li>initial value for the counter determines the capacity (by how many the resource is accessible simultaneously)</li>
 <li>locksem(s) is called when a process accesses the resource and the counter is then decremented by 1 (capacity -= 1) if the counter is &gt; 0; if the counter = 0 then the process that called locksem(s) is blocked until the operation can be executed</li>
 <li>unlocksem(s) is called when a process releases the resource and the counter is then incremented by 1 (capacity += 1), if another process is blocked from locksem(s) it is then able to continue</li>
 </ul>
-
 <h2 id="solutions-to-cooperation-problems-via-coordination">Solutions to Cooperation Problems via Coordination</h2>
-
 <p>Repetition: in case of cooperation there is no explicit (initiated) receiving which can lead to problems</p>
-
 <p>Many problems can be solved by creating mutual exclusion</p>
-
 <ul>
 <li>locks/mutex</li>
 <li>count locks (semaphore) with capacity/limit 1</li>
 </ul>
-
 <p>Other problems require considering capacities</p>
-
 <ul>
 <li>count locks</li>
 </ul>
-
-<p>Problems: The programmer has to ensure that every lock gets unlocked and only once and that there&rsquo;s no recursion in a locked section</p>
-
+<p>Problems: The programmer has to ensure that every lock gets unlocked and only once and that there's no recursion in a locked section</p>
 <h3 id="monitor">Monitor</h3>
-
 <p>Using locks/semaphores is relatively error prone. An automatic locking and unlocking mechanism would be favorable. Monitors introduce mutual exclusion without requiring the programmer to explicitly use synchronization primitives like semaphores.</p>
-
 <h3 id="conditional-synchronization">Conditional Synchronization</h3>
-
 <ul>
 <li>Bedingungssynchronisation</li>
 <li>slides: evtl. muss ein Prozess innerhalb der Ausführung einer der Operationen blockieren</li>
 <li>requires temporaly release of the implicit lock</li>
 <li>for example ring buffer: waiting in <code>fetch()</code> if the buffer is empty</li>
 <li>solution: conditional synchronization
-
 <ul>
 <li>operation <code>cwait(c)</code>
-
 <ul>
 <li>process releases monitor and waits for the <code>csignal(c)</code> and then continues</li>
-</ul></li>
+</ul>
+</li>
 <li>operation <code>csignal(c)</code>
-
 <ul>
 <li>a waiting process is released</li>
 <li>when there is no waiting process this procedure has no effect</li>
-</ul></li>
+</ul>
+</li>
 <li>blocked processes are put in a queue</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Notice the semantic differences to signaling (signal/swait):</p>
-
 <ul>
-<li><code>cwait</code> = release lock, block caller</li>
-
-<li><p><code>swait</code> = no influence on the lock, block caller</p></li>
-
-<li><p><code>csignal</code> = no effect when nobody&rsquo;s waiting, later <code>cwait</code> will still block</p></li>
-
-<li><p><code>signal</code> = always changes the state, later <code>swait</code> then won&rsquo;t block</p></li>
+<li>
+<p><code>cwait</code> = release lock, block caller</p>
+</li>
+<li>
+<p><code>swait</code> = no influence on the lock, block caller</p>
+</li>
+<li>
+<p><code>csignal</code> = no effect when nobody's waiting, later <code>cwait</code> will still block</p>
+</li>
+<li>
+<p><code>signal</code> = always changes the state, later <code>swait</code> then won't block</p>
+</li>
 </ul>
-
 <h3 id="different-kinds-of-capacity-limited-synchronization">Different kinds of capacity limited synchronization</h3>
-
 <p>The capacity limited synchronization eg semaphore can be extended to account for different types of access. Eg Reader-Writer-Coopeartion where either one writer or multiple readers are allowed.</p>
-
-<p>See page <sup>26</sup>&frasl;<sub>27</sub> for ringbuffer with capacity and different types</p>
-
+<p>See page 26/27 for ringbuffer with capacity and different types</p>
 <h2 id="examples-of-existing-coordination-mechanisms">Examples of existing coordination mechanisms</h2>
-
-<p>This section doesn&rsquo;t seem important and has not a lot of information, see page 28-31</p>
+<p>This section doesn't seem important and has not a lot of information, see page 28-31</p>
 
     </div>
     <div class="post-footer">

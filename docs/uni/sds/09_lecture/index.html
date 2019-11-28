@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 09 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,19 +51,13 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p><strong>Part III: Trustworthy Software Engineering</strong><br /></p>
-
+      <p><strong>Part III: Trustworthy Software Engineering</strong><!-- raw HTML omitted --></p>
 <p>Trustworthy Software</p>
-
 <ul>
 <li>in Cordis.Europa.Eu security document defined as: Trustworthiness can be seen as software and infrastructure that is secure, reliable and resilient to attacks and operational failures; guaranteeing quality of service; protecting user data; ensuring privacy and providing usable and trusted tools to support the user in his/her security management.</li>
 <li>trustworthiness needs to be considered from the outset rather than being addressed as add-on feature</li>
 </ul>
-
 <p>So we focus on: Identity &amp; Security By Design (SBD)</p>
-
 <ul>
 <li>who is it for?</li>
 <li>why does it matter?</li>
@@ -72,86 +66,73 @@
 <li>when to apply?</li>
 <li>how to apply?</li>
 </ul>
-
 <h2 id="identity--chapter-1">Identity (Chapter 1)</h2>
-
 <p>Internet as a danger zone in terms of identity</p>
-
 <ul>
 <li>what exactly needs to be protected?</li>
 <li>what should one orient towards?</li>
 <li>which data is exceptionally worthy of protection?</li>
 </ul>
-
 <p>Security vs Identity</p>
-
 <ul>
 <li>for starters: keynote by Dick Hardt at WWW 2007 on &ldquo;Identity 2.0&rdquo;</li>
 <li>speech on identity by Kim Cameron</li>
 </ul>
-
 <h3 id="identity-problem">Identity - Problem</h3>
-
 <ul>
 <li>Kim Cameron: &ldquo;The internet was built without a way to know who and what you are connecting to.&rdquo;</li>
 <li>initial situation:
-
 <ul>
 <li>internet services are left on their own
-
 <ul>
-<li>must provide security &rarr; isolated identity solutions</li>
-</ul></li>
+<li>must provide security → isolated identity solutions</li>
+</ul>
+</li>
 <li>criminalization of internet
-
 <ul>
-<li>leads to loss of internet&rsquo;s credibility, for example drawback for e-businesses</li>
-</ul></li>
+<li>leads to loss of internet's credibility, for example drawback for e-businesses</li>
+</ul>
+</li>
 <li>identity layers are complex
-
 <ul>
 <li>successful attemps, such as SSL and Kerberos - however overall too many different scenarios are required, so agreement is difficult</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p>Possible solution: Identity Metasystem</p>
-
 <ul>
 <li>such a system provides confidential support to ensure who is connecting to whom/what on the internet</li>
 <li>many questions:
-
 <ul>
 <li>who holds the data?</li>
 <li>who trusts whom?</li>
 <li>what scales?</li>
 <li>how does one realize openness to new developments that do not yet exist?</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="identity-identity-in-detail">Identity - Identity in Detail</h3>
-
 <ul>
-<li>there are numerous definitions of identity, the lecture is based on Kim Cameron&rsquo;s definition: &ldquo;<em>Digital identity is a set of <strong>claims</strong>, which are made by a <strong>digital subject</strong> about self or other subjects.</em>&ldquo;
-
+<li>there are numerous definitions of identity, the lecture is based on Kim Cameron's definition: &ldquo;<em>Digital identity is a set of <strong>claims</strong>, which are made by a <strong>digital subject</strong> about self or other subjects.</em>&rdquo;
 <ul>
 <li>digital subject = person or thing (referred or real) in a digital realm that is described or with which one is dealing
-
 <ul>
 <li>&ldquo;with which one is dealing&rdquo; = often in the context with request/response model</li>
 <li>example digital subject: real persons, devices, resources, rules/policies and relationships between digitial subjects</li>
 <li>discussions of the &lsquo;subject&rsquo; term extend into philosophy</li>
-</ul></li>
+</ul>
+</li>
 <li>claim = claim suggests that something is true, typically something that seems to be controversial or questionable
-
 <ul>
 <li>remark: claim is a relationship between a certain instance, a digital subject and an identity attribute</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p>We must be able to <strong>structure our understanding</strong> of digital identity:</p>
-
 <ul>
 <li>we need a way to avoid returning to the <strong>Empty Page</strong> every time we talk about digital identity</li>
 <li>we need to inform peoples&rsquo; thinking by teasing apart the factors and dynamics explaining the successes and failures of identity systems since the 1970s</li>
@@ -159,134 +140,131 @@
 <li>our goals must be pragmatic, bounding our inquiry, with the aim of defining the characteristics of an unifying identity metasystem</li>
 <li>the &ldquo;<strong>Laws of Identity</strong>&rdquo; offer a good way to express this thought</li>
 <li>beyond mere conversation, the Blogosphere offers us <strong>a crucible</strong>
-
 <ul>
 <li>the concept has been to employ this crucible to <em>harden and deepen the laws</em></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>These definitions embrace Kerberos, X.509, SAML. They take this problem of the evaluation of the usefulness of a digital identity up to a higher level in the systems sense of multiple layers. These definitions separate the layer of where stuff is communicated from the layer where evaluations are done – a very important step forward.</p>
-
 <h3 id="identity-laws-of-identity">Identity - Laws of Identity</h3>
-
 <ol>
 <li><strong>User Control and Consent</strong>
-
 <ul>
-<li><em>digital identity systems must only reveal information identifying a user with the user&rsquo;s consent</em>
-
+<li><em>digital identity systems must only reveal information identifying a user with the user's consent</em>
 <ul>
 <li>systems need to appeal in their convenience &amp; simplicity</li>
 <li>constantly care about users&rsquo; confidence
-
 <ul>
 <li>requires holistic commitment</li>
 <li>user must be cetral to control with respect to which identities are used and which data is made public</li>
 <li>system must protect from deception (eg website location and missue)</li>
 <li>system must inform the user of possible consequences upon certain action (data sharing, login etc)</li>
 <li>the holistic approach must be used as a paradigm in all contexts (eg when logging into a company or a private blog it should always be clear that the user consents to the release of certain)</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>Minimal Disclosure for a Constrained Use</strong>
-
 <ul>
 <li><em>the solution that discloses the least identifying information and best limits its use is the most stable long term solution</em>
-
 <ul>
 <li>one should assume that data/information violations are unavoidable</li>
 <li>to reduce risks, information use should be checked with respect to 2 strategies: &ldquo;must be obtained&rdquo; or &ldquo;must be saved&rdquo;</li>
 <li>less information implies less value implies less risk</li>
 <li>&ldquo;as little as possible identification information&rdquo; means:
-
 <ul>
 <li>reduction of linkable information</li>
 <li>use of claim transformations</li>
-</ul></li>
+</ul>
+</li>
 <li>avoid unnecessary information storage for &ldquo;possible future&rdquo; use (why should a credit card be stored by the shop?)</li>
 <li>the law is closely related to information disasters</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>Justifiable Parties</strong>
-
 <ul>
 <li><em>Digital identity systems must limit disclosure of identifying information to parties having a necessary and justifiable place in a given identity relationship</em>
-
 <ul>
 <li>user has to have a clear understanding of whom the information is/will be exchanged with</li>
 <li>system itself may not draw conclusions about relationships between subject and parties (eg Microsoft Passport is useful for logging into MSN but why should it know if I login to Google or eBay?)</li>
 <li>in which situations are regulatory identities required?</li>
 <li>same holds for intermediaries (what should they know to achieve their goal)</li>
 <li>all participants must submit statements of how the information will be used</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>Directed Identity</strong>
-
 <ul>
 <li>/a unifying identity metasystem must support both &ldquo;omni-directional&rdquo; identifiers for public entities and &ldquo;unidirectional&rdquo; identifiers for private entities
-
 <ul>
 <li>digital identity should always be viewed in the context of another identity or a set of identities</li>
-<li>omni-directional = public entities require &ldquo;beacons&rdquo; (publicly known identifier or URI) &rarr; eg websites (URLs) or public devices</li>
+<li>omni-directional = public entities require &ldquo;beacons&rdquo; (publicly known identifier or URI) → eg websites (URLs) or public devices</li>
 <li>uni-directional = private entities (people) require an ability not to be turned into a beacon
-
 <ul>
 <li>they require a unidirectional identifier, which can be used in combination with a trusted beacon (no correlation, eg user-bank interaction)</li>
 <li>negative examples: bluetooth and RFID, partially WLAN</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>Pluralism of Operators and Technologies</strong>
-
 <ul>
 <li><em>a unifying identity metasystem must channel and enable the inter-working of multiple identity technologies run by multiple identity providers</em>
-
 <ul>
 <li>system may be ideal with respect to one characteristic, but not with respect to another</li>
 <li>example: Authority vs Employer vs Individual</li>
 <li>old and new technologies must be used and co-exist; identity system must not be in competition with technology, but must use it</li>
 <li>technologies may have more growth than others (identity ecology)</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>Human Integration</strong>
-
 <ul>
 <li><em>a unifying identity metasystem must define the human user as a component integrated through protected and unambiguous human-machine communications</em>
-
 <ul>
-<li>communication can be completely secure but what about the last two meters (off the screen and into the eyes of the viewer); does the user really know who it is he&rsquo;s communicating with?
-
+<li>communication can be completely secure but what about the last two meters (off the screen and into the eyes of the viewer); does the user really know who it is he's communicating with?
 <ul>
 <li>phishing attacks are a good example of this</li>
-</ul></li>
+</ul>
+</li>
 <li>protocol for use of safety issues has to become a ceremony, absolutely predictable and controlled
-
 <ul>
 <li>example: communication in the cockpit (channel 9 on United Airlines)</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><strong>Consistent Experience Across Contexts</strong>
-
 <ul>
 <li><em>a unifying identity metasystem must provide a simple consistent experience while enabling separation of contexts through multiple operators and technologies</em>
-
 <ul>
 <li>simplicity and clarity are the main goal - identities have to be used in a similar fashion to all other things on the desktop
-
 <ul>
 <li>user must be able to see, verify, add and remove identities</li>
-</ul></li>
+</ul>
+</li>
 <li>which type of identity is acceptable in which context?
-
 <ul>
 <li>properties of such candidates are defined by the using parties</li>
 <li>users must be able to recover the identity in the given context and understand which information is associated with it</li>
 <li>person (human/legal) could possibly accept different types of identities</li>
 <li>user must be able to choose the best identity in his opinion</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 
     </div>

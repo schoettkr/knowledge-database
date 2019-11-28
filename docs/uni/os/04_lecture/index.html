@@ -3,7 +3,7 @@
   <head>
     <title>Operating Systems - Scheduling // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,13 +51,9 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">os</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="introduction">Introduction</h2>
-
-<p>A &ldquo;process&rdquo; is a concept of virtualization of the hardware resource CPU. There&rsquo;s a <em>strategy</em> to decide which process is allowed to use the CPU at what time and there&rsquo;s a <em>mechanism</em> which refers to the way the strategy is carried out. <em>Dispatching</em> as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.<br />
+      <h2 id="introduction">Introduction</h2>
+<p>A &ldquo;process&rdquo; is a concept of virtualization of the hardware resource CPU. There's a <em>strategy</em> to decide which process is allowed to use the CPU at what time and there's a <em>mechanism</em> which refers to the way the strategy is carried out. <em>Dispatching</em> as the mechanism is what we covered in the last lecture. In this lecture we take a look at the strategy.<!-- raw HTML omitted -->
 Generally <em>scheduling</em> means the temporal assignment (zeitliche Zuordnung) of activities to ressources in regards. There different levels of granuality where scheduling occurs:</p>
-
 <ul>
 <li>when should programms start?</li>
 <li>when should a process use a CPU?</li>
@@ -65,293 +61,243 @@ Generally <em>scheduling</em> means the temporal assignment (zeitliche Zuordnung
 <li>when may a process use a device?</li>
 <li>when may a program run in a cluster?</li>
 </ul>
-
-<p>In the sphere of operating systems however scheduling usually refers to the assignment of CPU resources. The scheduling strategy can have a significant impact on the performance of a system and choosing a strategy depends on certain goals (eg high efficiency, low latency, fairness, puncuality, high troughput).<br />
-<img src="/knowledge-database/images/scheduling-schema.png" alt="" /><br />
-<img src="/knowledge-database/images/execution-response.png" alt="" /></p>
-
+<p>In the sphere of operating systems however scheduling usually refers to the assignment of CPU resources. The scheduling strategy can have a significant impact on the performance of a system and choosing a strategy depends on certain goals (eg high efficiency, low latency, fairness, puncuality, high troughput).<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/scheduling-schema.png" alt=""><!-- raw HTML omitted -->
+<img src="/knowledge-database/images/execution-response.png" alt=""></p>
 <h2 id="common-scheduling-algorithms">Common Scheduling Algorithms</h2>
-
 <p>The example(s) in the following slides assumes:</p>
-
 <ul>
 <li>a CPU with one core</li>
 <li>ready list (Bereitliste) = queue of processes in &ldquo;ready&rdquo; state</li>
 <li>the following five processes/tasks:</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/tasks.png"/> 
 </figure>
 
-
 <h3 id="first-come-first-serve">First Come First Serve</h3>
-
 <ul>
 <li>FCFS or FIFO (First In First Out)</li>
 <li>tasks are processed in the order of their arrival in the ready list</li>
 <li>tasks occupy CPU until they end or until voluntary release</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/fifo.png"/> 
 </figure>
 
-
 <h3 id="last-come-first-served-preemptive-resume">Last Come First Served - Preemptive Resume</h3>
-
 <ul>
 <li>LCFS-PR</li>
 <li>new arrivals in the ready list suspend the current process</li>
 <li>processes are processed as long as there are no new arrivals</li>
 <li>the goal is to favor short processes
-
 <ul>
 <li>short processes have a higher chance to finish before another process arrives</li>
 <li>long processes might be suspended multiple times</li>
-</ul></li>
 </ul>
-
-<p><img src="/knowledge-database/images/lcfs-pr.png" alt="" />
-<img src="/knowledge-database/images/lcfs-pr2.png" alt="" /></p>
-
+</li>
+</ul>
+<p><img src="/knowledge-database/images/lcfs-pr.png" alt="">
+<img src="/knowledge-database/images/lcfs-pr2.png" alt=""></p>
 <h3 id="round-robin--rr">Round Robin (RR)</h3>
-
 <ul>
 <li>processes are handled in order of arrival</li>
-<li>after a specified period of time (&tau; time slice, quantum) suspension happens</li>
+<li>after a specified period of time (τ time slice, quantum) suspension happens</li>
 <li>the variant covered in this lecture puts new arriving &amp; suspended processes at the end of the queue and new processes have a higher priority</li>
 <li>the goal of this strategy is an even distribution of the CPU capacity and of the waiting period for the processes</li>
-<li>choosing the time slice &tau; is an optimization problem
-
+<li>choosing the time slice τ is an optimization problem
 <ul>
-<li>in case of a large &tau; RR becomes more similar to FCFS</li>
-<li>in case of a small &tau; the expense of frequent context switches rises</li>
-</ul></li>
+<li>in case of a large τ RR becomes more similar to FCFS</li>
+<li>in case of a small τ the expense of frequent context switches rises</li>
 </ul>
-
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/round-robin.png"/> 
 </figure>
 
-
 <h3 id="priorities-nonpreemptive--prio-np">Priorities - Nonpreemptive (PRIO-NP)</h3>
-
 <ul>
 <li>new arrivals are sorted into the ready list in accordance to their priority and then processed until they end or voluntarily release</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/prio-np.png"/> 
 </figure>
 
-
 <h3 id="priorities-preemptive--prio-p">Priorities - Preemptive (PRIO-P)</h3>
-
 <ul>
 <li>like PRIO-NP however the current process is suspended if the priority is lower than the priority of a new arrival</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/prio-p.png"/> 
 </figure>
 
-
 <h3 id="shortest-job-next">Shortest Job Next</h3>
-
 <ul>
 <li>SJN or SPN (shortest process next)</li>
 <li>process with the lowest execution time is executed until its end or voluntary release</li>
 <li>same as PRIO-NP if PRIO-NP uses the execution time as priority criteria</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/sjn.png"/> 
 </figure>
 
-
 <h3 id="shortest-remaining-time-next">Shortest Remaining Time Next</h3>
-
 <ul>
 <li>SRTN</li>
 <li>process with the shortest remaining time is processed next</li>
 <li>current process can be suspended</li>
 <li>favors shorter processes and leads on average to shorter response times than FCFS</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/srtn.png"/> 
 </figure>
 
-
-<p><strong>Note:</strong><br /></p>
-
+<p>**Note:**<!-- raw HTML omitted --></p>
 <ul>
 <li>SJN &amp; SRTN need to know the (remaining) execution time which can only come from the user in form of an estimation (disadvantage)</li>
 <li>longer processes can &ldquo;starve&rdquo; when there are always shorter ones</li>
 </ul>
-
 <h3 id="highest-response-ratio-next">Highest Response Ratio Next</h3>
-
 <ul>
 <li>HRN</li>
 <li>the response ratio \(r\) is defined as $r_r \frac{t_w + t_e}{t_e} where t_w is the waiting time and t_e is the execution time</li>
 <li>process with the highest r_r value is chosen next</li>
 <li>strategy is non-preemptive (nicht verdraengend)</li>
-<li>as it is the case for SJN shorter processes are favored, however longer processes don&rsquo;t have to wait for ever but instead gain &ldquo;points&rdquo; by waiting (t_w increases)</li>
+<li>as it is the case for SJN shorter processes are favored, however longer processes don't have to wait for ever but instead gain &ldquo;points&rdquo; by waiting (t_w increases)</li>
 <li>again execution time has to be known</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/hrn.png"/> 
 </figure>
 
-
 <h3 id="multilevel-feedback">Multilevel Feedback</h3>
-
 <ul>
 <li>FB</li>
 <li>scheduling algorithm with preempption per queue (Scheduling mit Verdraengung pro Warteschlange)</li>
 <li>process goes into next queue after each time slice</li>
 <li>queue \(i\) is processed when queue \(i-1\) is empty</li>
-<li>different time slice durations &tau; are possible eg \(\tau = 2^i\)</li>
+<li>different time slice durations τ are possible eg \(\tau = 2^i\)</li>
 </ul>
-
-<p><img src="/knowledge-database/images/fb1.png" alt="" />
-<img src="/knowledge-database/images/fb2.png" alt="" /></p>
-
+<p><img src="/knowledge-database/images/fb1.png" alt="">
+<img src="/knowledge-database/images/fb2.png" alt=""></p>
 <h3 id="overview-of-common-scheduling-strategies">Overview of common Scheduling Strategies</h3>
-
 <figure>
     <img src="/knowledge-database/images/scheduling-overview.png"/> 
 </figure>
 
-
-<p>Operating systems usually don&rsquo;t use just one, pure form of the scheduling algorithms, but instead mixed forms. Also keep in mind that scheduling involves an overhead (&rarr; cost-benefit analysis).</p>
-
+<p>Operating systems usually don't use just one, pure form of the scheduling algorithms, but instead mixed forms. Also keep in mind that scheduling involves an overhead (→ cost-benefit analysis).</p>
 <h3 id="classical-unix-scheduling">Classical UNIX Scheduling</h3>
-
-<p>Scheduling in the UNIX-verse follows the principles of  multiple Feedback Queues in which Round Robin is used. The goal is to have a general fairness and favor interactive processes. Priorities (0..127) are assigned and put into queues (low value &rarr; high prio; high value &rarr; low prio). The priorities are computed based on the CPU usage by the process, the overall CPU load and user specifications.</p>
-
+<p>Scheduling in the UNIX-verse follows the principles of  multiple Feedback Queues in which Round Robin is used. The goal is to have a general fairness and favor interactive processes. Priorities (0..127) are assigned and put into queues (low value → high prio; high value → low prio). The priorities are computed based on the CPU usage by the process, the overall CPU load and user specifications.</p>
 <figure>
     <img src="/knowledge-database/images/fq-unix.png"/> 
 </figure>
 
-
 <p>In the picture above four priorities are grouped into a queue, these are called <em>priority classes</em>. The priority gets reevalued at for example every forth timer tick. When a process gets a priority that belongs to another priority class, the process is sorted into the according queue. This is called <em>aging</em>. I/O-intensive processes are favored by this principle, because they occupy the CPU only for a short amount of time. This in turn leads to a high parallelism between the active computer components (CPU and periphery). Computing-intensive processes are penalized however. The priority computation might look similar to this:
 \[P_J = min(P_{base} + [\frac{L_{CPU}}{4}] + 2 * p_{nice}, 127)\]</p>
-
 <ul>
-<li>P<sub>base</sub> is the base priority (eg 50)</li>
-
-<li><p>p<sub>nice</sub> is an importance level that is user choosen in the range of eg -20..19</p>
-
-<p>L<sub>CPU</sub> is value in the PCB of a running process and is incremented at each tick. Over time L<sub>CPU</sub> increases and therefore the priority values of longer running process would get really high (= low prio). That&rsquo;s why <em>smoothing</em> (Glaettung) exists. Smoothing cushions the impact of the last computation time and happens once per second:</p></li>
+<li>
+<p>P<!-- raw HTML omitted -->base<!-- raw HTML omitted --> is the base priority (eg 50)</p>
+</li>
+<li>
+<p>p<!-- raw HTML omitted -->nice<!-- raw HTML omitted --> is an importance level that is user choosen in the range of eg -20..19</p>
+<p>L<!-- raw HTML omitted -->CPU<!-- raw HTML omitted --> is value in the PCB of a running process and is incremented at each tick. Over time L<!-- raw HTML omitted -->CPU<!-- raw HTML omitted --> increases and therefore the priority values of longer running process would get really high (= low prio). That's why <em>smoothing</em> (Glaettung) exists. Smoothing cushions the impact of the last computation time and happens once per second:</p>
+</li>
 </ul>
-
 <p>\[L&rsquo;_{CPU} = \frac{2*l_{RQ}}{2*l_{RQ} + 1} * L_{CPU} + p_{nice}\]</p>
-
 <ul>
-<li>l<sub>RQ</sub> is the average length of the ready queue in the last minute</li>
+<li>l<!-- raw HTML omitted -->RQ<!-- raw HTML omitted --> is the average length of the ready queue in the last minute</li>
 </ul>
-
-<p>In the special case of blocking (sleeping) processes L&rsquo;<sub>CPU</sub> is computed differently because these processes&rsquo; L<sub>CPU</sub> values are not increased per timer ticks:
+<p>In the special case of blocking (sleeping) processes L'<!-- raw HTML omitted -->CPU<!-- raw HTML omitted --> is computed differently because these processes&rsquo; L<!-- raw HTML omitted -->CPU<!-- raw HTML omitted --> values are not increased per timer ticks:
 \[L&rsquo;_{CPU} = (\frac{2*l_{RQ}}{2*l_{RQ} + 1})^{t_{sleep}} * L_{CPU}\]</p>
-
 <ul>
-<li>t<sub>sleep</sub> is incremented once per second</li>
+<li>t<!-- raw HTML omitted -->sleep<!-- raw HTML omitted --> is incremented once per second</li>
 </ul>
-
 <h3 id="linux-scheduling">Linux-Scheduling</h3>
-
-<p>Note: This is a look at how scheduling was done in the old Linux 2.4.<br /></p>
-
+<p>Note: This is a look at how scheduling was done in the old Linux 2.4.<!-- raw HTML omitted --></p>
 <ul>
 <li>process management via doubly linked lists
-
 <ul>
 <li>list to manage all processes</li>
 <li>list to manage all processes that are ready to run</li>
-</ul></li>
+</ul>
+</li>
 <li>the process classes
-
 <ul>
 <li>conventional processes (interactive or stack processed)
-
 <ul>
 <li>using prioritizing Round-Robin</li>
-</ul></li>
+</ul>
+</li>
 <li>FIFO real time processes</li>
 <li>RR real time processes</li>
-</ul></li>
+</ul>
+</li>
 <li>the CPU time gets divided into epochs</li>
 <li>in a single epoch, every process has a specified time quantum whose duration is computed when the epoch begins
-
 <ul>
 <li>at the end of a epoch all processes have used their time quantum</li>
-</ul></li>
+</ul>
+</li>
 <li>each process has a <em>base time quantum</em> which is the time-quantum value assigned by the scheduler to the process if it has exhausted its quantum in the previous epoch
-
 <ul>
 <li>the users can change the base time quantum of their processes by using the <code>nice( )</code> and <code>setpriority( )</code> system calls</li>
 <li>a new process always inherits the base time quantum of its parent</li>
-</ul></li>
+</ul>
+</li>
 <li>the linux scheduler computes the goodness (Guete) of each runable process and chooses:
-
 <ul>
-<li>goodness = 0 &rarr; process has used its quantum</li>
-<li>0 &lt; goodness &lt; 1000 &rarr; conventional process with a remaining quantum in this epoch</li>
-<li>goodness &gt; 1000 &rarr; real time process</li>
-</ul></li>
+<li>goodness = 0 → process has used its quantum</li>
+<li>0 &lt; goodness &lt; 1000 → conventional process with a remaining quantum in this epoch</li>
+<li>goodness &gt; 1000 → real time process</li>
+</ul>
+</li>
 <li>see <a href="https://www.oreilly.com/library/view/understanding-the-linux/0596002130/ch11s02.html">https://www.oreilly.com/library/view/understanding-the-linux/0596002130/ch11s02.html</a></li>
 <li><a href="https://www.linuxjournal.com/files/linuxjournal.com/linuxjournal/articles/039/3910/3910l3.html">here</a> is the source code of the goodness function</li>
-<li>according to benchmark a core spends 37-55% in the goodness function (&rarr; bad scalability)</li>
+<li>according to benchmark a core spends 37-55% in the goodness function (→ bad scalability)</li>
 </ul>
-
 <p>The problem mentioned above lead to the development of the Linux \(\mathcal{O}(1)\) scheduler (from Linux 2.6 and upwards).
 The goals in mind were to achieve an improved scalability and SMP (symmetric multi processing). There were new priority levels (140) introduced:</p>
-
 <ul>
 <li>0..99 for &ldquo;real time&rdquo;</li>
 <li>100..139 for &ldquo;normal&rdquo; processes (in <code>top</code> etc displayed as 0..39)</li>
 <li>user processes usually start with a priority of 119</li>
 <li>priorities are assigned at start (<code>nice</code>) and vary by \(\pm 5\) max
-
 <ul>
 <li>CPU intensive tasks are punished</li>
 <li>IO-intensive tasks are rewarded</li>
 <li>interactive processes get their quantum &ldquo;refilled&rdquo; each milisecond</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>As in the previous scheduler each process has a time quantum:</p>
-
 <ul>
-<li><p>the quantum depends on the priority</p>
-
-<pre><code class="language-C">#define BASE_TIMESLICE(p) (MIN_TIMESLICE + \
-    ((MAX_TIMESLICE - MIN_TIMESLICE) * \
-     (MAX_PRIO - 1 - (p)-&gt;static_prio / (MAX_USER_PRIO-1)))
-</code></pre></li>
-
-<li><p>per processor/core there are two priority arrays</p>
-
+<li>
+<p>the quantum depends on the priority</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">define BASE_TIMESLICE(p) (MIN_TIMESLICE + \</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">    ((MAX_TIMESLICE - MIN_TIMESLICE) * \</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">     (MAX_PRIO - 1 - (p)-&gt;static_prio </span><span style="color:#75715e">/</span><span style="color:#75715e"> (MAX_USER_PRIO-1)))</span><span style="color:#75715e">
+</span></code></pre></div></li>
+<li>
+<p>per processor/core there are two priority arrays</p>
 <ul>
 <li>array for all processes with a positive quantum</li>
 <li>array for all processes with a used up quantum</li>
-</ul></li>
-
-<li><p>each of these arrays consists of a bitmap and a queue of runable processes for every priority level</p>
-
+</ul>
+</li>
+<li>
+<p>each of these arrays consists of a bitmap and a queue of runable processes for every priority level</p>
 <ul>
 <li>bit in the bitmap specifies if a task is available in the corresponding queue</li>
-</ul></li>
-
-<li><p>when there are no more processes with a positive quantum then the pointer of the two arrays are swapped</p></li>
-
-<li><p>the next process is chosen based on the first bit that is set in the bitmap (highest prio) which respond to each prio level; inside a prio level Round Robin is then used to manage the processes</p></li>
 </ul>
-
+</li>
+<li>
+<p>when there are no more processes with a positive quantum then the pointer of the two arrays are swapped</p>
+</li>
+<li>
+<p>the next process is chosen based on the first bit that is set in the bitmap (highest prio) which respond to each prio level; inside a prio level Round Robin is then used to manage the processes</p>
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/prio-bitmap.png"/> 
 </figure>

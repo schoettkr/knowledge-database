@@ -17,8 +17,7 @@
       <pubDate>Tue, 02 Jul 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/10_lecture/</guid>
-      <description>Part III: Trustworthy Software Engineering
-Identity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Identity define requirements of dealing with identities  first focus on conceptual/basic understanding  identity in global context has to comply with different levels  layered approach of identity management:      Identity - Security - Privacy  identity (in a digital setting) is often &amp;ldquo;only&amp;rdquo; closely linked to security, identity is more!</description>
+      <description>Part III: Trustworthy Software EngineeringIdentity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Identity define requirements of dealing with identities  first focus on conceptual/basic understanding   identity in global context has to comply with different levels  layered approach of identity management:       Identity - Security - Privacy  identity (in a digital setting) is often &amp;ldquo;only&amp;rdquo; closely linked to security, identity is more!</description>
     </item>
     
     <item>
@@ -27,8 +26,7 @@ Identity in the Light of Privacy, Security and Trust (Chapter 2)  7 Laws of Iden
       <pubDate>Mon, 27 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/09_lecture/</guid>
-      <description>Part III: Trustworthy Software Engineering
-Trustworthy Software
+      <description>Part III: Trustworthy Software EngineeringTrustworthy Software
  in Cordis.Europa.Eu security document defined as: Trustworthiness can be seen as software and infrastructure that is secure, reliable and resilient to attacks and operational failures; guaranteeing quality of service; protecting user data; ensuring privacy and providing usable and trusted tools to support the user in his/her security management. trustworthiness needs to be considered from the outset rather than being addressed as add-on feature  So we focus on: Identity &amp;amp; Security By Design (SBD)</description>
     </item>
     
@@ -40,7 +38,7 @@ Trustworthy Software
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/08_lecture/</guid>
       <description>Internet Firewalls (Chapter 6) Definition: Firewalls are hard- or software components, which control the interconnection point between two network areas and implement security strategies by restricting packet forwarding.
 Fundamentals:
- Packet filter  entity, which selectively processes flowing packets according to predefined rules, in particular, preventing packet forwarding  Proxy approaches  representative of a client process  Network Address Translation (NAT)  address translation, public and private addresses are distinguished  Bastion Host  computer with particularly high protection requirements; vulnerability mainly results from the computer&amp;rsquo;s exposed location  Dual-Homed Host  computer with at least two network interfaces for two different subnets   These approaches are now covered in more detail.</description>
+ Packet filter  entity, which selectively processes flowing packets according to predefined rules, in particular, preventing packet forwarding   Proxy approaches  representative of a client process   Network Address Translation (NAT)  address translation, public and private addresses are distinguished   Bastion Host  computer with particularly high protection requirements; vulnerability mainly results from the computer&#39;s exposed location   Dual-Homed Host  computer with at least two network interfaces for two different subnets    These approaches are now covered in more detail.</description>
     </item>
     
     <item>
@@ -50,8 +48,7 @@ Fundamentals:
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/07_lecture/</guid>
       <description>Management of Access Rights Authorization is the process of verification and access right assignment for a resource/service to a subject and is not to be confused with Authentication which is the process of verificating claimed properties. Access Control is a process of access rights management and control.
-Access Matrix
- group- and role-based access rights management:  complexity reduction by clustering users into &amp;lsquo;role groups&amp;rsquo; inheritance relationships in rights management permissions based on roles   Access Control Lists</description>
+Access Matrix group- and role-based access rights management:  complexity reduction by clustering users into &amp;lsquo;role groups&amp;rsquo; inheritance relationships in rights management permissions based on roles    Access Control Lists principal is a user, group or process that can be authenticated simply put: ACL is a set/list of resources, principals and corresponding access rights  Access Control Models Discretionary Access Control (DAC)  access rights are assigned per user owner of a resource can pass his own rights   Mandatory Access Control (MAC)  rights passing is not allowed the system alone decides on which user has access to which resources   Role-Based Access Control (RBAC)  user could potentially be assigned multiple roles access rights are role-based    Realization in Operating Systems Unix/Linux</description>
     </item>
     
     <item>
@@ -61,7 +58,7 @@ Access Matrix
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/06_lecture/</guid>
       <description>Authentication Introduction Authentication is the process of verficating if someone is the one who he claims to be. There are different kinds of authenticators:
- knowledge-based  PIN, passwords Challenge-Response  biometrics  fingerprint, iris, voice, signature, keystroke behavior  ownership-based  something that you do not notice, but what is stored on a medium IDs, magnetic cards, certificates, smart cards  multi-factor authentication  combination of different types of authentication 2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS 3 Factors: eg password + smart card + fingerprint   Knowledge-based Authentication Knowledge-based Authentication using passwords</description>
+ knowledge-based  PIN, passwords Challenge-Response   biometrics  fingerprint, iris, voice, signature, keystroke behavior   ownership-based  something that you do not notice, but what is stored on a medium IDs, magnetic cards, certificates, smart cards   multi-factor authentication  combination of different types of authentication 2 Factors: eg deposit card + PIN, credit card + signature, password + PIN sent by SMS 3 Factors: eg password + smart card + fingerprint    Knowledge-based Authentication Knowledge-based Authentication using passwords</description>
     </item>
     
     <item>
@@ -82,8 +79,8 @@ The TLS protocol aims primarily to provide privacy and data integrity between tw
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/04_lecture/</guid>
       <description>Not so much related to rest of lecture:
 OWASP The Open Web Application Security Project is a worldwide not-for-profit charitable organization focusing on improving the security of software, which issues software tools and knowledge-based documentation on application security
-Security Mechanisms for Distributed Software Cryptography Cryptography is a broad field, which is only briefly touched in this lecture. The methods we&amp;rsquo;ll use in this lecure are:
- one key (symmetric algorithms)     both participants use the same key (for de- and encryption) the key therefore has to be transmitted aswell (risk)  two keys (asymmetric algorithms)     a public key is used to encrypt a message which can only be decrypted with the according private key &amp;rarr; private key is not submitted (thus more secure)  hybrid methods     session key is encrypted with public key and transmitted and then gets decrypted with private key session key is used to encrypt data/message and now the receiver can decrypt it with the earlier decrypted session key  one-way hash functions  compression  inputs of arbitrary length are mapped to outputs with fixed length  irreversibility (surjective function)  input can not be inferred from the output  collision-resistant  a hash function \(h()\) is called collision resistant - if it is hard to find to find two inputs \(a\) and \(b\) such that \(h(a)=h(b)\) and \(a \neq b\)    Public key cryptography visualized</description>
+Security Mechanisms for Distributed Software Cryptography Cryptography is a broad field, which is only briefly touched in this lecture. The methods we&#39;ll use in this lecure are:
+ one key (symmetric algorithms)     both participants use the same key (for de- and encryption) the key therefore has to be transmitted aswell (risk)   two keys (asymmetric algorithms)     a public key is used to encrypt a message which can only be decrypted with the according private key → private key is not submitted (thus more secure)   hybrid methods     session key is encrypted with public key and transmitted and then gets decrypted with private key session key is used to encrypt data/message and now the receiver can decrypt it with the earlier decrypted session key   one-way hash functions  compression  inputs of arbitrary length are mapped to outputs with fixed length   irreversibility (surjective function)  input can not be inferred from the output   collision-resistant  a hash function \(h()\) is called collision resistant - if it is hard to find to find two inputs \(a\) and \(b\) such that \(h(a)=h(b)\) and \(a \neq b\)      Public key cryptography visualized</description>
     </item>
     
     <item>
@@ -95,7 +92,7 @@ Security Mechanisms for Distributed Software Cryptography Cryptography is a broa
       <description>Attacks on End Systems Attacks on end systems via
  computer viruses computer worms trojan horses exploits cracking systems  might focus on
  unsecured computer systems exploiting programming errors bad security measures weak passwords  Computer Virus
- based on biological model infects resources of the host system to replicate itself malicious functions  load generation data corruption spying  various types  boot sector viruses file viruses macro viruses script viruses composites  self-defense mechanisms of viruses:  stealth modification cryptographic methods polymorphism retroviruses (against anti-virus programs)  passive distribution: by embedding into other programs and execution by the host system  Computer Worm</description>
+ based on biological model infects resources of the host system to replicate itself malicious functions  load generation data corruption spying   various types  boot sector viruses file viruses macro viruses script viruses composites   self-defense mechanisms of viruses:  stealth modification cryptographic methods polymorphism retroviruses (against anti-virus programs)   passive distribution: by embedding into other programs and execution by the host system  Computer Worm</description>
     </item>
     
     <item>
@@ -106,7 +103,7 @@ Security Mechanisms for Distributed Software Cryptography Cryptography is a broa
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/02_lecture/</guid>
       <description>We can achieve the security goals mentioned in the previours lecture by:
  information encryption implementation of authentication establishment of security activities monitoring of the system or the network in terms of attacks continous reduction of weak spots etc    In the data transfer model (2 users communicating) we can distinguish for example two types of attackers:
- passive attacker  can only listen, not manipulate confidentiality threat  active attacker  can listen, change, delete, duplicate threat for confidentiality, integrity and authenticity   The difference between authenticity and liability lays in the focus between internal and external relationships.</description>
+ passive attacker  can only listen, not manipulate confidentiality threat   active attacker  can listen, change, delete, duplicate threat for confidentiality, integrity and authenticity    The difference between authenticity and liability lays in the focus between internal and external relationships.</description>
     </item>
     
     <item>
@@ -116,7 +113,7 @@ Security Mechanisms for Distributed Software Cryptography Cryptography is a broa
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/sds/01_lecture/</guid>
       <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
- the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   Distributed Solution Design</description>
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here    Distributed Solution DesignThe increasing decentralization of public networks by deregulation of telecommunications markets leads to increasingly extensive use of the Web and increasing usage of the open &amp;amp; decentralized Internet.</description>
     </item>
     
   </channel>

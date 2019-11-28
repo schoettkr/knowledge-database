@@ -18,7 +18,7 @@
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/dbw/02_lecture/</guid>
       <description>Client Webtechnology In the last lecture we looked at different kinds of server-side webtechnology. In this lecture we turn our attention to client-side webtechnology.
-1. Persistent Code 1.1 External applications / Tools (Hilfsprogramme) External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&amp;rsquo;s not HTML.</description>
+1. Persistent Code 1.1 External applications / Tools (Hilfsprogramme) External tools enable the display of non-HTML data / files and is (analogous to CGI on server-side) independant of the client process. External tools/application are full standalone programs that are called by the browser (client) to display data that&#39;s not HTML.</description>
     </item>
     
     <item>

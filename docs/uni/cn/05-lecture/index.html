@@ -3,7 +3,7 @@
   <head>
     <title>Computer Networks - Lecture 05 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,46 +51,34 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/computer-networks/">computer-networks</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="modems">Modems</h2>
-
+      <h2 id="modems">Modems</h2>
 <p>Modem = MOdulator/DEmodulator</p>
-
 <ul>
 <li>basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/modem-verbindung.png"/> 
 </figure>
 
-
 <ul>
 <li><strong>Leistungsanschaltung</strong> = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale</li>
 <li><strong>Modulationsteil</strong> = Modulation/Demodulation (zB Amplitude, Frequenz, &hellip;)
-
 <ul>
 <li>Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht</li>
 <li>die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Steuer-/Meldeteil</strong> =  Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)</li>
 </ul>
-
 <h3 id="mehrfachnutzung-von-medien">Mehrfachnutzung von Medien</h3>
-
 <p><strong>Multiplexverfahren</strong> (lat. multiplex „vielfach, vielfältig“) sind Methoden zur Signal- und Nachrichtenübertragung, bei denen mehrere Signale zusammengefasst (gebündelt) und simultan über ein Medium (Leitung, Kabel oder Funkstrecke) übertragen werden. Oftmals werden Multiplexverfahren auch kombiniert, um eine noch höhere Nutzung zu erreichen. Die Bündelung erfolgt, nachdem die Nutzdaten auf ein Trägersignal moduliert wurden. Entsprechend werden sie beim Empfänger nach der Entbündelung (dem Demultiplexen) demoduliert.</p>
-
 <p><strong>Raummultiplex-Verfahren</strong></p>
-
 <ul>
 <li>Uebertragunskanaele (Leitungen, Richtfunkstrecken) werden zu parallelen, aber exklusiven Nutzung durch mehrere Sender und Empfaenger gebuendelt</li>
 <li>Buendelung von Adern(paaren)</li>
 <li>Analogie: Personen sprechen an verschiedenen Orten miteiander, bei genuegend grossem Abstand stoeren sich die Gespraeche nicht gegenseitig</li>
 </ul>
-
 <p><strong>Zeitmultiplex-Verfahren</strong></p>
-
 <ul>
 <li>mehrere Signale werden zeitversetzt uebertragen</li>
 <li>die Signale sind zeitlich ineinander verschachtelt</li>
@@ -98,211 +86,177 @@
 <li>Aufteilung in Zeitschlitze</li>
 <li>Analogie: in einer Schulkklasse oder beim Funken hat in der Regel nur je ein Sprecher gleichzeitig das Wort (asynchrones Zeitmultiplexverfahren), in Parlamenten hat jeder Redner eine Redezeit definierter Laenge (synchrones Zeitmultiplexverfahren)</li>
 </ul>
-
 <p><strong>Frequenzmultiplex-Verfahren</strong></p>
-
 <ul>
 <li>mehrere Signale weden in unterschiedlichen Frequenzbereichen uebertragen</li>
 <li><em>Wellenlaengenmultiplex</em> (Sonderform Frequenzmultiplex)
-
 <ul>
 <li>bei Funk- und Lichtwellenleiteruebertragung werden unterschiedlichen Signalen unterschiedliche Wellenlaengen zugewiesen</li>
 <li>Uebertragung unterschiedlicher Wellenlaengen (&ldquo;Farben&rdquo;) ueber eine Glasfaser</li>
 <li>momentan bis zu 80 verschiedene Wellenlaengen moeglich</li>
 <li>innerhalb einer Wellenlaenge ist zudem Zeitmultiplexverfahren moeglich (derzeit Datenraten von 80 GBit/s pro Wellenlaenge erreichbar, was theoretisch 6,4 TBit/ pro Faser entspricht)</li>
-</ul></li>
+</ul>
+</li>
 <li>Analogie: Eine Hundepfeife oder Fledermaeuse erzeugen fuer den Menschen unhoerbare Signale, eine parallele Kommunikatoin ist moeglich</li>
 </ul>
-
 <p><strong>Codemultiplex-Verfahren</strong></p>
-
 <ul>
 <li>wird in Funktechnik (drahtlose Netze) und Datenbussen eingesetzt</li>
 <li>verschiedene Signalfolgen werden ueber eine Leitung oder eine Funkfrequenz uebertragen &amp; koennen anhand ihrer unterschiedlichen Codierung zugeordnet werden</li>
 <li>im Empfaenger wird nur das passend kodierte Signal erkannt und ausgewertet</li>
 <li>Analogie: bei vielen gleichzeitig gesprochenen Sprachen hoert man seine Muttersprache heraus; bekannte Personen erkennt am Klang ihrer Stimme</li>
 </ul>
-
 <h3 id="uebertragungsverfahren-und-umformung--modulationsteil">Uebertragungsverfahren und Umformung (Modulationsteil)</h3>
-
 <p>Zur Uebertragung erforderlich:</p>
-
 <ul>
 <li>Umformung des primaeren Quellsignals in das Eingabesignal des Mediums</li>
 <li>Rueckformung des Ausgabesignals in das primaere Senkensignal</li>
 </ul>
-
 <p>Bei <strong>digitalen</strong> Kanaelen wird im Wesentlichen unterschieden zwischen:</p>
-
-<p><strong>1. Basisbanduebertragung</strong>:<br />
+<p><strong>1. Basisbanduebertragung</strong>:<!-- raw HTML omitted -->
 Unter einer Basisbandübertragung wird die Übertragung eines Zeitsignals in jenem Frequenzbereich verstanden, welches das Zeitsignal als Frequenzspektrum aufweist. Dieses Frequenzspektrum wird dann auch als Basisband bezeichnet. Bei digitalen Übertragungen kann durch die Leitungscodierung Einfluss auf die Eigenschaften des übertragenen Frequenzspektrums im Basisband genommen werden. Die Leitungscodierung ist die Abbildungsvorschrift, dafuer wie das digitale Primaersignal auf das digitale Uebertragungssignal abgebildet wird.
 Im einfachen Verfahren unterscheidet man zwischen Einfachstrom (zB 0 = 0V, 1 = 5V) und Doppelstrom-Verahren (zB 0 = -5V, 1 = 5V). Die angestrebten Eigenschaften einer   Leitungscodierung:</p>
-
 <ul>
 <li>Eliminierung des Gleichstromanteils</li>
 <li>Wiedergewinnung des Takts aus dem Signal (selbsttaktender Signalcode)</li>
 <li>Erkennung von Signalfehlern auf Signalebene</li>
 </ul>
-
 <p>Slides: digitale elektrische Uebertragung, bei der das zu uebertragende Signal direkt auf das Medium gelangt; das Signal beansprucht bei diesem Verfahren die gesamte Bandbreite des Mediums</p>
-
-<p>Beispiel Manchester Codierung:<br /></p>
-
+<p>Beispiel Manchester Codierung:<!-- raw HTML omitted --></p>
 <ul>
 <li>Doppelstromverfahren</li>
 <li>jedes zu uebertragene Bit (0 oder 1) wird in <em>zwei Uebertragungsschritte</em> gleicher Dauer aufgeteilt
-
 <ul>
 <li>1 = High-Low</li>
 <li>0 = Low-High</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/manchester-codierung.png"/> 
 </figure>
 
-
-<p><strong>2. Breitbanduebertragung</strong>:<br />
+<p><strong>2. Breitbanduebertragung</strong>:<!-- raw HTML omitted -->
 Die Bandbreite eines Mediums wird in verschiedene Kanaele aufgeteilt (vgl Frequenz-/Zeitmultiplex)</p>
-
 <ul>
-<li><p>Nutzung der unterschiedlichen Kanaele durch Aufpraegung des Quellsignals auf harmonische Traegerschwingung, Umformung digital &lt;-&gt; analog</p>
-
+<li>
+<p>Nutzung der unterschiedlichen Kanaele durch Aufpraegung des Quellsignals auf harmonische Traegerschwingung, Umformung digital &lt;-&gt; analog</p>
 <ul>
 <li>Amplitudentastung (Amplitudenmodulation)</li>
 <li>Frequenztastung (Frequenzmodulation)</li>
 <li>Phasentastung (Phasenmodulation)</li>
-</ul></li>
-
-<li><p>Amplitudenmodulation</p>
-
-<ul>
-<li>Uebertragung mittels Basisbanduebertragung nicht moeglich
-
-<ul>
-<li>primaeres Signal wird durch Amplitudenveraenderung auf Traegersignal moduliert</li>
-</ul></li>
-<li>Amplitudenmodulation ist sehr stoeranfaellig</li>
-<li>Erkennung langer Folgen von 1 erfordert sehr stabile Taktgeneratoren</li>
 </ul>
+</li>
+<li>
+<p>Amplitudenmodulation</p>
+</li>
+</ul>
+<pre><code>-   Uebertragung mittels Basisbanduebertragung nicht moeglich
+    -   primaeres Signal wird durch Amplitudenveraenderung auf Traegersignal moduliert
+-   Amplitudenmodulation ist sehr stoeranfaellig
+-   Erkennung langer Folgen von 1 erfordert sehr stabile Taktgeneratoren
 
 <figure>
     <img src="/knowledge-database/images/amplitudenmodulation.png"/> 
 </figure>
-</li>
 
-<li><p>Frequenzmodulation</p>
-
+</code></pre>
 <ul>
-<li>primaeres Signal wird durch gezielte Aenderung der Traegerfrequenz moduliert</li>
-<li>Frequenzmodulation ist das unter anderem auch bei UKW-Rundfunk eingesetzte Modulationsverfahren</li>
+<li>Frequenzmodulation</li>
 </ul>
+<pre><code>-   primaeres Signal wird durch gezielte Aenderung der Traegerfrequenz moduliert
+-   Frequenzmodulation ist das unter anderem auch bei UKW-Rundfunk eingesetzte Modulationsverfahren
 
 <figure>
     <img src="/knowledge-database/images/frequenzmodulation.png"/> 
 </figure>
-</li>
 
-<li><p>Phasenmodulation</p>
-
+</code></pre>
 <ul>
-<li>primaeres Signal wird mittels gezielter Phasenspruenge des Traegersignals moduliert</li>
-<li>CCITT-Empfehlung:
-
-<ul>
-<li>0 = Phasendrehung um 180 Grad</li>
-<li>1 = keine Phasendrehung</li>
-</ul></li>
-<li>Phasenmodulation ist das beste, aber auch aufwendigste Verfahren</li>
+<li>Phasenmodulation</li>
 </ul>
+<pre><code>-   primaeres Signal wird mittels gezielter Phasenspruenge des Traegersignals moduliert
+-   CCITT-Empfehlung:
+    -   0 = Phasendrehung um 180 Grad
+    -   1 = keine Phasendrehung
+-   Phasenmodulation ist das beste, aber auch aufwendigste Verfahren
 
 <figure>
     <img src="/knowledge-database/images/phasenmodulation.png"/> 
 </figure>
-</li>
 
-<li><p>Quadratur-Amplituden-Modulation (QAM)</p>
-
+</code></pre>
 <ul>
-<li>Kombination  aus Amplituden- und Phasenmodulation
-
-<ul>
-<li>gleichzeitige Uebertragung von mehreren Bits pro Uebertragungsschritt</li>
-<li>Verwendung von mehreren Amplituden und Phasenzustaenden</li>
-<li>bis zu 10 Bit pro Schritt uebertragbar (1024)</li>
-<li>Stoeranfaelligkeit steigt mit Anzahl der zu uebertragenen Bits pro Schritt</li>
-</ul></li>
-<li>Beispiel: 2 Amplituden, 8 Phasen &rarr; 16 Zustaende = 4 Bit</li>
+<li>Quadratur-Amplituden-Modulation (QAM)</li>
 </ul>
+<pre><code>-   Kombination  aus Amplituden- und Phasenmodulation
+    -   gleichzeitige Uebertragung von mehreren Bits pro Uebertragungsschritt
+    -   Verwendung von mehreren Amplituden und Phasenzustaenden
+    -   bis zu 10 Bit pro Schritt uebertragbar (1024)
+    -   Stoeranfaelligkeit steigt mit Anzahl der zu uebertragenen Bits pro Schritt
+-   Beispiel: 2 Amplituden, 8 Phasen &amp;rarr; 16 Zustaende = 4 Bit
 
 <figure>
     <img src="/knowledge-database/images/qam.png"/> 
 </figure>
+
+</code></pre>
+<h3 id="technologien-zur-datenuebertragung-ueber-telefonleitungen">Technologien zur Datenuebertragung ueber Telefonleitungen</h3>
+<h4 id="dsl--digital-subscriber-line">DSL (Digital Subscriber Line)</h4>
+<ul>
+<li>
+<p>hochratige, digitale Datenuebertragung zwischen Teilnehmern und Vermittlungsstellen ueber installierte Kupferadern des Telefonnetzes (2-adrig, Twisted Pair)</p>
+</li>
+<li>
+<p>Uebertragungsraten im Bereich von Mbit/s</p>
+</li>
+<li>
+<p>Koexistenz von DSL und bestehenden Telefonsystem (analoges Telefonnetz und ISDN)</p>
+</li>
+<li>
+<p>Grundidee: Ausnutzung der gesamten Bandbreite des Uebertragungsmediums</p>
+</li>
+<li>
+<p>es gibt unterschiedliche Realisierungen der DSL-Technik {x}DSL:</p>
+</li>
+<li>
+<p>SDSL (Symmetric DSL)</p>
 </li>
 </ul>
-
-<h3 id="technologien-zur-datenuebertragung-ueber-telefonleitungen">Technologien zur Datenuebertragung ueber Telefonleitungen</h3>
-
-<h4 id="dsl--digital-subscriber-line">DSL (Digital Subscriber Line)</h4>
-
+<pre><code>-   HDSL ueber Zweidraht-Leitung, 760 kbit/s
+</code></pre>
 <ul>
-<li>hochratige, digitale Datenuebertragung zwischen Teilnehmern und Vermittlungsstellen ueber installierte Kupferadern des Telefonnetzes (2-adrig, Twisted Pair)</li>
-<li>Uebertragungsraten im Bereich von Mbit/s</li>
-<li>Koexistenz von DSL und bestehenden Telefonsystem (analoges Telefonnetz und ISDN)</li>
-<li>Grundidee: Ausnutzung der gesamten Bandbreite des Uebertragungsmediums</li>
-
-<li><p>es gibt unterschiedliche Realisierungen der DSL-Technik {x}DSL:</p></li>
-
-<li><p>SDSL (Symmetric DSL)</p>
-
-<ul>
-<li>HDSL ueber Zweidraht-Leitung, 760 kbit/s</li>
-</ul></li>
-
-<li><p>TDSL (Stand ca 2002)</p>
-
-<ul>
-<li>768 kbit/s downstream</li>
-<li>128 kbit/s upstream</li>
-</ul></li>
-
-<li><p>HDSL (High Bitrate DSL)</p>
-
-<ul>
-<li>1.5 Mbit/s ueber Viedraht-Leitung</li>
-</ul></li>
-
-<li><p>RADSL (Rate Adaptive DSL)</p>
-
-<ul>
-<li>2.2 Mbit/s Downstream</li>
-<li>1.1 Mbit/s Upstream</li>
-</ul></li>
-
-<li><p>ADSL (Asymmetric Digital Subscriber Line)</p>
-
-<ul>
-<li>Grundprinzip: &ldquo;hohe Bitrate zum Teilnehmer, niedrige Bitrate vom Telnehmer&rdquo;</li>
-<li>Datenraten:
-
-<ul>
-<li>max 8 Mbit/s Downstream (je nach Entfernung &amp; Leitungsqualitaet)</li>
-<li>max 640 kbit/s Upstream (je nach Entfernung &amp; Leitungsqualitaet)</li>
-</ul></li>
-<li>Reichweite in der Praxis 5000-6000m
-
-<ul>
-<li>in DE ist die durchschn. Laenger einer Teilnehmeranschlussleitung 2km</li>
-</ul></li>
-</ul></li>
-
-<li><p>VDSL (Very High Bitrate DSL)</p>
-
-<ul>
-<li>13-52 Mbit/s Downstream, bis 6 Mbit/s Upstream</li>
-</ul></li>
+<li>TDSL (Stand ca 2002)</li>
 </ul>
+<pre><code>-   768 kbit/s downstream
+-   128 kbit/s upstream
+</code></pre>
+<ul>
+<li>HDSL (High Bitrate DSL)</li>
+</ul>
+<pre><code>-   1.5 Mbit/s ueber Viedraht-Leitung
+</code></pre>
+<ul>
+<li>RADSL (Rate Adaptive DSL)</li>
+</ul>
+<pre><code>-   2.2 Mbit/s Downstream
+-   1.1 Mbit/s Upstream
+</code></pre>
+<ul>
+<li>ADSL (Asymmetric Digital Subscriber Line)</li>
+</ul>
+<pre><code>-   Grundprinzip: &quot;hohe Bitrate zum Teilnehmer, niedrige Bitrate vom Telnehmer&quot;
+-   Datenraten:
+    -   max 8 Mbit/s Downstream (je nach Entfernung &amp; Leitungsqualitaet)
+    -   max 640 kbit/s Upstream (je nach Entfernung &amp; Leitungsqualitaet)
+-   Reichweite in der Praxis 5000-6000m
+    -   in DE ist die durchschn. Laenger einer Teilnehmeranschlussleitung 2km
+</code></pre>
+<ul>
+<li>VDSL (Very High Bitrate DSL)</li>
+</ul>
+<pre><code>-   13-52 Mbit/s Downstream, bis 6 Mbit/s Upstream
+</code></pre>
 
     </div>
     <div class="post-footer">

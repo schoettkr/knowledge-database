@@ -3,7 +3,7 @@
   <head>
     <title>Operating Systems - Coordination Problems // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,207 +51,159 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/os/">os</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p>Coordination mechanisms and techniques can solve a lot of problems like guaranteeing data consistency when cooperating (guarding critical sections), managing exclusive ressource access etc. However new problems may occur when employing coordination mechanisms:</p>
-
+      <p>Coordination mechanisms and techniques can solve a lot of problems like guaranteeing data consistency when cooperating (guarding critical sections), managing exclusive ressource access etc. However new problems may occur when employing coordination mechanisms:</p>
 <ul>
 <li>priority inversion</li>
 <li>starving (verhungern)</li>
 <li>deadlock (verklemmen)</li>
 </ul>
-
 <h2 id="priority-inversion">Priority Inversion</h2>
-
 <p>In the case of priority based scheduling a process with higher priority may be blocked by a process with lower priority, for example:</p>
-
 <ul>
 <li>low-prio process \(P_L\) enters a critical section</li>
 <li>high-prio process \(P_H\) gets ready to execute and tries the same</li>
 <li>\(P_H\) is blocked</li>
 </ul>
-
 <p>Now if a process with medium priority \(P_M\) suspenses the low-prio process \(P_L\) the blocking/stopping of \(P_H\) may continue.</p>
-
 <ul>
 <li>multiple medium-prio processes may take over each other (abloesen)</li>
 </ul>
-
 <p>This is known as unlimited priority inversion and leads to performance problems.</p>
-
 <h2 id="deadlock-vs-starvation">Deadlock vs Starvation</h2>
-
 <p><strong>Deadlock</strong></p>
-
 <ul>
 <li>no process participates in the scheduling process</li>
 <li>static situation</li>
 <li>no forward resolution (Vorwaertsaufloesung)</li>
-<li>no (inner) progress: processes don&rsquo;t move forward</li>
+<li>no (inner) progress: processes don't move forward</li>
 </ul>
-
 <p><strong>Starvation</strong></p>
-
 <ul>
 <li>processes continue to participate in the scheduling process</li>
 <li>dynamic situation</li>
 <li>forward resolution is possible</li>
-<li>no (outer) progress: process doesn&rsquo;t move beyond a certain point</li>
+<li>no (outer) progress: process doesn't move beyond a certain point</li>
 </ul>
-
 <p>The problem of starvation can be solved by breaking the dynamic symmetry by eg randomization. We focus on (dead)locks for now.</p>
-
 <h2 id="deadlock">Deadlock</h2>
-
-<p>A <strong>deadlock</strong> is a situation in which none of the involved processes can continue to execute, e.g:<br />
-<img src="/knowledge-database/images/deadlock-example.png" alt="" /></p>
-
-<p>An illustrative example of this is that of the dining philosophers (Dijkstra): 5 philosophers sit in an italian restaurant, eat spaghetti and think. They have 5 forks and to eat one needs 2 forks. If everyone takes one fork all 5 forks are in one hand each and nobody can eat and they will wait forever &rarr; deadlock.</p>
-
+<p>A <strong>deadlock</strong> is a situation in which none of the involved processes can continue to execute, e.g:<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/deadlock-example.png" alt=""></p>
+<p>An illustrative example of this is that of the dining philosophers (Dijkstra): 5 philosophers sit in an italian restaurant, eat spaghetti and think. They have 5 forks and to eat one needs 2 forks. If everyone takes one fork all 5 forks are in one hand each and nobody can eat and they will wait forever → deadlock.</p>
 <p>In context of operating systems resources the following criteria (<em>Coffman Conditions</em>) are needed for a deadlock:</p>
-
 <ul>
 <li>resource(s) is/are used exclusively</li>
 <li>processes already hold/occupy some resource while waiting for another resource</li>
-<li>suspension doesn&rsquo;t happen</li>
+<li>suspension doesn't happen</li>
 </ul>
-
 <p>Now if in this situation the following happens, the last coffman condition for a deadlock is met:</p>
-
 <ul>
 <li>there are cyclic (waiting) dependencies</li>
 </ul>
-
 <p>Note: Condition 1-3 are system design dependant, while condition 4 is something that may arise during run time.</p>
-
 <h3 id="deadlock-countermeasures">Deadlock Countermeasures</h3>
-
 <ul>
 <li>prevention (Vorbeugung)</li>
 <li>detection (Entdeckung)</li>
 <li>avoidance (Vermeidung, Verhinderung)</li>
 <li>resolution, recovery (Aufloesung)</li>
 </ul>
-
 <h4 id="deadlock-prevention">Deadlock Prevention</h4>
-
 <ul>
 <li>prevention = preventive procedure where the resource distribution is realized in a way where deadlocks cannot occur</li>
 <li><strong>preclaiming</strong> (Summenbelegung): all ever needed ressources are requested upfront</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/preclaiming.png"/> 
 </figure>
 
-
-<p>Preclaiming implicates total release of all resources (Totalfreigabe) at/before every (re-)occupation (Neubelegung) or resource request. This perforates the Coffman condition &ldquo;hold &amp; wait&rdquo;. This is how things would go in case of the dining philosophers:<br />
-<img src="/knowledge-database/images/total-release.png" alt="" /><br />
-&rarr; Deadlock won&rsquo;t occur, but cycles without progress may occur &rarr; starvation (livelock)</p>
-
-<p>Another countermeasures to prevent deadlocks is ordered allocation of resources which means access to resources is sorted and resources may only be requested in this order. This breaks the cyclicality from Coffman Condition 4<br />
-<img src="/knowledge-database/images/ordered-allocation.png" alt="" /><br /></p>
-
-<p>All in all preventing measures only work in certain conditions and are rather impractical in real life scenarios, that&rsquo;s why they are used rarely.</p>
-
+<p>Preclaiming implicates total release of all resources (Totalfreigabe) at/before every (re-)occupation (Neubelegung) or resource request. This perforates the Coffman condition &ldquo;hold &amp; wait&rdquo;. This is how things would go in case of the dining philosophers:<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/total-release.png" alt=""><!-- raw HTML omitted -->
+→ Deadlock won't occur, but cycles without progress may occur → starvation (livelock)</p>
+<p>Another countermeasures to prevent deadlocks is ordered allocation of resources which means access to resources is sorted and resources may only be requested in this order. This breaks the cyclicality from Coffman Condition 4<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/ordered-allocation.png" alt=""><!-- raw HTML omitted --></p>
+<p>All in all preventing measures only work in certain conditions and are rather impractical in real life scenarios, that's why they are used rarely.</p>
 <h4 id="deadlock-detection">Deadlock Detection</h4>
-
-<p>If a deadlock cannot be prevented per se, it is advantageous to detect the occurance of a deadlock. We&rsquo;ll look at deadlock detection algorithms.<br />
-Informally: There&rsquo;s an order in which all process can come to an end &rarr; no deadlock</p>
-
+<p>If a deadlock cannot be prevented per se, it is advantageous to detect the occurance of a deadlock. We'll look at deadlock detection algorithms.<!-- raw HTML omitted -->
+Informally: There's an order in which all process can come to an end → no deadlock</p>
 <p>A detection algorithm has to account for <em>all</em> processes and cann be called..</p>
-
 <ul>
 <li>at each occupation / resource request / allocation</li>
 <li>periodically</li>
 <li>in the system idle process (Leerlaufprozess)</li>
 <li>when suspicious (manually)</li>
 </ul>
-
-<p><strong>Formal Deadlock Definition</strong><br />
+<p><strong>Formal Deadlock Definition</strong><!-- raw HTML omitted -->
 The next slides, slide 19 to slide 33, provide a formal description of deadlocks. These are very hard to convert into this blog format so check them out in the <a href="https://osg.informatik.tu-chemnitz.de/lehre/os/bs-10-Deadlock-handout%5Fde.pdf">slides</a>.</p>
-
 <h4 id="deadlock-avoidance">Deadlock Avoidance</h4>
-
 <ul>
 <li>a deadlock regards the <em>current</em> allocation/occupation situation</li>
 <li><em>before</em> carrying out an allocation request a check is done and the request might get denied</li>
 <li>most unfavorable situation: running process requests all outstanding resources (laufender  Prozess stellt komplette Restforderungen)
-
 <ul>
 <li>if all of these demands can be met, the situation is still safe/secure, else the situation is unsafe/unsecure
-
 <ul>
-<li>an unsafe/unsecure resource situation is characterized by the circumstance that there&rsquo;s a subset of processes whose outstanding (resource) request cannot be fullfilled (sooner or later)</li>
+<li>an unsafe/unsecure resource situation is characterized by the circumstance that there's a subset of processes whose outstanding (resource) request cannot be fullfilled (sooner or later)</li>
 <li>current requests might be fullfillable, however a deadlock may occur if the ordering of requests and releases is not optimal</li>
-</ul></li>
-</ul></li>
 </ul>
-
-<p>Example of two processes and two resources:<br />
-<img src="/knowledge-database/images/trajectory-1.png" alt="" /></p>
-
+</li>
+</ul>
+</li>
+</ul>
+<p>Example of two processes and two resources:<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/trajectory-1.png" alt=""></p>
 <ul>
 <li>occupation trajectory of two processes \(P_1\) and \(P_2\) which both require the resources A and B</li>
 <li>when both resources are differently assigned/allocated the situation is unsafe
-
 <ul>
 <li>no deadlock if lucky</li>
 <li>guaranteed deadlock if unlucky</li>
-</ul></li>
+</ul>
+</li>
 <li>secure trajectories avoid a deadlock</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/trajectory-1.png"/> 
 </figure>
 
-
-<p>Formal Definition of safe situations:<br />
-<img src="/knowledge-database/images/safe-situations.png" alt="" /></p>
-
+<p>Formal Definition of safe situations:<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/safe-situations.png" alt=""></p>
 <p>Definition safe set of processes: A set of processes \(P = {P_1, P2, &hellip;, P_m}\) is <em>safe</em> when \(\exists\) permutation \(P_{k1}, P_{k2}, &hellip;, P_{km} \text{with} \overrightarrow{g}_{k1} - \overrightarrow{b}_{k1} \text{and} \forall j \in {2, &hellip;, m}, \overrightarrow{g}_{kj} - \overrightarrow{b}_{kj} \leq \overrightarrow{f} + \sum_{i=1}^{j-1}\overrightarrow{b}_{ki}\)</p>
-
 <p>The states &ldquo;safe/secure&rdquo; and &ldquo;deadlock free&rdquo; are really similar.</p>
-
 <ul>
 <li>in case of a &ldquo;deadlock free&rdquo; situation a permutation is searched, which can be executed under all current occupations/allocation requests</li>
 <li>in case of a &ldquo;safe/secure&rdquo; situation the same is done for the <strong>outstanding requests</strong> (Restforderungen) \(R= G - B\)</li>
 <li>algorithms to detect deadlocks can also be used to avoid deadlocks</li>
-<li>the matrix alogrithm by Dijkstra which is also known as Banker&rsquo;s algorithm is used to prevent deadlocks
-
+<li>the matrix alogrithm by Dijkstra which is also known as Banker's algorithm is used to prevent deadlocks
 <ul>
 <li>slides: es muessen lediglich die aktuellen Anforderungen durch die Restforderungen ersetzt werden; Problem: Restanforderungen sind i.d.R. nicht genau bekannt</li>
-<li>the Banker&rsquo;s algorithm is executed at each allocation and the situation that <em>would arise when granting</em> the request is evaluated
-
+<li>the Banker's algorithm is executed at each allocation and the situation that <em>would arise when granting</em> the request is evaluated
 <ul>
 <li>if the resulting situation is safe, the allocation request is allowed else it is put back</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/bankers-algorithm.png"/> 
 </figure>
 
-
 <h3 id="deadlock-resolution-recovery">Deadlock Resolution/Recovery</h3>
-
 <ul>
 <li>every resolution of a deadlock consists of breaking the waiting cycle</li>
 <li>if an ordered resource withdrawal (BM-Entzug) is not possible, the <strong>abortion</strong> (Abbruch) of a process is the only option
-
 <ul>
 <li>question: which process should be cancelled?</li>
 <li>criteria:
-
 <ul>
 <li>requested size</li>
 <li>urgency/priority</li>
 <li>user vs system process</li>
 <li>etc&hellip;.</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
     </div>

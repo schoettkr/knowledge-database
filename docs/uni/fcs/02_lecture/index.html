@@ -3,7 +3,7 @@
   <head>
     <title>Einführung in die Funktion von Computersystemen - Lecture 02: Von der Schaltungslogik zur Informationsverarbeitung // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,208 +51,154 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/">funktion-computersysteme</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="schaltungslogik">Schaltungslogik</h2>
-
+      <h2 id="schaltungslogik">Schaltungslogik</h2>
 <figure>
     <img src="/knowledge-database/images/schaltungslogik.png"/> 
 </figure>
 
-
 <h2 id="schaltnetze">Schaltnetze</h2>
-
-<p>Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.<br />
-<img src="/knowledge-database/images/gatter.png" alt="" /><br />
-Durch logisch vollständige Funktionen können beliebige andere Funktionen &ldquo;gebaut&rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:<br />
-<img src="/knowledge-database/images/xor-nand.png" alt="" /><br /></p>
-
+<p>Sogenannte Gatter implementieren die booleschen Funktionen. Signale werden dabei durch elektrische Spannungen dargestellt. Durch die Zusammensetzung von Gattern entstehen Logikschaltungen. Ein Schaltnetz ist eine Zusammensetzung von Verknüpfungsschaltungen ohne Speicherverhalten.<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/gatter.png" alt=""><!-- raw HTML omitted -->
+Durch logisch vollständige Funktionen können beliebige andere Funktionen &ldquo;gebaut&rdquo; werden. Zum Beispiel lässt sich die XOR-Funktion (\(x \oplus y\)) durch NAND-Gatter wie folgt realisieren:<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/xor-nand.png" alt=""><!-- raw HTML omitted --></p>
 <h3 id="optimierung">Optimierung</h3>
-
 <p>Eine Schaltung ist nicht immer optimal (zB zuviel Gatter), daher gibt es Methoden zur Optimierung, die da wären Verfahren nach McCluskey und das Verfahren nach Karnaugh und Veitch, welches wir im folgenden betrachten.</p>
-
 <h4 id="karnaugh-and-veitch-diagramm">Karnaugh &amp; Veitch - Diagramm</h4>
-
 <ul>
 <li>Funktionswerte werden in einer Matrix so angeordnet, dass sich benachbarte Felder um einen Funktionsparameter unterscheiden</li>
 <li>Matrix ist als Oberfläche eines Torus aufzufassen (Ränder oben/unten sowie rechts/links sind verbunden)</li>
-<li>Werte werden in Matrix eingetragen, unbekannte (don&rsquo;t care) werden mit &phi; bezeichnet</li>
+<li>Werte werden in Matrix eingetragen, unbekannte (don't care) werden mit φ bezeichnet</li>
 <li>Blöcke gleichen Werts zu Rechtecken mit 2^n Kantenlänge zusammenfassen</li>
 <li>Block entspricht Ausdruck, der von weniger Variablen abhängig ist</li>
 </ul>
-
-<p><img src="/knowledge-database/images/kv-beispiel.png" alt="" /><br /></p>
-
+<p><img src="/knowledge-database/images/kv-beispiel.png" alt=""><!-- raw HTML omitted --></p>
 <h2 id="schaltwerk">Schaltwerk</h2>
-
 <ul>
-<li>ein Schaltwerk zeigt (im Gegensatz zum Schaltnetz) <strong>Speicherverhalten</strong> (&rarr; es besitzt einen Zustand)</li>
+<li>ein Schaltwerk zeigt (im Gegensatz zum Schaltnetz) <strong>Speicherverhalten</strong> (→ es besitzt einen Zustand)</li>
 <li>durch Eingangssignale ändert sich der Zustand der Schaltung</li>
-<li>einfachstes Speicherelement speichert die Zustände 0/1 &rarr; Flip-Flop</li>
+<li>einfachstes Speicherelement speichert die Zustände 0/1 → Flip-Flop</li>
 </ul>
-
-<p><img src="/knowledge-database/images/schaltwerk.png" alt="" /><br /></p>
-
+<p><img src="/knowledge-database/images/schaltwerk.png" alt=""><!-- raw HTML omitted --></p>
 <h4 id="taktsteuerung-binäre-signale">Taktsteuerung / Binäre Signale</h4>
-
 <ul>
 <li>Abstraktion von Signalübergängen: Takt
-
 <ul>
 <li>Signale können dann als Rechtecksignale betrachtet werden</li>
-</ul></li>
+</ul>
+</li>
 <li>synchrone Schaltungen: hier D-Flip-Flop (auch &ldquo;Latch&rdquo;)</li>
 <li>auf die fallende Flanke an T wird der an D anliegende Datenwert (0 oder 1) &ldquo;eingefroren&rdquo;</li>
 </ul>
-
-<p><img src="/knowledge-database/images/d-flip-flop.png" alt="" /><br /></p>
-
-<p>Beispiel: Master-Slave-Flip-Flop<br /></p>
-
+<p><img src="/knowledge-database/images/d-flip-flop.png" alt=""><!-- raw HTML omitted --></p>
+<p>Beispiel: Master-Slave-Flip-Flop<!-- raw HTML omitted --></p>
 <ul>
 <li>mit der steigenden Flanke des Taktes wird der gesetzte Wert in die erste Stufe übernommen</li>
 <li>derweil liegt am Ausgang noch der alte Wert an</li>
 <li>mit der fallenden Flanke des wird die Eingangsstufe &ldquo;versiegelt&rdquo; und der gesetzte Wert in die zweite Stufe (und den Ausgang) geschrieben</li>
 </ul>
-
-<p><img src="/knowledge-database/images/master-slave-flip-flop.png" alt="" /><br /></p>
-
+<p><img src="/knowledge-database/images/master-slave-flip-flop.png" alt=""><!-- raw HTML omitted --></p>
 <h4 id="zustandsbehaftete-vs-zustandslose-schaltungen">Zustandsbehaftete vs zustandslose Schaltungen</h4>
-
 <ul>
 <li>in zustandslosen Schaltungen hängt das Ausgangssignal auschließlich vom Eingangssignal ab</li>
-<li>dagegen geht in das Ausgangssignal von zustandsbehafteten Schaltungen die &ldquo;Vorgeschichte&rdquo; ein, die sich im Zustand manifestiert (hat) (&rarr; Automatenmodell)</li>
+<li>dagegen geht in das Ausgangssignal von zustandsbehafteten Schaltungen die &ldquo;Vorgeschichte&rdquo; ein, die sich im Zustand manifestiert (hat) (→ Automatenmodell)</li>
 </ul>
-
-<p><img src="/knowledge-database/images/zustandslos-zustandsbehaftet.png" alt="" /><br /></p>
-
+<p><img src="/knowledge-database/images/zustandslos-zustandsbehaftet.png" alt=""><!-- raw HTML omitted --></p>
 <ul>
-<li><p>Register</p>
-
-<ul>
-<li>Speicherzellen für logisch zusammengehörende Einzelbits werden zu <strong>Registern</strong> zusammengefasst</li>
-<li>Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden</li>
+<li>Register</li>
 </ul>
+<pre><code>-   Speicherzellen für logisch zusammengehörende Einzelbits werden zu **Registern** zusammengefasst
+-   Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden
 
-<p><img src="/knowledge-database/images/register.png" alt="" /><br /></p></li>
-
-<li><p>Arbeitsspeicher</p>
-
+![](/knowledge-database/images/register.png)&lt;br /&gt;
+</code></pre>
 <ul>
-<li>abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann</li>
-<li>Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip</li>
-<li>das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert</li>
-<li>typisches Beispiel:
-
-<ul>
-<li>m = 32 (Datenwortbreite ist 32 Bit)</li>
-<li>n = 24 (es können 2^24 = 16 M Worte angesprochen werden)</li>
-</ul></li>
+<li>Arbeitsspeicher</li>
 </ul>
+<pre><code>-   abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann
+-   Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip
+-   das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert
+-   typisches Beispiel:
+    -   m = 32 (Datenwortbreite ist 32 Bit)
+    -   n = 24 (es können 2^24 = 16 M Worte angesprochen werden)
 
-<p><img src="/knowledge-database/images/arbeitsspeicher.png" alt="" /><br /></p>
+![](/knowledge-database/images/arbeitsspeicher.png)&lt;br /&gt;
 
-<p>Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.</p></li>
-
-<li><p>Schieberegister</p>
-
+Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.
+</code></pre>
 <ul>
-<li>mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das &ldquo;freigewordene&rdquo; Bit der Wert des Eingangsbits \(d_{in}\) geschrieben:
-
-<ul>
-<li>\(t=t_0\), \(d_{in} = 1\): \(D=0000\)</li>
-<li>\(t=t_0+1\), \(d_{in} = 1\): \(D=0001\)</li>
-<li>\(t=t_0+2\), \(d_{in} = 0\): \(D=0011\)</li>
-<li>\(t=t_0+3\), \(d_{in} = 1\): \(D=0110\)</li>
-<li>\(t=t_0+4\), \(d_{in} = 1\): \(D=1101\)</li>
-</ul></li>
-<li>ist \(d_{in} = 0\)  so entspricht das Schieben in Richtung MSB (most significant Bit) einer <strong>Multiplikation</strong> mit 2, das Schieben in Richtung LSB (least significant Bit) einer Division mit 2</li>
+<li>Schieberegister</li>
 </ul>
+<pre><code>-   mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das &quot;freigewordene&quot; Bit der Wert des Eingangsbits \\(d\_{in}\\) geschrieben:
+    -   \\(t=t\_0\\), \\(d\_{in} = 1\\): \\(D=0000\\)
+    -   \\(t=t\_0+1\\), \\(d\_{in} = 1\\): \\(D=0001\\)
+    -   \\(t=t\_0+2\\), \\(d\_{in} = 0\\): \\(D=0011\\)
+    -   \\(t=t\_0+3\\), \\(d\_{in} = 1\\): \\(D=0110\\)
+    -   \\(t=t\_0+4\\), \\(d\_{in} = 1\\): \\(D=1101\\)
+-   ist \\(d\_{in} = 0\\)  so entspricht das Schieben in Richtung MSB (most significant Bit) einer **Multiplikation** mit 2, das Schieben in Richtung LSB (least significant Bit) einer Division mit 2
 
-<p><img src="/knowledge-database/images/schieberegister.png" alt="" /><br /></p></li>
-</ul>
-
+![](/knowledge-database/images/schieberegister.png)&lt;br /&gt;
+</code></pre>
 <h4 id="addition">Addition</h4>
-
 <ul>
-<li>Addition zweier Binärzahlen kann durch logische Verknüpfungen realisiert werden (&rarr; <strong>Halbaddierer/Half-Adder</strong>)</li>
+<li>Addition zweier Binärzahlen kann durch logische Verknüpfungen realisiert werden (→ <strong>Halbaddierer/Half-Adder</strong>)</li>
 </ul>
-
-<p><img src="/knowledge-database/images/halfadder.png" alt="" /><br /></p>
-
+<p><img src="/knowledge-database/images/halfadder.png" alt=""><!-- raw HTML omitted --></p>
 <ul>
 <li>Berechnung von \(x+y=z+\) Übertrag (carry)</li>
 <li>Übertrag zur naechsthoeheren Stelle</li>
 </ul>
-
-<p>Zur vollständigen Addition einer Stelle zweier mehrstelliger Dualzahlen muss noch der Übertrag \(c_{in}\) von vorheriger Stelle berücksichtigt werden (<strong>Volladdierer</strong>, <strong>Full Adder</strong>)<br />
-<img src="/knowledge-database/images/fulladder.png" alt="" /><br /></p>
-
+<p>Zur vollständigen Addition einer Stelle zweier mehrstelliger Dualzahlen muss noch der Übertrag \(c_{in}\) von vorheriger Stelle berücksichtigt werden (<strong>Volladdierer</strong>, <strong>Full Adder</strong>)<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/fulladder.png" alt=""><!-- raw HTML omitted --></p>
 <p>Durch Zusammenschaltung mehrerer Volladdierer können zwei Datenworte <strong>beliebiger Breite</strong> addiert werden (<strong>n-Bit-Addierer</strong>).</p>
-
 <ul>
 <li>Daten werden dabei als Zahlen im Zweierkomplement aufgefasst</li>
 <li>das Carry-Bit muss immer zur nächsthöheren Stufe weitergereicht werden
-
 <ul>
 <li>es muss das &ldquo;Einschwingen/pendeln&rdquo; aller n Stufen abgewartet werden, ehe das Ergebnis gültig ist</li>
-</ul></li>
+</ul>
+</li>
 <li>es gibt spezielle Schaltungen, um die Überträge &ldquo;vorherzusagen&rdquo; und damit die Addition zu beschleunigen (schnelle Addierer)</li>
 </ul>
-
-<p><img src="/knowledge-database/images/n-bit-addierer1.png" alt="" />
-<img src="/knowledge-database/images/n-bit-addierer2.png" alt="" /><br /></p>
-
+<p><img src="/knowledge-database/images/n-bit-addierer1.png" alt="">
+<img src="/knowledge-database/images/n-bit-addierer2.png" alt=""><!-- raw HTML omitted --></p>
 <h4 id="akkumulation">Akkumulation</h4>
-
 <ul>
 <li>Addition mehrerer Zahlen zusammengeschalteter Addierkette und Register (<strong>Akkumulator</strong>)</li>
 <li>fortgesetzte Addition beliebig vieler Zahlen möglich</li>
 <li>Akkumulator sammelt Ergebnisse vorheriger Additionen</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/akkumulator.png"/> 
 </figure>
 
-
 <p>Vorgehen:</p>
-
 <ol>
 <li>AC löschen (AC := 0)</li>
 <li>Addiere x zum Inhalt von AC (AC := AC + x)</li>
 <li>wenn nicht fertig, gehe zu 2)</li>
 </ol>
-
 <h4 id="multiplikation">Multiplikation</h4>
-
 <ul>
 <li>&ldquo;Papier &amp; Bleistift&rdquo; Methode:</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/papier-bleistift.png"/> 
 </figure>
 
-
 <p><strong>Multiplikationsarray</strong></p>
-
 <ul>
 <li>das Papier &amp; Bleistift Verfahren wird nachempfunden
-
 <ul>
 <li>Produkt ist die Summe von Partialprodukten</li>
-</ul></li>
+</ul>
+</li>
 <li>Nachteil: sehr hoher Aufwand, für n Bit Multiplikation werden n^2 Zellen gebraucht</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/multiplikationsarray.png"/> 
 </figure>
 
-
 <p><strong>Multiplikation mit Schieberegister</strong></p>
-
 <ul>
 <li>Faktoren in \(f\) und \(g\)</li>
 <li>\(a\) und \(c = 0\)</li>
@@ -262,7 +208,6 @@ Durch logisch vollständige Funktionen können beliebige andere Funktionen &ldqu
 <li>das Doppelregister \(ag\) wird um eine Stelle nach rechts geschoben etc</li>
 <li>das Gesamtergebnis steht am Ende in \(ag\)</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/mult-schieberegister.png"/> 
 </figure>

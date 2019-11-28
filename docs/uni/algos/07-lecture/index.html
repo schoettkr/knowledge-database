@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 07 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,205 +47,138 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="storage-and-memory">Storage and memory</h2>
-
+      <h2 id="storage-and-memory">Storage and memory</h2>
 <h3 id="parameters">Parameters</h3>
-
-<p>Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables &rarr; <strong>parameters</strong>.</p>
-
+<p>Besides the named variables for which memory is allocated at compile time and anonymous variables for which memory is allocated at runtime, there is a third kind of variables → <strong>parameters</strong>.</p>
 <p>Parameters are variables that are automatically created and initialized when a function is called.</p>
-
 <ul>
-<li><strong>lifecycle</strong> &rarr; retention time (Verweilzeit) of the program in that function <em>instance</em> (the surrounding function)</li>
-<li><strong>visibility</strong> &rarr; whole function body as long as it&rsquo;s not shadowed</li>
+<li><strong>lifecycle</strong> → retention time (Verweilzeit) of the program in that function <em>instance</em> (the surrounding function)</li>
+<li><strong>visibility</strong> → whole function body as long as it's not shadowed</li>
 </ul>
-
 <p>Parameters are declared and defined whith the function definition. They cannot have /storage classes/(auto, static, extern, register), but may have /storage types/(const, volatile, restrict).</p>
-
 <p>The term parameter (sometimes called formal parameter) is used to refer to the variable as found in the function definition which is used in the function body, while argument (sometimes called actual parameter) refers to the actual input supplied at function call.</p>
-
 <p>In general there are two ways of assocating an argument with a parameter. C for example uses <strong>positional parameters</strong> <em>only</em> which means arguments have to be provided in the order specified by the function definition.</p>
-
 <p>Python in contrast provides the option to use positional arguments as well as <strong>named parameters</strong>.
 A function call using named parameters differs from a regular function call in that the values are passed by associating each one with a parameter name, instead of providing an ordered list of values.</p>
-
 <p>In languages with no named parameters, the order of parameters in a function call is necessarily fixed, since it is the only way that the language can identify which value is intended to be used for which purpose.</p>
-
 <p>With named parameters, it is usually possible to provide the values in any arbitrary order, since the name attached to each value identifies its purpose. This reduces the connascence between parts of the program. A few languages use named parameters but still require the parameters to be provided in a specific order.</p>
-
 <p>Example usage of <strong>ordered/positional parameters</strong>:</p>
-
-<pre><code class="language-python">testFun(&quot;Title&quot;, 20, 50, 100, 50, true);
-</code></pre>
-
-<p>Example usage of <strong>named parameters</strong>:</p>
-
-<pre><code class="language-python">testFun(title=&quot;Title&quot;,
-        xPosition=20,
-        yPosition=50,
-        width=100,
-        height=50,
-        drawingNow=true)
-</code></pre>
-
-<p>Besides the different ways to associate parameters and arguments, there are different ways in which arguments are <em>passed</em> to the function!</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">testFun(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Title</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">50</span>, true);
+</code></pre></div><p>Example usage of <strong>named parameters</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">testFun(title<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Title</span><span style="color:#e6db74">&#34;</span>,
+        xPosition<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+        yPosition<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>,
+        width<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+        height<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>,
+        drawingNow<span style="color:#f92672">=</span>true)
+</code></pre></div><p>Besides the different ways to associate parameters and arguments, there are different ways in which arguments are <em>passed</em> to the function!</p>
 <ul>
 <li><strong>call by value</strong>: the actual parameter (argument) is evaluated and the formal parameter recieves that value (the function recieves a copy of the value)</li>
 <li><strong>call by name</strong>: the formal parameter is replaced by the name of the actual parameter</li>
 <li><strong>call by reference</strong>: the formal parameter becomes a &ldquo;proxy object&rdquo; (Stellvertreterobjekt) for the argument so that all changes are immediately effective outside of the function as well</li>
 <li><strong>call by copy/return</strong>: the argument is evaluated and the formal parameter gets this value at the begin of the function; when the function execution finishes the value of the formal parameter is assigned to the actual parameter (copy in - copy out, call by value - return)</li>
 </ul>
-
 <p>In C the only way of passing parameters is <strong>by value</strong> and it does not know the concept of procedures and reference parameters.</p>
-
 <p>To be still able to manipulate values outside of the executing function one may pass <em>pointers</em>. Changes outside of the function scope can then be realised via dereferencing those pointers. The effect of this is basically the same as it would be when calling by reference and is an often used practice in C.</p>
-
 <p>A manipulation of values outside of a functions local variables (including parameters) is called <em>side effect</em> (input &amp; output is also a side effect).</p>
-
 <p>Example of manipulating a value outside of a functions local scope via pointer and therefore simulating reference parameters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">/* sideeffect .c -- simulated reference parameter */</span>
+<span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sideeffect</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>);
 
-<pre><code class="language-C">/* sideeffect .c -- simulated reference parameter */
-#include &lt;stdio.h&gt;
-
-void sideeffect(int *);
-
-int main ()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
 {
-  int x =42;
-  printf(&quot;x=%d\n&quot;, x);
-  sideeffect(&amp;x);
-  printf (&quot;x=%d\n&quot;, x);
-  return 0;
+  <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">x=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+  sideeffect(<span style="color:#f92672">&amp;</span>x);
+  printf (<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">x=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-void sideeffect (int *p)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sideeffect</span> (<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p)
 {
-  *p =23;
+  <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span><span style="color:#ae81ff">23</span>;
 }
-</code></pre>
-
-<table>
+</code></pre></div><table>
 <thead>
 <tr>
 <th>x=42</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>x=23</td>
 </tr>
 </tbody>
 </table>
-
 <p>Another use case of reference parameters is value input. The function <code>scanf()</code> from the standard library provides this functionality. Similar to <code>printf()</code> the parameters begin with a format string, followed by a sequence of pointers to the variables where the input should be stored in. <code>scanf</code> returns the count of successfully read variables.</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-
-int main()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  int x, y;
-  printf (&quot;Give the point as \&quot;(x,y )\&quot;: &quot;);
-  if(scanf(&quot;(%d ,%d)&quot;, &amp;x, &amp;y) == 2){
-    printf(&quot;You provided : (%d, %d).\n&quot;, x, y);
+  <span style="color:#66d9ef">int</span> x, y;
+  printf (<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Give the point as </span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">(x,y )</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">: </span><span style="color:#e6db74">&#34;</span>);
+  <span style="color:#66d9ef">if</span>(scanf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">(%d ,%d)</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>x, <span style="color:#f92672">&amp;</span>y) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>){
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">You provided : (%d, %d).</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x, y);
   }
-  return 0;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<h3 id="excursus-variables-and-references-in-python">Excursus: Variables and References in Python</h3>
-
+</code></pre></div><h3 id="excursus-variables-and-references-in-python">Excursus: Variables and References in Python</h3>
 <p>Parameter passing in Python is somewhat special. It is not one of the most known methods like &ldquo;pass-by-value&rdquo; or &ldquo;pass-by-reference&rdquo;, in fact parameter passing in Python is <strong>&ldquo;pass-by-object-reference&rdquo;</strong> of which is often said &ldquo;Object references are passed by value&rdquo;.</p>
-
 <p>What is actually happening when you make a variable assignment? This is an important question in Python, because the answer differs somewhat from what you’d find in many other programming languages.</p>
-
 <p>Python is a highly object-oriented language. In fact, virtually every item of data in a Python program is an object of a specific type or class.</p>
-
 <p>When presented with the statement <code>print(300)</code>, the interpreter does the following:</p>
-
 <ul>
 <li>Creates an integer object</li>
 <li>Gives it the value 300</li>
 <li>Displays it to the console</li>
 </ul>
-
 <p>A Python variable is a symbolic name that is a reference or pointer to an object. Once an object is assigned to a variable, you can refer to the object by that name. But the data itself is still contained within the object.</p>
-
 <p>For example the assignment <code>n = 9000</code> creates an integer object with the value <code>300</code> and assigns the variable <code>n</code> to point to that object:
 \[n \longrightarrow \fbox{9000}\]</p>
-
 <p>Now consider the following statement <code>m = n</code>. What happens when it is executed? Python does not create another object. It simply creates a new symbolic name or reference, <code>m</code>, which points to the same object that <code>n</code> points to.
 \[n \longrightarrow \fbox{9000} \longleftarrow m\]</p>
-
 <p>Next suppose you do this <code>m = 400</code>. Now Python creates a new integer object with the value <code>400</code> and <code>m</code> becomes a reference to it:
 \[n \longrightarrow \fbox{9000} \ \fbox{400} \longleftarrow m\]</p>
-
 <p>Lastly, suppose this statement is executed next <code>n = &quot;foo&quot;</code> . Now Python creates a string object with the value <code>&quot;foo&quot;</code> and makes <code>n</code> reference that.</p>
-
 <p>\[n \longrightarrow \fbox{&ldquo;foo&rdquo;} \ \fbox{9000} \ \fbox{400} \longleftarrow m\]</p>
-
 <p>There is no longer any reference to the integer object <code>9000</code>. It is orphaned, and there is no way to access it.</p>
-
 <p>An object’s life begins when it is created, at which time at least one reference to it is created. During an object’s lifetime, additional references to it may be created, as you saw above, and references to it may be deleted as well. An object stays alive, as it were, so long as there is at least one reference to it.</p>
-
 <p>When the number of references to an object drops to zero, it is no longer accessible. At that point, its lifetime is over. Python will eventually notice that it is inaccessible and reclaim the allocated memory so it can be used for something else. In computer lingo, this process is referred to as garbage collection.</p>
-
 <h4 id="object-identity">Object Identity</h4>
-
 <p>In Python, every object that is created is given a number that uniquely identifies it. It is guaranteed that no two objects will have the same identifier during any period in which their lifetimes overlap. Once an object’s reference count drops to zero and it is garbage collected, as happened to the <code>9000</code> object above, then its identifying number becomes available and may be used again.</p>
-
 <p>The built-in Python function <code>id()</code> returns an object’s integer identifier. Using the <code>id()</code> function, you can verify that two variables indeed point to the same object:</p>
-
-<pre><code class="language-python">n = 768
-m = n
-print(id(n) == id(m))
-</code></pre>
-
-<pre><code class="language-text">True
-</code></pre>
-
-<p>After the assignment <code>m = n</code>, <code>m</code> and <code>n</code> both point to the same object, confirmed by the fact that <code>id(m)</code> and <code>id(n)</code> return the same number.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">n <span style="color:#f92672">=</span> <span style="color:#ae81ff">768</span>
+m <span style="color:#f92672">=</span> n
+<span style="color:#66d9ef">print</span>(id(n) <span style="color:#f92672">==</span> id(m))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">True
+</code></pre></div><p>After the assignment <code>m = n</code>, <code>m</code> and <code>n</code> both point to the same object, confirmed by the fact that <code>id(m)</code> and <code>id(n)</code> return the same number.</p>
 <p>Now take a look at the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">a=</span><span style="color:#e6db74">&#34;</span>, a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">, id(a)=</span><span style="color:#e6db74">&#34;</span>, id(a))
 
-<pre><code class="language-python">a = 23
-print(&quot;a=&quot;, a, &quot;, id(a)=&quot;, id(a))
+b <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">b=</span><span style="color:#e6db74">&#34;</span>, b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">, id(b)=</span><span style="color:#e6db74">&#34;</span>, id(b))
 
-b = 42
-print(&quot;b=&quot;, b, &quot;, id(b)=&quot;, id(b))
+a <span style="color:#f92672">=</span> a<span style="color:#f92672">+</span><span style="color:#ae81ff">19</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">a=</span><span style="color:#e6db74">&#34;</span>, a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">, id(a)=</span><span style="color:#e6db74">&#34;</span>, id(a))
 
-a = a+19
-print(&quot;a=&quot;, a, &quot;, id(a)=&quot;, id(a))
-
-print(id(a) == id(b))
-</code></pre>
-
-<pre><code class="language-text">a= 23 , id(a)= 140445988624288
+<span style="color:#66d9ef">print</span>(id(a) <span style="color:#f92672">==</span> id(b))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">a= 23 , id(a)= 140445988624288
 b= 42 , id(b)= 140445988624896
 a= 42 , id(a)= 140445988624896
 True
-</code></pre>
-
-<p>When dealing with <em>immutable objects</em> (eg integers, bool, string) a variable assignment like <code>a = a+19</code> <strong>does not</strong> modify the <em>object</em>, instead</p>
-
+</code></pre></div><p>When dealing with <em>immutable objects</em> (eg integers, bool, string) a variable assignment like <code>a = a+19</code> <strong>does not</strong> modify the <em>object</em>, instead</p>
 <ul>
 <li>a <strong>new object</strong> is created and referenced</li>
 <li>or if such object (eg obj with value <code>42</code>) already exists it is referenced</li>
 </ul>
-
 <p>Complex objects (eg list, dict, set) are <em>mutable</em>. When operating on them, they are changed directly without the creation of new objects so the reference stays the same.</p>
-
 <p>In the code example above an object holding the integer <code>42</code> already existed and was referenced by <code>b</code> and thats why assigning <code>42</code> to <code>a</code> changes the reference to point to the same object, which is verified by comparing the object ids with <code>id()</code>.</p>
-
 <p>So parameter passing in Python passes <strong>object references</strong>.</p>
-
 <p>In case of <em>immutable objects</em> modifications inside the called function leads to creation and then referencing of other objects. Outside of the function the same ol&rsquo; object is referenced, which was not modified so this has the same effect as &ldquo;pass-by-value&rdquo;.</p>
-
 <p>In case of <em>mutable objects</em> no new references and objects would be created when modifications occur so variables outside of the function that refer to the same object reference the same object to which the modifications are applied. This has the same effect as &ldquo;pass-by-reference&rdquo;.</p>
-
 <p>Sources of the python excursus: <a href="https://realpython.com/python-variables/">https://realpython.com/python-variables/</a> and <a href="https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/">https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/</a></p>
 
     </div>

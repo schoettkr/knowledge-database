@@ -17,10 +17,8 @@
       <pubDate>Tue, 07 May 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/chapter-04/</guid>
-      <description>DLC-Protokolle: Uebersicht
-Data Link Control
- asynchrone Uebertragung  Uebertragung nicht innerhalb eines groesseren Uebertragungsrahmen, sondern zeichenweiser Start-Stop-Betrieb (Telexdienst)  synchrone Uebertragung  zeichenorientiert = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit  zB PPP  bitorientiert = kleinste Uebertragungseinheit ist 1 Bit  zB HDLDC, LLC (LAN), LAPD (ISDN)    4.1 Synchronisation Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb)
- setzt Ruhepegel und feste Zahl von Nutzschritten voraus 3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)  Synchrone Uebertragung (Blocksynchronisation)</description>
+      <description>DLC-Protokolle: UebersichtData Link Control
+ asynchrone Uebertragung  Uebertragung nicht innerhalb eines groesseren Uebertragungsrahmen, sondern zeichenweiser Start-Stop-Betrieb (Telexdienst)   synchrone Uebertragung  zeichenorientiert = kleinste Uebertragungseinheit ist ein Zeichen, zB 8 Bit  zB PPP   bitorientiert = kleinste Uebertragungseinheit ist 1 Bit  zB HDLDC, LLC (LAN), LAPD (ISDN)      4.1 Synchronisation Asynchrone Uebertragung (zeichenweiser Start/Stop Betrieb) setzt Ruhepegel und feste Zahl von Nutzschritten voraus 3 aus 11 Overhead (8 Nutzbitz bei 11 zu uebertragenen Bits)  Synchrone Uebertragung (Blocksynchronisation) setzt Benutzung eindeutiger Blockstart- und/oder Blockendmuster voraus Modifikation / rueckgaengig machen entsprechender Muster im Block (Zeichen-/Bitstopfen)  Codetransparenz bei synchroner Uebertragung = Vereinbarung von Regeln zur codetransparenten Uebertragung von Nutzdaten (d.</description>
     </item>
     
     <item>
@@ -30,7 +28,7 @@ Data Link Control
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/05-lecture/</guid>
       <description>Modems Modem = MOdulator/DEmodulator
- basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)  Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
+ basieren urspruenglich uaf der klassischen Teilnehmeranschlussleitung des Fernsprechnetzes     Leistungsanschaltung = signaltechnische (Sende- und Empfangs-) Verstaerkung der zu uebertragenen Signale Modulationsteil = Modulation/Demodulation (zB Amplitude, Frequenz, &amp;hellip;)  Modulation beschreibt einen Vorgang, bei dem ein zu uebertragendes Nutzsignal einen sog. Traeger veraendert (moduliert), dadurch wird eine hochfrequente Uebertragung des niederfrequenten Nutzsignals ermoeglicht die Nachricht wird empfangsseitig durch einen Demodulator zurueck gewonnen, beispielsweise um ein Audiosignal in UKW-Empfaengern aus dem hochfrequenten, frequenzmodulierten Signal (87,5-108 MHz) zurueckzugewinnen (Radio)   Steuer-/Meldeteil = Analyse der vom Netz kommenden Dienstsignale, An-/Abschaltung des Modems an Steuerfunktionen (zB Betriebs-, Sendebereitschaft)  Mehrfachnutzung von Medien Multiplexverfahren (lat.</description>
     </item>
     
     <item>
@@ -39,8 +37,7 @@ Data Link Control
       <pubDate>Tue, 30 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/04_lecture/</guid>
-      <description>Signals and Bit Transmission Introduction Data Transmission - Bit to Signal to Bit:
- sits directly on the physical medium (eg cable) Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model transmission of unstructured bit sequences via physical medium data transmission entails the physical connection and the conversion between data &amp;lt;-&amp;gt; signals there are norms for interfaces (especially for physical interfaces)  Signals and their Parameters A signal is a state or a modification of material systems.</description>
+      <description>Signals and Bit Transmission Introduction Data Transmission - Bit to Signal to Bit: sits directly on the physical medium (eg cable) Layer 1 in the ISO/OSI and Internet Reference (TCP/IP) Model transmission of unstructured bit sequences via physical medium data transmission entails the physical connection and the conversion between data &amp;lt;-&amp;gt; signals there are norms for interfaces (especially for physical interfaces)  Signals and their Parameters A signal is a state or a modification of material systems.</description>
     </item>
     
     <item>
@@ -49,8 +46,7 @@ Data Link Control
       <pubDate>Tue, 16 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/03_lecture/</guid>
-      <description>Basic model of (tele)communication    participants act either as a sender or receiver usage of the service occurs at a special interface (API) and by using a service address point the medium bridges the spatial (raeumlich) distance  The following image shows a layer model which shows the reduction of deficits from bottom to top:
-There are certain principles to structure communication. These principles are also called communication protocols or short protocols and define a set of rules which communication between two or more parties has to follow/obey.</description>
+      <description>Basic model of (tele)communication    participants act either as a sender or receiver usage of the service occurs at a special interface (API) and by using a service address point the medium bridges the spatial (raeumlich) distance  The following image shows a layer model which shows the reduction of deficits from bottom to top:There are certain principles to structure communication. These principles are also called communication protocols or short protocols and define a set of rules which communication between two or more parties has to follow/obey.</description>
     </item>
     
     <item>
@@ -59,10 +55,9 @@ There are certain principles to structure communication. These principles are al
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0200</pubDate>
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/02_lecture/</guid>
-      <description>Back to the roots of the Internet
-The internet consists of
- a set of computers which  use the same network protocol (TCP/IP) are somehow (directly or indirectly) connected to each other offer or use certain services  a set of (human or technical) users which access and use services and a set of further networks accessible via gateways  The most commonly used Internet services are:
- World Wide Web (www)  platform for hypermedial information exchange based on the Hypertext Transfer Protocol (HTTP)  Email  exchange of multimedial messages based on the Simple Mail Transfer Protocol (SMTP)  File Exchange  access and transmission of files based on File Transfer Protocol (FTP)  Network Management  surveillance and control of connected systems based on Simple Network Management Protocol (SNMP)   Model of a simple transmission system:</description>
+      <description>Back to the roots of the InternetThe internet consists of
+ a set of computers which  use the same network protocol (TCP/IP) are somehow (directly or indirectly) connected to each other offer or use certain services   a set of (human or technical) users which access and use services and a set of further networks accessible via gateways  The most commonly used Internet services are:
+ World Wide Web (www)  platform for hypermedial information exchange based on the Hypertext Transfer Protocol (HTTP)   Email  exchange of multimedial messages based on the Simple Mail Transfer Protocol (SMTP)   File Exchange  access and transmission of files based on File Transfer Protocol (FTP)   Network Management  surveillance and control of connected systems based on Simple Network Management Protocol (SNMP)    Model of a simple transmission system:</description>
     </item>
     
     <item>
@@ -72,7 +67,7 @@ The internet consists of
       
       <guid>https://schoettkr.github.io/knowledge-database/uni/cn/01_lecture/</guid>
       <description>This was the first lecture in the new summer semester and therefore it was mostly about organizational stuff. Here are the most important points:
- the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here  the main programming language used will be python  Fundamental literature:</description>
+ the exam is gonna be a written one and might be open-book the start of the tutorials will be announced on the course website sometime in April (registration via opal) there are gonna be exercises to hand in  those can be found here   the main programming language used will be python  Fundamental literature:</description>
     </item>
     
   </channel>

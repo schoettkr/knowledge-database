@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 10 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,216 +51,190 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p><strong>Part III: Trustworthy Software Engineering</strong><br /></p>
-
+      <p><strong>Part III: Trustworthy Software Engineering</strong><!-- raw HTML omitted --></p>
 <h2 id="identity-in-the-light-of-privacy-security-and-trust--chapter-2">Identity in the Light of Privacy, Security and Trust (Chapter 2)</h2>
-
 <ul>
 <li>7 Laws of Identity define requirements of dealing with identities
-
 <ul>
 <li>first focus on conceptual/basic understanding</li>
-</ul></li>
+</ul>
+</li>
 <li>identity in global context has to comply with different levels
-
 <ul>
 <li>layered approach of identity management:</li>
 <li><figure>
     <img src="/knowledge-database/images/identity-layers.png"/> 
 </figure>
 </li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="identity-security-privacy">Identity - Security - Privacy</h3>
-
 <ul>
 <li>identity (in a digital setting) is often &ldquo;only&rdquo; closely linked to security, identity is more!
-
 <ul>
 <li>security = protect data from unauthorized access, removal, tampering</li>
 <li>privacy = protect attributes, preferences, etc which are associated with identity, against unnecessary use by subject</li>
-<li>identity is in relation to others &rarr; attributes realize trust relation ships</li>
-</ul></li>
+<li>identity is in relation to others → attributes realize trust relation ships</li>
 </ul>
-
+</li>
+</ul>
 <h3 id="identity-and-trust">Identity &amp; Trust</h3>
-
 <ul>
-<li>Trust (wiki) = In a social context, trust has several connotations. Definitions of trust typically refer to a situation characterised by the following aspects: One party (trustor) is willing to rely on the actions of another party (trustee); the situation is directed to the future. In addition, the trustor (voluntarily or forcedly) abandons control over the actions performed by the trustee. As a consequence, the trustor is uncertain about the outcome of the other&rsquo;s actions; he can only develop and evaluate expectations. The uncertainty involves the risk of failure or harm to the trustor if the trustee will not behave as desired</li>
+<li>Trust (wiki) = In a social context, trust has several connotations. Definitions of trust typically refer to a situation characterised by the following aspects: One party (trustor) is willing to rely on the actions of another party (trustee); the situation is directed to the future. In addition, the trustor (voluntarily or forcedly) abandons control over the actions performed by the trustee. As a consequence, the trustor is uncertain about the outcome of the other's actions; he can only develop and evaluate expectations. The uncertainty involves the risk of failure or harm to the trustor if the trustee will not behave as desired</li>
 <li><strong>Trust = Conviction and belief in the sincerity, honesty and good intentions of another party with respect to a risk-prone action.</strong></li>
 </ul>
-
 <h4 id="trust-examples">Trust examples</h4>
-
 <ul>
 <li>shopping with credit card, which trust relationships &amp; risks exist?
-
 <ul>
 <li>identity and Credit Card company</li>
 <li>identity and service</li>
 <li>identity/service and card register</li>
 <li>identity/service and money</li>
-</ul></li>
-<li>&rarr; trust is always associated with risk</li>
+</ul>
+</li>
+<li>→ trust is always associated with risk</li>
 <li>trust is something one connects to a person
-
 <ul>
 <li>one cannot enforce trust by another person</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="trust-properties">Trust properties</h4>
-
 <ul>
 <li>trust is rarely transitive
-
 <ul>
-<li>example: I trust Sara&rsquo;s taste in music, she, in turn, trusts Peter&rsquo;s - therefore I would possibly trust Peter in selecting music for my Birthday Party</li>
-</ul></li>
+<li>example: I trust Sara's taste in music, she, in turn, trusts Peter's - therefore I would possibly trust Peter in selecting music for my Birthday Party</li>
+</ul>
+</li>
 <li>trust cannot be shared
-
 <ul>
 <li>example: A trusts B and C, which does not imply that B and C trust each other</li>
-</ul></li>
+</ul>
+</li>
 <li>trust is not symmetric
-
 <ul>
-<li>example: if I trust you, you don&rsquo;t necessarily trust me in return</li>
-</ul></li>
-<li>trustworthiness cannot be self-declared (&ldquo;trust me!&rdquo;)</li>
+<li>example: if I trust you, you don't necessarily trust me in return</li>
+</ul>
+</li>
+<li>trustworthiness cannot be self-declared (&ldquo;trust me!&quot;)</li>
 <li>trust is a value closely related to evidence
-
 <ul>
 <li>buying a brand computer which is more expensive because I trust the brand</li>
 <li>Computer allows access upon login, since the provided evidence (login/password) serve as proof</li>
-</ul></li>
+</ul>
+</li>
 <li>trust is hard to quantify
-
 <ul>
 <li>I trust Sara more than Peter - what does that mean?</li>
 <li>in business context trust can be evaluated against risks (given obvious risk levels)</li>
 <li>otherwise a contract is used as a basis: analysis is required, risks are evaluated and thereby cotractual relationships are defined; leads to Service Level Agreements (SLA) providers and users</li>
-</ul></li>
+</ul>
+</li>
 <li>Trust by reputation
-
 <ul>
-<li>trust in a person can develop from other people&rsquo;s statements about him/her (Communities of Trust)</li>
+<li>trust in a person can develop from other people's statements about him/her (Communities of Trust)</li>
 <li>examples:
-
 <ul>
 <li>all security experts advise caution when traveling in the following countries</li>
 <li>ebay: one buys a product from a handler he doesnt know, but which has good reviews (high reputation)</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="identity-and-privacy">Identity &amp; Privacy</h3>
-
 <ul>
 <li>privacy is an important and complicated topic (tightly coupled with data protection)</li>
 <li>identity and privacy are closely related
-
 <ul>
 <li>what does privacy mean for a person?
-
 <ul>
-<li>generally: private data shouldn&rsquo;t become public</li>
+<li>generally: private data shouldn't become public</li>
 <li>however, often: private data disclosure is ok if it yields considerable benefits</li>
-</ul></li>
+</ul>
+</li>
 <li>privcacy must be observed in context
-
 <ul>
-<li>eg discount systems: provide us your address and date of birth and we&rsquo;ll give you a 15% discount</li>
-</ul></li>
-</ul></li>
+<li>eg discount systems: provide us your address and date of birth and we'll give you a 15% discount</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>privacy is partially legally regulated
-
 <ul>
 <li>eg Federal Data Protection Act, European Data Protection Directive, Patriot Act</li>
-</ul></li>
+</ul>
+</li>
 <li>conclusion in legal context: own applications systems must take identity and privacy into account (see Laws of Identity)
-
 <ul>
 <li>embed the concepts of identity and privacy in design</li>
 <li>use of identity and privacy-relevant information must be comprehensible, verifiable and reportable at any point in time</li>
 <li>identity management system or an identity metasystem must be able to answer questions on identity privacy terms</li>
 <li>legal requirements forcte system operators to testify on privacy policy
-
 <ul>
 <li>eg webshop sends cookies to customers, what should the privacy policy say? (eg We use cookies)</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>privacy principle - respect privacy
-
 <ul>
 <li>accountability</li>
 <li>identifying purposes</li>
-<li>requirement of affected person&rsquo;s consent</li>
+<li>requirement of affected person's consent</li>
 <li>minimal privacy data collection (time limit)</li>
 <li>limitations of use</li>
 <li>data collection accuracy</li>
 <li>protection</li>
 <li>access to personal data (to the owner)</li>
 <li>comprehensible regulations</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="identity-management-systems--chapter-3">Identity Management Systems (Chapter 3)</h2>
-
 <ul>
 <li>what is needed for identity implemenation?
-
 <ul>
-<li>some kind of <strong>identity metasystem</strong> &rarr; contains 3 certain roles (can be more)</li>
+<li>some kind of <strong>identity metasystem</strong> → contains 3 certain roles (can be more)</li>
 <li><strong>identity provider</strong>
-
 <ul>
 <li>person or an organization, which creates digital identities, either for themselves or on behalf, eg online shop could create identities for customers, authorities provide identities for their employees</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>relying party</strong> (human/legal person)
-
 <ul>
 <li>person or organization, which requires digital identity before allowing entry/acess</li>
 <li>example: users willing to revoke a contract - the relying party defines which claims are required in order to execute cancellation, as well as which formats and credentials are accepted</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>digital subject</strong>
-
 <ul>
 <li>individual or entity for which claims are made</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p>Definition <strong>Identity Management</strong>: &ldquo;Identity management is the set of processes, tools and social contracts surrounding the creation, maintenance and termination of a digital Identity for people or, more generally, for systems and services to enable secure access to an expanding set of systems and applications.&rdquo;</p>
-
-<p><strong>Identity Management Lifecycle</strong><br />
-<img src="/knowledge-database/images/identity-management-lifecycle.png" alt="" /></p>
-
+<p><strong>Identity Management Lifecycle</strong><!-- raw HTML omitted -->
+<img src="/knowledge-database/images/identity-management-lifecycle.png" alt=""></p>
 <p>There are three identity management levels:</p>
-
 <ul>
 <li>personal identity management</li>
 <li>organization-related identity management</li>
 <li>federated identity mangament</li>
 </ul>
-
 <h4 id="personal-identity-management">Personal Identity Management</h4>
-
 <p>Entity-perspective</p>
-
 <ul>
 <li>Management of different identities (different accounts for different systems)</li>
 <li>Management and control of which information is provided to a service (z.B. Email, phone number etc.)</li>
 <li>eg MS Passport, MS Cardspace</li>
 </ul>
-
 <h4 id="organization-related-identity-management">Organization-related Identity Management</h4>
-
 <p>Organizational perspective</p>
-
 <ul>
 <li>Management of identities of an organization</li>
 <li>Different services of an organization are provided with and updated by identity information.</li>
@@ -269,50 +243,42 @@
 <li>Definition of organization‘s policies as to the entities i.e. which data can be accessed</li>
 <li>eg SUN Identity Management Suite (SUN Identity Manager), Microsoft Identity Integration Server, IBM Tivoli Identity Manager</li>
 </ul>
-
 <h4 id="federated-identity-management">Federated identity Management</h4>
-
 <p>What is meant by “Federation“?</p>
-
 <ul>
 <li>“Federation is an association of independent organizational units, which have</li>
 </ul>
-
 <p>a trust relationship.“</p>
-
 <ul>
 <li>Among the latest developements in the field of IdM.</li>
 <li>Is driven both by the state and industry
-
 <ul>
 <li>Common and simplified resource access</li>
 <li>Complex problems/business processes and a high level of specialization require cooperation.</li>
 <li>Harmonization of business pocesses</li>
 <li>Cost savings with respect to administration and resource use</li>
-</ul></li>
+</ul>
+</li>
 <li>Frequently used technologies
-
 <ul>
 <li>SAML (Security Assertion Markup Language)</li>
 <li>XML (Schema, Encryption, Signature etc.)</li>
 <li>Web Service interfaces</li>
-</ul></li>
+</ul>
+</li>
 <li>Federation perspective
-
 <ul>
 <li>association of organizational units, organizations or even nations</li>
 <li>Shared use of resources and services of Federation partners</li>
 <li>Cross-organizational business processes within the Federation</li>
 <li>Modeling and definition of trust relationships</li>
 <li>Federative services are then made available according to the defined trust relationships providing ease of access to resources/data (i.e. Single Sign-on)</li>
-</ul></li>
+</ul>
+</li>
 <li>Example projects/products/approaches: Liberty Alliance Projekt (SAML 2.0) , WS-Federation specification , SUN Identity Management Suite (SUN Federation/Access Manager) , Ping-ID, PingFederate , Shibboleth , FOAF+SSL</li>
 </ul>
-
 <h3 id="anticipitated-benefits-of-idms">Anticipitated Benefits of IDMS</h3>
-
 <p>Reduced management overhead</p>
-
 <ul>
 <li>Better optimization/automatization of business processes</li>
 <li>Reduced time required for providing a new employee with access rights to resources</li>
@@ -321,95 +287,85 @@
 <li>Data consistency (data matching, modification checks, …)</li>
 <li>Standard interfaces (APIs, standards …) to data/services/resources</li>
 </ul>
-
 <h3 id="components-of-idm-systems">Components of IDM systems</h3>
-
-<p>&ldquo;he focus of identity management is on user provisioning — the creation, maintenance, and termination of user accounts and management of credentials in support of authentication and access control.&rdquo; (HurwitzGroup, 2001)<br />
-<img src="/knowledge-database/images/idm-components.png" alt="" /></p>
-
+<p>&ldquo;he focus of identity management is on user provisioning — the creation, maintenance, and termination of user accounts and management of credentials in support of authentication and access control.&rdquo; (HurwitzGroup, 2001)<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/idm-components.png" alt=""></p>
 <h4 id="basic-components">Basic Components</h4>
-
 <ul>
 <li><strong>Repository</strong>
-
 <ul>
 <li>Repository represents the core component for many identity management systems</li>
 <li>It is a <strong>logical data storage</strong> (i.e. database, directory service), in which identity information, guidelines and other organization information can be stored</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Propagation</strong>
-
 <ul>
 <li>Depending on the system in use, an identity entry could need to be transferred from the current reposiroty to another one</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Authentication Provider/Identity Provider</strong>
-
 <ul>
 <li>is responsible for primary identity authentication</li>
 <li>often issues a credential, which can be used for further authentication and authorization (z.B. SAML Token)</li>
 <li>provides multiple interfaces (z.B. LDAP, Kerberos), by means of which service can perform authentication</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Policy Control</strong>
-
 <ul>
 <li>policy control governs rules of information usage, disclosure and logging</li>
 <li>authorization policies determine which identity can access and manipualte which information</li>
 <li>policy control monitors the defined guidelines, creates events to be audited and signalled of according to certain rules (for example, security warnings)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Auditing, Monitoring</strong>
-
 <ul>
 <li>auditing provides necessary mechanisms for information detection and storage</li>
 <li>that information normally contains access protocols and data operations (specifically in the repository)</li>
 <li>if form a basis for tracking whether the policies are being adhered to and is used for subsequent security checks</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="lifecycle-components">Lifecycle Components</h4>
-
 <ul>
 <li><strong>(De-)Provisioning and propagation/synchronization</strong>
-
 <ul>
 <li>applies automation of all the procedures and tools to manage the identity lifecycle</li>
 <li>this Lifecycle is split into initial provosioning, synchronization and de-provisioning phases</li>
 <li>in the initial provisioning phase the according service is supplied with the necessary identity information such that the new identity can use the service (provisioning process)</li>
 <li>in the synchronzsation phase identity information is updated and compared between services (synchronization and propagation process)</li>
 <li>in the de-provisioning phase all the identity information is removed (de-provisioning process)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>History, Longevity</strong>
-
 <ul>
 <li>History and longevity tools create historical records, by means of which one can examine evolution of an identity overtime (i.e. creation, activation, locking, new status, removal)</li>
 <li>these components provide means for such activites as investigating whether or not a certain identity exists in the system and which changes it underwent</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="usage-components">Usage Components</h4>
-
 <ul>
 <li><strong>Single Sign-on</strong>
-
 <ul>
 <li>Single Sign-on enables an identity to perform its initial authentication and access numerous services and data without further re-authentication.</li>
 <li>Initial authentication is typically performed by an associated Identity Provider, which issues a credential.</li>
 <li>That Credential is then used to authenticate to other systems.</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Personalization</strong>
-
 <ul>
 <li>Personalization and preference management tools provide the identity an ability to set up individual settings for applications/services bound to that identity.</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Access Management</strong>
-
 <ul>
 <li>Similar to policy control</li>
 <li>Identity can define policies as to which identity can access/modify which information.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="wam--webcomposotion-architecture-model">WAM (WebComposotion Architecture Model)</h2>
-
-<p>WAM is a modeling language for designing distributed, organization-spanning web applications and (who would&rsquo;ve thought) was developed by the lecturer/prof and is absolutely industry irrelevant for that matter. But hey that&rsquo;s just how things are at Chemnitz University. By the way are you looking for irrelevant + outdated material? You&rsquo;d love to study some unstructured slides enhanced by Internet Explorer 6 screenshots? You hate effective use of slides and think that using results of pedagogical research to help students learn better is for nonbelievers? MAN I HAVE SOMETHING FOR YOU! Go to <a href="https://www.tu-chemnitz.de">https://www.tu-chemnitz.de</a> and get yourself the new and updated &ldquo;Bullshit University Education&rdquo;-StarterPack right now!</p>
+<p>WAM is a modeling language for designing distributed, organization-spanning web applications and (who would've thought) was developed by the lecturer/prof and is absolutely industry irrelevant for that matter. But hey that's just how things are at Chemnitz University. By the way are you looking for irrelevant + outdated material? You'd love to study some unstructured slides enhanced by Internet Explorer 6 screenshots? You hate effective use of slides and think that using results of pedagogical research to help students learn better is for nonbelievers? MAN I HAVE SOMETHING FOR YOU! Go to <a href="https://www.tu-chemnitz.de">https://www.tu-chemnitz.de</a> and get yourself the new and updated &ldquo;Bullshit University Education&rdquo;-StarterPack right now!</p>
 
     </div>
     <div class="post-footer">

@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 05 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,118 +51,96 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="ssl-tls">SSL/TLS</h2>
-
+      <h2 id="ssl-tls">SSL/TLS</h2>
 <p>Wiki: Transport Layer Security (TLS), and its now-deprecated predecessor, Secure Sockets Layer (SSL), are cryptographic protocols designed to provide communications security over a computer network. Several versions of the protocols find widespread use in applications such as web browsing, email, instant messaging, and voice over IP (VoIP). Websites can use TLS to secure all communications between their servers and web browsers.</p>
-
 <p>The TLS protocol aims primarily to provide privacy and data integrity between two or more communicating computer applications.[2]:3 When secured by TLS, connections between a client (e.g., a web browser) and a server (e.g., wikipedia.org) should have one or more of the following properties:</p>
-
 <ul>
 <li>The connection is private (or secure) because symmetric cryptography is used to encrypt the data transmitted. The keys for this symmetric encryption are generated uniquely for each connection and are based on a shared secret that was negotiated at the start of the session (see § TLS handshake). The server and client negotiate the details of which encryption algorithm and cryptographic keys to use before the first byte of data is transmitted (see § Algorithm below). The negotiation of a shared secret is both secure (the negotiated secret is unavailable to eavesdroppers and cannot be obtained, even by an attacker who places themselves in the middle of the connection) and reliable (no attacker can modify the communications during the negotiation without being detected).</li>
 <li>The identity of the communicating parties can be authenticated using public-key cryptography. This authentication can be made optional, but is generally required for at least one of the parties (typically the server).</li>
 <li>The connection is reliable because each message transmitted includes a message integrity check using a message authentication code to prevent undetected loss or alteration of the data during transmission.</li>
 </ul>
-
 <p>In the OSI-model SSL/TLS belongs in layer 6, in the TCP/IP model it belongs above the transport layer (ie TCP,..) and below the application layer (ie HTTP,..).</p>
-
-<p>The SSL/TLS Architecture basically consists of of 2 protocol layers:<br />
-<img src="/knowledge-database/images/ssl-layer.png" alt="" /></p>
-
+<p>The SSL/TLS Architecture basically consists of of 2 protocol layers:<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/ssl-layer.png" alt=""></p>
 <h3 id="record-protocol--layer-1">Record Protocol (Layer 1)</h3>
-
 <ul>
 <li>represents the lower level of the TLS protocol</li>
 <li>encapsulation of exchanged messages</li>
 <li>decomposition into blocks for transmission</li>
 <li>end-to-end encryption
-
 <ul>
 <li>symmetric algorithms</li>
 <li>see the following handshake protocol</li>
-</ul></li>
+</ul>
+</li>
 <li>integrity and authenticity are ensured by cryptographic checksums</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/record-protocol.png"/> 
 </figure>
 
-
 <h3 id="handshake-protocol--layer-2">Handshake Protocol (Layer 2)</h3>
-
 <ul>
 <li>server and client decide on:
-
 <ul>
 <li>mode of encryption</li>
 <li>type of message authentication</li>
 <li>secret key</li>
-</ul></li>
+</ul>
+</li>
 <li>authentication via certificates is possible</li>
 </ul>
-
-<p><img src="/knowledge-database/images/handshake-protocol-1.png" alt="" />
-<img src="/knowledge-database/images/handshake-protocol-2.png" alt="" /></p>
-
+<p><img src="/knowledge-database/images/handshake-protocol-1.png" alt="">
+<img src="/knowledge-database/images/handshake-protocol-2.png" alt=""></p>
 <h3 id="change-cipher-spec-protocol--layer-2">Change Cipher Spec Protocol (Layer 2)</h3>
-
 <ul>
 <li>change to the negotiated cipher suite</li>
 <li>cipher suite identifies a combination of four algorithms
-
 <ul>
 <li>key exchange</li>
 <li>authentication</li>
 <li>hash function</li>
 <li>encryption</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="alert-protocol--layer-2">Alert Protocol (Layer 2)</h3>
-
 <ul>
 <li>signaling on error states</li>
 <li>protocol defines two fields:
-
 <ul>
 <li>level of error alert
-
 <ul>
 <li>warning</li>
-<li>fatal &rarr; connection is immediately interrupted</li>
-</ul></li>
+<li>fatal → connection is immediately interrupted</li>
+</ul>
+</li>
 <li>type of error alert
-
 <ul>
 <li>detailed error description</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="application-data-protocol--layer-2">Application Data Protocol (Layer 2)</h3>
-
 <ul>
 <li>pass application data transparently
-
 <ul>
 <li>without consideration of its content</li>
-</ul></li>
+</ul>
+</li>
 <li>based on security parameters data is&hellip;
-
 <ul>
 <li>fragmented</li>
 <li>compressed</li>
 <li>protected</li>
 <li>encrypted</li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+</ul>
+<hr>
 <h4 id="further-reads">Further Reads</h4>
-
 <ul>
 <li><a href="https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/">https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/</a></li>
 <li><a href="https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/">https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/</a></li>

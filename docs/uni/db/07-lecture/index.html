@@ -3,7 +3,7 @@
   <head>
     <title>Database Essentials - Lecture 07 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,43 +47,33 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<p>This lecture is the third part of the Introduction to SQL that we began in lecture 5.</p>
-
+      <p>This lecture is the third part of the Introduction to SQL that we began in lecture 5.</p>
 <h2 id="introduction-to-sql">Introduction to SQL</h2>
-
-<p>What we&rsquo;ll cover here:</p>
-
+<p>What we'll cover here:</p>
 <ul>
 <li>Data Manipulation
-
 <ul>
 <li>create, update, delete data</li>
-</ul></li>
+</ul>
+</li>
 <li>Data Definition
-
 <ul>
 <li>data integrity rules / constraints</li>
-</ul></li>
+</ul>
+</li>
 <li>Relational Views (Relationale Sichten)</li>
 </ul>
-
 <h3 id="data-manipulation">Data Manipulation</h3>
-
 <h4 id="create-data">Create Data</h4>
-
 <p>With the command <code>insert</code> tuples can be added to tables. There are different syntactical variants.</p>
-
 <ul>
-<li><p><strong>insert a complete data set</strong></p>
-
+<li>
+<p><strong>insert a complete data set</strong></p>
 <ul>
 <li><code>insert into &lt;tablename&gt; values (&lt;value list for attributes in accordance to schema&gt;)</code></li>
 <li>eg to add to the faculty table</li>
 <li><code>insert into Faculty values ('Computer Science', 'Street of Nations 62, 09107 Chemnitz', 14568)</code></li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -92,7 +82,6 @@
 <th>persNr</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Computer Science</td>
@@ -101,19 +90,17 @@
 </tr>
 </tbody>
 </table>
-
 <ul>
 <li>note that values for all attributes have been provided and that they were in correct order</li>
-</ul></li>
-
-<li><p><strong>insert an incomplete data set</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>insert an incomplete data set</strong></p>
 <ul>
 <li><code>insert into &lt;tablename&gt; (&lt;attribute list&gt;) values (&lt;value list for attributes in attribute list&gt;)</code></li>
 <li>eg to add the math faculty without knowledge of the address</li>
 <li><code>insert into Faculty (name, persNr) values ('Mathematics', 91876)</code></li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -122,14 +109,12 @@
 <th>persNr</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Computer Science</td>
 <td>Street of Nations 62, 09107 Chemnitz&rsquo;</td>
 <td>14568</td>
 </tr>
-
 <tr>
 <td>Mathematics</td>
 <td><em>null</em></td>
@@ -137,252 +122,168 @@
 </tr>
 </tbody>
 </table>
-
 <ul>
 <li>note that only the values for the attributes provided in the attribute list are added and that the other attributes are filled with <em>null</em> (resp null values)</li>
-</ul></li>
-
-<li><p><strong>insert a query result</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>insert a query result</strong></p>
 <ul>
 <li><code>insert into &lt;tablename&gt; &lt;select statement&gt;</code></li>
 <li>results of a select statements can be inserted into a table when the domains of attributes are compatible</li>
-<li>for example </knowledge-database/images/add-tuple.png ></li>
-</ul></li>
+<li>for example &lt;/knowledge-database/images/add-tuple.png &gt;</li>
 </ul>
-
+</li>
+</ul>
 <h4 id="delete-data">Delete Data</h4>
-
 <p>With the command <code>delete</code> tuples that fulfill certain criteria/conditions may be deleted from tables. The syntax is <code>delete from &lt;tablename&gt; where &lt;condition&gt;</code></p>
-
 <p>For example</p>
-
-<pre><code class="language-sql">delete from Personal where alter &gt;= 67
-</code></pre>
-
-<p>has the following result in this table
-</knowledge-database/images/delete-tuple.png ></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> Personal <span style="color:#66d9ef">where</span> <span style="color:#66d9ef">alter</span> <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">67</span>
+</code></pre></div><p>has the following result in this table
+&lt;/knowledge-database/images/delete-tuple.png &gt;</p>
 <h4 id="update-change-data">Update/Change Data</h4>
-
 <p>With the command <code>update</code> attributtes of all tuples in a table can be changed in the same way. The syntax is <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ...</code></p>
-
 <p>For example</p>
-
-<pre><code class="language-sql">update Personal set gehalt = gehalt/2
-</code></pre>
-
-<p>has the following result in this table
-</knowledge-database/images/update-attributes-1.png ></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">update</span> Personal <span style="color:#66d9ef">set</span> gehalt <span style="color:#f92672">=</span> gehalt<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</code></pre></div><p>has the following result in this table
+&lt;/knowledge-database/images/update-attributes-1.png &gt;</p>
 <p>It is also possible to provide conditions to <code>update</code>. Then the syntax stays the same but gets an <code>where</code> statement added onto it: <code>update &lt;tablename&gt; set &lt;attribute1&gt; = &lt;expression1&gt;, &lt;attribute2&gt; = &lt;expression2&gt;, ... where &lt;condition&gt;</code></p>
-
 <p>For example to merge department 3 into department 2</p>
-
-<pre><code class="language-sql">update Personal set Abteilung = 2 where Abteilung = 3
-</code></pre>
-
-<p>has the following result in this table
-</knowledge-database/images/update-attributes-2.png ></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">update</span> Personal <span style="color:#66d9ef">set</span> Abteilung <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">where</span> Abteilung <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</code></pre></div><p>has the following result in this table
+&lt;/knowledge-database/images/update-attributes-2.png &gt;</p>
 <h4 id="procedure-of-changes">Procedure of Changes</h4>
-
 <p>Basically there are two steps when changing data:</p>
-
 <ol>
 <li>creation of a temporary relation with the candidates that are due to be changed</li>
 <li>execution of the change operation
-
 <ul>
-<li><code>insert</code> &rarr; insertion of the temporary table in the target table</li>
-<li><code>update</code> &rarr; change of the attributes initially in the temporary table (based on comparisons with the values in the original table) and then adoption into the target/original table</li>
-<li><code>delete</code> &rarr; mark the tuples that shall be deleted an deletion in one step</li>
-</ul></li>
+<li><code>insert</code> → insertion of the temporary table in the target table</li>
+<li><code>update</code> → change of the attributes initially in the temporary table (based on comparisons with the values in the original table) and then adoption into the target/original table</li>
+<li><code>delete</code> → mark the tuples that shall be deleted an deletion in one step</li>
+</ul>
+</li>
 </ol>
-
 <p>Why this effort you may ask? Well conditions may include subqueries which would else operate on data/tables that are already modified (partially)!</p>
-
 <h3 id="data-definition">Data Definition</h3>
-
 <p>We now look at the Data Definition Language (DDL) which is mainly used to define database structure and the rules for accessing the data.</p>
-
 <h4 id="table-management">Table Management</h4>
-
 <p>To create a new table use the command <code>create table {TABLENAME} ( {ATTRIBUTE_DEFINITION_1}, {ATTRIBUTE_DEFINITION_2}, ... )</code>. To alter the schema of a table after its creation use <code>alter table {TABLENAME} add column ({ATTRIBUTE_DEFINITION})</code> to add an attribute, <code>alter table {TABLENAME} alter column ({ATTRIBUTE_DEFINITION})</code> to modify an attribute and <code>alter table {TABLENAME} drop column {ATTRIBUTE_NAME}</code> to delete an attribute. If you want to delete a whole table issue the command <code>drop table {TABLENAME}</code>.</p>
-
 <p>Now to define an attribute you need to provide a data type for that specific attribute.</p>
-
 <p>Here are the data types SQL supports by default with some examples:</p>
-
 <ul>
-<li><p>Boolean</p>
-
-<ul>
-<li>either <code>true</code> or <code>false</code>
-
-<ul>
-<li>when null values are allowed then <code>unknown</code> is also supported as the null value</li>
-</ul></li>
-<li>boolean values can be compared and are assignable
-
-<ul>
-<li>they compare as <code>true &gt; false</code> and in every comparison where the null value or <code>unknown</code> is an operand (is involved) the result will be <code>unknown</code></li>
-</ul></li>
-</ul></li>
-
-<li><p>Strings/Characters</p>
-
-<p>The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:</p>
-
-<ul>
-<li><code>character ({AMOUNT})</code> or <code>char ({AMOUNT}</code>
-
-<ul>
-<li>in this case the character string <em>always</em> has the <em>exact</em> length of {AMOUNT}</li>
-<li>when strings are assigned that are shorter than {AMOUNT} the string is padded by whitespaces on the right hand side</li>
-</ul></li>
-<li><code>character varying ({AMOUNT})</code> or <code>varchar ({AMOUNT}</code>
-
-<ul>
-<li>in this case the character string has a <em>maximum</em> length of {AMOUNT}</li>
-<li>shorter strings therefore need less space (internally)</li>
-</ul></li>
-</ul></li>
-
-<li><p>Numericals (exact)</p>
-
-<ul>
-<li>are used for <em>exact</em> representations of numbers</li>
-<li>the precision of a number is specified by providing the the amount of digits to be hold
-
-<ul>
-<li>and for decimal numbers the amount of decimal places can be specified as well</li>
-</ul></li>
-<li><code>numeric [{PRECISION}[, {DECIMAL_PLACES}]]</code></li>
-<li>without specification the amount of decimal places is always 0 and the precision depends on the specific precision</li>
-<li>there are also some predefined variants without decimal places eg <code>integer</code>, <code>smallint</code>, <code>bigint</code> the concrete specification of those depends on the implementation as well</li>
-<li><code>numeric(7,2)</code> represents all numbers from -99999.99 to 99999.99 with two decimal places</li>
-</ul></li>
-
-<li><p>Numericals (approximal)</p>
-
-<ul>
-<li>are used for <em>approximate</em> representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent</li>
-<li><code>float [{PRECISION}]</code></li>
-<li>{PRECISION} specifies the &ldquo;size&rdquo; of the significand</li>
-<li>there are also some predefined float types for example <code>real</code> and <code>double precision</code> of which the precision is also dependant on the specific implementation</li>
-<li>example float literals: <code>10E3</code> or <code>-3.1E-6</code></li>
-</ul></li>
-
-<li><p>Date and Time</p>
-
-<p>There are three different data types to represent dates and times. The typical date and time components can be accessed individually:</p>
-
-<ul>
-<li><code>date</code> represents a calendric date value and offers the components <code>year</code>, <code>month</code> and <code>day</code></li>
-<li><code>time</code> represents time values and offers the components <code>hour</code>, <code>minute</code> and <code>second</code> (precision is preset in seconds)</li>
-<li><code>timestamp</code> represents time and date values at the same time (precision is preset to microseconds)</li>
+<li>Boolean</li>
 </ul>
-
-<p>Date and time values can optionally be parameterized to set the precision explicitly and handle time zones.</p></li>
-
-<li><p>Interval</p>
-
-<p>The data type <code>interval</code> describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.</p>
-
+<pre><code>-   either `true` or `false`
+    -   when null values are allowed then `unknown` is also supported as the null value
+-   boolean values can be compared and are assignable
+    -   they compare as `true &gt; false` and in every comparison where the null value or `unknown` is an operand (is involved) the result will be `unknown`
+</code></pre>
 <ul>
-<li>slides: Wird als zusammenhängender Teilbereich zwischen Start- und Endeinheit <code>(year, month, day, hour, minute, second)</code> definiert</li>
-<li>slides example: <code>interval year to month</code> covers all intervals between 0 years, 0 month and 99 years, 11 months; <code>interval hour to second(2)</code> covers all intervals between 0 hours, 0 minutes, 0 seconds and 99 hours, 59 minutes, 59.99 seconds (the parameter <code>2</code> specifies the precision of the seconds component)</li>
-</ul></li>
+<li>Strings/Characters</li>
 </ul>
+<pre><code>The number of allowed characters (max length) is usually defined as well when specifying such attribute type. If the number/amount/count is omitted then usually 1 is the predefined max length of the character string. Character strings can be defined in the following ways:
 
+-   `character ({AMOUNT})` or `char ({AMOUNT}`
+    -   in this case the character string _always_ has the _exact_ length of {AMOUNT}
+    -   when strings are assigned that are shorter than {AMOUNT} the string is padded by whitespaces on the right hand side
+-   `character varying ({AMOUNT})` or `varchar ({AMOUNT}`
+    -   in this case the character string has a _maximum_ length of {AMOUNT}
+    -   shorter strings therefore need less space (internally)
+</code></pre>
+<ul>
+<li>Numericals (exact)</li>
+</ul>
+<pre><code>-   are used for _exact_ representations of numbers
+-   the precision of a number is specified by providing the the amount of digits to be hold
+    -   and for decimal numbers the amount of decimal places can be specified as well
+-   `numeric [{PRECISION}[, {DECIMAL_PLACES}]]`
+-   without specification the amount of decimal places is always 0 and the precision depends on the specific precision
+-   there are also some predefined variants without decimal places eg `integer`, `smallint`, `bigint` the concrete specification of those depends on the implementation as well
+-   `numeric(7,2)` represents all numbers from -99999.99 to 99999.99 with two decimal places
+</code></pre>
+<ul>
+<li>Numericals (approximal)</li>
+</ul>
+<pre><code>-   are used for _approximate_ representations of floating point numbers in the common expression via significand (Mantisse, Ziffernstellen einer Gleitkommazahl vor der Potenz) and exponent
+-   `float [{PRECISION}]`
+-   {PRECISION} specifies the &quot;size&quot; of the significand
+-   there are also some predefined float types for example `real` and `double precision` of which the precision is also dependant on the specific implementation
+-   example float literals: `10E3` or `-3.1E-6`
+</code></pre>
+<ul>
+<li>Date and Time</li>
+</ul>
+<pre><code>There are three different data types to represent dates and times. The typical date and time components can be accessed individually:
+
+-   `date` represents a calendric date value and offers the components `year`, `month` and `day`
+-   `time` represents time values and offers the components `hour`, `minute` and `second` (precision is preset in seconds)
+-   `timestamp` represents time and date values at the same time (precision is preset to microseconds)
+
+Date and time values can optionally be parameterized to set the precision explicitly and handle time zones.
+</code></pre>
+<ul>
+<li>Interval</li>
+</ul>
+<pre><code>The data type `interval` describes a time period/range. Such range/period may for example occur as the result when subtracting date or time values. Intervals may also be added to or subtracted from date values.
+
+-   slides: Wird als zusammenhängender Teilbereich zwischen Start- und Endeinheit `(year, month, day, hour, minute, second)` definiert
+-   slides example: `interval year to month` covers all intervals between 0 years, 0 month and 99 years, 11 months; `interval hour to second(2)` covers all intervals between 0 hours, 0 minutes, 0 seconds and 99 hours, 59 minutes, 59.99 seconds (the parameter `2` specifies the precision of the seconds component)
+</code></pre>
 <h3 id="integrity-constraints-rules-conditions">Integrity Constraints/Rules/Conditions</h3>
-
 <p>Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. To achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules results in lower error rates, and time saved troubleshooting and tracing erroneous data and the errors it causes to algorithms.</p>
-
 <p>Data integrity also includes rules defining the relations a piece of data can have, to other pieces of data, such as a Customer record being allowed to link to purchased Products, but not to unrelated data such as Corporate Assets. Data integrity often includes checks and correction for invalid data, based on a fixed schema or a predefined set of rules. An example being textual data entered where a date-time value is required. Rules for data derivation are also applicable, specifying how a data value is derived based on algorithm, contributors and conditions. It also specifies the conditions on how the data value could be re-derived.</p>
-
-<p>Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let&rsquo;s look at some possible constraints in SQL.</p>
-
+<p>Integrity constraints are a set of rules to guarantee the consistency, the correctness and the completeness of data. Integrity constrains can be defined in regards to different aspect, let's look at some possible constraints in SQL.</p>
 <h4 id="required-obligatory-data">Required/obligatory Data</h4>
-
 <p>Via the keyword <code>not null</code> it can be specified in the attribute definition when the values for an attribute are not allowed to be empty/null. The DBMS then refuses insert or change operations which include a null value for that attribute. Example:</p>
-
-<pre><code class="language-sql">create table Student (
-  matrNr     integer     not null,
-  name       varchar(30) not null,
-  major      varchar(30) not null
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> Student (
+  matrNr     integer     <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+  name       varchar(<span style="color:#ae81ff">30</span>) <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+  major      varchar(<span style="color:#ae81ff">30</span>) <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>
 )
-</code></pre>
-
-<h4 id="domain-integrity">Domain Integrity</h4>
-
-<p>Just the specification of a data type (eg <code>integer</code> or <code>varchar</code>) is often times not sufficient as a criteria for the allowed values. That&rsquo;s why there&rsquo;s the possibility to perform further validation via <code>check ({CONDITION})</code>. Similarily whole new <em>attribute domains</em> (then usable as attribute type) can be defined via restriction of existing data types via <code>create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]</code>, eg:</p>
-
-<pre><code class="language-sql">create domain genderType as char check (value in ('m', 'f'))
-</code></pre>
-
-<p>Here&rsquo;s a more involved example. Suppose that there&rsquo;s a company with 3 departments where the employees are paid at least 1000$ and at max 10000$. Here&rsquo;s how the table creation could look like when considering those attribute constraints:</p>
-
-<pre><code class="language-sql">create table Staff (
-  name         varchar(30) not null,
+</code></pre></div><h4 id="domain-integrity">Domain Integrity</h4>
+<p>Just the specification of a data type (eg <code>integer</code> or <code>varchar</code>) is often times not sufficient as a criteria for the allowed values. That's why there's the possibility to perform further validation via <code>check ({CONDITION})</code>. Similarily whole new <em>attribute domains</em> (then usable as attribute type) can be defined via restriction of existing data types via <code>create domain {DOMAIN NAME} as {DATA TYPE} [check ({CONDITION})]</code>, eg:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">domain</span> genderType <span style="color:#66d9ef">as</span> char <span style="color:#66d9ef">check</span> (value <span style="color:#66d9ef">in</span> (<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">m</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span>))
+</code></pre></div><p>Here's a more involved example. Suppose that there's a company with 3 departments where the employees are paid at least 1000$ and at max 10000$. Here's how the table creation could look like when considering those attribute constraints:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> Staff (
+  name         varchar(<span style="color:#ae81ff">30</span>) <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
   gender       genderType,
-  department   integer  check (department between 1 and 3),
-  salary       integer  check (salary between 1000 and 10000)
+  department   integer  <span style="color:#66d9ef">check</span> (department <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">3</span>),
+  salary       integer  <span style="color:#66d9ef">check</span> (salary <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">10000</span>)
 );
-</code></pre>
-
-<p>In short: A domain defines the possible values of an attribute. Domain Integrity rules govern these values.</p>
-
+</code></pre></div><p>In short: A domain defines the possible values of an attribute. Domain Integrity rules govern these values.</p>
 <h4 id="entity-integrity">Entity Integrity</h4>
-
 <p>Entity Integrity ensures that there are no duplicate records within the table and that the field that identifies each record within the table is unique and never null.
 The existence of the Primary Key is the core of the entity integrity. If you define a primary key for each entity, they follow the entity integrity rule.
 Entity integrity specifies that the Primary Keys on every instance of an entity must be kept, must be unique and must have values other than NULL.
 Although most relational databases do not specifically dictate that a table needs to have a Primary Key, it is good practice to design a Primary Key for each table in the relational model. This mandates no NULL content, so that every row in a table must have a value that denotes the row as a unique element of the entity.</p>
-
 <p>Entity Integrity is the mechanism the system provides to maintain primary keys. The primary key serves as a unique identifier for rows in the table. Entity Integrity ensures two properties for primary keys:</p>
-
 <ul>
 <li>The primary key for a row is unique; it does not match the primary key of any other row in the table.</li>
 <li>The primary key is not null, no component of the primary key may be set to null.</li>
 </ul>
-
 <p>The uniqueness property ensures that the primary key of each row uniquely identifies it - there are no duplicates. The second property ensures that the primary key has meaning, has a value - no component of the key is missing.</p>
-
 <p>The system enforces Entity Integrity by not allowing operations (INSERT, UPDATE) to produce an invalid primary key. Any operation that creates a duplicate primary key or one containing nulls is rejected.</p>
-
-<p>In SQL the entity integrity via primary keys is specified via <code>primary key ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])</code>. Alternative <em>key</em> (not primary) attributes can be specified via <code>unique ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])</code>. Here&rsquo;s an example where a primary key is utilized:</p>
-
-<p>There&rsquo;s a university where:</p>
-
+<p>In SQL the entity integrity via primary keys is specified via <code>primary key ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])</code>. Alternative <em>key</em> (not primary) attributes can be specified via <code>unique ({ATTRIBUTE NAME}[, {ATTRIBUTE NAME}])</code>. Here's an example where a primary key is utilized:</p>
+<p>There's a university where:</p>
 <ul>
 <li>the lecture numbers are three digits</li>
 <li>the matricle numbers are six digits</li>
 <li>the grades are in the range of 1.0 to 5.0</li>
 </ul>
-
-<p>This is how we&rsquo;d create a table for the exams:</p>
-
-<pre><code class="language-sql">create table Exam (
- lectureNr integer check ( nummer between 100 and 999 ),
- matrNr    integer check ( nummer between 100000 and 999999),
- note      numeric(2,1) check ( note in (1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 5.0)),
- primary key (lectureNr, matrNr)
+<p>This is how we'd create a table for the exams:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> Exam (
+ lectureNr integer <span style="color:#66d9ef">check</span> ( nummer <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">100</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">999</span> ),
+ matrNr    integer <span style="color:#66d9ef">check</span> ( nummer <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">100000</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">999999</span>),
+ note      numeric(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">check</span> ( note <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">1</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>.<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>.<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">0</span>)),
+ <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span> (lectureNr, matrNr)
 );
-</code></pre>
-
-<h4 id="referential-integrity">Referential Integrity</h4>
-
+</code></pre></div><h4 id="referential-integrity">Referential Integrity</h4>
 <p>Wiki: Referential integrity is a property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.</p>
-
-<p>For referential integrity to hold in a relational database, any column in a base table that is declared a foreign key can only contain either null values or values from a parent table&rsquo;s primary key or a candidate key. In other words, when a foreign key value is used it must reference a valid, existing primary key in the parent table. For instance, deleting a record that contains a value referred to by a foreign key in another table would break referential integrity.</p>
-
+<p>For referential integrity to hold in a relational database, any column in a base table that is declared a foreign key can only contain either null values or values from a parent table's primary key or a candidate key. In other words, when a foreign key value is used it must reference a valid, existing primary key in the parent table. For instance, deleting a record that contains a value referred to by a foreign key in another table would break referential integrity.</p>
 <p>Techopedia: Referential integrity (RI) is a relational database concept, which states that table relationships must always be consistent. In other words, any foreign key field must agree with the primary key that is referenced by the foreign key. Thus, any primary key field changes must be applied to all foreign keys, or not at all. The same restriction also applies to foreign keys in that any updates (but not necessarily deletions) must be propagated to the primary parent key.</p>
-
-<p>Back to the lecture slides :D . Up until now we&rsquo;re not able to guarantee that referenced tuples of a relation really exist. Look at the following example:
+<p>Back to the lecture slides :D . Up until now we're not able to guarantee that referenced tuples of a relation really exist. Look at the following example:
 We have a table of lectures</p>
-
 <table>
 <thead>
 <tr>
@@ -391,26 +292,22 @@ We have a table of lectures</p>
 <th>persNr{FK}</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>123</td>
 <td>Data Structures</td>
 <td>6897</td>
 </tr>
-
 <tr>
 <td>234</td>
 <td>Databases in Praxis</td>
 <td>6897</td>
 </tr>
-
 <tr>
 <td>345</td>
 <td>Database Essentials</td>
 <td>6123</td>
 </tr>
-
 <tr>
 <td>456</td>
 <td>Exercise Data Structures</td>
@@ -418,9 +315,7 @@ We have a table of lectures</p>
 </tr>
 </tbody>
 </table>
-
 <p>where the <strong>persNr</strong> is a foreign key. The related table where <strong>persNr</strong> is the primary key is the table of teachers:</p>
-
 <table>
 <thead>
 <tr>
@@ -428,110 +323,80 @@ We have a table of lectures</p>
 <th>name</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>6123</td>
 <td>Ares</td>
 </tr>
-
 <tr>
 <td>6897</td>
 <td>Zeus</td>
 </tr>
-
 <tr>
 <td>43424</td>
 <td>Hera</td>
 </tr>
 </tbody>
 </table>
-
-<p>Up until now the referential integrity is fulfilled. <em>But</em> if we were to execute the following operation <code>insert into Lectures values (500, 'Mathematics', 7111)</code> we&rsquo;d violate that principle because there&rsquo;s no tuple in Teachers where the primary key <strong>persNr</strong> is <code>7111</code>.</p>
-
+<p>Up until now the referential integrity is fulfilled. <em>But</em> if we were to execute the following operation <code>insert into Lectures values (500, 'Mathematics', 7111)</code> we'd violate that principle because there's no tuple in Teachers where the primary key <strong>persNr</strong> is <code>7111</code>.</p>
 <p>Now to a more formal defintion of referential integrity.
 Suppose we have two relations R and S. The attribute(set) K is the primary key of R and the attribute(set) FK is the foreign key from R in S. To guarantee referential integrity the following condition has always to be true: \(\pi_{FK}(S) \subseteq \pi_{K}( R)\) which means that if two relations R and S are in a key/foreign-key relationship with eath other, then every attribute value of the foreign key has to exist (set is subset or equal to) as an attribute value in the primary key attribute.</p>
-
 <p>In the example given above (before the insert command) this would look like:
-\(\pi_{Lecture.persNr}(Lecture) \subseteq \pi_{Teacher.persNr}(Teacher)\) &rarr; {6897, 6123} \subseteq {6897, 6123, 43424} so the condition for referential integrity is fullfilled &check; . <em>After</em> the insert command the condition would <strong>not</strong> be fulfilled &rarr; {6897, 6123, 7111} \nsubseteq {6897, 6123, 43424}.</p>
-
+\(\pi_{Lecture.persNr}(Lecture) \subseteq \pi_{Teacher.persNr}(Teacher)\) → {6897, 6123} \subseteq {6897, 6123, 43424} so the condition for referential integrity is fullfilled ✓ . <em>After</em> the insert command the condition would <strong>not</strong> be fulfilled → {6897, 6123, 7111} \nsubseteq {6897, 6123, 43424}.</p>
 <p>Analogously we need to fulfill some conditions when modifying data to ensure referential integrity:</p>
-
 <ul>
 <li>inserting/changing a tuple s in S
-
 <ul>
 <li>for the inserted/changed value <strong>fk</strong> of the foreign key <strong>FK</strong> of s the following must be true:
-
 <ul>
-<li>&rarr; fk &isin; &pi;<sub>K</sub>&reg;</li>
-</ul></li>
-</ul></li>
-<li>deleting a tuple r &isin; R or changing the value k of the primary key attribute K of r the following must be true for the <strong>original</strong> attribute value k of the key K:
-
-<ul>
-<li>&rarr; &sigma;{FK=k}(S) = &empty; &rarr; meaning that in S no tuple is referencing the value of the key k as a foreign key (in attribute FK)</li>
-</ul></li>
+<li>→ fk ∈ π<!-- raw HTML omitted -->K<!-- raw HTML omitted -->(R)</li>
 </ul>
-
-<p>Let&rsquo;s learn how to ensure RI with SQL.</p>
-
+</li>
+</ul>
+</li>
+<li>deleting a tuple r ∈ R or changing the value k of the primary key attribute K of r the following must be true for the <strong>original</strong> attribute value k of the key K:
+<ul>
+<li>→ σ{FK=k}(S) = ∅ → meaning that in S no tuple is referencing the value of the key k as a foreign key (in attribute FK)</li>
+</ul>
+</li>
+</ul>
+<p>Let's learn how to ensure RI with SQL.</p>
 <p>When defining our schema we mark the foreign keys with the key word <code>foreign key</code> in the same way we mark primary keys. After doing so a <code>references</code> clause is added which specifies the table in which the just marked foreign key is present as a primary key.</p>
-
-<p>Values of foreign key attributes that are marked via <code>foreign key</code> can be null, unless they&rsquo;re explicitly marked as <code>not null</code>.</p>
-
+<p>Values of foreign key attributes that are marked via <code>foreign key</code> can be null, unless they're explicitly marked as <code>not null</code>.</p>
 <p>The result of this procedure is that now to change or insert a tuple, the foreign key references in that tuple need to exist. Also the deletion of tuples which are referenced elsewhere is not possible anymore.</p>
-
-<p>Here&rsquo;s the SQL code to create a table Exams that references the Lectures(number, title, persNr) and Students(matrNr, name, credits) tables:</p>
-
-<pre><code class="language-sql">create table Exam
+<p>Here's the SQL code to create a table Exams that references the Lectures(number, title, persNr) and Students(matrNr, name, credits) tables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> Exam
 (
-  lectureNr integer      check (lectureNr between 100 and 999),
-  matrNr    integer      check (matrNr between 100000 and 999999),
-  grade     numeric(2,1) check (grade in (1.0, 1.3, 1.7,
-                                          2.0, 2.3, 2.7,
-                                          3.0, 3.3, 3.7
-                                          4.0, 5.0)),
-  primary key (lectureNr, matrNr),
-  foreign key (lectureNr) references Lecture,
-  foreign key (matrNr)    references Student
+  lectureNr integer      <span style="color:#66d9ef">check</span> (lectureNr <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">100</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">999</span>),
+  matrNr    integer      <span style="color:#66d9ef">check</span> (matrNr <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">100000</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">999999</span>),
+  grade     numeric(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">check</span> (grade <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">1</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>.<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>.<span style="color:#ae81ff">7</span>,
+                                          <span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">7</span>,
+                                          <span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">7</span>
+                                          <span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">0</span>)),
+  <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span> (lectureNr, matrNr),
+  <span style="color:#66d9ef">foreign</span> <span style="color:#66d9ef">key</span> (lectureNr) <span style="color:#66d9ef">references</span> Lecture,
+  <span style="color:#66d9ef">foreign</span> <span style="color:#66d9ef">key</span> (matrNr)    <span style="color:#66d9ef">references</span> Student
 );
-</code></pre>
-
-<p>Besides prohibiting changes that violate RI it is also possible to <strong>propagate changes</strong> via <strong>automatical cascadings</strong> of changing operations.</p>
-
+</code></pre></div><p>Besides prohibiting changes that violate RI it is also possible to <strong>propagate changes</strong> via <strong>automatical cascadings</strong> of changing operations.</p>
 <p>This means that a modification of a primary key value triggers the same change of all associated foreign key values. To have this behaviour <code>on update cascade</code> is added to the <code>references</code> clause (eg <code>foreign key (matrNr) references Student on update cascade</code>)). The picture below shows this behaviour:
-</knowledge-database/images/cascade-on-update.png ></p>
-
+&lt;/knowledge-database/images/cascade-on-update.png &gt;</p>
 <p>It is also possible to cascade deletions. Beware this can be dangerous, because while the referential integrity is guaranteed you may delete data by accident. Adding <code>on delete cascade</code> to the <code>references</code> clause causes the deletion of all tuples that have k as a foreign key when a tuple with a primary key of k is deleted. The picture below shows this behaviour:
-</knowledge-database/images/cascade-on-delete.png ></p>
-
+&lt;/knowledge-database/images/cascade-on-delete.png &gt;</p>
 <p>Furthermore it is possible to automatically set the values foreign key attributes that are changed to <code>null</code> to guarantee integrity.</p>
-
 <ul>
 <li>when a primary key value is changed, all corresponding foreign key values are set to <code>null</code> ; to achieve this specify <code>on update set null</code> in the <code>references</code> clause</li>
 <li>when a tuple is deleted that has a primary key which servers as a foreign key somewhere else then the foreign key values at those places can be set to <code>null</code> by specifying <code>on delete set null</code> in the <code>references</code> clause</li>
 </ul>
-
-<p></knowledge-database/images/cascade-set-null.png ></p>
-
+<p>&lt;/knowledge-database/images/cascade-set-null.png &gt;</p>
 <h4 id="cardinality-and-participation">Cardinality and Participation</h4>
-
 <p>Modelling cardinality and participation is principally possible with SQL. <code>1:1</code> relationships can be expressed via foreign key integration that is marked with <code>unique</code> to indicate the obligatory and unique relationship. Obligatory <code>1:N</code> relationships can also be expressed with foreign keys. To do so the foreign key on the <code>N</code> side has to be marked with <code>not null</code>. However not all restrictions that can be modeled are directly convertable in SQL. Foreign keys of an <em>optional</em> participation can for example not be marked as <code>unique</code> and hold <code>null</code> (null because optional) at the same time.</p>
-
 <h4 id="other-constraints--sonstiges">Other Constraints (Sonstiges)</h4>
-
 <p>There are also <em>assertions</em> to express more complex circumstances, which can often not be associated with only one table. Assertions are not bound to a specific table: <code>create assertion {AssertionName} check ({condition})</code>. Be careful though. While assertions are part of the SQL 92 standard, they are however not implemented in many DBS.</p>
-
 <h3 id="relational-views">Relational Views</h3>
-
 <p>Bring the three level architecture from the first lecture to your mind.
-We got to know the external view as an individual user view of a part (Ausschnitt) of the conceptual view. There&rsquo;s a construct that supports this design principle (Darstellungsprinzip) in the relational model.</p>
-
+We got to know the external view as an individual user view of a part (Ausschnitt) of the conceptual view. There's a construct that supports this design principle (Darstellungsprinzip) in the relational model.</p>
 <p>A view in the relational model (relational view) is a <strong>virtual relation</strong> which is the result of applying relational operators to one or more base relations. A base relation (in contrast to a view) is relation which directly has tuples.</p>
-
-<p>There&rsquo;re different kinds of views:</p>
-
+<p>There're different kinds of views:</p>
 <ul>
 <li>horizontal: view contains subset of tuples from the base relation</li>
 <li>vertical: view contains subset of attributes from the base relation</li>
@@ -539,93 +404,55 @@ We got to know the external view as an individual user view of a part (Ausschnit
 <li>combined: arbitrary combination of horizontal, vertical and/or joined views</li>
 <li>aggregated/grouped: view is result of aggregate functions on p.r.n(pro re nata, ggf) grouped tuple sets</li>
 </ul>
-
 <p>Via <code>create view NAME as (SELECT-STATEMENT)</code> views are created and via <code>drop view NAME</code> views are deleted in SQL.</p>
-
-<p>Here&rsquo;s an example use case for views. The advisors of the different majors should only be able to access the data of &ldquo;their&rdquo; students (major).</p>
-
-<pre><code class="language-sql">create view MathStudents as (
-    select matrNr, name
-    from Student
-    where major = 'Math'
+<p>Here's an example use case for views. The advisors of the different majors should only be able to access the data of &ldquo;their&rdquo; students (major).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">view</span> MathStudents <span style="color:#66d9ef">as</span> (
+    <span style="color:#66d9ef">select</span> matrNr, name
+    <span style="color:#66d9ef">from</span> Student
+    <span style="color:#66d9ef">where</span> major <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Math</span><span style="color:#e6db74">&#39;</span>
 );
 
-create view PhilosophyStudents as (
-    select matrNr, name
-    from Student
-    where major = 'Philosophy'
+<span style="color:#66d9ef">create</span> <span style="color:#66d9ef">view</span> PhilosophyStudents <span style="color:#66d9ef">as</span> (
+    <span style="color:#66d9ef">select</span> matrNr, name
+    <span style="color:#66d9ef">from</span> Student
+    <span style="color:#66d9ef">where</span> major <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Philosophy</span><span style="color:#e6db74">&#39;</span>
 );
-</code></pre>
-
-<p>In the following images are two more examples</p>
-
-<p></knowledge-database/images/view-1.png ></p>
-
-<p></knowledge-database/images/view-2.png ></p>
-
+</code></pre></div><p>In the following images are two more examples</p>
+<p>&lt;/knowledge-database/images/view-1.png &gt;</p>
+<p>&lt;/knowledge-database/images/view-2.png &gt;</p>
 <p>Updating views is possible when the view:</p>
-
 <ul>
 <li>does not contain aggregate functions nor instructions like <code>having</code>, <code>distinct</code> or <code>group by</code></li>
 <li>only contains distinct column names and a key of the base table in the <code>select</code> projection list</li>
 <li>contains only one table which is naturally modifiable</li>
 </ul>
-
 <p><strong>But</strong> even if a view is theoretically changable it is not guaranteed that SQL or the DBMS allow the modification!</p>
-
 <ul>
-<li><p>Advantages of Views</p>
-
-<ul>
-<li>data independence
-
-<ul>
-<li>presentation of a consistent and coherent database structure even when there are structural changes of the underlieing tables</li>
-</ul></li>
-<li>powerful safety/security mechanism
-
-<ul>
-<li>arbitrary database contents (tables, attributes, data sets) can be shielded from users; access can also be provided individually</li>
-</ul></li>
-<li>complexity reduction
-
-<ul>
-<li>complex operations can be simplified by storing there interim results (Zwischenergebnisse) into views which then can be queried via less complex queries</li>
-</ul></li>
-<li>flexible presentation
-
-<ul>
-<li>the same data can be presented in individual ways according to needs and rights of the diffrent users</li>
-<li>this also simplifies the user interaction with the database because it is possible to only display parts that affect them</li>
-</ul></li>
-</ul></li>
-
-<li><p>Disadvantages of Views</p>
-
-<ul>
-<li>update capabilities
-
-<ul>
-<li>tuples can only be updated/inserted/deleted under certain conditions</li>
-</ul></li>
-<li>fixed structure
-
-<ul>
-<li>the structure of a view is determined when it is defined</li>
-<li>when for example new attributes are added to a base table then these are not in the view until it is deleted and recreated</li>
-</ul></li>
-<li>performance
-
-<ul>
-<li>there&rsquo;s an overhead because a view has to be calculated/derived at each access
-
-<ul>
-<li>this can matter especially for large computations (eg aggregate functions) or multiplle involved base tables</li>
-</ul></li>
-<li>this may be corrected via so called <em>materialized views</em> of which the results are stored (zwischengespeichert) but here the actuality (Aktualität) of the data has to be ensured as well</li>
-</ul></li>
-</ul></li>
+<li>Advantages of Views</li>
 </ul>
+<pre><code>-   data independence
+    -   presentation of a consistent and coherent database structure even when there are structural changes of the underlieing tables
+-   powerful safety/security mechanism
+    -   arbitrary database contents (tables, attributes, data sets) can be shielded from users; access can also be provided individually
+-   complexity reduction
+    -   complex operations can be simplified by storing there interim results (Zwischenergebnisse) into views which then can be queried via less complex queries
+-   flexible presentation
+    -   the same data can be presented in individual ways according to needs and rights of the diffrent users
+    -   this also simplifies the user interaction with the database because it is possible to only display parts that affect them
+</code></pre>
+<ul>
+<li>Disadvantages of Views</li>
+</ul>
+<pre><code>-   update capabilities
+    -   tuples can only be updated/inserted/deleted under certain conditions
+-   fixed structure
+    -   the structure of a view is determined when it is defined
+    -   when for example new attributes are added to a base table then these are not in the view until it is deleted and recreated
+-   performance
+    -   there's an overhead because a view has to be calculated/derived at each access
+        -   this can matter especially for large computations (eg aggregate functions) or multiplle involved base tables
+    -   this may be corrected via so called _materialized views_ of which the results are stored (zwischengespeichert) but here the actuality (Aktualität) of the data has to be ensured as well
+</code></pre>
 
     </div>
     <div class="post-footer">

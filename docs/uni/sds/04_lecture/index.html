@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 04 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,23 +51,14 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p>Not so much related to rest of lecture:</p>
-
+      <p>Not so much related to rest of lecture:</p>
 <h4 id="owasp">OWASP</h4>
-
 <p>The Open Web Application Security Project is a worldwide not-for-profit charitable organization focusing on improving the security of software, which issues software tools and knowledge-based documentation on application security</p>
-
 <h2 id="security-mechanisms-for-distributed-software">Security Mechanisms for Distributed Software</h2>
-
 <h3 id="cryptography">Cryptography</h3>
-
-<p>Cryptography is a broad field, which is only briefly touched in this lecture. The methods we&rsquo;ll use in this lecure are:</p>
-
+<p>Cryptography is a broad field, which is only briefly touched in this lecture. The methods we'll use in this lecure are:</p>
 <ul>
 <li>one key (symmetric algorithms)
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/sym-methods.png"/> 
@@ -75,18 +66,18 @@
 </li>
 <li>both participants use the same key (for de- and encryption)</li>
 <li>the key therefore has to be transmitted aswell (risk)</li>
-</ul></li>
+</ul>
+</li>
 <li>two keys (asymmetric algorithms)
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/asym-methods.png"/> 
 </figure>
 </li>
-<li>a public key is used to encrypt a message which can only be decrypted with the according private key &rarr; private key is not submitted (thus more secure)</li>
-</ul></li>
+<li>a public key is used to encrypt a message which can only be decrypted with the according private key → private key is not submitted (thus more secure)</li>
+</ul>
+</li>
 <li>hybrid methods
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/hybrid-methods.png"/> 
@@ -94,62 +85,56 @@
 </li>
 <li>session key is encrypted with public key and transmitted and then gets decrypted with private key</li>
 <li>session key is used to encrypt data/message and now the receiver can decrypt it with the earlier decrypted session key</li>
-</ul></li>
+</ul>
+</li>
 <li>one-way hash functions
-
 <ul>
 <li><strong>compression</strong>
-
 <ul>
 <li>inputs of arbitrary length are mapped to outputs with fixed length</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>irreversibility</strong> (surjective function)
-
 <ul>
 <li>input can not be inferred from the output</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>collision-resistant</strong>
-
 <ul>
 <li>a hash function \(h()\) is called collision resistant - if it is hard to find to find two inputs \(a\) and \(b\) such that \(h(a)=h(b)\) and \(a \neq b\)</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p><a href="https://www.youtube.com/watch?v=YEBfamv-%5Fdo&amp;feature=youtu.be">Public key cryptography visualized</a></p>
-
 <p>Challenge-Response with Public Key:</p>
-
 <ol>
 <li>Client sends identifier ID to server</li>
 <li>Server sends generated random number R</li>
 <li>Client signs R with a private key &amp; sends the result</li>
 <li>Server verifies the result using the public key of the client</li>
 </ol>
-
 <h3 id="public-key-infrastructure--pki">Public Key Infrastructure (PKI)</h3>
-
 <ul>
 <li>Challenge: management of public keys</li>
 <li>binding the key to its owner
-
 <ul>
 <li>certificate = digital certificate of public key assignment to a (legal) person (eg X.509 Certificate)</li>
 <li>certification authority (CA) = provides certificate issugin services; the certificates are usually signed with the private key of the CA
-
 <ul>
 <li>reduces the problem of authentic key distribution to distribution of authentic keys of CAs</li>
-</ul></li>
-<li>service users must identify themselves to the CA</li>
-</ul></li>
 </ul>
-
-<p>CA services require the use of a computer which is suitably protected against improper use. In particular, it is recommended to use a computer without any network connection to protect it physically.<br />
-The secret keys of the CA must be adequately protected and may not be given to third parties. The responsibility lies with the administrators of the CA, who are, therefore, advised to use external peripheral devices (eg smart card, floppy disk).<br />
-The secret signature key of the CA must only be used to sign CA- or Enduser keys or revocation lists (CRLs) or to create cross-signed certificates.<br />
-Each CA must generate its asymmetric key pairs by themselves. Asymmetric key pairs of the CA for signature generation must have a minimum length of 2048 bits RSA (or equivalent). In case CA generates asymmetric key pairs fo the end user, CA has to perform it on a dedicated CA computer.<br />
-All data obtained during certification must be treaded as confidential by the CA staff. CA legal data protection regulations are to be complied with.<br /></p>
-
+</li>
+<li>service users must identify themselves to the CA</li>
+</ul>
+</li>
+</ul>
+<p>CA services require the use of a computer which is suitably protected against improper use. In particular, it is recommended to use a computer without any network connection to protect it physically.<!-- raw HTML omitted -->
+The secret keys of the CA must be adequately protected and may not be given to third parties. The responsibility lies with the administrators of the CA, who are, therefore, advised to use external peripheral devices (eg smart card, floppy disk).<!-- raw HTML omitted -->
+The secret signature key of the CA must only be used to sign CA- or Enduser keys or revocation lists (CRLs) or to create cross-signed certificates.<!-- raw HTML omitted -->
+Each CA must generate its asymmetric key pairs by themselves. Asymmetric key pairs of the CA for signature generation must have a minimum length of 2048 bits RSA (or equivalent). In case CA generates asymmetric key pairs fo the end user, CA has to perform it on a dedicated CA computer.<!-- raw HTML omitted -->
+All data obtained during certification must be treaded as confidential by the CA staff. CA legal data protection regulations are to be complied with.<!-- raw HTML omitted --></p>
 <p>In summary the operation of a Certificate Authority is mainly influenced by the <em>technical requirements</em>, the <em>legal requirements</em> and the <em>organizational requirements</em>.</p>
 
     </div>

@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 15 &amp; 16 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,93 +47,74 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<p>This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.</p>
-
+      <p>This blog post contains the material covered in lecture 15 and 16 because it is the same subject and it does not make sense to split it :P.</p>
 <h2 id="complexity">Complexity</h2>
-
-<p>As you&rsquo;ve hopefully already noticed there are algorithms that differ in regards to <em>efficiency</em>. <strong>Algorithmic efficiency</strong> refers to the number of <strong>computational resources</strong> (<em>computation time</em> and <em>memory space</em>) used by the algorithm.</p>
-
+<p>As you've hopefully already noticed there are algorithms that differ in regards to <em>efficiency</em>. <strong>Algorithmic efficiency</strong> refers to the number of <strong>computational resources</strong> (<em>computation time</em> and <em>memory space</em>) used by the algorithm.</p>
 <p>For maximum efficiency we wish to minimize resource usage. However, different resources such as time and space complexity cannot be compared directly, so which of two algorithms is considered to be more efficient often depends on which measure of efficiency is considered most important.</p>
-
 <h3 id="ram-model">RAM Model</h3>
-
-<p>It is impractical to measure the computation time with a stopwatch or operating system functions because then there&rsquo;d be a lot of other factors involved such as compiler, hardware and operating system.</p>
-
-<p>But to measure the quality of <em>algorithms</em> (not their implementation) we don&rsquo;t even need a time because we use <em>abstract computer models</em>. For example the <strong>Random Access Machine</strong> (RAM model) which is used for computational complexity analysis.</p>
-
+<p>It is impractical to measure the computation time with a stopwatch or operating system functions because then there'd be a lot of other factors involved such as compiler, hardware and operating system.</p>
+<p>But to measure the quality of <em>algorithms</em> (not their implementation) we don't even need a time because we use <em>abstract computer models</em>. For example the <strong>Random Access Machine</strong> (RAM model) which is used for computational complexity analysis.</p>
 <p>RAM Components:</p>
-
 <ul>
 <li><strong>program</strong>
-
 <ul>
 <li>numbered, finite series of instructions</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>storage</strong>
-
 <ul>
 <li>enumerable (infinite) amount of storage locations(registers) (slides: abzählbar (unendlich) viele Speicherstellen (Register))</li>
 <li>arbitrarily accessible</li>
 <li>every register can store an arbitrary integer</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>in-/output</strong>
-
 <ul>
 <li>continuous sequences (bänder, ribbons)</li>
 <li>either input (read) or output (write) in the given situation</li>
-</ul></li>
+</ul>
+</li>
 <li>central processing unit
-
 <ul>
 <li>instruction counter that holds the number of the instruction that is to be executed</li>
 <li>accumulator = target register of computations, address 0</li>
 <li>arithmetic logic unit = enginge / functional unit for execution of operations</li>
-</ul></li>
 </ul>
-
-<p></knowledge-database/images/random-access-machine.png ></p>
-
+</li>
+</ul>
+<p>&lt;/knowledge-database/images/random-access-machine.png &gt;</p>
 <p>The &ldquo;common/usual&rdquo; instructions are available in a RAM:</p>
-
 <ul>
 <li>basic arithmetic operations: + - * / mod</li>
-<li>comparisons: &gt; &lt; = &ge; &le;</li>
+<li>comparisons: &gt; &lt; = ≥ ≤</li>
 <li>branching/conditions: if</li>
 <li>jumps : GOTO (loops are branches with jumps btw)</li>
 <li>loading/storing: LOAD, STORE</li>
 <li>in-/output: READ, WRITE</li>
 </ul>
-
 <p>Operands:</p>
-
 <ul>
 <li>registers (can be chosen arbitrarily), also indirectly</li>
 <li>accumulator (implicit)</li>
 <li>input sequence and output sequence (not arbitrarily ~ nicht wahlfrei)</li>
 </ul>
-
 <p>For the RAM there are two models of measuring the time cost:</p>
-
 <ul>
 <li>uniform cost measure: every instruction has a time cost of 1 time unit (eg Takt/clock signal or millisecond ..)
-
 <ul>
 <li>since every instruction has the same length/duration the instrucion <strong>executions</strong> are determining the cost</li>
-</ul></li>
+</ul>
+</li>
 <li>logarithmic time cost measure: the length of the numbers that have to be processed determine the time
-
 <ul>
-<li>length l(x) of x &isin; G:  l(0) = 1, l(x) = (log_2 |x|) + 1</li>
+<li>length l(x) of x ∈ G:  l(0) = 1, l(x) = (log_2 |x|) + 1</li>
 <li>the logarithmic time costs of an instruction are equal to the sum of the length of the numbers that have to be processed</li>
 <li>the logarithmic time cost measure should be usend when the size/length of the numbers is of critical significance</li>
 <li>in addition to the instruction executions the size of the operands is of importance in regards to the cost</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Instructions that are executed in a loop are counted repeatedly and since the execution of instructions (and loop iterations) often depends on the input size n we measure the amount of instructions that are executed with T_A(n), for example:</p>
-
 <table>
 <thead>
 <tr>
@@ -142,97 +123,72 @@
 <th>optimal for</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>A_1</td>
 <td>1000 * n</td>
-<td>n &ge; 101</td>
+<td>n ≥ 101</td>
 </tr>
-
 <tr>
 <td>A_2</td>
 <td>200*n*log n</td>
 <td>never</td>
 </tr>
-
 <tr>
 <td>A_3</td>
 <td>10 * n^2</td>
-<td>10 &le; n &le; 100</td>
+<td>10 ≤ n ≤ 100</td>
 </tr>
-
 <tr>
 <td>A_4</td>
 <td>2^n</td>
-<td>1 &le; n &le; 9</td>
+<td>1 ≤ n ≤ 9</td>
 </tr>
 </tbody>
 </table>
-
 <ul>
-<li><p>Run-time Analysis</p>
-
-<p>Even for constant \(n\) is T_A not always the same:</p>
-
-<ul>
-<li>worst case analysis
-
-<ul>
-<li>for every n define the runtime as T(n) = max(t(Input)), &forall; |Input| = n</li>
-<li>guaranteed boundaries for every input</li>
-<li>used as standard</li>
-</ul></li>
-<li>average case analysis
-
-<ul>
-<li>for every n define the runtime as T(n) = \(\bar{t}\)(Input) &forall; |Input| = n</li>
-<li>depends on the definition of average &rarr; distribution of inputs</li>
-<li>rarely used (hard to determine the average)</li>
-</ul></li>
-<li>best case analysis
-
-<ul>
-<li>for every n define the runtime as T(n) = min(t(Input)), &forall; |Input| = n</li>
-<li>looks for minimal runtime</li>
-<li>shows design mistakes (Entwurfsfehler)</li>
-<li>has no real significance (easy to cheat)</li>
-</ul></li>
+<li>Run-time Analysis</li>
 </ul>
+<pre><code>Even for constant \\(n\\) is T\_A not always the same:
 
-<p>In general the analysis of T_A is rather hard that&rsquo;s why <em>order of magnitudes</em> (Größenordnungen) are used more commonly. We know such from real life eg: v<sub>Laufen</sub> &lt; v<sub>Rad</sub> &lt; v<sub>Auto</sub> &lt; v<sub>Flugzeug</sub></p>
+-   worst case analysis
+    -   for every n define the runtime as T(n) = max(t(Input)), &amp;forall; |Input| = n
+    -   guaranteed boundaries for every input
+    -   used as standard
+-   average case analysis
+    -   for every n define the runtime as T(n) = \\(\bar{t}\\)(Input) &amp;forall; |Input| = n
+    -   depends on the definition of average &amp;rarr; distribution of inputs
+    -   rarely used (hard to determine the average)
+-   best case analysis
+    -   for every n define the runtime as T(n) = min(t(Input)), &amp;forall; |Input| = n
+    -   looks for minimal runtime
+    -   shows design mistakes (Entwurfsfehler)
+    -   has no real significance (easy to cheat)
 
-<p>Note: I skipped the slides on &ldquo;big A notation&rdquo; here because I fail to see the relevance of it and cant find anything about in the internet (slides 14-15, chapter 8).</p></li>
-</ul>
+In general the analysis of T\_A is rather hard that's why _order of magnitudes_ (Größenordnungen) are used more commonly. We know such from real life eg: v&lt;sub&gt;Laufen&lt;/sub&gt; &lt; v&lt;sub&gt;Rad&lt;/sub&gt; &lt; v&lt;sub&gt;Auto&lt;/sub&gt; &lt; v&lt;sub&gt;Flugzeug&lt;/sub&gt;
 
+Note: I skipped the slides on &quot;big A notation&quot; here because I fail to see the relevance of it and cant find anything about in the internet (slides 14-15, chapter 8).
+</code></pre>
 <h2 id="big-o-notation">Big O Notation</h2>
-
 <p>Often times the <strong>growth rate</strong> of algorithms/function is of interest. The <strong>big-O notation</strong> is commonly used to describe how a function grows. A common goal is to find algorithms/functions that are still efficient for large problem instances (inputs) and if that is the case we usually say that they scale good. Two functions eg \(f(n)\) and \(g(n)\) have the same growth rate when the ratio for a sufficient amount of \(n\) is limited by the same constant upper and lower boundaries (slides: Zwei Funktionen f(n) und g(n) haben das gleiche Wachstumsverhalten, falls für genügend große n das Verhältnis der beiden nach oben und unten durch Konstanten beschränkt ist), which means that \(c &lt; \frac{f(n)}{g(n)} and \frac{g(n)}{f(n)}\) needs to be true.
 For example:</p>
-
 <ul>
 <li>\(f_1(n)=n^2\) and \(f_2(n)=5*n^2-7*n\) have the <strong>same grow</strong> because for all \(n &gt; 2\) the following applies: \(\frac{1}{5} &lt; \frac{(5n^2-7n)}{n^2} &lt; 5\) and \(\frac{1}{5} &lt; \frac{n^2}{(5n^2-7n)} &lt; 5\)</li>
 <li>\(f_1(n)=n^2\) and \(f_2(n)=n^3\) do <strong>not have the same grow</strong> because for all sufficient large \(n\) (hinreichend groß) the following applies \(\frac{n^3}{n^2} = n &gt; c\)</li>
 </ul>
-
 <p>The big O notation (big O refers to the greek letter omikron) is also called <strong>Landau Notation</strong>.</p>
-
 <p>Big O Notation can also be used to state which function dominates the growth. For two monotone function f(n) and g(n) the function f(n) dominates the function g(n) if \(g(n) \in \mathcal{O}(f(n))\). The notation \(dom(f(n),g(n))\) yields the dominating function. For example</p>
-
 <ul>
 <li>dom(n^3, n^2) = n^3</li>
 <li>dom(2^n, n^k) = 2^n (for constant k &gt; 1)</li>
 </ul>
-
 <p>There are also some computation rules (Rechenregeln) when it comes to big O:
 \[
-\mathcal{O}(f(n)) + \mathcal{O}(g(n)) = \mathcal{O}(f(n) + g(n))\\<br />
-\mathcal{O}(f(n) + g(n)) = \mathcal{O}(dom(f(n), g(n)))\\<br />
+\mathcal{O}(f(n)) + \mathcal{O}(g(n)) = \mathcal{O}(f(n) + g(n))\\\<br>
+\mathcal{O}(f(n) + g(n)) = \mathcal{O}(dom(f(n), g(n)))\\\<br>
 \mathcal{O}(f(n)) * \mathcal{O}(g(n)) = \mathcal{O}(f(n) * g(n))
 \]</p>
-
 <p>These are some common types/classes of functions in regards to big O:</p>
-
 <table>
 <thead>
 <tr>
@@ -241,74 +197,62 @@ For example:</p>
 <th>Typical Algorithms/Operations</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>O(1)</td>
 <td>constant</td>
 <td>addition, comparisons, recursive call</td>
 </tr>
-
 <tr>
 <td>O(log n)</td>
 <td>logarithmic</td>
 <td>search in a sorted sequence</td>
 </tr>
-
 <tr>
 <td>O(n)</td>
 <td>linear</td>
 <td>modifying each element of a set</td>
 </tr>
-
 <tr>
 <td>O(n * log n)</td>
 <td></td>
 <td>good sorting algorithm</td>
 </tr>
-
 <tr>
 <td>O(n * log n)</td>
 <td></td>
 <td>good sorting algorithms</td>
 </tr>
-
 <tr>
 <td>O(n * log^2 n)</td>
 <td></td>
 <td>good sorting algorithms</td>
 </tr>
-
 <tr>
 <td>&hellip;</td>
 <td>&hellip;.</td>
 <td>&hellip;</td>
 </tr>
-
 <tr>
 <td>O(n^2)</td>
 <td>quadratic</td>
 <td>primitive sorting algorithms</td>
 </tr>
-
 <tr>
 <td>O(n^k), k &gt;= 2</td>
 <td>polynomial</td>
 <td>primitive sorting algorithms</td>
 </tr>
-
 <tr>
 <td>&hellip;</td>
 <td>&hellip;</td>
 <td>&hellip;</td>
 </tr>
-
 <tr>
 <td>O(2^n)</td>
 <td></td>
 <td>trying combinations</td>
 </tr>
-
 <tr>
 <td>O(k^n), k &gt; 1</td>
 <td>exponential</td>
@@ -316,103 +260,79 @@ For example:</p>
 </tr>
 </tbody>
 </table>
-
 <p>The O(n)-notation depends on the size of the input, that is the storage space in bits or words.</p>
-
 <p>In addition to the most common big O notation there are several related notations to describe other kinds of bounds on asymptotic growth rates:</p>
-
 <ul>
-<li>big Omega notation \(\Omega(f(n)) = {g(n) \exists c &gt; 0, \exists n_0 &gt;0, \forall n &gt; n_0, g(n) \geq c * f(n)}\) &rarr; lower boundary / &ldquo;mindestens&rdquo;</li>
-<li>big Theta notation \(\Theta(f(n)) = \mathcal{O}(f(n)) \cap \Omega(f(n))\) &rarr; exactly / &ldquo;genau&rdquo;</li>
-<li>little o notation \(o(f(n)) = {g(n) | \forall c &gt; 0, \exists n_0 &gt; 0, \forall n &gt; n_0, g(n) \leq c*f(n)}\) &rarr; at max / &ldquo;weniger&rdquo;</li>
-<li>little omega notation \(o(f(n)) = {g(n) | \forall c &gt; 0, \exists n_0 &gt; 0, \forall n &gt; n_0, g(n) \geq c*f(n)}\) &rarr;  &ldquo;mehr&rdquo;</li>
+<li>big Omega notation \(\Omega(f(n)) = {g(n) \exists c &gt; 0, \exists n_0 &gt;0, \forall n &gt; n_0, g(n) \geq c * f(n)}\) → lower boundary / &ldquo;mindestens&rdquo;</li>
+<li>big Theta notation \(\Theta(f(n)) = \mathcal{O}(f(n)) \cap \Omega(f(n))\) → exactly / &ldquo;genau&rdquo;</li>
+<li>little o notation \(o(f(n)) = {g(n) | \forall c &gt; 0, \exists n_0 &gt; 0, \forall n &gt; n_0, g(n) \leq c*f(n)}\) → at max / &ldquo;weniger&rdquo;</li>
+<li>little omega notation \(o(f(n)) = {g(n) | \forall c &gt; 0, \exists n_0 &gt; 0, \forall n &gt; n_0, g(n) \geq c*f(n)}\) →  &ldquo;mehr&rdquo;</li>
 </ul>
-
 <p>What followed in the slides are some example computation times for different complexities and algorithms.</p>
-
 <p>Take for example the algorithm to search the minimum in a sequence:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">require: sequence a_1, ..., a_n;
+ensure: p <span style="color:#f92672">=</span> min(a_1,..., a_n);
 
-<pre><code class="language-C">require: sequence a_1, ..., a_n;
-ensure: p = min(a_1,..., a_n);
+p <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> a_1
 
-p &lt;- a_1
-
-for i in {2, ..., n} do
-  if a_i &lt; p then
-    p &lt;- a_i
-  end if
-end for
-</code></pre>
-
-<p>In the above example the complexities are \(\mathcal{O}(n)\), &Omega; (n) and &Theta; (n).</p>
-
+<span style="color:#66d9ef">for</span> i in {<span style="color:#ae81ff">2</span>, ..., n} <span style="color:#66d9ef">do</span>
+  <span style="color:#66d9ef">if</span> a_i <span style="color:#f92672">&lt;</span> p then
+    p <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> a_i
+  end <span style="color:#66d9ef">if</span>
+end <span style="color:#66d9ef">for</span>
+</code></pre></div><p>In the above example the complexities are \(\mathcal{O}(n)\), Ω (n) and Θ (n).</p>
 <p>Take a look at the lecture slides (chapter 8) from slide 26 to see some more examples.</p>
-
 <h4 id="better-sorting">Better Sorting</h4>
-
-<p>The sorting algorithms we saw so far (bubble sort and insertion sort) have a complexity in \(\mathcal{O}(n^2)\). Quicksort and Mergesort are generally better sorting algorithms. Let&rsquo;s look at quicksort:</p>
-
-<pre><code class="language-C">require: array = {e_1, e_2, ..., e_n};
-ensure: for all i in {1, n-1}, e_i &lt;= e_{i+1} // sorted sequence condition
-
+<p>The sorting algorithms we saw so far (bubble sort and insertion sort) have a complexity in \(\mathcal{O}(n^2)\). Quicksort and Mergesort are generally better sorting algorithms. Let's look at quicksort:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">require: array <span style="color:#f92672">=</span> {e_1, e_2, ..., e_n};
+ensure: <span style="color:#66d9ef">for</span> all i in {<span style="color:#ae81ff">1</span>, n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, e_i <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> e_{i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>} <span style="color:#75715e">// sorted sequence condition
+</span><span style="color:#75715e"></span>
 procedure QSORT(array)
-  if |array| &lt;= then
-    return array
-  end if
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">|</span>array<span style="color:#f92672">|</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> then
+    <span style="color:#66d9ef">return</span> array
+  end <span style="color:#66d9ef">if</span>
 
-  select and remove a pivot value &quot;pivot&quot; from array
+  select and remove a pivot value <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">pivot</span><span style="color:#e6db74">&#34;</span> from array
 
-  less &lt;- []
-  greater &lt;- []
+  less <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> []
+  greater <span style="color:#f92672">&lt;</span><span style="color:#f92672">-</span> []
 
-  for e in array do
-    if e &lt;= &quot;pivot&quot; then
+  <span style="color:#66d9ef">for</span> e in array <span style="color:#66d9ef">do</span>
+    <span style="color:#66d9ef">if</span> e <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">pivot</span><span style="color:#e6db74">&#34;</span> then
       append e to less
-    else
+    <span style="color:#66d9ef">else</span>
       append e to greater
-    end if
-  end for
+    end <span style="color:#66d9ef">if</span>
+  end <span style="color:#66d9ef">for</span>
 
-  return concatenate(QSORT(less), pivot, QSORT(greater))
+  <span style="color:#66d9ef">return</span> concatenate(QSORT(less), pivot, QSORT(greater))
 end procedure
-</code></pre>
+</code></pre></div><p>Because of the built-in list type a quicksort implementation in Python is pretty easy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">l <span style="color:#f92672">=</span> [<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">54</span>,<span style="color:#ae81ff">2</span>]
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">qsort</span>(list):
+    <span style="color:#66d9ef">if</span> list <span style="color:#f92672">==</span> []:
+        <span style="color:#66d9ef">return</span> []
+    <span style="color:#66d9ef">else</span>:
+        pivot <span style="color:#f92672">=</span> list[<span style="color:#ae81ff">0</span>]
+        less <span style="color:#f92672">=</span> []
+        greater <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> list [<span style="color:#ae81ff">1</span>:]:
+            <span style="color:#66d9ef">if</span> x <span style="color:#f92672">&lt;</span> pivot : less<span style="color:#f92672">.</span>append(x)
+            <span style="color:#66d9ef">else</span> : greater<span style="color:#f92672">.</span>append(x)
+        <span style="color:#66d9ef">return</span> qsort(less) <span style="color:#f92672">+</span> [pivot] <span style="color:#f92672">+</span> qsort(greater)
 
-<p>Because of the built-in list type a quicksort implementation in Python is pretty easy:</p>
-
-<pre><code class="language-python">l = [9,8,7,54,2]
-def qsort(list):
-    if list == []:
-        return []
-    else:
-        pivot = list[0]
-        less = []
-        greater = []
-        for x in list [1:]:
-            if x &lt; pivot : less.append(x)
-            else : greater.append(x)
-        return qsort(less) + [pivot] + qsort(greater)
-
-print(qsort(l))
-</code></pre>
-
-<pre><code class="language-text">[2, 7, 8, 9, 54]
-</code></pre>
-
-<p>The depth of the recursion in quick sort is not set in stone. How does the worse case look? The pivot element is always the smallest or largest element in the list so the recursion depth is n - 1 (why?). On each recursion call \(i = |array| - 1\) elements are handled  which results in a recursion depth of n - recursion depth.
-In the worst case the complexity would be &Theta;(n^2) so it wouldn&rsquo;t <strong>always</strong> be better than eg bubble sort! In such situation it makes sense to look at the average case (see slide 35 for that).</p>
-
+<span style="color:#66d9ef">print</span>(qsort(l))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[2, 7, 8, 9, 54]
+</code></pre></div><p>The depth of the recursion in quick sort is not set in stone. How does the worse case look? The pivot element is always the smallest or largest element in the list so the recursion depth is n - 1 (why?). On each recursion call \(i = |array| - 1\) elements are handled  which results in a recursion depth of n - recursion depth.
+In the worst case the complexity would be Θ(n^2) so it wouldn't <strong>always</strong> be better than eg bubble sort! In such situation it makes sense to look at the average case (see slide 35 for that).</p>
 <h4 id="space-complexity--storage-memory">Space Complexity (Storage/Memory)</h4>
-
-<p>The required memory space is another critical resource in addition to the computation time. To measure this the same complexity measures are used. Let&rsquo;s look at the required storage space complexity for quicksort:</p>
-
+<p>The required memory space is another critical resource in addition to the computation time. To measure this the same complexity measures are used. Let's look at the required storage space complexity for quicksort:</p>
 <ul>
 <li>new arrays are created on each recursion</li>
 <li>the required storage space is \(n\) in every recursion depth</li>
 <li>the maximum recursion depth is \(n-1\)</li>
 </ul>
-
-<p>&rarr; storage complexity of quicksort is \(\mathcal{O}(n^2)\).</p>
-
+<p>→ storage complexity of quicksort is \(\mathcal{O}(n^2)\).</p>
 <p>However a storage complexity of \(\mathcal{O}(n)\) is achievable via a smart quicksort implementation by using <em>in place</em> mutations.</p>
 
     </div>

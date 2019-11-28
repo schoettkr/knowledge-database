@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 10 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,220 +47,154 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="introduction">Introduction</h2>
-
+      <h2 id="introduction">Introduction</h2>
 <p>How does the compiler know whether a program is &ldquo;correct&rdquo; (in the sense of compilable) or not?
 We basically distinguish between <strong>grammar</strong> and <strong>semantics</strong>.</p>
-
-<p><strong>Grammar</strong> (like we know it from school) consists of  <em>morphology</em> (Formenlehre v Wörtern) and syntax (Sätze). In the realm of programming morphology practically doesn&rsquo;t matter therefore <em>grammar</em> and <em>syntax</em> are mostly used interchangeably.</p>
-
+<p><strong>Grammar</strong> (like we know it from school) consists of  <em>morphology</em> (Formenlehre v Wörtern) and syntax (Sätze). In the realm of programming morphology practically doesn't matter therefore <em>grammar</em> and <em>syntax</em> are mostly used interchangeably.</p>
 <p>The <strong>semantics</strong> (<em>meaning of a sentence</em>) do not matter to the compiler.</p>
-
 <h2 id="syntax">Syntax</h2>
-
 <p>The <strong>syntax</strong> of a language is a <em>set of rules</em> after which <em>expressions</em> are built. This is true for natural languages like English and for formal languages likes C or Python, as well as mathematical logic or description languages etc.</p>
-
 <p>Expressions in the above definition might be phrases, formulas are program/code statements.</p>
-
-<p>Often times the better you understand the semantics the harder it gets to recognize the syntax (for example in my motherlanguage I don&rsquo;t think about the SPO-rule for subject-predicate-object at all).</p>
-
+<p>Often times the better you understand the semantics the harder it gets to recognize the syntax (for example in my motherlanguage I don't think about the SPO-rule for subject-predicate-object at all).</p>
 <p>Every formal language consists of <strong>symbols/tokens</strong>. A symbol is the <strong>smallest</strong> observable unit in a language (kleinste Einheit der Betrachtung innerhalb der Sprache). Symbols can be single tokens, combinations of such or whole words.</p>
-
 <p><em>Every finite, non-empty set \(\sum\) of symbols is called <strong>alphabet</strong>.</em></p>
-
 <p>With the elements in \(\sum\) we can build <strong>expression</strong>. The &ldquo;empty expression&rdquo; is represented as \(\epsilon\)  (epsilon).</p>
-
 <p>The set \(\sum = {0,1,2,3,4,5,6,7,8,9}\) for example is sufficient to build all natural numbers in the decimal system.</p>
-
 <p>/The set of all strings(combinations) (Zeichenketten) the symbols from \(\sum\) can build is called <strong>Kleene star</strong> \(\sum *\) of \(\sum\) (Kleenesche Hülle).</p>
-
 <p>For example:
 \[ \sum = \{a,b\} \Rightarrow \sum * = \{\epsilon, a, b, aa, bb, ab, ba, aaa, aab, aba,baa, &hellip;\} \]</p>
-
 <p>The set of all strings without the empty string is represented as \(sum +\) Kleene Plus.</p>
-
 <p><em>Each subset \(L \subseteq \sum*\) is also a <strong>formal language</strong></em>.</p>
-
 <p>In the following context we focus on formal languages and &ldquo;languages&rdquo; then refers to such.</p>
-
 <h2 id="formal-languages-and-generative-formal-grammar">Formal languages and generative/formal grammar</h2>
-
-<p>How can the syntax of a language be described? Which expressions/strings in a language are valid and which aren&rsquo;t? An enumeration of valid expressions is usually unpractical because the quantity of expressions is often times enormously big or infinite.</p>
-
-<p>A solution to this is to <em>describe</em> how valid expressions can/may be <strong>generated</strong>. These &ldquo;rules&rdquo; are called <strong>generative/formal grammar</strong>. From wikipedia: &ldquo;In formal language theory, a grammar (when the context is not given, often called a formal grammar for clarity) is a set of production rules for strings in a formal language. The rules describe how to form strings from the language&rsquo;s alphabet that are valid according to the language&rsquo;s syntax. A grammar does not describe the meaning of the strings or what can be done with them in whatever context—only their form.&rdquo;</p>
-
+<p>How can the syntax of a language be described? Which expressions/strings in a language are valid and which aren't? An enumeration of valid expressions is usually unpractical because the quantity of expressions is often times enormously big or infinite.</p>
+<p>A solution to this is to <em>describe</em> how valid expressions can/may be <strong>generated</strong>. These &ldquo;rules&rdquo; are called <strong>generative/formal grammar</strong>. From wikipedia: &ldquo;In formal language theory, a grammar (when the context is not given, often called a formal grammar for clarity) is a set of production rules for strings in a formal language. The rules describe how to form strings from the language's alphabet that are valid according to the language's syntax. A grammar does not describe the meaning of the strings or what can be done with them in whatever context—only their form.&rdquo;</p>
 <p>For generative grammar of a language \(L\) a second alphabet \(V\) of variables is used in addition to the alphabet \(\sum\).</p>
-
 <ul>
 <li>elements of \(\sum\) are called <strong>terminal symbols</strong>
-
 <ul>
 <li>elementary symbols of a language</li>
 <li>cannot be replaced/reproduced via production rules</li>
 <li>eg: &ldquo;for&rdquo;, &ldquo;if&rdquo;</li>
-</ul></li>
+</ul>
+</li>
 <li>elements of \(V\) are called <strong>nonterminal symbols</strong> (in some literature it is N instead of V)
-
 <ul>
 <li>are reproducable/replacable via production rules</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>When speaking about those elements in an abstract way usually lower case letters (a,b,c..) are used for elements of \(\sum\) and uppercase letters for elements of \(V\).</p>
-
 <p>A grammar is defined by production rules (or just &lsquo;productions&rsquo;) that specify which symbols may replace which other symbols; these rules may be used to generate strings, or to parse them. Each such rule has a head, or left-hand side, which consists of the string that may be replaced, and a body, or right-hand side, which consists of a string that may replace it. Rules are often written in the form head → body; e.g., the rule a → b specifies that a can be replaced by b.</p>
-
 <p>To generate an expression we begin with a <strong>start symbol</strong> \(S \in V\).</p>
-
 <p>Then depending on the nature of the rules \(P\) we distinguish between different kind of grammars (a regular grammar is a left or a right regular grammar):</p>
-
 <ul>
 <li>a left regular grammar  is a formal grammar (V, Σ, P, S), such that all rules in P obey the forms:
-
 <ul>
 <li>A → a - where A is a non-terminal in V and a is a terminal in Σ</li>
 <li>A → Ba - where A and B are in V and a is in Σ</li>
 <li>A → ε - where A is in N and ε is the empty string.</li>
 <li>so only <strong>one nonterminal symbol</strong> on the <em>left side</em> and on the <em>right side</em> <strong>one terminal symbol</strong> that <em>may be</em> <strong>preceeded</strong> by <em>one nonterminal symbol max</em></li>
-</ul></li>
+</ul>
+</li>
 <li>a <strong>right regular grammar</strong> is a formal grammar (V, Σ, P, S) such that all the production rules in P are of one of the following forms:
-
 <ul>
 <li>B → a - where B is a non-terminal in V and a is a terminal in Σ</li>
 <li>B → aC - where B and C are non-terminals in V and a is in Σ</li>
 <li>B → ε - where B is in V and ε denotes the empty string, i.e. the string of length 0.</li>
 <li>so only <strong>one nonterminal symbol</strong> on the <em>left side</em> and on the <em>right side</em> <strong>one terminal symbol</strong> that <em>may be</em> <strong>followed</strong> by <em>one nonterminal symbol max</em></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Types of grammars:</p>
-
 <ul>
-<li><strong>regular grammar</strong> (reguläre Grammatik) &rarr; either <em>all</em> rules of P are of left regular grammar nature <em>or</em> right regular grammar nature (not both/mixed)</li>
-<li><strong>context-free grammar</strong> (kontextfreie Grammatik) &rarr; a context-free grammar is a grammar in which the left-hand side of each production rule consists of <em>only a single nonterminal symbol</em></li>
-<li><strong>context-sensitive grammar</strong> (kontextbehaftet/sensitive Grammatik) &rarr; a context-sensitive grammar is a formal grammar in which the left-hand sides and right-hand sides of any production rules may be surrounded by a context of <strong>the same</strong> terminal and nonterminal symbols <code>αAβ → αγβ</code></li>
+<li><strong>regular grammar</strong> (reguläre Grammatik) → either <em>all</em> rules of P are of left regular grammar nature <em>or</em> right regular grammar nature (not both/mixed)</li>
+<li><strong>context-free grammar</strong> (kontextfreie Grammatik) → a context-free grammar is a grammar in which the left-hand side of each production rule consists of <em>only a single nonterminal symbol</em></li>
+<li><strong>context-sensitive grammar</strong> (kontextbehaftet/sensitive Grammatik) → a context-sensitive grammar is a formal grammar in which the left-hand sides and right-hand sides of any production rules may be surrounded by a context of <strong>the same</strong> terminal and nonterminal symbols <code>αAβ → αγβ</code></li>
 <li><strong>unrestricted grammar</strong> (allgemeine Grammatik)</li>
 </ul>
-
-<p>After the american linguist Noam Chomsky those grammars build the so called <strong>Chomsky-Hierarchy</strong> in which they&rsquo;re also called as:</p>
-
+<p>After the american linguist Noam Chomsky those grammars build the so called <strong>Chomsky-Hierarchy</strong> in which they're also called as:</p>
 <ul>
-<li><strong>Type-0 grammars</strong> &rarr; <em>unrestricted grammars</em> (allgemeine Grammatiken)</li>
-<li><strong>Type-1 grammars</strong> &rarr; <em>context-sensitive grammars</em></li>
-<li><strong>Type-2 grammars</strong> &rarr; <em>context-free grammars</em></li>
-<li><strong>Type-3 grammars</strong> &rarr; <em>regular grammars</em></li>
+<li><strong>Type-0 grammars</strong> → <em>unrestricted grammars</em> (allgemeine Grammatiken)</li>
+<li><strong>Type-1 grammars</strong> → <em>context-sensitive grammars</em></li>
+<li><strong>Type-2 grammars</strong> → <em>context-free grammars</em></li>
+<li><strong>Type-3 grammars</strong> → <em>regular grammars</em></li>
 </ul>
-
 <p>Each n-1 grammar can &ldquo;do everything and more&rdquo; that a grammar of type n can do (a type 1 grammar can do everything a type 2 grammar can and so on; Grammatiken niedrigeren Typs sind erzeugungsmächtiger als die höherer Typen)</p>
-
 <h2 id="syntax-diagrams">Syntax Diagrams</h2>
-
 <p>How may we describe the rules of grammars? For the following we limit us to (maximal) contrext free grammars. To describe grammar rules there exist two main approaches:</p>
-
 <ul>
 <li>syntax diagrams</li>
 <li>(extended) Backus-Naur form</li>
 </ul>
-
-<div style="color:red;">
-  <div></div>
-
+<!-- raw HTML omitted -->
 <p>I was told that these were asked in last years exam</p>
-
-<p></div></p>
-
+<!-- raw HTML omitted -->
 <p>Syntax diagrams consist of of:</p>
-
 <ul>
-<li>boxes with round corners &rarr; terminal symbols (lowercase, see above)</li>
-<li>boxes with straight corners &rarr; nonterminal symbols (uppercase, see above)</li>
+<li>boxes with round corners → terminal symbols (lowercase, see above)</li>
+<li>boxes with straight corners → nonterminal symbols (uppercase, see above)</li>
 <li>connections via lines and arrows</li>
 <li>each walkable way (in arrow direction) is valid a expression (Jeder (in Pfeilrichtung) begehbare Weg ist ein valider Ausdruck)</li>
 </ul>
-
 <p>Components:
-<img src="/knowledge-database/images/syntax-diagram-intro.png" alt="" /></p>
-
+<img src="/knowledge-database/images/syntax-diagram-intro.png" alt=""></p>
 <p>An example of a (simplified) function declaration in C in a syntax diagram:
-<img src="/knowledge-database/images/syntax-diagram-func-decl.png" alt="" /></p>
-
+<img src="/knowledge-database/images/syntax-diagram-func-decl.png" alt=""></p>
 <p>Example of a syntax diagram for a while loop in python:
-<img src="/knowledge-database/images/syntax-diagram-python.png" alt="" /></p>
-
+<img src="/knowledge-database/images/syntax-diagram-python.png" alt=""></p>
 <h2 id="backus-naur-form">Backus-Naur Form</h2>
-
-<p>While syntax diagrams are easy to read, they&rsquo;re quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).</p>
-
+<p>While syntax diagrams are easy to read, they're quite cumbersome and take a lot of space. A more compact alternative is the Backus-Naur form (BNF).</p>
 <p>BNF uses meta symbols:</p>
-
 <ul>
 <li><code>::=</code> definition symbol</li>
 <li><code>|</code> alternative symbol</li>
 <li><code>&lt; &gt;</code> nonterminal brackets which convert any sequence of letters, digits and spaces into a nonterminal symbol</li>
 </ul>
-
 <p>All symbols which are neither meta symbols nor nonterminalsymbols are terminal symbols.</p>
-
 <p>BNF is directly translatable into context-free grammar, but needs (for example for loops) syntactic helper variables.</p>
-
-<p>That&rsquo;s why there&rsquo;s also the Extended Backus-Naur form (EBNF) which is like BNF plus:</p>
-
+<p>That's why there's also the Extended Backus-Naur form (EBNF) which is like BNF plus:</p>
 <ul>
-<li><code>[ ... ]</code> &rarr; description of <strong>optional parts</strong></li>
-<li><code>{ ... }</code> &rarr; description of <strong>repetitions</strong></li>
+<li><code>[ ... ]</code> → description of <strong>optional parts</strong></li>
+<li><code>{ ... }</code> → description of <strong>repetitions</strong></li>
 </ul>
-
 <p>There are also some syntactic differences:</p>
-
 <ul>
 <li>arbitrary paren placement (Klammerung)</li>
 <li>definition symbol is <code>=</code></li>
 <li>terminal symbols are wrapped in <code>&quot;&quot;</code> or <code>''</code></li>
 <li>nonterminal symbols arent specially marked
-
 <ul>
 <li>there also might be whitespaces in nonterminal symbol identifiers, the sequence is then separated via commas eg <code>signed integer = sign, integer</code></li>
-</ul></li>
+</ul>
+</li>
 <li>expressions end with semicolons <code>;</code></li>
 <li>specific repetitions via <code>4 * (...)</code></li>
 <li>comments via <code>(* This is a comment*)</code></li>
 </ul>
-
 <p>A (E)BNF defintion or a syntax diagram is <strong>complete</strong> (vollständig) if a rule exist on the left side for every nonterminal symbol on the right hand rule side.</p>
-
 <h2 id="regular-grammar-in-action">Regular Grammar in Action</h2>
-
-<p>Now we&rsquo;ll introduce <strong>regular expressions</strong> which are a compact notation for regular grammars.</p>
-
+<p>Now we'll introduce <strong>regular expressions</strong> which are a compact notation for regular grammars.</p>
 <p>String searching or pattern matching in (certain) files is such a common task that &ldquo;tools&rdquo; using regular expression exist to help with it (for example grep, sed, awk, perl, Python, C#.. provide ways to pattern match with regular expressions).</p>
-
 <p>Since the 1980s, different syntaxes for writing regular expressions exist, one being the POSIX standard and another, widely used, being the Perl syntax.</p>
-
 <p>Because there is only a limited amount of symbols/characters/tokens (Zeichen) available regular expressions differentiate between regular(&ldquo;normal&rdquo;) (terminal)symbols and meta characters, with a special meaning. Common but not all meta characters are:</p>
-
 <ul>
 <li><code>^</code> matches the starting position within the string</li>
 <li><code>.</code> dot wildcard matches any single character (newlines sometimes excluded tho)</li>
 <li><code>[ ]</code> a bracket expression matches a single character that is contained within the brackets eg <code>[abc]</code> matches &ldquo;a&rdquo;, &ldquo;b&rdquo;, or &ldquo;c&rdquo;
-
 <ul>
 <li><code>[^ ]</code> matches a single character that is <em>not</em> contained within the brackets</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>= <code>$</code> matches the ending position of the string or the position just before a string-ending newline (in line-based tools, it matches the ending position of any line)</p>
-
 <ul>
 <li><code>*</code> matches the preceding element <em>zero or more</em> times</li>
 <li><code>+</code> matches the preceding element <em>one or more</em> times</li>
 <li><code>{n,m}</code> matches the preceding element at least <code>n</code> and not more than <code>m</code> times (eg <code>a{1,3}</code> matches only <code>a</code>, <code>aa</code> and <code>aaa</code>)</li>
 <li><code>\</code> escapes the previous meta character</li>
 </ul>
-
 <p>There are also character classes which are the most basic regex concept after a literal match. It makes one small sequence of characters match a larget set of characters (eg in ASCII [a-z] for lowercase letters). Some examples of POSIX character classes:</p>
-
 <ul>
 <li><code>[:alpha:]</code> for alphabetic characters (A-Z, a-z)</li>
 <li><code>[:digit:]</code> for digits (0-9)</li>
@@ -268,92 +202,76 @@ We basically distinguish between <strong>grammar</strong> and <strong>semantics<
 <li><code>[:blank:]</code> for space and tab</li>
 <li><code>[:print:]</code> visible characters and the space character (printable characters)</li>
 </ul>
-
 <p>Example usage of grep which finds all defintions of <code>time_t</code> in header files (option -E stands for extended-regexp):</p>
-
-<pre><code class="language-sh">grep −E &quot;typedef ([_[:alpha:]][_[:alnum:]]*[[:blank:]]+)+time_t;&quot; *.h # (copied from slides doesnt work for me :D)
-</code></pre>
-
-<h2 id="compiler">Compiler</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">grep −E <span style="color:#e6db74">&#34;typedef ([_[:alpha:]][_[:alnum:]]*[[:blank:]]+)+time_t;&#34;</span> *.h <span style="color:#75715e"># (copied from slides doesnt work for me :D)</span>
+</code></pre></div><h2 id="compiler">Compiler</h2>
 <p>A modern compiler uses multiple formal grammars for different purposes:</p>
-
 <ul>
-<li><p>Lexical Analysis</p>
-
-<p>Lexical Analysis is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning).</p>
-
-<p>Lexical analysis is the first phase of a compiler. It takes the modified source code from language preprocessors that are written in the form of sentences. The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace (in C, not in python because they belong to the syntax) or comments in the source code.</p>
-
-<p>If the lexical analyzer finds a token invalid, it generates an error. The lexical analyzer works closely with the syntax analyzer. It reads character streams from the source code, checks for legal tokens, and passes the data to the syntax analyzer when it demands.</p>
-
-<p>This is often done via a lexical specification that is defined using regular expressions.</p></li>
-
-<li><p>Syntax Analysis</p>
-
-<p>Syntax analysis or parsing is the second phase of a compiler. We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses <em>context-free grammar</em> (CFG), which is recognized by push-down automata.</p>
-
-<p>CFG, on the other hand, is a superset of Regular Grammar. This implies that every Regular Grammar is also context-free, but there exists some problems, which are beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages (take a look at <a href="https://www.tutorialspoint.com/compiler%5Fdesign/compiler%5Fdesign%5Fsyntax%5Fanalysis.htm">this</a> resource which is pretty good and also has some more explanations for terminal symbols etc).</p>
-
-<p>A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a parse tree.</p>
-
-<p>This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.</p>
-
-<p>Parsers are expected to parse the whole code even if some errors exist in the program.</p>
-
-<p><strong>Limitations of syntax analyzers</strong></p>
-
-<p>Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks:</p>
-
-<ul>
-<li>it cannot determine if a token is valid</li>
-<li>it cannot determine if a token is declared before it is being used</li>
-<li>it cannot determine if a token is initialized before it is being used</li>
-<li>it cannot determine if an operation performed on a token type is valid or not</li>
+<li>Lexical Analysis</li>
 </ul>
+<pre><code>Lexical Analysis is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning).
 
-<p>These tasks are accomplished by the <em>semantic analyzer</em></p></li>
+Lexical analysis is the first phase of a compiler. It takes the modified source code from language preprocessors that are written in the form of sentences. The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace (in C, not in python because they belong to the syntax) or comments in the source code.
 
-<li><p>Semantic Analyzer</p>
+If the lexical analyzer finds a token invalid, it generates an error. The lexical analyzer works closely with the syntax analyzer. It reads character streams from the source code, checks for legal tokens, and passes the data to the syntax analyzer when it demands.
 
-<p>A parser constructs parse trees as seen in the section about the parser / syntax analyzer above.</p>
-
-<p>The plain parse-tree constructed in that phase is generally of no use for a compiler, as it does not carry any information of how to evaluate the tree. The productions of context-free grammar, which makes the rules of the language, do not accommodate how to interpret them.</p>
-
-<p>Semantics of a language provide meaning to its constructs, like tokens and syntax structure. Semantics help interpret symbols, their types, and their relations with each other. Semantic analysis judges whether the syntax structure constructed in the source program derives any meaning or not.</p>
-
-<p>For example:</p>
-
-<pre><code class="language-java">int a = &quot;value&quot;;
+This is often done via a lexical specification that is defined using regular expressions.
 </code></pre>
-
-<p>The code above should not issue an error in lexical and syntax analysis phase, as it is lexically and structurally correct, but it should generate a semantic error as the type of the assignment differs. These rules are set by the grammar of the language and evaluated in semantic analysis. The following tasks should be performed in semantic analysis:</p>
-
 <ul>
-<li>Scope resolution</li>
-<li>Type checking</li>
-<li>Array-bound checking</li>
+<li>Syntax Analysis</li>
 </ul>
+<pre><code>Syntax analysis or parsing is the second phase of a compiler. We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses _context-free grammar_ (CFG), which is recognized by push-down automata.
 
-<p>From the lecture slides: &ldquo;usually context-sensitive language is used to perform semantic analysis&rdquo;</p></li>
+CFG, on the other hand, is a superset of Regular Grammar. This implies that every Regular Grammar is also context-free, but there exists some problems, which are beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages (take a look at [this](https://www.tutorialspoint.com/compiler%5Fdesign/compiler%5Fdesign%5Fsyntax%5Fanalysis.htm) resource which is pretty good and also has some more explanations for terminal symbols etc).
+
+A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a parse tree.
+
+This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.
+
+Parsers are expected to parse the whole code even if some errors exist in the program.
+
+**Limitations of syntax analyzers**
+
+Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks:
+
+-   it cannot determine if a token is valid
+-   it cannot determine if a token is declared before it is being used
+-   it cannot determine if a token is initialized before it is being used
+-   it cannot determine if an operation performed on a token type is valid or not
+
+These tasks are accomplished by the _semantic analyzer_
+</code></pre>
+<ul>
+<li>Semantic Analyzer</li>
 </ul>
+<pre><code>A parser constructs parse trees as seen in the section about the parser / syntax analyzer above.
 
+The plain parse-tree constructed in that phase is generally of no use for a compiler, as it does not carry any information of how to evaluate the tree. The productions of context-free grammar, which makes the rules of the language, do not accommodate how to interpret them.
+
+Semantics of a language provide meaning to its constructs, like tokens and syntax structure. Semantics help interpret symbols, their types, and their relations with each other. Semantic analysis judges whether the syntax structure constructed in the source program derives any meaning or not.
+
+For example:
+
+```java
+int a = &quot;value&quot;;
+```
+
+The code above should not issue an error in lexical and syntax analysis phase, as it is lexically and structurally correct, but it should generate a semantic error as the type of the assignment differs. These rules are set by the grammar of the language and evaluated in semantic analysis. The following tasks should be performed in semantic analysis:
+
+-   Scope resolution
+-   Type checking
+-   Array-bound checking
+
+From the lecture slides: &quot;usually context-sensitive language is used to perform semantic analysis&quot;
+</code></pre>
 <h2 id="excourse-general-difference-between-expressions-and-statements">Excourse: General Difference between Expressions and Statements</h2>
-
 <p>A statement is like an instruction that the runtime performs. Programs consist of statements. Without statements, there is nothing to do.</p>
-
 <p>An expression is a piece of code that can be &lsquo;evaluated&rsquo;, meaning it can be reduced to a value.</p>
-
 <p>The two concepts are not related, or even similar. They may coincide with the same piece of code, but they do very different things.</p>
-
 <p><code>x = 1</code> is not a statement. <code>'x = 1'</code> is an <em>expression</em> that evaluates to 1, with the side effect of assigning the value 1 to x.</p>
-
 <p><code>x = 1;</code> is a <em>statement</em> (note the semi-colon at the end) that performs this assignment.</p>
-
-<p>In many languages (Java, C, JavaScript), it&rsquo;s easy to distinguish statements. Statements usually end with a semi-colon. Statements can&rsquo;t be evaluated, they just do something.</p>
-
+<p>In many languages (Java, C, JavaScript), it's easy to distinguish statements. Statements usually end with a semi-colon. Statements can't be evaluated, they just do something.</p>
 <p>Expressions are harder to distinguish: The following statement consists of 9 expressions: <code>f[x] = 2*x+1;</code></p>
-
 <ol>
 <li><code>f</code> variable</li>
 <li><code>x</code> variable</li>
@@ -364,11 +282,8 @@ We basically distinguish between <strong>grammar</strong> and <strong>semantics<
 <li><code>2*x+1</code> binary operation</li>
 <li><code>f[x] = 2*x+1</code> assignment operation</li>
 </ol>
-
 <p>In some languages there is no distinction between expressions and staments. In Lisp for example all code and data are written as expressions. When an expression is evaluated, it produces a value.</p>
-
-<hr />
-
+<hr>
 <p>Sources: <a href="https://www.tutorialspoint.com">https://www.tutorialspoint.com</a></p>
 
     </div>

@@ -3,7 +3,7 @@
   <head>
     <title>Database Essentials - Lecture 02 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,29 +47,19 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="information-systems">Information Systems</h2>
-
+      <h2 id="information-systems">Information Systems</h2>
 <p>The task of information systems is to save, manage, organize, distribute and steer informations in an organization. The components of such information system are the DB, DBMS, Application Software, Hardware, Developers and Users.</p>
-
-<p>Databases historically developed out of the needs of operational information systems. That&rsquo;s why we look at the <em>database development lifecycle</em> with the usual requirements of information systems in mind. For smaller DBS and databases for the management of smaller data sets e.g in web development some of the steps can be simplified and/or aggregated(zusammengefasst).</p>
-
+<p>Databases historically developed out of the needs of operational information systems. That's why we look at the <em>database development lifecycle</em> with the usual requirements of information systems in mind. For smaller DBS and databases for the management of smaller data sets e.g in web development some of the steps can be simplified and/or aggregated(zusammengefasst).</p>
 <h2 id="dbs-development-lifecycle">DBS Development Lifecycle</h2>
-
 <ul>
 <li>consists of <strong>planning</strong> and <strong>realisation</strong></li>
 </ul>
-
 <h3 id="planning">Planning</h3>
-
 <h4 id="goal-description-and-system-defintion">Goal Description and System Defintion</h4>
-
 <ul>
 <li>What is the purpose of the DBS?</li>
 <li>Which goals should be accomplished by using the DBS?</li>
 <li>Description of individual user viewpoints (application categories)
-
 <ul>
 <li>Which (aspects of) data play a role for the user?</li>
 <li>What does a user do with &ldquo;his&rdquo; data?</li>
@@ -78,485 +68,392 @@
     <img src="/knowledge-database/images/user-viewpoints.png"/> 
 </figure>
 </li>
-</ul></li>
+</ul>
+</li>
 <li>Creation of rules regarding data collection, data formats, documentation and naming (conventions)</li>
 </ul>
-
 <h4 id="requirement-specification">Requirement Specification</h4>
-
 <ul>
-<li>in this process data that should be managed by the DBS  is gathered/collected and analyzed</li>
-<li>the specific data and its usage is described for each user view &rarr; adequate description (not too much or too less)</li>
-
-<li><p>finally the requirements of each view have to be combined</p>
-
+<li>
+<p>in this process data that should be managed by the DBS  is gathered/collected and analyzed</p>
+</li>
+<li>
+<p>the specific data and its usage is described for each user view → adequate description (not too much or too less)</p>
+</li>
+<li>
+<p>finally the requirements of each view have to be combined</p>
 <ul>
-<li>there&rsquo;re two procedures for this (which can be combined):</li>
-</ul></li>
-
-<li><p>Central integration</p>
-
-<ul>
-<li>each user views requirements are combined in an aggregate of requirements for the DBS</li>
-</ul></li>
-
-<li><p>View integration</p>
-
-<ul>
-<li>the requirements for each user view stay seperated for the time being</li>
-<li>in the next stept a data model is designed for each user view</li>
-<li>the resulting data models are merged into an uniform data model that represents all user requirements of the database.</li>
-</ul></li>
+<li>there're two procedures for this (which can be combined):</li>
 </ul>
-
+</li>
+<li>
+<p>Central integration</p>
+</li>
+</ul>
+<pre><code>-   each user views requirements are combined in an aggregate of requirements for the DBS
+</code></pre>
+<ul>
+<li>View integration</li>
+</ul>
+<pre><code>-   the requirements for each user view stay seperated for the time being
+-   in the next stept a data model is designed for each user view
+-   the resulting data models are merged into an uniform data model that represents all user requirements of the database.
+</code></pre>
 <h4 id="application-design-and-db-design">Application Design and DB Design*</h4>
-
 <h3 id="realisation">Realisation</h3>
-
 <ul>
 <li>implementation of DB and application</li>
 <li>data conversion of existing systems if needed</li>
 <li>Test: Validate functionality and fulfillment of requirements</li>
 <li>maintenance of the running sytem and extension via another development cycle if needed</li>
 </ul>
-
-<h3 id="and-lowast-database-design">&lowast;Database Design</h3>
-
+<h3 id="and-lowast-database-design">∗Database Design</h3>
 <h4 id="data-model">Data model</h4>
-
 <p>A data model is a collection of concepts to describe data objects and their relationships. A data model usually consists of three components:</p>
-
 <ul>
-<li><strong>structural part</strong> &rarr; describes the structure of the data objects and their relationships</li>
-<li><strong>operational part</strong> &rarr; describes allowed operations and their results / impact on the data</li>
-<li><strong>integrity rules</strong> &rarr; guarantee that data is correct</li>
+<li><strong>structural part</strong> → describes the structure of the data objects and their relationships</li>
+<li><strong>operational part</strong> → describes allowed operations and their results / impact on the data</li>
+<li><strong>integrity rules</strong> → guarantee that data is correct</li>
 </ul>
-
 <p>There are different types of data models:</p>
-
 <ul>
 <li>object-based / semantic (eg Entity-Relationship, object-oriented)</li>
 <li>data-based (eg relational, hierarchical, network?!)</li>
 <li>physical (eg realisation and arrange of data in cocrete systems)</li>
 </ul>
-
 <p>There are multiple criteria for a optimal data model, the following list is based on the criteria after Fleming &amp; von Halle:</p>
-
 <ul>
 <li><strong>Consistency</strong>
-
 <ul>
 <li>modeling of data in the way that it is used and organized in the real world (consistency between model and real world)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Simplicity</strong>
-
 <ul>
 <li>model should be easy to understand for every user</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Expressiveness</strong> (Ausdrucksfähigkeit)
-
 <ul>
 <li>the data model should be able to unambiguously differentiate between different data, relationships and restrictions on the data (via explicit concepts)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Non-redundancy</strong>
-
 <ul>
 <li>the data model should not hold the same information multiple times</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Independence</strong>
-
 <ul>
 <li>the data model should not be bound to a specific application or technology</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Extensibility</strong>
-
 <ul>
 <li>the data model should be easily extensible to accomodate new requirements without greater impact on the current/existing usability</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Visualization Ability</strong> (Visualisierbarkeit)
-
 <ul>
 <li>the data model should be visualizable via an easy to understand notation</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="three-phases-of-database-design">Three phases of database design</h4>
-
 <ol>
 <li><strong>Conceptual Design</strong> (This lecture)
-
 <ul>
 <li>creation of a semantic data model that describes all important aspects from the requirement analysis</li>
 <li>primarily serves the purpose to clearly (eindeutig) communicate the data that is to be stored and its realationships in a nontechnical way</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Logical Design</strong> (Lecture 03 until ???)
-
 <ul>
 <li>transforms the conceptual model into a concrete data model, which can be implemented in a database system</li>
 <li>the logical design / data model also does not hold cocrete implementation details such as DBMS, programming language(s) or hardware</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Physical Design</strong> (Lecture ???)
-
 <ul>
 <li>describes the actual implementation of the logical data model</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h2 id="1-dot-conceptual-db-design">1. Conceptual DB-Design</h2>
-
 <p>The <strong>Entity-Relationship-Model</strong> (ERM) is the most used data model for the conceptual DB design process. ER-Modelling is a top-down procedure that primarily tries to capture the data objects (entities) and their relationships, which are then described more precisely and detailed in the progression of the modelling process.</p>
-
 <p>There are different ways to display/visualize the concepts on an ER model, of which the <strong>Unified Modeling Language</strong> (UML) is the currently most used one for object oriented projects in the sphere of software engineering.</p>
-
 <h3 id="er-model--entity-relationship-model">ER-Model (Entity Relationship Model)</h3>
-
 <h4 id="entities">Entities</h4>
-
 <ul>
 <li><strong>entity type</strong>
-
 <ul>
 <li>describes a group of objects which have the same attributes/properties and (usually) exist independently of each other (physical or conceptual)</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>entity</strong>
-
 <ul>
 <li>descibres a clearly identifiable object of a certain entity type</li>
 <li>in everyday language the &ldquo;entity&rdquo; is also often meant as the entity type because we usually dont deal with single objects</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>visualization</strong>
-
 <ul>
 <li>an entity type is visualized as a rectangle with a name, which is usually a substantive/noun in the singular form (each starting letter of compound words is capitalized)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h4 id="relationships">Relationships</h4>
-
 <ul>
 <li><strong>relationship</strong>
-
 <ul>
 <li>describes a clearly identifiable connection between existing entities</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>relationship type</strong>
-
 <ul>
 <li>describes the set of &ldquo;equal&rdquo; connections/relationships between entity types</li>
 <li>similar to &ldquo;entity&rdquo; the term &ldquo;relation&rdquo; is often used to describe the relationship type</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>visualization</strong>
-
 <ul>
 <li>each <em>relationship type</em> is visualized as a line that connects two <em>entity types</em> and is annotated with a name that describes the relationship type</li>
 <li>the name of a relationship type should be or include a verb</li>
 <li>each starting letter should be capitalized and the names of different relationship types should also be different if possible</li>
 <li>a relationship type is only named in one direction - this is visualized via an arrow that is placed next to the name and points in one direction</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Example of two entity types and one relationship type:</p>
-
 <ul>
-<li><figure>
+<li>
+<figure>
     <img src="/knowledge-database/images/entity-rel-example.png"/> 
 </figure>
+
 </li>
-
-<li><p><strong>complexity/degree of a relationship type</strong> (Grad eines Beziehungstyps)</p>
-
+<li>
+<p><strong>complexity/degree of a relationship type</strong> (Grad eines Beziehungstyps)</p>
 <ul>
 <li>more than two entity types can be involved in a relationship type</li>
 <li>the amount of involved entity types in a relationship types yields the complexity/degree (Grad) of the relationship type</li>
 <li>a relation with a degree of two is called a <em>binary relationship</em></li>
 <li><strong>complex relationships</strong> are relationship types that have a degree that is higher than 2</li>
-</ul></li>
-
-<li><p><strong>visualization of complex relationships</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>visualization of complex relationships</strong></p>
 <ul>
 <li>complex relationships can be visualized with a rhombus (Raute)</li>
 <li>the name of the relationship is written inside the rhombus</li>
 <li>the direction arrow is ommitted</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Example of a ternary relationship:</p>
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/ternary-rel.png"/> 
 </figure>
 </li>
 </ul>
-
 <p>Example of a quarternary relationship:</p>
-
 <ul>
-<li><figure>
+<li>
+<figure>
     <img src="/knowledge-database/images/quarternary-rel.png"/> 
 </figure>
+
 </li>
-
-<li><p><strong>recursive relationship</strong></p>
-
+<li>
+<p><strong>recursive relationship</strong></p>
 <ul>
 <li>entities of the same type can also be associated with other entities of the same type, this is called a recursive relationship</li>
 <li><figure>
     <img src="/knowledge-database/images/recursive-rel.png"/> 
 </figure>
 </li>
-</ul></li>
-
-<li><p><strong>role description/designation</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>role description/designation</strong></p>
 <ul>
 <li>in for example recursive relationships the entities often have different purpose (erfüllen versch Zweck) and this can be visualized by assigning <em>role deschriptions / designation</em>
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/role-des-rec.png"/> 
 </figure>
 </li>
-</ul></li>
+</ul>
+</li>
 <li>role description may also be useful if multiple relationship types exist between two entity types
-
 <ul>
 <li><figure>
     <img src="/knowledge-database/images/role-des.png"/> 
 </figure>
 </li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h4 id="attributes">Attributes</h4>
-
 <p>An <strong>attribute</strong> denotes a propterty/characteristic/trait (Eigenschaft)  of an entity type.
 The <strong>atrtibute domain</strong> is the set of values in an <em>attribute</em> for example for the attribute &ldquo;married&rdquo; the attribute domain would consist of &ldquo;yes&rdquo; and &ldquo;no&rdquo; (another example could be age (1-99) or rooms in a hotel (1-200)).</p>
-
 <p>When an entity type shall be visualized with its attributes the rectangle is divided into two parts. In the upper part is the entity name and in the bottom part are the attributes listed.
 Attribute names begin with a lowercase letter and each consequential word of compound terms are capitalized:
-<img src="/knowledge-database/images/attribute-example.png" alt="" /></p>
-
+<img src="/knowledge-database/images/attribute-example.png" alt=""></p>
 <p>Usually <em>relationship types</em> do not have attributes because they just connect entity types. Sometimes though addidtional attributes are required so that a separate <em>entity type</em> may be created out of the original <em>relationship type</em>. This newly created (weak) entity type then gets the respective attributes assigned. These attributes are called <strong>relationship attributes</strong> (Beziehungsattribute).
 To visualize <strong>relationship attributes</strong> a virtual entity type without a name is created and connected to the relationship type with a dotted line:
-<img src="/knowledge-database/images/relationship-attributes.png" alt="" />
+<img src="/knowledge-database/images/relationship-attributes.png" alt="">
 Be careful, the existence of a lot of relationship attributes may be a sign that a &ldquo;complete&rdquo; entity type is required and hidden in the relationship. The likelihood of this increases with an increasing amount of relationship attributes.</p>
-
 <ul>
-<li><p>Attribute Types</p>
-
-<ul>
-<li><strong>simple/atomic(atomar)</strong>
-
-<ul>
-<li>attribute consists of a single component</li>
-</ul></li>
-<li><strong>compound</strong>
-
-<ul>
-<li>attribute consists of multiple components</li>
-</ul></li>
-<li><strong>monovalent</strong> / <strong>univalent</strong> (einwertig)
-
-<ul>
-<li>attribute can only hold one value for an entity of an entity type at the same time</li>
-</ul></li>
-<li><strong>multivalent</strong> / <strong>polyvalent</strong> (mehrwertig)
-
-<ul>
-<li>attribute can hold multiple values for an entity of an entity type at the same time</li>
-</ul></li>
-<li><strong>derived</strong> (abgeleitet)
-
-<ul>
-<li>values of the attribute are not stored directly/explicitly, instead are computed out of values from one or more  attributes of entities from any attribute type</li>
-</ul></li>
-</ul></li>
-
-<li><p>Schlüsselattribute (key attributes)</p>
-
-<ul>
-<li><strong>candidate key</strong>
-
-<ul>
-<li>is the smallest <strong>set of attributes</strong> which distinctively identifies each entity of a given entity type</li>
-</ul></li>
-<li><strong>primary key</strong>
-
-<ul>
-<li>entity types can have more than one <em>candidate keys</em>, in this case one of those is marked as a <strong>primary key</strong> (by default if only one candidate key is present this becomes the primary key)</li>
-<li>the selection criteria to choose a primary key out of multiple candidate keys consist of the meaning of the key in context of the entity type, its future-proofness and also the length of the key</li>
-</ul></li>
-<li><strong>alternative keys</strong>
-
-<ul>
-<li>sometimes it is useful to have further/other ways to identify an entity type, those attributes may be marked as alternative keys</li>
-</ul></li>
-</ul></li>
-
-<li><p>Visualizing Attribute Types and Designating Key Attributes</p>
-
-<ul>
-<li>the components of compound attributes are indented</li>
-<li>ranges of possible values are denoted via square brackets after the attribute, eg [1..*] for an arbitrary amount</li>
-<li>the designation of <em>derived attributes</em> is done via a leading slash &ldquo;/&rdquo;</li>
-<li>the first attribute(s) designate the primary key of an entity type
-
-<ul>
-<li>those attributes should also be tagged with a trailing &ldquo;{PPK}&rdquo; in case of multiple attributes that yield the primary key or respectively &ldquo;{PK}&rdquo; if its only one attribute that acts as a primary key</li>
-</ul></li>
-<li>alternative keys are tagged with a trailing &ldquo;{AK}&rdquo;</li>
-</ul></li>
-
-<li><p>Weak and Strong Entity Types</p>
-
-<ul>
-<li><strong>weak entity type</strong>
-
-<ul>
-<li>some entities may not be distinctively distinguishable solely by their attribute values</li>
-<li>a distinct identification is only possible with the help of a relationship to another entity type, that means a <em>weak entity type</em> is <em>existentially dependent</em> (existensabhängig) on another entity type</li>
-</ul></li>
-<li><strong>strong entity type</strong>
-
-<ul>
-<li>entities of a strong entity type are distinctively distinguishable by their attribute values, that means they are indepenent of the existence of another entity type</li>
-</ul></li>
-</ul></li>
+<li>Attribute Types</li>
 </ul>
-
+<pre><code>-   **simple/atomic(atomar)**
+    -   attribute consists of a single component
+-   **compound**
+    -   attribute consists of multiple components
+-   **monovalent** / **univalent** (einwertig)
+    -   attribute can only hold one value for an entity of an entity type at the same time
+-   **multivalent** / **polyvalent** (mehrwertig)
+    -   attribute can hold multiple values for an entity of an entity type at the same time
+-   **derived** (abgeleitet)
+    -   values of the attribute are not stored directly/explicitly, instead are computed out of values from one or more  attributes of entities from any attribute type
+</code></pre>
+<ul>
+<li>Schlüsselattribute (key attributes)</li>
+</ul>
+<pre><code>-   **candidate key**
+    -   is the smallest **set of attributes** which distinctively identifies each entity of a given entity type
+-   **primary key**
+    -   entity types can have more than one _candidate keys_, in this case one of those is marked as a **primary key** (by default if only one candidate key is present this becomes the primary key)
+    -   the selection criteria to choose a primary key out of multiple candidate keys consist of the meaning of the key in context of the entity type, its future-proofness and also the length of the key
+-   **alternative keys**
+    -   sometimes it is useful to have further/other ways to identify an entity type, those attributes may be marked as alternative keys
+</code></pre>
+<ul>
+<li>Visualizing Attribute Types and Designating Key Attributes</li>
+</ul>
+<pre><code>-   the components of compound attributes are indented
+-   ranges of possible values are denoted via square brackets after the attribute, eg [1..\*] for an arbitrary amount
+-   the designation of _derived attributes_ is done via a leading slash &quot;/&quot;
+-   the first attribute(s) designate the primary key of an entity type
+    -   those attributes should also be tagged with a trailing &quot;{PPK}&quot; in case of multiple attributes that yield the primary key or respectively &quot;{PK}&quot; if its only one attribute that acts as a primary key
+-   alternative keys are tagged with a trailing &quot;{AK}&quot;
+</code></pre>
+<ul>
+<li>Weak and Strong Entity Types</li>
+</ul>
+<pre><code>-   **weak entity type**
+    -   some entities may not be distinctively distinguishable solely by their attribute values
+    -   a distinct identification is only possible with the help of a relationship to another entity type, that means a _weak entity type_ is _existentially dependent_ (existensabhängig) on another entity type
+-   **strong entity type**
+    -   entities of a strong entity type are distinctively distinguishable by their attribute values, that means they are indepenent of the existence of another entity type
+</code></pre>
 <h4 id="cardinality">Cardinality</h4>
-
 <p>The <strong>cardinality</strong> describes the maximum amount of relationships, in which an entity of a specific relationship type (steht so in Folien, müsste dies nicht entity type statt relationship type sein?) may be a part of.</p>
-
 <p>In the case of <em>binary relationships</em> we distringuish between three categories of cardinality: <code>1:1</code>, <code>1:N</code> and <code>N:M</code>.</p>
-
 <p>The <strong>participation</strong> describes weather all or just a few entities of an entity type are involved in the manifestation (Ausprägung) of a relationship type.</p>
-
 <p>Cardinality and participation are visualized via the &ldquo;Min..Max-Notation&rdquo; which specifies the lower and upper limit for both sides of the relationship of the entities.</p>
-
 <p>Note that to determine the cardinality and participation always both sides/directions of a relationship have to be viewed!</p>
-
 <h4 id="cardinality-of-binary-relationships">Cardinality of Binary Relationships</h4>
-
 <ul>
-<li><p>1:1 Relationship</p>
-
-<p>Each entity out of entity set E_1 may only be in relation to maximally one entity out of entity set E_2. Each entity out of entity set E_2 may as well only be in relation with one entity from entity set E_1 at most.</p>
-
-<p>For example one professor leads one faculty at most (or none) and each faculty is lead by exactly one professor (&rarr; <code>1:1</code>):
-<img src="/knowledge-database/images/one-to-one-example.png" alt="" />
-So a professor either leads one at max or no faculty. The professors numbers &ldquo;0..1&rdquo; go to the right side of the relationship name. From the view of a faculty, which is always lead by one professor not more and not less the tag &ldquo;1..1&rdquo; goes on the left side of the relationship name. So notice that the min-max relationship that is directly besides an entity is the relationship viewed from the other entity!</p>
-
-<p>So if I want to change/add/create the min-max ranges for example for the professors meaning that I let go so many professors that everyone who is left has to lead a faculty. Then I&rsquo;d have to change the &ldquo;0&rdquo; next to faculty to a &ldquo;1&rdquo; because 1 professor leads one faculty. It also seems that only the upper range boundary is considered when specifying the cardinality of a relationship (eg 0..1 and 0..1 on both sides would be a 1-to-1 relationship)</p></li>
-
-<li><p>1:N Relationship</p>
-
-<p>Each entity out of entity set E_1 may be in a relationship with an arbitrary amount of entities out of entity set E_2. Each entity out of entity set E_2 may only be in a relationship with one entity from entity set E_1 at most.</p>
-
-<p>For example at a faculty work multiple professors and one professor belongs to exactly one faculty (&rarr; <code>1:N</code>):
-<img src="/knowledge-database/images/one-to-n-example.png" alt="" /></p>
-
-<p>Another example:
-\[\fbox{Person} \xrightarrow[]{\text{0..N    born in    1..1}} \fbox{City}\]</p>
-
-<p>This is read as one person is born in at least one and at max one city (1..1). To see it out of the city&rsquo;s perspective: in a city zero or more (&ldquo;0..N&rdquo;) persons are/were born.</p>
-
-<p>One more example:
-\[\fbox{Person} \xrightarrow[]{\text{0..N    died in    0..1}} \fbox{City}\]</p>
-
-<p>This is read as one person died in either none (person is alive) and at max one city (0..1). To see it out of the city&rsquo;s perspective: in a city zero or more (&ldquo;0..N&rdquo;) persons have died.</p></li>
-
-<li><p>N:M Relationship</p>
-
-<p>Each entity out of entity set E_1 may be in a relationship with an arbitrary amount of entities out of entity set E_2. Each entity out of entity set E_2 may also be in a relationship with an arbitrary amount of entities from entity set E_1.</p>
-
-<p>For example a student listens to multiple lectures and lectures are heard by multiple students (&rarr; <code>N:M</code>):
-<img src="/knowledge-database/images/n-to-mexample.png" alt="" /></p></li>
+<li>1:1 Relationship</li>
 </ul>
+<pre><code>Each entity out of entity set E\_1 may only be in relation to maximally one entity out of entity set E\_2. Each entity out of entity set E\_2 may as well only be in relation with one entity from entity set E\_1 at most.
 
+For example one professor leads one faculty at most (or none) and each faculty is lead by exactly one professor (&amp;rarr; `1:1`):
+![](/knowledge-database/images/one-to-one-example.png)
+So a professor either leads one at max or no faculty. The professors numbers &quot;0..1&quot; go to the right side of the relationship name. From the view of a faculty, which is always lead by one professor not more and not less the tag &quot;1..1&quot; goes on the left side of the relationship name. So notice that the min-max relationship that is directly besides an entity is the relationship viewed from the other entity!
+
+So if I want to change/add/create the min-max ranges for example for the professors meaning that I let go so many professors that everyone who is left has to lead a faculty. Then I'd have to change the &quot;0&quot; next to faculty to a &quot;1&quot; because 1 professor leads one faculty. It also seems that only the upper range boundary is considered when specifying the cardinality of a relationship (eg 0..1 and 0..1 on both sides would be a 1-to-1 relationship)
+</code></pre>
+<ul>
+<li>1:N Relationship</li>
+</ul>
+<pre><code>Each entity out of entity set E\_1 may be in a relationship with an arbitrary amount of entities out of entity set E\_2. Each entity out of entity set E\_2 may only be in a relationship with one entity from entity set E\_1 at most.
+
+For example at a faculty work multiple professors and one professor belongs to exactly one faculty (&amp;rarr; `1:N`):
+![](/knowledge-database/images/one-to-n-example.png)
+
+Another example:
+\\[\fbox{Person} \xrightarrow[]{\text{0..N    born in    1..1}} \fbox{City}\\]
+
+This is read as one person is born in at least one and at max one city (1..1). To see it out of the city's perspective: in a city zero or more (&quot;0..N&quot;) persons are/were born.
+
+One more example:
+\\[\fbox{Person} \xrightarrow[]{\text{0..N    died in    0..1}} \fbox{City}\\]
+
+This is read as one person died in either none (person is alive) and at max one city (0..1). To see it out of the city's perspective: in a city zero or more (&quot;0..N&quot;) persons have died.
+</code></pre>
+<ul>
+<li>N:M Relationship</li>
+</ul>
+<pre><code>Each entity out of entity set E\_1 may be in a relationship with an arbitrary amount of entities out of entity set E\_2. Each entity out of entity set E\_2 may also be in a relationship with an arbitrary amount of entities from entity set E\_1.
+
+For example a student listens to multiple lectures and lectures are heard by multiple students (&amp;rarr; `N:M`):
+![](/knowledge-database/images/n-to-mexample.png)
+</code></pre>
 <h4 id="cardinality-analysis">Cardinality Analysis</h4>
-
 <p>When modelling segments of the real world one should consider weather the relationships between entity types are of static or dynamic nature and wether the relationships exist on the instance (Instanzebene) or type level (Typebene). Depending on that the cardinality of equal (gleichartigen) relationships between entity types may vary.</p>
-
 <ul>
-<li><p>Static</p>
-
-<ul>
-<li>modelling of the current state</li>
-<li>eg over the course of one semester one teacher holds one (or multiple) lectures (1:N relationship)</li>
+<li>Static</li>
 </ul>
+<pre><code>-   modelling of the current state
+-   eg over the course of one semester one teacher holds one (or multiple) lectures (1:N relationship)
 
 <figure>
     <img src="/knowledge-database/images/static-example.png"/> 
 </figure>
-</li>
 
-<li><p>Dynamic</p>
-
+</code></pre>
 <ul>
-<li>modelling of the process (Modellierung des Verlaufs)</li>
-<li>eg over the course of multiple semesters it is possible that multiple/different teachers hold the lecture (N:M relationship)</li>
+<li>Dynamic</li>
 </ul>
+<pre><code>-   modelling of the process (Modellierung des Verlaufs)
+-   eg over the course of multiple semesters it is possible that multiple/different teachers hold the lecture (N:M relationship)
 
 <figure>
     <img src="/knowledge-database/images/dynamic-example.png"/> 
 </figure>
-</li>
 
-<li><p>Instance (level)</p>
-
+</code></pre>
 <ul>
-<li>an entity of a entity type represents a concrete und uniquely identifiable object</li>
-<li>eg a customer buys products which are identifiable via their serial number
-
-<ul>
-<li>no other customer is able to buy a product with the same serial number &rarr; 1:N relationship</li>
-</ul></li>
+<li>Instance (level)</li>
 </ul>
+<pre><code>-   an entity of a entity type represents a concrete und uniquely identifiable object
+-   eg a customer buys products which are identifiable via their serial number
+    -   no other customer is able to buy a product with the same serial number &amp;rarr; 1:N relationship
 
-<p><img src="/knowledge-database/images/instance-example.png" alt="" />
-(Read: Null bis/oder ein Kunde kauft 0 bis N Produkte. Wenn man es von der anderen Seite aus lesen will also entgegen des Beziehungspfeil, dann muss der Name der Beziehung also das Verb in die passiv Form gewandelt werden &rarr; Null bis N Produkte <em>werden</em> von keinem oder genau einem Kunden <em>gekauft</em>)</p></li>
-
-<li><p>Type (level)</p>
-
+![](/knowledge-database/images/instance-example.png)
+(Read: Null bis/oder ein Kunde kauft 0 bis N Produkte. Wenn man es von der anderen Seite aus lesen will also entgegen des Beziehungspfeil, dann muss der Name der Beziehung also das Verb in die passiv Form gewandelt werden &amp;rarr; Null bis N Produkte _werden_ von keinem oder genau einem Kunden _gekauft_)
+</code></pre>
 <ul>
-<li>an entity of a entity type represents a a type resp. a category of objects</li>
-<li>eg a customer buys products which are only sold as a category of objects for instance a box of matches
-
-<ul>
-<li>other customers could buy the same product (a box of matches) &rarr; N:M relationship</li>
-</ul></li>
+<li>Type (level)</li>
 </ul>
+<pre><code>-   an entity of a entity type represents a a type resp. a category of objects
+-   eg a customer buys products which are only sold as a category of objects for instance a box of matches
+    -   other customers could buy the same product (a box of matches) &amp;rarr; N:M relationship
 
 <figure>
     <img src="/knowledge-database/images/instance-example.png"/> 
 </figure>
-</li>
-</ul>
 
+</code></pre>
 <h4 id="relationships-with-a-degree-2--mehrstellige-beziehungen">Relationships with a Degree &gt; 2 (Mehrstellige Beziehungen)</h4>
-
 <p>To represent relationships where the degree of the cardinality is higher than 2 more letters may be required, eg N:M:P relationship. Take for example the interpretation of ternary relationships:</p>
-
 <ul>
-<li>1:1:1 &rarr; anologous to 1:1 &rarr; if a entity is in a relationship it cannot be part of another relationship (with the same relationship type)</li>
-<li>1:1:N &rarr; (1x1):N &rarr; a combination of entities in a relationship with a cardinality of 1 my be associated with an arbitrary amount of entities from the &ldquo;N side&rdquo;; entities from the &ldquo;N side&rdquo; that are in a relationship are not allowed to be included in another 1:1 combination</li>
-<li>1:N:M &rarr; 1:(N x M) &rarr; entities from the &ldquo;1 side&rdquo; can be in a relationship with an arbitrary amount of different N:M combinations; N:M combinations may only be in one relationship with an entity from the &ldquo;1 side&rdquo;</li>
-<li>N:M:P &rarr; no constraints</li>
+<li>1:1:1 → anologous to 1:1 → if a entity is in a relationship it cannot be part of another relationship (with the same relationship type)</li>
+<li>1:1:N → (1x1):N → a combination of entities in a relationship with a cardinality of 1 my be associated with an arbitrary amount of entities from the &ldquo;N side&rdquo;; entities from the &ldquo;N side&rdquo; that are in a relationship are not allowed to be included in another 1:1 combination</li>
+<li>1:N:M → 1:(N x M) → entities from the &ldquo;1 side&rdquo; can be in a relationship with an arbitrary amount of different N:M combinations; N:M combinations may only be in one relationship with an entity from the &ldquo;1 side&rdquo;</li>
+<li>N:M:P → no constraints</li>
 </ul>
-
 <p>To determine the <em>cardinality</em> and <em>participation</em> of a relationship of degree \(n\) the min and max limits of the participating entity types have to be analyzed  (Um Kardinalität und Partizipation einer n-stelligen Beziehung festzustellen, analysiert man für jeden an der Beziehung teilnehmenden Entitytyp die Mindest- und Maximalzahl der Entities die für eine beliebige feste Entitykombination der weiteren (n–1) an der Beziehung teilhabenden Entitytypen auftreten können.)</p>
-
 <p>For example:
-<img src="/knowledge-database/images/ternary-rel-example.png" alt="" /></p>
-
+<img src="/knowledge-database/images/ternary-rel-example.png" alt=""></p>
 <h4 id="example-of-er-modelling-process">Example of ER Modelling Process</h4>
-
 <p>Task: We want to model a simplified version of a semester and the following points should be expressed:</p>
-
 <ul>
 <li>lectures and responsible lecturers</li>
 <li>available rooms and their seats</li>
@@ -566,16 +463,12 @@ So a professor either leads one at max or no faculty. The professors numbers &ld
 <li>students and their participation in exams</li>
 <li>type of, result, room, time and examiner of an exam</li>
 </ul>
-
-<p>Note that because of too much overhead visualizing this manually I&rsquo;ll just insert pictures of the lecture slides here:</p>
-
-<p><img src="/knowledge-database/images/er-model-1.png" alt="" />
-<img src="/knowledge-database/images/er-model-2.png" alt="" />
-<img src="/knowledge-database/images/er-model-3.png" alt="" />
-<img src="/knowledge-database/images/er-model-4.png" alt="" /></p>
-
+<p>Note that because of too much overhead visualizing this manually I'll just insert pictures of the lecture slides here:</p>
+<p><img src="/knowledge-database/images/er-model-1.png" alt="">
+<img src="/knowledge-database/images/er-model-2.png" alt="">
+<img src="/knowledge-database/images/er-model-3.png" alt="">
+<img src="/knowledge-database/images/er-model-4.png" alt=""></p>
 <h3 id="summary-of-the-conceptual-database-design-process">Summary of the Conceptual Database Design Process</h3>
-
 <ol>
 <li>identification of entity types</li>
 <li>identification of relationship types</li>
@@ -583,12 +476,10 @@ So a professor either leads one at max or no faculty. The professors numbers &ld
 <li>defintion (Festlegung) of the attribute codomains (Wertebereich)</li>
 <li>definition (Bestimmung) of candidate- and primary keys</li>
 <li>test for redundancies</li>
-<li>validation wether or not the conceptual data model serves (the transactions of) the real world operations &rarr; involvement of the users</li>
+<li>validation wether or not the conceptual data model serves (the transactions of) the real world operations → involvement of the users</li>
 </ol>
-
 <h2 id="2-dot-logical-db-design">2. Logical DB-Design</h2>
-
-<p>&rarr; We will begin to examine the logical database design process in the next lecture (lecture 03).</p>
+<p>→ We will begin to examine the logical database design process in the next lecture (lecture 03).</p>
 
     </div>
     <div class="post-footer">

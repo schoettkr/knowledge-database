@@ -3,7 +3,7 @@
   <head>
     <title>Algos &amp; Programming - Lecture 04 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,207 +47,166 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="libraries-and-linker">Libraries and Linker</h2>
-
+      <h2 id="libraries-and-linker">Libraries and Linker</h2>
 <p>In the last A&amp;P post we ended with this example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// declarations
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">printf</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>, ...); <span style="color:#75715e">// print format -&gt; write to output
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">atoi</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>); <span style="color:#75715e">// ascii to integer
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>);
 
-<pre><code class="language-C">// declarations
-extern int printf(const char*, ...); // print format -&gt; write to output
-extern int atoi(const char*); // ascii to integer
-static int euclid(int, int);
 
-
-int main(const int c, const char* v[])
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> c, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> v[])
 {
-  printf(&quot;c is %d\n&quot;, c); // number of command line arguments passed
-  printf(&quot;v[0] is %s\n&quot;, v[0]); // path the program
-  const char* arg1 = v[1]; // const because declared as const in the parameter list
-  const char* arg2 = v[2];
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">c is %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, c); <span style="color:#75715e">// number of command line arguments passed
+</span><span style="color:#75715e"></span>  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">v[0] is %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, v[<span style="color:#ae81ff">0</span>]); <span style="color:#75715e">// path the program
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg1 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// const because declared as const in the parameter list
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg2 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">2</span>];
 
-  printf(&quot;GCD of %s and %s is %d.\n&quot;, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); // formatter &quot;%s&quot; expects char*
-  return 0;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">GCD of %s and %s is %d.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); <span style="color:#75715e">// formatter &#34;%s&#34; expects char*
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-int euclid(int x, int y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-  if (x == y) return x;
-  else if (x &gt; y) return euclid(x-y, y);
-  else return euclid(x, y-x);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> y) <span style="color:#66d9ef">return</span> x;
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&gt;</span> y) <span style="color:#66d9ef">return</span> euclid(x<span style="color:#f92672">-</span>y, y);
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> euclid(x, y<span style="color:#f92672">-</span>x);
 }
-</code></pre>
-
-<p>Here two functions were used that are not a <em>part</em> of C. However they are a part of the <em>C standard library</em> (or <em>libc</em>). <strong>Declarations</strong> of libraries are pooled in <strong>header files</strong>. Header files may be included into the code via <code>#included</code> directives. There are two variants of the <code>#include</code> directive:</p>
-
+</code></pre></div><p>Here two functions were used that are not a <em>part</em> of C. However they are a part of the <em>C standard library</em> (or <em>libc</em>). <strong>Declarations</strong> of libraries are pooled in <strong>header files</strong>. Header files may be included into the code via <code>#included</code> directives. There are two variants of the <code>#include</code> directive:</p>
 <ul>
-<li><code>#include &lt;file name&gt;</code> &rarr; searches for <em>file name</em> in the systems path for include files
-
+<li><code>#include &lt;file name&gt;</code> → searches for <em>file name</em> in the systems path for include files
 <ul>
 <li>the system path can be set via compiler options (for <code>gcc</code> via <code>-I</code>)</li>
-</ul></li>
-<li><code>#include &quot;file name&quot;</code> &rarr; searches for <em>file name</em> in the local path
-
+</ul>
+</li>
+<li><code>#include &quot;file name&quot;</code> → searches for <em>file name</em> in the local path
 <ul>
 <li>in this case if the file is not found locally it will be searched for in the systems&rsquo; path globally</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Using header files the previous example would now look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt; // for printf</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdlib.h&gt; // for atoi</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>);
 
-<pre><code class="language-C">#include &lt;stdio.h&gt; // for printf
-#include &lt;stdlib.h&gt; // for atoi
-
-static int euclid(int, int);
-
-int main(const int c, const char* v[])
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> c, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> v[])
 {
-  printf(&quot;c is %d\n&quot;, c); // number of command line arguments passed
-  printf(&quot;v[0] is %s\n&quot;, v[0]); // path the program
-  const char* arg1 = v[1]; // const because declared as const in the parameter list
-  const char* arg2 = v[2];
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">c is %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, c); <span style="color:#75715e">// number of command line arguments passed
+</span><span style="color:#75715e"></span>  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">v[0] is %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, v[<span style="color:#ae81ff">0</span>]); <span style="color:#75715e">// path the program
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg1 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// const because declared as const in the parameter list
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg2 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">2</span>];
 
-  printf(&quot;GCD of %s and %s is %d.\n&quot;, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); // formatter &quot;%s&quot; expects char*
-  return 0;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">GCD of %s and %s is %d.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); <span style="color:#75715e">// formatter &#34;%s&#34; expects char*
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-int euclid(int x, int y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-  if (x == y) return x;
-  else if (x &gt; y) return euclid(x-y, y);
-  else return euclid(x, y-x);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> y) <span style="color:#66d9ef">return</span> x;
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&gt;</span> y) <span style="color:#66d9ef">return</span> euclid(x<span style="color:#f92672">-</span>y, y);
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> euclid(x, y<span style="color:#f92672">-</span>x);
 }
-</code></pre>
-
-<p>The steps performed in the creation of a C program are not solely performed by the compiler. Rather a set of programs is called. More specifically the following happens:</p>
-
+</code></pre></div><p>The steps performed in the creation of a C program are not solely performed by the compiler. Rather a set of programs is called. More specifically the following happens:</p>
 <ol>
 <li>The <strong>preprocessor</strong> evaluates the directives and inserts the content of the <em>header files</em> into the code</li>
 <li>The <strong>compiler</strong> translates the C code into assembly language/code</li>
 <li>The <strong>assembler</strong> translates the assembler code into machine code and generates an object file</li>
 <li>The <strong>linker</strong> searches for external references in the object file und searches the associated objects in the standard libary or other libraries and ties it together into an executable program file.</li>
 </ol>
-
-<p>So remember: Header files only define the interface to the standard library functions, not the implementation; they (as a rule) don&rsquo;t contain any executable code.</p>
-
-<p>I was wondering why the linker runs after the assembler. Don&rsquo;t the library function need to be compiled and assembled as well?
-It depends on the compiler and platform, but typically the standard library functions have already been compiled and collected into binary files that your code is linked against to produce an executable. So the header files contain declarations like our manually created declaration in the first code listing, ala <code>extern int printf(const *char, ...)</code>. For example in the <code>/usr/include/stdio.h</code> on my system I can find this matching declaration <code>extern int printf (const char *__restrict __format, ...);</code> which also just <em>declares</em> and doesn&rsquo;t <em>implement</em> the function <code>printf</code>.</p>
-
+<p>So remember: Header files only define the interface to the standard library functions, not the implementation; they (as a rule) don't contain any executable code.</p>
+<p>I was wondering why the linker runs after the assembler. Don't the library function need to be compiled and assembled as well?
+It depends on the compiler and platform, but typically the standard library functions have already been compiled and collected into binary files that your code is linked against to produce an executable. So the header files contain declarations like our manually created declaration in the first code listing, ala <code>extern int printf(const *char, ...)</code>. For example in the <code>/usr/include/stdio.h</code> on my system I can find this matching declaration <code>extern int printf (const char *__restrict __format, ...);</code> which also just <em>declares</em> and doesn't <em>implement</em> the function <code>printf</code>.</p>
 <p>Furthermore the compiler can be instructed to only execute single steps of the creation process. For example the compiler option <code>-E</code> stops the process after the preprocessor. With <code>-v</code> (for verbose) the GNU compiler can be instructed to give a more detailed output of the steps involved and the process as a whole.</p>
-
 <figure>
     <img src="/knowledge-database/images/verbose-compilation.png"/> 
 </figure>
 
-
 <h2 id="python">Python</h2>
-
 <p>Python is a scripting language that is interpreted at runtime. To execute a python script the interpreter has to be specified either directly when executing (<code>python file.py</code>) or in the first line of the file <code>#! /usr/bin/env  python</code> and then it needs to be made executable via <code>chmod a+x file.py</code>. The euclidian algorithm in python would look as follows:</p>
-
-<pre><code class="language-python">def euclid(x, y):
-    if x == y: return x
-    elif x &gt; y: return euclid(x-y, y)
-    else: return euclid (x, y-x)
-</code></pre>
-
-<p>Python can be used interactively by going into a python shell and importing the function <code>euclid</code> from our &ldquo;module&rdquo;</p>
-
-<pre><code class="language-bash">$ python
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">euclid</span>(x, y):
+    <span style="color:#66d9ef">if</span> x <span style="color:#f92672">==</span> y: <span style="color:#66d9ef">return</span> x
+    <span style="color:#66d9ef">elif</span> x <span style="color:#f92672">&gt;</span> y: <span style="color:#66d9ef">return</span> euclid(x<span style="color:#f92672">-</span>y, y)
+    <span style="color:#66d9ef">else</span>: <span style="color:#66d9ef">return</span> euclid (x, y<span style="color:#f92672">-</span>x)
+</code></pre></div><p>Python can be used interactively by going into a python shell and importing the function <code>euclid</code> from our &ldquo;module&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python
 $ from temp import euclid
-$ euclid(45,30)
-&gt; 15
-</code></pre>
-
-<p>After the last example a file called <code>temp.cpython-37.pyc</code> can be found in our directory (in a folder called <code>__pycache__</code> in my case). This file contains the intermediate represation (Zwischencode) byte code into which the program is translated before it is interpreted. If the file hasn&rsquo;t change a subsequent execution would lead directly to the execution of this byte code.
+$ euclid<span style="color:#f92672">(</span>45,30<span style="color:#f92672">)</span>
+&gt; <span style="color:#ae81ff">15</span>
+</code></pre></div><p>After the last example a file called <code>temp.cpython-37.pyc</code> can be found in our directory (in a folder called <code>__pycache__</code> in my case). This file contains the intermediate represation (Zwischencode) byte code into which the program is translated before it is interpreted. If the file hasn't change a subsequent execution would lead directly to the execution of this byte code.
 It is possible to translate a program explicitly without executing it:</p>
-
-<pre><code class="language-python">import py_compile
-py_compile.compile('xyz.py')
-</code></pre>
-
-<p>Alternatively all python files in a directory can be translated via <code>python -mcompileall .</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> py_compile
+py_compile<span style="color:#f92672">.</span>compile(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">xyz.py</span><span style="color:#e6db74">&#39;</span>)
+</code></pre></div><p>Alternatively all python files in a directory can be translated via <code>python -mcompileall .</code>.</p>
 <p>Python offers a lot of predefined modules. <code>sys</code> for example provides an interface to the operating system and may be used to extend our program with IO:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sys <span style="color:#f92672">import</span> argv
 
-<pre><code class="language-python">from sys import argv
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">euclid</span>(x,y):
+    <span style="color:#66d9ef">if</span> x <span style="color:#f92672">==</span> y: <span style="color:#66d9ef">return</span> x
+    <span style="color:#66d9ef">elif</span> x <span style="color:#f92672">&gt;</span> y: <span style="color:#66d9ef">return</span> euclid(x<span style="color:#f92672">-</span>y, y)
+    <span style="color:#66d9ef">else</span>: <span style="color:#66d9ef">return</span> euclid(x, y<span style="color:#f92672">-</span>x)
 
-def euclid(x,y):
-    if x == y: return x
-    elif x &gt; y: return euclid(x-y, y)
-    else: return euclid(x, y-x)
-
-print(argv[0]) # file name
-print(&quot;GCD is &quot;, euclid(int(argv[1]), int(argv[2])))
-</code></pre>
-
-<h2 id="back-to-c">Back to C</h2>
-
+<span style="color:#66d9ef">print</span>(argv[<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># file name</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">GCD is </span><span style="color:#e6db74">&#34;</span>, euclid(int(argv[<span style="color:#ae81ff">1</span>]), int(argv[<span style="color:#ae81ff">2</span>])))
+</code></pre></div><h2 id="back-to-c">Back to C</h2>
 <p>Going back to C (but the same applies elsewhere!) it is necessary to provide the input arguments on the command line when executing the euclidian algorithm program with IO. Else it would lead to a segmentation fault. The compiler cannot catch things like this because they are built on runtime assumptions. Therefore it is a good idea to validate those assumptions explicitly and program in a defensive way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt; // for printf</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdlib.h&gt; // for atoi</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>);
 
-<pre><code class="language-C">#include &lt;stdio.h&gt; // for printf
-#include &lt;stdlib.h&gt; // for atoi
-
-static int euclid(int, int);
-
-int main(const int c, const char* v[])
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> c, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> v[])
 {
-  if (c != 3) { // v[0] is program name
-    printf(&quot;Error unsufficient number of arguments\n&quot;);
-    return 1;
+  <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) { <span style="color:#75715e">// v[0] is program name
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Error unsufficient number of arguments</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
   }
 
-  const char* arg1 = v[1]; // const because declared as const in the parameter list
-  const char* arg2 = v[2];
+  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg1 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// const because declared as const in the parameter list
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg2 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">2</span>];
 
-  printf(&quot;GCD of %s and %s is %d.\n&quot;, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); // formatter &quot;%s&quot; expects char*
-  return 0;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">GCD of %s and %s is %d.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); <span style="color:#75715e">// formatter &#34;%s&#34; expects char*
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-int euclid(int x, int y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-  if (x == y) return x;
-  else if (x &gt; y) return euclid(x-y, y);
-  else return euclid(x, y-x);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> y) <span style="color:#66d9ef">return</span> x;
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&gt;</span> y) <span style="color:#66d9ef">return</span> euclid(x<span style="color:#f92672">-</span>y, y);
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> euclid(x, y<span style="color:#f92672">-</span>x);
 }
-</code></pre>
+</code></pre></div><p>Since such validation of assumptions is really common, a library function <code>assert</code> exists to achieve this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;assert.h&gt; // &lt;- NEW for assert!</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>);
 
-<p>Since such validation of assumptions is really common, a library function <code>assert</code> exists to achieve this:</p>
-
-<pre><code class="language-C">#include &lt;assert.h&gt; // &lt;- NEW for assert!
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-static int euclid(int, int);
-
-int main(const int c, const char* v[])
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> c, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> v[])
 {
-  assert(c == 3);
+  assert(c <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>);
 
-  const char* arg1 = v[1]; // const because declared as const in the parameter list
-  const char* arg2 = v[2];
+  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg1 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// const because declared as const in the parameter list
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> arg2 <span style="color:#f92672">=</span> v[<span style="color:#ae81ff">2</span>];
 
-  printf(&quot;GCD of %s and %s is %d.\n&quot;, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); // formatter &quot;%s&quot; expects char*
-  return 0;
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">GCD of %s and %s is %d.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, arg1, arg2, euclid(atoi(arg1), atoi(arg2))); <span style="color:#75715e">// formatter &#34;%s&#34; expects char*
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-int euclid(int x, int y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">euclid</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-  if (x == y) return x;
-  else if (x &gt; y) return euclid(x-y, y);
-  else return euclid(x, y-x);
+  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">=</span><span style="color:#f92672">=</span> y) <span style="color:#66d9ef">return</span> x;
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&gt;</span> y) <span style="color:#66d9ef">return</span> euclid(x<span style="color:#f92672">-</span>y, y);
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> euclid(x, y<span style="color:#f92672">-</span>x);
 }
-</code></pre>
-
-<h3 id="errors">Errors</h3>
-
+</code></pre></div><h3 id="errors">Errors</h3>
 <p>There are at least three types of erros that can be distuingished:</p>
-
 <ol>
-<li>formal, &ldquo;incorrect&rdquo; C &rarr; syntax error (compiler error)</li>
-<li>missing objects (e.g functions) or name collisions &rarr; linker error</li>
-<li>intention has not been implemented correctly &rarr; semantic error (logic error)</li>
+<li>formal, &ldquo;incorrect&rdquo; C → syntax error (compiler error)</li>
+<li>missing objects (e.g functions) or name collisions → linker error</li>
+<li>intention has not been implemented correctly → semantic error (logic error)</li>
 </ol>
-
 <p>The first two of these are usually catched when translating the program.</p>
 
     </div>

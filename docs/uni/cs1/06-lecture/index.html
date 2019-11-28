@@ -3,7 +3,7 @@
   <head>
     <title>Computer Science I - Lecture 06 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -48,47 +48,30 @@
     </header>
     <div class="post-content">
       <p>Okay so apparently I covered most of what we did in this lecture in the last blog post already (post about lecture 05).</p>
-
-<p>I&rsquo;ll list what we did in this lecture so you can look at those parts in the last blog post (or elsewhere :D ):</p>
-
+<p>I'll list what we did in this lecture so you can look at those parts in the last blog post (or elsewhere :D ):</p>
 <ul>
 <li>array initialization (+ with loops)</li>
 <li>string functions</li>
 <li>mutlidimensional arrays</li>
 </ul>
-
-<p>Because I didn&rsquo;t really get into multidimensional arrays in the last post and because I don&rsquo;t think the slides are particulary useful on that topic I&rsquo;ll write a bit about them here.</p>
-
+<p>Because I didn't really get into multidimensional arrays in the last post and because I don't think the slides are particulary useful on that topic I'll write a bit about them here.</p>
 <p>The simplest form of multidimensional array is the two-dimensional array. A two-dimensional array is, in essence, a list of one-dimensional arrays. To declare a two-dimensional integer array of size <code>[x][y]</code>, you would write something like <code>int arrayName[x][y];</code>.
 A two-dimensional array can be considered as a table which will have <code>x</code> number of rows and <code>y</code> number of columns. A two-dimensional array <code>a</code>, which contains three rows and four columns can be shown as follows:</p>
-
-<p></knowledge-database/images/2D-arr.jpg ></p>
-
+<p>&lt;/knowledge-database/images/2D-arr.jpg &gt;</p>
 <p>Thus, every element in the array <code>a</code> is identified by an element name of the form <code>a[i][j]</code>, where <code>a</code> is the name of the array, and <code>i</code> and <code>j</code> are the subscripts that uniquely identify each element in <code>a</code>.</p>
-
 <p>Multidimensional arrays may be initialized by specifying bracketed values for each row. Following is an array with 3 rows and each row has 4 columns.</p>
-
-<pre><code class="language-C">// 3 rows which hold 4 elements each -&gt; 3 * 4 elements = 12
-int a[3][4] = {
-               {0, 1, 2, 3}, // initialize first row indexed by 0
-               {4, 5, 6, 7}, // initialize second row indexed by 1
-               {8, 9, 10, 11}, // initialize third row indexed by 2
-}
-</code></pre>
-
-<p>The nested braces, which indicate the intended row, are optional. The following initialization is equivalent to the previous example:</p>
-
-<pre><code class="language-C">int a[3][4] = {0,1,2,3,4,5,6,7,8,9,10,11};
-</code></pre>
-
-<p>An element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example:</p>
-
-<pre><code class="language-C">int val = a[2][3]; // -&gt; 11
-</code></pre>
-
-<p>The above statement will take the 4th element from the 3rd row of the array which is the last one (11). So you first access the row and then the column. Remember that this is zero indexed :D !</p>
-
-<p>Okay that&rsquo;s it already, so not much new stuff in this lecture ^_^</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// 3 rows which hold 4 elements each -&gt; 3 * 4 elements = 12
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {
+               {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}, <span style="color:#75715e">// initialize first row indexed by 0
+</span><span style="color:#75715e"></span>               {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>}, <span style="color:#75715e">// initialize second row indexed by 1
+</span><span style="color:#75715e"></span>               {<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>}, <span style="color:#75715e">// initialize third row indexed by 2
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>The nested braces, which indicate the intended row, are optional. The following initialization is equivalent to the previous example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">11</span>};
+</code></pre></div><p>An element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">3</span>]; <span style="color:#75715e">// -&gt; 11
+</span></code></pre></div><p>The above statement will take the 4th element from the 3rd row of the array which is the last one (11). So you first access the row and then the column. Remember that this is zero indexed :D !</p>
+<p>Okay that's it already, so not much new stuff in this lecture ^_^</p>
 
     </div>
     <div class="post-footer">

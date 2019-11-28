@@ -3,7 +3,7 @@
   <head>
     <title>Computer Science I - Lecture 04 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -47,135 +47,105 @@
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h2 id="comparison">Comparison</h2>
-
+      <h2 id="comparison">Comparison</h2>
 <p>There are the following comparison operators which yield a boolean value ( <code>0</code> for false and <code>≠0</code> for true usually 1): <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>.</p>
-
 <h2 id="assignment-shortcuts">Assignment Shortcuts</h2>
-
 <p><code>a = a+5</code> can be written more concise as <code>a+=5</code> this is possible with all operators (*, /, %, +, -). Yes this is also possible with <code>%</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> a,b, c;
+a <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+b <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
 
-<pre><code class="language-cpp">int a,b, c;
-a = 5;
-b = 2;
-
-a %= b; // -&gt; a = a % b;
-
-cout &lt;&lt; a &lt;&lt; endl;
-</code></pre>
-
-<p>Which yields <code>1</code> for <code>a</code>. But this is rather hard to read!</p>
-
+a <span style="color:#f92672">%</span><span style="color:#f92672">=</span> b; <span style="color:#75715e">// -&gt; a = a % b;
+</span><span style="color:#75715e"></span>
+cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+</code></pre></div><p>Which yields <code>1</code> for <code>a</code>. But this is rather hard to read!</p>
 <p>To increment/decrement by one it is even possible to write <code>a++</code> and <code>a--</code> , as well as <code>++a</code> and <code>--a</code>. The difference between <code>--</code> and <code>++</code> as a pre- or postfix operaror is that as a prefix operator (eg <code>--a</code>) <code>a</code> is first decremented and then evaluated and in case of a postfix operator (<code>a++</code>) <code>a</code> is first evaluated and then incremented. So in regards to the continued use <code>a++</code> is incremented after the usage and <code>++a</code> would be incremented before the usage so <code>a</code> is already up by one when it is then used.</p>
-
 <h2 id="flow-control">Flow Control</h2>
-
 <p>Flow in C++ can be controlled via <code>if (cond) { ... } else if (cond) { ... } else { ... }</code> statements. Take a look at the following example to solve quadratic equations:</p>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;cmath&gt;
-using namespace std;
-int main()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  float a, b, c, d, x1, x2;
-  cout &lt;&lt; &quot;Solve Quadratic Equations \n&quot;;
-  cout &lt;&lt; &quot;Enter coefficient a, b, c: &quot;;
-  cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
-  if (a == 0)
-    cout &lt;&lt; &quot;Not a quadratic equation \n&quot;;
-  else
+  <span style="color:#66d9ef">float</span> a, b, c, d, x1, x2;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Solve Quadratic Equations </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+  cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Enter coefficient a, b, c: </span><span style="color:#e6db74">&#34;</span>;
+  cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> b <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> c;
+  <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+    cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Not a quadratic equation </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+  <span style="color:#66d9ef">else</span>
     {
-      d = (b * b) / (4 * a * a) - c / a;
-      if (d &lt; 0)
-        cout &lt;&lt; &quot;no real resolution \n&quot;;
-      else
+      d <span style="color:#f92672">=</span> (b <span style="color:#f92672">*</span> b) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> a <span style="color:#f92672">*</span> a) <span style="color:#f92672">-</span> c <span style="color:#f92672">/</span> a;
+      <span style="color:#66d9ef">if</span> (d <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+        cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">no real resolution </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+      <span style="color:#66d9ef">else</span>
         {
-          x1 = -b / (2 * a) - sqrt(d);
-          x2 = -b / (2 * a) + sqrt(d);
-          cout &lt;&lt; &quot;x1 = &quot; &lt;&lt; x1 &lt;&lt; &quot;x2 = &quot; &lt;&lt; x2 &lt;&lt; endl;
+          x1 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>b <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> a) <span style="color:#f92672">-</span> sqrt(d);
+          x2 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>b <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> a) <span style="color:#f92672">+</span> sqrt(d);
+          cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">x1 = </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> x1 <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">x2 = </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> x2 <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
         }
     }
 }
-</code></pre>
+</code></pre></div><p>The flow can also be controlled with a <code>switch-case</code> statement. For example to &ldquo;build a simple calculator&rdquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> a, b;
+<span style="color:#66d9ef">char</span> op;
+cin <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> op;
 
-<p>The flow can also be controlled with a <code>switch-case</code> statement. For example to &ldquo;build a simple calculator&rdquo;:</p>
-
-<pre><code class="language-cpp">int a, b;
-char op;
-cin &gt;&gt; op;
-
-switch (op) {
- case '+': // notice the single quotes '' because it is a char
-   cout &lt;&lt; a + b;
-   break;
- case '-':
-   cout &lt;&lt; a - b;
-   break;
- case '/':
-   cout &lt;&lt; a / b;
-   break;
- case '*':
-   cout &lt;&lt; a * b;
-   break;
- case '%':
-   cout &lt;&lt; a % b;
-   break;
- default:
-   cout &lt;&lt; &quot;*** Error ***&quot;;
+<span style="color:#66d9ef">switch</span> (op) {
+ <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">+</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span> <span style="color:#75715e">// notice the single quotes &#39;&#39; because it is a char
+</span><span style="color:#75715e"></span>   cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">+</span> b;
+   <span style="color:#66d9ef">break</span>;
+ <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+   cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">-</span> b;
+   <span style="color:#66d9ef">break</span>;
+ <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+   cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">/</span> b;
+   <span style="color:#66d9ef">break</span>;
+ <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+   cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">*</span> b;
+   <span style="color:#66d9ef">break</span>;
+ <span style="color:#66d9ef">case</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">:</span>
+   cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> a <span style="color:#f92672">%</span> b;
+   <span style="color:#66d9ef">break</span>;
+ <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+   cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">*** Error ***</span><span style="color:#e6db74">&#34;</span>;
  }
 
-cout &lt;&lt; endl;
-</code></pre>
-
-<p>Notice that without the <code>break;</code> at each case the other cases would be checked and might be executed as well! Also the case values (eg <code>+</code>) have to be unique and constant! Constant in that sense that there are no computations allowed (eg function calls).</p>
-
+cout <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> endl;
+</code></pre></div><p>Notice that without the <code>break;</code> at each case the other cases would be checked and might be executed as well! Also the case values (eg <code>+</code>) have to be unique and constant! Constant in that sense that there are no computations allowed (eg function calls).</p>
 <h2 id="repetition">Repetition</h2>
-
 <p>There may be a situation, when you need to execute a block of code several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.</p>
-
 <p>Programming languages provide various control structures that allow for more complicated execution paths.</p>
-
 <p>A loop statement allows us to execute a statement or group of statements multiple times. C== provides the following types of loops:</p>
-
 <ul>
 <li><strong>while loop</strong>
-
 <ul>
 <li>repeats a statement or group of statements while a given condition is true</li>
 <li>it tests the condition before executing the loop body</li>
 <li>eg <code>while (count &lt; 100) { ... count++; ... }</code></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>do..while loop</strong>
-
 <ul>
-<li>like a ‘while’ statement, except that it tests the condition at the end of the loop body &rarr; therefore the &ldquo;do..while&rdquo; loop is executed at least one time</li>
+<li>like a ‘while’ statement, except that it tests the condition at the end of the loop body → therefore the &ldquo;do..while&rdquo; loop is executed at least one time</li>
 <li>eg <code>do { ... count++; ... } while ( count &lt; 100);</code></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>for loop</strong>
-
 <ul>
 <li>execute a sequence of statements multiple times and abbreviates the code that manages the loop variable</li>
 <li>eg <code>for (int x = 0; x &lt; 10; x++) { ... }</code></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>It is also possible to nest loops inside any other loop.</p>
-
 <p>An infinite loop like</p>
-
-<pre><code class="language-cpp">for( ; ; ) {
-  printf(&quot;This loop will run forever.\n&quot;);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">for</span>( ; ; ) {
+  printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">This loop will run forever.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 }
-</code></pre>
-
-<p>wont stop running by itself because an absent conditional expression is considered to be true. To interrupt the loop for example from the terminal press <code>Ctrl-C</code>.</p>
-
+</code></pre></div><p>wont stop running by itself because an absent conditional expression is considered to be true. To interrupt the loop for example from the terminal press <code>Ctrl-C</code>.</p>
 <p>Use for loop when number of iterations is known beforehand, i.e. the number of times the loop body is needed to be executed is known.</p>
-
 <p>Use while loops where exact number of iterations is not known but the loop termination condition is known.</p>
-
 <p>Use do while loop if the code needs to be executed at least once like in Menu driven programs.</p>
 
     </div>

@@ -3,7 +3,7 @@
   <head>
     <title>Security of Distributed Software - Lecture 02 // schoettkr</title>
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.60.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Schoettkr" />
     <meta name="description" content="" />
@@ -51,10 +51,7 @@
           <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/security-ds/">security-ds</a></div></div>
     </header>
     <div class="post-content">
-      
-
-<p>We can achieve the security goals mentioned in the previours lecture by:</p>
-
+      <p>We can achieve the security goals mentioned in the previours lecture by:</p>
 <ul>
 <li>information encryption</li>
 <li>implementation of authentication</li>
@@ -63,65 +60,57 @@
 <li>continous reduction of weak spots</li>
 <li>etc</li>
 </ul>
-
 <figure>
     <img src="/knowledge-database/images/security-procedures.png"/> 
 </figure>
 
-
 <p>In the data transfer model (2 users communicating) we can distinguish for example two types of attackers:</p>
-
 <ul>
 <li>passive attacker
-
 <ul>
 <li>can only listen, not manipulate</li>
 <li>confidentiality threat</li>
-</ul></li>
+</ul>
+</li>
 <li>active attacker
-
 <ul>
 <li>can listen, change, delete, duplicate</li>
 <li>threat for confidentiality, integrity and authenticity</li>
-</ul></li>
 </ul>
-
-<p>The difference between authenticity and liability lays in the focus between internal and external relationships. Here&rsquo;s an example: Authenticity means that Bob is sure the data comes from Alice (internal) - Liability means that Bob can prove this to third parties (external).</p>
-
+</li>
+</ul>
+<p>The difference between authenticity and liability lays in the focus between internal and external relationships. Here's an example: Authenticity means that Bob is sure the data comes from Alice (internal) - Liability means that Bob can prove this to third parties (external).</p>
 <p>Here are some types of threats:
 Interception of transmitted data</p>
-
 <ul>
 <li>Modification of transmitted data
-
 <ul>
 <li>Change</li>
 <li>Delete</li>
 <li>Insert</li>
 <li>Reorder data blocks</li>
-</ul></li>
+</ul>
+</li>
 <li>Masquerade
-
 <ul>
 <li>Faking a false identity</li>
 <li>Sending messages with a false source address</li>
-</ul></li>
+</ul>
+</li>
 <li>Unauthorized access to systems
-
 <ul>
 <li>Keyword „Hacking”</li>
-</ul></li>
+</ul>
+</li>
 <li>Sabotage (Denial of Service)
-
 <ul>
 <li>Causing an overload situation (including hardware)</li>
 <li>“Destroying” protocol instances by illegal packets</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>And here are <em>some</em> attack techniques:
 Tapping cables or radio links</p>
-
 <ul>
 <li>Interposing (man-in-the-middle attack)</li>
 <li>Replaying of intercepted messages (replay attack) (e.g. replay of login messages for the purpose of unauthorized access)</li>
@@ -131,9 +120,7 @@ Tapping cables or radio links</p>
 <li>Breaking cryptographic algorithms</li>
 <li>Social Engineering (e.g. through direct contact and social web)</li>
 </ul>
-
 <p>And some countermeasures:</p>
-
 <ul>
 <li>Don‘t use self-made algorithms, use only proven algorithms that are considered safe!</li>
 <li>Use safe methods and replace old algorithms</li>
@@ -145,30 +132,21 @@ Tapping cables or radio links</p>
 <li>distribute attack surface</li>
 <li>apply encryption everywhere</li>
 </ul>
-
 <p>Security should be considered in an integrated way. This means:</p>
-
 <ul>
 <li>consideration of all assets</li>
 <li>based on risk assesment</li>
 <li>use adequate security approaches and services (often a mix of different techniques)</li>
 </ul>
-
 <p>All in all it is almost impossible to achieve 100% security. Therefore one has to clearly define what has to be protected and how high the according security requirements should be.</p>
-
 <h2 id="excourse-gdpr">Excourse: GDPR</h2>
-
 <p><strong>What is a data subject?</strong></p>
-
 <ul>
 <li>any person whose personal data is being collected, held or processed</li>
 </ul>
-
-<p><strong>What are the data subject&rsquo;s rights?</strong></p>
-
+<p><strong>What are the data subject's rights?</strong></p>
 <ul>
 <li>Individuals/Citizen (data subjects) have the right to:
-
 <ul>
 <li>information about the processing of your personal data</li>
 <li>obtain access to the personal data held about you</li>
@@ -178,15 +156,14 @@ Tapping cables or radio links</p>
 <li>request the restriction of the processing of your personal data in specific cases</li>
 <li>receive your personal data in a machine-readable format and send it to another controller (‘data portability’)</li>
 <li>request that decisions based on automated processing concerning you or significantly affecting you and based on your personal data are made by natural persons, not only by computers; You also have the right in this case to express your point of view and to contest the decision</li>
-</ul></li>
 </ul>
-
-<p><strong>What is personal data and what not?</strong><br />
-&rarr; Personal data is any information that relates to an identified or identifiable living individual. Different pieces of information, which collected together can lead to the identification of a particular person, also constitute personal data.<br />
-Personal data that has been de-identified, encrypted or pseudonymised but can be used to re-identify a person remains personal data and falls within the scope of the law.<br />
-Personal data that has been rendered anonymous in such a way that the individual is not or no longer identifiable is no longer considered personal data. For data to be truly anonymised, the anonymisation must be irreversible.<br />
+</li>
+</ul>
+<p>**What is personal data and what not?**<!-- raw HTML omitted -->
+→ Personal data is any information that relates to an identified or identifiable living individual. Different pieces of information, which collected together can lead to the identification of a particular person, also constitute personal data.<!-- raw HTML omitted -->
+Personal data that has been de-identified, encrypted or pseudonymised but can be used to re-identify a person remains personal data and falls within the scope of the law.<!-- raw HTML omitted -->
+Personal data that has been rendered anonymous in such a way that the individual is not or no longer identifiable is no longer considered personal data. For data to be truly anonymised, the anonymisation must be irreversible.<!-- raw HTML omitted -->
 Examples of personal data:</p>
-
 <ul>
 <li>name and surname, home adress, email adress</li>
 <li>identification card number</li>
@@ -194,22 +171,18 @@ Examples of personal data:</p>
 <li>IP adress</li>
 <li>cookie ID</li>
 </ul>
-
 <p>Examples of data not considered personal data:</p>
-
 <ul>
 <li>a company registration number</li>
-<li>an email adress such as info@company.com</li>
+<li>an email adress such as <a href="mailto:info@company.com">info@company.com</a></li>
 <li>anonymised data</li>
 </ul>
-
-<p><strong>What is a data controller?</strong><br />
+<p>**What is a data controller?**<!-- raw HTML omitted -->
 The controller or data controller is simply the organization (a legal person, agency, public authority, etc.) or the natural person which, alone or depending on the organization and personal data processing activity, in collaboration with others defines what needs to happen with the personal data (and also collects personal data) and obviously is key in personal data protection.
-Formal definition (Article 4):<br />
+Formal definition (Article 4):<!-- raw HTML omitted -->
 <em>‘controller’ means the natural or legal person, public authority, agency or other body which, alone or jointly with others, determines the purposes and means of the processing of personal data; where the purposes and means of such processing are determined by Union or Member State law, the controller or the specific criteria for its nomination may be provided for by Union or Member State law</em></p>
-
-<p><strong>What is a data processor?</strong><br />
-The processor or data processor is a person or organization who deals with personal data as instructed by a controller for specific purposes and services offered to the controller that involve personal data processing (remembering that processing can be really many things under the GDPR). The formal definition of the processor as you can read it in the GDPR Articles (GDPR Article 4):<br />
+<p>**What is a data processor?**<!-- raw HTML omitted -->
+The processor or data processor is a person or organization who deals with personal data as instructed by a controller for specific purposes and services offered to the controller that involve personal data processing (remembering that processing can be really many things under the GDPR). The formal definition of the processor as you can read it in the GDPR Articles (GDPR Article 4):<!-- raw HTML omitted -->
 <em>Processor means a natural or legal person, public authority, agency or other body which processes personal data on behalf of the controller.</em> The main difference to data controllers is that the GDPR has a really different stance with regards to data processors whereby they have duties and responsibilities that are directly applicable and can be directly enforced and GDPR compliance is a shared obligation as you will discover.</p>
 
     </div>
