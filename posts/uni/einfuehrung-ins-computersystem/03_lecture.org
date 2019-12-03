@@ -59,7 +59,7 @@ Harvard Architektur vs Von Neumann Architektur:\\
   - Steuerwerk bestimmt welche Arbeit gemacht werden soll
 - neben der CPU kann es noch andere Prozessoren geben die spezialisierte Aufgaben erfüllen (*Koprozessoren*) zb für: Gleitkommaarithmetik, Speichermanagement, Bus-Controller
   
-**** ALU / Rechenwerk
+*ALU / Rechenwerk*
 - ALU steht für arithmetic/logic unit 
 - Begriffe Rechenwerk und ALU sind nicht klar unterscheidbar
 - zu den Aufgaben des Rechenwerks gehören:
@@ -84,7 +84,7 @@ Harvard Architektur vs Von Neumann Architektur:\\
 
 [[/knowledge-database/images/alu3.png]]
 
-**** Steuerung ders ALU / des Rechenwerks
+*Steuerung ders ALU / des Rechenwerks*
 - schwarze Busse: *Datensignale*
   - Informationen die verarbeitet werden
 - graue Busse: *Steuersignale*
@@ -119,7 +119,7 @@ Harvard Architektur vs Von Neumann Architektur:\\
 - Anzahl und Einsetzbarkeit von Registern stellen ein wesentliches Merkmal einer Architektur dar
 - die Gesamtheit der für den Programmierer nutzbaren Register wird Registersatz genannt
 
-**** Sichtbare und unsichtbare Register
+*Sichtbare und unsichtbare Register*
 - PC (/programm counter/, Befehlszähler, BZ, häufig auch IP /instruction pointer/) hält die Adresse der Speicherzelle, in der der nächste auszuführende Befehl steht
 - IR (/instruction register/, Befehlsregister, BR) speichert den gerade ausgeführten Befehl
 

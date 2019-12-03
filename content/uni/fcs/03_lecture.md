@@ -2,7 +2,7 @@
 title = "Einführung in die Funktion von Computersystemen - Lecture 03: Von Neumann Rechner"
 author = ["eo shiru"]
 date = 2019-10-15
-lastmod = 2019-11-27T22:10:25+01:00
+lastmod = 2019-12-03T10:28:38+01:00
 tags = ["uni", "funktion-computersysteme"]
 draft = false
 +++
@@ -72,42 +72,42 @@ Harvard Architektur vs Von Neumann Architektur:<br />
     -   Steuerwerk bestimmt welche Arbeit gemacht werden soll
 -   neben der CPU kann es noch andere Prozessoren geben die spezialisierte Aufgaben erfüllen (**Koprozessoren**) zb für: Gleitkommaarithmetik, Speichermanagement, Bus-Controller
 
--    ALU / Rechenwerk
+**ALU / Rechenwerk**
 
-    -   ALU steht für arithmetic/logic unit
-    -   Begriffe Rechenwerk und ALU sind nicht klar unterscheidbar
-    -   zu den Aufgaben des Rechenwerks gehören:
-        -   Ausführung **arithmetischer Operationen** wie Addition, Subtraktion, Inkrementierung Dekrementierung und Bildung von Zahlenkomplementen
-        -   Ausführung **logischer Operationen** wie bitweise Negation, Disjunktion, Konjunktion, Antivalenz etc
-        -   Ausführung von **Vergleichsoperationen** zwischen Zahlen
-        -   Ausführung von **Schiebeoperationen** also zyklisches und nichtzyklisches Rechts- oder Linksschieben
-            -   mitunter deshalb auch manchmal ALSU gennant (arithmetic/logic/shifting unit)
+-   ALU steht für arithmetic/logic unit
+-   Begriffe Rechenwerk und ALU sind nicht klar unterscheidbar
+-   zu den Aufgaben des Rechenwerks gehören:
+    -   Ausführung **arithmetischer Operationen** wie Addition, Subtraktion, Inkrementierung Dekrementierung und Bildung von Zahlenkomplementen
+    -   Ausführung **logischer Operationen** wie bitweise Negation, Disjunktion, Konjunktion, Antivalenz etc
+    -   Ausführung von **Vergleichsoperationen** zwischen Zahlen
+    -   Ausführung von **Schiebeoperationen** also zyklisches und nichtzyklisches Rechts- oder Linksschieben
+        -   mitunter deshalb auch manchmal ALSU gennant (arithmetic/logic/shifting unit)
 
-    **ALU - Parameterschaltung**<br />
+**ALU - Parameterschaltung**<br />
 
-    -   durch verschiedene Eingangssignale `a` und `b` kann die Parameterschaltung alle einstelligen Binärfunktionen für `y` darstellen:
+-   durch verschiedene Eingangssignale `a` und `b` kann die Parameterschaltung alle einstelligen Binärfunktionen für `y` darstellen:
 
-    {{< figure src="/knowledge-database/images/alu-parameterschaltung.png" >}}
+{{< figure src="/knowledge-database/images/alu-parameterschaltung.png" >}}
 
-    -   durch Hinzuanehme der OR-Funktion wird die ALU **logisch vollständig**
-        -   dadurch große Flexibilität
+-   durch Hinzuanehme der OR-Funktion wird die ALU **logisch vollständig**
+    -   dadurch große Flexibilität
 
-    {{< figure src="/knowledge-database/images/alu-parameterschaltung2.png" >}}
+{{< figure src="/knowledge-database/images/alu-parameterschaltung2.png" >}}
 
-    -   ist die Steuerleitung `d=0` so wird **kein** Übertrag zwischen den einzelnen ALU-Kernzellen übertragen
-        -   aus arithmetischen Operationen werden logische, bei denen das Ergebnis einer Bitstelle nicht von anderen Bitstellen abhängt
+-   ist die Steuerleitung `d=0` so wird **kein** Übertrag zwischen den einzelnen ALU-Kernzellen übertragen
+    -   aus arithmetischen Operationen werden logische, bei denen das Ergebnis einer Bitstelle nicht von anderen Bitstellen abhängt
 
-    {{< figure src="/knowledge-database/images/alu3.png" >}}
+{{< figure src="/knowledge-database/images/alu3.png" >}}
 
--    Steuerung ders ALU / des Rechenwerks
+**Steuerung ders ALU / des Rechenwerks**
 
-    -   schwarze Busse: **Datensignale**
-        -   Informationen die verarbeitet werden
-    -   graue Busse: **Steuersignale**
-        -   bestimmen, **wie** die Informationen verarbeitet werden
-        -   die Steuersignale können jedoch wieder zu Datenwörtern zusammengefasst werden
+-   schwarze Busse: **Datensignale**
+    -   Informationen die verarbeitet werden
+-   graue Busse: **Steuersignale**
+    -   bestimmen, **wie** die Informationen verarbeitet werden
+    -   die Steuersignale können jedoch wieder zu Datenwörtern zusammengefasst werden
 
-    {{< figure src="/knowledge-database/images/steuerung-alu.png" >}}
+{{< figure src="/knowledge-database/images/steuerung-alu.png" >}}
 
 
 #### Komponenten: Status {#komponenten-status}
@@ -139,12 +139,12 @@ Harvard Architektur vs Von Neumann Architektur:<br />
 -   Anzahl und Einsetzbarkeit von Registern stellen ein wesentliches Merkmal einer Architektur dar
 -   die Gesamtheit der für den Programmierer nutzbaren Register wird Registersatz genannt
 
--    Sichtbare und unsichtbare Register
+**Sichtbare und unsichtbare Register**
 
-    -   PC (_programm counter_, Befehlszähler, BZ, häufig auch IP _instruction pointer_) hält die Adresse der Speicherzelle, in der der nächste auszuführende Befehl steht
-    -   IR (_instruction register_, Befehlsregister, BR) speichert den gerade ausgeführten Befehl
+-   PC (_programm counter_, Befehlszähler, BZ, häufig auch IP _instruction pointer_) hält die Adresse der Speicherzelle, in der der nächste auszuführende Befehl steht
+-   IR (_instruction register_, Befehlsregister, BR) speichert den gerade ausgeführten Befehl
 
-    {{< figure src="/knowledge-database/images/pc-ir.png" >}}
+{{< figure src="/knowledge-database/images/pc-ir.png" >}}
 
 
 #### Komponenten: Control Unit / Steuerwerk {#komponenten-control-unit-steuerwerk}

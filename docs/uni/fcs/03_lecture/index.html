@@ -102,20 +102,14 @@
 
 <h4 id="komponenten-zentrale-verarbeitungseinheit--cpu">Komponenten: Zentrale Verarbeitungseinheit (CPU)</h4>
 <ul>
-<li>
-<p>ist Kernstück eines jeden Von-Neumann-Rechners</p>
-</li>
-<li>
-<p>CPU = central processing unit (ZVE, zentrale Verarbeitungseinheit)</p>
-</li>
-<li>
-<p>liegt häufig als ein IC (integrated circuit, integrierte Schaltung) vor</p>
+<li>ist Kernstück eines jeden Von-Neumann-Rechners</li>
+<li>CPU = central processing unit (ZVE, zentrale Verarbeitungseinheit)</li>
+<li>liegt häufig als ein IC (integrated circuit, integrierte Schaltung) vor
 <ul>
 <li>Mikroprozessor (microprocessor)</li>
 </ul>
 </li>
-<li>
-<p>bekannte Prozessorfamilien sind:</p>
+<li>bekannte Prozessorfamilien sind:
 <ul>
 <li>x86, IA-32, Intel-64</li>
 <li>m68k, m88k</li>
@@ -125,71 +119,80 @@
 <li>SPARC</li>
 </ul>
 </li>
-<li>
-<p>in der CPU findet die eigentliche Informationsverarbeitung statt</p>
-</li>
-<li>
-<p>die CPU besteht mindestens aus <strong>Rechenwerk (ALU)</strong> und <strong>Steuerwerk</strong></p>
+<li>in der CPU findet die eigentliche Informationsverarbeitung statt</li>
+<li>die CPU besteht mindestens aus <strong>Rechenwerk (ALU)</strong> und <strong>Steuerwerk</strong>
 <ul>
 <li>Rechenwerk macht die Arbeit</li>
 <li>Steuerwerk bestimmt welche Arbeit gemacht werden soll</li>
 </ul>
 </li>
-<li>
-<p>neben der CPU kann es noch andere Prozessoren geben die spezialisierte Aufgaben erfüllen (<strong>Koprozessoren</strong>) zb für: Gleitkommaarithmetik, Speichermanagement, Bus-Controller</p>
-</li>
-<li>
-<p>ALU / Rechenwerk</p>
+<li>neben der CPU kann es noch andere Prozessoren geben die spezialisierte Aufgaben erfüllen (<strong>Koprozessoren</strong>) zb für: Gleitkommaarithmetik, Speichermanagement, Bus-Controller</li>
+</ul>
+<p><strong>ALU / Rechenwerk</strong></p>
+<ul>
+<li>ALU steht für arithmetic/logic unit</li>
+<li>Begriffe Rechenwerk und ALU sind nicht klar unterscheidbar</li>
+<li>zu den Aufgaben des Rechenwerks gehören:
+<ul>
+<li>Ausführung <strong>arithmetischer Operationen</strong> wie Addition, Subtraktion, Inkrementierung Dekrementierung und Bildung von Zahlenkomplementen</li>
+<li>Ausführung <strong>logischer Operationen</strong> wie bitweise Negation, Disjunktion, Konjunktion, Antivalenz etc</li>
+<li>Ausführung von <strong>Vergleichsoperationen</strong> zwischen Zahlen</li>
+<li>Ausführung von <strong>Schiebeoperationen</strong> also zyklisches und nichtzyklisches Rechts- oder Linksschieben
+<ul>
+<li>mitunter deshalb auch manchmal ALSU gennant (arithmetic/logic/shifting unit)</li>
+</ul>
 </li>
 </ul>
-<pre><code>-   ALU steht für arithmetic/logic unit
--   Begriffe Rechenwerk und ALU sind nicht klar unterscheidbar
--   zu den Aufgaben des Rechenwerks gehören:
-    -   Ausführung **arithmetischer Operationen** wie Addition, Subtraktion, Inkrementierung Dekrementierung und Bildung von Zahlenkomplementen
-    -   Ausführung **logischer Operationen** wie bitweise Negation, Disjunktion, Konjunktion, Antivalenz etc
-    -   Ausführung von **Vergleichsoperationen** zwischen Zahlen
-    -   Ausführung von **Schiebeoperationen** also zyklisches und nichtzyklisches Rechts- oder Linksschieben
-        -   mitunter deshalb auch manchmal ALSU gennant (arithmetic/logic/shifting unit)
-
-**ALU - Parameterschaltung**&lt;br /&gt;
-
--   durch verschiedene Eingangssignale `a` und `b` kann die Parameterschaltung alle einstelligen Binärfunktionen für `y` darstellen:
-
+</li>
+</ul>
+<p><strong>ALU - Parameterschaltung</strong><!-- raw HTML omitted --></p>
+<ul>
+<li>durch verschiedene Eingangssignale <code>a</code> und <code>b</code> kann die Parameterschaltung alle einstelligen Binärfunktionen für <code>y</code> darstellen:</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/alu-parameterschaltung.png"/> 
 </figure>
 
-
--   durch Hinzuanehme der OR-Funktion wird die ALU **logisch vollständig**
-    -   dadurch große Flexibilität
-
+<ul>
+<li>durch Hinzuanehme der OR-Funktion wird die ALU <strong>logisch vollständig</strong>
+<ul>
+<li>dadurch große Flexibilität</li>
+</ul>
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/alu-parameterschaltung2.png"/> 
 </figure>
 
-
--   ist die Steuerleitung `d=0` so wird **kein** Übertrag zwischen den einzelnen ALU-Kernzellen übertragen
-    -   aus arithmetischen Operationen werden logische, bei denen das Ergebnis einer Bitstelle nicht von anderen Bitstellen abhängt
-
+<ul>
+<li>ist die Steuerleitung <code>d=0</code> so wird <strong>kein</strong> Übertrag zwischen den einzelnen ALU-Kernzellen übertragen
+<ul>
+<li>aus arithmetischen Operationen werden logische, bei denen das Ergebnis einer Bitstelle nicht von anderen Bitstellen abhängt</li>
+</ul>
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/alu3.png"/> 
 </figure>
 
-</code></pre>
+<p><strong>Steuerung ders ALU / des Rechenwerks</strong></p>
 <ul>
-<li>Steuerung ders ALU / des Rechenwerks</li>
+<li>schwarze Busse: <strong>Datensignale</strong>
+<ul>
+<li>Informationen die verarbeitet werden</li>
 </ul>
-<pre><code>-   schwarze Busse: **Datensignale**
-    -   Informationen die verarbeitet werden
--   graue Busse: **Steuersignale**
-    -   bestimmen, **wie** die Informationen verarbeitet werden
-    -   die Steuersignale können jedoch wieder zu Datenwörtern zusammengefasst werden
-
+</li>
+<li>graue Busse: <strong>Steuersignale</strong>
+<ul>
+<li>bestimmen, <strong>wie</strong> die Informationen verarbeitet werden</li>
+<li>die Steuersignale können jedoch wieder zu Datenwörtern zusammengefasst werden</li>
+</ul>
+</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/steuerung-alu.png"/> 
 </figure>
 
-</code></pre>
 <h4 id="komponenten-status">Komponenten: Status</h4>
 <ul>
 <li>zur Realisierung von <strong>Vergleichsoperationen</strong> dient ein Statusregister (flag register)</li>
@@ -218,39 +221,29 @@
 
 <h4 id="komponenten-registersatz">Komponenten: Registersatz</h4>
 <ul>
-<li>
-<p>in der CPU gibt es i.d.R ein oder mehrere Register, deren Verwendungszweck nicht von vorneherein bestimmt ist</p>
+<li>in der CPU gibt es i.d.R ein oder mehrere Register, deren Verwendungszweck nicht von vorneherein bestimmt ist
 <ul>
 <li>→ <strong>Allzweckregister</strong> (general purpose register)</li>
 </ul>
 </li>
-<li>
-<p>diese Register kann ein Programmierer frei verwenden</p>
-</li>
-<li>
-<p>bestimmte Register in der CPU sind auf spezielle Aufgaben spezialisert</p>
+<li>diese Register kann ein Programmierer frei verwenden</li>
+<li>bestimmte Register in der CPU sind auf spezielle Aufgaben spezialisert
 <ul>
 <li>→ <strong>Spezialregister</strong> (special purpose register)</li>
 </ul>
 </li>
-<li>
-<p>Anzahl und Einsetzbarkeit von Registern stellen ein wesentliches Merkmal einer Architektur dar</p>
-</li>
-<li>
-<p>die Gesamtheit der für den Programmierer nutzbaren Register wird Registersatz genannt</p>
-</li>
-<li>
-<p>Sichtbare und unsichtbare Register</p>
-</li>
+<li>Anzahl und Einsetzbarkeit von Registern stellen ein wesentliches Merkmal einer Architektur dar</li>
+<li>die Gesamtheit der für den Programmierer nutzbaren Register wird Registersatz genannt</li>
 </ul>
-<pre><code>-   PC (_programm counter_, Befehlszähler, BZ, häufig auch IP _instruction pointer_) hält die Adresse der Speicherzelle, in der der nächste auszuführende Befehl steht
--   IR (_instruction register_, Befehlsregister, BR) speichert den gerade ausgeführten Befehl
-
+<p><strong>Sichtbare und unsichtbare Register</strong></p>
+<ul>
+<li>PC (<em>programm counter</em>, Befehlszähler, BZ, häufig auch IP <em>instruction pointer</em>) hält die Adresse der Speicherzelle, in der der nächste auszuführende Befehl steht</li>
+<li>IR (<em>instruction register</em>, Befehlsregister, BR) speichert den gerade ausgeführten Befehl</li>
+</ul>
 <figure>
     <img src="/knowledge-database/images/pc-ir.png"/> 
 </figure>
 
-</code></pre>
 <h4 id="komponenten-control-unit-steuerwerk">Komponenten: Control Unit / Steuerwerk</h4>
 <ul>
 <li>das Steuerwerk (auch <em>control unit</em>; Steuereinheit) koordiniert das Rechenwerk, Ein-/Ausgabeeinheit und Speichersystem</li>
