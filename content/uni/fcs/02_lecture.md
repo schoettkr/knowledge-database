@@ -2,7 +2,7 @@
 title = "Einführung in die Funktion von Computersystemen - Lecture 02: Von der Schaltungslogik zur Informationsverarbeitung"
 author = ["eo shiru"]
 date = 2019-10-08
-lastmod = 2019-12-03T10:04:02+01:00
+lastmod = 2019-12-03T10:14:38+01:00
 tags = ["uni", "funktion-computersysteme"]
 draft = false
 +++
@@ -166,3 +166,9 @@ Vorgehen:
 -   das Gesamtergebnis steht am Ende in \\(ag\\)
 
 {{< figure src="/knowledge-database/images/mult-schieberegister.png" >}}
+
+---
+
+Additional Resources:
+
+-   KV Diagramm: <https://www.youtube.com/watch?v=RON2FmNrR58>

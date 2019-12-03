@@ -130,3 +130,7 @@ Vorgehen:
 - das Gesamtergebnis steht am Ende in $ag$
 
 [[/knowledge-database/images/mult-schieberegister.png]]
+
+-----
+Additional Resources:
+- KV Diagramm: https://www.youtube.com/watch?v=RON2FmNrR58

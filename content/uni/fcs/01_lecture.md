@@ -2,7 +2,7 @@
 title = "Einführung in die Funktion von Computersystemen - Lecture 01: Informationen und ihre Darstellung"
 author = ["eo shiru"]
 date = 2019-10-01
-lastmod = 2019-12-03T09:55:37+01:00
+lastmod = 2019-12-03T10:14:40+01:00
 tags = ["uni", "funktion-computersysteme"]
 draft = false
 +++
