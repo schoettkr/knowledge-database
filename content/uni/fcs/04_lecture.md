@@ -1,8 +1,8 @@
 +++
-title = "Einführung in die Funktion von Computersystemen - Lecture 03: Von der Befehls- zur Programmausführung"
+title = "Einführung in die Funktion von Computersystemen - Lecture 04: Von der Befehls- zur Programmausführung"
 author = ["eo shiru"]
 date = 2019-10-22
-lastmod = 2019-11-28T13:25:33+01:00
+lastmod = 2019-12-03T10:33:42+01:00
 tags = ["uni", "funktion-computersysteme"]
 draft = false
 +++

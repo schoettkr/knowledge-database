@@ -1,4 +1,4 @@
-#+TITLE: Einführung in die Funktion von Computersystemen - Lecture 03: Von der Befehls- zur Programmausführung
+#+TITLE: Einführung in die Funktion von Computersystemen - Lecture 04: Von der Befehls- zur Programmausführung
 #+DATE: 2019-10-22
 #+HUGO_TAGS: uni funktion-computersysteme
 #+HUGO_BASE_DIR: ../../../
