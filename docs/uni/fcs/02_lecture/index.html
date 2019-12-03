@@ -103,41 +103,40 @@ Durch logisch vollständige Funktionen können beliebige andere Funktionen &ldqu
 <li>dagegen geht in das Ausgangssignal von zustandsbehafteten Schaltungen die &ldquo;Vorgeschichte&rdquo; ein, die sich im Zustand manifestiert (hat) (→ Automatenmodell)</li>
 </ul>
 <p><img src="/knowledge-database/images/zustandslos-zustandsbehaftet.png" alt=""><!-- raw HTML omitted --></p>
+<p><strong>Register</strong></p>
 <ul>
-<li>Register</li>
+<li>Speicherzellen für logisch zusammengehörende Einzelbits werden zu <strong>Registern</strong> zusammengefasst</li>
+<li>Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden</li>
 </ul>
-<pre><code>-   Speicherzellen für logisch zusammengehörende Einzelbits werden zu **Registern** zusammengefasst
--   Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden
-
-![](/knowledge-database/images/register.png)&lt;br /&gt;
-</code></pre>
+<p><img src="/knowledge-database/images/register.png" alt=""><!-- raw HTML omitted --></p>
+<p><strong>Arbeitsspeicher</strong></p>
 <ul>
-<li>Arbeitsspeicher</li>
-</ul>
-<pre><code>-   abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann
--   Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip
--   das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert
--   typisches Beispiel:
-    -   m = 32 (Datenwortbreite ist 32 Bit)
-    -   n = 24 (es können 2^24 = 16 M Worte angesprochen werden)
-
-![](/knowledge-database/images/arbeitsspeicher.png)&lt;br /&gt;
-
-Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.
-</code></pre>
+<li>abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann</li>
+<li>Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip</li>
+<li>das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert</li>
+<li>typisches Beispiel:
 <ul>
-<li>Schieberegister</li>
+<li>m = 32 (Datenwortbreite ist 32 Bit)</li>
+<li>n = 24 (es können 2^24 = 16 M Worte angesprochen werden)</li>
 </ul>
-<pre><code>-   mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das &quot;freigewordene&quot; Bit der Wert des Eingangsbits \\(d\_{in}\\) geschrieben:
-    -   \\(t=t\_0\\), \\(d\_{in} = 1\\): \\(D=0000\\)
-    -   \\(t=t\_0+1\\), \\(d\_{in} = 1\\): \\(D=0001\\)
-    -   \\(t=t\_0+2\\), \\(d\_{in} = 0\\): \\(D=0011\\)
-    -   \\(t=t\_0+3\\), \\(d\_{in} = 1\\): \\(D=0110\\)
-    -   \\(t=t\_0+4\\), \\(d\_{in} = 1\\): \\(D=1101\\)
--   ist \\(d\_{in} = 0\\)  so entspricht das Schieben in Richtung MSB (most significant Bit) einer **Multiplikation** mit 2, das Schieben in Richtung LSB (least significant Bit) einer Division mit 2
-
-![](/knowledge-database/images/schieberegister.png)&lt;br /&gt;
-</code></pre>
+</li>
+</ul>
+<p><img src="/knowledge-database/images/arbeitsspeicher.png" alt=""><!-- raw HTML omitted --></p>
+<p>Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.</p>
+<p><strong>Schieberegister</strong></p>
+<ul>
+<li>mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das &ldquo;freigewordene&rdquo; Bit der Wert des Eingangsbits \(d_{in}\) geschrieben:
+<ul>
+<li>\(t=t_0\), \(d_{in} = 1\): \(D=0000\)</li>
+<li>\(t=t_0+1\), \(d_{in} = 1\): \(D=0001\)</li>
+<li>\(t=t_0+2\), \(d_{in} = 0\): \(D=0011\)</li>
+<li>\(t=t_0+3\), \(d_{in} = 1\): \(D=0110\)</li>
+<li>\(t=t_0+4\), \(d_{in} = 1\): \(D=1101\)</li>
+</ul>
+</li>
+<li>ist \(d_{in} = 0\)  so entspricht das Schieben in Richtung MSB (most significant Bit) einer <strong>Multiplikation</strong> mit 2, das Schieben in Richtung LSB (least significant Bit) einer Division mit 2</li>
+</ul>
+<p><img src="/knowledge-database/images/schieberegister.png" alt=""><!-- raw HTML omitted --></p>
 <h4 id="addition">Addition</h4>
 <ul>
 <li>Addition zweier Binärzahlen kann durch logische Verknüpfungen realisiert werden (→ <strong>Halbaddierer/Half-Adder</strong>)</li>

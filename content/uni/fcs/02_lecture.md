@@ -2,7 +2,7 @@
 title = "Einführung in die Funktion von Computersystemen - Lecture 02: Von der Schaltungslogik zur Informationsverarbeitung"
 author = ["eo shiru"]
 date = 2019-10-08
-lastmod = 2019-11-26T13:09:24+01:00
+lastmod = 2019-12-03T10:04:02+01:00
 tags = ["uni", "funktion-computersysteme"]
 draft = false
 +++
@@ -70,37 +70,37 @@ Beispiel: Master-Slave-Flip-Flop<br />
 
 ![](/knowledge-database/images/zustandslos-zustandsbehaftet.png)<br />
 
--    Register
+**Register**
 
-    -   Speicherzellen für logisch zusammengehörende Einzelbits werden zu **Registern** zusammengefasst
-    -   Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden
+-   Speicherzellen für logisch zusammengehörende Einzelbits werden zu **Registern** zusammengefasst
+-   Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden
 
-    ![](/knowledge-database/images/register.png)<br />
+![](/knowledge-database/images/register.png)<br />
 
--    Arbeitsspeicher
+**Arbeitsspeicher**
 
-    -   abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann
-    -   Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip
-    -   das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert
-    -   typisches Beispiel:
-        -   m = 32 (Datenwortbreite ist 32 Bit)
-        -   n = 24 (es können 2^24 = 16 M Worte angesprochen werden)
+-   abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann
+-   Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip
+-   das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert
+-   typisches Beispiel:
+    -   m = 32 (Datenwortbreite ist 32 Bit)
+    -   n = 24 (es können 2^24 = 16 M Worte angesprochen werden)
 
-    ![](/knowledge-database/images/arbeitsspeicher.png)<br />
+![](/knowledge-database/images/arbeitsspeicher.png)<br />
 
-    Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.
+Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.
 
--    Schieberegister
+**Schieberegister**
 
-    -   mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das "freigewordene" Bit der Wert des Eingangsbits \\(d\_{in}\\) geschrieben:
-        -   \\(t=t\_0\\), \\(d\_{in} = 1\\): \\(D=0000\\)
-        -   \\(t=t\_0+1\\), \\(d\_{in} = 1\\): \\(D=0001\\)
-        -   \\(t=t\_0+2\\), \\(d\_{in} = 0\\): \\(D=0011\\)
-        -   \\(t=t\_0+3\\), \\(d\_{in} = 1\\): \\(D=0110\\)
-        -   \\(t=t\_0+4\\), \\(d\_{in} = 1\\): \\(D=1101\\)
-    -   ist \\(d\_{in} = 0\\)  so entspricht das Schieben in Richtung MSB (most significant Bit) einer **Multiplikation** mit 2, das Schieben in Richtung LSB (least significant Bit) einer Division mit 2
+-   mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das "freigewordene" Bit der Wert des Eingangsbits \\(d\_{in}\\) geschrieben:
+    -   \\(t=t\_0\\), \\(d\_{in} = 1\\): \\(D=0000\\)
+    -   \\(t=t\_0+1\\), \\(d\_{in} = 1\\): \\(D=0001\\)
+    -   \\(t=t\_0+2\\), \\(d\_{in} = 0\\): \\(D=0011\\)
+    -   \\(t=t\_0+3\\), \\(d\_{in} = 1\\): \\(D=0110\\)
+    -   \\(t=t\_0+4\\), \\(d\_{in} = 1\\): \\(D=1101\\)
+-   ist \\(d\_{in} = 0\\)  so entspricht das Schieben in Richtung MSB (most significant Bit) einer **Multiplikation** mit 2, das Schieben in Richtung LSB (least significant Bit) einer Division mit 2
 
-    ![](/knowledge-database/images/schieberegister.png)<br />
+![](/knowledge-database/images/schieberegister.png)<br />
 
 
 #### Addition {#addition}

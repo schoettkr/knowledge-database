@@ -51,13 +51,13 @@ Beispiel: Master-Slave-Flip-Flop\\
 
 [[/knowledge-database/images/zustandslos-zustandsbehaftet.png]]\\
 
-**** Register
+*Register*
 - Speicherzellen für logisch zusammengehörende Einzelbits werden zu *Registern* zusammengefasst
 - Register bestehen aus unverbundenen Flip-Flops, die gemeinsam getaktet werden
 
 [[/knowledge-database/images/register.png]]\\
 
-**** Arbeitsspeicher
+*Arbeitsspeicher*
 - abstraktes Modell: lineare Liste von Speicherzellen, auf die unter Angabe einer Adresse zugegriffen werden kann
 - Halbleiterspeicher: Millionen von Flip-Flops auf einem Chip
 - das Zugangssignal für jede Speicherzelle wird aus dem Wert, der auf den Adressleitungen liegt, decodiert
@@ -69,7 +69,7 @@ Beispiel: Master-Slave-Flip-Flop\\
 
 Neben dem hier beschriebenen Prinzip des Speicherns durch Flip-Flops gibt es auch andere Speichertechnologien. Die Struktur (Speicherzellen, Zusammenfassung zu einem Speicherwort, Addressierung über Adressdecodierer) ist aber immer gleich.
 
-**** Schieberegister
+*Schieberegister*
 - mit jedem Takt wird das Datenwort um eine Stelle verschoben und das in in das "freigewordene" Bit der Wert des Eingangsbits $d_{in}$ geschrieben:
   - $t=t_0$, $d_{in} = 1$: $D=0000$
   - $t=t_0+1$, $d_{in} = 1$: $D=0001$
