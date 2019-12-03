@@ -2,7 +2,7 @@
 title = "Einführung in die Funktion von Computersystemen - Lecture 01: Informationen und ihre Darstellung"
 author = ["eo shiru"]
 date = 2019-10-01
-lastmod = 2019-11-26T11:29:54+01:00
+lastmod = 2019-12-03T09:55:37+01:00
 tags = ["uni", "funktion-computersysteme"]
 draft = false
 +++
@@ -113,3 +113,11 @@ Operatoren der Booleschen Algebra: ∧, ∨, ¬
 ![](/knowledge-database/images/boolsch-2.png)<br />
 ![](/knowledge-database/images/boolsch-3.png)<br />
 ![](/knowledge-database/images/boolsch-4.png)
+
+---
+
+Additional Resources:
+
+-   One's and Two's Complement: <https://www.youtube.com/watch?v=Z3mswCN2FJs>
+-   Fractions in Binary: <https://www.youtube.com/watch?v=Y4Q9PnjKhac>
+-   Floating Point Binary Representation: <https://www.youtube.com/watch?v=L8OYx1I8qNg> (try the exercises)

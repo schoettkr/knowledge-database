@@ -87,3 +87,10 @@ Operatoren der Booleschen Algebra: ∧, ∨, ¬
 [[/knowledge-database/images/boolsch-2.png]]\\
 [[/knowledge-database/images/boolsch-3.png]]\\
 [[/knowledge-database/images/boolsch-4.png]]
+
+
+-------
+Additional Resources:
+- One's and Two's Complement: https://www.youtube.com/watch?v=Z3mswCN2FJs
+- Fractions in Binary: https://www.youtube.com/watch?v=Y4Q9PnjKhac
+- Floating Point Binary Representation: https://www.youtube.com/watch?v=L8OYx1I8qNg (try the exercises)
