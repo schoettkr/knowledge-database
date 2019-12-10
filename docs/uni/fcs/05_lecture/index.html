@@ -1,0 +1,348 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Einführung in die Funktion von Computersystemen - Lecture 05: Systemsoftware - Prozesse und Prozesswechsel // schoettkr</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.60.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Schoettkr" />
+    <meta name="description" content="" />
+    <base href="https://schoettkr.github.io/knowledge-database/" />
+    <link rel="stylesheet" href="https://schoettkr.github.io/knowledge-database/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.png" /></a>
+      <h1>schoettkr</h1>
+      <p>Software developer currently pursuing a master&#39;s degree in Germany</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/schoettkr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Einführung in die Funktion von Computersystemen - Lecture 05: Systemsoftware - Prozesse und Prozesswechsel</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 29, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div><div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+          <a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/uni/">uni</a><a class="tag" href="https://schoettkr.github.io/knowledge-database/tags/funktion-computersysteme/">funktion-computersysteme</a></div></div>
+    </header>
+    <div class="post-content">
+      <h2 id="betriebsssytem">Betriebsssytem</h2>
+<ul>
+<li>das <em>Laden</em> von Programmen ist ein Dienst, der zur Laufzeit (im Gegensatz zur Übersetzungszeit) die Programmausführung unterstützt</li>
+<li>es gibt mehrere solcher Dienste und zusammengefasst werden sie zu einem <strong>Betriebssystem</strong></li>
+<li>allgemein hat ein Betriebsssytem zwei Aufgaben:
+<ul>
+<li><strong>abstrakter Computer</strong>: es bietet den Programmen &ldquo;schönere&rdquo; Interfaces &amp; Abstraktionen als ein realer Computer</li>
+<li><strong>Ressourcenmanager</strong>: es koordiniert den (konkurrierenden) Zugriff auf Ressourcen</li>
+</ul>
+</li>
+</ul>
+<h3 id="arten-von-betriebsssytem">Arten von Betriebsssytem</h3>
+<ul>
+<li>Batch OS (<strong>Stapelbetriebsysteme</strong>)
+<ul>
+<li>verschiedene Programme (Jobs) werden <em>nacheinander</em> abgearbeitet</li>
+<li>meist keine Interaktion</li>
+</ul>
+</li>
+<li>Multitasking OS (<strong>Mehrprogrammbetriebssysteme</strong>)
+<ul>
+<li>verschiedene Programme laufen (quasi) gleichzeitig ab (nebenläufig)</li>
+<li>Interaktion ist möglich</li>
+</ul>
+</li>
+<li>Multiuser OS (<strong>Mehrnutzerbetriebssysteme</strong>)
+<ul>
+<li>mehrere Nutzer können gleichzeitig interaktiv am System arbeiten</li>
+<li>Time Sharing (Zeitscheibenbetrieb)</li>
+</ul>
+</li>
+<li>Real Time OS (<strong>Echtzeit-</strong> oder <strong>Prozesssteuerbetriebssystem</strong>)
+<ul>
+<li>Einsatz für Steuerungsaufgaben</li>
+<li>bestimmte Zeitanforderungen müssen einhaltbar sein</li>
+</ul>
+</li>
+</ul>
+<p>Heutige Betriebsssyteme vereinen meist mehrere der obigen Aspekte</p>
+<h3 id="zweiteilung-des-betriebsssytem">Zweiteilung des Betriebsssytem</h3>
+<ul>
+<li>Nutzer-/Programmiersicht: aktive Programme sind <strong>Prozesse</strong></li>
+<li>Prozesse interagieren</li>
+<li>Prozesse sind <strong>nicht</strong> in Hardware enthalten → also muss etwas Prozesse und ihre Interaktion zur Verfügung stellen &amp; unterstützen</li>
+<li>dieses &ldquo;Etwas&rdquo; heißt <strong>Kern</strong> (<strong>kernel</strong>) des Betriebsssytems und er stellt die grundlegende Infrastruktur bereit</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/os-zweiteilung.png"/> 
+</figure>
+
+<ul>
+<li>Grobgliederung in zwei Bereiche
+<ul>
+<li><strong>Prozessbereich</strong>, in dem die eigentlichen Funktionen erbracht werden</li>
+<li>*Kern*(bereich), der für die Prozesse die Infrastruktur zur Verfügung stellt</li>
+</ul>
+</li>
+</ul>
+<h2 id="prozessbegriff">Prozessbegriff</h2>
+<ul>
+<li>in dieser Vorlesung verstehen wir einen &ldquo;Prozess&rdquo; als:
+<ul>
+<li>die Einheit der Ausführung (Aktivität), bei der ein Programm oder ein Teil eines Programms auf einem <strong>virtuellen Prozessor</strong> ausgeführt wird</li>
+<li>der &ldquo;virtuelle Prozessor&rdquo; wird implizit durch die Betriebssystem-Infrastruktur erzeugt und (idR) nicht extra benannt → Konzept der <strong>Aktivitätstoken</strong>: Code der die Adresse enthält, auf die der PC zeigt</li>
+<li>andere Prozesskonzepte (Adressräume, Ressourcenbehälter, &hellip;) werden hier als nachrangig betrachtet</li>
+</ul>
+</li>
+<li>Prozess wird im Betriebsssytem durch eine Datenstruktur repräsentiert, den <em>process control block</em>, PCB)</li>
+</ul>
+<p>**Warum überhaupt Prozesse?**<!-- raw HTML omitted --></p>
+<ul>
+<li>ein Programm muss sehr häufig warten, meist auf ein Gerät</li>
+<li>damit die CPU effektiver genutzt werden kann bietet es sich an in diesem Zeitraum den Prozess zu wechseln (Prozessumschaltung, Prozesswechsel, process switching)</li>
+<li>Prozesswechsel bedeutet also einen Übergang von einer Befehlsfolge in eine andere (Prozesssicht)
+<ul>
+<li>aber: Prozessor hat nur eine Befehlsfolge</li>
+</ul>
+</li>
+<li>Umschalten: Ändern des Befehlszählers (Register) → <strong>Dispatching</strong></li>
+</ul>
+<h2 id="dispatching">Dispatching</h2>
+<ul>
+<li>im einfachsten Fall kann man das Umschalten direkt in die Prozesse &ldquo;einprogrammieren&rdquo;</li>
+<li>es wird dann direkt zu einem anderen Prozess <em>gesprungen</em></li>
+<li>unterbrochener Prozess soll korrekt weitergeführt werden → <em>Stelle merken</em></li>
+<li>eine Umschaltstelle besteht also mindestens aus:
+<ul>
+<li><strong>Fortsetzadresse</strong> (wo wurde die Arbeit unterbrochen)</li>
+<li><strong>Sprungbefehl</strong> (wo soll weitergemacht werden)</li>
+</ul>
+</li>
+</ul>
+<h3 id="umschalten-durch-sprung--cooperative">Umschalten durch Sprung (cooperative)</h3>
+<ul>
+<li>für bestimmte Einsatzgebiete (Realzeitsysteme) ist die zum Umschalten benötigte Zeit ein wichtiges Qualitätsmaß</li>
+<li>das Umschalten muss daher effizient realisiert werden</li>
+<li>der Sprung ist die Minimallösung</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/prozess-sprung.png"/> 
+</figure>
+
+<ul>
+<li>Umschalten durch direkten Sprung ist <strong>wenig flexibel</strong> und daher nur in speziellen einfachen Fällen anwendbar</li>
+<li>im Allgemeinen wird das Umschalten wesentlich aufwendiger sein, da:
+<ul>
+<li>man oft nicht weiß, von wo aus man wieder zu dem unterbrochenen Prozess zurückkehrt → <strong>Merken der Fortsetzstelle</strong></li>
+<li>der Prozessor wesentliche Teile der Prozessbeschreibung enthält, die nicht verloren gehen dürfen → <strong>Zustand (Register) umladen</strong></li>
+<li>man nicht weiß, ob der Prozess die Sprungstelle überhaupt erreicht → <strong>nichtkooperativer Prozesswechsel</strong></li>
+<li>der nächste Prozess, auf den man umschaltet, nicht immer der gleiche ist → <strong>Scheduling</strong> (nächstes Kapitel)</li>
+</ul>
+</li>
+</ul>
+<h3 id="prozesskontext">Prozesskontext</h3>
+<ul>
+<li>außer dem Befehlszähler enthält der Prozessor in seinen Registern eine Menge weiterer prozessspezifischer Daten:
+<ul>
+<li>Inhalte von Rechenregister, Indexregistern etc. die den Zustand der Programmbearbeitung, also des Prozesses repräsentieren</li>
+<li>Inhalte von Adressregistern, Segmenttabellen, Unterbrechungsmasken, Zugriffskontrollinformationen etc die die Ablaufumgebung des Prozesses darstellen</li>
+</ul>
+</li>
+<li>alles zusammen, also die gesamte im Prozessor abgelegte prozessspezifische Information wird als <strong>Kontext</strong> des Prozesses (<strong>process context</strong>) bezeichnet</li>
+<li>dieser Prozesskontext muss im Rahmen des Umschaltens gerettet und beim Fortsetzen des Prozesses wieder restauriert werden</li>
+<li>jener <strong>Kontextwechsel</strong> ist der <strong>aufwendigste</strong> Teil des Umschaltens</li>
+<li>um ihn zu beschleunigen, kann von der Prozessor-Hardware Unterstützung angeboten werden:
+<ul>
+<li>durch spezielle Befehle, mit denen man einen kompletten Registersatz aus dem Prozessor in den Speicher schreibt und umgekehrt</li>
+<li>durch Bereitstellung mehrerer Registersätze (zB 8) auf dem Prozessor, so dass beim Umschalten uU nur das Register geändert werden muss, das die Nummer des gültigen Registersatzes angibt</li>
+</ul>
+</li>
+<li>Prozesswechsel ist dann relativ schnell, wenn nur die Rechenregister umgeladen werden müssen, also die Adressierungsumgebung dieselbe bleibt (Prozesswechsel innerhalb eines Adressraums, Leichtgewichtsprozesse, Threads)</li>
+</ul>
+<h3 id="automatisches-umschalten">Automatisches Umschalten</h3>
+<ul>
+<li>in vielen Fällen ist es nicht möglich oder nicht sinnvoll Umschaltstellen explizit (Umschalten durch Sprung) in die Prozesse einzubauen</li>
+<li>wünschenswerter wäre ein <em>automatisches Umschalten</em> → <strong>präemptiv</strong> (preemptive)</li>
+<li>notwendig hierfür ist eine Intervalluhr oder Wecker (<strong>timer</strong>), d.h. eine Hardware-Einrichtung (E/A-Gerät) mit den folgenden Funktionen:
+<ul>
+<li>Vorgabe einer Frist (&ldquo;Stellen des Weckers&rdquo;)</li>
+<li>Unterbrechung bei Fristablauf (&ldquo;Wecken&rdquo;)</li>
+</ul>
+</li>
+<li>beim automatischen Umschalten können die Programme unverändert bleiben</li>
+<li>das Umschalten wird &ldquo;von außen ausgelöst&rdquo; und kann zu jedem beliebigen Zeitpunkt stattfinden (Unterbrechungen dürfen nicht abgeschaltet sein)</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/kooperative-preemptives-umschalten.png"/> 
+</figure>
+
+<h3 id="bedingtes-umschalten">Bedingtes Umschalten</h3>
+<ul>
+<li>im Prozessablauf sind Situationen möglich, in denen vorübergehend nicht weitergearbeitet werden kann zB:
+<ul>
+<li>beim Warten auf einzulesende Daten</li>
+<li>bei Eintritt in &ldquo;kritische Abschnitte&rdquo;</li>
+</ul>
+</li>
+<li>&ldquo;auf der Stelle zu treten&rdquo; (<strong>busy wait</strong>) ungünstig, da Prozessor solange andere Arbeit erledigen könnte</li>
+<li>Begriff: <strong>bedingtes Umschalten</strong>
+<ul>
+<li>ob umgeschaltet wird oder nicht, hängt davon ab, ob eine Bedingung erfüllt ist oder nicht</li>
+</ul>
+</li>
+<li>Bedinung kann durch einfache binäre Variable dargestellt werden</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/umschalt-bedingung.png"/> 
+</figure>
+
+<ul>
+<li>wenn ein Prozess auf eine Bedingung wartet erfolgt ein Umschalten auf einen anderen Prozess
+<ul>
+<li>evtl ist anderer Prozess ebenfalls nicht lauffähig (zB wartet auf E/A-Operation) → erneutes Umschalten etc</li>
+</ul>
+</li>
+<li>dieses Vorgehen kann zu einem längeren &ldquo;Ausprobieren&rdquo; führen</li>
+<li>um Suche nach einem fortsetzbaren Prozess zu beschleunigen, werden Prozesse nach ihrem Zustand (fortsetzbar, nicht fortsetzbar) zu Teilmengen zusammengefasst</li>
+<li>inklusive dem gerade rechnenden Prozess, erhält man so drei Zustände:
+<ul>
+<li>Zustand <strong>&ldquo;rechnend&rdquo;</strong> (running) = Prozesse die gerade auf einem Prozessor bearbeitet werden</li>
+<li>Zustand <strong>&ldquo;bereit&rdquo;</strong> (ready) = Prozesse die zwar fortsetzbar sind aber gerade nicht bearbeitet werden</li>
+<li>Zustand <strong>&ldquo;wartend&rdquo;</strong> (waiting) = Prozesse die nicht fortsetzbar sind weil sie auf das Eintreten einer Bedingung warten</li>
+</ul>
+</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/prozess-zustaende.png"/> 
+</figure>
+
+<ul>
+<li>für alle Zustandsübergänge (state changes) sind entsprechende Operationen im Kern vorgesehen:</li>
+<li><strong>Aufgeben</strong> (<strong>relinquish</strong>):
+<ul>
+<li>freiwilliges Umschalten auf einen anderen Prozess; der bisher rechnende Prozess bleibt jedoch fortsetzbar, dh geht in den Zustand bereit/ready über</li>
+</ul>
+</li>
+<li><strong>Zuordnen</strong> (<strong>assign</strong>):
+<ul>
+<li>Aufgreifen des nächsten Prozesses aus der &ldquo;Bereit-Menge&rdquo; zur Menge Fortsetzung auf dem Prozessor</li>
+</ul>
+</li>
+<li><strong>Blockieren</strong> (<strong>block</strong>):
+<ul>
+<li>verlassen des Prozessors wegen Nichterfüllung einer Bedingung (bedingtes Umschalten); da erst die Bedingung erfüllt sein muss, geht der Prozess in den Zustand &ldquo;warted&rdquo; über</li>
+</ul>
+</li>
+<li><strong>Deblockieren</strong> (<strong>deblock</strong>):
+<ul>
+<li>ist das Ereignis eingetreten, auf das der blockierte Prozess gewartet hat, so wird durch diesen Übergang wieder in die Menge der bereiten Prozesse eingefügt</li>
+</ul>
+</li>
+</ul>
+<h3 id="dynamische-systeme">Dynamische Systeme</h3>
+<ul>
+<li>in dynamischen Systemen ist die Menge der am Geschehen teilnehmenden Prozesse variabel</li>
+<li>dynamische Systeme können in zwei Schritten entstehen:
+<ul>
+<li><strong>Aktivieren / Deaktivieren</strong>
+<ul>
+<li>ein Prozess kann zwar definiert sein (es existiert ein PCB), Programm- und Datenbereich sind vielleicht auch schon vorhanden aber der Prozess ruht, d.h. er ist nicht aktiv</li>
+<li>Unterscheidung zwischen <strong>aktiven</strong> und <strong>nichtaktiven</strong> Prozessen</li>
+<li>Übergänge zwischen diesen Zuständen durch die Operationen <em>aktivieren</em> und <em>deaktivieren</em> möglich</li>
+</ul>
+</li>
+<li><strong>Erzeugen / Löschen</strong>
+<ul>
+<li>weiterer Schritt: Annahme, dass Prozesse bei Systemstart noch nicht existieren; sie werden explizit erzeugt und ggf. gelöscht</li>
+<li>dafür sind die Operationen <strong>erzeugen</strong> und <strong>löschen</strong> vorgesehen</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/zustandsdiagramm.png"/> 
+</figure>
+
+<p>Unix Zustände<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/unix-states.png" alt=""></p>
+<p>Windows NT (thread states)<!-- raw HTML omitted -->
+<img src="/knowledge-database/images/thread-states.png" alt=""></p>
+<h4 id="leerlaufproblem">Leerlaufproblem</h4>
+<ul>
+<li>möglich: alle Prozesse warten → Prozessor hat keine Arbeit</li>
+<li>elegante Lösung: Leerlauf-Prozess (<strong>idle process</strong>)</li>
+<li>Eigenschaften:
+<ul>
+<li>nie blockierend</li>
+<li>nie beendet (zyklischer Prozess)</li>
+<li>muss jederzeit verlassen werden können</li>
+</ul>
+</li>
+</ul>
+<p>Implementation:</p>
+<ul>
+<li>leere Schleife: while (true) do;</li>
+<li>dynamischer Stopp: falls verfügbar Spezialbefehl, der keinen Speicherzugriff durchführt und auf externe Signale reagiert</li>
+<li>nützliche Aufgaben: Prüfungen, Reorganisationen (<em>garbage collection</em>)</li>
+</ul>
+<h2 id="leichtsgewichts-vs-schwergewichtsprozesse">Leichtsgewichts- vs Schwergewichtsprozesse</h2>
+<ul>
+<li>
+<p>Prozess: Programm in Ausführung</p>
+<ul>
+<li>Schwergewichtsprozess: klassischer Prozess → zum Prozess gehöhrt eine Gruppe von Ressourcen (Adressraum, geöffnete Dateien, etc)</li>
+<li>Leichtgewichtsprozesse: Thread → Ressourcen werden von den Prozessen geteilt</li>
+</ul>
+</li>
+<li>
+<p>beim Multithreading gibt es keinen gegenseitigen Schutz</p>
+</li>
+<li>
+<p>als Prozess wird dann meist der (nichtaktive) Ressourcencontainer bezeichnet</p>
+</li>
+<li>
+<p>jeder Thread besitzt eigenen Stack</p>
+</li>
+</ul>
+<figure>
+    <img src="/knowledge-database/images/leichtgewicht-vs-schwergewicht.png"/> 
+</figure>
+
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>

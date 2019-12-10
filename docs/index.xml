@@ -6,10 +6,19 @@
     <description>Recent content on schoettkr</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 00:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://schoettkr.github.io/knowledge-database/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Einführung in die Funktion von Computersystemen - Lecture 05: Systemsoftware - Prozesse und Prozesswechsel</title>
+      <link>https://schoettkr.github.io/knowledge-database/uni/fcs/05_lecture/</link>
+      <pubDate>Tue, 29 Oct 2019 00:00:00 +0100</pubDate>
+      
+      <guid>https://schoettkr.github.io/knowledge-database/uni/fcs/05_lecture/</guid>
+      <description>Betriebsssytem  das Laden von Programmen ist ein Dienst, der zur Laufzeit (im Gegensatz zur Übersetzungszeit) die Programmausführung unterstützt es gibt mehrere solcher Dienste und zusammengefasst werden sie zu einem Betriebssystem allgemein hat ein Betriebsssytem zwei Aufgaben:  abstrakter Computer: es bietet den Programmen &amp;ldquo;schönere&amp;rdquo; Interfaces &amp;amp; Abstraktionen als ein realer Computer Ressourcenmanager: es koordiniert den (konkurrierenden) Zugriff auf Ressourcen    Arten von Betriebsssytem  Batch OS (Stapelbetriebsysteme)  verschiedene Programme (Jobs) werden nacheinander abgearbeitet meist keine Interaktion   Multitasking OS (Mehrprogrammbetriebssysteme)  verschiedene Programme laufen (quasi) gleichzeitig ab (nebenläufig) Interaktion ist möglich   Multiuser OS (Mehrnutzerbetriebssysteme)  mehrere Nutzer können gleichzeitig interaktiv am System arbeiten Time Sharing (Zeitscheibenbetrieb)   Real Time OS (Echtzeit- oder Prozesssteuerbetriebssystem)  Einsatz für Steuerungsaufgaben bestimmte Zeitanforderungen müssen einhaltbar sein    Heutige Betriebsssyteme vereinen meist mehrere der obigen Aspekte</description>
+    </item>
     
     <item>
       <title>Einführung in die Funktion von Computersystemen - Lecture 04: Von der Befehls- zur Programmausführung</title>
